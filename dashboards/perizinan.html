@@ -636,43 +636,71 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
     <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: stretch;">
       <section id="sec-tren" style="flex: 2 1 720px; min-width: 0; background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; box-shadow: 0 1px 2px rgba(15,23,42,.05); display: flex; flex-direction: column; scroll-margin-top: 16px;">
         <div style="padding: 12px 18px; border-bottom: 1px solid #EEF2F7; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px;">
-          <div><h2 style="margin: 0; font-size: 14.5px; font-weight: 600;">Tren kemudahan berusaha</h2><div style="font-size: 11.5px; color: #64748B;">Persentase izin terbit sesuai SLA terhadap target · per triwulan</div></div>
-          <sc-for list="{{c6dd}}" as="f" hint-placeholder-count="1">
-            <div style="position: relative;">
-              <button type="button" sc-camel-on-click="{{f.toggle}}" style="height: 32px; padding: 0 12px; border-radius: 8px; background: {{f.bg}}; border: 1px solid {{f.bd}}; font-family: inherit; font-size: 12px; color: #475569; cursor: pointer;">{{f.l}}: <b style="color: #0F172A;">{{f.v}}</b> ▾</button>
-              <sc-if value="{{f.open}}" hint-placeholder-val="{{false}}">
-                <div style="position: absolute; z-index: 60; top: 36px; right: 0; min-width: 260px; max-height: 360px; overflow-y: auto; padding: 6px; border-radius: 10px; background: #FFFFFF; border: 1px solid #E3E8F0; box-shadow: 0 12px 32px rgba(15,23,42,.16); display: flex; flex-direction: column; gap: 2px;">
-                  <sc-for list="{{f.opts}}" as="o" hint-placeholder-count="5"><button type="button" sc-camel-on-click="{{o.pick}}" class="rw" style="padding: 8px 10px; border: 0; border-radius: 6px; background: {{o.bg}}; font-family: inherit; font-size: 12.5px; color: #0F172A; font-weight: {{o.w}}; text-align: left; display: flex; justify-content: space-between; gap: 12px;"><span>{{o.l}}</span><span style="color: #94A3B8;">{{o.n}}</span></button></sc-for>
-                </div>
-              </sc-if>
-            </div>
-          </sc-for>
+          <div><h2 style="margin: 0; font-size: 14.5px; font-weight: 600;">Tren kemudahan berusaha</h2><div style="font-size: 11.5px; color: #64748B;">Kepatuhan SLA perizinan berusaha (PP 28/2025) — pilih triwulan atau bandingkan wilayah</div></div>
+          <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px;">
+            <div role="tablist" aria-label="Tampilan tren" style="display: flex; gap: 2px; padding: 3px; background: #EEF2F7; border-radius: 8px;"><sc-for list="{{c6tabs}}" as="t" hint-placeholder-count="2"><button type="button" role="tab" sc-camel-on-click="{{t.pick}}" style="height: 26px; padding: 0 10px; border: 0; border-radius: 6px; background: {{t.bg}}; color: {{t.fg}}; font-family: inherit; font-size: 11.5px; font-weight: 600; cursor: pointer;">{{t.l}}</button></sc-for></div>
+            <sc-for list="{{c6dd}}" as="f" hint-placeholder-count="1">
+              <div style="position: relative;">
+                <button type="button" sc-camel-on-click="{{f.toggle}}" style="height: 32px; padding: 0 12px; border-radius: 8px; background: {{f.bg}}; border: 1px solid {{f.bd}}; font-family: inherit; font-size: 12px; color: #475569; cursor: pointer;">{{f.l}}: <b style="color: #0F172A;">{{f.v}}</b> ▾</button>
+                <sc-if value="{{f.open}}" hint-placeholder-val="{{false}}">
+                  <div style="position: absolute; z-index: 60; top: 36px; right: 0; min-width: 260px; max-height: 360px; overflow-y: auto; padding: 6px; border-radius: 10px; background: #FFFFFF; border: 1px solid #E3E8F0; box-shadow: 0 12px 32px rgba(15,23,42,.16); display: flex; flex-direction: column; gap: 2px;">
+                    <sc-for list="{{f.opts}}" as="o" hint-placeholder-count="5"><button type="button" sc-camel-on-click="{{o.pick}}" class="rw" style="padding: 8px 10px; border: 0; border-radius: 6px; background: {{o.bg}}; font-family: inherit; font-size: 12.5px; color: #0F172A; font-weight: {{o.w}}; text-align: left; display: flex; justify-content: space-between; gap: 12px;"><span>{{o.l}}</span><span style="color: #94A3B8;">{{o.n}}</span></button></sc-for>
+                  </div>
+                </sc-if>
+              </div>
+            </sc-for>
+          </div>
         </div>
         <div style="padding: 16px 18px; display: flex; flex-wrap: wrap; gap: 20px;">
-          <div style="flex: 3 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 8px;">
-            <div style="display: flex; flex-wrap: wrap; gap: 12px; font-size: 11.5px; color: #475569;"><span style="display: inline-flex; align-items: center; gap: 6px;"><span style="width: 16px; height: 3px; border-radius: 2px; background: #1D4ED8;"></span>% izin terbit sesuai SLA</span><span style="display: inline-flex; align-items: center; gap: 6px;"><span style="width: 16px; height: 0; border-top: 2px dashed #0B1F4B;"></span>{{c6.tl}}</span></div>
-            <div style="display: flex; gap: 8px;">
-              <div style="position: relative; flex: none; width: 36px; height: 200px;"><sc-for list="{{c6.yl}}" as="y" hint-placeholder-count="4"><span style="position: absolute; right: 0; top: {{y.t}}; transform: translateY(-50%); font-size: 10.5px; color: #64748B;">{{y.l}}</span></sc-for></div>
-              <div style="position: relative; flex: 1; min-width: 0; height: 200px;">
-                <svg sc-camel-view-box="0 0 600 200" sc-camel-preserve-aspect-ratio="none" style="width: 100%; height: 200px; display: block;" role="img" aria-label="{{c6.aria}}">
-                  <path d="{{c6.grid}}" stroke="#E3E8F0" stroke-dasharray="3 3" fill="none" vector-effect="non-scaling-stroke"></path>
-                  <path d="M0 199H600" stroke="#CBD5E1" fill="none" vector-effect="non-scaling-stroke"></path>
-                  <path d="{{c6.mark}}" stroke="#94A3B8" stroke-dasharray="4 3" fill="none" vector-effect="non-scaling-stroke"></path>
-                  <path d="{{c6.tp}}" fill="none" stroke="#0B1F4B" stroke-width="2" stroke-dasharray="6 4" vector-effect="non-scaling-stroke"></path>
-                  <path d="{{c6.lp}}" fill="none" stroke="#1D4ED8" stroke-width="2.5" stroke-linejoin="round" vector-effect="non-scaling-stroke"></path>
-                </svg>
-                <sc-for list="{{c6.pts}}" as="p" hint-placeholder-count="5"><button type="button" sc-camel-on-click="{{p.pick}}" class="pt" title="{{p.t}}" aria-label="{{p.t}}" style="position: absolute; left: {{p.x}}; top: {{p.y}}; width: 12px; height: 12px; margin: -6px 0 0 -6px; padding: 0; border-radius: 99px; border: 2.5px solid #1D4ED8; background: {{p.bg}}; box-sizing: border-box; cursor: pointer;"></button></sc-for>
-                <span style="position: absolute; left: {{c6.tx}}; top: {{c6.ty}}; transform: {{c6.tf}}; padding: 6px 9px; border-radius: 8px; background: #0B1F3A; color: #FFFFFF; font-size: 11px; line-height: 15px; white-space: nowrap; pointer-events: none;"><b>{{c6.tl1}}</b><br>{{c6.tl2}}</span>
+          <div style="flex: 3 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 12px;">
+            <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px;"><sc-for list="{{c6kpi}}" as="k" hint-placeholder-count="3"><div style="padding: 8px 11px; border-radius: 9px; border: 1px solid #E3E8F0; background: #F8FAFC;"><div style="font-size: 10.5px; color: #64748B; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{k.l}}</div><b style="display: block; font-size: 18px; letter-spacing: -0.3px; color: {{k.c}};">{{k.v}}</b><div style="font-size: 10.5px; color: #94A3B8; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{k.s}}</div></div></sc-for></div>
+
+            <sc-if value="{{c6isTren}}" hint-placeholder-val="{{false}}">
+              <div style="display: flex; flex-wrap: wrap; gap: 12px; font-size: 11.5px; color: #475569;"><span style="display: inline-flex; align-items: center; gap: 6px;"><span style="width: 16px; height: 3px; border-radius: 2px; background: #1D4ED8;"></span>% izin terbit sesuai SLA</span><span style="display: inline-flex; align-items: center; gap: 6px;"><span style="width: 16px; height: 0; border-top: 2px dashed #0B1F4B;"></span>{{c6.tl}}</span><sc-if value="{{c6.wEst}}" hint-placeholder-val="{{false}}"><span style="padding: 1px 8px; border-radius: 99px; background: #FFFBEB; border: 1px solid #FDE68A; color: #92400E; font-size: 10.5px; font-weight: 600;">Estimasi · bentuk tren nasional digeser ke level wilayah</span></sc-if></div>
+              <div style="display: flex; gap: 8px;">
+                <div style="position: relative; flex: none; width: 36px; height: 200px;"><sc-for list="{{c6.yl}}" as="y" hint-placeholder-count="4"><span style="position: absolute; right: 0; top: {{y.t}}; transform: translateY(-50%); font-size: 10.5px; color: #64748B;">{{y.l}}</span></sc-for></div>
+                <div style="position: relative; flex: 1; min-width: 0; height: 200px;">
+                  <svg sc-camel-view-box="0 0 600 200" sc-camel-preserve-aspect-ratio="none" style="width: 100%; height: 200px; display: block;" role="img" aria-label="{{c6.aria}}">
+                    <path d="{{c6.grid}}" stroke="#E3E8F0" stroke-dasharray="3 3" fill="none" vector-effect="non-scaling-stroke"></path>
+                    <path d="M0 198H600" stroke="#CBD5E1" fill="none" vector-effect="non-scaling-stroke"></path>
+                    <path d="{{c6.ar}}" fill="#1D4ED8" fill-opacity="0.07" stroke="none"></path>
+                    <path d="{{c6.tp}}" fill="none" stroke="#0B1F4B" stroke-width="2" stroke-dasharray="6 4" vector-effect="non-scaling-stroke"></path>
+                    <path d="{{c6.lp}}" fill="none" stroke="#1D4ED8" stroke-width="2.5" stroke-linejoin="round" vector-effect="non-scaling-stroke"></path>
+                  </svg>
+                  <sc-for list="{{c6.pts}}" as="p" hint-placeholder-count="5"><button type="button" sc-camel-on-click="{{p.pick}}" class="pt" title="{{p.t}}" aria-label="{{p.t}}" style="position: absolute; left: {{p.x}}; top: {{p.y}}; width: 12px; height: 12px; margin: -6px 0 0 -6px; padding: 0; border-radius: 99px; border: 2.5px solid #1D4ED8; background: {{p.bg}}; box-sizing: border-box; cursor: pointer;"></button></sc-for>
+                </div>
               </div>
-            </div>
-            <div style="position: relative; height: 24px; margin-left: 44px;"><sc-for list="{{c6.xl}}" as="x" hint-placeholder-count="5"><button type="button" sc-camel-on-click="{{x.pick}}" style="position: absolute; left: {{x.x}}; transform: translateX(-50%); padding: 2px 7px; border: 0; border-radius: 5px; background: {{x.bg}}; color: {{x.fg}}; font-family: inherit; font-size: 11px; font-weight: {{x.fw}}; cursor: pointer; white-space: nowrap;">{{x.l}}</button></sc-for></div>
+              <div style="position: relative; height: 24px; margin-left: 44px;"><sc-for list="{{c6.xl}}" as="x" hint-placeholder-count="5"><button type="button" sc-camel-on-click="{{x.pick}}" style="position: absolute; left: {{x.x}}; transform: translateX(-50%); padding: 2px 7px; border: 0; border-radius: 5px; background: {{x.bg}}; color: {{x.fg}}; font-family: inherit; font-size: 11px; font-weight: {{x.fw}}; cursor: pointer; white-space: nowrap;">{{x.l}}</button></sc-for></div>
+            </sc-if>
+
+            <sc-if value="{{c6isWil}}" hint-placeholder-val="{{false}}">
+              <div style="display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; font-size: 11.5px; color: #475569;"><span><b style="color: #0F172A;">Peringkat kepatuhan SLA per wilayah</b> · Tw III 2026</span><span style="padding: 1px 8px; border-radius: 99px; background: #FFFBEB; border: 1px solid #FDE68A; color: #92400E; font-size: 10.5px; font-weight: 600;">Estimasi · alokasi OSS</span></div>
+              <div style="display: flex; flex-direction: column; gap: 1px;">
+                <sc-for list="{{c6rank.rows}}" as="r" hint-placeholder-count="11"><button type="button" sc-camel-on-click="{{r.pick}}" class="rw" style="display: grid; grid-template-columns: minmax(0, 1fr) 46px; gap: 10px; align-items: center; padding: 4px 6px; border: 0; border-radius: 6px; background: {{r.bg}}; font-family: inherit; font-size: 11.5px; color: #0F172A; text-align: left; font-weight: {{r.fw}};"><span style="display: flex; flex-direction: column; gap: 3px; min-width: 0;"><span style="display: flex; justify-content: space-between; gap: 8px;"><span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{r.l}}</span><span style="flex: none; font-size: 10px; font-weight: 500; color: #94A3B8;">{{r.d}}</span></span><span style="position: relative; display: block; height: 7px; border-radius: 99px; background: #EEF2F7;"><span style="position: absolute; left: 0; top: 0; bottom: 0; width: {{r.w}}; border-radius: 99px; background: {{r.c}};"></span><span style="position: absolute; left: {{r.t}}; top: -2px; bottom: -2px; width: 2px; background: #0B1F4B;"></span></span></span><b style="text-align: right; font-weight: 600;">{{r.v}}</b></button></sc-for>
+              </div>
+            </sc-if>
           </div>
-          <div style="flex: 2 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 10px;">
-            <div style="border: 1px solid #E3E8F0; border-radius: 10px; overflow: hidden;">
-              <div style="display: grid; grid-template-columns: minmax(0, 1fr) 62px 70px 58px 70px; gap: 6px; padding: 8px 10px; background: #F8FAFC; font-size: 10.5px; font-weight: 700; letter-spacing: 0.3px; color: #64748B;"><span>TRIWULAN</span><span style="text-align: right;">SESUAI SLA</span><span style="text-align: right;">VS TW LALU</span><span style="text-align: right;">TARGET</span><span style="text-align: right;">THD TARGET</span></div>
-              <sc-for list="{{c6rows}}" as="r" hint-placeholder-count="5"><button type="button" sc-camel-on-click="{{r.pick}}" class="rw" style="width: 100%; display: grid; grid-template-columns: minmax(0, 1fr) 62px 70px 58px 70px; gap: 6px; padding: 7px 10px; border: 0; border-top: 1px solid #EEF2F7; background: {{r.bg}}; font-family: inherit; font-size: 12px; color: #0F172A; text-align: left;"><span style="font-weight: {{r.fw}};">{{r.q}}</span><b style="text-align: right;">{{r.v}}</b><span style="text-align: right; color: #1D4ED8; font-weight: 600;">{{r.d}}</span><span style="text-align: right; color: #475569;">{{r.t}}</span><span style="text-align: right; font-weight: 600; color: {{r.gc}};">{{r.g}}</span></button></sc-for>
-            </div>
-            <div style="padding: 10px 12px; border-radius: 8px; background: #EFF6FF; border: 1px solid #E7F1E9; font-size: 12px; line-height: 18px; color: #1E293B;">{{c6note}}</div>
+          <div style="flex: 2 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 10px;">
+            <sc-if value="{{c6isTren}}" hint-placeholder-val="{{false}}">
+              <div style="border: 1px solid #E3E8F0; border-radius: 10px; overflow: hidden;">
+                <div style="display: grid; grid-template-columns: minmax(0, 1fr) 74px 76px; gap: 6px; padding: 8px 10px; background: #F8FAFC; font-size: 10.5px; font-weight: 700; letter-spacing: 0.3px; color: #64748B;"><span>TRIWULAN</span><span style="text-align: right;">SESUAI SLA</span><span style="text-align: right;">VS TARGET</span></div>
+                <sc-for list="{{c6rows}}" as="r" hint-placeholder-count="5"><button type="button" sc-camel-on-click="{{r.pick}}" class="rw" style="width: 100%; display: grid; grid-template-columns: minmax(0, 1fr) 74px 76px; gap: 6px; padding: 8px 10px; border: 0; border-top: 1px solid #EEF2F7; background: {{r.bg}}; font-family: inherit; font-size: 12px; color: #0F172A; text-align: left;"><span style="font-weight: {{r.fw}};">{{r.q}}</span><b style="text-align: right;">{{r.v}}</b><span style="text-align: right; font-weight: 600; color: {{r.gc}};">{{r.g}}</span></button></sc-for>
+              </div>
+              <div style="padding: 10px 12px; border-radius: 8px; background: #EFF6FF; border: 1px solid #E7F1E9; font-size: 12px; line-height: 18px; color: #1E293B;">{{c6note}}</div>
+            </sc-if>
+            <sc-if value="{{c6isWil}}" hint-placeholder-val="{{false}}">
+              <div style="padding: 12px; border-radius: 10px; border: 1px solid #E3E8F0; background: #F8FAFC;">
+                <div style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.3px; color: #64748B;">RUJUKAN NASIONAL · TW III 2026</div>
+                <div style="display: flex; align-items: baseline; gap: 8px; margin-top: 4px;"><b style="font-size: 24px; letter-spacing: -0.4px; color: #1E40AF;">{{c6rank.nat}}</b><span style="font-size: 11.5px; color: #475569;">izin terbit sesuai SLA</span></div>
+                <div style="position: relative; height: 8px; margin-top: 8px; border-radius: 99px; background: #E2E8F0;"><span style="display: block; width: {{c6rank.natW}}; height: 8px; border-radius: 99px; background: #1D4ED8;"></span><span style="position: absolute; left: {{c6rank.natT}}; top: -3px; width: 2px; height: 14px; background: #0B1F4B;"></span></div>
+                <div style="display: flex; justify-content: space-between; margin-top: 5px; font-size: 11px; color: #64748B;"><span>0%</span><span style="color: #0B1F4B; font-weight: 600;">target 80%</span></div>
+              </div>
+              <div style="border: 1px solid #E3E8F0; border-radius: 10px; overflow: hidden;">
+                <div style="padding: 8px 10px; background: #F8FAFC; font-size: 10.5px; font-weight: 700; letter-spacing: 0.3px; color: #64748B;">CARA BACA</div>
+                <div style="padding: 9px 11px; display: flex; flex-direction: column; gap: 6px; font-size: 11.5px; line-height: 16px; color: #334155;"><span><b>Tinggi:</b> {{c6rank.top}}</span><span><b>Terendah:</b> {{c6rank.bot}}</span><span><b>Tanda hitam:</b> target RKPD tiap wilayah.</span><span><b>Klik baris:</b> menyinkronkan kartu pembanding investasi.</span></div>
+              </div>
+              <div style="padding: 10px 12px; border-radius: 8px; background: #EFF6FF; border: 1px solid #E7F1E9; font-size: 12px; line-height: 18px; color: #1E293B;">{{c6note}}</div>
+            </sc-if>
           </div>
         </div>
         <div style="margin-top: auto; padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;"><span><b style="color: #475569;">Periode:</b> Tw III 2025 – Tw III 2026 (checkpoint triwulan)</span><span><b style="color: #475569;">Diperbarui:</b> 12 Okt 2026</span><span><b style="color: #475569;">Sumber:</b> OSS (kepatuhan SLA) · target dari RPJMD/RKPD, dimutakhirkan tiap tahun</span><span style="padding: 0 6px; border-radius: 4px; background: #EFF6FF; color: #1D4ED8; font-weight: 600;">Divalidasi analis</span></div>
@@ -694,6 +722,31 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
         <div style="margin-top: auto; padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;"><span><b style="color: #475569;">Periode:</b> 2025 – Semester I 2026</span><span><b style="color: #475569;">Diperbarui:</b> 16 Jul 2026 (rilis)</span><span><b style="color: #475569;">Sumber:</b> Kementerian Investasi dan Hilirisasi/BKPM</span><span style="padding: 0 6px; border-radius: 4px; background: #EFF6FF; color: #1D4ED8; font-weight: 600;">Data resmi</span></div>
       </section>
     </div>
+
+    <!-- 7. Insight AI -->
+    <section id="sec-insight" style="background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; box-shadow: 0 1px 2px rgba(15,23,42,.05); scroll-margin-top: 16px;">
+      <div style="padding: 12px 18px; border-bottom: 1px solid #EEF2F7; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px;">
+        <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;"><h2 style="margin: 0; font-size: 14.5px; font-weight: 600;">Insight kemudahan berusaha</h2><span style="height: 22px; padding: 0 8px; border-radius: 6px; background: #EEF2FF; border: 1px solid #C7D2FE; color: #3730A3; font-size: 11px; font-weight: 600; display: inline-flex; align-items: center;">✦ Analisis AI · diverifikasi analis</span></div>
+        <span style="font-size: 11.5px; color: #64748B;">Disusun AI dari data kartu 1–6; angka berasal dari sumber resmi yang ditampilkan</span>
+      </div>
+      <div style="padding: 14px 18px 16px; display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 12px;">
+        <sc-for list="{{ins6}}" as="i" hint-placeholder-count="3">
+          <div style="display: flex; flex-direction: column; gap: 10px; padding: 14px; border-radius: 10px; border: 1px solid #C7D2FE; background: #F8F9FF;">
+            <div style="display: flex; gap: 10px; align-items: flex-start;"><span style="flex: none; width: 24px; height: 24px; border-radius: 99px; background: #3730A3; color: #FFFFFF; font-size: 12px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center;">{{i.no}}</span><b style="font-size: 13px; line-height: 19px; color: #1E1B4B;">{{i.t}}</b></div>
+            <div style="padding: 10px 12px; border-radius: 8px; background: #FFFFFF; border: 1px solid #E3E8F0;">
+              <div style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.4px; color: #1E40AF;">DASAR DATA · DARI SUMBER</div>
+              <ul style="margin: 6px 0 0; padding-left: 16px; display: flex; flex-direction: column; gap: 3px; font-size: 12px; line-height: 17px; color: #1E293B;"><sc-for list="{{i.basis}}" as="b" hint-placeholder-count="3"><li>{{b}}</li></sc-for></ul>
+            </div>
+            <div style="padding: 10px 12px; border-radius: 8px; background: #EEF2FF; border: 1px dashed #A5B4FC;">
+              <div style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.4px; color: #3730A3;">IMPLIKASI · AI</div>
+              <p style="margin: 6px 0 0; font-size: 12px; line-height: 18px; color: #1E293B;">{{i.impl}}</p>
+            </div>
+            <div style="margin-top: auto; display: flex; flex-wrap: wrap; gap: 6px;"><sc-for list="{{i.links}}" as="k" hint-placeholder-count="2"><a href="{{k.h}}" sc-camel-on-click="{{k.pick}}" style="height: 26px; padding: 0 10px; border-radius: 99px; border: 1px solid #B8E3DF; background: #FFFFFF; color: #1D4ED8; font-size: 11.5px; font-weight: 600; display: inline-flex; align-items: center; text-decoration: none;">{{k.l}}</a></sc-for></div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;"><span><b style="color: #475569;">Periode:</b> Tw III 2025 – Tw III 2026</span><span><b style="color: #475569;">Diperbarui:</b> 12 Okt 2026</span><span><b style="color: #475569;">Sumber:</b> AI agent atas data kartu 1–6 (OSS, PP 28/2025, SIMBG, BKPM)</span><span style="padding: 0 6px; border-radius: 4px; background: #EEF2FF; color: #3730A3; font-weight: 600;">Narasi AI diverifikasi analis · 12 Okt 2026</span></div>
+    </section>
   </main>
 
   <!-- Modal daftar pembentuk -->
@@ -976,32 +1029,55 @@ class Component extends DCLogic {
     const Q = ['Tw III 2025', 'Tw IV 2025', 'Tw I 2026', 'Tw II 2026', 'Tw III 2026'];
     const NATQ = [71.8, 74.2, 76.0, 77.9, 78.6];
     const TGW = { all: [75, 80], jabar: [75, 80], dki: [82, 86], jatim: [76, 80], jateng: [76, 80], banten: [74, 78], sumut: [72, 76], sulsel: [73, 77], bali: [72, 76], riau: [73, 77], kaltim: [72, 76], lain: [73, 77] };
-    const c6w = st.c6w ?? 'all', c6q = st.c6q ?? 4;
+    const c6w = st.c6w ?? 'all', c6q = st.c6q ?? 4, c6view = st.c6view ?? 'tren';
+    const c6isTren = c6view === 'tren', c6isWil = c6view === 'wil';
     const shareSes = (wf) => { const a = sumC('all', 'all', wf, 0), b = sumC('all', 'all', wf); return b ? (a / b) * 100 : 0; };
+    const c6wL = c6w === 'all' ? 'Nasional' : WIL[WI[c6w]][1];
     const twIII = Math.round((shareSes(c6w) - 0.5) * 10) / 10;
     const serie = NATQ.map((v, i) => (i === 4 ? twIII : Math.round((twIII - (NATQ[4] - v) + (c6w === 'all' ? 0 : (rng('q6' + c6w + i)() - 0.5) * 1.2)) * 10) / 10));
     const tg = TGW[c6w], tgs = [tg[0], tg[0], tg[1], tg[1], tg[1]];
     const lo6 = Math.floor((Math.min(...serie, ...tgs) - 3) / 5) * 5, hi6 = Math.ceil((Math.max(...serie, ...tgs) + 2) / 5) * 5;
     const xs6 = [50, 175, 300, 425, 550], y6 = (v) => 192 - ((v - lo6) / (hi6 - lo6)) * 180;
     const ticks6 = []; for (let v = lo6; v <= hi6; v += 5) ticks6.push(v);
-    const c6wL = c6w === 'all' ? 'Nasional' : WIL[WI[c6w]][1];
     const tLine = 'M10 ' + y6(tgs[0]).toFixed(1) + ' H237.5 V' + y6(tgs[2]).toFixed(1) + ' H590';
     const c6 = {
-      tl: c6w === 'all' ? 'Target (agregat RKPD provinsi)' : 'Target RKPD ' + c6wL,
+      tl: c6w === 'all' ? 'Target agregat RKPD provinsi' : 'Target RKPD ' + c6wL,
+      wEst: c6w !== 'all',
       yl: ticks6.map((v) => ({ l: v + '%', t: (y6(v) / 200) * 100 + '%' })),
       grid: ticks6.map((v) => 'M0 ' + y6(v).toFixed(1) + 'H600').join(' '),
-      mark: 'M' + xs6[c6q] + ' 6V199', tp: tLine,
+      tp: tLine,
       lp: xs6.map((x, i) => (i ? 'L' : 'M') + x + ' ' + y6(serie[i]).toFixed(1)).join(' '),
+      ar: xs6.map((x, i) => (i ? 'L' : 'M') + x + ' ' + y6(serie[i]).toFixed(1)).join(' ') + ' L550 198 L50 198 Z',
       aria: 'Persentase izin sesuai SLA ' + c6wL + ' dari ' + f1(serie[0]) + '% menjadi ' + f1(serie[4]) + '%',
-      pts: xs6.map((x, i) => ({ x: (x / 600) * 100 + '%', y: (y6(serie[i]) / 200) * 100 + '%', bg: i === c6q ? '#1D4ED8' : '#FFFFFF', t: Q[i] + ': ' + f1(serie[i]) + '% sesuai SLA', pick: () => set({ c6q: i }) })),
-      xl: xs6.map((x, i) => ({ l: Q[i], x: (x / 600) * 100 + '%', bg: i === c6q ? '#0B1F4B' : 'transparent', fg: i === c6q ? '#FFFFFF' : '#64748B', fw: i === c6q ? 700 : 500, pick: () => set({ c6q: i }) })),
-      tx: (xs6[c6q] / 600) * 100 + '%', ty: (y6(serie[c6q]) / 200) * 100 + '%', tf: c6q >= 3 ? 'translate(calc(-100% - 12px), -50%)' : 'translate(12px, -50%)',
-      tl1: Q[c6q] + ': ' + f1(serie[c6q]) + '%', tl2: 'Target ' + f1(tgs[c6q]) + '% · ' + sg(serie[c6q] - tgs[c6q]) + ' poin'
+      pts: xs6.map((x, i) => ({ x: (x / 600) * 100 + '%', y: (y6(serie[i]) / 200) * 100 + '%', bg: i === c6q ? '#1D4ED8' : '#FFFFFF', t: Q[i] + ': ' + f1(serie[i]) + '% sesuai SLA, target ' + f1(tgs[i]) + '%', pick: () => set({ c6q: i }) })),
+      xl: xs6.map((x, i) => ({ l: Q[i], x: (x / 600) * 100 + '%', bg: i === c6q ? '#0B1F4B' : 'transparent', fg: i === c6q ? '#FFFFFF' : '#64748B', fw: i === c6q ? 700 : 500, pick: () => set({ c6q: i }) }))
     };
-    const c6rows = Q.map((q, i) => { const sel = i === c6q, g = serie[i] - tgs[i]; return { q, v: f1(serie[i]) + '%', d: i ? sg(serie[i] - serie[i - 1]) + ' poin' : '–', t: f1(tgs[i]) + '%', g: sg(g) + ' poin', gc: g >= 0 ? '#1D4ED8' : '#475569', bg: sel ? '#EFF6FF' : '#FFFFFF', fw: sel ? 700 : 500, pick: () => set({ c6q: i }) }; });
     const gq = serie[c6q] - tgs[c6q];
-    const c6note = c6wL + ', ' + Q[c6q] + ': ' + f1(serie[c6q]) + '% izin terbit sesuai SLA' + (c6q ? ', ' + (serie[c6q] - serie[c6q - 1] >= 0 ? 'naik ' : 'turun ') + f1(Math.abs(serie[c6q] - serie[c6q - 1])) + ' poin dari ' + Q[c6q - 1] : '') + '; ' + (gq >= 0 ? 'di atas' : 'di bawah') + ' target ' + f1(tgs[c6q]) + '% sebesar ' + f1(Math.abs(gq)) + ' poin.';
-    const c6dd = [dd('c6w', 'Wilayah', c6wL, c6w !== 'all', [opt('Nasional', '', c6w === 'all', () => set({ c6w: 'all' })), ...WIL.slice(0, 10).map(([id, n]) => opt(n, '', c6w === id, () => set({ c6w: id })))])];
+    const dq = c6q ? serie[c6q] - serie[c6q - 1] : 0;
+    const AMB = '#B45309', POS = '#1D4ED8';
+    const natV = Math.round(shareSes('all') * 10) / 10;
+    const rankSrc = WIL.map(([id, n]) => ({ id, n, v: Math.round(shareSes(id) * 10) / 10, t: TGW[id][1] })).sort((a, b) => b.v - a.v);
+    const c6kpi = c6isTren ? [
+      { l: 'Terbit sesuai SLA', v: f1(serie[c6q]) + '%', s: Q[c6q] + ' · ' + c6wL, c: '#1E40AF' },
+      { l: 'vs triwulan lalu', v: c6q ? sg(dq) + ' poin' : '–', s: c6q ? 'dari ' + Q[c6q - 1] : 'triwulan pertama seri', c: c6q && dq < 0 ? AMB : POS },
+      { l: 'vs target', v: sg(gq) + ' poin', s: 'target ' + f1(tgs[c6q]) + '%', c: gq < 0 ? AMB : POS }
+    ] : [
+      { l: 'Nasional', v: f1(natV) + '%', s: 'izin sesuai SLA · Tw III 2026', c: '#1E40AF' },
+      { l: 'Di atas nasional', v: rankSrc.filter((r) => r.v >= natV).length + ' / ' + rankSrc.length, s: 'jumlah wilayah', c: POS },
+      { l: 'vs target nasional', v: sg(natV - TGW.all[1]) + ' poin', s: 'target ' + f1(TGW.all[1]) + '%', c: natV < TGW.all[1] ? AMB : POS }
+    ];
+    const c6rows = Q.map((q, i) => { const sel = i === c6q, g = serie[i] - tgs[i]; return { q, v: f1(serie[i]) + '%', g: sg(g) + ' poin', gc: g >= 0 ? POS : AMB, bg: sel ? '#EFF6FF' : '#FFFFFF', fw: sel ? 700 : 500, pick: () => set({ c6q: i }) }; });
+    // Peringkat wilayah (Tw III 2026) - alokasi OSS, bukan pengukuran mandiri per provinsi
+    const c6rank = {
+      nat: f1(natV) + '%', natW: natV + '%', natT: (TGW.all[1] / 100) * 100 + '%',
+      top: rankSrc[0].n + ' ' + f1(rankSrc[0].v) + '%', bot: rankSrc[rankSrc.length - 1].n + ' ' + f1(rankSrc[rankSrc.length - 1].v) + '%',
+      rows: rankSrc.map((r) => ({ l: r.n, v: f1(r.v) + '%', w: r.v + '%', t: r.t + '%', on: c6w === r.id, d: sg(r.v - natV) + ' poin', c: r.v >= natV ? POS : '#94A3B8', bg: c6w === r.id ? '#EFF6FF' : 'transparent', fw: c6w === r.id ? 700 : 500, pick: () => set({ c6w: r.id }) }))
+    };
+    const c6tabs = [['tren', 'Tren per triwulan'], ['wil', 'Peringkat wilayah']].map(([k, l]) => ({ l, bg: c6view === k ? '#FFFFFF' : 'transparent', fg: c6view === k ? '#1E40AF' : '#64748B', pick: () => set({ c6view: k }) }));
+    const c6note = c6isTren
+      ? 'Klik titik atau label triwulan untuk menyorot periodenya. Garis putus-putus adalah target RKPD, yang naik dari ' + f1(tgs[0]) + '% menjadi ' + f1(tgs[2]) + '% pada 2026.'
+      : 'Klik wilayah untuk menyinkronkan kartu pembanding di sebelah kanan. Panjang batang = porsi izin yang terbit sesuai SLA; tanda hitam = target RKPD wilayah tersebut.';
+    const c6dd = [dd('c6w', 'Wilayah', c6wL, c6w !== 'all', [opt('Nasional', f1(natV) + '%', c6w === 'all', () => set({ c6w: 'all' })), ...rankSrc.map((r) => opt(r.n, f1(r.v) + '%', c6w === r.id, () => set({ c6w: r.id })))])];
     const PROVINV = { dki: 94.9, jabar: 61.3, jatim: 40.1 };
     const rp = (v) => 'Rp' + f1(v).replace(/\B(?=(\d{3})+(?!\d))/g, '.') + ' T';
     const inv = c6w === 'all'
@@ -1009,6 +1085,47 @@ class Component extends DCLogic {
         rows: [{ l: 'Target realisasi investasi 2026', v: rp(2041.3), s: '', c: '#0F172A' }, { l: 'Tw I 2026', v: rp(498.8), s: '', c: '#0F172A' }, { l: 'Tw II 2026', v: rp(511.8), s: 'naik 7,1% dibanding Tw II 2025', c: '#0F172A' }, { l: 'Semester I 2026', v: rp(1010.6), s: '49,5% dari target 2026', c: '#1E40AF' }, { l: 'Tw III 2026', v: 'belum tersedia', s: 'belum dirilis per 12 Okt 2026', c: '#64748B' }, { l: 'Realisasi 2025', v: rp(1931.2), s: '101,3% dari target ' + rp(1905.6), c: '#0F172A' }] }
       : { sub: c6wL + ' · pembanding nasional tetap ditampilkan', big: PROVINV[c6w] != null ? rp(PROVINV[c6w]) : 'belum tersedia', bigL: 'realisasi investasi ' + c6wL + ' Tw II 2026', w: '49.5%', tgtL: 'Nasional: ' + rp(2041.3),
         rows: [{ l: 'Realisasi ' + c6wL + ' Tw II 2026', v: PROVINV[c6w] != null ? rp(PROVINV[c6w]) : 'belum tersedia', s: PROVINV[c6w] != null ? 'lima besar provinsi Tw II 2026' : '', c: PROVINV[c6w] != null ? '#0F172A' : '#64748B' }, { l: 'Target investasi ' + c6wL + ' 2026 (RKPD)', v: 'belum tersedia', s: '', c: '#64748B' }, { l: 'Nasional · Semester I 2026', v: rp(1010.6), s: '49,5% dari target ' + rp(2041.3), c: '#1E40AF' }, { l: 'Nasional · Tw III 2026', v: 'belum tersedia', s: 'belum dirilis per 12 Okt 2026', c: '#64748B' }] };
+
+    // ===================== 6a. Insight AI =====================
+    const nTot = JEN.reduce((a, j) => a + j.n, 0), k0T = JEN.reduce((a, j) => a + j.st[0], 0), k2T = JEN.reduce((a, j) => a + j.st[2], 0);
+    const drag = JEN.map((j) => ({ j, s: (j.st[0] / j.n) * 100, dv: devOf(j.avg, j.sla) })).sort((a, b) => a.s - b.s);
+    const dA = drag[0], dB = drag[1], dV = dA.j.n + dB.j.n, dK = dA.j.st[0] + dB.j.st[0];
+    const volOf = (wf) => [0, 1, 2].reduce((a, k) => a + sumC('all', 'all', wf, k), 0);
+    const volAll = WIL.reduce((a, w) => a + volOf(w[0]), 0);
+    const top5v = WIL.slice(0, 5).reduce((a, w) => a + volOf(w[0]), 0);
+    const rBest = rankSrc[0], rWorst = rankSrc[rankSrc.length - 1];
+    const ins6 = [
+      {
+        no: 1, t: 'Kepatuhan SLA naik ' + f1(serie[4] - serie[0]) + ' poin dalam setahun, tetapi masih ' + f1(Math.abs(gq)) + ' poin di bawah target',
+        basis: [
+          'Izin terbit sesuai SLA ' + Q[0] + ' ' + f1(serie[0]) + '% → ' + Q[4] + ' ' + f1(serie[4]) + '% (OSS, checkpoint triwulan)',
+          'Target ' + Q[4] + ' ' + f1(tgs[4]) + '%; target dinaikkan dari ' + f1(tgs[0]) + '% menjadi ' + f1(tgs[2]) + '% mulai Tw I 2026',
+          'Kenaikan terjadi di setiap triwulan; rata-rata ' + f1((serie[4] - serie[0]) / 4) + ' poin per triwulan'
+        ],
+        impl: 'Kinerja menambah ' + f1(serie[4] - serie[0]) + ' poin sementara target menambah ' + f1(tgs[2] - tgs[0]) + ' poin, sehingga kesenjangan menyempit sendiri. Sisa ' + f1(Math.abs(gq)) + ' poin lebih mungkin ditutup dengan perbaikan pada dua jenis izin tertentu (lihat insight 2) daripada dengan kenaikan standar SLA secara umum.',
+        links: [{ l: 'Buka grafik tren ↓', h: '#sec-tren', pick: () => set({ c6view: 'tren', c6q: 4 }) }]
+      },
+      {
+        no: 2, t: dA.j.l + ' dan ' + dB.j.l + ' menyumbang ' + f1(dV / nTot * 100) + '% volume izin, tetapi hanya ' + f1(dK / k0T * 100) + '% dari izin yang sesuai SLA',
+        basis: [
+          dA.j.l + ': ' + f1(dA.s) + '% sesuai SLA (' + fN(dA.j.st[0]) + ' dari ' + fN(dA.j.n) + '), rata-rata ' + f1(dA.j.avg) + ' HK vs SLA ' + dA.j.sla + ' HK (deviasi ' + f1(dA.dv) + '%)',
+          dB.j.l + ': ' + f1(dB.s) + '% sesuai SLA (' + fN(dB.j.st[0]) + ' dari ' + fN(dB.j.n) + '), rata-rata ' + f1(dB.j.avg) + ' HK vs SLA ' + dB.j.sla + ' HK (deviasi ' + f1(dB.dv) + '%)',
+          'Sebagai pembanding: Sertifikat Standar & Izin ' + f1((JEN[6].st[0] / JEN[6].n) * 100) + '% dan Sertifikat Laik Fungsi ' + f1((JEN[3].st[0] / JEN[3].n) * 100) + '% — keduanya di atas standar SLA'
+        ],
+        impl: 'Kedua jenis izin ini punya deviasi durasi tertinggi dan diproses instansi yang berbeda (' + dA.j.inst.split(' · ')[0] + ' dan ' + dB.j.inst.split(' · ')[0] + '), sehingga intervensinya harus spesifik per proses, bukan kebijakan umum. Persetujuan otomatis belum menutup kesenjangan: hanya ' + fN(dA.j.st[2]) + ' izin PKKPR yang terbit lewat mekanisme itu, sedangkan KKPRL belum menjalankannya sama sekali.',
+        links: [{ l: 'Rincian PBG ↑', h: '#sec-terbit', pick: () => set({ fJen: 'pbg' }) }, { l: 'Bandingkan durasi vs SLA ↓', h: '#sec-sla', pick: () => set({}) }]
+      },
+      {
+        no: 3, t: 'Lima wilayah teratas menyerap ' + f1(top5v / volAll * 100) + '% izin, dengan rentang kepatuhan ' + f1(rBest.v - rWorst.v) + ' poin antarwilayah',
+        basis: [
+          'Volume izin: Jawa Barat ' + fN(volOf('jabar')) + ', DKI Jakarta ' + fN(volOf('dki')) + ', Jawa Timur ' + fN(volOf('jatim')) + ', Jawa Tengah ' + fN(volOf('jateng')) + ', Banten ' + fN(volOf('banten')),
+          'Kepatuhan tertinggi: ' + rBest.n + ' ' + f1(rBest.v) + '%; terendah: ' + rWorst.n + ' ' + f1(rWorst.v) + '% (jarak ' + f1(rBest.v - rWorst.v) + ' poin)',
+          'Rata-rata nasional ' + f1(natV) + '% dari ' + fN(nTot) + ' izin; ' + fN(k2T) + ' izin (' + f1(k2T / nTot * 100) + '%) terbit melalui persetujuan otomatis PP 28/2025'
+        ],
+        impl: 'Wilayah dengan volume besar dan kepatuhan di bawah rata-rata (Jawa Barat ' + f1(shareSes('jabar')) + '%, Sumatera Utara ' + f1(shareSes('sumut')) + '%) adalah ruang perbaikan dengan volume terbesar. Sebaliknya, ' + rBest.n + ' yang berada di atas rata-rata layak dipakai sebagai praktik banding untuk proses yang setara di wilayah lain.',
+        links: [{ l: 'Buka peringkat wilayah ↓', h: '#sec-tren', pick: () => set({ c6view: 'wil', c6w: rBest.id }) }]
+      }
+    ];
 
     // ===================== EWS ringkas =====================
     const ewsTop = [...ewsJ.map((j) => ({ l: j.l.split(' (')[0] + ' ' + sg(devOf(j.avg, j.sla)) + '%', t: j.l + ': rata-rata ' + f1(j.avg) + ' HK vs SLA ' + j.sla + ' HK', href: '#sec-sla', act: () => set({}) })), { l: 'Data center Jatiluhur', t: 'Pembangunan dihentikan sementara; persetujuan lingkungan dan PBG belum terbit', href: '#sec-hambatan', act: () => set({ c5: 'all', c5o: 'h3' }) }];
@@ -1092,7 +1209,8 @@ class Component extends DCLogic {
       c3tabs, c3sorts, c3dd, c3rows, c3h1, c3h2, c3h3, c3note, c3has: !!c3sel, c3d,
       c4dd, has4, reset4: () => set({ c4t: 'all', c4w: 'all' }), k4, c4tahap, c4ag, c4agL,
       c5f, hb, c5empty: hb.length === 0, c5HasPages: hbAll.length > 3, c5PageLabel: (c5pageCurrent + 1) + ' / ' + c5pages, c5Count: hbAll.length, c5CanPrev, c5CanNext, c5NoPrev: !c5CanPrev, c5NoNext: !c5CanNext, c5Prev, c5Next,
-      c6dd, c6, c6rows, c6note, inv,
+      c6dd, c6, c6rows, c6kpi, c6note, c6tabs, c6rank, c6isTren, c6isWil, inv,
+      ins6,
       mOpen: !!M, m, mClose: () => this.setState({ modal: null })
     };
   }
