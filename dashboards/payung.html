@@ -417,6 +417,19 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
                   <span style="padding: 4px 8px; border: 1px solid #DCE5F2; border-radius: 6px; background: rgba(255,255,255,.75); color: #475569; font-size: 10.5px;"><b style="color: #0F766E;">{{regulatoryInsight.pusatPct}}</b> · regulasi pusat</span>
                 </div>
               </div>
+
+              <div style="position: relative; overflow: hidden; padding: 14px 16px; border: 1px solid #CFEFE7; border-radius: 10px; background: linear-gradient(135deg, #F4FBFF 0%, #F6FDF9 58%, #F5F8FF 100%);">
+                <div style="position: absolute; top: 0; bottom: 0; left: 0; width: 3px; background: linear-gradient(180deg, #0EA5E9, #14B8A6, #4F46E5);"></div>
+                <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 8px;">
+                  <div style="display: flex; align-items: center; gap: 7px;"><span style="width: 22px; height: 22px; border-radius: 7px; display: inline-flex; align-items: center; justify-content: center; background: #CCFBF1; color: #0F766E; font-size: 13px;">✦</span><b style="font-size: 12.5px; color: #134E4A;">Insight AI</b><span style="font-size: 11px; color: #0F766E; font-weight: 600;">· Sebaran menurut sektor KBLI 2025</span></div>
+                  <span style="padding: 3px 7px; border-radius: 99px; background: rgba(255,255,255,.8); color: #64748B; font-size: 10px; font-weight: 600;">CAKUPAN SEKTOR</span>
+                </div>
+                <p style="margin: 0; font-size: 12px; line-height: 18px; color: #334155;">{{sectorInsight.summary}}</p>
+                <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px;">
+                  <button type="button" sc-camel-on-click="{{sectorInsight.pickTop}}" title="Tampilkan daftar regulasi sektor {{sectorInsight.topCode}}" style="padding: 4px 8px; border: 1px solid #A7F3D0; border-radius: 6px; background: rgba(255,255,255,.75); color: #475569; font-family: inherit; font-size: 10.5px; cursor: pointer;"><b style="color: #047857;">{{sectorInsight.topPct}}</b> · {{sectorInsight.topLabel}} <span style="color: #059669; font-weight: 700;">Filter ↓</span></button>
+                  <span style="padding: 4px 8px; border: 1px solid #DCE5F2; border-radius: 6px; background: rgba(255,255,255,.75); color: #475569; font-size: 10.5px;"><b style="color: #1D4ED8;">{{sectorInsight.top3Pct}}</b> · 3 sektor teratas ({{sectorInsight.top3Codes}})</span>
+                </div>
+              </div>
             </div>
             <div style="padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;"><span><b style="color: #475569;">Periode:</b> s.d. 12 Okt 2026</span><span><b style="color: #475569;">Diperbarui:</b> 12 Okt 2026, 06.00 WIB</span><span><b style="color: #475569;">Sumber:</b> JDIH Setneg, JDIH K/L, JDIH pemda, peraturan.bpk.go.id</span><span style="padding: 0 6px; border-radius: 4px; background: #EFF6FF; color: #1D4ED8; font-weight: 600;">Divalidasi analis</span></div>
           </section>
@@ -983,6 +996,26 @@ class Component extends DCLogic {
       summary: `${formatShare(JSER[leadingType][4])} regulasi berbentuk ${JL[leadingType]}, sedangkan ${formatShare(centralRegulations)} diterbitkan di tingkat pusat. Komposisi ini menonjolkan peran aturan teknis kementerian/lembaga; penyelarasan aturan pusat dengan Perda penting agar pelaksanaannya konsisten.`
     };
 
+    // ---------- insight AI: sebaran menurut sektor KBLI 2025 ----------
+    const sectorTotal = Object.values(SEKV).reduce((a, b) => a + b, 0);
+    const sectorRanked = Object.entries(SEKV).sort((a, b) => b[1] - a[1]);
+    const fmtSek = (n) => ((n / sectorTotal) * 100).toFixed(1).replace('.', ',') + '%';
+    const sekName = (k) => k + ' · ' + String(KN[k] || '').split(',')[0];
+    const topSek = sectorRanked[0], top3Sek = sectorRanked.slice(0, 3);
+    const top3N = top3Sek.reduce((s, x) => s + x[1], 0);
+    const longTailSek = sectorRanked.filter((x) => x[1] <= 10);
+    const sectorInsight = {
+      topCode: topSek[0],
+      topLabel: sekName(topSek[0]),
+      topPct: fmtSek(topSek[1]),
+      top3Pct: fmtSek(top3N),
+      top3Codes: top3Sek.map((x) => x[0]).join(', '),
+      longTailN: longTailSek.length,
+      total: sectorTotal,
+      summary: 'Cakupan sektor teratas adalah ' + sekName(topSek[0]) + ' dengan ' + topSek[1] + ' regulasi (' + fmtSek(topSek[1]) + '). Tiga sektor teratas (' + top3Sek.map((x) => x[0]).join(', ') + ') menyerap ' + fmtSek(top3N) + ' dari ' + sectorTotal + ' hitungan cakupan sektor, sedangkan ' + longTailSek.length + ' sektor lain hanya berada dikisaran 1-10 regulasi. Beban regulasi terkonsentrasi pada tiga sektor tersebut, sehingga harmonisasi aturan di sektor berintensitas rendah perlu diprioritaskan agar kepastian berusaha tetap setara.',
+      pickTop: () => pickSektor(topSek[0])
+    };
+
     // ---------- kartu 2: sebaran 2026 (fokus mode) ----------
     const sb = st.sb || 'jenis';
 
@@ -1153,7 +1186,7 @@ class Component extends DCLogic {
     if (fw !== 'Semua') chips.push({ l: fw, n: cntAll((r) => r.wil === fw) + ' regulasi', clear: () => set({ fw: 'Semua' }) });
     if (q) chips.push({ l: 'Pencarian "' + st.q.trim() + '"', n: ids.length + ' hasil', clear: () => set({ q: '' }) });
     return { isList: view === 'list', isDetail: view === 'detail', fl, hasFilter, resetF, filterNote: ids.length + ' regulasi sesuai filter',
-      jenisBar, regulatoryInsight, sbTitle, sbTabs, sbJenis: sb === 'jenis', sbSektor: sb === 'sektor', jenisItems, kpiJenis, hasJenisFilter, activeJenisName, activeJenisCount, resetJenisFilter, sekRows, hasSektorFilter, activeSektorName, activeSektorCount, resetSektorFilter,
+      jenisBar, regulatoryInsight, sectorInsight, sbTitle, sbTabs, sbJenis: sb === 'jenis', sbSektor: sb === 'sektor', jenisItems, kpiJenis, hasJenisFilter, activeJenisName, activeJenisCount, resetJenisFilter, sekRows, hasSektorFilter, activeSektorName, activeSektorCount, resetSektorFilter,
       hasLvlFilter: chips.length > 0, chips,
       yrL: '2026', yrPrevL: '2025', sekRows, sekTotal: Object.values(SEKV).reduce((a, b) => a + b, 0), allSekLabel: st.allSek ? 'Tampilkan 10 teratas' : 'Tampilkan semua kategori',
       toggleAllSek: () => this.setState({ allSek: !st.allSek }), isu,
@@ -1164,7 +1197,7 @@ class Component extends DCLogic {
 </script>
 
 
-<script data-harmonisasi-tab-listener>document.addEventListener("click",function(event){var link=event.target.closest&&event.target.closest("[data-harmonisasi-tab]");if(!link)return;event.preventDefault();var index=Number(link.getAttribute("data-harmonisasi-tab"));if(Number.isInteger(index))window.parent.postMessage({type:"harmonisasi:tab",index:index},"*");},true);</script><script data-harmonisasi-vercel-runtime>(function(){function sendSize(){var h=Math.max(document.documentElement?document.documentElement.scrollHeight:0,document.body?document.body.scrollHeight:0);window.parent.postMessage({type:"harmonisasi:resize",height:h},"*");}function connect(){sendSize();if(window.ResizeObserver){var ro=new ResizeObserver(sendSize);if(document.documentElement)ro.observe(document.documentElement);if(document.body)ro.observe(document.body);}if(window.MutationObserver&&document.body)new MutationObserver(sendSize).observe(document.body,{childList:true,subtree:true,attributes:true,characterData:true});window.addEventListener("load",sendSize);window.addEventListener("resize",sendSize);setTimeout(sendSize,100);setTimeout(sendSize,600);}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",connect,{once:true});else connect();window.addEventListener("message",function(e){if(e.data&&e.data.type==="harmonisasi:resize-request")sendSize();});})();</script><script>
+<script data-harmonisasi-tab-listener>document.addEventListener("click",function(event){var link=event.target.closest&&event.target.closest("[data-harmonisasi-tab]");if(!link)return;event.preventDefault();var index=Number(link.getAttribute("data-harmonisasi-tab"));if(Number.isInteger(index))window.parent.postMessage({type:"harmonisasi:tab",index:index},"*");},true);</script><script data-harmonisasi-vercel-runtime>(function(){function contentHeight(){var host=document.getElementById("dc-root"),sc=host&&host.firstElementChild;var wrap=sc&&sc.children&&sc.children.length===1?sc.firstElementChild:sc;var kids=wrap?wrap.children:null,h=0;if(kids)for(var i=0;i<kids.length;i++){var r=kids[i].getBoundingClientRect();if(r.height>0)h=Math.max(h,r.bottom+(window.scrollY||0));}if(!h){var de=document.documentElement;h=Math.max(de?de.scrollHeight:0,document.body?document.body.scrollHeight:0);}return Math.ceil(h);}function sendSize(){window.parent.postMessage({type:"harmonisasi:resize",height:contentHeight()},"*");}function connect(){sendSize();if(window.ResizeObserver){var ro=new ResizeObserver(sendSize);if(document.documentElement)ro.observe(document.documentElement);if(document.body)ro.observe(document.body);}if(window.MutationObserver&&document.body)new MutationObserver(sendSize).observe(document.body,{childList:true,subtree:true,attributes:true,characterData:true});window.addEventListener("load",sendSize);window.addEventListener("resize",sendSize);setTimeout(sendSize,100);setTimeout(sendSize,600);}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",connect,{once:true});else connect();window.addEventListener("message",function(e){if(e.data&&e.data.type==="harmonisasi:resize-request")sendSize();});})();</script><script>
 (function() {
   function cleanup() {
     // 1. Metadata labels
