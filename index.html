@@ -428,12 +428,92 @@ document.addEventListener('DOMContentLoaded', async function() {
         Array.from(doc.querySelectorAll('h2')).forEach(function (heading) {
           if ((heading.textContent || '').replace(/\s+/g, ' ').trim() === 'Isu dampak, hambatan, peluang & rekomendasi') {
             const section = heading.closest('section');
-            if (section) section.remove();
+            if (section) section.style.display = 'none';
           }
         });
 
+        const chartHeading = Array.from(doc.querySelectorAll('h2')).find(function (heading) {
+          return (heading.textContent || '').indexOf('Sebaran regulasi menurut') === 0 ||
+            (heading.textContent || '').indexOf('Jumlah regulasi menurut') === 0;
+        });
+        if (chartHeading) {
+          const chartSection = chartHeading.closest('section');
+          const tabs = Array.from(chartSection.querySelectorAll('[role="tab"]'));
+          const sectorTab = tabs.find(function (tab) {
+            return (tab.textContent || '').indexOf('Sektor') !== -1;
+          });
+          const sectorMode = !!sectorTab && getComputedStyle(sectorTab).backgroundColor === 'rgb(255, 255, 255)';
+          const sectorLabel = sectorTab && sectorTab.querySelector('span');
+          if (sectorLabel && sectorLabel.textContent !== 'Sektor') sectorLabel.textContent = 'Sektor';
+          const title = 'Jumlah regulasi menurut ' + (sectorMode ? 'sektor' : 'jenis') + ' · 2026';
+          if (chartHeading.textContent !== title) chartHeading.textContent = title;
+
+          const chartContent = chartSection.children[1] && chartSection.children[1].children[0];
+          if (chartContent) {
+            if (sectorMode) {
+              const header = chartContent.children[0];
+              if (header && header.children.length >= 4) {
+                if (header.children[1].textContent.trim() === '2026') header.children[1].textContent = '';
+                header.children[2].style.display = '';
+                if (header.children[2].textContent.trim() !== '2026') header.children[2].textContent = '2026';
+                header.children[3].style.display = 'none';
+                header.style.gridTemplateColumns = 'minmax(0, 1fr) minmax(0, 0.9fr) 64px';
+              }
+              Array.from(chartContent.children).slice(1).forEach(function (row) {
+                const rowGrid = Array.from(row.children).find(function (child) {
+                  return getComputedStyle(child).display === 'grid';
+                });
+                if (!rowGrid || rowGrid.children.length < 4) return;
+                rowGrid.children[3].style.display = 'none';
+                rowGrid.style.gridTemplateColumns = 'minmax(0, 1fr) minmax(0, 0.9fr) 64px';
+              });
+            } else {
+              const bars = chartContent.children[0];
+              const years = chartContent.children[1];
+              if (bars && bars.children.length === 5) {
+                bars.style.display = 'flex';
+                Array.from(bars.children).slice(0, 4).forEach(function (bar) {
+                  bar.style.display = 'none';
+                });
+              }
+              if (years && years.children.length === 5) {
+                years.style.display = 'flex';
+                Array.from(years.children).slice(0, 4).forEach(function (year) {
+                  year.style.display = 'none';
+                });
+                const currentYear = years.children[4].querySelector('span');
+                if (currentYear && currentYear.textContent.trim() !== '2026') currentYear.textContent = '2026';
+              }
+
+              const table = chartContent.children[3];
+              if (table) {
+                Array.from(table.children).forEach(function (row) {
+                  if (row.children.length < 4) return;
+                  row.children[1].style.display = 'none';
+                  row.children[3].style.display = 'none';
+                  row.style.gridTemplateColumns = 'minmax(0, 1fr) 80px';
+                  if (row.children[2].textContent.trim() === '2026*') row.children[2].textContent = '2026';
+                });
+              }
+            }
+          }
+
+          Array.from(chartSection.querySelectorAll('span')).forEach(function (span) {
+            const text = (span.textContent || '').replace(/\s+/g, ' ').trim();
+            if (text === 'Periode: akhir tahun 2022–2025; 2026 s.d. 12 Okt') {
+              span.textContent = 'Periode: tahun 2026 hingga 12 Okt';
+            }
+          });
+        }
+
         if (doc.documentElement && !observedDocuments.has(doc)) {
           observedDocuments.add(doc);
+          doc.addEventListener('click', function (event) {
+            const target = event.target && event.target.closest && event.target.closest('[role="tab"]');
+            if (!target) return;
+            setTimeout(function () { hideMetadataInDocument(doc, title); }, 100);
+            setTimeout(function () { hideMetadataInDocument(doc, title); }, 500);
+          });
           new MutationObserver(function () {
             hideMetadataInDocument(doc, title);
           }).observe(doc.documentElement, { attributes: true, attributeFilter: ['style'], childList: true, subtree: true });
