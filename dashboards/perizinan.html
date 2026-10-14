@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta charset="utf-8">
+<title>Kemudahan Berusaha dan Pelayanan Perizinan</title>
+<link rel="stylesheet" href="../assets/inter.css">
+<script src="../assets/react.production.min.js"></script>
+<script src="../assets/react-dom.production.min.js"></script>
+<script src="../assets/dc-runtime.js"></script>
+<style id="setneg-theme-overrides">
+:root{font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#1f2937;background:#f7f9fc;color-scheme:light}
+html,body{min-height:100%;background:#f7f9fc!important;color:#1f2937!important;font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif!important}
+body *,button,input,select,textarea{font-family:inherit}
+body{margin:0!important}
+main{background:#f7f9fc!important;color:#1f2937!important}
+header{background:#fff!important;border-bottom:1px solid #e5e7eb!important;box-shadow:0 1px 3px rgba(15,23,42,.08)!important}
+nav[aria-label="Menu utama"]{background:#f3f4f6!important;border-color:#e5e7eb!important}
+nav[aria-label="Menu utama"] button:hover{background:#e5e7eb!important}
+section,.ck{background:#fff!important;border:1px solid #e5e7eb!important;border-radius:14px!important;box-shadow:0 1px 3px rgba(15,23,42,.08)!important}
+section>div[style*="border-bottom"],section>div[style*="border-top"]{border-color:#eef0f3!important}
+section [style*="border-top: 1px solid"],section [style*="border-bottom: 1px solid"]{border-color:#eef0f3!important}
+h1,h2,h3,h4{font-family:inherit!important;color:#1f2937!important;letter-spacing:-.015em}
+h2,h3{font-weight:700!important}
+button{transition:background-color .15s ease,border-color .15s ease,box-shadow .15s ease}
+button:focus-visible,a:focus-visible{outline:2px solid #0f827d!important;outline-offset:2px}
+.ews-highlight{margin-left:auto;display:flex;flex-wrap:wrap;align-items:center;gap:6px;padding:8px 10px;border:1px solid #fde68a;border-radius:12px;background:#fffbeb}
+.ews-highlight>span{font-weight:700!important;color:#92400e!important}
+.ews-highlight a{height:auto!important;min-height:28px;padding:5px 10px!important;border-radius:8px!important;background:#fef3c7!important;border:1px solid #fcd34d!important;color:#92400e!important;font-weight:700!important}
+.ews-highlight a:hover{background:#fde68a!important}
+[style*="background: #DC2626"],[style*="background:#DC2626"],[style*="background: #B91C1C"],[style*="background:#B91C1C"]{background-color:#fef3c7!important;border-color:#fcd34d!important;color:#92400e!important}
+[style*="background: #FFF8F8"],[style*="background:#FFF8F8"]{background-color:#fffbeb!important}
+[style*="border-left: 4px solid #DC2626"],[style*="border-left:4px solid #DC2626"]{border-left-color:#d97706!important}
+@media(max-width:900px){main[style*="max-width"]{padding-left:16px!important;padding-right:16px!important}header{padding-left:16px!important;padding-right:16px!important}}
+@media(max-width:680px){.ews-highlight{width:100%;margin-left:0}section{border-radius:12px!important}main[style*="max-width"]{gap:12px!important}}
+
+[style*="background: rgb(220, 38, 38)"]{background-color:#fef3c7!important;border-color:#fcd34d!important;color:#92400e!important}
+[style*="background: rgb(255, 248, 248)"]{background-color:#fffbeb!important}
+[style*="border-left: 4px solid rgb(220, 38, 38)"]{border-left-color:#d97706!important}
+
+.setneg-global-header{position:relative!important;z-index:50;background:#fff!important;border-bottom:1px solid #e5e7eb!important;box-shadow:0 1px 3px rgba(15,23,42,.08)!important;padding:0 32px!important;min-height:64px!important;display:flex!important;flex-wrap:wrap!important;align-items:center!important;justify-content:space-between!important}
+.setneg-global-header:before{content:"";position:absolute;inset:0 0 auto;height:64px;background:linear-gradient(180deg,rgba(254,243,199,.48),transparent);pointer-events:none}
+.setneg-header-inner{position:relative;min-height:64px;max-width:1600px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.setneg-brand{flex:0 0 auto;display:flex;align-items:center;gap:12px;min-width:260px;text-decoration:none;color:#1a3a6e}
+.setneg-brand img{display:block;width:40px;height:40px;object-fit:contain}
+.setneg-brand-copy{display:flex;flex-direction:column;gap:1px}
+.setneg-brand-copy strong{font-size:16px;line-height:20px;font-weight:750;letter-spacing:.01em;color:#1a3a6e}
+.setneg-brand-copy span{font-size:11px;line-height:14px;color:#6b7280}
+.setneg-global-nav{display:flex;align-items:center;justify-content:center;gap:2px;padding:4px;background:#f3f4f6;border:1px solid #e5e7eb;border-radius:999px;white-space:nowrap}
+.setneg-global-nav button{display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 10px;border:0;border-radius:999px;background:transparent;color:#4b5563;font:500 11px/1 ui-sans-serif,system-ui,sans-serif;cursor:pointer;white-space:nowrap}
+.setneg-global-nav button svg{width:15px;height:15px;flex:none}
+.setneg-global-nav button:hover{background:#e5e7eb;color:#1f2937}
+.setneg-global-nav button[aria-current="page"]{background:#0d1a33;color:#fff;box-shadow:0 2px 5px rgba(15,23,42,.18)}
+.setneg-header-tools{flex:0 0 auto;display:flex;align-items:center;gap:12px}
+.setneg-theme-button{width:36px;height:36px;border:1px solid #e5e7eb;border-radius:999px;background:#f3f4f6;color:#334155;display:grid;place-items:center}
+.setneg-theme-button svg{width:17px;height:17px}
+.setneg-user{display:flex;align-items:center;gap:9px;color:#1f2937}
+.setneg-avatar{width:30px;height:30px;display:grid;place-items:center;border-radius:50%;background:#db2777;color:#fff;font-size:11px;font-weight:700}
+.setneg-user-copy{display:flex;flex-direction:column;line-height:1.2}
+.setneg-user-copy strong{font-size:11.5px;font-weight:650}
+.setneg-user-copy span{font-size:10px;color:#6b7280}
+.setneg-user-chevron{width:13px;height:13px;color:#64748b}
+@media(max-width:1100px){.setneg-brand{min-width:225px}.setneg-global-nav button{padding:0 7px}.setneg-global-nav button span{font-size:10px}}
+@media(max-width:850px){.setneg-global-header{padding:8px 16px!important}.setneg-header-inner{flex-wrap:wrap;gap:10px}.setneg-global-nav{order:3;width:100%;overflow-x:auto;justify-content:flex-start}.setneg-global-nav button{flex:none}.setneg-brand{min-width:0}.setneg-brand-copy span:last-child{display:none}}
+@media(max-width:480px){.setneg-brand img{width:34px;height:34px}.setneg-brand-copy strong{font-size:13px}.setneg-brand-copy span{font-size:9px}.setneg-user-copy,.setneg-user-chevron{display:none}.setneg-header-tools{margin-left:auto}}
+
+.harmonisasi-page-tabs{box-sizing:border-box;width:calc(100% - 64px);max-width:1376px;margin:10px auto 0;padding:4px;display:flex;gap:4px;overflow-x:auto;white-space:nowrap;background:#fff;border:1px solid #e2e8f0;border-radius:10px;scrollbar-width:thin}
+.harmonisasi-page-tabs a{flex:0 0 auto;display:inline-flex;align-items:center;min-height:32px;padding:0 12px;border-radius:7px;color:#334155;font-size:11px;font-weight:500;text-decoration:none;transition:background .15s,color .15s}
+.harmonisasi-page-tabs a:hover{background:#eff6ff;color:#1d4ed8}
+.harmonisasi-page-tabs a[aria-current="page"]{background:#0b1426;color:#fff;font-weight:650}
+.harmonisasi-page-tabs a:focus-visible{outline:2px solid #2563eb;outline-offset:2px}
+.harmonisasi-highlights{box-sizing:border-box;width:calc(100% - 64px);max-width:1376px;margin:12px auto 0;padding:14px 16px 10px;background:#fff;border:1px solid #e5e7eb;border-radius:16px;box-shadow:0 1px 3px rgba(15,23,42,.10)}
+.harmonisasi-highlights-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
+.harmonisasi-highlights-head h2{margin:0;display:flex;align-items:center;gap:8px;color:#0f172a;font-size:14px;font-weight:700}
+.harmonisasi-warning-symbol{width:16px;height:16px;fill:none;stroke:#ef4444;stroke-linecap:round;stroke-linejoin:round;stroke-width:2}.harmonisasi-alert-icon svg{width:17px;height:17px;fill:none;stroke:#1d4ed8;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.8}
+.harmonisasi-highlights-head>span{flex:0 0 auto;color:#64748b;font-size:10px}
+.harmonisasi-alert-track{display:flex;gap:12px;overflow-x:auto;padding:2px 0 10px;scroll-snap-type:x mandatory;scrollbar-color:#cbd5e1 transparent;scrollbar-width:thin}
+.harmonisasi-alert-card{box-sizing:border-box;flex:0 0 calc((100% - 24px)/3);min-width:300px;padding:10px 11px;background:#fffbeb;border:1px solid #facc15;border-radius:17px;scroll-snap-align:start}
+.harmonisasi-alert-heading{display:flex;align-items:center;gap:9px;min-height:40px;margin-bottom:8px}
+.harmonisasi-alert-icon{flex:0 0 34px;width:34px;height:34px;display:grid;place-items:center;border-radius:50%;background:#fff;color:#0f172a;font-size:16px;font-weight:700}
+.harmonisasi-alert-title{min-width:0;flex:1;display:flex;flex-direction:column;gap:3px}
+.harmonisasi-alert-title strong{color:#0f172a;font-size:11px;line-height:1.25}
+.harmonisasi-alert-title>span{color:#64748b;font-size:9px}
+.harmonisasi-alert-meta{flex:0 0 auto;display:flex;flex-direction:column;align-items:flex-end;gap:3px;color:#64748b;font-size:9px;text-align:right}
+.harmonisasi-alert-details{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}
+.harmonisasi-alert-details>div{min-width:0;min-height:65px;padding:7px;border-radius:10px;background:rgba(255,255,255,.82)}
+.harmonisasi-alert-details b{display:block;margin-bottom:4px;color:#ef4444;font-size:9px;font-weight:600}
+.harmonisasi-alert-details>div:nth-child(2) b{color:#f97316}
+.harmonisasi-alert-details>div:nth-child(3) b{color:#059669}
+.harmonisasi-alert-details p{margin:0;color:#334155;font-size:9px;line-height:1.4;overflow-wrap:anywhere}
+.harmonisasi-alert-empty{padding:12px 14px;border:1px dashed #cbd5e1;border-radius:11px;background:#f8fafc;color:#64748b;font-size:11px}
+@media(max-width:760px){.harmonisasi-page-tabs,.harmonisasi-highlights{width:calc(100% - 24px)}.harmonisasi-alert-card{flex-basis:86%;min-width:270px}.harmonisasi-highlights{padding:12px}.harmonisasi-alert-details{gap:5px}.harmonisasi-alert-details>div{padding:6px}}
+</style>
+<style id="harmonisasi-centered-tabs">
+.harmonisasi-page-tabs{box-sizing:border-box!important;width:fit-content!important;max-width:calc(100% - 32px)!important;margin:16px auto 0!important;padding:4px 8px!important;display:flex!important;flex-wrap:nowrap!important;justify-content:center!important;gap:4px!important;overflow-x:auto!important;background:#F1F3F7!important;border:1px solid #E7EAF0!important;border-radius:12px!important;scrollbar-width:none!important}
+.harmonisasi-page-tabs::-webkit-scrollbar{display:none}
+@media(max-width:760px){.harmonisasi-page-tabs{max-width:calc(100% - 24px)!important;justify-content:flex-start!important}}
+</style><style id="harmonisasi-vercel-responsive">
+html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-height:0!important}main[style*="max-width"]{box-sizing:border-box;width:100%!important;max-width:1376px!important;margin-inline:auto!important}main[style*="max-width"]>*{min-width:0;max-width:100%}.harmonisasi-page-tabs{width:fit-content!important;max-width:calc(100% - 24px)!important}
+@media(max-width:900px){.setneg-global-header{padding-left:16px!important;padding-right:16px!important;gap:8px 12px!important}.setneg-global-nav{gap:2px!important}.setneg-global-nav button{padding:7px 8px!important}main[style*="max-width"]{padding-left:16px!important;padding-right:16px!important}}
+@media(max-width:680px){.setneg-global-header{padding:10px 12px!important;min-height:0!important;gap:8px!important;justify-content:flex-start!important}.setneg-global-header:before{height:100%!important}.setneg-brand{min-width:0!important;flex:1 1 calc(100% - 100px)!important;gap:8px!important}.setneg-brand img{width:34px!important;height:34px!important;object-fit:contain!important}.setneg-brand-copy{min-width:0!important;display:flex!important}.setneg-brand-copy strong{font-size:11px!important;white-space:nowrap!important}.setneg-brand-copy span{display:none!important}.setneg-header-tools{margin-left:auto!important;gap:8px!important}.setneg-user-copy,.setneg-user-chevron{display:none!important}.setneg-global-nav{order:3!important;flex:1 1 100%!important;width:100%!important;max-width:100%!important;overflow-x:auto!important;flex-wrap:nowrap!important;justify-content:flex-start!important;scrollbar-width:none!important}.setneg-global-nav::-webkit-scrollbar{display:none}.setneg-global-nav button{flex:0 0 auto!important;white-space:nowrap!important;font-size:10px!important;padding:7px 9px!important}.harmonisasi-page-tabs{max-width:calc(100% - 20px)!important;justify-content:flex-start!important;margin-top:10px!important}.harmonisasi-highlights{width:calc(100% - 20px)!important;padding:12px!important;margin-top:10px!important}main[style*="max-width"]{padding:12px 12px 28px!important;gap:12px!important}main section,main article{min-width:0!important}main [style*="grid-template-columns"]{min-width:0!important}}
+@media(max-width:480px){.setneg-global-header{padding:8px 10px!important}.setneg-theme-button{width:30px!important;height:30px!important}.setneg-avatar{width:30px!important;height:30px!important}.harmonisasi-alert-card{flex-basis:88%!important;min-width:260px!important}.harmonisasi-alert-details{gap:5px!important}.harmonisasi-alert-details>div{padding:6px!important}main[style*="max-width"]{padding-left:10px!important;padding-right:10px!important}}
+
+@media(max-width:680px){.sc-host{display:block!important;width:100%!important;max-width:100%!important;min-width:0!important}.sc-host>div{box-sizing:border-box!important;width:100%!important;max-width:100%!important;min-width:0!important}.setneg-global-header{box-sizing:border-box!important;width:100%!important;max-width:100%!important;min-width:0!important;overflow:hidden!important}.setneg-global-nav{box-sizing:border-box!important;min-width:0!important}.setneg-brand{max-width:calc(100% - 100px)!important}.harmonisasi-page-tabs{box-sizing:border-box!important;min-width:0!important}}
+@media(max-width:520px){.harmonisasi-page-tabs{width:calc(100% - 20px)!important;max-width:calc(100% - 20px)!important;display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;white-space:normal!important;overflow:visible!important;justify-content:stretch!important}.harmonisasi-page-tabs a{min-width:0!important;min-height:40px!important;padding:5px 7px!important;justify-content:center!important;white-space:normal!important;text-align:center!important;line-height:1.25!important}}
+</style></head>
+<body>
+<x-dc>
+<helmet>
+<style>/* cyrillic-ext */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2JL7SUc.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa0ZL7SUc.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek-ext */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2ZL7SUc.woff2) format('woff2');
+  unicode-range: U+1F00-1FFF;
+}
+/* greek */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1pL7SUc.woff2) format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2pL7SUc.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa25L7SUc.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7SUc.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2JL7SUc.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa0ZL7SUc.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek-ext */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2ZL7SUc.woff2) format('woff2');
+  unicode-range: U+1F00-1FFF;
+}
+/* greek */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1pL7SUc.woff2) format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2pL7SUc.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa25L7SUc.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7SUc.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2JL7SUc.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa0ZL7SUc.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek-ext */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2ZL7SUc.woff2) format('woff2');
+  unicode-range: U+1F00-1FFF;
+}
+/* greek */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1pL7SUc.woff2) format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2pL7SUc.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa25L7SUc.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7SUc.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2JL7SUc.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa0ZL7SUc.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek-ext */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2ZL7SUc.woff2) format('woff2');
+  unicode-range: U+1F00-1FFF;
+}
+/* greek */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1pL7SUc.woff2) format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2pL7SUc.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa25L7SUc.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7SUc.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+</style>
+<style>body{margin:0} a{color:#1D4ED8} a:hover{color:#1E40AF} .ck{cursor:pointer;transition:box-shadow .12s,border-color .12s,background .12s} .ck:hover{box-shadow:0 2px 10px rgba(15,23,42,.08);border-color:#82B394 !important} .rw{cursor:pointer} .rw:hover{background:#EFF6FF !important} .tip{position:relative;outline:none} .tip .pop{display:none;position:absolute;z-index:95;right:0;top:calc(100% + 6px);width:300px;padding:10px 12px;border-radius:10px;background:#0B1F3A;color:#E2E8F0;font-size:11.5px;line-height:17px;font-weight:400;letter-spacing:0;text-align:left;white-space:normal;box-shadow:0 12px 32px rgba(15,23,42,.3)} .tip .pop.l{left:0;right:auto} .tip:hover .pop,.tip:focus .pop{display:block} .bar{cursor:pointer} .bar:hover{filter:brightness(1.06)} .pt:hover{transform:scale(1.25)}</style>
+</helmet>
+<div style="min-height: 100vh; background: #F4F7FB; font-family: Inter, system-ui, sans-serif; color: #0F172A;">
+  <header class="setneg-global-header" aria-label="Header Dashboard Presiden RI"><div class="setneg-header-inner"><a class="setneg-brand" href="#top" aria-label="Dashboard Presiden RI"><img alt="Logo Setneg RI" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Logo_Setneg_RI.svg/330px-Logo_Setneg_RI.svg.png"><span class="setneg-brand-copy"><strong>DASHBOARD PRESIDEN RI</strong><span>Badan Teknologi, Data dan Informasi</span><span>Kementerian Sekretariat Negara Republik Indonesia</span></span></a><nav class="setneg-global-nav" aria-label="Navigasi utama"><button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.5"/></svg><span>Eksekutif</span></button><button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"/><path d="m9 12 2 2 4-4"/></svg><span>Pertahanan &amp; Keamanan</span></button><button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 3v18h18"/><path d="m7 14 4-4 4 3 6-7"/></svg><span>Ekonomi</span></button><button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 11h16v2a8 8 0 0 1-16 0v-2Z"/><path d="M8 7c0-1 1-1 1-2M12 7c0-1 1-1 1-2M16 7c0-1 1-1 1-2"/></svg><span>MBG</span></button><button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 3h10l4 4v14H5z"/><path d="M15 3v5h4M8 12h8M8 16h8"/></svg><span>Kebijakan</span></button><button type="button" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="6" cy="6" r="2"/><circle cx="18" cy="6" r="2"/><circle cx="12" cy="18" r="2"/><path d="M8 7.5 10.8 16M16 7.5 13.2 16M8 6h8"/></svg><span>Harmonisasi</span></button></nav><div class="setneg-header-tools"><button class="setneg-theme-button" type="button" aria-label="Ganti tema"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.5 14.4A8.5 8.5 0 0 1 9.6 3.5 8.7 8.7 0 1 0 20.5 14.4Z"/></svg></button><div class="setneg-user"><span class="setneg-avatar">PS</span><span class="setneg-user-copy"><strong>Prabowo Subianto</strong><span>Presiden</span></span><svg class="setneg-user-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div></div></div></header><nav class="harmonisasi-page-tabs" aria-label="Navigasi tab Harmonisasi Investasi"><a href="#harmonisasi-page-0" data-harmonisasi-tab="0">Payung Kebijakan Investasi</a><a href="#harmonisasi-page-1" data-harmonisasi-tab="1">Peluang Investasi Daerah</a><a href="#harmonisasi-page-2" data-harmonisasi-tab="2">Demografi &amp; Mobilitas Penduduk</a><a href="#harmonisasi-page-3" aria-current="page" data-harmonisasi-tab="3">Kemudahan Berusaha &amp; Pelayanan Perizinan</a></nav><section class="harmonisasi-highlights" aria-label="Highlight Kemudahan Berusaha dan Pelayanan Perizinan"><div class="harmonisasi-highlights-head"><h2><svg class="harmonisasi-warning-symbol" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3 2.8 19h18.4L12 3Z"></path><path d="M12 9v4m0 3h.01"></path></svg> Highlight Kemudahan Berusaha &amp; Pelayanan Perizinan</h2><span>4 Alerts Aktif</span></div><div class="harmonisasi-alert-track" role="list"><article class="harmonisasi-alert-card" role="listitem"><div class="harmonisasi-alert-heading"><span class="harmonisasi-alert-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m4 16 5-5 4 4 7-7"></path><path d="M14 8h6v6"></path></svg></span><div class="harmonisasi-alert-title"><strong>PKKPR melalui penilaian melampaui SLA</strong><span>Level: WARNING</span></div><div class="harmonisasi-alert-meta"><span>September 2026</span><span>Alert aktif</span></div></div><div class="harmonisasi-alert-details"><div><b>Masalah</b><p>Rata-rata penyelesaian 23,1 hari kerja, melampaui SLA 20 hari kerja (+15,5%); 1.846 izin terbit.</p></div><div><b>Dampak</b><p>Permohonan tanpa konfirmasi KKPR otomatis berisiko menambah antrean pada tahap penilaian.</p></div><div><b>Rekomendasi</b><p>Pantau antrean penilaian dan percepat integrasi RDTR digital daerah dengan OSS.</p></div></div></article><article class="harmonisasi-alert-card" role="listitem"><div class="harmonisasi-alert-heading"><span class="harmonisasi-alert-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m4 16 5-5 4 4 7-7"></path><path d="M14 8h6v6"></path></svg></span><div class="harmonisasi-alert-title"><strong>PBG melampaui SLA</strong><span>Level: WARNING</span></div><div class="harmonisasi-alert-meta"><span>September 2026</span><span>Alert aktif</span></div></div><div class="harmonisasi-alert-details"><div><b>Masalah</b><p>Rata-rata penyelesaian PBG 36,9 hari kerja, dibanding SLA 32 hari kerja (+15,3%); 3.912 izin terbit.</p></div><div><b>Dampak</b><p>Penyesuaian Perda pajak dan retribusi yang tertunda dapat menahan penerbitan pada tahap pembayaran.</p></div><div><b>Rekomendasi</b><p>Koordinasikan penyesuaian Perda pajak dan retribusi daerah.</p></div></div></article><article class="harmonisasi-alert-card" role="listitem"><div class="harmonisasi-alert-heading"><span class="harmonisasi-alert-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m4 16 5-5 4 4 7-7"></path><path d="M14 8h6v6"></path></svg></span><div class="harmonisasi-alert-title"><strong>KKPR Laut melampaui SLA</strong><span>Level: WARNING</span></div><div class="harmonisasi-alert-meta"><span>September 2026</span><span>Alert aktif</span></div></div><div class="harmonisasi-alert-details"><div><b>Masalah</b><p>Rata-rata penyelesaian 35,2 hari kerja, melebihi SLA 33 hari kerja (+6,7%); 214 observasi.</p></div><div><b>Dampak</b><p>Waktu pemrosesan yang lebih panjang berisiko menunda kepastian persetujuan ruang laut.</p></div><div><b>Rekomendasi</b><p>Telaah tahapan proses dan pantau durasi penyelesaian terhadap SLA.</p></div></div></article><article class="harmonisasi-alert-card" role="listitem"><div class="harmonisasi-alert-heading"><span class="harmonisasi-alert-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m4 16 5-5 4 4 7-7"></path><path d="M14 8h6v6"></path></svg></span><div class="harmonisasi-alert-title"><strong>Pembangunan data center AI Jatiluhur dihentikan sementara</strong><span>Level: WARNING</span></div><div class="harmonisasi-alert-meta"><span>3 Okt 2026</span><span>Alert aktif</span></div></div><div class="harmonisasi-alert-details"><div><b>Masalah</b><p>Pembangunan kampus data center berkapasitas 640 MW IT dihentikan karena persetujuan lingkungan dan PBG belum terbit.</p></div><div><b>Dampak</b><p>Kelanjutan proyek tertahan setelah peletakan batu pertama pada 22 September 2026.</p></div><div><b>Rekomendasi</b><p>Selesaikan persetujuan lingkungan dan PBG sebelum pembangunan dilanjutkan.</p></div></div></article></div></section>
+  <main style="max-width: 1376px; margin: 0 auto; padding: 16px 32px 48px; display: flex; flex-direction: column; gap: 16px;">
+
+    <!-- Konteks & ringkasan EWS -->
+    <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px;">
+      <span style="height: 36px; padding: 0 12px; border-radius: 8px; background: #FFFFFF; border: 1px solid #E3E8F0; font-size: 12px; color: #475569; display: inline-flex; align-items: center; gap: 4px; box-sizing: border-box;">Periode data OSS: <b style="color: #0F172A;">September 2026</b></span>
+      <span style="height: 36px; padding: 0 12px; border-radius: 8px; background: #FFFFFF; border: 1px solid #E3E8F0; font-size: 12px; color: #475569; display: inline-flex; align-items: center; gap: 4px; box-sizing: border-box;">Tanggal acuan: <b style="color: #0F172A;">12 Okt 2026</b></span>
+      <span style="height: 36px; padding: 0 12px; border-radius: 8px; background: #FFFFFF; border: 1px solid #E3E8F0; font-size: 12px; color: #475569; display: inline-flex; align-items: center; gap: 4px; box-sizing: border-box;">Sumber utama: <b style="color: #0F172A;">OSS · PIC data BKPM</b></span>
+      
+    </div>
+
+    <!-- 1. Jumlah izin diterbitkan & status -->
+    <section id="sec-terbit" style="background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; box-shadow: 0 1px 2px rgba(15,23,42,.05); display: flex; flex-direction: column; scroll-margin-top: 16px;">
+      <div style="padding: 12px 18px; border-bottom: 1px solid #EEF2F7; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px;">
+        <div><h2 style="margin: 0; font-size: 14.5px; font-weight: 600;">Jumlah izin diterbitkan &amp; status</h2><div style="font-size: 11.5px; color: #64748B;">Hanya izin yang sudah diterbitkan · NIB tidak dihitung sebagai izin tuntas</div></div>
+        <span style="font-size: 11.5px; color: #64748B;">Klik angka atau status untuk membuka daftar pembentuk</span>
+      </div>
+      <div style="padding: 10px 18px; border-bottom: 1px solid #EEF2F7; display: flex; flex-wrap: wrap; align-items: center; gap: 8px;">
+        <sc-for list="{{fl1}}" as="f" hint-placeholder-count="3">
+          <div style="position: relative;">
+            <button type="button" sc-camel-on-click="{{f.toggle}}" style="height: 34px; padding: 0 12px; border-radius: 8px; background: {{f.bg}}; border: 1px solid {{f.bd}}; font-family: inherit; font-size: 12px; color: #475569; cursor: pointer;">{{f.l}}: <b style="color: #0F172A;">{{f.v}}</b> ▾</button>
+            <sc-if value="{{f.open}}" hint-placeholder-val="{{false}}">
+              <div style="position: absolute; z-index: 60; top: 38px; left: 0; min-width: 320px; max-height: 360px; overflow-y: auto; padding: 6px; border-radius: 10px; background: #FFFFFF; border: 1px solid #E3E8F0; box-shadow: 0 12px 32px rgba(15,23,42,.16); display: flex; flex-direction: column; gap: 2px;">
+                <sc-for list="{{f.opts}}" as="o" hint-placeholder-count="5"><button type="button" sc-camel-on-click="{{o.pick}}" class="rw" style="padding: 8px 10px; border: 0; border-radius: 6px; background: {{o.bg}}; font-family: inherit; font-size: 12.5px; color: #0F172A; font-weight: {{o.w}}; text-align: left; display: flex; justify-content: space-between; gap: 12px;"><span>{{o.l}}</span><span style="color: #94A3B8;">{{o.n}}</span></button></sc-for>
+              </div>
+            </sc-if>
+          </div>
+        </sc-for>
+        <sc-if value="{{has1}}" hint-placeholder-val="{{false}}"><button type="button" sc-camel-on-click="{{reset1}}" style="height: 34px; padding: 0 10px; border: 0; background: transparent; font-family: inherit; font-size: 12px; font-weight: 600; color: #1D4ED8; cursor: pointer;">Reset filter</button></sc-if>
+        <span style="margin-left: auto; font-size: 11.5px; color: #475569;">{{f1Note}}</span>
+      </div>
+      <div style="padding: 16px 18px; display: flex; flex-wrap: wrap; gap: 24px;">
+        <div style="flex: 1 1 360px; min-width: 0; display: flex; flex-direction: column; gap: 14px;">
+          <sc-if value="{{has1Data}}" hint-placeholder-val="{{true}}">
+            <div style="display: flex; flex-direction: column; gap: 14px;">
+              <button type="button" sc-camel-on-click="{{k1.open}}" class="ck" style="display: flex; flex-direction: column; gap: 4px; padding: 14px; border-radius: 10px; border: 1px solid #E7F1E9; background: #EFF6FF; font-family: inherit; text-align: left; color: #0F172A;">
+                <span style="font-size: 12px; color: #475569;">Izin diterbitkan · September 2026</span>
+                <span style="display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap;"><b style="font-size: 34px; letter-spacing: -0.5px; color: #1E40AF;">{{k1.v}}</b><span style="font-size: 13px; color: #475569;">izin</span><span style="font-size: 12px; font-weight: 600; color: #1D4ED8;">{{k1.d}}</span></span>
+                <span style="font-size: 11.5px; line-height: 17px; color: #475569;">{{k1.s}}</span>
+                <span style="font-size: 11.5px; font-weight: 600; color: #1D4ED8;">Lihat daftar pembentuk →</span>
+              </button>
+              <div>
+                <div style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.4px; color: #64748B;">DISTRIBUSI STATUS IZIN TERBIT</div>
+                <div style="display: flex; height: 14px; border-radius: 4px; overflow: hidden; margin: 8px 0 8px; background: #EEF2F7;"><sc-for list="{{s1}}" as="s" hint-placeholder-count="3"><span title="{{s.l}}: {{s.n}}" style="display: block; width: {{s.w}}; background: {{s.c}};"></span></sc-for></div>
+                <sc-for list="{{s1}}" as="s" hint-placeholder-count="3">
+                  <button type="button" sc-camel-on-click="{{s.open}}" class="rw" style="width: 100%; display: grid; grid-template-columns: 12px minmax(0, 1fr) auto; gap: 8px; align-items: center; padding: 6px; border: 0; border-radius: 6px; background: transparent; font-family: inherit; font-size: 12.5px; color: #0F172A; text-align: left;">
+                    <span style="width: 10px; height: 10px; border-radius: 2px; background: {{s.c}};"></span>
+                    <span>{{s.l}}<span style="display: block; font-size: 11px; color: #64748B;">{{s.sub}}</span></span>
+                    <span style="white-space: nowrap;"><b>{{s.n}}</b> <span style="color: #64748B;">· {{s.p}}</span></span>
+                  </button>
+                </sc-for>
+              </div>
+            </div>
+          </sc-if>
+          <sc-if value="{{no1Data}}" hint-placeholder-val="{{false}}">
+            <div style="padding: 24px 16px; border-radius: 10px; border: 1px dashed #CBD5E1; background: #F8FAFC; font-size: 12.5px; line-height: 19px; color: #475569;">Tidak ada izin terbit pada kombinasi filter ini. <button type="button" sc-camel-on-click="{{reset1}}" style="padding: 0; border: 0; background: transparent; font-family: inherit; font-size: 12.5px; font-weight: 600; color: #1D4ED8; cursor: pointer;">Reset filter</button></div>
+          </sc-if>
+        </div>
+        <div style="flex: 2 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 8px;">
+          <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px;">
+            <b style="font-size: 12.5px;">Tren bulanan April–September 2026</b>
+            <span style="display: flex; flex-wrap: wrap; gap: 12px; font-size: 11.5px; color: #475569;"><span style="display: inline-flex; align-items: center; gap: 6px;"><span style="width: 16px; height: 3px; border-radius: 2px; background: #1D4ED8;"></span>Izin diterbitkan</span><span style="display: inline-flex; align-items: center; gap: 6px;"><span style="width: 16px; height: 0; border-top: 2px dashed #82B394;"></span>Permohonan masuk</span></span>
+          </div>
+          <div style="display: flex; gap: 8px;">
+            <div style="position: relative; flex: none; width: 48px; height: 220px;"><sc-for list="{{c1.yl}}" as="y" hint-placeholder-count="4"><span style="position: absolute; right: 0; top: {{y.t}}; transform: translateY(-50%); font-size: 10.5px; color: #64748B;">{{y.l}}</span></sc-for></div>
+            <div style="position: relative; flex: 1; min-width: 0; height: 220px;">
+              <svg sc-camel-view-box="0 0 600 220" sc-camel-preserve-aspect-ratio="none" style="width: 100%; height: 220px; display: block;" role="img" aria-label="{{c1.aria}}">
+                <path d="{{c1.grid}}" stroke="#E3E8F0" stroke-dasharray="3 3" fill="none" vector-effect="non-scaling-stroke"></path>
+                <path d="M0 210H600" stroke="#CBD5E1" fill="none" vector-effect="non-scaling-stroke"></path>
+                <path d="{{c1.mark}}" stroke="#94A3B8" stroke-dasharray="4 3" fill="none" vector-effect="non-scaling-stroke"></path>
+                <path d="{{c1.area}}" fill="#E7F1E9" fill-opacity="0.55" stroke="none"></path>
+                <path d="{{c1.lm}}" fill="none" stroke="#82B394" stroke-width="2" stroke-dasharray="5 4" vector-effect="non-scaling-stroke"></path>
+                <path d="{{c1.lt}}" fill="none" stroke="#1D4ED8" stroke-width="2.5" stroke-linejoin="round" vector-effect="non-scaling-stroke"></path>
+              </svg>
+              <sc-for list="{{c1.pts}}" as="p" hint-placeholder-count="6"><button type="button" sc-camel-on-click="{{p.pick}}" class="pt" title="{{p.t}}" aria-label="{{p.t}}" style="position: absolute; left: {{p.x}}; top: {{p.y}}; width: 12px; height: 12px; margin: -6px 0 0 -6px; padding: 0; border-radius: 99px; border: 2.5px solid #1D4ED8; background: {{p.bg}}; box-sizing: border-box; cursor: pointer;"></button></sc-for>
+              <span style="position: absolute; left: {{c1.tx}}; top: {{c1.ty}}; transform: {{c1.tf}}; padding: 6px 9px; border-radius: 8px; background: #0B1F3A; color: #FFFFFF; font-size: 11px; line-height: 15px; white-space: nowrap; pointer-events: none;"><b>{{c1.tl1}}</b><br>{{c1.tl2}}</span>
+            </div>
+          </div>
+          <div style="position: relative; height: 24px; margin-left: 56px;"><sc-for list="{{c1.xl}}" as="x" hint-placeholder-count="6"><button type="button" sc-camel-on-click="{{x.pick}}" style="position: absolute; left: {{x.x}}; transform: translateX(-50%); padding: 2px 7px; border: 0; border-radius: 5px; background: {{x.bg}}; color: {{x.fg}}; font-family: inherit; font-size: 11px; font-weight: {{x.fw}}; cursor: pointer;">{{x.l}}</button></sc-for></div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 8px;">
+            <sc-for list="{{c1.sum}}" as="u" hint-placeholder-count="3"><div style="padding: 8px 10px; border-radius: 8px; background: #F8FAFC; border: 1px solid #EEF2F7;"><div style="font-size: 11px; color: #64748B;">{{u.l}}</div><b style="font-size: 13.5px;">{{u.v}}</b></div></sc-for>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top: auto; padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;"><span><b style="color: #475569;">Periode:</b> April–September 2026 (bulanan)</span><span><b style="color: #475569;">Diperbarui:</b> 12 Okt 2026, 06.00 WIB</span><span><b style="color: #475569;">Sumber:</b> OSS (PIC data BKPM) · izin terbit menurut jenis izin, KBLI 2025 dan provinsi</span><span style="padding: 0 6px; border-radius: 4px; background: #EFF6FF; color: #1D4ED8; font-weight: 600;">Divalidasi analis</span></div>
+    </section>
+
+    <!-- 2. Waktu penyelesaian vs SLA -->
+    <section id="sec-sla" style="background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; box-shadow: 0 1px 2px rgba(15,23,42,.05); display: flex; flex-direction: column; scroll-margin-top: 16px;">
+      <div style="padding: 12px 18px; border-bottom: 1px solid #EEF2F7; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px;">
+        <div><h2 style="margin: 0; font-size: 14.5px; font-weight: 600;">Rata-rata waktu penyelesaian vs standar SLA</h2><div style="font-size: 11.5px; color: #64748B;">Hari kerja dari permohonan lengkap hingga terbit · izin terbit September 2026 · nasional, seluruh sektor</div></div>
+        <span style="font-size: 11.5px; color: #64748B;">Klik jenis izin untuk melihat daftar kasus</span>
+      </div>
+      <div style="padding: 9px 18px; display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 11px; color: #475569; border-bottom: 1px solid #EEF2F7;">
+        <span style="display: inline-flex; align-items: center; gap: 6px;"><span style="width: 18px; height: 8px; border-radius: 2px; background: #1D4ED8;"></span>Rata-rata waktu penyelesaian</span>
+        <span style="display: inline-flex; align-items: center; gap: 6px;"><span style="width: 2px; height: 14px; background: #0F172A;"></span>Standar waktu (SLA)</span>
+        <span style="color: #64748B;">Batang menunjukkan rata-rata sebagai porsi dari SLA.</span>
+      </div>
+      <div style="display: grid; grid-template-columns: minmax(230px, 1.5fr) minmax(220px, 2fr) 110px 110px; gap: 10px; padding: 10px 18px 6px; background: #F8FAFC; font-size: 10.5px; font-weight: 700; letter-spacing: 0.4px; color: #64748B; align-items: end;">
+        <span>JENIS IZIN</span>
+        <span style="position: relative; display: block; height: 14px;"><span style="position: absolute; left: 0;">0</span><span style="position: absolute; left: 25%; transform: translateX(-50%);">50%</span><span style="position: absolute; left: 50%; transform: translateX(-50%); color: #0F172A;">100% SLA</span><span style="position: absolute; left: 75%; transform: translateX(-50%);">150%</span><span style="position: absolute; right: 0;">200%</span></span>
+        <span style="text-align: right;">RATA-RATA</span><span style="text-align: right;">STANDAR SLA</span>
+      </div>
+      <sc-for list="{{sla}}" as="r" hint-placeholder-count="7">
+        <div sc-camel-on-click="{{r.open}}" class="rw" style="display: grid; grid-template-columns: minmax(230px, 1.5fr) minmax(220px, 2fr) 110px 110px; gap: 10px; align-items: center; padding: 10px 18px 10px 14px; border-top: 1px solid #EEF2F7; background: #FFFFFF; font-size: 12.5px;">
+          <div style="min-width: 0;"><b>{{r.l}}</b><div style="font-size: 11px; color: #64748B;">{{r.sub}}</div></div>
+          <span title="{{r.t}}" style="position: relative; display: block; height: 22px;">
+            <span style="position: absolute; left: 0; top: 3px; width: 50%; height: 16px; background: #EFF6FF; border-radius: 3px 0 0 3px;"></span>
+            <span style="position: absolute; left: 0; top: 7px; width: {{r.w}}; height: 8px; border-radius: 0 3px 3px 0; background: #1D4ED8;"></span>
+            <span style="position: absolute; left: 50%; top: 0; width: 2px; height: 22px; background: #0F172A;"></span>
+          </span>
+          <b style="text-align: right;">{{r.avg}}</b>
+          <span style="text-align: right; color: #334155;">{{r.sla}}</span>
+        </div>
+      </sc-for>
+      <div style="margin-top: auto; padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;"><span><b style="color: #475569;">Periode:</b> September 2026 (checkpoint bulanan)</span><span><b style="color: #475569;">Diperbarui:</b> 12 Okt 2026, 06.00 WIB</span><span><b style="color: #475569;">Sumber:</b> OSS · log durasi per tahap; SLA dari PP 28/2025 dan materi sosialisasinya, dipetakan per jenis izin</span><span style="padding: 0 6px; border-radius: 4px; background: #EFF6FF; color: #1D4ED8; font-weight: 600;">Pemetaan SLA divalidasi analis</span></div>
+    </section>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: stretch;">
+      <!-- 3. Jenis izin & wilayah dengan waktu terlama -->
+      <section id="sec-terlama" style="flex: 1 1 660px; min-width: 0; background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; box-shadow: 0 1px 2px rgba(15,23,42,.05); display: flex; flex-direction: column; scroll-margin-top: 16px;">
+        <div style="padding: 12px 18px; border-bottom: 1px solid #EEF2F7; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px;">
+          <div><h2 style="margin: 0; font-size: 14.5px; font-weight: 600;">Jenis izin &amp; wilayah dengan waktu terlama</h2><div style="font-size: 11.5px; color: #64748B;">Ranking dibandingkan dengan standar, bukan durasi absolut semata</div></div>
+          <div role="tablist" style="display: flex; gap: 2px; padding: 3px; background: #EEF2F7; border-radius: 8px;">
+            <sc-for list="{{c3tabs}}" as="t" hint-placeholder-count="2"><button type="button" role="tab" sc-camel-on-click="{{t.pick}}" style="height: 28px; padding: 0 12px; border: 0; border-radius: 6px; background: {{t.bg}}; color: {{t.fg}}; font-family: inherit; font-size: 12px; font-weight: 600; cursor: pointer;">{{t.l}}</button></sc-for>
+          </div>
+        </div>
+        <div style="padding: 10px 18px; border-bottom: 1px solid #EEF2F7; display: flex; flex-wrap: wrap; align-items: center; gap: 8px;">
+          <span style="font-size: 12px; color: #475569;">Urutkan:</span>
+          <sc-for list="{{c3sorts}}" as="s" hint-placeholder-count="2"><button type="button" sc-camel-on-click="{{s.pick}}" style="height: 28px; padding: 0 10px; border-radius: 99px; border: 1px solid {{s.bd}}; background: {{s.bg}}; color: {{s.fg}}; font-family: inherit; font-size: 11.5px; font-weight: 600; cursor: pointer;">{{s.l}}</button></sc-for>
+          <sc-for list="{{c3dd}}" as="f" hint-placeholder-count="1">
+            <div style="position: relative; margin-left: auto;">
+              <button type="button" sc-camel-on-click="{{f.toggle}}" style="height: 30px; padding: 0 12px; border-radius: 8px; background: {{f.bg}}; border: 1px solid {{f.bd}}; font-family: inherit; font-size: 12px; color: #475569; cursor: pointer;">{{f.l}}: <b style="color: #0F172A;">{{f.v}}</b> ▾</button>
+              <sc-if value="{{f.open}}" hint-placeholder-val="{{false}}">
+                <div style="position: absolute; z-index: 60; top: 34px; right: 0; min-width: 300px; padding: 6px; border-radius: 10px; background: #FFFFFF; border: 1px solid #E3E8F0; box-shadow: 0 12px 32px rgba(15,23,42,.16); display: flex; flex-direction: column; gap: 2px;">
+                  <sc-for list="{{f.opts}}" as="o" hint-placeholder-count="5"><button type="button" sc-camel-on-click="{{o.pick}}" class="rw" style="padding: 8px 10px; border: 0; border-radius: 6px; background: {{o.bg}}; font-family: inherit; font-size: 12.5px; color: #0F172A; font-weight: {{o.w}}; text-align: left; display: flex; justify-content: space-between; gap: 12px;"><span>{{o.l}}</span><span style="color: #94A3B8;">{{o.n}}</span></button></sc-for>
+                </div>
+              </sc-if>
+            </div>
+          </sc-for>
+        </div>
+        <div style="padding: 10px 18px 6px; display: grid; grid-template-columns: 24px minmax(0, 1.25fr) minmax(0, 1.3fr) 112px 84px; gap: 10px; font-size: 10.5px; font-weight: 700; letter-spacing: 0.4px; color: #64748B;"><span>#</span><span>{{c3h1}}</span><span>{{c3h2}}</span><span style="text-align: right;">{{c3h3}}</span><span style="text-align: right;">PENANDA</span></div>
+        <div style="padding: 0 18px 10px; display: flex; flex-direction: column; gap: 3px;">
+          <sc-for list="{{c3rows}}" as="r" hint-placeholder-count="7">
+            <div sc-camel-on-click="{{r.pick}}" class="bar" style="display: grid; grid-template-columns: 24px minmax(0, 1.25fr) minmax(0, 1.3fr) 112px 84px; gap: 10px; align-items: center; padding: 7px 8px 7px 6px; margin: 0 -8px 0 -10px; border-radius: 0 8px 8px 0; border-left: 4px solid {{r.lb}}; background: {{r.bg}}; font-size: 12.5px;">
+              <span style="font-weight: 700; color: #64748B;">{{r.rk}}</span>
+              <span style="min-width: 0;"><span style="display: block; font-weight: {{r.fw}};">{{r.l}}</span><span style="display: block; font-size: 11px; color: #64748B;">{{r.sub}}</span></span>
+              <span style="position: relative; display: block; height: 14px; border-radius: 4px; background: #EEF2F7;"><span style="display: block; width: {{r.w}}; height: 14px; border-radius: 4px; background: {{r.c}};"></span><span style="position: absolute; top: -3px; left: {{r.sw}}; width: 2px; height: 20px; background: #0F172A;"></span></span>
+              <span style="text-align: right;"><b>{{r.v}}</b><span style="display: block; font-size: 11px; font-weight: 600; color: {{r.dc}};">{{r.dev}}</span></span>
+              <span style="justify-self: end;">
+                <sc-if value="{{r.ews}}" hint-placeholder-val="{{false}}"><span class="tip" tabindex="0" style="display: inline-flex; align-items: center; gap: 5px; height: 24px; padding: 0 9px; border-radius: 6px; background: #DC2626; color: #FFFFFF; font-size: 11px; font-weight: 700; cursor: help;">● EWS<span class="pop"><b style="color: #FFFFFF;">Alasan:</b> {{r.ewsA}}<br><b style="color: #FFFFFF;">Sumber:</b> {{r.ewsS}}<br><b style="color: #FFFFFF;">Waktu:</b> 30 Sep 2026<br><span style="color: #FCA5A5;">Penanda tetap merah sampai ditindaklanjuti.</span></span></span></sc-if>
+                <sc-if value="{{r.small}}" hint-placeholder-val="{{false}}"><span title="Observasi kurang dari 30; tidak diberi penanda EWS" style="display: inline-flex; align-items: center; height: 24px; padding: 0 8px; border-radius: 6px; background: #F1F5F9; color: #475569; font-size: 11px; font-weight: 600;">Sampel kecil</span></sc-if>
+                <sc-if value="{{r.ok}}" hint-placeholder-val="{{true}}"><span style="display: inline-flex; align-items: center; height: 24px; padding: 0 8px; border-radius: 6px; background: #F1F5F9; color: #475569; font-size: 11px; font-weight: 600;">Dalam ambang</span></sc-if>
+              </span>
+            </div>
+          </sc-for>
+          <p style="margin: 6px 0 0; font-size: 11.5px; line-height: 17px; color: #64748B;">{{c3note}}</p>
+        </div>
+        <sc-if value="{{c3has}}" hint-placeholder-val="{{false}}">
+          <div style="margin: 0 18px 16px; padding: 14px; border-radius: 10px; border: 1px solid #B8E3DF; background: #EFF6FF; display: flex; flex-direction: column; gap: 10px;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;"><div><b style="font-size: 13.5px;">{{c3d.t}}</b><div style="font-size: 11.5px; color: #475569;">{{c3d.sub}}</div></div><button type="button" sc-camel-on-click="{{c3d.close}}" style="height: 26px; padding: 0 9px; border-radius: 6px; border: 1px solid #E7F1E9; background: #FFFFFF; font-family: inherit; font-size: 11.5px; font-weight: 600; color: #1D4ED8; cursor: pointer;">Tutup ✕</button></div>
+            <div style="border: 1px solid #E7F1E9; border-radius: 8px; overflow: hidden; background: #FFFFFF;">
+              <div style="display: grid; grid-template-columns: minmax(0, 1.6fr) 84px 84px 74px 76px; gap: 8px; padding: 7px 10px; background: #F8FAFC; font-size: 10.5px; font-weight: 700; letter-spacing: 0.4px; color: #64748B;"><span>{{c3d.h1}}</span><span style="text-align: right;">RATA-RATA</span><span style="text-align: right;">STANDAR</span><span style="text-align: right;">SELISIH</span><span style="text-align: right;">OBSERVASI</span></div>
+              <sc-for list="{{c3d.rows}}" as="x" hint-placeholder-count="5"><div style="display: grid; grid-template-columns: minmax(0, 1.6fr) 84px 84px 74px 76px; gap: 8px; padding: 6px 10px; border-top: 1px solid #EEF2F7; border-left: 3px solid {{x.lb}}; font-size: 12px;"><span>{{x.l}}</span><b style="text-align: right;">{{x.v}}</b><span style="text-align: right; color: #475569;">{{x.s}}</span><b style="text-align: right; color: {{x.dc}};">{{x.d}}</b><span style="text-align: right; color: #475569;">{{x.n}}</span></div></sc-for>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 8px;">
+              <sc-for list="{{c3d.src}}" as="s" hint-placeholder-count="4"><div style="padding: 8px 10px; border-radius: 8px; background: #FFFFFF; border: 1px solid #E7F1E9;"><div style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.3px; color: #1E40AF;">{{s.l}}</div><div style="font-size: 12px; font-weight: 600; color: {{s.c}};">{{s.v}}</div></div></sc-for>
+            </div>
+            <sc-if value="{{c3d.hasNews}}" hint-placeholder-val="{{false}}"><div style="display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 11.5px; color: #475569;"><b>Berita terkait:</b><sc-for list="{{c3d.news}}" as="nw" hint-placeholder-count="3"><a href="{{nw.u}}" target="_blank" rel="noopener" style="font-weight: 600; text-decoration: none;">{{nw.l}} ↗</a></sc-for></div></sc-if>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px;"><sc-for list="{{c3d.acts}}" as="a" hint-placeholder-count="2"><a href="{{a.href}}" sc-camel-on-click="{{a.act}}" style="height: 30px; padding: 0 12px; border-radius: 8px; background: #1E40AF; color: #FFFFFF; font-size: 12px; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center;">{{a.l}}</a></sc-for></div>
+          </div>
+        </sc-if>
+        <div style="margin-top: auto; padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;"><span><b style="color: #475569;">Periode:</b> izin terbit September 2026 · pemantauan mingguan s.d. 12 Okt 2026</span><span><b style="color: #475569;">Diperbarui:</b> 12 Okt 2026</span><span><b style="color: #475569;">Sumber:</b> OSS, feedback OSS, Ombudsman RI (pengaduan), berita daring</span><span style="padding: 0 6px; border-radius: 4px; background: #EFF6FF; color: #1D4ED8; font-weight: 600;">Divalidasi analis</span></div>
+      </section>
+
+      <!-- 4. Permohonan tertahan -->
+      <section id="sec-tertahan" style="flex: 1 1 520px; min-width: 0; background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; box-shadow: 0 1px 2px rgba(15,23,42,.05); display: flex; flex-direction: column; scroll-margin-top: 16px;">
+        <div style="padding: 12px 18px; border-bottom: 1px solid #EEF2F7;"><h2 style="margin: 0; font-size: 14.5px; font-weight: 600;">Permohonan tertahan</h2><div style="font-size: 11.5px; color: #64748B;">Jumlah, tahap dan lama tertahan · posisi 30 Sep 2026</div></div>
+        <div style="padding: 10px 18px; border-bottom: 1px solid #EEF2F7; display: flex; flex-wrap: wrap; align-items: center; gap: 8px;">
+          <sc-for list="{{c4dd}}" as="f" hint-placeholder-count="2">
+            <div style="position: relative;">
+              <button type="button" sc-camel-on-click="{{f.toggle}}" style="height: 32px; padding: 0 12px; border-radius: 8px; background: {{f.bg}}; border: 1px solid {{f.bd}}; font-family: inherit; font-size: 12px; color: #475569; cursor: pointer;">{{f.l}}: <b style="color: #0F172A;">{{f.v}}</b> ▾</button>
+              <sc-if value="{{f.open}}" hint-placeholder-val="{{false}}">
+                <div style="position: absolute; z-index: 60; top: 36px; left: 0; min-width: 300px; max-height: 360px; overflow-y: auto; padding: 6px; border-radius: 10px; background: #FFFFFF; border: 1px solid #E3E8F0; box-shadow: 0 12px 32px rgba(15,23,42,.16); display: flex; flex-direction: column; gap: 2px;">
+                  <sc-for list="{{f.opts}}" as="o" hint-placeholder-count="5"><button type="button" sc-camel-on-click="{{o.pick}}" class="rw" style="padding: 8px 10px; border: 0; border-radius: 6px; background: {{o.bg}}; font-family: inherit; font-size: 12.5px; color: #0F172A; font-weight: {{o.w}}; text-align: left; display: flex; justify-content: space-between; gap: 12px;"><span>{{o.l}}</span><span style="color: #94A3B8;">{{o.n}}</span></button></sc-for>
+                </div>
+              </sc-if>
+            </div>
+          </sc-for>
+          <sc-if value="{{has4}}" hint-placeholder-val="{{false}}"><button type="button" sc-camel-on-click="{{reset4}}" style="height: 32px; padding: 0 10px; border: 0; background: transparent; font-family: inherit; font-size: 12px; font-weight: 600; color: #1D4ED8; cursor: pointer;">Reset filter</button></sc-if>
+        </div>
+        <div style="padding: 16px 18px; display: flex; flex-direction: column; gap: 16px; flex: 1;">
+          <button type="button" sc-camel-on-click="{{k4.open}}" class="ck" style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 10px; padding: 12px 14px; border-radius: 10px; border: 1px solid #E7F1E9; background: #EFF6FF; font-family: inherit; text-align: left; color: #0F172A;">
+            <span><span style="display: block; font-size: 12px; color: #475569;">{{k4.l}}</span><span style="display: flex; align-items: baseline; gap: 6px;"><b style="font-size: 32px; letter-spacing: -0.5px; color: #1E40AF;">{{k4.v}}</b><span style="font-size: 13px; color: #475569;">permohonan</span></span><span style="display: block; font-size: 11.5px; color: #475569;">{{k4.s}}</span></span>
+            <span style="font-size: 11.5px; font-weight: 600; color: #1D4ED8;">Lihat daftar pembentuk →</span>
+          </button>
+          <p style="margin: 0; font-size: 11.5px; line-height: 17px; color: #64748B;">Tertahan: permohonan belum terbit dan tanpa perubahan status lebih dari 10 hari kerja. Halaman ini hanya menampilkan jumlah, tahap dan lama tertahan; penyebab tidak ditampilkan.</p>
+          <div>
+            <div style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.4px; color: #64748B; margin-bottom: 6px;">MENURUT TAHAP TERAKHIR · KLIK UNTUK MEMFILTER</div>
+            <sc-for list="{{c4tahap}}" as="t" hint-placeholder-count="4">
+              <button type="button" sc-camel-on-click="{{t.pick}}" class="bar" style="width: 100%; display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) 96px; gap: 10px; align-items: center; padding: 5px 6px; margin-bottom: 2px; border: 1px solid {{t.bd}}; border-radius: 6px; background: {{t.bg}}; font-family: inherit; font-size: 12px; color: #0F172A; text-align: left;">
+                <span style="font-weight: {{t.fw}};">{{t.l}}</span>
+                <span style="display: block; height: 12px; border-radius: 3px; background: #EEF2F7;"><span style="display: block; width: {{t.w}}; height: 12px; border-radius: 3px; background: {{t.c}};"></span></span>
+                <span style="text-align: right;"><b>{{t.n}}</b> <span style="color: #64748B;">· {{t.p}}</span></span>
+              </button>
+            </sc-for>
+          </div>
+          <div>
+            <div style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.4px; color: #64748B; margin-bottom: 8px;">LAMA TERTAHAN · {{c4agL}}</div>
+            <div style="display: flex; gap: 12px; align-items: flex-end; height: 130px; padding: 0 4px; border-bottom: 1px solid #CBD5E1;">
+              <sc-for list="{{c4ag}}" as="a" hint-placeholder-count="4">
+                <button type="button" sc-camel-on-click="{{a.open}}" title="{{a.t}}" style="flex: 1; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; align-items: stretch; gap: 4px; padding: 0; border: 0; background: transparent; font-family: inherit; cursor: pointer;">
+                  <b style="font-size: 12px; text-align: center;">{{a.n}}</b>
+                  <span class="bar" style="display: block; height: {{a.h}}; border-radius: 4px 4px 0 0; background: {{a.c}};"></span>
+                </button>
+              </sc-for>
+            </div>
+            <div style="display: flex; gap: 12px; padding: 4px 4px 0;"><sc-for list="{{c4ag}}" as="a" hint-placeholder-count="4"><span style="flex: 1; text-align: center; font-size: 11px; color: #475569;">{{a.l}}<span style="display: block; color: #94A3B8;">{{a.p}}</span></span></sc-for></div>
+          </div>
+        </div>
+        <div style="margin-top: auto; padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;"><span><b style="color: #475569;">Periode:</b> posisi 30 Sep 2026 (bulanan)</span><span><b style="color: #475569;">Diperbarui:</b> 12 Okt 2026</span><span><b style="color: #475569;">Sumber:</b> OSS · log status permohonan</span><span style="padding: 0 6px; border-radius: 4px; background: #EFF6FF; color: #1D4ED8; font-weight: 600;">Divalidasi analis</span></div>
+      </section>
+    </div>
+
+    <!-- 5. Keterkaitan hambatan izin & regulasi -->
+    <section id="sec-hambatan" style="background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; box-shadow: 0 1px 2px rgba(15,23,42,.05); display: flex; flex-direction: column; scroll-margin-top: 16px;">
+      <div style="padding: 12px 18px; border-bottom: 1px solid #EEF2F7; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px;">
+        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px;"><h2 style="margin: 0; font-size: 14.5px; font-weight: 600;">Keterkaitan hambatan izin &amp; regulasi</h2><span style="height: 22px; padding: 0 8px; border-radius: 6px; background: #EEF2FF; border: 1px solid #C7D2FE; color: #3730A3; font-size: 11px; font-weight: 600; display: inline-flex; align-items: center;">✦ Relasi diusulkan AI · direview analis</span></div>
+        <div style="display: flex; flex-wrap: wrap; gap: 6px;"><sc-for list="{{c5f}}" as="f" hint-placeholder-count="4"><button type="button" sc-camel-on-click="{{f.pick}}" style="height: 28px; padding: 0 10px; border-radius: 99px; border: 1px solid {{f.bd}}; background: {{f.bg}}; color: {{f.fg}}; font-family: inherit; font-size: 11.5px; font-weight: 600; cursor: pointer;">{{f.l}} · {{f.n}}</button></sc-for></div>
+      </div>
+      <div style="padding: 16px 18px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 14px;">
+        <sc-for list="{{hb}}" as="h" hint-placeholder-count="4">
+          <div style="padding: 14px; border-radius: 10px; border: 1px solid #E3E8F0; border-left: 4px solid {{h.lb}}; background: {{h.bg}}; display: flex; flex-direction: column; gap: 10px;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;">
+              <div style="min-width: 0;"><b style="font-size: 13.5px; line-height: 19px;">{{h.t}}</b><div style="font-size: 11.5px; color: #64748B;">{{h.meta}}</div></div>
+              <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 6px; flex: none;">
+                <sc-if value="{{h.ews}}" hint-placeholder-val="{{true}}"><span class="tip" tabindex="0" style="display: inline-flex; align-items: center; gap: 5px; height: 24px; padding: 0 9px; border-radius: 6px; background: #DC2626; color: #FFFFFF; font-size: 11px; font-weight: 700; cursor: help;">● EWS<span class="pop"><b style="color: #FFFFFF;">Alasan:</b> {{h.ewsA}}<br><b style="color: #FFFFFF;">Sumber:</b> {{h.ewsS}}<br><b style="color: #FFFFFF;">Waktu:</b> {{h.ewsW}}<br><span style="color: #FCA5A5;">Penanda tetap merah sampai ditindaklanjuti.</span></span></span></sc-if>
+                <span style="height: 22px; padding: 0 8px; border-radius: 6px; background: {{h.sbg}}; color: {{h.sfg}}; font-size: 11px; font-weight: 600; display: inline-flex; align-items: center; white-space: nowrap;">{{h.status}}</span>
+              </div>
+            </div>
+            <p style="margin: 0; font-size: 12.5px; line-height: 19px; color: #334155;">{{h.d}}</p>
+            <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 6px; font-size: 11.5px; color: #475569;"><b style="font-size: 10.5px; letter-spacing: 0.4px;">REGULASI / PASAL</b><sc-for list="{{h.regs}}" as="r" hint-placeholder-count="2"><a href="{{r.href}}" title="{{r.t}}" style="height: 24px; padding: 0 9px; border-radius: 99px; border: 1px solid #B8E3DF; background: #FFFFFF; color: #1D4ED8; font-size: 11px; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center;">{{r.l}} →</a></sc-for></div>
+            <div style="display: flex; flex-direction: column; gap: 4px;"><b style="font-size: 10.5px; letter-spacing: 0.4px; color: #475569;">BUKTI</b><sc-for list="{{h.bukti}}" as="b" hint-placeholder-count="2"><div style="font-size: 12px; line-height: 17px; color: #334155;"><a href="{{b.href}}" target="{{b.tg}}" rel="noopener" sc-camel-on-click="{{b.act}}" style="font-weight: 600; text-decoration: none;">{{b.l}} {{b.ic}}</a> <span style="color: #64748B;">· {{b.d}}</span></div></sc-for></div>
+            <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px; padding-top: 8px; border-top: 1px dashed #E3E8F0;">
+              <span style="height: 22px; padding: 0 8px; border-radius: 6px; background: #EEF2FF; border: 1px solid #C7D2FE; color: #3730A3; font-size: 11px; font-weight: 600; display: inline-flex; align-items: center;">{{h.ai}}</span>
+              <button type="button" sc-camel-on-click="{{h.toggle}}" style="padding: 0; border: 0; background: transparent; font-family: inherit; font-size: 12px; font-weight: 600; color: #1D4ED8; cursor: pointer;">{{h.tl}}</button>
+            </div>
+            <sc-if value="{{h.open}}" hint-placeholder-val="{{false}}">
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px;">
+                <div style="padding: 10px 12px; border-radius: 8px; background: #F5F7FF; border: 1px dashed #A5B4FC;"><div style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.4px; color: #3730A3;">ANALISIS AI</div><p style="margin: 4px 0 0; font-size: 12px; line-height: 18px; color: #1E293B;">{{h.an}}</p></div>
+                <div style="padding: 10px 12px; border-radius: 8px; background: #F8FAFC; border: 1px solid #E3E8F0;"><div style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.4px; color: #475569;">INSTANSI PENGAMPU</div><p style="margin: 4px 0 0; font-size: 12px; line-height: 18px; color: #1E293B;">{{h.pj}}</p><div style="margin-top: 6px; font-size: 11px; color: #64748B;">Teridentifikasi {{h.tgl}}</div></div>
+              </div>
+            </sc-if>
+          </div>
+        </sc-for>
+        <sc-if value="{{c5HasPages}}" hint-placeholder-val="{{false}}">
+          <div role="navigation" aria-label="Navigasi kartu hambatan" style="margin-top: 14px; display: flex; justify-content: space-between; align-items: center; gap: 10px;">
+            <span style="font-size: 11.5px; color: #64748B;">Halaman {{c5PageLabel}} ? {{c5Count}} isu</span>
+            <div style="display: flex; align-items: center; gap: 6px;">
+              <sc-if value="{{c5CanPrev}}" hint-placeholder-val="{{true}}"><button type="button" sc-camel-on-click="{{c5Prev}}" style="height: 30px; padding: 0 10px; border: 1px solid #B8E3DF; border-radius: 7px; background: #FFFFFF; color: #1D4ED8; font-family: inherit; font-size: 11.5px; font-weight: 600; cursor: pointer;">? Sebelumnya</button></sc-if>
+              <sc-if value="{{c5NoPrev}}" hint-placeholder-val="{{false}}"><span aria-disabled="true" style="height: 30px; padding: 0 10px; border: 1px solid #E3E8F0; border-radius: 7px; background: #F8FAFC; color: #94A3B8; display: inline-flex; align-items: center; font-size: 11.5px;">? Sebelumnya</span></sc-if>
+              <sc-if value="{{c5CanNext}}" hint-placeholder-val="{{true}}"><button type="button" sc-camel-on-click="{{c5Next}}" style="height: 30px; padding: 0 10px; border: 1px solid #B8E3DF; border-radius: 7px; background: #FFFFFF; color: #1D4ED8; font-family: inherit; font-size: 11.5px; font-weight: 600; cursor: pointer;">Berikutnya ?</button></sc-if>
+              <sc-if value="{{c5NoNext}}" hint-placeholder-val="{{false}}"><span aria-disabled="true" style="height: 30px; padding: 0 10px; border: 1px solid #E3E8F0; border-radius: 7px; background: #F8FAFC; color: #94A3B8; display: inline-flex; align-items: center; font-size: 11.5px;">Berikutnya ?</span></sc-if>
+            </div>
+          </div>
+        </sc-if>
+        <sc-if value="{{c5empty}}" hint-placeholder-val="{{false}}"><div style="padding: 24px 16px; border-radius: 10px; border: 1px dashed #CBD5E1; background: #F8FAFC; text-align: center; font-size: 12.5px; color: #475569;">Tidak ada keterkaitan dengan status ini.</div></sc-if>
+      </div>
+      <div style="margin-top: auto; padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;"><span><b style="color: #475569;">Periode:</b> pemantauan mingguan s.d. 12 Okt 2026</span><span><b style="color: #475569;">Diperbarui:</b> 12 Okt 2026</span><span><b style="color: #475569;">Sumber:</b> berita daring, OSS, JDIH</span><span style="padding: 0 6px; border-radius: 4px; background: #EEF2FF; color: #3730A3; font-weight: 600;">Relasi AI · status review per kartu</span></div>
+    </section>
+
+    <!-- 6. Tren kemudahan berusaha -->
+    <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: stretch;">
+      <section id="sec-tren" style="flex: 2 1 720px; min-width: 0; background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; box-shadow: 0 1px 2px rgba(15,23,42,.05); display: flex; flex-direction: column; scroll-margin-top: 16px;">
+        <div style="padding: 12px 18px; border-bottom: 1px solid #EEF2F7; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px;">
+          <div><h2 style="margin: 0; font-size: 14.5px; font-weight: 600;">Tren kemudahan berusaha</h2><div style="font-size: 11.5px; color: #64748B;">Persentase izin terbit sesuai SLA terhadap target · per triwulan</div></div>
+          <sc-for list="{{c6dd}}" as="f" hint-placeholder-count="1">
+            <div style="position: relative;">
+              <button type="button" sc-camel-on-click="{{f.toggle}}" style="height: 32px; padding: 0 12px; border-radius: 8px; background: {{f.bg}}; border: 1px solid {{f.bd}}; font-family: inherit; font-size: 12px; color: #475569; cursor: pointer;">{{f.l}}: <b style="color: #0F172A;">{{f.v}}</b> ▾</button>
+              <sc-if value="{{f.open}}" hint-placeholder-val="{{false}}">
+                <div style="position: absolute; z-index: 60; top: 36px; right: 0; min-width: 260px; max-height: 360px; overflow-y: auto; padding: 6px; border-radius: 10px; background: #FFFFFF; border: 1px solid #E3E8F0; box-shadow: 0 12px 32px rgba(15,23,42,.16); display: flex; flex-direction: column; gap: 2px;">
+                  <sc-for list="{{f.opts}}" as="o" hint-placeholder-count="5"><button type="button" sc-camel-on-click="{{o.pick}}" class="rw" style="padding: 8px 10px; border: 0; border-radius: 6px; background: {{o.bg}}; font-family: inherit; font-size: 12.5px; color: #0F172A; font-weight: {{o.w}}; text-align: left; display: flex; justify-content: space-between; gap: 12px;"><span>{{o.l}}</span><span style="color: #94A3B8;">{{o.n}}</span></button></sc-for>
+                </div>
+              </sc-if>
+            </div>
+          </sc-for>
+        </div>
+        <div style="padding: 16px 18px; display: flex; flex-wrap: wrap; gap: 20px;">
+          <div style="flex: 3 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 8px;">
+            <div style="display: flex; flex-wrap: wrap; gap: 12px; font-size: 11.5px; color: #475569;"><span style="display: inline-flex; align-items: center; gap: 6px;"><span style="width: 16px; height: 3px; border-radius: 2px; background: #1D4ED8;"></span>% izin terbit sesuai SLA</span><span style="display: inline-flex; align-items: center; gap: 6px;"><span style="width: 16px; height: 0; border-top: 2px dashed #0B1F4B;"></span>{{c6.tl}}</span></div>
+            <div style="display: flex; gap: 8px;">
+              <div style="position: relative; flex: none; width: 36px; height: 200px;"><sc-for list="{{c6.yl}}" as="y" hint-placeholder-count="4"><span style="position: absolute; right: 0; top: {{y.t}}; transform: translateY(-50%); font-size: 10.5px; color: #64748B;">{{y.l}}</span></sc-for></div>
+              <div style="position: relative; flex: 1; min-width: 0; height: 200px;">
+                <svg sc-camel-view-box="0 0 600 200" sc-camel-preserve-aspect-ratio="none" style="width: 100%; height: 200px; display: block;" role="img" aria-label="{{c6.aria}}">
+                  <path d="{{c6.grid}}" stroke="#E3E8F0" stroke-dasharray="3 3" fill="none" vector-effect="non-scaling-stroke"></path>
+                  <path d="M0 199H600" stroke="#CBD5E1" fill="none" vector-effect="non-scaling-stroke"></path>
+                  <path d="{{c6.mark}}" stroke="#94A3B8" stroke-dasharray="4 3" fill="none" vector-effect="non-scaling-stroke"></path>
+                  <path d="{{c6.tp}}" fill="none" stroke="#0B1F4B" stroke-width="2" stroke-dasharray="6 4" vector-effect="non-scaling-stroke"></path>
+                  <path d="{{c6.lp}}" fill="none" stroke="#1D4ED8" stroke-width="2.5" stroke-linejoin="round" vector-effect="non-scaling-stroke"></path>
+                </svg>
+                <sc-for list="{{c6.pts}}" as="p" hint-placeholder-count="5"><button type="button" sc-camel-on-click="{{p.pick}}" class="pt" title="{{p.t}}" aria-label="{{p.t}}" style="position: absolute; left: {{p.x}}; top: {{p.y}}; width: 12px; height: 12px; margin: -6px 0 0 -6px; padding: 0; border-radius: 99px; border: 2.5px solid #1D4ED8; background: {{p.bg}}; box-sizing: border-box; cursor: pointer;"></button></sc-for>
+                <span style="position: absolute; left: {{c6.tx}}; top: {{c6.ty}}; transform: {{c6.tf}}; padding: 6px 9px; border-radius: 8px; background: #0B1F3A; color: #FFFFFF; font-size: 11px; line-height: 15px; white-space: nowrap; pointer-events: none;"><b>{{c6.tl1}}</b><br>{{c6.tl2}}</span>
+              </div>
+            </div>
+            <div style="position: relative; height: 24px; margin-left: 44px;"><sc-for list="{{c6.xl}}" as="x" hint-placeholder-count="5"><button type="button" sc-camel-on-click="{{x.pick}}" style="position: absolute; left: {{x.x}}; transform: translateX(-50%); padding: 2px 7px; border: 0; border-radius: 5px; background: {{x.bg}}; color: {{x.fg}}; font-family: inherit; font-size: 11px; font-weight: {{x.fw}}; cursor: pointer; white-space: nowrap;">{{x.l}}</button></sc-for></div>
+          </div>
+          <div style="flex: 2 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 10px;">
+            <div style="border: 1px solid #E3E8F0; border-radius: 10px; overflow: hidden;">
+              <div style="display: grid; grid-template-columns: minmax(0, 1fr) 62px 70px 58px 70px; gap: 6px; padding: 8px 10px; background: #F8FAFC; font-size: 10.5px; font-weight: 700; letter-spacing: 0.3px; color: #64748B;"><span>TRIWULAN</span><span style="text-align: right;">SESUAI SLA</span><span style="text-align: right;">VS TW LALU</span><span style="text-align: right;">TARGET</span><span style="text-align: right;">THD TARGET</span></div>
+              <sc-for list="{{c6rows}}" as="r" hint-placeholder-count="5"><button type="button" sc-camel-on-click="{{r.pick}}" class="rw" style="width: 100%; display: grid; grid-template-columns: minmax(0, 1fr) 62px 70px 58px 70px; gap: 6px; padding: 7px 10px; border: 0; border-top: 1px solid #EEF2F7; background: {{r.bg}}; font-family: inherit; font-size: 12px; color: #0F172A; text-align: left;"><span style="font-weight: {{r.fw}};">{{r.q}}</span><b style="text-align: right;">{{r.v}}</b><span style="text-align: right; color: #1D4ED8; font-weight: 600;">{{r.d}}</span><span style="text-align: right; color: #475569;">{{r.t}}</span><span style="text-align: right; font-weight: 600; color: {{r.gc}};">{{r.g}}</span></button></sc-for>
+            </div>
+            <div style="padding: 10px 12px; border-radius: 8px; background: #EFF6FF; border: 1px solid #E7F1E9; font-size: 12px; line-height: 18px; color: #1E293B;">{{c6note}}</div>
+          </div>
+        </div>
+        <div style="margin-top: auto; padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;"><span><b style="color: #475569;">Periode:</b> Tw III 2025 – Tw III 2026 (checkpoint triwulan)</span><span><b style="color: #475569;">Diperbarui:</b> 12 Okt 2026</span><span><b style="color: #475569;">Sumber:</b> OSS (kepatuhan SLA) · target dari RPJMD/RKPD, dimutakhirkan tiap tahun</span><span style="padding: 0 6px; border-radius: 4px; background: #EFF6FF; color: #1D4ED8; font-weight: 600;">Divalidasi analis</span></div>
+      </section>
+
+      <section style="flex: 1 1 380px; min-width: 0; background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; box-shadow: 0 1px 2px rgba(15,23,42,.05); display: flex; flex-direction: column;">
+        <div style="padding: 12px 18px; border-bottom: 1px solid #EEF2F7;"><h2 style="margin: 0; font-size: 14.5px; font-weight: 600;">Pembanding: realisasi vs target investasi</h2><div style="font-size: 11.5px; color: #64748B;">{{inv.sub}}</div></div>
+        <div style="padding: 16px 18px; display: flex; flex-direction: column; gap: 12px; flex: 1;">
+          <div>
+            <div style="display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap;"><b style="font-size: 30px; letter-spacing: -0.5px; color: #1E40AF;">{{inv.big}}</b><span style="font-size: 12.5px; color: #475569;">{{inv.bigL}}</span></div>
+            <div style="position: relative; height: 12px; margin-top: 8px; border-radius: 99px; background: #EEF2F7;"><span style="display: block; width: {{inv.w}}; height: 12px; border-radius: 99px; background: #1D4ED8;"></span><span style="position: absolute; left: 50%; top: -3px; width: 2px; height: 18px; background: #0F172A;"></span></div>
+            <div style="display: flex; justify-content: space-between; margin-top: 4px; font-size: 11px; color: #64748B;"><span>Rp0</span><span>Paruh tahun</span><span>{{inv.tgtL}}</span></div>
+          </div>
+          <div style="border: 1px solid #E3E8F0; border-radius: 10px; overflow: hidden;">
+            <sc-for list="{{inv.rows}}" as="r" hint-placeholder-count="5"><div style="display: flex; justify-content: space-between; gap: 10px; padding: 8px 12px; border-top: 1px solid #EEF2F7; font-size: 12px;"><span style="color: #475569;">{{r.l}}</span><span style="text-align: right;"><b style="color: {{r.c}};">{{r.v}}</b><span style="display: block; font-size: 11px; color: #64748B;">{{r.s}}</span></span></div></sc-for>
+          </div>
+          <p style="margin: 0; font-size: 11.5px; line-height: 17px; color: #64748B;">Tidak ada target jumlah perizinan, sehingga kinerja perizinan dibandingkan dengan target investasi. Target daerah mengacu RKPD yang dimutakhirkan tiap tahun.</p>
+        </div>
+        <div style="margin-top: auto; padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;"><span><b style="color: #475569;">Periode:</b> 2025 – Semester I 2026</span><span><b style="color: #475569;">Diperbarui:</b> 16 Jul 2026 (rilis)</span><span><b style="color: #475569;">Sumber:</b> Kementerian Investasi dan Hilirisasi/BKPM</span><span style="padding: 0 6px; border-radius: 4px; background: #EFF6FF; color: #1D4ED8; font-weight: 600;">Data resmi</span></div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Modal daftar pembentuk -->
+  <sc-if value="{{mOpen}}" hint-placeholder-val="{{false}}">
+    <div style="position: fixed; inset: 0; z-index: 150; background: rgba(15,23,42,.45); display: flex; align-items: center; justify-content: center; padding: 24px;">
+      <div role="dialog" aria-modal="true" style="width: 1040px; max-width: 100%; max-height: calc(100vh - 48px); display: flex; flex-direction: column; background: #FFFFFF; border-radius: 14px; box-shadow: 0 24px 64px rgba(15,23,42,.3); overflow: hidden;">
+        <div style="padding: 14px 18px; border-bottom: 1px solid #EEF2F7; display: flex; justify-content: space-between; align-items: flex-start; gap: 12px;">
+          <div style="min-width: 0;"><h3 style="margin: 0; font-size: 15px; font-weight: 600;">{{m.t}}</h3><div style="font-size: 11.5px; color: #64748B;">{{m.sub}}</div></div>
+          <div style="display: flex; align-items: center; gap: 8px; flex: none;"><span style="height: 24px; padding: 0 9px; border-radius: 6px; background: #EFF6FF; border: 1px solid #B8E3DF; color: #1E40AF; font-size: 11px; font-weight: 600; display: inline-flex; align-items: center;">Sesuai hak akses</span><button type="button" sc-camel-on-click="{{mClose}}" aria-label="Tutup" style="width: 30px; height: 30px; border-radius: 8px; border: 1px solid #E3E8F0; background: #FFFFFF; font-family: inherit; font-size: 14px; color: #475569; cursor: pointer;">✕</button></div>
+        </div>
+        <div style="padding: 10px 18px; display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 8px; border-bottom: 1px solid #EEF2F7;">
+          <sc-for list="{{m.stats}}" as="s" hint-placeholder-count="4"><div style="padding: 7px 10px; border-radius: 8px; background: #F8FAFC; border: 1px solid #EEF2F7;"><div style="font-size: 10.5px; color: #64748B;">{{s.l}}</div><b style="font-size: 13px; color: {{s.c}};">{{s.v}}</b></div></sc-for>
+        </div>
+        <div style="padding: 10px 18px; display: flex; flex-wrap: wrap; gap: 6px; border-bottom: 1px solid #EEF2F7;">
+          <sc-for list="{{m.tabs}}" as="t" hint-placeholder-count="4"><button type="button" sc-camel-on-click="{{t.pick}}" style="height: 28px; padding: 0 10px; border-radius: 99px; border: 1px solid {{t.bd}}; background: {{t.bg}}; color: {{t.fg}}; font-family: inherit; font-size: 11.5px; font-weight: 600; cursor: pointer;">{{t.l}} · {{t.n}}</button></sc-for>
+        </div>
+        <div style="flex: 1; overflow: auto;">
+          <div style="min-width: 900px;">
+            <div style="display: grid; grid-template-columns: {{m.grid}}; gap: 10px; padding: 8px 18px; background: #F8FAFC; font-size: 10.5px; font-weight: 700; letter-spacing: 0.4px; color: #64748B; position: sticky; top: 0;"><sc-for list="{{m.cols}}" as="c" hint-placeholder-count="8"><span>{{c}}</span></sc-for></div>
+            <sc-for list="{{m.rows}}" as="r" hint-placeholder-count="10">
+              <div style="display: grid; grid-template-columns: {{m.grid}}; gap: 10px; align-items: center; padding: 8px 18px; border-top: 1px solid #EEF2F7; font-size: 12px;">
+                <sc-for list="{{r.cells}}" as="c" hint-placeholder-count="8"><span style="justify-self: start; padding: {{c.pad}}; border-radius: 5px; background: {{c.bg}}; color: {{c.c}}; font-weight: {{c.fw}}; font-size: {{c.fs}};">{{c.v}}</span></sc-for>
+              </div>
+            </sc-for>
+            <sc-if value="{{m.empty}}" hint-placeholder-val="{{false}}"><div style="padding: 28px 18px; text-align: center; font-size: 12.5px; color: #64748B; border-top: 1px solid #EEF2F7;">Tidak ada data pada pilihan ini.</div></sc-if>
+          </div>
+        </div>
+        <div style="padding: 10px 18px; border-top: 1px solid #EEF2F7; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px; background: #FAFBFD;">
+          <span style="font-size: 11.5px; color: #64748B;">{{m.note}}</span>
+          <div style="display: flex; align-items: center; gap: 6px;">
+            <span style="font-size: 12px; color: #475569;">{{m.pg}}</span>
+            <button type="button" sc-camel-on-click="{{m.prev}}" aria-label="Sebelumnya" style="width: 30px; height: 30px; border-radius: 6px; border: 1px solid #E3E8F0; background: #FFFFFF; color: {{m.pc}}; font-family: inherit; cursor: pointer;">‹</button>
+            <button type="button" sc-camel-on-click="{{m.next}}" aria-label="Berikutnya" style="width: 30px; height: 30px; border-radius: 6px; border: 1px solid #E3E8F0; background: #FFFFFF; color: {{m.nc}}; font-family: inherit; cursor: pointer;">›</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script="" data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:3150}}">
+class Component extends DCLogic {
+  renderVals() {
+    const st = this.state;
+    const set = (o) => this.setState({ menu: null, ...o });
+    const fN = (n) => String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    const f1 = (v) => (Math.round(v * 10) / 10).toFixed(1).replace('.', ',');
+    const sg = (v) => (v > 0.049 ? '+' : v < -0.049 ? '−' : '') + f1(Math.abs(v));
+    const pc = (a, b) => (b ? f1((a / b) * 100) + '%' : '–');
+    const rng = (seed) => { let h = 1779033703 ^ seed.length; for (let i = 0; i < seed.length; i++) { h = Math.imul(h ^ seed.charCodeAt(i), 3432918353); h = (h << 13) | (h >>> 19); } return () => { h = Math.imul(h ^ (h >>> 16), 2246822507); h = Math.imul(h ^ (h >>> 13), 3266489909); h ^= h >>> 16; return (h >>> 0) / 4294967296; }; };
+    const alloc = (total, ws) => { const s = ws.reduce((a, b) => a + b, 0); if (!s || !total) return ws.map(() => 0); const raw = ws.map((w) => (total * w) / s); const fl = raw.map((x) => Math.floor(x)); const rem = total - fl.reduce((a, b) => a + b, 0); const ord = raw.map((x, i) => [x - fl[i], i]).sort((a, b) => b[0] - a[0] || a[1] - b[1]); for (let i = 0; i < rem; i++) fl[ord[i % ord.length][1]]++; return fl; };
+    const MON = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
+    const fD = (d) => String(d.getUTCDate()).padStart(2, '0') + ' ' + MON[d.getUTCMonth()] + ' ' + d.getUTCFullYear();
+    const isWE = (d) => d.getUTCDay() === 0 || d.getUTCDay() === 6;
+    const subWD = (d, n) => { const x = new Date(d.getTime()); let k = n; while (k > 0) { x.setUTCDate(x.getUTCDate() - 1); if (!isWE(x)) k--; } return x; };
+    const wdSep = (r) => { let d = new Date(Date.UTC(2026, 8, 1 + Math.floor(r() * 30))); while (isWE(d)) d = new Date(d.getTime() - 86400000); return d; };
+    const yymm = (d) => String(d.getUTCFullYear()).slice(2) + String(d.getUTCMonth() + 1).padStart(2, '0');
+    const RED = '#DC2626', THR = 5;
+
+    // ---------- Jenis izin: SLA PP 28/2025 & kinerja September 2026 ----------
+    const JEN = [
+      { id: 'pkkpr', l: 'PKKPR melalui penilaian', sub: 'Persetujuan KKPR darat · lokasi belum ber-RDTR', sla: 20, avg: 23.1, med: 19.0, p90: 34.8, n: 1846, st: [1071, 572, 203], inst: 'Kantor Pertanahan · Kementerian ATR/BPN',
+        fik: 'PP 28/2025 Pasal 22 ayat (3). Bila SLA terlampaui tanpa Pertimbangan Teknis Pertanahan, PKKPR dianggap disetujui dan terbit otomatis melalui OSS. Berlaku sejak 2 Jun 2025.' },
+      { id: 'kkprl', l: 'KKPR Laut (KKPRL)', sub: 'Pemeriksaan 5 + penilaian 20 + SPS 2 + penerbitan 6 hari kerja', sla: 33, avg: 35.2, med: 31.0, p90: 47.0, n: 214, st: [137, 77, 0], inst: 'Kementerian Kelautan dan Perikanan',
+        fik: 'PP 28/2025 Pasal 75. Permohonan KKPRL yang tidak ditindaklanjuti dalam SLA dianggap disetujui. Persetujuan otomatis belum berjalan di OSS, sehingga belum ada izin fiktif positif pada periode ini.' },
+      { id: 'pbg', l: 'Persetujuan Bangunan Gedung (PBG)', sub: 'Melalui SIMBG · PP 16/2021 jo. PP 28/2025', sla: 32, avg: 36.9, med: 31.5, p90: 55.2, n: 3912, st: [2034, 1878, 0], inst: 'DPMPTSP kab/kota (SIMBG)', fik: '' },
+      { id: 'slf', l: 'Sertifikat Laik Fungsi (SLF)', sub: 'Melalui SIMBG · PP 16/2021 jo. PP 28/2025', sla: 33, avg: 29.4, med: 27.0, p90: 38.6, n: 1488, st: [1205, 283, 0], inst: 'DPMPTSP kab/kota (SIMBG)', fik: '' },
+      { id: 'pertek', l: 'Persetujuan Teknis', sub: 'Air limbah dan emisi · melalui kajian teknis', sla: 33, avg: 34.1, med: 32.0, p90: 44.5, n: 642, st: [443, 199, 0], inst: 'Kementerian Lingkungan Hidup', fik: '' },
+      { id: 'ukl', l: 'UKL-UPL (PKPLH)', sub: 'Standar spesifik · KBLI risiko menengah tinggi dan tinggi', sla: 8, avg: 7.6, med: 7.0, p90: 10.2, n: 1574, st: [1322, 252, 0], inst: 'Dinas Lingkungan Hidup daerah', fik: '' },
+      { id: 'ss', l: 'Sertifikat Standar & Izin', sub: 'Risiko menengah tinggi dan tinggi · SLA sektor, acuan izin usaha hotel', sla: 14, avg: 14.5, med: 13.0, p90: 15.2, n: 24310, st: [20663, 2674, 973], inst: 'K/L sektor · DPMPTSP',
+        fik: 'PP 28/2025 Pasal 225 ayat (1) untuk risiko menengah tinggi dan Pasal 230 untuk risiko tinggi. Verifikasi yang melewati SLA sektor menghasilkan persetujuan otomatis. Tahap I mencakup 258 KBLI, berlaku sejak 2 Jun 2025.' }
+    ];
+    const JI = Object.fromEntries(JEN.map((j, i) => [j.id, i]));
+    const devOf = (avg, sla) => ((avg - sla) / sla) * 100;
+    const ST3 = ['Terbit sesuai SLA', 'Terbit melewati SLA', 'Persetujuan otomatis (fiktif positif)'];
+    const STC = ['#1E40AF', '#94A3B8', '#D4A72C'];
+    const STCHIP = [['#EFF6FF', '#1E40AF'], ['#F1F5F9', '#475569'], ['#E7F1E9', '#1D4ED8']];
+
+    // ---------- Sektor KBLI 2025 & wilayah ----------
+    const SEK = [['A', 'Pertanian, Kehutanan, dan Perikanan', 0.072], ['B', 'Pertambangan dan Penggalian', 0.046], ['C', 'Industri', 0.203], ['D', 'Penyediaan Listrik, Gas, Uap/Air Panas, dan Udara Dingin', 0.018], ['F', 'Konstruksi', 0.104], ['G', 'Perdagangan Besar dan Eceran', 0.218], ['H', 'Transportasi dan Penyimpanan', 0.086], ['I', 'Aktivitas Penyediaan Akomodasi dan Makan Minum', 0.124], ['K', 'Telekomunikasi, Pemrograman Komputer, Infrastruktur Komputasi, dan Jasa Informasi', 0.041], ['M', 'Aktivitas Real Estat', 0.023], ['X', 'Kategori lainnya (E, J, L, N–U)', 0.065]];
+    const SEKS = { A: 'A · Pertanian, Kehutanan & Perikanan', B: 'B · Pertambangan', C: 'C · Industri', D: 'D · Listrik & Gas', F: 'F · Konstruksi', G: 'G · Perdagangan', H: 'H · Transportasi & Penyimpanan', I: 'I · Akomodasi & Makan Minum', K: 'K · Telekomunikasi & Infrastruktur Komputasi', M: 'M · Real Estat', X: 'Kategori lainnya' };
+    const KKPRL_W = { A: 0.40, B: 0.10, D: 0.08, H: 0.17, I: 0.20, X: 0.05 };
+    const WIL = [['jabar', 'Jawa Barat', 0.173, 1.10], ['dki', 'DKI Jakarta', 0.145, 0.90], ['jatim', 'Jawa Timur', 0.136, 1.00], ['jateng', 'Jawa Tengah', 0.094, 0.97], ['banten', 'Banten', 0.068, 1.06], ['sumut', 'Sumatera Utara', 0.044, 1.14], ['sulsel', 'Sulawesi Selatan', 0.033, 1.05], ['bali', 'Bali', 0.032, 1.17], ['riau', 'Riau', 0.029, 1.08], ['kaltim', 'Kalimantan Timur', 0.027, 1.12], ['lain', '28 provinsi lainnya', 0.219, 0.90]];
+    const WI = Object.fromEntries(WIL.map((w, i) => [w[0], i]));
+    const OTH = ['Aceh', 'Sumatera Barat', 'Jambi', 'Sumatera Selatan', 'Bengkulu', 'Lampung', 'Kepulauan Bangka Belitung', 'Kepulauan Riau', 'DI Yogyakarta', 'Nusa Tenggara Barat', 'Nusa Tenggara Timur', 'Kalimantan Barat', 'Kalimantan Tengah', 'Kalimantan Selatan', 'Kalimantan Utara', 'Sulawesi Utara', 'Sulawesi Tengah', 'Sulawesi Tenggara', 'Gorontalo', 'Sulawesi Barat', 'Maluku', 'Maluku Utara', 'Papua', 'Papua Barat', 'Papua Selatan', 'Papua Tengah', 'Papua Pegunungan', 'Papua Barat Daya'];
+    const secW = (j) => SEK.map(([c, , w]) => (j.id === 'kkprl' ? KKPRL_W[c] || 0 : w));
+    const wilW = (k) => WIL.map(([, , w, p]) => (k === 0 ? w / p : k === 1 ? w * Math.pow(p, 4) : w * p * p));
+    // kubus izin terbit: [jenis][status][sektor][wilayah] — alokasi bulat agar setiap filter konsisten
+    if (!this._cube) this._cube = JEN.map((j) => j.st.map((cnt, k) => alloc(cnt, secW(j)).map((c) => alloc(c, wilW(k)))));
+    const cube = this._cube;
+    const cellsFor = (jf, sf, wf, kf) => { const out = []; JEN.forEach((j, ji) => { if (jf !== 'all' && j.id !== jf) return; cube[ji].forEach((ks, k) => { if (kf != null && kf !== k) return; ks.forEach((ws, si) => { if (sf !== 'all' && SEK[si][0] !== sf) return; ws.forEach((c, wi) => { if (wf !== 'all' && WIL[wi][0] !== wf) return; if (c > 0) out.push({ ji, k, si, wi, c }); }); }); }); }); return out; };
+    const sumC = (jf, sf, wf, kf) => cellsFor(jf, sf, wf, kf).reduce((a, x) => a + x.c, 0);
+    const pickCell = (cells, r) => { const tot = cells.reduce((a, x) => a + x.c, 0); let t = r() * tot; for (const x of cells) { t -= x.c; if (t < 0) return x; } return cells[cells.length - 1]; };
+
+    // ---------- dropdown helper ----------
+    const dd = (key, l, v, active, opts) => ({ l, v, open: st.menu === key, bg: active ? '#EFF6FF' : '#FFFFFF', bd: active ? '#B8E3DF' : '#E3E8F0', toggle: () => this.setState({ menu: st.menu === key ? null : key }), opts });
+    const opt = (l, n, on, pick) => ({ l, n, bg: on ? '#EFF6FF' : 'transparent', w: on ? 700 : 500, pick });
+
+    // ---------- Modal ----------
+    const openM = (mode, extra) => set({ modal: { mode, ...(extra || {}) }, mTab: (extra && extra.tab) || 'all', mPage: 0 });
+
+    // ===================== 1. Izin terbit & status =====================
+    const fS = st.fSek ?? 'all', fW = st.fWil ?? 'all', fJ = st.fJen ?? 'all';
+    const stC = [0, 1, 2].map((k) => sumC(fJ, fS, fW, k));
+    const tot = stC[0] + stC[1] + stC[2];
+    const TER = [29412, 30105, 31276, 32540, 33118, 33986], MAS = [43870, 44512, 45903, 46880, 47391, 48215];
+    const ML = ['Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep'], MF = ['April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September'];
+    const ratio = tot / 33986;
+    const terS = TER.map((v) => Math.round(v * ratio)), masS = MAS.map((v) => Math.round(v * ratio));
+    const sekL = fS === 'all' ? 'Semua sektor' : SEKS[fS];
+    const wilL = fW === 'all' ? 'Nasional' : WIL[WI[fW]][1];
+    const jenL = fJ === 'all' ? 'Semua jenis izin' : JEN[JI[fJ]].l;
+    const fl1 = [
+      dd('sek', 'Sektor (KBLI 2025)', sekL, fS !== 'all', [opt('Semua sektor', fN(sumC(fJ, 'all', fW)), fS === 'all', () => set({ fSek: 'all', s1p: null })), ...SEK.map(([c, n]) => opt(c === 'X' ? n : c + ' · ' + n, fN(sumC(fJ, c, fW)), fS === c, () => set({ fSek: c, s1p: null })))]),
+      dd('wil', 'Wilayah', wilL, fW !== 'all', [opt('Nasional (38 provinsi)', fN(sumC(fJ, fS, 'all')), fW === 'all', () => set({ fWil: 'all', s1p: null })), ...WIL.map(([id, n]) => opt(n, fN(sumC(fJ, fS, id)), fW === id, () => set({ fWil: id, s1p: null })))]),
+      dd('jen', 'Jenis izin', jenL, fJ !== 'all', [opt('Semua jenis izin', fN(sumC('all', fS, fW)), fJ === 'all', () => set({ fJen: 'all', s1p: null })), ...JEN.map((j) => opt(j.l, fN(sumC(j.id, fS, fW)), fJ === j.id, () => set({ fJen: j.id, s1p: null })))])
+    ];
+    const has1 = fS !== 'all' || fW !== 'all' || fJ !== 'all';
+    const f1Note = has1 ? 'Filter aktif: ' + [fS !== 'all' ? sekL : '', fW !== 'all' ? wilL : '', fJ !== 'all' ? jenL : ''].filter(Boolean).join(' · ') : 'Nasional · seluruh sektor · seluruh jenis izin';
+    const filt1 = { j: fJ, s: fS, w: fW };
+    const dAug = tot - terS[4];
+    const k1 = { v: fN(tot), d: (dAug >= 0 ? '▲ ' : '▼ ') + fN(Math.abs(dAug)) + ' dari Agustus', s: 'Permohonan masuk pada bulan yang sama: ' + fN(masS[5]) + ' (rasio terbit/masuk ' + pc(tot, masS[5]) + ').', open: () => openM('terbit', filt1) };
+    const s1 = [0, 1, 2].map((k) => ({ l: ST3[k], sub: k === 0 ? 'Durasi tidak melebihi SLA PP 28/2025' : k === 1 ? 'Durasi melebihi SLA; tetap diproses instansi' : 'PP 28/2025 Pasal 22 ayat (3), 225 ayat (1), 230', n: fN(stC[k]), p: pc(stC[k], tot), w: tot ? (stC[k] / tot) * 100 + '%' : '0%', c: STC[k], open: () => openM('terbit', { ...filt1, tab: String(k) }) }));
+    // grafik bulanan
+    const ymax1 = (() => { const m = Math.max(...masS, 1) * 1.08; const p = Math.pow(10, Math.floor(Math.log10(m))); const s = [1, 2, 2.5, 5, 10].find((x) => x * p * 4 >= m) * p; return s * 4; })();
+    const xs1 = [40, 144, 248, 352, 456, 560];
+    const y1 = (v) => 210 - (v / ymax1) * 195;
+    const mo = st.mo ?? 5;
+    const lt = xs1.map((x, i) => (i ? 'L' : 'M') + x + ' ' + y1(terS[i]).toFixed(1)).join(' ');
+    const lm = xs1.map((x, i) => (i ? 'L' : 'M') + x + ' ' + y1(masS[i]).toFixed(1)).join(' ');
+    const c1 = {
+      yl: [0, 1, 2, 3, 4].map((i) => ({ l: fN((ymax1 / 4) * i), t: (y1((ymax1 / 4) * i) / 220) * 100 + '%' })),
+      grid: [1, 2, 3, 4].map((i) => 'M0 ' + y1((ymax1 / 4) * i).toFixed(1) + 'H600').join(' '),
+      mark: 'M' + xs1[mo] + ' 8V210', lt, lm, area: lt + ' L560 210 L40 210 Z',
+      aria: 'Izin diterbitkan ' + fN(terS[0]) + ' pada April hingga ' + fN(terS[5]) + ' pada September 2026',
+      pts: xs1.map((x, i) => ({ x: (x / 600) * 100 + '%', y: (y1(terS[i]) / 220) * 100 + '%', bg: i === mo ? '#1D4ED8' : '#FFFFFF', t: MF[i] + ' 2026: ' + fN(terS[i]) + ' izin diterbitkan', pick: () => set({ mo: i }) })),
+      xl: xs1.map((x, i) => ({ l: ML[i], x: (x / 600) * 100 + '%', bg: i === mo ? '#0B1F4B' : 'transparent', fg: i === mo ? '#FFFFFF' : '#64748B', fw: i === mo ? 700 : 500, pick: () => set({ mo: i }) })),
+      tx: (xs1[mo] / 600) * 100 + '%', ty: (y1(terS[mo]) / 220) * 100 + '%', tf: mo >= 4 ? 'translate(calc(-100% - 12px), -50%)' : 'translate(12px, -50%)',
+      tl1: MF[mo] + ' 2026: ' + fN(terS[mo]) + ' izin terbit',
+      tl2: fN(masS[mo]) + ' permohonan masuk' + (mo > 0 ? ' · ' + (terS[mo] - terS[mo - 1] >= 0 ? '▲ ' : '▼ ') + fN(Math.abs(terS[mo] - terS[mo - 1])) + ' izin dari ' + ML[mo - 1] : ''),
+      sum: [{ l: 'Total izin terbit Apr–Sep 2026', v: fN(terS.reduce((a, b) => a + b, 0)) }, { l: 'Rata-rata per bulan', v: fN(terS.reduce((a, b) => a + b, 0) / 6) }, { l: 'Perubahan April → September', v: (terS[0] ? sg(((terS[5] - terS[0]) / terS[0]) * 100) + '%' : 'belum tersedia') }]
+    };
+
+    // ===================== 2. Waktu penyelesaian vs SLA =====================
+    const sla = JEN.map((j, ji) => { const r200 = (v) => Math.min(v / j.sla / 2, 1) * 100;
+      return { l: j.l, sub: j.sub, avg: f1(j.avg) + ' hari kerja', sla: j.sla + ' hari kerja', w: r200(j.avg) + '%', t: j.l + ': rata-rata ' + f1(j.avg) + ' hari kerja; standar SLA ' + j.sla + ' hari kerja', open: () => openM('kasus', { ji }) }; });
+    const nAll = JEN.reduce((a, j) => a + j.n, 0);
+    const slaAll = f1(JEN.reduce((a, j) => a + j.n * j.avg, 0) / nAll);
+    const ewsJ = JEN.filter((j) => devOf(j.avg, j.sla) > THR);
+    const slaEwsNote = ewsJ.length + ' dari ' + JEN.length + ' jenis izin melewati ambang: ' + ewsJ.map((j) => j.l.split(' (')[0]).join(', ');
+
+    // ===================== 3. Ranking waktu terlama =====================
+    const nJW = JEN.map((j, ji) => WIL.map((w, wi) => { let t = 0; cube[ji].forEach((ks) => ks.forEach((ws) => { t += ws[wi]; })); return t; }));
+    const QO = { 'pbg|jabar': 1.12, 'pkkpr|jabar': 1.06, 'pbg|bali': 1.08, 'pkkpr|sumut': 1.07 };
+    const qf = (ji, wi) => QO[JEN[ji].id + '|' + WIL[wi][0]] ?? (0.95 + rng('q' + ji + '-' + wi)() * 0.1);
+    const avgJW = (ji, wi) => JEN[ji].avg * WIL[wi][3] * qf(ji, wi);
+    const RW = WIL.slice(0, 10).map((w, wi) => wi);
+    const c3m = st.c3m ?? 'jenis', c3s = st.c3s ?? 'dev', c3j = st.c3j ?? 'all', c3sel = st.c3sel ?? null;
+    const NEWS = [['Kompas, 3 Okt 2026', 'https://lestari.kompas.com/read/2026/10/03/182721286/pembangunan-data-center-jatiluhur-dihentikan-iesr-minta-kajian-dampak-dibuka'], ['Bisnis, 1 Okt 2026', 'https://teknologi.bisnis.com/read/20261001/84/2008695/data-center-ai-jatiluhur-serap-384-liter-air-per-detik-benarkah-ancam-pasokan-warga'], ['Bisnis, 5 Okt 2026', 'https://teknologi.bisnis.com/read/20261005/101/2009730/potensi-investasi-data-center-rp360-triliun-terancam-kebijakan-sepihak-pemda'], ['Katadata', 'https://katadata.co.id/digital/teknologi/6abb2b43de6e7/bdx-bangun-pusat-data-ai-dengan-kapasitas-640-mw-di-purwakarta']];
+    const fbOf = (n, p) => Math.round(n * 0.0062 * p);
+    let c3rows = [], c3h1 = '', c3h2 = '', c3h3 = '', c3note = '';
+    const mkRow = (o) => { const ews = o.dv > THR && o.n >= 30, small = o.n < 30; return { ...o, ews, small, ok: !ews && !small, lb: ews ? RED : 'transparent', dc: ews ? RED : o.dv > 0 ? '#334155' : '#1D4ED8', dev: sg(o.dv) + '% thd standar' }; };
+    if (c3m === 'jenis') {
+      c3h1 = 'JENIS IZIN'; c3h2 = c3s === 'dev' ? 'DURASI SEBAGAI % SLA (GARIS = SLA)' : 'RATA-RATA HARI KERJA (GARIS = SLA)'; c3h3 = 'RATA-RATA';
+      let rows = JEN.map((j, ji) => ({ ji, j, dv: devOf(j.avg, j.sla) }));
+      rows.sort((a, b) => (c3s === 'dev' ? b.dv - a.dv : b.j.avg - a.j.avg));
+      const sc = Math.max(...JEN.map((j) => Math.max(j.avg, j.sla))) * 1.12;
+      c3rows = rows.map((x, i) => { const sel = c3sel && c3sel.t === 'jenis' && c3sel.id === x.j.id;
+        return mkRow({ rk: i + 1, l: x.j.l, sub: 'standar ' + x.j.sla + ' HK · ' + fN(x.j.n) + ' observasi', n: x.j.n, dv: x.dv, v: f1(x.j.avg) + ' HK', fw: sel ? 700 : 500,
+          w: (c3s === 'dev' ? Math.min(x.j.avg / x.j.sla / 1.6, 1) * 100 : (x.j.avg / sc) * 100) + '%', sw: (c3s === 'dev' ? 62.5 : (x.j.sla / sc) * 100) + '%', c: sel ? '#0B1F4B' : '#1D4ED8', bg: sel ? '#EFF6FF' : 'transparent',
+          ewsA: 'Rata-rata ' + f1(x.j.avg) + ' HK vs SLA ' + x.j.sla + ' HK (deviasi ' + f1(x.dv) + '%).', ewsS: 'OSS · SLA PP 28/2025 · ' + fN(x.j.n) + ' observasi', pick: () => set({ c3sel: sel ? null : { t: 'jenis', id: x.j.id } }) }); });
+      c3note = c3s === 'dev' ? 'Diurutkan menurut deviasi terhadap SLA, karena jenis izin dengan SLA panjang tidak otomatis paling menyimpang. Klik baris untuk rincian per wilayah.' : 'Diurutkan menurut durasi absolut; garis hitam menandai SLA tiap jenis izin. Klik baris untuk rincian per wilayah.';
+    } else {
+      const jj = c3j === 'all' ? null : JI[c3j];
+      c3h1 = 'PROVINSI'; c3h2 = jj == null ? 'INDEKS DURASI THD SLA (GARIS = 100%)' : (c3s === 'dev' ? 'DURASI SEBAGAI % SLA (GARIS = SLA)' : 'RATA-RATA HARI KERJA (GARIS = SLA)'); c3h3 = jj == null ? 'INDEKS' : 'RATA-RATA';
+      let rows = RW.map((wi) => {
+        if (jj == null) { let n = 0, d = 0, s = 0; JEN.forEach((j, ji) => { const c = nJW[ji][wi]; n += c; d += c * avgJW(ji, wi); s += c * j.sla; }); return { wi, n, avg: d / n, std: s / n, dv: (d / s - 1) * 100 }; }
+        const n = nJW[jj][wi], avg = avgJW(jj, wi); return { wi, n, avg, std: JEN[jj].sla, dv: devOf(avg, JEN[jj].sla) }; });
+      rows.sort((a, b) => (c3s === 'dev' ? b.dv - a.dv : b.avg - a.avg));
+      const sc = Math.max(...rows.map((x) => Math.max(x.avg, x.std))) * 1.12;
+      c3rows = rows.map((x, i) => { const w = WIL[x.wi], sel = c3sel && c3sel.t === 'wil' && c3sel.id === w[0];
+        const vIdx = jj == null ? f1(100 + x.dv) + '%' : f1(x.avg) + ' HK';
+        return mkRow({ rk: i + 1, l: w[1], sub: (jj == null ? 'rata-rata ' + f1(x.avg) + ' HK · standar tertimbang ' + f1(x.std) + ' HK' : 'standar ' + x.std + ' HK') + ' · ' + fN(x.n) + ' observasi', n: x.n, dv: x.dv, v: vIdx, fw: sel ? 700 : 500,
+          w: (jj == null || c3s === 'dev' ? Math.min((100 + x.dv) / 160, 1) * 100 : (x.avg / sc) * 100) + '%', sw: (jj == null || c3s === 'dev' ? 62.5 : (x.std / sc) * 100) + '%', c: sel ? '#0B1F4B' : '#1D4ED8', bg: sel ? '#EFF6FF' : 'transparent',
+          ewsA: (jj == null ? 'Indeks durasi ' + f1(100 + x.dv) + '% dari SLA tertimbang' : JEN[jj].l + ' rata-rata ' + f1(x.avg) + ' HK vs SLA ' + x.std + ' HK') + ' (deviasi ' + f1(x.dv) + '%).', ewsS: 'OSS · feedback OSS · ' + fN(x.n) + ' observasi', pick: () => set({ c3sel: sel ? null : { t: 'wil', id: w[0] } }) }); });
+      c3note = 'Ranking 10 provinsi dengan observasi terbanyak; 28 provinsi lainnya digabung dan tidak diberi peringkat. Kelompok dengan observasi di bawah 30 diberi label sampel kecil dan tidak diberi penanda EWS. Klik baris untuk rincian.';
+    }
+    const c3tabs = [['jenis', 'Per jenis izin'], ['wil', 'Per wilayah']].map(([k, l]) => ({ l, bg: c3m === k ? '#FFFFFF' : 'transparent', fg: c3m === k ? '#0F172A' : '#64748B', pick: () => set({ c3m: k, c3sel: null }) }));
+    const c3sorts = [['dev', 'Deviasi terhadap SLA'], ['abs', 'Durasi absolut']].map(([k, l]) => ({ l, bg: c3s === k ? '#1E40AF' : '#FFFFFF', fg: c3s === k ? '#FFFFFF' : '#334155', bd: c3s === k ? '#1E40AF' : '#E3E8F0', pick: () => set({ c3s: k }) }));
+    const c3dd = c3m === 'wil' ? [dd('c3j', 'Jenis izin', c3j === 'all' ? 'Semua (indeks)' : JEN[JI[c3j]].l, c3j !== 'all', [opt('Semua jenis izin (indeks tertimbang)', '', c3j === 'all', () => set({ c3j: 'all' })), ...JEN.map((j) => opt(j.l, 'SLA ' + j.sla + ' HK', c3j === j.id, () => set({ c3j: j.id })))])] : [];
+    let c3d = { t: '', sub: '', h1: '', rows: [], src: [], news: [], hasNews: false, acts: [], close: () => set({ c3sel: null }) };
+    if (c3sel && c3sel.t === 'jenis') {
+      const ji = JI[c3sel.id], j = JEN[ji];
+      const rows = RW.map((wi) => ({ wi, n: nJW[ji][wi], avg: avgJW(ji, wi) })).map((x) => ({ ...x, dv: devOf(x.avg, j.sla) })).sort((a, b) => b.dv - a.dv);
+      const news = j.id === 'pbg' ? NEWS : [];
+      c3d = { ...c3d, t: j.l + ' · rincian per wilayah', sub: 'SLA ' + j.sla + ' hari kerja · rata-rata nasional ' + f1(j.avg) + ' HK · ' + fN(j.n) + ' observasi', h1: 'PROVINSI',
+        rows: rows.map((x) => { const e = x.dv > THR && x.n >= 30; return { l: WIL[x.wi][1] + (x.n < 30 ? ' (sampel kecil)' : ''), v: f1(x.avg) + ' HK', s: j.sla + ' HK', d: sg(x.dv) + '%', dc: e ? RED : '#334155', n: fN(x.n), lb: e ? RED : 'transparent' }; }),
+        src: [{ l: 'OSS', v: fN(j.n) + ' izin terbit', c: '#0F172A' }, { l: 'FEEDBACK OSS', v: fN(fbOf(j.n, 1)) + ' masukan soal durasi', c: '#0F172A' }, { l: 'OMBUDSMAN RI (PENGADUAN)', v: 'belum tersedia', c: '#64748B' }, { l: 'BERITA DARING', v: news.length ? news.length + ' berita terpantau' : 'belum ada berita terpantau', c: news.length ? '#0F172A' : '#64748B' }],
+        news: news.map(([l, u]) => ({ l, u })), hasNews: news.length > 0,
+        acts: [{ l: 'Buka daftar kasus', href: '#sec-terlama', act: () => openM('kasus', { ji }) }, { l: 'Tampilkan di jumlah izin terbit ↑', href: '#sec-terbit', act: () => set({ fJen: j.id, fSek: 'all', fWil: 'all' }) }] };
+    } else if (c3sel && c3sel.t === 'wil') {
+      const wi = WI[c3sel.id], w = WIL[wi];
+      const rows = JEN.map((j, ji) => ({ j, n: nJW[ji][wi], avg: avgJW(ji, wi) })).map((x) => ({ ...x, dv: devOf(x.avg, x.j.sla) })).sort((a, b) => b.dv - a.dv);
+      const nT = rows.reduce((a, x) => a + x.n, 0);
+      const news = w[0] === 'jabar' ? NEWS : [];
+      c3d = { ...c3d, t: w[1] + ' · rincian per jenis izin', sub: fN(nT) + ' izin terbit September 2026 · durasi dibandingkan dengan SLA PP 28/2025', h1: 'JENIS IZIN',
+        rows: rows.map((x) => { const e = x.dv > THR && x.n >= 30; return { l: x.j.l + (x.n < 30 ? ' (sampel kecil)' : ''), v: f1(x.avg) + ' HK', s: x.j.sla + ' HK', d: sg(x.dv) + '%', dc: e ? RED : '#334155', n: fN(x.n), lb: e ? RED : 'transparent' }; }),
+        src: [{ l: 'OSS', v: fN(nT) + ' izin terbit', c: '#0F172A' }, { l: 'FEEDBACK OSS', v: fN(fbOf(nT, w[3])) + ' masukan soal durasi', c: '#0F172A' }, { l: 'OMBUDSMAN RI (PENGADUAN)', v: 'belum tersedia', c: '#64748B' }, { l: 'BERITA DARING', v: news.length ? news.length + ' berita terpantau' : 'belum ada berita terpantau', c: news.length ? '#0F172A' : '#64748B' }],
+        news: news.map(([l, u]) => ({ l, u })), hasNews: news.length > 0,
+        acts: [{ l: 'Lihat permohonan tertahan di ' + w[1] + ' ↓', href: '#sec-tertahan', act: () => set({ c4w: w[0] }) }, { l: 'Tampilkan izin terbit ' + w[1] + ' ↑', href: '#sec-terbit', act: () => set({ fWil: w[0], fSek: 'all', fJen: 'all' }) }] };
+    }
+
+    // ===================== 4. Permohonan tertahan =====================
+    const TH = ['Pengajuan & kelengkapan dokumen', 'Verifikasi persyaratan dasar', 'Pemeriksaan teknis/substansi', 'Pembayaran PNBP/retribusi'];
+    const AG = ['11–20 HK', '21–40 HK', '41–60 HK', '> 60 HK'], AGR = [[11, 20], [21, 40], [41, 60], [61, 96]];
+    const TC = [[142, 88, 37, 22], [418, 446, 214, 128], [196, 228, 112, 67], [171, 92, 34, 17]];
+    if (!this._tcube) this._tcube = TC.map((row, t) => row.map((c) => alloc(c, WIL.map(([id, , w]) => w * (0.8 + rng('tilt' + t + id)() * 0.4)))));
+    const tcube = this._tcube;
+    const sumT = (tf, wf, af) => { let s = 0; tcube.forEach((row, t) => { if (tf !== 'all' && tf !== t) return; row.forEach((ws, a) => { if (af != null && af !== a) return; ws.forEach((c, wi) => { if (wf !== 'all' && WIL[wi][0] !== wf) return; s += c; }); }); }); return s; };
+    const c4t = st.c4t ?? 'all', c4w = st.c4w ?? 'all';
+    const t4 = sumT(c4t, c4w);
+    const c4wL = c4w === 'all' ? 'Nasional' : WIL[WI[c4w]][1];
+    const c4dd = [
+      dd('c4t', 'Tahap', c4t === 'all' ? 'Semua tahap' : TH[c4t], c4t !== 'all', [opt('Semua tahap', fN(sumT('all', c4w)), c4t === 'all', () => set({ c4t: 'all' })), ...TH.map((l, i) => opt(l, fN(sumT(i, c4w)), c4t === i, () => set({ c4t: i })))]),
+      dd('c4w', 'Wilayah', c4wL, c4w !== 'all', [opt('Nasional (38 provinsi)', fN(sumT(c4t, 'all')), c4w === 'all', () => set({ c4w: 'all' })), ...WIL.map(([id, n]) => opt(n, fN(sumT(c4t, id)), c4w === id, () => set({ c4w: id })))])
+    ];
+    const has4 = c4t !== 'all' || c4w !== 'all';
+    const nat4 = sumT('all', 'all');
+    const k4 = { l: 'Permohonan tertahan · ' + c4wL + (c4t === 'all' ? '' : ' · ' + TH[c4t]), v: fN(t4), s: !has4 ? pc(nat4, 11874) + ' dari 11.874 permohonan dalam proses per 30 Sep 2026' : pc(t4, nat4) + ' dari ' + fN(nat4) + ' permohonan tertahan nasional', open: () => openM('tertahan', { t: c4t, w: c4w }) };
+    const thV = TH.map((l, i) => sumT(i, c4w)), thMax = Math.max(...thV, 1), thT = thV.reduce((a, b) => a + b, 0);
+    const c4tahap = TH.map((l, i) => { const sel = c4t === i, dim = c4t !== 'all' && !sel; return { l, n: fN(thV[i]), p: pc(thV[i], thT), w: (thV[i] / thMax) * 100 + '%', c: dim ? '#B8E3DF' : '#1D4ED8', bg: sel ? '#EFF6FF' : 'transparent', bd: sel ? '#B8E3DF' : 'transparent', fw: sel ? 700 : 500, pick: () => set({ c4t: sel ? 'all' : i }) }; });
+    const agV = AG.map((l, a) => sumT(c4t, c4w, a)), agMax = Math.max(...agV, 1);
+    const c4ag = AG.map((l, a) => ({ l, n: fN(agV[a]), p: pc(agV[a], t4), h: Math.max((agV[a] / agMax) * 100, agV[a] ? 3 : 0) + '%', c: ['#82B394', '#0EA5E9', '#1D4ED8', '#1E40AF'][a], t: 'Tertahan ' + l + ': ' + fN(agV[a]) + ' permohonan · klik untuk daftar', open: () => openM('tertahan', { t: c4t, w: c4w, tab: String(a) }) }));
+    const c4agL = (c4t === 'all' ? 'SEMUA TAHAP' : TH[c4t].toUpperCase()) + ' · KLIK BATANG UNTUK DAFTAR';
+
+    // ===================== 5. Hambatan ↔ regulasi =====================
+    const DR = 'DetailRegulasi.dc.html', PY = 'Payung.dc.html';
+    const SS = { 'Diverifikasi analis': ['#1E40AF', '#FFFFFF'], 'Dalam review analis': ['#E7F1E9', '#1E40AF'], 'Menunggu verifikasi': ['#F1F5F9', '#475569'] };
+    const HB = [
+      { id: 'h1', t: 'PKKPR melalui penilaian melampaui SLA', meta: 'PKKPR melalui penilaian · tahap penilaian dokumen · nasional', status: 'Diverifikasi analis', ews: true, tgl: '30 Sep 2026',
+        d: 'Kabupaten/kota yang belum memiliki RDTR digital terintegrasi OSS tidak dapat memakai konfirmasi KKPR otomatis, sehingga permohonan diproses melalui penilaian dan antreannya memanjang.',
+        regs: [['Permen ATR/BPN 13/2021', 'Pelaksanaan KKPR dan sinkronisasi program pemanfaatan ruang', DR], ['PP 28/2025 Pasal 22', 'SLA penilaian PKKPR; fiktif positif pada ayat (3)', DR]],
+        bukti: [['OSS · durasi PKKPR', 'rata-rata 23,1 HK vs SLA 20 HK; 1.846 izin terbit September 2026', '#sec-sla', () => openM('kasus', { ji: 0 })], ['Materi sosialisasi KKPR Darat PP 28/2025', 'SLA penilaian dan mekanisme fiktif positif', 'https://dpb.unpad.ac.id/wp-content/uploads/2026/06/Sosialisasi-PP-28-Tahun-2025-Ketentuan-KKPR-Darat-Berdasarkan-PP-Nomor-28-Tahun-2025-dan-Permeninveshil-BKPM-Nomor-5-Tahun-2025.pdf', null]],
+        ewsA: 'Deviasi durasi 15,5% di atas SLA (ambang 5%).', ewsS: 'OSS · PP 28/2025', ai: '✦ Analisis AI · diverifikasi analis',
+        an: 'Durasi PKKPR berkorelasi dengan ketersediaan RDTR digital: lokasi tanpa RDTR wajib melalui penilaian dan Pertimbangan Teknis Pertanahan. Percepatan penyusunan RDTR akan memindahkan permohonan ke jalur konfirmasi otomatis.', pj: 'Kementerian ATR/BPN (Ditjen Tata Ruang) · pemerintah kabupaten/kota (penyusunan RDTR)' },
+      { id: 'h2', t: 'PBG melampaui SLA di daerah yang belum menyesuaikan retribusi', meta: 'Persetujuan Bangunan Gedung · tahap pembayaran retribusi · kabupaten/kota', status: 'Dalam review analis', ews: true, tgl: '30 Sep 2026',
+        d: 'Retribusi PBG ditetapkan dalam Perda; daerah yang belum menyesuaikan Perda pajak dan retribusi daerah menahan penerbitan PBG pada tahap pembayaran.',
+        regs: [['PP 16/2021', 'Peraturan pelaksanaan UU Bangunan Gedung: PBG dan SLF melalui SIMBG', PY], ['PP 35/2023', 'Ketentuan umum pajak daerah dan retribusi daerah, termasuk retribusi PBG', DR]],
+        bukti: [['OSS/SIMBG · durasi PBG', 'rata-rata 36,9 HK vs SLA 32 HK; 3.912 izin terbit September 2026', '#sec-sla', () => openM('kasus', { ji: 2 })], ['Materi sosialisasi PBG/SLF PP 28/2025', 'alur PBG dan SLF', 'https://dpb.unpad.ac.id/wp-content/uploads/2026/06/Sosialisasi-PP-28-Tahun-2025-Penyelenggaraan-Bangunan-Gedung-PBG-SLF-sesuai-PP-16-2021-PP-28-2025.pdf', null]],
+        ewsA: 'Deviasi durasi 15,3% di atas SLA (ambang 5%).', ewsS: 'OSS/SIMBG · PP 28/2025', ai: '✦ Analisis AI · dalam review analis',
+        an: 'Permohonan PBG yang tertahan di tahap pembayaran terkonsentrasi di kabupaten/kota yang Perda retribusinya belum diselaraskan. Relasi ini masih ditinjau analis sebelum dijadikan dasar rekomendasi.', pj: 'Kementerian Dalam Negeri · Kementerian Keuangan (DJPK) · Kementerian PU · pemerintah kabupaten/kota' },
+      { id: 'h3', t: 'Data center AI Jatiluhur dihentikan sementara', meta: 'Persetujuan lingkungan dan PBG · Kab. Purwakarta, Jawa Barat', status: 'Menunggu verifikasi', ews: true, tgl: '2 Okt 2026',
+        d: 'Gubernur Jawa Barat menghentikan sementara pembangunan kampus data center AI berkapasitas 640 MW IT di Jatiluhur karena persetujuan lingkungan dan PBG belum terbit, setelah groundbreaking 22 Sep 2026.',
+        regs: [['PP 28/2025', 'Persetujuan lingkungan dan PBG sebagai persyaratan dasar perizinan berusaha', DR], ['PP 16/2021', 'PBG wajib dimiliki sebelum konstruksi', PY]],
+        bukti: [['Kompas, 3 Okt 2026', 'pembangunan dihentikan; permintaan kajian dampak dibuka', NEWS[0][1], null], ['Bisnis, 1 Okt 2026', 'kebutuhan air pendingin sekitar 384 liter per detik', NEWS[1][1], null], ['Bisnis, 5 Okt 2026', 'potensi investasi data center Rp360 triliun', NEWS[2][1], null]],
+        ewsA: 'Proyek investasi strategis berhenti karena persyaratan dasar belum terbit.', ewsS: 'Berita daring (Kompas, Bisnis)', ai: '✦ Analisis AI · menunggu verifikasi',
+        an: 'Kasus menunjukkan konstruksi dimulai sebelum persyaratan dasar terbit. Perlu dipastikan status permohonan persetujuan lingkungan dan PBG di OSS/SIMBG sebelum relasi ini ditayangkan sebagai temuan.', pj: 'Pemerintah Provinsi Jawa Barat · Pemerintah Kabupaten Purwakarta · Kementerian Lingkungan Hidup · Kementerian Investasi dan Hilirisasi/BKPM' },
+      { id: 'h4', t: 'Fiktif positif KKPRL belum berjalan di OSS', meta: 'KKPR Laut · tahap penilaian · nasional', status: 'Menunggu verifikasi', ews: true, tgl: '30 Sep 2026',
+        d: 'Layar verifikator KKPRL sudah menampilkan SLA, tetapi persetujuan otomatis belum diterapkan; rata-rata durasi 35,2 HK melampaui SLA 33 HK.',
+        regs: [['PP 28/2025 Pasal 75', 'Fiktif positif KKPRL', DR], ['PP 28/2025 Pasal 68–73', 'Tahapan dan SLA KKPRL', DR]],
+        bukti: [['OSS · durasi KKPRL', 'rata-rata 35,2 HK vs SLA 33 HK; 214 izin terbit September 2026', '#sec-sla', () => openM('kasus', { ji: 1 })], ['Materi sosialisasi KKPRL PP 28/2025', 'catatan implementasi layar verifikator', 'https://dpb.unpad.ac.id/wp-content/uploads/2026/06/Sosialisasi-PP-28-Tahun-2025-Implementasi-Permeninveshil-BKPM-Nomor-5-Tahun-2025-terhadap-Bisnis-Proses-Pengajuan-KKPRL.pdf', null]],
+        ewsA: 'Deviasi durasi 6,7% di atas SLA (ambang 5%).', ewsS: 'OSS · PP 28/2025', ai: '✦ Analisis AI · menunggu verifikasi',
+        an: 'Tanpa persetujuan otomatis, permohonan KKPRL yang melewati SLA tetap menunggu keputusan verifikator. Relasi dengan Pasal 75 diusulkan AI dan perlu dikonfirmasi ke pengelola OSS.', pj: 'Kementerian Kelautan dan Perikanan · Kementerian Investasi dan Hilirisasi/BKPM (pengelola OSS)' }
+    ];
+    const c5 = st.c5 ?? 'all', c5o = st.c5o ?? null;
+    const c5page = Number.isInteger(st.c5page) ? Math.max(0, st.c5page) : 0;
+    const hbAll = HB.filter((h) => c5 === 'all' || h.status === c5);
+    const c5pages = Math.max(1, Math.ceil(hbAll.length / 3));
+    const c5pageCurrent = Math.min(c5page, c5pages - 1);
+    const c5f = [['all', 'Semua'], ['Diverifikasi analis', 'Diverifikasi analis'], ['Dalam review analis', 'Dalam review'], ['Menunggu verifikasi', 'Menunggu verifikasi']].map(([k, l]) => ({ l, n: k === 'all' ? HB.length : HB.filter((h) => h.status === k).length, bg: c5 === k ? '#1E40AF' : '#FFFFFF', fg: c5 === k ? '#FFFFFF' : '#334155', bd: c5 === k ? '#1E40AF' : '#E3E8F0', pick: () => set({ c5: k, c5page: 0, c5o: null }) }));
+    const hb = hbAll.slice(c5pageCurrent * 3, (c5pageCurrent + 1) * 3).map((h) => { const open = c5o === h.id;
+      return { t: h.t, meta: h.meta, d: h.d, status: h.status, sbg: SS[h.status][0], sfg: SS[h.status][1], ews: h.ews, ewsA: h.ewsA, ewsS: h.ewsS, ewsW: h.tgl, lb: h.ews ? RED : '#E3E8F0', bg: h.ews ? '#FFFBFB' : '#FFFFFF', ai: h.ai, an: h.an, pj: h.pj, tgl: h.tgl, open, tl: open ? 'Tutup rincian ?' : 'Rincian ?',
+        regs: h.regs.map(([l, t, href]) => ({ l, t, href })),
+        bukti: h.bukti.map(([l, d, href, act]) => ({ l, d, href, tg: act ? '_self' : '_blank', ic: act ? '?' : '?', act })),
+        toggle: () => set({ c5o: open ? null : h.id }) }; });
+    const c5CanPrev = c5pageCurrent > 0, c5CanNext = c5pageCurrent < c5pages - 1;
+    const c5Prev = () => set({ c5page: Math.max(0, c5pageCurrent - 1), c5o: null });
+    const c5Next = () => set({ c5page: Math.min(c5pages - 1, c5pageCurrent + 1), c5o: null });
+    // ===================== 6. Tren kemudahan berusaha =====================
+    const Q = ['Tw III 2025', 'Tw IV 2025', 'Tw I 2026', 'Tw II 2026', 'Tw III 2026'];
+    const NATQ = [71.8, 74.2, 76.0, 77.9, 78.6];
+    const TGW = { all: [75, 80], jabar: [75, 80], dki: [82, 86], jatim: [76, 80], jateng: [76, 80], banten: [74, 78], sumut: [72, 76], sulsel: [73, 77], bali: [72, 76], riau: [73, 77], kaltim: [72, 76], lain: [73, 77] };
+    const c6w = st.c6w ?? 'all', c6q = st.c6q ?? 4;
+    const shareSes = (wf) => { const a = sumC('all', 'all', wf, 0), b = sumC('all', 'all', wf); return b ? (a / b) * 100 : 0; };
+    const twIII = Math.round((shareSes(c6w) - 0.5) * 10) / 10;
+    const serie = NATQ.map((v, i) => (i === 4 ? twIII : Math.round((twIII - (NATQ[4] - v) + (c6w === 'all' ? 0 : (rng('q6' + c6w + i)() - 0.5) * 1.2)) * 10) / 10));
+    const tg = TGW[c6w], tgs = [tg[0], tg[0], tg[1], tg[1], tg[1]];
+    const lo6 = Math.floor((Math.min(...serie, ...tgs) - 3) / 5) * 5, hi6 = Math.ceil((Math.max(...serie, ...tgs) + 2) / 5) * 5;
+    const xs6 = [50, 175, 300, 425, 550], y6 = (v) => 192 - ((v - lo6) / (hi6 - lo6)) * 180;
+    const ticks6 = []; for (let v = lo6; v <= hi6; v += 5) ticks6.push(v);
+    const c6wL = c6w === 'all' ? 'Nasional' : WIL[WI[c6w]][1];
+    const tLine = 'M10 ' + y6(tgs[0]).toFixed(1) + ' H237.5 V' + y6(tgs[2]).toFixed(1) + ' H590';
+    const c6 = {
+      tl: c6w === 'all' ? 'Target (agregat RKPD provinsi)' : 'Target RKPD ' + c6wL,
+      yl: ticks6.map((v) => ({ l: v + '%', t: (y6(v) / 200) * 100 + '%' })),
+      grid: ticks6.map((v) => 'M0 ' + y6(v).toFixed(1) + 'H600').join(' '),
+      mark: 'M' + xs6[c6q] + ' 6V199', tp: tLine,
+      lp: xs6.map((x, i) => (i ? 'L' : 'M') + x + ' ' + y6(serie[i]).toFixed(1)).join(' '),
+      aria: 'Persentase izin sesuai SLA ' + c6wL + ' dari ' + f1(serie[0]) + '% menjadi ' + f1(serie[4]) + '%',
+      pts: xs6.map((x, i) => ({ x: (x / 600) * 100 + '%', y: (y6(serie[i]) / 200) * 100 + '%', bg: i === c6q ? '#1D4ED8' : '#FFFFFF', t: Q[i] + ': ' + f1(serie[i]) + '% sesuai SLA', pick: () => set({ c6q: i }) })),
+      xl: xs6.map((x, i) => ({ l: Q[i], x: (x / 600) * 100 + '%', bg: i === c6q ? '#0B1F4B' : 'transparent', fg: i === c6q ? '#FFFFFF' : '#64748B', fw: i === c6q ? 700 : 500, pick: () => set({ c6q: i }) })),
+      tx: (xs6[c6q] / 600) * 100 + '%', ty: (y6(serie[c6q]) / 200) * 100 + '%', tf: c6q >= 3 ? 'translate(calc(-100% - 12px), -50%)' : 'translate(12px, -50%)',
+      tl1: Q[c6q] + ': ' + f1(serie[c6q]) + '%', tl2: 'Target ' + f1(tgs[c6q]) + '% · ' + sg(serie[c6q] - tgs[c6q]) + ' poin'
+    };
+    const c6rows = Q.map((q, i) => { const sel = i === c6q, g = serie[i] - tgs[i]; return { q, v: f1(serie[i]) + '%', d: i ? sg(serie[i] - serie[i - 1]) + ' poin' : '–', t: f1(tgs[i]) + '%', g: sg(g) + ' poin', gc: g >= 0 ? '#1D4ED8' : '#475569', bg: sel ? '#EFF6FF' : '#FFFFFF', fw: sel ? 700 : 500, pick: () => set({ c6q: i }) }; });
+    const gq = serie[c6q] - tgs[c6q];
+    const c6note = c6wL + ', ' + Q[c6q] + ': ' + f1(serie[c6q]) + '% izin terbit sesuai SLA' + (c6q ? ', ' + (serie[c6q] - serie[c6q - 1] >= 0 ? 'naik ' : 'turun ') + f1(Math.abs(serie[c6q] - serie[c6q - 1])) + ' poin dari ' + Q[c6q - 1] : '') + '; ' + (gq >= 0 ? 'di atas' : 'di bawah') + ' target ' + f1(tgs[c6q]) + '% sebesar ' + f1(Math.abs(gq)) + ' poin.';
+    const c6dd = [dd('c6w', 'Wilayah', c6wL, c6w !== 'all', [opt('Nasional', '', c6w === 'all', () => set({ c6w: 'all' })), ...WIL.slice(0, 10).map(([id, n]) => opt(n, '', c6w === id, () => set({ c6w: id })))])];
+    const PROVINV = { dki: 94.9, jabar: 61.3, jatim: 40.1 };
+    const rp = (v) => 'Rp' + f1(v).replace(/\B(?=(\d{3})+(?!\d))/g, '.') + ' T';
+    const inv = c6w === 'all'
+      ? { sub: 'Nasional · target realisasi investasi 2026', big: '49,5%', bigL: 'capaian Semester I 2026 terhadap target 2026', w: '49.5%', tgtL: 'Target ' + rp(2041.3),
+        rows: [{ l: 'Target realisasi investasi 2026', v: rp(2041.3), s: '', c: '#0F172A' }, { l: 'Tw I 2026', v: rp(498.8), s: '', c: '#0F172A' }, { l: 'Tw II 2026', v: rp(511.8), s: 'naik 7,1% dibanding Tw II 2025', c: '#0F172A' }, { l: 'Semester I 2026', v: rp(1010.6), s: '49,5% dari target 2026', c: '#1E40AF' }, { l: 'Tw III 2026', v: 'belum tersedia', s: 'belum dirilis per 12 Okt 2026', c: '#64748B' }, { l: 'Realisasi 2025', v: rp(1931.2), s: '101,3% dari target ' + rp(1905.6), c: '#0F172A' }] }
+      : { sub: c6wL + ' · pembanding nasional tetap ditampilkan', big: PROVINV[c6w] != null ? rp(PROVINV[c6w]) : 'belum tersedia', bigL: 'realisasi investasi ' + c6wL + ' Tw II 2026', w: '49.5%', tgtL: 'Nasional: ' + rp(2041.3),
+        rows: [{ l: 'Realisasi ' + c6wL + ' Tw II 2026', v: PROVINV[c6w] != null ? rp(PROVINV[c6w]) : 'belum tersedia', s: PROVINV[c6w] != null ? 'lima besar provinsi Tw II 2026' : '', c: PROVINV[c6w] != null ? '#0F172A' : '#64748B' }, { l: 'Target investasi ' + c6wL + ' 2026 (RKPD)', v: 'belum tersedia', s: '', c: '#64748B' }, { l: 'Nasional · Semester I 2026', v: rp(1010.6), s: '49,5% dari target ' + rp(2041.3), c: '#1E40AF' }, { l: 'Nasional · Tw III 2026', v: 'belum tersedia', s: 'belum dirilis per 12 Okt 2026', c: '#64748B' }] };
+
+    // ===================== EWS ringkas =====================
+    const ewsTop = [...ewsJ.map((j) => ({ l: j.l.split(' (')[0] + ' ' + sg(devOf(j.avg, j.sla)) + '%', t: j.l + ': rata-rata ' + f1(j.avg) + ' HK vs SLA ' + j.sla + ' HK', href: '#sec-sla', act: () => set({}) })), { l: 'Data center Jatiluhur', t: 'Pembangunan dihentikan sementara; persetujuan lingkungan dan PBG belum terbit', href: '#sec-hambatan', act: () => set({ c5: 'all', c5o: 'h3' }) }];
+
+    // ===================== Modal =====================
+    const M = st.modal || null;
+    let m = { t: '', sub: '', stats: [], tabs: [], cols: [], grid: '1fr', rows: [], empty: false, note: '', pg: '', prev: null, next: null, pc: '#CBD5E1', nc: '#CBD5E1' };
+    if (M) {
+      const tab = st.mTab ?? 'all', page = st.mPage ?? 0, PS = 10;
+      const cell = (v, o) => ({ v, pad: '0', bg: 'transparent', c: '#0F172A', fw: 400, fs: '12px', ...(o || {}) });
+      const chip = (k) => cell(ST3[k].replace('Persetujuan otomatis (fiktif positif)', 'Fiktif positif'), { pad: '2px 8px', bg: STCHIP[k][0], c: STCHIP[k][1], fw: 600, fs: '11px' });
+      const tabsOf = (list) => list.map(([k, l, n]) => ({ l, n: fN(n), bg: tab === k ? '#1E40AF' : '#FFFFFF', fg: tab === k ? '#FFFFFF' : '#334155', bd: tab === k ? '#1E40AF' : '#E3E8F0', pick: () => this.setState({ mTab: k, mPage: 0 }) }));
+      let total = 0, rows = [];
+      const provOf = (wi, r) => (WIL[wi][0] === 'lain' ? OTH[Math.floor(r() * OTH.length)] : WIL[wi][1]);
+      const recT = (x, r, durOv) => { const j = JEN[x.ji]; const dur = durOv != null ? durOv : x.k === 0 ? Math.max(1, Math.round(j.sla * 0.4)) + Math.floor(r() * (j.sla - Math.max(1, Math.round(j.sla * 0.4)) + 1)) : x.k === 1 ? j.sla + 1 + Math.floor(r() * Math.max(2, Math.round(j.sla * 0.9))) : j.sla;
+        const tb = wdSep(r), ms = subWD(tb, dur); return { id: 'OSS-' + yymm(ms) + '-' + String(10000 + Math.floor(r() * 89999)), j, x, dur, tb, ms, prov: provOf(x.wi, r) }; };
+      if (M.mode === 'terbit') {
+        const cnt = [0, 1, 2].map((k) => sumC(M.j, M.s, M.w, k)), all = cnt[0] + cnt[1] + cnt[2];
+        const kf = tab === 'all' ? null : Number(tab);
+        const cells = cellsFor(M.j, M.s, M.w, kf); total = cells.reduce((a, x) => a + x.c, 0);
+        m.t = 'Daftar izin terbit · September 2026';
+        m.sub = [M.s === 'all' ? 'Semua sektor' : SEKS[M.s], M.w === 'all' ? 'Nasional' : WIL[WI[M.w]][1], M.j === 'all' ? 'Semua jenis izin' : JEN[JI[M.j]].l].join(' · ') + ' · filter sama dengan kartu';
+        m.stats = [{ l: 'Izin terbit', v: fN(all), c: '#1E40AF' }, ...[0, 1, 2].map((k) => ({ l: ST3[k], v: fN(cnt[k]) + ' · ' + pc(cnt[k], all), c: '#0F172A' }))];
+        m.tabs = tabsOf([['all', 'Semua status', all], ...[0, 1, 2].filter((k) => cnt[k] > 0).map((k) => [String(k), ST3[k], cnt[k]])]);
+        m.cols = ['ID PERMOHONAN', 'JENIS IZIN', 'SEKTOR (KBLI 2025)', 'PROVINSI', 'MASUK', 'TERBIT', 'DURASI', 'STATUS'];
+        m.grid = '128px minmax(0, 1.5fr) minmax(0, 1.4fr) minmax(0, 1fr) 84px 84px 64px 150px';
+        const n = Math.max(0, Math.min(PS, total - page * PS));
+        for (let i = 0; i < n; i++) { const r = rng('t|' + JSON.stringify(M) + tab + '|' + page + '|' + i); const x = pickCell(cells, r); const o = recT(x, r);
+          rows.push([o.tb.getTime(), [cell(o.id, { fw: 600, c: '#1E40AF' }), cell(o.j.l), cell(SEKS[SEK[x.si][0]]), cell(o.prov), cell(fD(o.ms), { c: '#475569' }), cell(fD(o.tb), { c: '#475569' }), cell(o.dur + ' HK', { fw: 600 }), chip(x.k)]]); }
+        rows.sort((a, b) => b[0] - a[0]);
+        m.note = 'Identitas pelaku usaha tidak ditampilkan · diurutkan menurut tanggal terbit';
+      } else if (M.mode === 'kasus') {
+        const j = JEN[M.ji], cnt = j.st, top = Math.round(j.n / 10);
+        const isTop = tab === 'top', kf = tab === 'all' || isTop ? null : Number(tab);
+        const cells = cellsFor(j.id, 'all', 'all', isTop ? 1 : kf); total = isTop ? top : cells.reduce((a, x) => a + x.c, 0);
+        m.t = 'Daftar kasus · ' + j.l; m.sub = 'Izin terbit September 2026 · nasional, seluruh sektor · SLA ' + j.sla + ' hari kerja (PP 28/2025)';
+        const dv = devOf(j.avg, j.sla);
+        m.stats = [{ l: 'Rata-rata', v: f1(j.avg) + ' HK', c: dv > THR ? RED : '#0F172A' }, { l: 'Median', v: f1(j.med) + ' HK', c: '#0F172A' }, { l: 'P90 (10% terlama)', v: f1(j.p90) + ' HK', c: '#0F172A' }, { l: 'SLA PP 28/2025', v: j.sla + ' HK', c: '#0F172A' }, { l: 'Selisih rata-rata', v: sg(dv) + '%', c: dv > THR ? RED : '#0F172A' }, { l: 'Sampel', v: fN(j.n) + ' izin', c: '#0F172A' }];
+        m.tabs = tabsOf([['all', 'Semua kasus', j.n], ...[0, 1, 2].filter((k) => cnt[k] > 0).map((k) => [String(k), ST3[k], cnt[k]]), ['top', '10% kasus terlama', top]]);
+        m.cols = ['ID PERMOHONAN', 'SEKTOR (KBLI 2025)', 'PROVINSI', 'MASUK', 'TERBIT', 'DURASI', 'SELISIH SLA', 'STATUS'];
+        m.grid = '128px minmax(0, 1.5fr) minmax(0, 1.1fr) 84px 84px 64px 84px 150px';
+        const n = Math.max(0, Math.min(PS, total - page * PS));
+        for (let i = 0; i < n; i++) { const r = rng('k|' + M.ji + tab + '|' + page + '|' + i); const x = pickCell(cells, r);
+          const o = recT(x, r, isTop ? Math.round(j.p90 + r() * j.p90 * 0.7) : null); const sel = o.dur - j.sla;
+          rows.push([isTop ? -o.dur : -o.tb.getTime(), [cell(o.id, { fw: 600, c: '#1E40AF' }), cell(SEKS[SEK[x.si][0]]), cell(o.prov), cell(fD(o.ms), { c: '#475569' }), cell(fD(o.tb), { c: '#475569' }), cell(o.dur + ' HK', { fw: 600 }), cell((sel > 0 ? '+' : sel < 0 ? '−' : '') + Math.abs(sel) + ' HK', { c: sel > 0 ? '#0F172A' : '#1D4ED8', fw: 600 }), chip(x.k)]]); }
+        rows.sort((a, b) => a[0] - b[0]);
+        m.note = isTop ? 'Kasus dengan durasi di atas P90 (' + f1(j.p90) + ' HK), diurutkan dari terlama' : 'Identitas pelaku usaha tidak ditampilkan · diurutkan menurut tanggal terbit';
+      } else {
+        const tf = M.t ?? 'all', wf = M.w ?? 'all';
+        const ag = AG.map((l, a) => sumT(tf, wf, a)), all = ag.reduce((a, b) => a + b, 0);
+        const af = tab === 'all' ? null : Number(tab);
+        const cells = []; tcube.forEach((row, t) => { if (tf !== 'all' && tf !== t) return; row.forEach((ws, a) => { if (af != null && af !== a) return; ws.forEach((c, wi) => { if (wf !== 'all' && WIL[wi][0] !== wf) return; if (c > 0) cells.push({ t, a, wi, c }); }); }); });
+        total = cells.reduce((a, x) => a + x.c, 0);
+        m.t = 'Daftar permohonan tertahan · posisi 30 Sep 2026';
+        m.sub = (wf === 'all' ? 'Nasional' : WIL[WI[wf]][1]) + ' · ' + (tf === 'all' ? 'semua tahap' : TH[tf]) + ' · filter sama dengan kartu';
+        m.stats = [{ l: 'Tertahan', v: fN(all), c: '#1E40AF' }, ...AG.map((l, a) => ({ l: 'Tertahan ' + l, v: fN(ag[a]), c: '#0F172A' }))];
+        m.tabs = tabsOf([['all', 'Semua lama tertahan', all], ...AG.map((l, a) => [String(a), l, ag[a]])]);
+        m.cols = ['ID PERMOHONAN', 'JENIS IZIN', 'TAHAP TERAKHIR', 'PROVINSI', 'INSTANSI PEMROSES', 'MASUK', 'STATUS BERUBAH', 'LAMA TERTAHAN'];
+        m.grid = '128px minmax(0, 1.3fr) minmax(0, 1.3fr) minmax(0, 1fr) minmax(0, 1.4fr) 84px 92px 96px';
+        const TJW = [22, 3, 28, 6, 9, 7, 25], REF = new Date(Date.UTC(2026, 8, 30));
+        const n = Math.max(0, Math.min(PS, total - page * PS));
+        for (let i = 0; i < n; i++) { const r = rng('h|' + JSON.stringify(M) + tab + '|' + page + '|' + i); const x = pickCell(cells, r);
+          let u = r() * 100, ji = 0; for (; ji < TJW.length - 1; ji++) { u -= TJW[ji]; if (u < 0) break; }
+          const lama = AGR[x.a][0] + Math.floor(r() * (AGR[x.a][1] - AGR[x.a][0] + 1)); const ch = subWD(REF, lama), ms = subWD(ch, 3 + Math.floor(r() * 20));
+          rows.push([-lama, [cell('OSS-' + yymm(ms) + '-' + String(10000 + Math.floor(r() * 89999)), { fw: 600, c: '#1E40AF' }), cell(JEN[ji].l), cell(TH[x.t]), cell(provOf(x.wi, r)), cell(JEN[ji].inst, { c: '#475569' }), cell(fD(ms), { c: '#475569' }), cell(fD(ch), { c: '#475569' }), cell(lama + ' HK', { pad: '2px 8px', bg: x.a >= 3 ? '#E0E7FF' : '#EFF6FF', c: '#1E40AF', fw: 600, fs: '11px' })]]); }
+        rows.sort((a, b) => a[0] - b[0]);
+        m.note = 'Tanpa perkiraan penyebab · identitas pelaku usaha tidak ditampilkan · diurutkan dari tertahan terlama';
+      }
+      const pages = Math.max(1, Math.ceil(total / PS));
+      m.rows = rows.map(([, cells]) => ({ cells }));
+      m.empty = total === 0;
+      m.pg = total ? 'Menampilkan ' + fN(page * PS + 1) + '–' + fN(Math.min(total, (page + 1) * PS)) + ' dari ' + fN(total) : '0 data';
+      m.prev = () => this.setState({ mPage: Math.max(0, page - 1) }); m.next = () => this.setState({ mPage: Math.min(pages - 1, page + 1) });
+      m.pc = page > 0 ? '#0F172A' : '#CBD5E1'; m.nc = page < pages - 1 ? '#0F172A' : '#CBD5E1';
+    }
+
+    return {
+      ewsTop, ewsN: ewsTop.length,
+      fl1, has1, reset1: () => set({ fSek: 'all', fWil: 'all', fJen: 'all' }), f1Note, has1Data: tot > 0, no1Data: tot === 0, k1, s1, c1,
+      sla, slaAll, slaEwsNote,
+      c3tabs, c3sorts, c3dd, c3rows, c3h1, c3h2, c3h3, c3note, c3has: !!c3sel, c3d,
+      c4dd, has4, reset4: () => set({ c4t: 'all', c4w: 'all' }), k4, c4tahap, c4ag, c4agL,
+      c5f, hb, c5empty: hb.length === 0, c5HasPages: hbAll.length > 3, c5PageLabel: (c5pageCurrent + 1) + ' / ' + c5pages, c5Count: hbAll.length, c5CanPrev, c5CanNext, c5NoPrev: !c5CanPrev, c5NoNext: !c5CanNext, c5Prev, c5Next,
+      c6dd, c6, c6rows, c6note, inv,
+      mOpen: !!M, m, mClose: () => this.setState({ modal: null })
+    };
+  }
+}
+</script>
+
+
+<script data-harmonisasi-tab-listener>document.addEventListener("click",function(event){var link=event.target.closest&&event.target.closest("[data-harmonisasi-tab]");if(!link)return;event.preventDefault();var index=Number(link.getAttribute("data-harmonisasi-tab"));if(Number.isInteger(index))window.parent.postMessage({type:"harmonisasi:tab",index:index},"*");},true);</script><script data-harmonisasi-vercel-runtime>(function(){function sendSize(){var h=Math.max(document.documentElement?document.documentElement.scrollHeight:0,document.body?document.body.scrollHeight:0);window.parent.postMessage({type:"harmonisasi:resize",height:h},"*");}function connect(){sendSize();if(window.ResizeObserver){var ro=new ResizeObserver(sendSize);if(document.documentElement)ro.observe(document.documentElement);if(document.body)ro.observe(document.body);}if(window.MutationObserver&&document.body)new MutationObserver(sendSize).observe(document.body,{childList:true,subtree:true,attributes:true,characterData:true});window.addEventListener("load",sendSize);window.addEventListener("resize",sendSize);setTimeout(sendSize,100);setTimeout(sendSize,600);}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",connect,{once:true});else connect();window.addEventListener("message",function(e){if(e.data&&e.data.type==="harmonisasi:resize-request")sendSize();});})();</script><script>
+(function() {
+  function cleanup() {
+    // 1. Metadata labels
+    var labels = ['Tanggal acuan:', 'Cakupan:', 'Periode data OSS:', 'Sumber utama:'];
+    var metaNodes = [];
+    document.querySelectorAll('span').forEach(function(node) {
+      var text = (node.textContent || '').replace(/\s+/g, ' ').trim();
+      if (labels.some(function(l) { return text.indexOf(l) === 0; })) {
+        metaNodes.push(node);
+        node.style.display = 'none';
+      }
+    });
+    if (metaNodes.length && metaNodes[0].parentElement) {
+      var p = metaNodes[0].parentElement;
+      if (Array.from(p.children).every(function(c) { return metaNodes.indexOf(c) !== -1; })) {
+        p.style.display = 'none';
+      }
+    }
+
+    // 2. Filter buttons
+    var filterLabels = ['Jenis:', 'Sektor (KBLI 2025):', 'Wilayah:', 'Jenis izin:', 'Tahap:'];
+    document.querySelectorAll('button').forEach(function(b) {
+      var t = (b.innerText || b.textContent || '').replace(/\s+/g, ' ').trim();
+      if (b.style.display !== 'none' && filterLabels.some(function(l) { return t.indexOf(l) === 0; })) {
+        b.style.display = 'none';
+      }
+    });
+
+    // 3. National scope text
+    document.querySelectorAll('div').forEach(function(d) {
+      var t = (d.textContent || '').replace(/\s+/g, ' ').trim();
+      if (t === 'Nasional · seluruh sektor · seluruh jenis izin') d.style.display = 'none';
+    });
+
+    // 4. Demografi section links
+    var sectionLinks = ['#sec-peta', '#sec-rank', '#sec-tren', '#sec-insight'];
+    sectionLinks.forEach(function(href) {
+      var link = document.querySelector('a[href="' + href + '"]');
+      var nav = link && link.closest('nav');
+      if (nav) nav.style.display = 'none';
+    });
+
+    // 5. Hide Isu dampak section
+    document.querySelectorAll('h2').forEach(function(h) {
+      if ((h.textContent || '').replace(/\s+/g, ' ').trim() === 'Isu dampak, hambatan, peluang & rekomendasi') {
+        var sec = h.closest('section');
+        if (sec) sec.style.display = 'none';
+      }
+    });
+
+    // 6. Focus regulation chart on 2026
+    var chartHeading = Array.from(document.querySelectorAll('h2')).find(function(h) {
+      return (h.textContent || '').indexOf('Sebaran regulasi menurut') === 0 ||
+        (h.textContent || '').indexOf('Jumlah regulasi menurut') === 0;
+    });
+    if (chartHeading) {
+      var chartSection = chartHeading.closest('section');
+      if (chartSection) {
+        var tabs = Array.from(chartSection.querySelectorAll('[role="tab"]'));
+        var sectorTab = tabs.find(function(t) { return (t.textContent || '').indexOf('Sektor') !== -1; });
+        var sectorMode = !!sectorTab && getComputedStyle(sectorTab).backgroundColor === 'rgb(255, 255, 255)';
+        var sectorLabel = sectorTab && sectorTab.querySelector('span');
+        if (sectorLabel && sectorLabel.textContent !== 'Sektor') sectorLabel.textContent = 'Sektor';
+        var title = 'Jumlah regulasi menurut ' + (sectorMode ? 'sektor' : 'jenis') + ' · 2026';
+        if (chartHeading.textContent !== title) chartHeading.textContent = title;
+
+        var chartContent = chartSection.children[1] && chartSection.children[1].children[0];
+        if (chartContent) {
+          if (sectorMode) {
+            var header = chartContent.children[0];
+            if (header && header.children.length >= 4) {
+              if (header.children[1].textContent.trim() === '2026') header.children[1].textContent = '';
+              header.children[2].style.display = '';
+              if (header.children[2].textContent.trim() !== '2026') header.children[2].textContent = '2026';
+              header.children[3].style.display = 'none';
+              header.style.gridTemplateColumns = 'minmax(0, 1fr) minmax(0, 0.9fr) 64px';
+            }
+            Array.from(chartContent.children).slice(1).forEach(function(row) {
+              var rowGrid = Array.from(row.children).find(function(c) { return getComputedStyle(c).display === 'grid'; });
+              if (!rowGrid || rowGrid.children.length < 4) return;
+              rowGrid.children[3].style.display = 'none';
+              rowGrid.style.gridTemplateColumns = 'minmax(0, 1fr) minmax(0, 0.9fr) 64px';
+            });
+          } else {
+            var bars = chartContent.children[0];
+            var years = chartContent.children[1];
+            if (bars && bars.children.length === 5) {
+              bars.style.display = 'flex';
+              Array.from(bars.children).slice(0, 4).forEach(function(b) { b.style.display = 'none'; });
+            }
+            if (years && years.children.length === 5) {
+              years.style.display = 'flex';
+              Array.from(years.children).slice(0, 4).forEach(function(y) { y.style.display = 'none'; });
+              var cur = years.children[4].querySelector('span');
+              if (cur && cur.textContent.trim() !== '2026') cur.textContent = '2026';
+            }
+            var table = chartContent.children[3];
+            if (table) {
+              Array.from(table.children).forEach(function(row) {
+                if (row.children.length < 4) return;
+                row.children[1].style.display = 'none';
+                row.children[3].style.display = 'none';
+                row.style.gridTemplateColumns = 'minmax(0, 1fr) 80px';
+                if (row.children[2].textContent.trim() === '2026*') row.children[2].textContent = '2026';
+              });
+            }
+          }
+        }
+        Array.from(chartSection.querySelectorAll('span')).forEach(function(sp) {
+          var tx = (sp.textContent || '').replace(/\s+/g, ' ').trim();
+          if (tx === 'Periode: akhir tahun 2022–2025; 2026 s.d. 12 Okt') {
+            sp.textContent = 'Periode: tahun 2026 hingga 12 Okt';
+          }
+        });
+      }
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    cleanup();
+    setTimeout(cleanup, 100);
+    setTimeout(cleanup, 500);
+  });
+  if (window.MutationObserver && document.documentElement) {
+    new MutationObserver(cleanup).observe(document.documentElement, {
+      attributes: true, attributeFilter: ['style'], childList: true, subtree: true
+    });
+  }
+})();
+</script>
+</body></html>

@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta charset="utf-8">
+<title>Payung Kebijakan Investasi</title>
+<link rel="stylesheet" href="../assets/inter.css">
+<script src="../assets/react.production.min.js"></script>
+<script src="../assets/react-dom.production.min.js"></script>
+<script src="../assets/dc-runtime.js"></script>
+<style id="setneg-theme-overrides">
+:root{font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#1f2937;background:#f7f9fc;color-scheme:light}
+html,body{min-height:100%;background:#f7f9fc!important;color:#1f2937!important;font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif!important}
+body *,button,input,select,textarea{font-family:inherit}
+body{margin:0!important}
+main{background:#f7f9fc!important;color:#1f2937!important}
+header{background:#fff!important;border-bottom:1px solid #e5e7eb!important;box-shadow:0 1px 3px rgba(15,23,42,.08)!important}
+nav[aria-label="Menu utama"]{background:#f3f4f6!important;border-color:#e5e7eb!important}
+nav[aria-label="Menu utama"] button:hover{background:#e5e7eb!important}
+section,.ck{background:#fff!important;border:1px solid #e5e7eb!important;border-radius:14px!important;box-shadow:0 1px 3px rgba(15,23,42,.08)!important}
+section>div[style*="border-bottom"],section>div[style*="border-top"]{border-color:#eef0f3!important}
+section [style*="border-top: 1px solid"],section [style*="border-bottom: 1px solid"]{border-color:#eef0f3!important}
+h1,h2,h3,h4{font-family:inherit!important;color:#1f2937!important;letter-spacing:-.015em}
+h2,h3{font-weight:700!important}
+button{transition:background-color .15s ease,border-color .15s ease,box-shadow .15s ease}
+button:focus-visible,a:focus-visible{outline:2px solid #0f827d!important;outline-offset:2px}
+.ews-highlight{margin-left:auto;display:flex;flex-wrap:wrap;align-items:center;gap:6px;padding:8px 10px;border:1px solid #fde68a;border-radius:12px;background:#fffbeb}
+.ews-highlight>span{font-weight:700!important;color:#92400e!important}
+.ews-highlight a{height:auto!important;min-height:28px;padding:5px 10px!important;border-radius:8px!important;background:#fef3c7!important;border:1px solid #fcd34d!important;color:#92400e!important;font-weight:700!important}
+.ews-highlight a:hover{background:#fde68a!important}
+[style*="background: #DC2626"],[style*="background:#DC2626"],[style*="background: #B91C1C"],[style*="background:#B91C1C"]{background-color:#fef3c7!important;border-color:#fcd34d!important;color:#92400e!important}
+[style*="background: #FFF8F8"],[style*="background:#FFF8F8"]{background-color:#fffbeb!important}
+[style*="border-left: 4px solid #DC2626"],[style*="border-left:4px solid #DC2626"]{border-left-color:#d97706!important}
+@media(max-width:900px){main[style*="max-width"]{padding-left:16px!important;padding-right:16px!important}header{padding-left:16px!important;padding-right:16px!important}}
+@media(max-width:680px){.ews-highlight{width:100%;margin-left:0}section{border-radius:12px!important}main[style*="max-width"]{gap:12px!important}}
+
+[style*="background: rgb(220, 38, 38)"]{background-color:#fef3c7!important;border-color:#fcd34d!important;color:#92400e!important}
+[style*="background: rgb(255, 248, 248)"]{background-color:#fffbeb!important}
+[style*="border-left: 4px solid rgb(220, 38, 38)"]{border-left-color:#d97706!important}
+
+.setneg-global-header{position:relative!important;z-index:50;background:#fff!important;border-bottom:1px solid #e5e7eb!important;box-shadow:0 1px 3px rgba(15,23,42,.08)!important;padding:0 32px!important;min-height:64px!important;display:flex!important;flex-wrap:wrap!important;align-items:center!important;justify-content:space-between!important}
+.setneg-global-header:before{content:"";position:absolute;inset:0 0 auto;height:64px;background:linear-gradient(180deg,rgba(254,243,199,.48),transparent);pointer-events:none}
+.setneg-header-inner{position:relative;min-height:64px;max-width:1600px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.setneg-brand{flex:0 0 auto;display:flex;align-items:center;gap:12px;min-width:260px;text-decoration:none;color:#1a3a6e}
+.setneg-brand img{display:block;width:40px;height:40px;object-fit:contain}
+.setneg-brand-copy{display:flex;flex-direction:column;gap:1px}
+.setneg-brand-copy strong{font-size:16px;line-height:20px;font-weight:750;letter-spacing:.01em;color:#1a3a6e}
+.setneg-brand-copy span{font-size:11px;line-height:14px;color:#6b7280}
+.setneg-global-nav{display:flex;align-items:center;justify-content:center;gap:2px;padding:4px;background:#f3f4f6;border:1px solid #e5e7eb;border-radius:999px;white-space:nowrap}
+.setneg-global-nav button{display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 10px;border:0;border-radius:999px;background:transparent;color:#4b5563;font:500 11px/1 ui-sans-serif,system-ui,sans-serif;cursor:pointer;white-space:nowrap}
+.setneg-global-nav button svg{width:15px;height:15px;flex:none}
+.setneg-global-nav button:hover{background:#e5e7eb;color:#1f2937}
+.setneg-global-nav button[aria-current="page"]{background:#0d1a33;color:#fff;box-shadow:0 2px 5px rgba(15,23,42,.18)}
+.setneg-header-tools{flex:0 0 auto;display:flex;align-items:center;gap:12px}
+.setneg-theme-button{width:36px;height:36px;border:1px solid #e5e7eb;border-radius:999px;background:#f3f4f6;color:#334155;display:grid;place-items:center}
+.setneg-theme-button svg{width:17px;height:17px}
+.setneg-user{display:flex;align-items:center;gap:9px;color:#1f2937}
+.setneg-avatar{width:30px;height:30px;display:grid;place-items:center;border-radius:50%;background:#db2777;color:#fff;font-size:11px;font-weight:700}
+.setneg-user-copy{display:flex;flex-direction:column;line-height:1.2}
+.setneg-user-copy strong{font-size:11.5px;font-weight:650}
+.setneg-user-copy span{font-size:10px;color:#6b7280}
+.setneg-user-chevron{width:13px;height:13px;color:#64748b}
+@media(max-width:1100px){.setneg-brand{min-width:225px}.setneg-global-nav button{padding:0 7px}.setneg-global-nav button span{font-size:10px}}
+@media(max-width:850px){.setneg-global-header{padding:8px 16px!important}.setneg-header-inner{flex-wrap:wrap;gap:10px}.setneg-global-nav{order:3;width:100%;overflow-x:auto;justify-content:flex-start}.setneg-global-nav button{flex:none}.setneg-brand{min-width:0}.setneg-brand-copy span:last-child{display:none}}
+@media(max-width:480px){.setneg-brand img{width:34px;height:34px}.setneg-brand-copy strong{font-size:13px}.setneg-brand-copy span{font-size:9px}.setneg-user-copy,.setneg-user-chevron{display:none}.setneg-header-tools{margin-left:auto}}
+
+.harmonisasi-page-tabs{box-sizing:border-box;width:calc(100% - 64px);max-width:1376px;margin:10px auto 0;padding:4px;display:flex;gap:4px;overflow-x:auto;white-space:nowrap;background:#fff;border:1px solid #e2e8f0;border-radius:10px;scrollbar-width:thin}
+.harmonisasi-page-tabs a{flex:0 0 auto;display:inline-flex;align-items:center;min-height:32px;padding:0 12px;border-radius:7px;color:#334155;font-size:11px;font-weight:500;text-decoration:none;transition:background .15s,color .15s}
+.harmonisasi-page-tabs a:hover{background:#eff6ff;color:#1d4ed8}
+.harmonisasi-page-tabs a[aria-current="page"]{background:#0b1426;color:#fff;font-weight:650}
+.harmonisasi-page-tabs a:focus-visible{outline:2px solid #2563eb;outline-offset:2px}
+.harmonisasi-highlights{box-sizing:border-box;width:calc(100% - 64px);max-width:1376px;margin:12px auto 0;padding:14px 16px 10px;background:#fff;border:1px solid #e5e7eb;border-radius:16px;box-shadow:0 1px 3px rgba(15,23,42,.10)}
+.harmonisasi-highlights-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
+.harmonisasi-highlights-head h2{margin:0;display:flex;align-items:center;gap:8px;color:#0f172a;font-size:14px;font-weight:700}
+.harmonisasi-warning-symbol{width:16px;height:16px;fill:none;stroke:#ef4444;stroke-linecap:round;stroke-linejoin:round;stroke-width:2}.harmonisasi-alert-icon svg{width:17px;height:17px;fill:none;stroke:#1d4ed8;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.8}
+.harmonisasi-highlights-head>span{flex:0 0 auto;color:#64748b;font-size:10px}
+.harmonisasi-alert-track{display:flex;gap:12px;overflow-x:auto;padding:2px 0 10px;scroll-snap-type:x mandatory;scrollbar-color:#cbd5e1 transparent;scrollbar-width:thin}
+.harmonisasi-alert-card{box-sizing:border-box;flex:0 0 calc((100% - 24px)/3);min-width:300px;padding:10px 11px;background:#fffbeb;border:1px solid #facc15;border-radius:17px;scroll-snap-align:start}
+.harmonisasi-alert-heading{display:flex;align-items:center;gap:9px;min-height:40px;margin-bottom:8px}
+.harmonisasi-alert-icon{flex:0 0 34px;width:34px;height:34px;display:grid;place-items:center;border-radius:50%;background:#fff;color:#0f172a;font-size:16px;font-weight:700}
+.harmonisasi-alert-title{min-width:0;flex:1;display:flex;flex-direction:column;gap:3px}
+.harmonisasi-alert-title strong{color:#0f172a;font-size:11px;line-height:1.25}
+.harmonisasi-alert-title>span{color:#64748b;font-size:9px}
+.harmonisasi-alert-meta{flex:0 0 auto;display:flex;flex-direction:column;align-items:flex-end;gap:3px;color:#64748b;font-size:9px;text-align:right}
+.harmonisasi-alert-details{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}
+.harmonisasi-alert-details>div{min-width:0;min-height:65px;padding:7px;border-radius:10px;background:rgba(255,255,255,.82)}
+.harmonisasi-alert-details b{display:block;margin-bottom:4px;color:#ef4444;font-size:9px;font-weight:600}
+.harmonisasi-alert-details>div:nth-child(2) b{color:#f97316}
+.harmonisasi-alert-details>div:nth-child(3) b{color:#059669}
+.harmonisasi-alert-details p{margin:0;color:#334155;font-size:9px;line-height:1.4;overflow-wrap:anywhere}
+.harmonisasi-alert-empty{padding:12px 14px;border:1px dashed #cbd5e1;border-radius:11px;background:#f8fafc;color:#64748b;font-size:11px}
+@media(max-width:760px){.harmonisasi-page-tabs,.harmonisasi-highlights{width:calc(100% - 24px)}.harmonisasi-alert-card{flex-basis:86%;min-width:270px}.harmonisasi-highlights{padding:12px}.harmonisasi-alert-details{gap:5px}.harmonisasi-alert-details>div{padding:6px}}
+</style>
+<style id="harmonisasi-centered-tabs">
+.harmonisasi-page-tabs{box-sizing:border-box!important;width:fit-content!important;max-width:calc(100% - 32px)!important;margin:16px auto 0!important;padding:4px 8px!important;display:flex!important;flex-wrap:nowrap!important;justify-content:center!important;gap:4px!important;overflow-x:auto!important;background:#F1F3F7!important;border:1px solid #E7EAF0!important;border-radius:12px!important;scrollbar-width:none!important}
+.harmonisasi-page-tabs::-webkit-scrollbar{display:none}
+@media(max-width:760px){.harmonisasi-page-tabs{max-width:calc(100% - 24px)!important;justify-content:flex-start!important}}
+</style><style id="harmonisasi-vercel-responsive">
+html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-height:0!important}main[style*="max-width"]{box-sizing:border-box;width:100%!important;max-width:1376px!important;margin-inline:auto!important}main[style*="max-width"]>*{min-width:0;max-width:100%}.harmonisasi-page-tabs{width:fit-content!important;max-width:calc(100% - 24px)!important}
+@media(max-width:900px){.setneg-global-header{padding-left:16px!important;padding-right:16px!important;gap:8px 12px!important}.setneg-global-nav{gap:2px!important}.setneg-global-nav button{padding:7px 8px!important}main[style*="max-width"]{padding-left:16px!important;padding-right:16px!important}}
+@media(max-width:680px){.setneg-global-header{padding:10px 12px!important;min-height:0!important;gap:8px!important;justify-content:flex-start!important}.setneg-global-header:before{height:100%!important}.setneg-brand{min-width:0!important;flex:1 1 calc(100% - 100px)!important;gap:8px!important}.setneg-brand img{width:34px!important;height:34px!important;object-fit:contain!important}.setneg-brand-copy{min-width:0!important;display:flex!important}.setneg-brand-copy strong{font-size:11px!important;white-space:nowrap!important}.setneg-brand-copy span{display:none!important}.setneg-header-tools{margin-left:auto!important;gap:8px!important}.setneg-user-copy,.setneg-user-chevron{display:none!important}.setneg-global-nav{order:3!important;flex:1 1 100%!important;width:100%!important;max-width:100%!important;overflow-x:auto!important;flex-wrap:nowrap!important;justify-content:flex-start!important;scrollbar-width:none!important}.setneg-global-nav::-webkit-scrollbar{display:none}.setneg-global-nav button{flex:0 0 auto!important;white-space:nowrap!important;font-size:10px!important;padding:7px 9px!important}.harmonisasi-page-tabs{max-width:calc(100% - 20px)!important;justify-content:flex-start!important;margin-top:10px!important}.harmonisasi-highlights{width:calc(100% - 20px)!important;padding:12px!important;margin-top:10px!important}main[style*="max-width"]{padding:12px 12px 28px!important;gap:12px!important}main section,main article{min-width:0!important}main [style*="grid-template-columns"]{min-width:0!important}}
+@media(max-width:480px){.setneg-global-header{padding:8px 10px!important}.setneg-theme-button{width:30px!important;height:30px!important}.setneg-avatar{width:30px!important;height:30px!important}.harmonisasi-alert-card{flex-basis:88%!important;min-width:260px!important}.harmonisasi-alert-details{gap:5px!important}.harmonisasi-alert-details>div{padding:6px!important}main[style*="max-width"]{padding-left:10px!important;padding-right:10px!important}}
+
+@media(max-width:680px){.sc-host{display:block!important;width:100%!important;max-width:100%!important;min-width:0!important}.sc-host>div{box-sizing:border-box!important;width:100%!important;max-width:100%!important;min-width:0!important}.setneg-global-header{box-sizing:border-box!important;width:100%!important;max-width:100%!important;min-width:0!important;overflow:hidden!important}.setneg-global-nav{box-sizing:border-box!important;min-width:0!important}.setneg-brand{max-width:calc(100% - 100px)!important}.harmonisasi-page-tabs{box-sizing:border-box!important;min-width:0!important}}
+@media(max-width:520px){.harmonisasi-page-tabs{width:calc(100% - 20px)!important;max-width:calc(100% - 20px)!important;display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;white-space:normal!important;overflow:visible!important;justify-content:stretch!important}.harmonisasi-page-tabs a{min-width:0!important;min-height:40px!important;padding:5px 7px!important;justify-content:center!important;white-space:normal!important;text-align:center!important;line-height:1.25!important}}
+</style></head>
+<body>
+<x-dc>
+<helmet>
+<style>/* cyrillic-ext */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2JL7SUc.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa0ZL7SUc.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek-ext */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2ZL7SUc.woff2) format('woff2');
+  unicode-range: U+1F00-1FFF;
+}
+/* greek */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1pL7SUc.woff2) format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2pL7SUc.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa25L7SUc.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7SUc.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2JL7SUc.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa0ZL7SUc.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek-ext */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2ZL7SUc.woff2) format('woff2');
+  unicode-range: U+1F00-1FFF;
+}
+/* greek */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1pL7SUc.woff2) format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2pL7SUc.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa25L7SUc.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7SUc.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2JL7SUc.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa0ZL7SUc.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek-ext */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2ZL7SUc.woff2) format('woff2');
+  unicode-range: U+1F00-1FFF;
+}
+/* greek */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1pL7SUc.woff2) format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2pL7SUc.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa25L7SUc.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7SUc.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2JL7SUc.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa0ZL7SUc.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek-ext */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2ZL7SUc.woff2) format('woff2');
+  unicode-range: U+1F00-1FFF;
+}
+/* greek */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1pL7SUc.woff2) format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2pL7SUc.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa25L7SUc.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7SUc.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+</style>
+<style>body{margin:0} a{color:#1D4ED8} a:hover{color:#1E40AF} .ck{cursor:pointer;transition:box-shadow .12s,border-color .12s,background .12s} .ck:hover{box-shadow:0 2px 10px rgba(15,23,42,.08);border-color:#82B394 !important} .rw{cursor:pointer} .rw:hover{background:#EFF6FF !important} .tip{position:relative;outline:none} .tip .pop{display:none;position:absolute;z-index:95;right:0;top:calc(100% + 6px);width:300px;padding:10px 12px;border-radius:10px;background:#0B1F3A;color:#E2E8F0;font-size:11.5px;line-height:17px;font-weight:400;letter-spacing:0;text-align:left;white-space:normal;box-shadow:0 12px 32px rgba(15,23,42,.3)} .tip:hover .pop,.tip:focus .pop{display:block} .bar:hover{filter:brightness(1.08)}</style>
+</helmet>
+<div style="min-height: 100vh; background: #F4F7FB; font-family: Inter, system-ui, sans-serif; color: #0F172A;">
+  <header class="setneg-global-header" aria-label="Header Dashboard Presiden RI"><div class="setneg-header-inner"><a class="setneg-brand" href="#top" aria-label="Dashboard Presiden RI"><img alt="Logo Setneg RI" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Logo_Setneg_RI.svg/330px-Logo_Setneg_RI.svg.png"><span class="setneg-brand-copy"><strong>DASHBOARD PRESIDEN RI</strong><span>Badan Teknologi, Data dan Informasi</span><span>Kementerian Sekretariat Negara Republik Indonesia</span></span></a><nav class="setneg-global-nav" aria-label="Navigasi utama"><button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.5"/></svg><span>Eksekutif</span></button><button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"/><path d="m9 12 2 2 4-4"/></svg><span>Pertahanan &amp; Keamanan</span></button><button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 3v18h18"/><path d="m7 14 4-4 4 3 6-7"/></svg><span>Ekonomi</span></button><button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 11h16v2a8 8 0 0 1-16 0v-2Z"/><path d="M8 7c0-1 1-1 1-2M12 7c0-1 1-1 1-2M16 7c0-1 1-1 1-2"/></svg><span>MBG</span></button><button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 3h10l4 4v14H5z"/><path d="M15 3v5h4M8 12h8M8 16h8"/></svg><span>Kebijakan</span></button><button type="button" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="6" cy="6" r="2"/><circle cx="18" cy="6" r="2"/><circle cx="12" cy="18" r="2"/><path d="M8 7.5 10.8 16M16 7.5 13.2 16M8 6h8"/></svg><span>Harmonisasi</span></button></nav><div class="setneg-header-tools"><button class="setneg-theme-button" type="button" aria-label="Ganti tema"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.5 14.4A8.5 8.5 0 0 1 9.6 3.5 8.7 8.7 0 1 0 20.5 14.4Z"/></svg></button><div class="setneg-user"><span class="setneg-avatar">PS</span><span class="setneg-user-copy"><strong>Prabowo Subianto</strong><span>Presiden</span></span><svg class="setneg-user-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div></div></div></header><nav class="harmonisasi-page-tabs" aria-label="Navigasi tab Harmonisasi Investasi"><a href="#harmonisasi-page-0" aria-current="page" data-harmonisasi-tab="0">Payung Kebijakan Investasi</a><a href="#harmonisasi-page-1" data-harmonisasi-tab="1">Peluang Investasi Daerah</a><a href="#harmonisasi-page-2" data-harmonisasi-tab="2">Demografi &amp; Mobilitas Penduduk</a><a href="#harmonisasi-page-3" data-harmonisasi-tab="3">Kemudahan Berusaha &amp; Pelayanan Perizinan</a></nav><section class="harmonisasi-highlights" aria-label="Highlight Payung Kebijakan Investasi"><div class="harmonisasi-highlights-head"><h2><svg class="harmonisasi-warning-symbol" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3 2.8 19h18.4L12 3Z"></path><path d="M12 9v4m0 3h.01"></path></svg> Highlight Payung Kebijakan Investasi</h2><span>3 Alerts Aktif</span></div><div class="harmonisasi-alert-track" role="list"><article class="harmonisasi-alert-card" role="listitem"><div class="harmonisasi-alert-heading"><span class="harmonisasi-alert-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m4 16 5-5 4 4 7-7"></path><path d="M14 8h6v6"></path></svg></span><div class="harmonisasi-alert-title"><strong>Kebutuhan air pusat data BDX</strong><span>Level: WARNING</span></div><div class="harmonisasi-alert-meta"><span>2 Okt 2026</span><span>Alert aktif</span></div></div><div class="harmonisasi-alert-details"><div><b>Masalah</b><p>Kebutuhan air dan kajian lingkungan menjadi hambatan bagi rencana pusat data di Purwakarta.</p></div><div><b>Dampak</b><p>Persetujuan lingkungan dan kesiapan proyek dapat tertunda.</p></div><div><b>Rekomendasi</b><p>Tuntaskan kajian daya dukung air dan persetujuan lingkungan sebelum konstruksi.</p></div></div></article><article class="harmonisasi-alert-card" role="listitem"><div class="harmonisasi-alert-heading"><span class="harmonisasi-alert-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m4 16 5-5 4 4 7-7"></path><path d="M14 8h6v6"></path></svg></span><div class="harmonisasi-alert-title"><strong>Konflik lahan PT Toba Pulp Lestari</strong><span>Level: WARNING</span></div><div class="harmonisasi-alert-meta"><span>27 Des 2025</span><span>Alert aktif</span></div></div><div class="harmonisasi-alert-details"><div><b>Masalah</b><p>Konflik lahan masyarakat adat tercatat di kawasan Danau Toba.</p></div><div><b>Dampak</b><p>Penolakan sosial berpotensi mengganggu kepastian pelaksanaan investasi.</p></div><div><b>Rekomendasi</b><p>Verifikasi hak atas lahan dan lakukan dialog dengan masyarakat terdampak.</p></div></div></article><article class="harmonisasi-alert-card" role="listitem"><div class="harmonisasi-alert-heading"><span class="harmonisasi-alert-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m4 16 5-5 4 4 7-7"></path><path d="M14 8h6v6"></path></svg></span><div class="harmonisasi-alert-title"><strong>Penolakan reklamasi Surabaya Waterfront Land</strong><span>Level: WARNING</span></div><div class="harmonisasi-alert-meta"><span>17 Mei 2026</span><span>Alert aktif</span></div></div><div class="harmonisasi-alert-details"><div><b>Masalah</b><p>Nelayan menyampaikan penolakan terhadap rencana reklamasi di pesisir timur Surabaya.</p></div><div><b>Dampak</b><p>Tahapan proyek berisiko tertunda dan memicu konflik sosial.</p></div><div><b>Rekomendasi</b><p>Pastikan konsultasi publik dan mitigasi dampak penghidupan sebelum keputusan lanjutan.</p></div></div></article></div></section>
+  <main style="max-width: 1376px; margin: 0 auto; padding: 16px 32px 48px; display: flex; flex-direction: column; gap: 16px;">
+
+    <!-- ======================= DAFTAR ======================= -->
+    <sc-if value="{{isList}}" hint-placeholder-val="{{true}}">
+      <div style="display: flex; flex-direction: column; gap: 16px;">
+        <!-- Filter -->
+        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px;">
+          <span style="height: 36px; padding: 0 12px; border-radius: 8px; background: #FFFFFF; border: 1px solid #E3E8F0; font-size: 12px; color: #475569; display: inline-flex; align-items: center; gap: 4px; box-sizing: border-box;">Tanggal acuan: <b style="color: #0F172A;">12 Okt 2026</b></span>
+          <sc-for list="{{fl}}" as="f" hint-placeholder-count="4">
+            <div style="position: relative;">
+              <button type="button" sc-camel-on-click="{{f.toggle}}" style="height: 36px; padding: 0 12px; border-radius: 8px; background: {{f.bg}}; border: 1px solid {{f.bd}}; font-family: inherit; font-size: 12px; color: #475569; cursor: pointer;">{{f.l}}: <b style="color: #0F172A;">{{f.v}}</b> ▾</button>
+              <sc-if value="{{f.open}}" hint-placeholder-val="{{false}}">
+                <div style="position: absolute; z-index: 60; top: 40px; left: 0; min-width: 300px; max-height: 360px; overflow-y: auto; padding: 6px; border-radius: 10px; background: #FFFFFF; border: 1px solid #E3E8F0; box-shadow: 0 12px 32px rgba(15,23,42,.16); display: flex; flex-direction: column; gap: 2px;">
+                  <sc-for list="{{f.opts}}" as="o" hint-placeholder-count="5">
+                    <a href="#sec-daftar" sc-camel-on-click="{{o.pick}}" style="padding: 8px 10px; border-radius: 6px; background: {{o.bg}}; font-size: 12.5px; color: #0F172A; font-weight: {{o.w}}; text-decoration: none; display: flex; justify-content: space-between; gap: 12px;"><span>{{o.l}}</span><span style="color: #94A3B8;">{{o.n}}</span></a>
+                  </sc-for>
+                </div>
+              </sc-if>
+            </div>
+          </sc-for>
+          <sc-if value="{{hasFilter}}" hint-placeholder-val="{{false}}"><button type="button" sc-camel-on-click="{{resetF}}" style="height: 36px; padding: 0 10px; border: 0; background: transparent; font-family: inherit; font-size: 12px; font-weight: 600; color: #1D4ED8; cursor: pointer;">Reset filter</button></sc-if>
+          <sc-if value="{{hasFilter}}" hint-placeholder-val="{{false}}"><a href="#sec-daftar" style="margin-left: auto; font-size: 12px; font-weight: 600; text-decoration: none;">{{filterNote}} ↓</a></sc-if>
+        </div>
+
+        <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: stretch;">
+          <!-- 1. Jumlah regulasi berlaku -->
+          <section style="flex: 1 1 520px; min-width: 0; background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; box-shadow: 0 1px 2px rgba(15,23,42,.05); display: flex; flex-direction: column;">
+            <div style="padding: 14px 18px; border-bottom: 1px solid #EEF2F7; display: flex; justify-content: space-between; align-items: center; gap: 8px;"><h2 style="margin: 0; font-size: 14.5px; font-weight: 600;">Jumlah regulasi investasi berlaku</h2><span style="font-size: 11.5px; color: #64748B;">Hanya status aktif · urut hierarki</span></div>
+            <div style="padding: 16px 18px; display: flex; flex-direction: column; gap: 14px; flex: 1;">
+              <a href="#sec-daftar" sc-camel-on-click="{{resetF}}" class="ck" style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 10px; padding: 12px 14px; border-radius: 10px; border: 1px solid #E7F1E9; background: #EFF6FF; color: #0F172A; text-decoration: none;">
+                <span><span style="display: block; font-size: 12px; color: #475569;">Regulasi aktif pada 12 Okt 2026</span><span style="display: flex; align-items: baseline; gap: 6px;"><b style="font-size: 34px; letter-spacing: -0.5px; color: #1E40AF;">290</b><span style="font-size: 13px; color: #475569;">regulasi unik</span></span></span>
+                <span style="display: flex; flex-direction: column; align-items: flex-end; gap: 4px; font-size: 11.5px; color: #475569;"><span><b style="color: #1D4ED8;">284</b> status terverifikasi</span><span><b style="color: #475569;">6</b> status belum terverifikasi</span><span style="font-weight: 600; color: #1D4ED8;">Lihat daftar pembentuk ↓</span></span>
+              </a>
+              <div style="display: flex; flex-direction: column; gap: 6px;">
+                <sc-for list="{{jenisBar}}" as="j" hint-placeholder-count="6">
+                  <a href="#sec-daftar" sc-camel-on-click="{{j.pick}}" class="bar" title="{{j.l}}: {{j.n}} regulasi aktif" style="display: grid; grid-template-columns: 92px minmax(0, 1fr) 96px; gap: 10px; align-items: center; padding: 3px 6px; margin: 0 -6px; border-radius: 6px; background: {{j.bg}}; font-size: 12.5px; color: #0F172A; text-decoration: none;">
+                    <span style="font-weight: {{j.fw}};">{{j.l}}</span>
+                    <span style="display: block; height: 16px; border-radius: 4px; background: #EEF2F7;"><span style="display: block; width: {{j.w}}; height: 16px; border-radius: 4px; background: {{j.c}};"></span></span>
+                    <span style="text-align: right;"><b>{{j.n}}</b> <span style="color: #64748B;">· {{j.p}}</span></span>
+                  </a>
+                </sc-for>
+              </div>
+              <p style="margin: 0; font-size: 11.5px; line-height: 17px; color: #64748B;">Satu regulasi dihitung sekali walau mengatur beberapa sektor; perubahan dan pencabutan sebagian tidak menambah jumlah. Regulasi dicabut tidak ditampilkan.</p>
+            </div>
+            <div style="padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;"><span><b style="color: #475569;">Periode:</b> s.d. 12 Okt 2026</span><span><b style="color: #475569;">Diperbarui:</b> 12 Okt 2026, 06.00 WIB</span><span><b style="color: #475569;">Sumber:</b> JDIH Setneg, JDIH K/L, JDIH pemda, peraturan.bpk.go.id</span><span style="padding: 0 6px; border-radius: 4px; background: #EFF6FF; color: #1D4ED8; font-weight: 600;">Divalidasi analis</span></div>
+          </section>
+
+          <!-- 2. Sebaran regulasi -->
+          <section style="flex: 1 1 620px; min-width: 0; background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; box-shadow: 0 1px 2px rgba(15,23,42,.05); display: flex; flex-direction: column;">
+            <div style="padding: 12px 18px; border-bottom: 1px solid #EEF2F7; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px;">
+              <h2 style="margin: 0; font-size: 14.5px; font-weight: 600;">Sebaran regulasi menurut {{sbLabel}}</h2>
+              <div role="tablist" style="display: flex; gap: 2px; padding: 3px; background: #EEF2F7; border-radius: 8px;">
+                <sc-for list="{{sbTabs}}" as="t" hint-placeholder-count="2"><button type="button" role="tab" sc-camel-on-click="{{t.pick}}" style="height: 28px; padding: 0 12px; border: 0; border-radius: 6px; background: {{t.bg}}; color: {{t.fg}}; font-family: inherit; font-size: 12px; font-weight: 600; cursor: pointer;">{{t.l}}</button></sc-for>
+              </div>
+            </div>
+            <div style="padding: 16px 18px; display: flex; flex-direction: column; gap: 12px; flex: 1;">
+              <sc-if value="{{sbJenis}}" hint-placeholder-val="{{true}}">
+                <div style="display: flex; flex-direction: column; gap: 10px;">
+                  <div style="display: flex; gap: 18px; align-items: flex-end; height: 200px; padding: 0 4px; border-bottom: 1px solid #CBD5E1;">
+                    <sc-for list="{{years}}" as="y" hint-placeholder-count="5">
+                      <button type="button" sc-camel-on-click="{{y.pick}}" style="flex: 1; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; align-items: stretch; gap: 4px; padding: 0; border: 0; background: transparent; font-family: inherit; cursor: pointer;">
+                        <b style="font-size: 12px; color: {{y.tc}}; text-align: center;">{{y.total}}</b>
+                        <span style="display: flex; flex-direction: column-reverse; height: {{y.h}}; border-radius: 4px 4px 0 0; overflow: hidden; outline: {{y.ol}}; outline-offset: 2px;">
+                          <sc-for list="{{y.seg}}" as="s" hint-placeholder-count="6"><span role="button" tabindex="0" aria-label="{{s.t}}" sc-camel-on-click="{{s.pick}}" title="{{s.t}}" style="display: block; height: {{s.h}}; background: {{s.c}}; cursor: pointer;"></span></sc-for>
+                        </span>
+                      </button>
+                    </sc-for>
+                  </div>
+                  <sc-if value="{{sbDetail}}" hint-placeholder-val="{{false}}"><div style="display:flex;align-items:center;gap:8px;margin:8px 0;padding:9px 11px;border:1px solid #E3E8F0;border-radius:8px;background:#F8FAFC;font-size:12px;"><span style="width:10px;height:10px;border-radius:2px;background:{{sbDetail.color}};"></span><b>{{sbDetail.label}}</b><span>{{sbDetail.year}}: {{sbDetail.count}} regulasi</span></div></sc-if><div style="display: flex; gap: 18px; padding: 0 4px;"><sc-for list="{{years}}" as="y" hint-placeholder-count="5"><span style="flex: 1; text-align: center; font-size: 11.5px; font-weight: {{y.fw}}; color: {{y.tc}};">{{y.l}}</span></sc-for></div>
+                  <div style="display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 11.5px; color: #334155;"><sc-for list="{{jenisLeg}}" as="g" hint-placeholder-count="6"><span style="display: inline-flex; align-items: center; gap: 5px;"><span style="width: 9px; height: 9px; border-radius: 2px; background: {{g.c}};"></span>{{g.l}}</span></sc-for></div>
+                  <div style="border: 1px solid #E3E8F0; border-radius: 10px; overflow: hidden;">
+                    <div style="display: grid; grid-template-columns: minmax(0, 1fr) 80px 80px 90px; gap: 8px; padding: 8px 12px; background: #F8FAFC; font-size: 10.5px; font-weight: 700; letter-spacing: 0.4px; color: #64748B;"><span>JENIS</span><span style="text-align: right;">{{yrPrevL}}</span><span style="text-align: right;">{{yrL}}</span><span style="text-align: right;">PERUBAHAN</span></div>
+                    <sc-for list="{{jenisCmp}}" as="r" hint-placeholder-count="6">
+                      <a href="#sec-daftar" sc-camel-on-click="{{r.pick}}" class="rw" style="display: grid; grid-template-columns: minmax(0, 1fr) 80px 80px 90px; gap: 8px; padding: 7px 12px; border-top: 1px solid #EEF2F7; font-size: 12px; color: #0F172A; text-decoration: none;"><span>{{r.l}}</span><span style="text-align: right; color: #64748B;">{{r.a}}</span><b style="text-align: right;">{{r.b}}</b><span style="text-align: right; font-weight: 600; color: #1D4ED8;">{{r.d}}</span></a>
+                    </sc-for>
+                  </div>
+                </div>
+              </sc-if>
+              <sc-if value="{{sbSektor}}" hint-placeholder-val="{{false}}">
+                <div style="display: flex; flex-direction: column; gap: 4px;">
+                  <div style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr) 64px 70px; gap: 10px; padding: 0 6px 4px; font-size: 10.5px; font-weight: 700; letter-spacing: 0.4px; color: #64748B;"><span>KATEGORI KBLI 2025</span><span></span><span style="text-align: right;">{{yrL}}</span><span style="text-align: right;">VS {{yrPrevL}}</span></div>
+                  <sc-for list="{{sekRows}}" as="s" hint-placeholder-count="10">
+                    <div style="display: flex; flex-direction: column;">
+                      <button type="button" sc-camel-on-click="{{s.pick}}" class="bar" style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr) 64px 70px; gap: 10px; align-items: center; padding: 4px 6px; border: 1px solid {{s.bd}}; border-radius: 6px; background: {{s.bg}}; font-family: inherit; font-size: 12px; color: #0F172A; text-align: left; cursor: pointer;">
+                        <span style="font-weight: {{s.fw}};">{{s.k}} · {{s.n}}</span>
+                        <span style="display: block; height: 12px; border-radius: 3px; background: #EEF2F7;"><span style="display: block; width: {{s.w}}; height: 12px; border-radius: 3px; background: #0EA5E9;"></span></span>
+                        <b style="text-align: right;">{{s.v}}</b><span style="text-align: right; color: #1D4ED8; font-weight: 600;">{{s.d}}</span>
+                      </button>
+                      <sc-if value="{{s.open}}" hint-placeholder-val="{{false}}">
+                        <div style="margin: 4px 0 6px; padding: 10px 12px; border-radius: 8px; background: #EFF6FF; border: 1px solid #E7F1E9; display: flex; flex-wrap: wrap; gap: 14px; align-items: flex-end;">
+                          <div style="display: flex; gap: 10px; align-items: flex-end; height: 70px;"><sc-for list="{{s.ser}}" as="z" hint-placeholder-count="5"><span style="display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 3px; height: 70px; font-size: 10.5px; color: #475569;"><b>{{z.v}}</b><span style="display: block; width: 22px; height: {{z.h}}; border-radius: 3px 3px 0 0; background: {{z.c}};"></span>{{z.l}}</span></sc-for></div>
+                          <div style="flex: 1 1 200px; font-size: 11.5px; line-height: 17px; color: #334155;">{{s.note}} <a href="#sec-daftar" sc-camel-on-click="{{s.filter}}" style="font-weight: 600; text-decoration: none;">Tampilkan di daftar ↓</a></div>
+                        </div>
+                      </sc-if>
+                    </div>
+                  </sc-for>
+                  <button type="button" sc-camel-on-click="{{toggleAllSek}}" style="align-self: flex-start; margin-top: 4px; padding: 0; border: 0; background: transparent; font-family: inherit; font-size: 12px; font-weight: 600; color: #1D4ED8; cursor: pointer;">{{allSekLabel}}</button>
+                  <p style="margin: 4px 0 0; font-size: 11.5px; line-height: 17px; color: #64748B;">Satu regulasi dapat terkait lebih dari satu kategori, sehingga jumlah per kategori ({{sekTotal}}) lebih besar dari 290 regulasi unik.</p>
+                </div>
+              </sc-if>
+            </div>
+            <div style="padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;"><span><b style="color: #475569;">Periode:</b> akhir tahun 2022–2025; 2026 s.d. 12 Okt</span><span><b style="color: #475569;">Diperbarui:</b> 12 Okt 2026</span><span><b style="color: #475569;">Sumber:</b> JDIH K/L sektor · klasifikasi KBLI 2025 (Peraturan BPS 7/2025)</span><span style="padding: 0 6px; border-radius: 4px; background: #EFF6FF; color: #1D4ED8; font-weight: 600;">Klasifikasi disahkan analis</span></div>
+          </section>
+        </div>
+
+        <!-- 5. Isu dampak, hambatan, peluang & rekomendasi -->
+        <section style="background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; box-shadow: 0 1px 2px rgba(15,23,42,.05);">
+          <div style="padding: 12px 18px; border-bottom: 1px solid #EEF2F7; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px;">
+            <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;"><h2 style="margin: 0; font-size: 14.5px; font-weight: 600;">Isu dampak, hambatan, peluang &amp; rekomendasi</h2><span style="height: 22px; padding: 0 8px; border-radius: 6px; background: #EEF2FF; border: 1px solid #C7D2FE; color: #3730A3; font-size: 11px; font-weight: 600; display: inline-flex; align-items: center;">✦ Analisis AI · diverifikasi analis</span></div>
+            <span style="font-size: 11.5px; color: #64748B;">Hambatan diringkas dari sumber; peluang adalah opsi tindak lanjut bersyarat, bukan status atau komitmen proyek</span>
+          </div>
+          <div style="display: flex; flex-direction: column;">
+            <sc-for list="{{isu}}" as="i" hint-placeholder-count="5">
+              <div style="border-bottom: 1px solid #EEF2F7; border-left: 4px solid {{i.lb}}; background: {{i.rbg}};">
+                <div sc-camel-on-click="{{i.pick}}" class="rw" style="display: grid; grid-template-columns: minmax(0, 2.4fr) 1fr 1.1fr 1.3fr 128px; gap: 12px; align-items: center; padding: 12px 18px; font-size: 12.5px;">
+                  <div><b>{{i.t}} {{i.arrow}}</b><div style="font-size: 11.5px; color: #64748B;">{{i.lok}}</div></div>
+                  <span style="justify-self: start; padding: 2px 8px; border-radius: 5px; background: #EFF6FF; color: #1E40AF; font-size: 11px; font-weight: 600;">{{i.kat}}</span>
+                  <span style="color: #475569;">{{i.tgl}}</span>
+                  <span style="color: #1E40AF; font-size: 11.5px;">{{i.reg}}</span>
+                  <span style="justify-self: end;">
+                    <sc-if value="{{i.ews}}" hint-placeholder-val="{{false}}"><span class="tip" tabindex="0" style="display: inline-flex; align-items: center; gap: 5px; height: 24px; padding: 0 9px; border-radius: 6px; background: #DC2626; color: #FFFFFF; font-size: 11px; font-weight: 700; cursor: help;">● EWS<span class="pop"><b style="color: #FFFFFF;">Alasan:</b> {{i.ewsA}}<br><b style="color: #FFFFFF;">Sumber:</b> {{i.ewsS}}<br><b style="color: #FFFFFF;">Waktu:</b> {{i.ewsW}}<br><span style="color: #FCA5A5;">Penanda tetap merah sampai ditindaklanjuti.</span></span></span></sc-if>
+                    <sc-if value="{{i.noEws}}" hint-placeholder-val="{{true}}"><span style="display: inline-flex; align-items: center; height: 24px; padding: 0 9px; border-radius: 6px; background: #F1F5F9; color: #475569; font-size: 11px; font-weight: 600;">{{i.st}}</span></sc-if>
+                  </span>
+                </div>
+                <sc-if value="{{i.open}}" hint-placeholder-val="{{false}}">
+                  <div style="padding: 0 18px 16px; display: flex; flex-direction: column; gap: 10px;">
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px;">
+                      <div style="padding: 12px; border-radius: 10px; background: #FFFFFF; border: 1px solid #E3E8F0;"><div style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.4px; color: #1E40AF;">RINGKASAN · FAKTA DARI SUMBER</div><p style="margin: 6px 0 0; font-size: 12.5px; line-height: 19px; color: #1E293B;">{{i.fakta}}</p></div>
+                      <div style="padding: 12px; border-radius: 10px; background: #F5F7FF; border: 1px dashed #A5B4FC;"><div style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.4px; color: #3730A3;">DAMPAK PADA IKLIM INVESTASI / KEGIATAN USAHA</div><p style="margin: 6px 0 0; font-size: 12.5px; line-height: 19px; color: #1E293B;">{{i.perk}}</p></div>
+                      
+                      <div style="padding:12px;border-radius:10px;background:#F8FAFC;border:1px dashed #CBD5E1;"><div style="font-size:10.5px;font-weight:700;letter-spacing:.4px;color:#475569;">HAMBATAN</div><p style="margin:6px 0 0;font-size:12.5px;line-height:19px;color:#64748B;">{{i.bar}}</p></div><div style="padding:12px;border-radius:10px;background:#F8FAFC;border:1px dashed #CBD5E1;"><div style="font-size:10.5px;font-weight:700;letter-spacing:.4px;color:#475569;">PELUANG</div><p style="margin:6px 0 0;font-size:12.5px;line-height:19px;color:#64748B;">{{i.opp}}</p></div><div style="padding: 12px; border-radius: 10px; background: #EFF6FF; border: 1px solid #B8E3DF;"><div style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.4px; color: #1D4ED8;">REKOMENDASI TINDAK LANJUT</div><p style="margin: 6px 0 0; font-size: 12.5px; line-height: 19px; color: #1E293B;">{{i.opsi}}</p></div>
+                    </div>
+                    <div style="display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: center; font-size: 11.5px; color: #475569;"><b>Sumber berita:</b><sc-for list="{{i.src}}" as="s" hint-placeholder-count="3"><a href="{{s.u}}" target="_blank" rel="noopener" style="font-weight: 600; text-decoration: none;">{{s.l}} ↗</a></sc-for></div>
+                    <div style="display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: 11.5px; color: #475569;"><b>Regulasi terkait:</b><sc-for list="{{i.regs}}" as="r" hint-placeholder-count="2"><button type="button" sc-camel-on-click="{{r.open}}" style="height: 24px; padding: 0 9px; border-radius: 99px; border: 1px solid #B8E3DF; background: #FFFFFF; color: #1D4ED8; font-family: inherit; font-size: 11px; font-weight: 600; cursor: pointer;">{{r.l}} →</button></sc-for></div>
+                  </div>
+                </sc-if>
+              </div>
+            </sc-for>
+          </div>
+          <div style="padding: 9px 18px; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;"><span><b style="color: #475569;">Periode:</b> pemantauan mingguan, s.d. 12 Okt 2026</span><span><b style="color: #475569;">Diperbarui:</b> 12 Okt 2026</span><span><b style="color: #475569;">Sumber:</b> berita daring dan rilis resmi</span><span style="padding: 0 6px; border-radius: 4px; background: #EEF2FF; color: #3730A3; font-weight: 600;">Narasi AI diverifikasi analis</span></div>
+        </section>
+
+        <!-- 3. Daftar regulasi -->
+        <section id="sec-daftar" style="background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; box-shadow: 0 1px 2px rgba(15,23,42,.05); scroll-margin-top: 16px;">
+          <div style="padding: 12px 18px; border-bottom: 1px solid #EEF2F7; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px;">
+            <div><h2 style="margin: 0; font-size: 14.5px; font-weight: 600;">Daftar regulasi investasi</h2><div style="font-size: 11.5px; color: #64748B;">Diurutkan menurut tingkatan peraturan: UU, PP, Perpres, Permen, Kepmen, Perda</div></div>
+            <label style="display: flex; align-items: center; gap: 8px; width: 320px; max-width: 100%; height: 36px; padding: 0 10px; box-sizing: border-box; border: 1px solid #E3E8F0; border-radius: 9px;"><span style="color: #64748B;">⌕</span><input type="search" value="{{q}}" sc-camel-on-change="{{onSearch}}" placeholder="Cari judul, nomor, penerbit atau sektor…" style="flex: 1; min-width: 0; border: 0; outline: 0; font-family: inherit; font-size: 12.5px;"></label>
+          </div>
+          <div style="overflow-x: auto;">
+            <div style="min-width: 1180px;">
+              <div style="display: grid; grid-template-columns: 76px 1.3fr 2.6fr 1.5fr 0.9fr 0.7fr 1.2fr; gap: 12px; padding: 10px 18px; background: #F8FAFC; font-size: 10.5px; font-weight: 700; letter-spacing: 0.4px; color: #64748B;"><span>JENIS</span><span>NOMOR · TAHUN</span><span>JUDUL</span><span>INSTANSI PENERBIT</span><span>WILAYAH</span><span>STATUS</span><span>SEKTOR (KBLI 2025)</span></div>
+              <sc-for list="{{rows}}" as="r" hint-placeholder-count="10">
+                <div sc-camel-on-click="{{r.open}}" class="rw" style="display: grid; grid-template-columns: 76px 1.3fr 2.6fr 1.5fr 0.9fr 0.7fr 1.2fr; gap: 12px; align-items: center; padding: 10px 18px; border-top: 1px solid #EEF2F7; font-size: 12.5px;">
+                  <span style="justify-self: start; padding: 2px 7px; border-radius: 5px; background: {{r.jbg}}; color: #FFFFFF; font-size: 10.5px; font-weight: 700;">{{r.jl}}</span>
+                  <b>{{r.nomor}}</b>
+                  <span style="color: #1D4ED8; font-weight: 500;">{{r.judul}}</span>
+                  <span style="color: #475569;">{{r.pen}}</span>
+                  <span>{{r.wil}}</span>
+                  <span style="justify-self: start; padding: 2px 8px; border-radius: 5px; background: #EFF6FF; color: #1D4ED8; font-size: 11px; font-weight: 600;">Aktif</span>
+                  <span style="font-size: 11.5px; color: #475569;">{{r.sek}}</span>
+                </div>
+              </sc-for>
+              <sc-if value="{{noRows}}" hint-placeholder-val="{{false}}"><div style="padding: 28px 18px; text-align: center; font-size: 12.5px; color: #64748B; border-top: 1px solid #EEF2F7;">Tidak ada regulasi yang sesuai. <button type="button" sc-camel-on-click="{{resetF}}" style="padding: 0; border: 0; background: transparent; font-family: inherit; font-size: 12.5px; font-weight: 600; color: #1D4ED8; cursor: pointer;">Reset filter</button></div></sc-if>
+            </div>
+          </div>
+          <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px; padding: 12px 18px; border-top: 1px solid #EEF2F7;">
+            <span style="font-size: 12px; color: #64748B;">{{pageNote}}</span>
+            <div style="display: flex; align-items: center; gap: 4px;">
+              <button type="button" sc-camel-on-click="{{prevPage}}" aria-label="Sebelumnya" style="width: 30px; height: 30px; border-radius: 6px; border: 1px solid #E3E8F0; background: #FFFFFF; color: {{pgPrevC}}; font-family: inherit; cursor: pointer;">‹</button>
+              <sc-for list="{{pages}}" as="p" hint-placeholder-count="5"><button type="button" sc-camel-on-click="{{p.pick}}" style="min-width: 30px; height: 30px; border-radius: 6px; border: 1px solid {{p.bd}}; background: {{p.bg}}; color: {{p.fg}}; font-family: inherit; font-size: 12px; font-weight: 600; cursor: pointer;">{{p.n}}</button></sc-for>
+              <button type="button" sc-camel-on-click="{{nextPage}}" aria-label="Berikutnya" style="width: 30px; height: 30px; border-radius: 6px; border: 1px solid #E3E8F0; background: #FFFFFF; color: {{pgNextC}}; font-family: inherit; cursor: pointer;">›</button>
+            </div>
+          </div>
+          <div style="padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;"><span><b style="color: #475569;">Periode:</b> s.d. 12 Okt 2026</span><span><b style="color: #475569;">Diperbarui:</b> 12 Okt 2026, 06.00 WIB</span><span><b style="color: #475569;">Sumber:</b> JDIH Setneg, JDIH K/L, JDIH pemda</span><span>{{restNote}}</span></div>
+        </section>
+      </div>
+    </sc-if>
+
+    <!-- ======================= DETAIL ======================= -->
+    <sc-if value="{{isDetail}}" hint-placeholder-val="{{false}}">
+      <div style="display: flex; flex-direction: column; gap: 16px;">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px;">
+          <button type="button" sc-camel-on-click="{{back}}" style="padding: 0; border: 0; background: transparent; font-family: inherit; font-size: 12.5px; font-weight: 600; color: #1D4ED8; cursor: pointer;">← Kembali ke daftar regulasi</button>
+          <div style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #64748B;"><button type="button" sc-camel-on-click="{{prevReg}}" style="height: 30px; padding: 0 10px; border-radius: 8px; border: 1px solid #E3E8F0; background: #FFFFFF; font-family: inherit; font-size: 12px; font-weight: 600; cursor: pointer;">‹ Sebelumnya</button><span>{{d.pos}}</span><button type="button" sc-camel-on-click="{{nextReg}}" style="height: 30px; padding: 0 10px; border-radius: 8px; border: 1px solid #E3E8F0; background: #FFFFFF; font-family: inherit; font-size: 12px; font-weight: 600; cursor: pointer;">Berikutnya ›</button></div>
+        </div>
+
+        <section style="padding: 20px; background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; align-items: flex-start;">
+          <div style="flex: 1 1 560px; min-width: 0;">
+            <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;"><span style="padding: 2px 8px; border-radius: 5px; background: {{d.jbg}}; color: #FFFFFF; font-size: 11px; font-weight: 700;">{{d.jf}}</span><span style="font-size: 12.5px; color: #475569;">{{d.nomor}}</span></div>
+            <h2 style="margin: 6px 0 0; font-size: 21px; font-weight: 700; line-height: 28px;">{{d.judul}}</h2>
+            <div style="margin-top: 12px; display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px 18px; font-size: 12.5px;">
+              <div><div style="font-size: 11px; color: #64748B;">Instansi penerbit</div><b>{{d.pen}}</b></div>
+              <div><div style="font-size: 11px; color: #64748B;">Tahun</div><b>{{d.tahun}}</b></div>
+              <div><div style="font-size: 11px; color: #64748B;">Cakupan wilayah</div><b>{{d.wil}}</b></div>
+              <div><div style="font-size: 11px; color: #64748B;">Sektor (KBLI 2025)</div><b>{{d.sek}}</b></div>
+            </div>
+          </div>
+          <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 8px;">
+            <span style="height: 26px; padding: 0 10px; border-radius: 6px; background: #EFF6FF; border: 1px solid #B8E3DF; color: #1D4ED8; font-size: 12px; font-weight: 600; display: inline-flex; align-items: center;">Status: Aktif</span>
+            <a href="{{d.naskah}}" target="_blank" rel="noopener" style="height: 36px; padding: 0 14px; border-radius: 9px; background: #1E40AF; color: #FFFFFF; font-size: 12.5px; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center;">Buka naskah resmi ↗</a>
+            <span style="font-size: 11px; color: #64748B;">{{d.naskahL}}</span>
+          </div>
+        </section>
+
+        <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: stretch;">
+          <section style="flex: 2 1 640px; min-width: 0; background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; display: flex; flex-direction: column;">
+            <div style="padding: 12px 18px; border-bottom: 1px solid #EEF2F7; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px;"><h3 style="margin: 0; font-size: 14.5px; font-weight: 600;">Ringkasan substansi</h3><span style="height: 22px; padding: 0 8px; border-radius: 6px; background: #EEF2FF; border: 1px solid #C7D2FE; color: #3730A3; font-size: 11px; font-weight: 600; display: inline-flex; align-items: center;">{{d.aiLabel}}</span></div>
+            <sc-if value="{{d.hasRing}}" hint-placeholder-val="{{true}}">
+              <div style="padding: 16px 18px; display: flex; flex-direction: column; gap: 12px; flex: 1;">
+                <sc-for list="{{d.ring}}" as="x" hint-placeholder-count="4">
+                  <div style="display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 12px; padding-bottom: 10px; border-bottom: 1px dashed #E3E8F0;">
+                    <b style="font-size: 12.5px; color: #1E40AF;">{{x.h}}</b>
+                    <div><p style="margin: 0; font-size: 13px; line-height: 20px; color: #334155;">{{x.p}}</p><div style="margin-top: 6px; display: flex; flex-wrap: wrap; gap: 6px;"><sc-for list="{{x.pasal}}" as="ps" hint-placeholder-count="1"><a href="{{d.naskah}}" target="_blank" rel="noopener" style="height: 22px; padding: 0 8px; border-radius: 99px; border: 1px solid #B8E3DF; background: #EFF6FF; font-size: 11px; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center;">{{ps}} ↗</a></sc-for></div></div>
+                  </div>
+                </sc-for>
+              </div>
+            </sc-if>
+            <sc-if value="{{d.noRing}}" hint-placeholder-val="{{false}}"><div style="margin: 16px 18px; padding: 24px 16px; border-radius: 10px; border: 1px dashed #CBD5E1; background: #F8FAFC; text-align: center; font-size: 12.5px; color: #475569;">Ringkasan substansi belum tersedia. Ringkasan AI sedang menunggu review analis di Back Office.</div></sc-if>
+            <div style="padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; border-radius: 0 0 12px 12px;"><b style="color: #475569;">Sumber:</b> naskah resmi (JDIH) · ringkasan disusun AI dan diverifikasi analis · {{d.verif}}</div>
+          </section>
+          <section style="flex: 1 1 360px; min-width: 0; background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; display: flex; flex-direction: column;">
+            <div style="padding: 12px 18px; border-bottom: 1px solid #EEF2F7;"><h3 style="margin: 0; font-size: 14.5px; font-weight: 600;">Status keberlakuan &amp; log status</h3></div>
+            <ol style="list-style: none; margin: 0; padding: 14px 18px; display: flex; flex-direction: column; gap: 10px; flex: 1;">
+              <sc-for list="{{d.log}}" as="h" hint-placeholder-count="2"><li style="display: grid; grid-template-columns: 14px minmax(0, 1fr); gap: 10px;"><span style="width: 10px; height: 10px; margin-top: 4px; border-radius: 99px; background: #0EA5E9;"></span><span><b style="font-size: 12.5px;">{{h.a}}</b> <span style="font-size: 12px; color: #64748B;">· {{h.b}}</span><span style="display: block; font-size: 12px; color: #475569;">{{h.c}}</span></span></li></sc-for>
+            </ol>
+            <div style="padding: 0 18px 14px;"><span style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.4px; color: #64748B;">VERSI DOKUMEN</span><sc-for list="{{d.versi}}" as="v" hint-placeholder-count="2"><div style="display: flex; justify-content: space-between; gap: 8px; padding: 7px 0; border-bottom: 1px solid #EEF2F7; font-size: 12px;"><span>{{v.l}}</span><span style="color: #64748B;">{{v.t}}</span></div></sc-for></div>
+            <div style="padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; border-radius: 0 0 12px 12px;"><b style="color: #475569;">Sumber:</b> jdih.setneg.go.id · peraturan.bpk.go.id</div>
+          </section>
+        </div>
+
+        <section style="background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px;">
+          <div style="padding: 12px 18px; border-bottom: 1px solid #EEF2F7; display: flex; justify-content: space-between; align-items: center; gap: 8px;"><h3 style="margin: 0; font-size: 14.5px; font-weight: 600;">Relasi induk &amp; turunan</h3><span style="font-size: 11.5px; color: #64748B;">Klik regulasi untuk membuka detailnya</span></div>
+          <sc-if value="{{d.hasRel}}" hint-placeholder-val="{{true}}">
+            <div style="padding: 16px 18px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px;">
+              <sc-for list="{{d.rel}}" as="g" hint-placeholder-count="3">
+                <div style="display: flex; flex-direction: column; gap: 6px;">
+                  <span style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.4px; color: #1E40AF;">{{g.t}}</span>
+                  <sc-for list="{{g.items}}" as="n" hint-placeholder-count="2">
+                    <div sc-camel-on-click="{{n.open}}" class="{{n.cls}}" style="padding: 10px 12px; border-radius: 9px; border: 1px solid #E3E8F0; background: #F8FAFC; font-size: 12.5px;"><b style="color: {{n.c}};">{{n.ref}}</b><div style="font-size: 11.5px; color: #475569;">{{n.rel}} · {{n.note}}</div></div>
+                  </sc-for>
+                </div>
+              </sc-for>
+            </div>
+          </sc-if>
+          <sc-if value="{{d.noRel}}" hint-placeholder-val="{{false}}"><div style="margin: 16px 18px; padding: 18px 16px; border-radius: 10px; border: 1px dashed #CBD5E1; background: #F8FAFC; font-size: 12.5px; color: #475569;">Relasi induk–turunan belum diverifikasi analis; relasi yang belum terverifikasi tidak ditampilkan sebagai tidak ada.</div></sc-if>
+          <div style="padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; border-radius: 0 0 12px 12px;"><b style="color: #475569;">Sumber:</b> konsiderans dan pasal amanat pada naskah resmi · divalidasi analis</div>
+        </section>
+      </div>
+    </sc-if>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script="" data-props="{&quot;startView&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;list&quot;,&quot;detail&quot;],&quot;default&quot;:&quot;list&quot;,&quot;section&quot;:&quot;Prototipe&quot;},&quot;startReg&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;uu25&quot;,&quot;uu6&quot;,&quot;pp28&quot;,&quot;pp35&quot;,&quot;perpres10&quot;,&quot;pm5&quot;,&quot;atr13&quot;,&quot;jabar9&quot;],&quot;default&quot;:&quot;uu25&quot;,&quot;section&quot;:&quot;Prototipe&quot;},&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:3000}}">
+class Component extends DCLogic {
+  componentDidUpdate(pp, ps) {
+    if (ps && (ps.view !== this.state.view || ps.sel !== this.state.sel)) { try { window.scrollTo(0, 0); } catch (e) {} }
+  }
+  renderVals() {
+    const st = this.state;
+    const view = st.view || this.props.startView || 'list';
+    const JC = { UU: '#0B1F4B', PP: '#1E40AF', Perpres: '#1D4ED8', Permen: '#0EA5E9', Kepmen: '#0EA5E9', Perda: '#D4A72C' };
+    const JF = { UU: 'Undang-Undang', PP: 'Peraturan Pemerintah', Perpres: 'Peraturan Presiden', Permen: 'Peraturan Menteri', Kepmen: 'Keputusan Menteri', Perda: 'Peraturan Daerah' };
+    const ORD = ['UU', 'PP', 'Perpres', 'Permen', 'Kepmen', 'Perda'];
+    const KB = [['A', 'Pertanian, Kehutanan, dan Perikanan'], ['B', 'Pertambangan dan Penggalian'], ['C', 'Industri'], ['D', 'Penyediaan Listrik, Gas, Uap/Air Panas, dan Udara Dingin'], ['E', 'Penyediaan Air, Pengelolaan Air Limbah, Penanganan Limbah, dan Remediasi'], ['F', 'Konstruksi'], ['G', 'Perdagangan Besar dan Eceran'], ['H', 'Transportasi dan Penyimpanan'], ['I', 'Aktivitas Penyediaan Akomodasi dan Makan Minum'], ['J', 'Aktivitas Penerbitan, Penyiaran, serta Produksi dan Distribusi Konten'], ['K', 'Telekomunikasi, Pemrograman Komputer, dan Jasa Informasi'], ['L', 'Aktivitas Keuangan dan Asuransi'], ['M', 'Aktivitas Real Estat'], ['N', 'Aktivitas Profesional, Ilmiah, dan Teknis'], ['O', 'Aktivitas Administratif dan Penunjang Usaha'], ['P', 'Administrasi Pemerintahan dan Pertahanan, serta Jaminan Sosial Wajib'], ['Q', 'Pendidikan'], ['R', 'Aktivitas Kesehatan Manusia dan Aktivitas Sosial'], ['S', 'Kesenian, Olahraga, dan Rekreasi'], ['T', 'Aktivitas Jasa Lainnya'], ['U', 'Aktivitas Rumah Tangga sebagai Pemberi Kerja'], ['V', 'Aktivitas Badan Internasional']];
+    const KN = Object.fromEntries(KB);
+    const SEKV = { A: 42, B: 57, C: 81, D: 44, E: 9, F: 31, G: 36, H: 18, I: 27, J: 5, K: 9, L: 19, M: 7, N: 7, O: 4, P: 22, Q: 6, R: 10, S: 5, T: 8, U: 0, V: 0 };
+    const YRS = [2022, 2023, 2024, 2025, 2026];
+    const FY = [0.776, 0.845, 0.903, 0.962, 1];
+    const JSER = { UU: [20, 21, 21, 22, 22], PP: [24, 26, 28, 30, 31], Perpres: [19, 21, 22, 24, 25], Permen: [128, 139, 149, 158, 163], Kepmen: [7, 8, 9, 9, 10], Perda: [27, 30, 33, 36, 39] };
+    const JL = { UU: 'UU / Perppu', PP: 'PP', Perpres: 'Perpres', Permen: 'Permen', Kepmen: 'Kepmen', Perda: 'Perda' };
+
+    // ---------- koleksi regulasi (judul nyata) ----------
+    // [jenis, nomor, tahun, judul, penerbit, wilayah, sektor, id detail]
+    const N = 'Nasional', DPR = 'DPR RI dan Presiden', PRES = 'Presiden RI', X = 'X';
+    const L0 = [
+      ['UU', 'UU No. 25 Tahun 2007', 2007, 'Penanaman Modal', DPR, N, [X], 'uu25'], ['UU', 'UU No. 6 Tahun 2023', 2023, 'Penetapan Perppu No. 2 Tahun 2022 tentang Cipta Kerja menjadi Undang-Undang', DPR, N, [X], 'uu6'],
+      ['UU', 'UU No. 1 Tahun 2022', 2022, 'Hubungan Keuangan antara Pemerintah Pusat dan Pemerintahan Daerah', DPR, N, ['P']], ['UU', 'UU No. 3 Tahun 2020', 2020, 'Perubahan atas UU No. 4 Tahun 2009 tentang Pertambangan Mineral dan Batubara', DPR, N, ['B']],
+      ['UU', 'UU No. 7 Tahun 2014', 2014, 'Perdagangan', DPR, N, ['G']], ['UU', 'UU No. 3 Tahun 2014', 2014, 'Perindustrian', DPR, N, ['C']], ['UU', 'UU No. 26 Tahun 2007', 2007, 'Penataan Ruang', DPR, N, [X]],
+      ['UU', 'UU No. 32 Tahun 2009', 2009, 'Perlindungan dan Pengelolaan Lingkungan Hidup', DPR, N, ['E']], ['UU', 'UU No. 39 Tahun 2014', 2014, 'Perkebunan', DPR, N, ['A']],
+      ['UU', 'UU No. 45 Tahun 2009', 2009, 'Perubahan atas UU No. 31 Tahun 2004 tentang Perikanan', DPR, N, ['A']], ['UU', 'UU No. 30 Tahun 2009', 2009, 'Ketenagalistrikan', DPR, N, ['D']],
+      ['UU', 'UU No. 22 Tahun 2001', 2001, 'Minyak dan Gas Bumi', DPR, N, ['B']], ['UU', 'UU No. 10 Tahun 2009', 2009, 'Kepariwisataan', DPR, N, ['I']], ['UU', 'UU No. 28 Tahun 2002', 2002, 'Bangunan Gedung', DPR, N, ['F']],
+      ['UU', 'UU No. 40 Tahun 2007', 2007, 'Perseroan Terbatas', DPR, N, [X]], ['UU', 'UU No. 23 Tahun 2014', 2014, 'Pemerintahan Daerah', DPR, N, ['P']], ['UU', 'UU No. 20 Tahun 2008', 2008, 'Usaha Mikro, Kecil, dan Menengah', DPR, N, [X]],
+      ['UU', 'UU No. 39 Tahun 2009', 2009, 'Kawasan Ekonomi Khusus', DPR, N, [X]], ['UU', 'UU No. 1 Tahun 2014', 2014, 'Perubahan atas UU No. 27 Tahun 2007 tentang Pengelolaan Wilayah Pesisir dan Pulau-Pulau Kecil', DPR, N, ['A']],
+      ['UU', 'UU No. 7 Tahun 2021', 2021, 'Harmonisasi Peraturan Perpajakan', DPR, N, ['P']], ['UU', 'UU No. 2 Tahun 2012', 2012, 'Pengadaan Tanah bagi Pembangunan untuk Kepentingan Umum', DPR, N, ['F']], ['UU', 'UU No. 5 Tahun 2017', 2017, 'Pemajuan Kebudayaan', DPR, N, ['S']],
+      ['PP', 'PP No. 28 Tahun 2025', 2025, 'Penyelenggaraan Perizinan Berusaha Berbasis Risiko', PRES, N, [X], 'pp28'], ['PP', 'PP No. 35 Tahun 2023', 2023, 'Ketentuan Umum Pajak Daerah dan Retribusi Daerah', PRES, N, ['P'], 'pp35'],
+      ['PP', 'PP No. 12 Tahun 2023', 2023, 'Pemberian Perizinan Berusaha, Kemudahan Berusaha, dan Fasilitas Penanaman Modal bagi Pelaku Usaha di Ibu Kota Nusantara', PRES, N, [X]],
+      ['PP', 'PP No. 22 Tahun 2021', 2021, 'Penyelenggaraan Perlindungan dan Pengelolaan Lingkungan Hidup', PRES, N, ['E']], ['PP', 'PP No. 21 Tahun 2021', 2021, 'Penyelenggaraan Penataan Ruang', PRES, N, [X]],
+      ['PP', 'PP No. 41 Tahun 2021', 2021, 'Penyelenggaraan Kawasan Perdagangan Bebas dan Pelabuhan Bebas', PRES, N, [X]], ['PP', 'PP No. 40 Tahun 2021', 2021, 'Penyelenggaraan Kawasan Ekonomi Khusus', PRES, N, [X]],
+      ['PP', 'PP No. 16 Tahun 2021', 2021, 'Peraturan Pelaksanaan UU No. 28 Tahun 2002 tentang Bangunan Gedung', PRES, N, ['F']], ['PP', 'PP No. 18 Tahun 2021', 2021, 'Hak Pengelolaan, Hak Atas Tanah, Satuan Rumah Susun, dan Pendaftaran Tanah', PRES, N, ['M']],
+      ['PP', 'PP No. 19 Tahun 2021', 2021, 'Penyelenggaraan Pengadaan Tanah bagi Pembangunan untuk Kepentingan Umum', PRES, N, ['F']], ['PP', 'PP No. 7 Tahun 2021', 2021, 'Kemudahan, Pelindungan, dan Pemberdayaan Koperasi dan UMKM', PRES, N, [X]],
+      ['PP', 'PP No. 8 Tahun 2021', 2021, 'Modal Dasar Perseroan serta Pendaftaran Pendirian, Perubahan, dan Pembubaran Perseroan yang Memenuhi Kriteria UMK', PRES, N, [X]], ['PP', 'PP No. 6 Tahun 2021', 2021, 'Penyelenggaraan Perizinan Berusaha di Daerah', PRES, N, [X]],
+      ['PP', 'PP No. 25 Tahun 2021', 2021, 'Penyelenggaraan Bidang Energi dan Sumber Daya Mineral', PRES, N, ['B', 'D']], ['PP', 'PP No. 26 Tahun 2021', 2021, 'Penyelenggaraan Bidang Pertanian', PRES, N, ['A']],
+      ['PP', 'PP No. 27 Tahun 2021', 2021, 'Penyelenggaraan Bidang Kelautan dan Perikanan', PRES, N, ['A']], ['PP', 'PP No. 28 Tahun 2021', 2021, 'Penyelenggaraan Bidang Perindustrian', PRES, N, ['C']],
+      ['PP', 'PP No. 29 Tahun 2021', 2021, 'Penyelenggaraan Bidang Perdagangan', PRES, N, ['G']], ['PP', 'PP No. 23 Tahun 2021', 2021, 'Penyelenggaraan Kehutanan', PRES, N, ['A']],
+      ['PP', 'PP No. 96 Tahun 2021', 2021, 'Pelaksanaan Kegiatan Usaha Pertambangan Mineral dan Batubara', PRES, N, ['B']], ['PP', 'PP No. 34 Tahun 2021', 2021, 'Penggunaan Tenaga Kerja Asing', PRES, N, [X]],
+      ['PP', 'PP No. 35 Tahun 2021', 2021, 'Perjanjian Kerja Waktu Tertentu, Alih Daya, Waktu Kerja dan Waktu Istirahat, dan Pemutusan Hubungan Kerja', PRES, N, [X]], ['PP', 'PP No. 36 Tahun 2021', 2021, 'Pengupahan', PRES, N, [X]],
+      ['PP', 'PP No. 42 Tahun 2021', 2021, 'Kemudahan Proyek Strategis Nasional', PRES, N, ['F']], ['PP', 'PP No. 43 Tahun 2021', 2021, 'Penyelesaian Ketidaksesuaian Tata Ruang, Kawasan Hutan, Izin, dan/atau Hak Atas Tanah', PRES, N, [X]],
+      ['PP', 'PP No. 46 Tahun 2021', 2021, 'Pos, Telekomunikasi, dan Penyiaran', PRES, N, ['J', 'K']], ['PP', 'PP No. 24 Tahun 2021', 2021, 'Tata Cara Pengenaan Sanksi Administratif dan PNBP dari Denda Administratif di Bidang Kehutanan', PRES, N, ['A']],
+      ['PP', 'PP No. 9 Tahun 2021', 2021, 'Perlakuan Perpajakan untuk Mendukung Kemudahan Berusaha', PRES, N, ['P']], ['PP', 'PP No. 78 Tahun 2019', 2019, 'Fasilitas Pajak Penghasilan untuk Penanaman Modal di Bidang-Bidang Usaha Tertentu dan/atau di Daerah-Daerah Tertentu', PRES, N, ['P']],
+      ['PP', 'PP No. 45 Tahun 2019', 2019, 'Perubahan atas PP No. 94 Tahun 2010 tentang Penghitungan Penghasilan Kena Pajak dan Pelunasan PPh dalam Tahun Berjalan', PRES, N, ['P']], ['PP', 'PP No. 54 Tahun 2017', 2017, 'Badan Usaha Milik Daerah', PRES, N, ['P']],
+      ['Perpres', 'Perpres No. 12 Tahun 2025', 2025, 'Rencana Pembangunan Jangka Menengah Nasional 2025–2029', PRES, N, [X]], ['Perpres', 'Perpres No. 70 Tahun 2023', 2023, 'Pengalokasian Lahan bagi Penataan Investasi', PRES, N, [X]],
+      ['Perpres', 'Perpres No. 40 Tahun 2023', 2023, 'Percepatan Swasembada Gula Nasional dan Penyediaan Bioetanol sebagai Bahan Bakar Nabati', PRES, N, ['A', 'C']], ['Perpres', 'Perpres No. 11 Tahun 2023', 2023, 'Urusan Pemerintahan Konkuren Tambahan di Bidang ESDM pada Subbidang Energi Baru Terbarukan', PRES, N, ['D']],
+      ['Perpres', 'Perpres No. 112 Tahun 2022', 2022, 'Percepatan Pengembangan Energi Terbarukan untuk Penyediaan Tenaga Listrik', PRES, N, ['D']], ['Perpres', 'Perpres No. 55 Tahun 2022', 2022, 'Pendelegasian Pemberian Perizinan Berusaha di Bidang Pertambangan Mineral dan Batubara', PRES, N, ['B']],
+      ['Perpres', 'Perpres No. 62 Tahun 2022', 2022, 'Otorita Ibu Kota Nusantara', PRES, N, ['P']], ['Perpres', 'Perpres No. 63 Tahun 2022', 2022, 'Perincian Rencana Induk Ibu Kota Nusantara', PRES, N, [X]], ['Perpres', 'Perpres No. 64 Tahun 2022', 2022, 'Rencana Tata Ruang Kawasan Strategis Nasional Ibu Kota Nusantara', PRES, N, [X]],
+      ['Perpres', 'Perpres No. 10 Tahun 2021 jo. 49/2021', 2021, 'Bidang Usaha Penanaman Modal', PRES, N, [X], 'perpres10'], ['Perpres', 'Perpres No. 87 Tahun 2021', 2021, 'Percepatan Pembangunan Kawasan Rebana dan Kawasan Jawa Barat Bagian Selatan', PRES, 'Jawa Barat', [X]],
+      ['Perpres', 'Perpres No. 98 Tahun 2021', 2021, 'Penyelenggaraan Nilai Ekonomi Karbon', PRES, N, ['E']], ['Perpres', 'Perpres No. 60 Tahun 2020', 2020, 'Rencana Tata Ruang Kawasan Perkotaan Jabodetabek-Punjur', PRES, 'DKI Jakarta', [X]],
+      ['Perpres', 'Perpres No. 80 Tahun 2019', 2019, 'Percepatan Pembangunan Ekonomi di Kawasan Gerbangkertosusila, Bromo–Tengger–Semeru, serta Selingkar Wilis dan Lintas Selatan', PRES, 'Jawa Timur', [X]],
+      ['Perpres', 'Perpres No. 79 Tahun 2019', 2019, 'Percepatan Pembangunan Ekonomi Kawasan Kendal–Semarang–Salatiga–Demak–Grobogan, Purworejo–Wonosobo–Magelang–Temanggung, dan Brebes–Tegal–Pemalang', PRES, 'Jawa Tengah', [X]],
+      ['Perpres', 'Perpres No. 55 Tahun 2019 jo. 79/2023', 2019, 'Percepatan Program Kendaraan Bermotor Listrik Berbasis Baterai untuk Transportasi Jalan', PRES, N, ['C']], ['Perpres', 'Perpres No. 39 Tahun 2019', 2019, 'Satu Data Indonesia', PRES, N, ['P']],
+      ['Perpres', 'Perpres No. 16 Tahun 2018 jo. 12/2021', 2018, 'Pengadaan Barang/Jasa Pemerintah', PRES, N, ['P']], ['Perpres', 'Perpres No. 95 Tahun 2018', 2018, 'Sistem Pemerintahan Berbasis Elektronik', PRES, N, ['P']],
+      ['Perpres', 'Perpres No. 91 Tahun 2017', 2017, 'Percepatan Pelaksanaan Berusaha', PRES, N, [X]], ['Perpres', 'Perpres No. 59 Tahun 2017', 2017, 'Pelaksanaan Pencapaian Tujuan Pembangunan Berkelanjutan', PRES, N, [X]],
+      ['Perpres', 'Perpres No. 3 Tahun 2016 jo. 109/2020', 2016, 'Percepatan Pelaksanaan Proyek Strategis Nasional', PRES, N, ['F']], ['Perpres', 'Perpres No. 4 Tahun 2016', 2016, 'Percepatan Pembangunan Infrastruktur Ketenagalistrikan', PRES, N, ['D']],
+      ['Perpres', 'Perpres No. 38 Tahun 2015', 2015, 'Kerja Sama Pemerintah dengan Badan Usaha dalam Penyediaan Infrastruktur', PRES, N, ['F']], ['Perpres', 'Perpres No. 122 Tahun 2012', 2012, 'Reklamasi di Wilayah Pesisir dan Pulau-Pulau Kecil', PRES, N, ['A']],
+      ['Permen', 'Permen Investasi dan Hilirisasi/BKPM No. 5 Tahun 2025', 2025, 'Pedoman dan Tata Cara Penyelenggaraan Perizinan Berusaha Berbasis Risiko dan Fasilitas Penanaman Modal melalui OSS', 'Kementerian Investasi dan Hilirisasi/BKPM', N, [X], 'pm5'],
+      ['Permen', 'Permendag No. 36 Tahun 2023', 2023, 'Kebijakan dan Pengaturan Impor', 'Kementerian Perdagangan', N, ['G']], ['Permen', 'Permendag No. 23 Tahun 2023', 2023, 'Kebijakan dan Pengaturan Ekspor', 'Kementerian Perdagangan', N, ['G']],
+      ['Permen', 'Permen ESDM No. 10 Tahun 2023', 2023, 'Tata Cara Penyusunan, Penyampaian, dan Persetujuan RKAB serta Pelaporan Kegiatan Usaha Pertambangan', 'Kementerian ESDM', N, ['B']],
+      ['Permen', 'Permen ATR/BPN No. 13 Tahun 2021', 2021, 'Pelaksanaan Kesesuaian Kegiatan Pemanfaatan Ruang dan Sinkronisasi Program Pemanfaatan Ruang', 'Kementerian ATR/BPN', N, [X], 'atr13'],
+      ['Permen', 'Permen LHK No. 4 Tahun 2021', 2021, 'Daftar Usaha dan/atau Kegiatan yang Wajib Memiliki Amdal, UKL-UPL atau SPPL', 'Kementerian Lingkungan Hidup dan Kehutanan', N, ['E']],
+      ['Permen', 'PMK No. 130/PMK.010/2020', 2020, 'Pemberian Fasilitas Pengurangan Pajak Penghasilan Badan', 'Kementerian Keuangan', N, ['P']], ['Permen', 'PMK No. 11/PMK.010/2020', 2020, 'Pelaksanaan PP No. 78 Tahun 2019 tentang Fasilitas Pajak Penghasilan untuk Penanaman Modal', 'Kementerian Keuangan', N, ['P']],
+      ['Kepmen', 'Kepmen ESDM No. 1827 K/30/MEM/2018', 2018, 'Pedoman Pelaksanaan Kaidah Teknik Pertambangan yang Baik', 'Kementerian ESDM', N, ['B']],
+      ['Perda', 'Perda Prov. Jawa Barat No. 9 Tahun 2022', 2022, 'Rencana Tata Ruang Wilayah Provinsi Jawa Barat 2022–2042', 'Pemerintah Provinsi Jawa Barat', 'Jawa Barat', [X], 'jabar9']
+    ];
+    const ALL = L0.map((x, i) => ({ i, j: x[0], nomor: x[1], tahun: x[2], judul: x[3], pen: x[4], wil: x[5], sek: x[6], id: x[7] || null }))
+      .sort((a, b) => ORD.indexOf(a.j) - ORD.indexOf(b.j) || b.tahun - a.tahun);
+    const sekText = (s) => s.map((k) => (k === X ? 'Lintas sektor' : k + ' · ' + KN[k].split(',')[0])).join('; ');
+
+    // ---------- detail lengkap (8 regulasi) ----------
+    const DET = {
+      uu25: { ring: [['Objek', 'Asas, tujuan, bentuk badan usaha, perlakuan, fasilitas dan pelayanan penanaman modal dalam negeri maupun asing.', ['Pasal 2', 'Pasal 3', 'Pasal 5']], ['Subjek', 'Penanam modal dalam negeri dan penanam modal asing, serta pemerintah pusat dan daerah yang menyelenggarakan urusan penanaman modal.', ['Pasal 1', 'Pasal 30']], ['Kewajiban', 'Menerapkan tata kelola perusahaan yang baik, melaksanakan tanggung jawab sosial, membuat laporan kegiatan penanaman modal, menghormati tradisi budaya setempat dan mematuhi peraturan.', ['Pasal 15']], ['Konsekuensi', 'Sanksi administratif berupa peringatan tertulis, pembatasan, pembekuan, hingga pencabutan kegiatan usaha atau fasilitas penanaman modal.', ['Pasal 34']]],
+        log: [['Diundangkan', '26 April 2007', 'Menggantikan UU 1/1967 dan UU 6/1968'], ['Diubah sebagian', '31 Maret 2023', 'Ketentuan bidang usaha dan perizinan diubah oleh UU 6/2023'], ['Status', '12 Okt 2026', 'Aktif; versi konsolidasi dipakai sebagai acuan']],
+        versi: [['Naskah asli', '26 Apr 2007'], ['Konsolidasi pasca UU 6/2023', '31 Mar 2023']],
+        rel: [['Induk', [['UUD 1945 Pasal 33', '', 'Dasar konstitusional', 'perekonomian disusun berdasarkan asas kekeluargaan']]], ['Turunan', [['pp28', 'pp28', 'Peraturan pelaksana', 'perizinan berusaha berbasis risiko'], ['perpres10', 'perpres10', 'Peraturan pelaksana', 'bidang usaha penanaman modal']]], ['Setingkat & perubahan', [['uu6', 'uu6', 'Mengubah sebagian', 'ketentuan bidang usaha dan perizinan'], ['UU No. 23 Tahun 2014', '', 'Pembagian urusan', 'urusan penanaman modal pusat dan daerah']]]] },
+      uu6: { ring: [['Objek', 'Penyederhanaan perizinan berusaha berbasis risiko dan perubahan ketentuan dalam berbagai undang-undang sektoral.', []], ['Subjek', 'Pelaku usaha, kementerian/lembaga dan pemerintah daerah.', []], ['Kewajiban', 'Pelaku usaha mengurus perizinan sesuai tingkat risiko kegiatan usahanya.', []], ['Konsekuensi', 'Peraturan pelaksana di pusat dan daerah wajib menyesuaikan.', []]],
+        log: [['Diundangkan', '31 Maret 2023', 'Menetapkan Perppu 2/2022 menjadi undang-undang'], ['Status', '12 Okt 2026', 'Aktif']], versi: [['Naskah asli', '31 Mar 2023']],
+        rel: [['Induk', [['UUD 1945', '', 'Dasar konstitusional', '']]], ['Turunan', [['pp28', 'pp28', 'Peraturan pelaksana', 'perizinan berusaha berbasis risiko'], ['atr13', 'atr13', 'Peraturan pelaksana', 'kesesuaian kegiatan pemanfaatan ruang']]], ['Setingkat & perubahan', [['uu25', 'uu25', 'Diubah sebagian', 'ketentuan penanaman modal']]]] },
+      pp28: { ring: [['Objek', 'Standar dan tata cara perizinan berusaha berbasis risiko, termasuk perizinan dasar (KKPR, persetujuan lingkungan, PBG) dan standar waktu setiap layanan.', []], ['Subjek', 'Pelaku usaha, kementerian/lembaga, dan pemerintah daerah penyelenggara perizinan melalui OSS.', []], ['Kewajiban', 'Memproses perizinan melalui OSS sesuai standar waktu; persetujuan KKPR melalui penilaian dalam batas waktu yang ditetapkan.', ['Pasal 22', 'Pasal 68–75']], ['Konsekuensi', 'Perizinan dianggap disetujui (fiktif positif) bila batas waktu terlewati; pelaku usaha yang tidak memenuhi standar dikenai sanksi administratif.', ['Pasal 22 ayat (3)', 'Pasal 225 ayat (1)', 'Pasal 230']]],
+        log: [['Ditetapkan', '2025', 'Mencabut PP 5/2021 tentang perizinan berbasis risiko'], ['Fiktif positif berlaku', '2 Juni 2025', 'Tahap I: kajian teknis pertanahan PKKPR dan 6 sektor'], ['Status', '12 Okt 2026', 'Aktif']], versi: [['Naskah asli', '2025']],
+        rel: [['Induk', [['uu6', 'uu6', 'Melaksanakan', 'amanat perizinan berbasis risiko'], ['uu25', 'uu25', 'Merujuk', 'pelayanan penanaman modal']]], ['Turunan', [['pm5', 'pm5', 'Pedoman pelaksanaan', 'tata cara layanan melalui OSS'], ['atr13', 'atr13', 'Pelaksanaan KKPR', 'kesesuaian kegiatan pemanfaatan ruang']]], ['Setingkat', [['pp35', 'pp35', 'Retribusi PBG', 'ketentuan umum retribusi daerah'], ['PP No. 22 Tahun 2021', '', 'Persetujuan lingkungan', 'tata cara persetujuan lingkungan']]]] },
+      pp35: { ring: [['Objek', 'Ketentuan umum pemungutan pajak daerah dan retribusi daerah sebagai pelaksanaan UU 1/2022.', []], ['Subjek', 'Pemerintah daerah dan wajib pajak/retribusi daerah.', []], ['Kewajiban', 'Pemerintah daerah menyesuaikan Perda pajak dan retribusi daerah.', []], ['Konsekuensi', 'Perda yang tidak sesuai dievaluasi dan dapat diminta untuk diubah.', []]],
+        log: [['Ditetapkan', '2023', 'Melaksanakan UU 1/2022 (HKPD)'], ['Status', '12 Okt 2026', 'Aktif']], versi: [['Naskah asli', '2023']],
+        rel: [['Induk', [['UU No. 1 Tahun 2022', '', 'Melaksanakan', 'hubungan keuangan pusat dan daerah']]], ['Turunan', [['Perda PDRD kabupaten/kota', '', 'Peraturan daerah', 'pajak dan retribusi daerah']]], ['Setingkat', [['pp28', 'pp28', 'Terkait', 'standar waktu PBG']]]] },
+      perpres10: { ring: [['Objek', 'Bidang usaha prioritas, bidang usaha yang dialokasikan atau bermitra dengan UMKM, dan bidang usaha dengan persyaratan tertentu.', []], ['Subjek', 'Penanam modal dalam negeri dan asing.', []], ['Kewajiban', 'Penanam modal memenuhi persyaratan bidang usaha yang dipilih.', []], ['Konsekuensi', 'Perizinan tidak dapat diterbitkan untuk bidang usaha yang tertutup bagi penanaman modal.', []]],
+        log: [['Ditetapkan', '2021', 'Bidang usaha penanaman modal'], ['Diubah', '2021', 'Diubah dengan Perpres 49/2021'], ['Status', '12 Okt 2026', 'Aktif']], versi: [['Naskah asli', '2021'], ['Perubahan Perpres 49/2021', '2021']],
+        rel: [['Induk', [['uu25', 'uu25', 'Melaksanakan', ''], ['uu6', 'uu6', 'Melaksanakan', '']]], ['Turunan', [['pm5', 'pm5', 'Dirujuk pedoman', 'persyaratan bidang usaha di OSS']]]] },
+      pm5: { ring: [['Objek', 'Pedoman dan tata cara layanan perizinan berusaha berbasis risiko serta fasilitas penanaman modal melalui OSS.', []], ['Subjek', 'Pelaku usaha, DPMPTSP provinsi dan kabupaten/kota, serta kementerian/lembaga.', []], ['Kewajiban', 'Mengajukan perizinan sesuai tingkat risiko usaha melalui OSS, dari NIB hingga izin.', []], ['Konsekuensi', 'Sanksi administratif bertahap bagi pelaku usaha, serta sanksi pengawasan bagi instansi yang tidak memproses perizinan melalui OSS.', []]],
+        log: [['Mencabut', '2025', 'Perka BKPM No. 3, 4 dan 5 Tahun 2021'], ['Mulai berlaku', '2 Oktober 2025', ''], ['Status', '12 Okt 2026', 'Aktif']], versi: [['Naskah asli', '2025']],
+        rel: [['Induk', [['pp28', 'pp28', 'Melaksanakan', 'standar dan tata cara PBBR'], ['perpres10', 'perpres10', 'Merujuk', 'persyaratan bidang usaha']]], ['Setingkat', [['atr13', 'atr13', 'Terkait', 'PKKPR otomatis membutuhkan RDTR digital']]]] },
+      atr13: { ring: [['Objek', 'Tata cara penerbitan KKPR dan sinkronisasi program pemanfaatan ruang.', []], ['Subjek', 'Pelaku usaha dan pemerintah daerah penyusun RDTR.', []], ['Kewajiban', 'Pelaku usaha memperoleh KKPR sebelum kegiatan pemanfaatan ruang.', []], ['Konsekuensi', 'Tanpa RDTR digital, KKPR diterbitkan melalui penilaian (PKKPR).', []]],
+        log: [['Ditetapkan', '2021', 'Pelaksanaan KKPR'], ['Status', '12 Okt 2026', 'Aktif']], versi: [['Naskah asli', '2021']],
+        rel: [['Induk', [['PP No. 21 Tahun 2021', '', 'Melaksanakan', 'penyelenggaraan penataan ruang'], ['uu6', 'uu6', 'Merujuk', '']]], ['Turunan', [['Perkada RDTR kabupaten/kota', '', 'Prasyarat KKPR otomatis', '']]]] },
+      jabar9: { ring: [['Objek', 'Rencana struktur dan pola ruang Provinsi Jawa Barat 2022–2042, termasuk kawasan industri dan kawasan strategis.', []], ['Subjek', 'Pemerintah daerah, pelaku usaha dan masyarakat di Jawa Barat.', []], ['Kewajiban', 'Pemanfaatan ruang mengikuti arahan zonasi RTRW.', []], ['Konsekuensi', 'Sanksi administratif atas pemanfaatan ruang yang tidak sesuai.', []]],
+        log: [['Ditetapkan', '2022', 'RTRW 2022–2042'], ['Status', '12 Okt 2026', 'Aktif']], versi: [['Naskah asli', '2022']],
+        rel: [['Induk', [['UU No. 26 Tahun 2007', '', 'Melaksanakan', 'penataan ruang'], ['PP No. 21 Tahun 2021', '', 'Merujuk', '']]], ['Turunan', [['RDTR kabupaten kawasan Rebana', '', 'Rencana rinci', '']]]] }
+    };
+    const IDS = ['uu25', 'uu6', 'pp28', 'pp35', 'perpres10', 'pm5', 'atr13', 'jabar9'];
+    const byId = Object.fromEntries(ALL.filter((r) => r.id).map((r) => [r.id, r]));
+    const openReg = (key) => () => this.setState({ view: 'detail', sel: key, menu: null });
+
+    // ---------- filter ----------
+    const fj = st.fj || 'Semua', fs = st.fs || 'Semua', fw = st.fw || 'Semua', q = (st.q || '').trim().toLowerCase();
+    const pass = (r, skip) => (skip === 'j' || fj === 'Semua' || r.j === fj) && (skip === 's' || fs === 'Semua' || r.sek.includes(fs)) && (skip === 'w' || fw === 'Semua' || r.wil === fw)
+      && (!q || (r.nomor + ' ' + r.judul + ' ' + r.pen + ' ' + sekText(r.sek)).toLowerCase().includes(q));
+    const set = (o) => this.setState({ menu: null, page: 0, ...o });
+    const F = [
+      ['fj', 'Jenis', [['Semua', 'Semua jenis'], ...ORD.map((k) => [k, JL[k]])], 'j', (r, v) => r.j === v],
+      ['fs', 'Sektor (KBLI 2025)', [['Semua', 'Semua sektor'], [X, 'Lintas sektor'], ...KB.filter(([k]) => SEKV[k] > 0).map(([k, n]) => [k, k + ' · ' + n])], 's', (r, v) => r.sek.includes(v)],
+      ['fw', 'Wilayah', [['Semua', 'Semua wilayah'], [N, 'Nasional'], ['DKI Jakarta', 'DKI Jakarta'], ['Jawa Barat', 'Jawa Barat'], ['Jawa Tengah', 'Jawa Tengah'], ['Jawa Timur', 'Jawa Timur']], 'w', (r, v) => r.wil === v]
+    ];
+    const fl = F.map(([key, l, list, skip, getter]) => {
+      const cur = st[key] || 'Semua', isOpen = st.menu === key;
+      const lab = (list.find((x) => x[0] === cur) || [cur, cur])[1];
+      return { l, v: cur === 'Semua' ? 'Semua' : lab, open: isOpen, bg: cur === 'Semua' ? '#FFFFFF' : '#EFF6FF', bd: cur === 'Semua' ? '#E3E8F0' : '#B8E3DF', toggle: () => this.setState({ menu: isOpen ? null : key }),
+        opts: list.map(([v, ol]) => ({ l: ol, n: ALL.filter((r) => pass(r, skip) && (v === 'Semua' || getter(r, v))).length, bg: cur === v ? '#EFF6FF' : 'transparent', w: cur === v ? 700 : 500, pick: () => set({ [key]: v }) })) };
+    });
+    const hasFilter = fj !== 'Semua' || fs !== 'Semua' || fw !== 'Semua' || !!q;
+    const resetF = () => set({ fj: 'Semua', fs: 'Semua', fw: 'Semua', q: '' });
+    const ids = ALL.filter((r) => pass(r));
+
+    // ---------- kartu 1 ----------
+    const jenisBar = ORD.map((k) => ({ l: JL[k], n: JSER[k][4], p: ((JSER[k][4] / 290) * 100).toFixed(1).replace('.', ',') + '%', w: Math.round((JSER[k][4] / 163) * 100) + '%', c: JC[k], bg: fj === k ? '#EFF6FF' : 'transparent', fw: fj === k ? 700 : 500, pick: () => set({ fj: k, fs: 'Semua', fw: 'Semua', q: '' }) }));
+
+    // ---------- kartu 2: sebaran ----------
+    const sb = st.sb || 'jenis', yi = st.yi ?? 4;
+    const tot = YRS.map((_, i) => ORD.reduce((a, k) => a + JSER[k][i], 0)), mxT = Math.max(...tot);
+    const years = YRS.map((y, i) => ({ l: i === 4 ? '2026*' : String(y), total: tot[i], h: Math.round((tot[i] / mxT) * 168) + 'px', ol: i === yi ? '2px solid #1E40AF' : '0', fw: i === yi ? 700 : 500, tc: i === yi ? '#0F172A' : '#64748B', pick: () => this.setState({ yi: i }),
+      seg: ORD.map((k) => ({ c: JC[k], h: ((JSER[k][i] / tot[i]) * 100).toFixed(2) + '%', t: JL[k] + ' ' + y + ': ' + JSER[k][i], pick: () => this.setState({ yi: i, sbDetail: { year: i === 4 ? '2026*' : String(y), label: JL[k], count: JSER[k][i], color: JC[k] } }) })) }));
+    const yp = Math.max(0, yi - 1);
+    const jenisCmp = ORD.map((k) => { const a = JSER[k][yp], b = JSER[k][yi], dd = b - a; return { l: JL[k], a, b, d: yi === 0 ? '—' : (dd >= 0 ? '+' : '−') + Math.abs(dd), pick: () => set({ fj: k, fs: 'Semua', fw: 'Semua', q: '' }) }; });
+    const sekAll = KB.filter(([k]) => SEKV[k] > 0).map(([k, n]) => ({ k, n, ser: FY.map((f, i) => (i === 4 ? SEKV[k] : Math.round(SEKV[k] * f))) })).sort((a, b) => b.ser[4] - a.ser[4]);
+    const mxS = Math.max(...sekAll.map((x) => x.ser[yi]));
+    const so = st.so || null;
+    const sekRows = (st.allSek ? sekAll : sekAll.slice(0, 10)).map((x) => { const v = x.ser[yi], a = x.ser[yp], open = so === x.k, mx2 = Math.max(...x.ser);
+      return { k: x.k, n: x.n, v, d: yi === 0 ? '—' : (v - a >= 0 ? '+' : '−') + Math.abs(v - a), w: Math.round((v / mxS) * 100) + '%', open, bg: open ? '#EFF6FF' : 'transparent', bd: open ? '#B8E3DF' : 'transparent', fw: open ? 700 : 500,
+        pick: () => this.setState({ so: open ? null : x.k }), filter: () => set({ fs: x.k, fj: 'Semua', fw: 'Semua', q: '' }),
+        ser: x.ser.map((sv, i) => ({ v: sv, l: i === 4 ? '2026*' : String(YRS[i]), h: Math.max(2, Math.round((sv / mx2) * 48)) + 'px', c: i === yi ? '#1E40AF' : '#82B394' })),
+        note: x.n + ': ' + x.ser[4] + ' regulasi aktif pada 2026 (' + (x.ser[4] - x.ser[3] >= 0 ? '+' : '−') + Math.abs(x.ser[4] - x.ser[3]) + ' dibanding akhir 2025).' }; });
+    const sbTabs = [['jenis', 'Jenis peraturan'], ['sektor', 'Sektor KBLI 2025']].map(([k, l]) => ({ l, bg: sb === k ? '#FFFFFF' : 'transparent', fg: sb === k ? '#0F172A' : '#64748B', pick: () => this.setState({ sb: k }) }));
+    const jenisLeg = ORD.map((k) => ({ l: JL[k], c: JC[k] }));
+
+    // ---------- isu ----------
+    const io = st.io ?? null;
+    const ISU = [["dc","Kebutuhan air dan kajian lingkungan pusat data BDX di Purwakarta","Kab. Purwakarta, Jawa Barat","Perizinan & lingkungan","2 Okt 2026","PP 28/2025 · UU 32/2009",true,"Kebutuhan air diproyeksikan meningkat bertahap; AMDAL masih ditinjau. Klaim penghentian/PBG belum terverifikasi resmi.","Bapenda Jabar, Investortrust, Bisnis.com, Kompas","2 Okt 2026, 10.15 WIB","Belum ditindaklanjuti","Bapenda Jawa Barat (28 Sep 2026) menyebut kebutuhan awal 6.000 meter kubik per hari, diproyeksikan mencapai 384 liter/detik dalam 5 hingga 10 tahun, dengan pasokan melalui PDAM. DLH Purwakarta meninjau AMDAL bersama ahli; pemerintah mendorong keterbukaan kajian kebisingan dan air sisa penguapan. Ini keterangan pemerintah daerah, bukan penilaian dampak independen.","Kepastian alokasi air serta persetujuan lingkungan dan bangunan dapat memengaruhi jadwal proyek dan penerimaan masyarakat. Sumber resmi yang ditinjau tidak mengonfirmasi kapasitas 640 MW maupun penghentian sementara.","Klaim penghentian sementara, kapasitas 640 MW, dan status PBG belum dikonfirmasi sumber resmi.","Publikasikan kajian AMDAL, air, kebisingan, dan air sisa penguapan; verifikasi alokasi PDAM/PJT II dan status PBG; lanjutkan sesuai hasil penilaian dan persetujuan resmi.",[["Investortrust","https://investortrust.id/business/118147/amdal-dan-pbg-belum-rampung-proyek-data-center-ai-bdx-di-purwakarta-dihentikan-sementara"],["Bisnis.com","https://teknologi.bisnis.com/read/20261001/84/2008695/data-center-ai-jatiluhur-serap-384-liter-air-per-detik-benarkah-ancam-pasokan-warga"],["Kompas","https://lestari.kompas.com/read/2026/10/03/182721286/pembangunan-data-center-jatiluhur-dihentikan-iesr-minta-kajian-dampak-dibuka"],["Bapenda Jawa Barat","https://bapenda.jabarprov.go.id/2026/09/28/bdx-kuras-air-bendungan-ini-penjelasan-teknisnya/"]],["pp28","UU No. 32 Tahun 2009","PP No. 16 Tahun 2021"]],["tpl","Konflik lahan masyarakat adat dan PT Toba Pulp Lestari","Kawasan Danau Toba, Sumatera Utara","Isu sosial & lingkungan","27 Des 2025","PP 23/2021 · PP 24/2021",true,"Pemberitaan mencatat konflik lahan adat dan insiden sosial; status izin, audit, dan operasi perlu konfirmasi primer.","Mongabay","27 Des 2025","Belum ditindaklanjuti","Mongabay melaporkan konflik masyarakat adat dengan PT Toba Pulp Lestari, termasuk insiden di Sihaporas dan tuntutan wilayah adat. Pemberitaan juga menyebut audit pascabencana banjir/longsor dan penghentian sementara kegiatan; status izin dan keputusan pemerintah perlu diverifikasi dokumen resmi.","Perselisihan tenurial dan ketidakpastian kepatuhan pascabencana dapat mengganggu kepastian operasi serta meningkatkan risiko sosial dan reputasi industri pulp.","Uraian audit, penghentian kegiatan, dan klaim para pihak mengacu pada pemberitaan; status izin/operasi belum diverifikasi dokumen primer.","Fasilitasi pemetaan partisipatif wilayah adat, kanal pengaduan independen, dan verifikasi kepatuhan lingkungan; konsultasikan langkah operasi dengan masyarakat terdampak.",[["Mongabay (Des 2025)","https://mongabay.co.id/2025/12/27/ketika-pemerintah-evaluasi-pt-tpl-masyarakat-minta-tutup-permanen/"],["Mongabay (Sep 2025)","https://mongabay.co.id/2025/09/24/tragedi-sihaporas-puluhan-warga-adat-alami-kekerasan-dari-pekerja-pt-tpl-saat-berladang/"]],["PP No. 23 Tahun 2021","PP No. 24 Tahun 2021","PP No. 43 Tahun 2021"]],["swl","Penolakan nelayan terhadap reklamasi Surabaya Waterfront Land","Pesisir timur Surabaya, Jawa Timur","Isu sosial","17 Mei 2026","UU 1/2014 · Perpres 122/2012",false,"Laporan media mencatat keberatan nelayan terkait konsultasi AMDAL dan risiko pesisir; status izin laut final belum terverifikasi.","","","Dipantau","Pemberitaan Mongabay 2025 dan 2026 melaporkan nelayan menuntut kejelasan konsultasi AMDAL dan keberlanjutan reklamasi Surabaya Waterfront Land. Skala dampak dan status akhir izin adalah laporan/keberatan, bukan temuan adjudikasi.","Ketidakpastian tata ruang laut, AMDAL, dan konsultasi masyarakat dapat menunda kepastian proyek serta meningkatkan risiko sosial dan lingkungan.","Status final izin ruang laut, AMDAL, dan keputusan atas keberatan warga belum diverifikasi dokumen primer yang berhasil diakses.","Buka dokumen perizinan dan kajian dampak; konsultasikan secara bermakna dengan nelayan; tetapkan mitigasi sebelum kegiatan pesisir berlanjut.",[["Mongabay (Mei 2026)","https://mongabay.co.id/2026/05/17/nelayan-desak-kejelasan-penghentian-proyek-reklamasi-surabaya/amp/"],["Mongabay (Okt 2025)","https://mongabay.co.id/2025/10/15/warga-terus-tuntut-cabut-izin-proyek-pulau-buatan-surabaya/amp/"]],["UU No. 1 Tahun 2014","Perpres No. 122 Tahun 2012"]],["wng","Penolakan tambang gamping dan pabrik semen di Pracimantoro","Kab. Wonogiri, Jawa Tengah","Isu sosial & lingkungan","2 Jun 2025","UU 32/2009 · PP 22/2021",false,"Keberatan warga terkait tambang di kawasan karst; pemberitahuan AMDAL bukan bukti persetujuan akhir.","","","Dipantau","DLHK Jawa Tengah memublikasikan pemberitahuan AMDAL pada 21 Maret 2024 untuk pabrik semen PT Anugerah Andalan Asia yang terintegrasi dengan tambang batu gamping PT Sewu Surya Sejati di Pracimantoro. Pemberitahuan membuktikan proses/dokumen dipublikasikan, bukan bahwa AMDAL disetujui. Penolakan warga dan klaim dampak berasal dari pemberitaan.","Risiko dampak terhadap karst, air, dan lahan serta ketidakpastian persetujuan dapat memengaruhi keputusan investasi. Angka luas terdampak yang diberitakan bukan temuan regulator.","Pemberitahuan AMDAL DLHK tidak membuktikan persetujuan; status persetujuan dan gugatan perlu verifikasi.","Verifikasi status AMDAL dan daya dukung karst/air; buka hasil kajian dan lakukan pemantauan bersama warga sebelum keputusan operasi.",[["Mongabay","http://mongabay.co.id/2025/06/04/penolakan-tambang-dan-pabrik-semen-wonogiri-makin-kuat/"],["detik Jateng","https://www.detik.com/jateng/berita/d-7944810/warga-pracimantoro-geruduk-dlhk-jateng-tolak-pembangunan-pabrik-semen"],["DLHK Jawa Tengah","https://dlhk.jatengprov.go.id/v1/analisis-mengenai-dampak-lingkungan-hidup-amdal-kegiatan-pembangunan-pabrik-semen-oleh-pt-anugerah-andalan-asia-terintegrasi-operasi-produksi-pertambangan-batu-gamping-oleh-pt-sewu-surya-sejati-ke/"]],["UU No. 32 Tahun 2009","PP No. 22 Tahun 2021"]],["rdf","Protes bau fasilitas RDF Rorotan","Jakarta Utara, DKI Jakarta","Isu sosial","27 Agu 2026","UU 32/2009",false,"Keluhan bau saat uji coba dilaporkan; langkah pengendalian dan klaim keluhan mereda perlu pemantauan berkelanjutan.","","","Mereda","Pemberitaan melaporkan penghentian uji coba RDF Rorotan pada November 2025 setelah keluhan bau dan air lindi. Pemprov DKI (Februari 2026) menjelaskan operasi bertahap, armada tertutup, dan pemantauan; keterangan keluhan berkurang bukan bukti keluhan tuntas permanen.","Penerimaan warga dan kinerja pengendalian bau, emisi, serta air lindi menentukan keandalan fasilitas dan kelayakan replikasi RDF.","Keterangan tidak adanya keluhan berlaku pada periode yang disebut sumber; perlu pemantauan dan pembaruan data.","Publikasikan data bau/emisi dan penanganan keluhan; pertahankan angkutan tertutup dan operasi bertahap; tingkatkan kapasitas setelah kinerja terukur.",[["Suara.com","https://www.suara.com/news/2025/11/04/165547/warga-protes-bau-sampah-pramono-anung-hentikan-sementara-uji-coba-rdf-rorotan"],["Kompas","https://lestari.kompas.com/read/2026/08/27/113346486/gubernur-pramono-rdf-rorotan-sudah-tak-diprotes-warga"],["Pemprov DKI Jakarta","https://www.jakarta.go.id/siaran-pers/6428-SP-HMS-02-2026"]],["UU No. 32 Tahun 2009"]]];
+    const regLink = (r) => (byId[r] ? { l: byId[r].nomor.replace(' Tahun ', '/').replace('No. ', ''), open: openReg(r) } : { l: r.replace(' Tahun ', '/').replace('No. ', ''), open: () => { const hit = ALL.find((x) => x.nomor === r); if (hit) this.setState({ view: 'detail', sel: 'i' + hit.i }); } });
+    const ISSUE_DETAILS = {"dc":{"bar":"Kebutuhan air bertahap dan peninjauan AMDAL menjadi isu utama. Klaim penghentian, kapasitas 640 MW, dan status PBG belum terkonfirmasi sumber resmi.","opp":"Peluang bersyarat: kembangkan infrastruktur digital setelah alokasi air, persetujuan lingkungan/bangunan, serta kajian kebisingan dan air sisa penguapan diverifikasi dan dibuka ke publik.","src":[["Bapenda Jawa Barat","https://bapenda.jabarprov.go.id/2026/09/28/bdx-kuras-air-bendungan-ini-penjelasan-teknisnya/"]]},"tpl":{"bar":"Pemberitaan Mongabay melaporkan konflik lahan adat dan insiden sosial. Status izin, audit, dan penghentian kegiatan perlu konfirmasi pemerintah.","opp":"Peluang penyelesaian: pemetaan partisipatif wilayah adat, dialog independen, mekanisme pengaduan, dan pemantauan lingkungan bersama sebelum kegiatan di wilayah sengketa.","src":[]},"swl":{"bar":"Laporan media mencatat keberatan nelayan tentang konsultasi AMDAL dan risiko pesisir. Status izin laut dan dampak final belum terverifikasi sumber primer.","opp":"Peluang bersyarat: selesaikan tata ruang laut dan AMDAL dengan konsultasi bermakna serta mitigasi bersama masyarakat pesisir.","src":[]},"wng":{"bar":"Warga menolak rencana tambang dan pabrik di kawasan karst. Pemberitahuan AMDAL DLHK pada 2024 bukan bukti persetujuan akhir.","opp":"Peluang bersyarat: pastikan daya dukung karst/air, status AMDAL, dan pelibatan warga sebelum keputusan operasi.","src":[["DLHK Jawa Tengah","https://dlhk.jatengprov.go.id/v1/analisis-mengenai-dampak-lingkungan-hidup-amdal-kegiatan-pembangunan-pabrik-semen-oleh-pt-anugerah-andalan-asia-terintegrasi-operasi-produksi-pertambangan-batu-gamping-oleh-pt-sewu-surya-sejati-ke/"]]},"rdf":{"bar":"Keluhan bau saat uji coba dilaporkan. Pemprov DKI menjelaskan operasi bertahap dan pengendalian; klaim keluhan mereda berlaku pada periode yang dilaporkan.","opp":"Peluang replikasi RDF bergantung pada operasi bertahap, pemantauan bau/emisi, angkutan tertutup, pelaporan publik, dan penanganan keluhan terukur.","src":[["Pemprov DKI Jakarta","https://www.jakarta.go.id/siaran-pers/6428-SP-HMS-02-2026"]]}};
+    const isu = ISU.map(([k, t, lok, kat, tgl, reg, ews, ewsA, ewsS, ewsW, stt, fakta, perk, asumsi, opsi, src, regs]) => { const open = io === k;
+      return { t, lok, kat, tgl, reg, ews, noEws: !ews, ewsA, ewsS, ewsW, st: stt, fakta, perk, asumsi, opsi, bar: ISSUE_DETAILS[k].bar, opp: ISSUE_DETAILS[k].opp, open, arrow: open ? '▴' : '▾', lb: ews ? '#DC2626' : 'transparent', rbg: ews ? '#FFF8F8' : '#FFFFFF',
+        src: src.concat(ISSUE_DETAILS[k].src).map(([l, u]) => ({ l, u })), regs: regs.map(regLink), pick: () => this.setState({ io: open ? null : k }) }; });
+
+    // ---------- daftar ----------
+    const PG = 10, nPage = Math.max(1, Math.ceil(ids.length / PG)), page = Math.min(st.page || 0, nPage - 1);
+    const keyOf = (r) => r.id || 'i' + r.i;
+    const rows = ids.slice(page * PG, page * PG + PG).map((r) => ({ jl: r.j === 'UU' ? 'UU' : r.j.toUpperCase(), jbg: JC[r.j], nomor: r.nomor, judul: r.judul, pen: r.pen, wil: r.wil, sek: sekText(r.sek), open: () => this.setState({ view: 'detail', sel: keyOf(r), menu: null }) }));
+    const lo = Math.max(0, Math.min(page - 2, nPage - 5)), hi = Math.min(nPage, lo + 5);
+    const pages = Array.from({ length: hi - lo }, (_, i) => lo + i).map((i) => ({ n: i + 1, bg: i === page ? '#0B1F4B' : '#FFFFFF', fg: i === page ? '#FFFFFF' : '#0F172A', bd: i === page ? '#0B1F4B' : '#E3E8F0', pick: () => this.setState({ page: i }) }));
+    const pageNote = ids.length ? 'Menampilkan ' + (page * PG + 1) + '–' + Math.min(ids.length, page * PG + PG) + ' dari ' + ids.length + ' regulasi bernaskah lengkap' + (hasFilter ? ' sesuai filter' : '') : 'Tidak ada hasil';
+
+    // ---------- detail ----------
+    const selKey = st.sel || this.props.startReg || 'uu25';
+    const r = byId[selKey] || ALL.find((x) => 'i' + x.i === selKey) || byId.uu25;
+    const nav = ids.length ? ids : ALL; const pos = Math.max(0, nav.indexOf(r));
+    const go = (dlt) => () => { const n2 = nav[(pos + dlt + nav.length) % nav.length]; this.setState({ sel: keyOf(n2) }); };
+    const D = r.id ? DET[r.id] : null;
+    const naskah = r.j === 'Perda' || r.j === 'Permen' || r.j === 'Kepmen' ? 'https://peraturan.bpk.go.id' : 'https://jdih.setneg.go.id';
+    const d = { pos: (pos + 1) + ' dari ' + nav.length, jf: JF[r.j], jbg: JC[r.j], nomor: r.nomor, judul: r.judul, pen: r.pen, tahun: r.tahun, wil: r.wil, sek: sekText(r.sek), naskah, naskahL: naskah.replace('https://', ''),
+      hasRing: !!D, noRing: !D, aiLabel: D ? '✦ Ringkasan AI · diverifikasi analis' : '✦ Ringkasan AI · menunggu review', verif: D ? 'diverifikasi 30 Sep 2026' : 'belum diverifikasi',
+      ring: D ? D.ring.map(([h, p, ps]) => ({ h, p, pasal: ps })) : [],
+      log: D ? D.log.map(([a, b, c]) => ({ a, b, c })) : [{ a: 'Diundangkan', b: String(r.tahun), c: '' }, { a: 'Status', b: '12 Okt 2026', c: 'Aktif' }],
+      versi: D ? D.versi.map(([l, t]) => ({ l, t })) : [{ l: 'Naskah asli', t: String(r.tahun) }],
+      hasRel: !!D, noRel: !D,
+      rel: D ? D.rel.map(([t, items]) => ({ t: t.toUpperCase(), items: items.map(([ref, id, rel, note]) => { const tgt = id && byId[id];
+        return { ref: tgt ? tgt.nomor : ref, rel, note: note || (tgt ? tgt.judul : '—'), c: tgt ? '#1D4ED8' : '#0F172A', cls: tgt ? 'rw' : '', open: tgt ? openReg(id) : null }; }) })) : [] };
+
+    const restNote = '290 regulasi aktif tercatat; ' + ALL.length + ' sudah bernaskah lengkap dan dimuat di sini, sisanya dapat ditelusuri di JDIH instansi penerbit.';
+    return { isList: view === 'list', isDetail: view === 'detail', fl, hasFilter, resetF, filterNote: ids.length + ' regulasi sesuai filter',
+      jenisBar, sbLabel: sb === 'jenis' ? 'jenis peraturan' : 'sektor KBLI 2025', sbTabs, sbJenis: sb === 'jenis', sbSektor: sb === 'sektor', years, sbDetail: st.sbDetail || null, jenisLeg, jenisCmp,
+      yrL: yi === 4 ? '2026*' : String(YRS[yi]), yrPrevL: yi === 0 ? '—' : String(YRS[yp]), sekRows, sekTotal: Object.values(SEKV).reduce((a, b) => a + b, 0), allSekLabel: st.allSek ? 'Tampilkan 10 teratas' : 'Tampilkan semua kategori',
+      toggleAllSek: () => this.setState({ allSek: !st.allSek }), isu,
+      q: st.q || '', onSearch: (e) => this.setState({ q: e && e.target ? e.target.value : '', page: 0 }), rows, noRows: rows.length === 0, pages, pageNote, restNote,
+      prevPage: () => this.setState({ page: Math.max(0, page - 1) }), nextPage: () => this.setState({ page: Math.min(nPage - 1, page + 1) }), pgPrevC: page === 0 ? '#CBD5E1' : '#0F172A', pgNextC: page >= nPage - 1 ? '#CBD5E1' : '#0F172A',
+      d, back: () => this.setState({ view: 'list' }), prevReg: go(-1), nextReg: go(1) };
+  }
+}
+</script>
+
+
+<script data-harmonisasi-tab-listener>document.addEventListener("click",function(event){var link=event.target.closest&&event.target.closest("[data-harmonisasi-tab]");if(!link)return;event.preventDefault();var index=Number(link.getAttribute("data-harmonisasi-tab"));if(Number.isInteger(index))window.parent.postMessage({type:"harmonisasi:tab",index:index},"*");},true);</script><script data-harmonisasi-vercel-runtime>(function(){function sendSize(){var h=Math.max(document.documentElement?document.documentElement.scrollHeight:0,document.body?document.body.scrollHeight:0);window.parent.postMessage({type:"harmonisasi:resize",height:h},"*");}function connect(){sendSize();if(window.ResizeObserver){var ro=new ResizeObserver(sendSize);if(document.documentElement)ro.observe(document.documentElement);if(document.body)ro.observe(document.body);}if(window.MutationObserver&&document.body)new MutationObserver(sendSize).observe(document.body,{childList:true,subtree:true,attributes:true,characterData:true});window.addEventListener("load",sendSize);window.addEventListener("resize",sendSize);setTimeout(sendSize,100);setTimeout(sendSize,600);}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",connect,{once:true});else connect();window.addEventListener("message",function(e){if(e.data&&e.data.type==="harmonisasi:resize-request")sendSize();});})();</script><script>
+(function() {
+  function cleanup() {
+    // 1. Metadata labels
+    var labels = ['Tanggal acuan:', 'Cakupan:', 'Periode data OSS:', 'Sumber utama:'];
+    var metaNodes = [];
+    document.querySelectorAll('span').forEach(function(node) {
+      var text = (node.textContent || '').replace(/\s+/g, ' ').trim();
+      if (labels.some(function(l) { return text.indexOf(l) === 0; })) {
+        metaNodes.push(node);
+        node.style.display = 'none';
+      }
+    });
+    if (metaNodes.length && metaNodes[0].parentElement) {
+      var p = metaNodes[0].parentElement;
+      if (Array.from(p.children).every(function(c) { return metaNodes.indexOf(c) !== -1; })) {
+        p.style.display = 'none';
+      }
+    }
+
+    // 2. Filter buttons
+    var filterLabels = ['Jenis:', 'Sektor (KBLI 2025):', 'Wilayah:', 'Jenis izin:', 'Tahap:'];
+    document.querySelectorAll('button').forEach(function(b) {
+      var t = (b.innerText || b.textContent || '').replace(/\s+/g, ' ').trim();
+      if (b.style.display !== 'none' && filterLabels.some(function(l) { return t.indexOf(l) === 0; })) {
+        b.style.display = 'none';
+      }
+    });
+
+    // 3. National scope text
+    document.querySelectorAll('div').forEach(function(d) {
+      var t = (d.textContent || '').replace(/\s+/g, ' ').trim();
+      if (t === 'Nasional · seluruh sektor · seluruh jenis izin') d.style.display = 'none';
+    });
+
+    // 4. Demografi section links
+    var sectionLinks = ['#sec-peta', '#sec-rank', '#sec-tren', '#sec-insight'];
+    sectionLinks.forEach(function(href) {
+      var link = document.querySelector('a[href="' + href + '"]');
+      var nav = link && link.closest('nav');
+      if (nav) nav.style.display = 'none';
+    });
+
+    // 5. Hide Isu dampak section
+    document.querySelectorAll('h2').forEach(function(h) {
+      if ((h.textContent || '').replace(/\s+/g, ' ').trim() === 'Isu dampak, hambatan, peluang & rekomendasi') {
+        var sec = h.closest('section');
+        if (sec) sec.style.display = 'none';
+      }
+    });
+
+    // 6. Focus regulation chart on 2026
+    var chartHeading = Array.from(document.querySelectorAll('h2')).find(function(h) {
+      return (h.textContent || '').indexOf('Sebaran regulasi menurut') === 0 ||
+        (h.textContent || '').indexOf('Jumlah regulasi menurut') === 0;
+    });
+    if (chartHeading) {
+      var chartSection = chartHeading.closest('section');
+      if (chartSection) {
+        var tabs = Array.from(chartSection.querySelectorAll('[role="tab"]'));
+        var sectorTab = tabs.find(function(t) { return (t.textContent || '').indexOf('Sektor') !== -1; });
+        var sectorMode = !!sectorTab && getComputedStyle(sectorTab).backgroundColor === 'rgb(255, 255, 255)';
+        var sectorLabel = sectorTab && sectorTab.querySelector('span');
+        if (sectorLabel && sectorLabel.textContent !== 'Sektor') sectorLabel.textContent = 'Sektor';
+        var title = 'Jumlah regulasi menurut ' + (sectorMode ? 'sektor' : 'jenis') + ' · 2026';
+        if (chartHeading.textContent !== title) chartHeading.textContent = title;
+
+        var chartContent = chartSection.children[1] && chartSection.children[1].children[0];
+        if (chartContent) {
+          if (sectorMode) {
+            var header = chartContent.children[0];
+            if (header && header.children.length >= 4) {
+              if (header.children[1].textContent.trim() === '2026') header.children[1].textContent = '';
+              header.children[2].style.display = '';
+              if (header.children[2].textContent.trim() !== '2026') header.children[2].textContent = '2026';
+              header.children[3].style.display = 'none';
+              header.style.gridTemplateColumns = 'minmax(0, 1fr) minmax(0, 0.9fr) 64px';
+            }
+            Array.from(chartContent.children).slice(1).forEach(function(row) {
+              var rowGrid = Array.from(row.children).find(function(c) { return getComputedStyle(c).display === 'grid'; });
+              if (!rowGrid || rowGrid.children.length < 4) return;
+              rowGrid.children[3].style.display = 'none';
+              rowGrid.style.gridTemplateColumns = 'minmax(0, 1fr) minmax(0, 0.9fr) 64px';
+            });
+          } else {
+            var bars = chartContent.children[0];
+            var years = chartContent.children[1];
+            if (bars && bars.children.length === 5) {
+              bars.style.display = 'flex';
+              Array.from(bars.children).slice(0, 4).forEach(function(b) { b.style.display = 'none'; });
+            }
+            if (years && years.children.length === 5) {
+              years.style.display = 'flex';
+              Array.from(years.children).slice(0, 4).forEach(function(y) { y.style.display = 'none'; });
+              var cur = years.children[4].querySelector('span');
+              if (cur && cur.textContent.trim() !== '2026') cur.textContent = '2026';
+            }
+            var table = chartContent.children[3];
+            if (table) {
+              Array.from(table.children).forEach(function(row) {
+                if (row.children.length < 4) return;
+                row.children[1].style.display = 'none';
+                row.children[3].style.display = 'none';
+                row.style.gridTemplateColumns = 'minmax(0, 1fr) 80px';
+                if (row.children[2].textContent.trim() === '2026*') row.children[2].textContent = '2026';
+              });
+            }
+          }
+        }
+        Array.from(chartSection.querySelectorAll('span')).forEach(function(sp) {
+          var tx = (sp.textContent || '').replace(/\s+/g, ' ').trim();
+          if (tx === 'Periode: akhir tahun 2022–2025; 2026 s.d. 12 Okt') {
+            sp.textContent = 'Periode: tahun 2026 hingga 12 Okt';
+          }
+        });
+      }
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    cleanup();
+    setTimeout(cleanup, 100);
+    setTimeout(cleanup, 500);
+  });
+  if (window.MutationObserver && document.documentElement) {
+    new MutationObserver(cleanup).observe(document.documentElement, {
+      attributes: true, attributeFilter: ['style'], childList: true, subtree: true
+    });
+  }
+})();
+</script>
+</body></html>

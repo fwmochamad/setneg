@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta charset="utf-8">
+<title>Demografi dan Mobilitas Penduduk</title>
+<link rel="stylesheet" href="../assets/inter.css">
+<script src="../assets/react.production.min.js"></script>
+<script src="../assets/react-dom.production.min.js"></script>
+<script src="../assets/dc-runtime.js"></script>
+<style id="setneg-theme-overrides">
+:root{font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#1f2937;background:#f7f9fc;color-scheme:light}
+html,body{min-height:100%;background:#f7f9fc!important;color:#1f2937!important;font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif!important}
+body *,button,input,select,textarea{font-family:inherit}
+body{margin:0!important}
+main{background:#f7f9fc!important;color:#1f2937!important}
+header{background:#fff!important;border-bottom:1px solid #e5e7eb!important;box-shadow:0 1px 3px rgba(15,23,42,.08)!important}
+nav[aria-label="Menu utama"]{background:#f3f4f6!important;border-color:#e5e7eb!important}
+nav[aria-label="Menu utama"] button:hover{background:#e5e7eb!important}
+section,.ck{background:#fff!important;border:1px solid #e5e7eb!important;border-radius:14px!important;box-shadow:0 1px 3px rgba(15,23,42,.08)!important}
+section>div[style*="border-bottom"],section>div[style*="border-top"]{border-color:#eef0f3!important}
+section [style*="border-top: 1px solid"],section [style*="border-bottom: 1px solid"]{border-color:#eef0f3!important}
+h1,h2,h3,h4{font-family:inherit!important;color:#1f2937!important;letter-spacing:-.015em}
+h2,h3{font-weight:700!important}
+button{transition:background-color .15s ease,border-color .15s ease,box-shadow .15s ease}
+button:focus-visible,a:focus-visible{outline:2px solid #0f827d!important;outline-offset:2px}
+.ews-highlight{margin-left:auto;display:flex;flex-wrap:wrap;align-items:center;gap:6px;padding:8px 10px;border:1px solid #fde68a;border-radius:12px;background:#fffbeb}
+.ews-highlight>span{font-weight:700!important;color:#92400e!important}
+.ews-highlight a{height:auto!important;min-height:28px;padding:5px 10px!important;border-radius:8px!important;background:#fef3c7!important;border:1px solid #fcd34d!important;color:#92400e!important;font-weight:700!important}
+.ews-highlight a:hover{background:#fde68a!important}
+[style*="background: #DC2626"],[style*="background:#DC2626"],[style*="background: #B91C1C"],[style*="background:#B91C1C"]{background-color:#fef3c7!important;border-color:#fcd34d!important;color:#92400e!important}
+[style*="background: #FFF8F8"],[style*="background:#FFF8F8"]{background-color:#fffbeb!important}
+[style*="border-left: 4px solid #DC2626"],[style*="border-left:4px solid #DC2626"]{border-left-color:#d97706!important}
+@media(max-width:900px){main[style*="max-width"]{padding-left:16px!important;padding-right:16px!important}header{padding-left:16px!important;padding-right:16px!important}}
+@media(max-width:680px){.ews-highlight{width:100%;margin-left:0}section{border-radius:12px!important}main[style*="max-width"]{gap:12px!important}}
+
+[style*="background: rgb(220, 38, 38)"]{background-color:#fef3c7!important;border-color:#fcd34d!important;color:#92400e!important}
+[style*="background: rgb(255, 248, 248)"]{background-color:#fffbeb!important}
+[style*="border-left: 4px solid rgb(220, 38, 38)"]{border-left-color:#d97706!important}
+
+.setneg-global-header{position:relative!important;z-index:50;background:#fff!important;border-bottom:1px solid #e5e7eb!important;box-shadow:0 1px 3px rgba(15,23,42,.08)!important;padding:0 32px!important;min-height:64px!important;display:flex!important;flex-wrap:wrap!important;align-items:center!important;justify-content:space-between!important}
+.setneg-global-header:before{content:"";position:absolute;inset:0 0 auto;height:64px;background:linear-gradient(180deg,rgba(254,243,199,.48),transparent);pointer-events:none}
+.setneg-header-inner{position:relative;min-height:64px;max-width:1600px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.setneg-brand{flex:0 0 auto;display:flex;align-items:center;gap:12px;min-width:260px;text-decoration:none;color:#1a3a6e}
+.setneg-brand img{display:block;width:40px;height:40px;object-fit:contain}
+.setneg-brand-copy{display:flex;flex-direction:column;gap:1px}
+.setneg-brand-copy strong{font-size:16px;line-height:20px;font-weight:750;letter-spacing:.01em;color:#1a3a6e}
+.setneg-brand-copy span{font-size:11px;line-height:14px;color:#6b7280}
+.setneg-global-nav{display:flex;align-items:center;justify-content:center;gap:2px;padding:4px;background:#f3f4f6;border:1px solid #e5e7eb;border-radius:999px;white-space:nowrap}
+.setneg-global-nav button{display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 10px;border:0;border-radius:999px;background:transparent;color:#4b5563;font:500 11px/1 ui-sans-serif,system-ui,sans-serif;cursor:pointer;white-space:nowrap}
+.setneg-global-nav button svg{width:15px;height:15px;flex:none}
+.setneg-global-nav button:hover{background:#e5e7eb;color:#1f2937}
+.setneg-global-nav button[aria-current="page"]{background:#0d1a33;color:#fff;box-shadow:0 2px 5px rgba(15,23,42,.18)}
+.setneg-header-tools{flex:0 0 auto;display:flex;align-items:center;gap:12px}
+.setneg-theme-button{width:36px;height:36px;border:1px solid #e5e7eb;border-radius:999px;background:#f3f4f6;color:#334155;display:grid;place-items:center}
+.setneg-theme-button svg{width:17px;height:17px}
+.setneg-user{display:flex;align-items:center;gap:9px;color:#1f2937}
+.setneg-avatar{width:30px;height:30px;display:grid;place-items:center;border-radius:50%;background:#db2777;color:#fff;font-size:11px;font-weight:700}
+.setneg-user-copy{display:flex;flex-direction:column;line-height:1.2}
+.setneg-user-copy strong{font-size:11.5px;font-weight:650}
+.setneg-user-copy span{font-size:10px;color:#6b7280}
+.setneg-user-chevron{width:13px;height:13px;color:#64748b}
+@media(max-width:1100px){.setneg-brand{min-width:225px}.setneg-global-nav button{padding:0 7px}.setneg-global-nav button span{font-size:10px}}
+@media(max-width:850px){.setneg-global-header{padding:8px 16px!important}.setneg-header-inner{flex-wrap:wrap;gap:10px}.setneg-global-nav{order:3;width:100%;overflow-x:auto;justify-content:flex-start}.setneg-global-nav button{flex:none}.setneg-brand{min-width:0}.setneg-brand-copy span:last-child{display:none}}
+@media(max-width:480px){.setneg-brand img{width:34px;height:34px}.setneg-brand-copy strong{font-size:13px}.setneg-brand-copy span{font-size:9px}.setneg-user-copy,.setneg-user-chevron{display:none}.setneg-header-tools{margin-left:auto}}
+
+.harmonisasi-page-tabs{box-sizing:border-box;width:calc(100% - 64px);max-width:1376px;margin:10px auto 0;padding:4px;display:flex;gap:4px;overflow-x:auto;white-space:nowrap;background:#fff;border:1px solid #e2e8f0;border-radius:10px;scrollbar-width:thin}
+.harmonisasi-page-tabs a{flex:0 0 auto;display:inline-flex;align-items:center;min-height:32px;padding:0 12px;border-radius:7px;color:#334155;font-size:11px;font-weight:500;text-decoration:none;transition:background .15s,color .15s}
+.harmonisasi-page-tabs a:hover{background:#eff6ff;color:#1d4ed8}
+.harmonisasi-page-tabs a[aria-current="page"]{background:#0b1426;color:#fff;font-weight:650}
+.harmonisasi-page-tabs a:focus-visible{outline:2px solid #2563eb;outline-offset:2px}
+.harmonisasi-highlights{box-sizing:border-box;width:calc(100% - 64px);max-width:1376px;margin:12px auto 0;padding:14px 16px 10px;background:#fff;border:1px solid #e5e7eb;border-radius:16px;box-shadow:0 1px 3px rgba(15,23,42,.10)}
+.harmonisasi-highlights-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
+.harmonisasi-highlights-head h2{margin:0;display:flex;align-items:center;gap:8px;color:#0f172a;font-size:14px;font-weight:700}
+.harmonisasi-warning-symbol{width:16px;height:16px;fill:none;stroke:#ef4444;stroke-linecap:round;stroke-linejoin:round;stroke-width:2}.harmonisasi-alert-icon svg{width:17px;height:17px;fill:none;stroke:#1d4ed8;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.8}
+.harmonisasi-highlights-head>span{flex:0 0 auto;color:#64748b;font-size:10px}
+.harmonisasi-alert-track{display:flex;gap:12px;overflow-x:auto;padding:2px 0 10px;scroll-snap-type:x mandatory;scrollbar-color:#cbd5e1 transparent;scrollbar-width:thin}
+.harmonisasi-alert-card{box-sizing:border-box;flex:0 0 calc((100% - 24px)/3);min-width:300px;padding:10px 11px;background:#fffbeb;border:1px solid #facc15;border-radius:17px;scroll-snap-align:start}
+.harmonisasi-alert-heading{display:flex;align-items:center;gap:9px;min-height:40px;margin-bottom:8px}
+.harmonisasi-alert-icon{flex:0 0 34px;width:34px;height:34px;display:grid;place-items:center;border-radius:50%;background:#fff;color:#0f172a;font-size:16px;font-weight:700}
+.harmonisasi-alert-title{min-width:0;flex:1;display:flex;flex-direction:column;gap:3px}
+.harmonisasi-alert-title strong{color:#0f172a;font-size:11px;line-height:1.25}
+.harmonisasi-alert-title>span{color:#64748b;font-size:9px}
+.harmonisasi-alert-meta{flex:0 0 auto;display:flex;flex-direction:column;align-items:flex-end;gap:3px;color:#64748b;font-size:9px;text-align:right}
+.harmonisasi-alert-details{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}
+.harmonisasi-alert-details>div{min-width:0;min-height:65px;padding:7px;border-radius:10px;background:rgba(255,255,255,.82)}
+.harmonisasi-alert-details b{display:block;margin-bottom:4px;color:#ef4444;font-size:9px;font-weight:600}
+.harmonisasi-alert-details>div:nth-child(2) b{color:#f97316}
+.harmonisasi-alert-details>div:nth-child(3) b{color:#059669}
+.harmonisasi-alert-details p{margin:0;color:#334155;font-size:9px;line-height:1.4;overflow-wrap:anywhere}
+.harmonisasi-alert-empty{padding:12px 14px;border:1px dashed #cbd5e1;border-radius:11px;background:#f8fafc;color:#64748b;font-size:11px}
+@media(max-width:760px){.harmonisasi-page-tabs,.harmonisasi-highlights{width:calc(100% - 24px)}.harmonisasi-alert-card{flex-basis:86%;min-width:270px}.harmonisasi-highlights{padding:12px}.harmonisasi-alert-details{gap:5px}.harmonisasi-alert-details>div{padding:6px}}
+</style>
+<style id="harmonisasi-centered-tabs">
+.harmonisasi-page-tabs{box-sizing:border-box!important;width:fit-content!important;max-width:calc(100% - 32px)!important;margin:16px auto 0!important;padding:4px 8px!important;display:flex!important;flex-wrap:nowrap!important;justify-content:center!important;gap:4px!important;overflow-x:auto!important;background:#F1F3F7!important;border:1px solid #E7EAF0!important;border-radius:12px!important;scrollbar-width:none!important}
+.harmonisasi-page-tabs::-webkit-scrollbar{display:none}
+@media(max-width:760px){.harmonisasi-page-tabs{max-width:calc(100% - 24px)!important;justify-content:flex-start!important}}
+</style><style id="harmonisasi-vercel-responsive">
+html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-height:0!important}main[style*="max-width"]{box-sizing:border-box;width:100%!important;max-width:1376px!important;margin-inline:auto!important}main[style*="max-width"]>*{min-width:0;max-width:100%}.harmonisasi-page-tabs{width:fit-content!important;max-width:calc(100% - 24px)!important}
+@media(max-width:900px){.setneg-global-header{padding-left:16px!important;padding-right:16px!important;gap:8px 12px!important}.setneg-global-nav{gap:2px!important}.setneg-global-nav button{padding:7px 8px!important}main[style*="max-width"]{padding-left:16px!important;padding-right:16px!important}}
+@media(max-width:680px){.setneg-global-header{padding:10px 12px!important;min-height:0!important;gap:8px!important;justify-content:flex-start!important}.setneg-global-header:before{height:100%!important}.setneg-brand{min-width:0!important;flex:1 1 calc(100% - 100px)!important;gap:8px!important}.setneg-brand img{width:34px!important;height:34px!important;object-fit:contain!important}.setneg-brand-copy{min-width:0!important;display:flex!important}.setneg-brand-copy strong{font-size:11px!important;white-space:nowrap!important}.setneg-brand-copy span{display:none!important}.setneg-header-tools{margin-left:auto!important;gap:8px!important}.setneg-user-copy,.setneg-user-chevron{display:none!important}.setneg-global-nav{order:3!important;flex:1 1 100%!important;width:100%!important;max-width:100%!important;overflow-x:auto!important;flex-wrap:nowrap!important;justify-content:flex-start!important;scrollbar-width:none!important}.setneg-global-nav::-webkit-scrollbar{display:none}.setneg-global-nav button{flex:0 0 auto!important;white-space:nowrap!important;font-size:10px!important;padding:7px 9px!important}.harmonisasi-page-tabs{max-width:calc(100% - 20px)!important;justify-content:flex-start!important;margin-top:10px!important}.harmonisasi-highlights{width:calc(100% - 20px)!important;padding:12px!important;margin-top:10px!important}main[style*="max-width"]{padding:12px 12px 28px!important;gap:12px!important}main section,main article{min-width:0!important}main [style*="grid-template-columns"]{min-width:0!important}}
+@media(max-width:480px){.setneg-global-header{padding:8px 10px!important}.setneg-theme-button{width:30px!important;height:30px!important}.setneg-avatar{width:30px!important;height:30px!important}.harmonisasi-alert-card{flex-basis:88%!important;min-width:260px!important}.harmonisasi-alert-details{gap:5px!important}.harmonisasi-alert-details>div{padding:6px!important}main[style*="max-width"]{padding-left:10px!important;padding-right:10px!important}}
+
+@media(max-width:680px){.sc-host{display:block!important;width:100%!important;max-width:100%!important;min-width:0!important}.sc-host>div{box-sizing:border-box!important;width:100%!important;max-width:100%!important;min-width:0!important}.setneg-global-header{box-sizing:border-box!important;width:100%!important;max-width:100%!important;min-width:0!important;overflow:hidden!important}.setneg-global-nav{box-sizing:border-box!important;min-width:0!important}.setneg-brand{max-width:calc(100% - 100px)!important}.harmonisasi-page-tabs{box-sizing:border-box!important;min-width:0!important}}
+@media(max-width:520px){.harmonisasi-page-tabs{width:calc(100% - 20px)!important;max-width:calc(100% - 20px)!important;display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;white-space:normal!important;overflow:visible!important;justify-content:stretch!important}.harmonisasi-page-tabs a{min-width:0!important;min-height:40px!important;padding:5px 7px!important;justify-content:center!important;white-space:normal!important;text-align:center!important;line-height:1.25!important}}
+</style></head>
+<body>
+<x-dc>
+<helmet>
+<style>/* cyrillic-ext */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2JL7SUc.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa0ZL7SUc.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek-ext */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2ZL7SUc.woff2) format('woff2');
+  unicode-range: U+1F00-1FFF;
+}
+/* greek */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1pL7SUc.woff2) format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2pL7SUc.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa25L7SUc.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7SUc.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2JL7SUc.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa0ZL7SUc.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek-ext */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2ZL7SUc.woff2) format('woff2');
+  unicode-range: U+1F00-1FFF;
+}
+/* greek */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1pL7SUc.woff2) format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2pL7SUc.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa25L7SUc.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7SUc.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2JL7SUc.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa0ZL7SUc.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek-ext */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2ZL7SUc.woff2) format('woff2');
+  unicode-range: U+1F00-1FFF;
+}
+/* greek */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1pL7SUc.woff2) format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2pL7SUc.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa25L7SUc.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7SUc.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2JL7SUc.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa0ZL7SUc.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek-ext */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2ZL7SUc.woff2) format('woff2');
+  unicode-range: U+1F00-1FFF;
+}
+/* greek */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1pL7SUc.woff2) format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2pL7SUc.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa25L7SUc.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7SUc.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+</style>
+<style>body{margin:0} a{color:#1D4ED8} a:hover{color:#1E40AF} .ck{cursor:pointer;transition:box-shadow .12s,border-color .12s,background .12s} .ck:hover{box-shadow:0 2px 10px rgba(15,23,42,.08);border-color:#82B394 !important} .rw{cursor:pointer} .rw:hover{background:#EFF6FF !important} .tip{position:relative;outline:none} .tip .pop{display:none;position:absolute;z-index:95;right:0;top:calc(100% + 6px);width:300px;padding:10px 12px;border-radius:10px;background:#0B1F3A;color:#E2E8F0;font-size:11.5px;line-height:17px;font-weight:400;letter-spacing:0;text-align:left;white-space:normal;box-shadow:0 12px 32px rgba(15,23,42,.3)} .tip:hover .pop,.tip:focus .pop{display:block} .tip .pop.pl{left:0;right:auto} .bar:hover{filter:brightness(1.08)} .pv{cursor:pointer;transition:opacity .12s} .pv:hover{opacity:.72} .pt{transition:transform .12s} .pt:hover{transform:scale(1.35)}</style>
+</helmet>
+<div style="min-height: 100vh; background: #F4F7FB; font-family: Inter, system-ui, sans-serif; color: #0F172A;">
+  <header class="setneg-global-header" aria-label="Header Dashboard Presiden RI"><div class="setneg-header-inner"><a class="setneg-brand" href="#top" aria-label="Dashboard Presiden RI"><img alt="Logo Setneg RI" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Logo_Setneg_RI.svg/330px-Logo_Setneg_RI.svg.png"><span class="setneg-brand-copy"><strong>DASHBOARD PRESIDEN RI</strong><span>Badan Teknologi, Data dan Informasi</span><span>Kementerian Sekretariat Negara Republik Indonesia</span></span></a><nav class="setneg-global-nav" aria-label="Navigasi utama"><button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.5"/></svg><span>Eksekutif</span></button><button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"/><path d="m9 12 2 2 4-4"/></svg><span>Pertahanan &amp; Keamanan</span></button><button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 3v18h18"/><path d="m7 14 4-4 4 3 6-7"/></svg><span>Ekonomi</span></button><button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 11h16v2a8 8 0 0 1-16 0v-2Z"/><path d="M8 7c0-1 1-1 1-2M12 7c0-1 1-1 1-2M16 7c0-1 1-1 1-2"/></svg><span>MBG</span></button><button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 3h10l4 4v14H5z"/><path d="M15 3v5h4M8 12h8M8 16h8"/></svg><span>Kebijakan</span></button><button type="button" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="6" cy="6" r="2"/><circle cx="18" cy="6" r="2"/><circle cx="12" cy="18" r="2"/><path d="M8 7.5 10.8 16M16 7.5 13.2 16M8 6h8"/></svg><span>Harmonisasi</span></button></nav><div class="setneg-header-tools"><button class="setneg-theme-button" type="button" aria-label="Ganti tema"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.5 14.4A8.5 8.5 0 0 1 9.6 3.5 8.7 8.7 0 1 0 20.5 14.4Z"/></svg></button><div class="setneg-user"><span class="setneg-avatar">PS</span><span class="setneg-user-copy"><strong>Prabowo Subianto</strong><span>Presiden</span></span><svg class="setneg-user-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div></div></div></header><nav class="harmonisasi-page-tabs" aria-label="Navigasi tab Harmonisasi Investasi"><a href="#harmonisasi-page-0" data-harmonisasi-tab="0">Payung Kebijakan Investasi</a><a href="#harmonisasi-page-1" data-harmonisasi-tab="1">Peluang Investasi Daerah</a><a href="#harmonisasi-page-2" aria-current="page" data-harmonisasi-tab="2">Demografi &amp; Mobilitas Penduduk</a><a href="#harmonisasi-page-3" data-harmonisasi-tab="3">Kemudahan Berusaha &amp; Pelayanan Perizinan</a></nav><section class="harmonisasi-highlights" aria-label="Highlight Demografi dan Mobilitas Penduduk"><div class="harmonisasi-highlights-head"><h2><svg class="harmonisasi-warning-symbol" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3 2.8 19h18.4L12 3Z"></path><path d="M12 9v4m0 3h.01"></path></svg> Highlight Demografi &amp; Mobilitas Penduduk</h2><span>0 Alerts Aktif</span></div><div class="harmonisasi-alert-empty">Tidak ada penanda EWS aktif pada data halaman ini.</div></section>
+  <main style="max-width: 1376px; margin: 0 auto; padding: 16px 32px 48px; display: flex; flex-direction: column; gap: 16px;">
+
+    <!-- Toolbar -->
+    <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px;">
+      <span style="height: 36px; padding: 0 12px; border-radius: 8px; background: #FFFFFF; border: 1px solid #E3E8F0; font-size: 12px; color: #475569; display: inline-flex; align-items: center; gap: 4px; box-sizing: border-box;">Tanggal acuan: <b style="color: #0F172A;">12 Okt 2026</b></span>
+      <span style="height: 36px; padding: 0 12px; border-radius: 8px; background: #FFFFFF; border: 1px solid #E3E8F0; font-size: 12px; color: #475569; display: inline-flex; align-items: center; gap: 4px; box-sizing: border-box;">Cakupan: <b style="color: #0F172A;">38 provinsi</b></span>
+      <span style="font-size: 12px; color: #475569;">Migrasi, komuter, dan wisata ditampilkan terpisah dan <b>tidak dijumlahkan</b> karena sumber dan satuannya berbeda.</span>
+      <nav aria-label="Bagian halaman" style="margin-left: auto; display: flex; flex-wrap: wrap; gap: 4px; padding: 3px; border-radius: 9px; background: #FFFFFF; border: 1px solid #E3E8F0;">
+        <sc-for list="{{nav}}" as="n" hint-placeholder-count="4"><a href="{{n.h}}" style="height: 28px; padding: 0 10px; border-radius: 6px; display: inline-flex; align-items: center; font-size: 12px; font-weight: 600; color: #1E40AF; text-decoration: none;">{{n.l}}</a></sc-for>
+      </nav>
+    </div>
+
+    <!-- 1. Peta kepadatan & profil wilayah -->
+    <section id="sec-peta" style="position: relative; background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; box-shadow: 0 1px 2px rgba(15,23,42,.05); scroll-margin-top: 16px;">
+      <div style="padding: 12px 18px; border-bottom: 1px solid #EEF2F7; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px;">
+        <div><h2 style="margin: 0; font-size: 14.5px; font-weight: 600;">Peta kepadatan penduduk &amp; profil wilayah</h2><div style="font-size: 11.5px; color: #64748B;">Klik provinsi pada peta atau pilih dari daftar untuk melihat kelompok usia, jenis kelamin, dan sektor unggulan</div></div>
+        <label style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: #475569;">Provinsi
+          <sc-raw-select value="{{selV}}" sc-camel-on-change="{{onProv}}" aria-label="Pilih provinsi" style="height: 34px; min-width: 250px; padding: 0 10px; border: 1px solid #E3E8F0; border-radius: 8px; background: #FFFFFF; font-family: inherit; font-size: 12.5px; color: #0F172A; cursor: pointer;">
+            <sc-for list="{{provOpts}}" as="o" hint-placeholder-count="6"><option value="{{o.v}}">{{o.l}}</option></sc-for>
+          </sc-raw-select>
+        </label>
+      </div>
+      <div style="display: flex; flex-wrap: wrap;">
+        <div style="flex: 1 1 640px; min-width: 0; padding: 14px 18px 16px; display: flex; flex-direction: column; gap: 10px;">
+          <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 6px;">
+            <b style="font-size: 11.5px; color: #334155; margin-right: 4px;">Kepadatan penduduk (jiwa/km²) · pertengahan 2025</b>
+            <sc-for list="{{leg}}" as="g" hint-placeholder-count="5"><button type="button" sc-camel-on-click="{{g.pick}}" title="{{g.tt}}" style="height: 26px; padding: 0 9px; border-radius: 99px; border: 1px solid {{g.bd}}; background: {{g.bg}}; display: inline-flex; align-items: center; gap: 6px; font-family: inherit; font-size: 11.5px; color: #0F172A; cursor: pointer;"><span style="width: 10px; height: 10px; border-radius: 3px; background: {{g.c}}; box-shadow: inset 0 0 0 1px rgba(15,23,42,.08);"></span>{{g.l}} <span style="color: #64748B;">· {{g.n}} prov.</span></button></sc-for>
+            <sc-if value="{{clsOn}}" hint-placeholder-val="{{false}}"><button type="button" sc-camel-on-click="{{clsReset}}" style="height: 26px; padding: 0 6px; border: 0; background: transparent; font-family: inherit; font-size: 11.5px; font-weight: 600; color: #1D4ED8; cursor: pointer;">Tampilkan semua kelas</button></sc-if>
+          </div>
+          <div style="border-radius: 10px; background: #F8FAFC; border: 1px solid #EEF2F7; padding: 12px 10px;">
+            <svg sc-camel-view-box="0 0 600 226" role="img" aria-label="Peta kepadatan penduduk 38 provinsi" style="width: 100%; height: auto; display: block;">
+                  <path class="pv" d="M13 47L17 48L20 51L21 49L17 47L13 44L12 46L13 47Z M45 26L41 23L40 18L35 14L31 15L27 13L21 14L17 13L14 10L10 9L5 10L5 13L10 21L22 33L27 34L33 43L36 44L37 51L39 53L43 53L42 49L43 46L41 44L41 41L42 38L39 33L40 31L42 27Z" fill="{{m.aceh.f}}" stroke="#FFFFFF" stroke-width="0.6" sc-camel-on-click="{{m.aceh.pick}}"><title>{{m.aceh.t}}</title></path>
+                  <path class="pv" d="M35 70L38 74L40 68L37 66L35 62L32 63L29 63L35 70Z M45 26L42 30L39 33L42 38L41 41L41 44L43 46L42 49L44 52L52 60L51 62L55 72L56 79L61 75L66 75L65 72L70 72L69 66L68 64L73 62L72 59L72 53L71 49L70 46L67 46L64 40L51 33L48 30L44 28L45 26Z" fill="{{m.sumut.f}}" stroke="#FFFFFF" stroke-width="0.6" sc-camel-on-click="{{m.sumut.pick}}"><title>{{m.sumut.t}}</title></path>
+                  <path class="pv" d="M58 103L53 93L50 94L49 97L52 102L56 105L57 103Z M69 118L67 114L67 118Z M65 111L63 108L62 111L65 112Z M71 121L73 125L72 122L73 120L70 118L71 121Z M70 72L65 70L67 74L61 75L56 79L64 82L65 85L72 93L72 98L75 102L78 107L78 110L80 114L84 111L82 103L86 103L89 101L89 98L92 96L81 88L80 86L77 82L78 79L73 77L71 76L70 73Z" fill="{{m.sumbar.f}}" stroke="#FFFFFF" stroke-width="0.6" sc-camel-on-click="{{m.sumbar.pick}}"><title>{{m.sumbar.t}}</title></path>
+                  <path class="pv" d="M70 72L71 76L73 77L76 79L78 81L78 86L81 88L91 94L93 93L97 93L101 96L106 91L111 92L111 88L116 86L112 84L114 82L115 78L110 74L107 76L105 72L100 72L96 69L95 64L90 60L85 59L84 55L81 52L77 52L75 54L72 51L71 49L72 53L71 58L73 62L68 64L69 66L69 71Z M100 72L104 71L106 73L103 68L98 70L100 72Z M105 69L108 70L105 67L101 68L105 69Z M96 65L97 68L99 69L99 65L97 63Z M95 63L100 65L99 62L93 61L95 63Z M86 58L89 59L90 56L89 54L85 55Z" fill="{{m.riau.f}}" stroke="#FFFFFF" stroke-width="0.6" sc-camel-on-click="{{m.riau.pick}}"><title>{{m.riau.t}}</title></path>
+                  <path class="pv" d="M91 94L89 98L89 101L86 103L82 103L84 111L87 113L91 117L94 117L97 115L101 116L103 114L104 112L109 111L112 112L113 108L124 103L124 95L116 95L112 91L106 91L101 96L97 93L93 93L91 94Z" fill="{{m.jambi.f}}" stroke="#FFFFFF" stroke-width="0.6" sc-camel-on-click="{{m.jambi.pick}}"><title>{{m.jambi.t}}</title></path>
+                  <path class="pv" d="M94 117L97 121L99 121L106 125L105 128L101 131L106 133L107 137L112 137L112 141L115 142L117 145L123 144L123 142L124 138L132 135L136 130L139 131L140 134L143 135L144 131L143 129L144 125L146 123L145 120L142 119L142 116L140 115L132 112L131 111L128 112L131 109L127 107L125 106L124 103L114 106L112 112L109 109L104 112L103 114L101 116L97 115L94 117Z" fill="{{m.sumsel.f}}" stroke="#FFFFFF" stroke-width="0.6" sc-camel-on-click="{{m.sumsel.pick}}"><title>{{m.sumsel.t}}</title></path>
+                  <path class="pv" d="M96 151L98 152L95 150Z M80 114L84 117L88 123L96 129L97 133L110 144L114 145L116 143L114 140L111 140L107 137L105 134L101 131L103 129L106 127L99 124L97 121L94 117L91 117L89 114L84 111L80 114Z" fill="{{m.bengkulu.f}}" stroke="#FFFFFF" stroke-width="0.6" sc-camel-on-click="{{m.bengkulu.pick}}"><title>{{m.bengkulu.t}}</title></path>
+                  <path class="pv" d="M114 145L118 148L127 158L126 153L134 157L136 152L141 158L144 145L144 139L143 135L140 134L139 131L136 130L132 135L124 138L123 142L123 144L117 145L114 145Z" fill="{{m.lampung.f}}" stroke="#FFFFFF" stroke-width="0.6" sc-camel-on-click="{{m.lampung.pick}}"><title>{{m.lampung.t}}</title></path>
+                  <path class="pv" d="M137 109L142 109L144 114L144 118L150 120L154 121L152 119L154 116L149 113L145 102L143 101L142 105L141 103L140 101L137 102L133 108L136 109Z M166 123L169 121L171 124L174 119L171 115L166 115L165 119L165 123Z" fill="{{m.babel.f}}" stroke="#FFFFFF" stroke-width="0.6" sc-camel-on-click="{{m.babel.pick}}"><title>{{m.babel.t}}</title></path>
+                  <path class="pv" d="M118 68L121 66L118 67Z M122 88L124 90L127 88L125 86L123 87Z M122 68L125 70L127 66L123 66L122 68Z M126 85L128 84L130 86L126 81L124 84Z M172 32L173 34L176 32L174 27L170 30L172 32Z" fill="{{m.kepri.f}}" stroke="#FFFFFF" stroke-width="0.6" sc-camel-on-click="{{m.kepri.pick}}"><title>{{m.kepri.t}}</title></path>
+                  <path class="pv" d="M154 160L155 163L157 160L154 160Z" fill="{{m.dki.f}}" stroke="#FFFFFF" stroke-width="0.6" sc-camel-on-click="{{m.dki.pick}}"><title>{{m.dki.t}}</title></path>
+                  <path class="pv" d="M150 172L150 176L152 177L163 179L169 182L175 183L177 181L181 181L179 177L178 174L181 173L181 169L178 169L178 165L175 162L172 163L169 161L167 162L164 161L162 159L158 158L157 164L150 164L150 168L150 172Z" fill="{{m.jabar.f}}" stroke="#FFFFFF" stroke-width="0.6" sc-camel-on-click="{{m.jabar.pick}}"><title>{{m.jabar.t}}</title></path>
+                  <path class="pv" d="M181 181L184 182L187 181L197 183L198 181L202 179L203 182L207 183L206 185L207 188L209 186L211 184L212 181L211 175L215 177L217 174L217 171L218 169L216 167L211 168L210 165L206 165L202 171L199 170L196 171L190 169L188 170L185 170L181 169L181 173L178 174L179 177L181 181Z" fill="{{m.jateng.f}}" stroke="#FFFFFF" stroke-width="0.6" sc-camel-on-click="{{m.jateng.pick}}"><title>{{m.jateng.t}}</title></path>
+                  <path class="pv" d="M197 183L207 188L206 185L207 183L203 182L202 179L200 181L197 183Z" fill="{{m.diy.f}}" stroke="#FFFFFF" stroke-width="0.6" sc-camel-on-click="{{m.diy.pick}}"><title>{{m.diy.t}}</title></path>
+                  <path class="pv" d="M208 188L215 188L218 190L231 191L238 189L248 193L251 193L253 195L256 195L253 192L254 182L250 181L245 181L237 182L234 180L233 176L231 175L230 170L224 171L222 169L218 169L217 171L217 174L215 175L211 175L212 181L213 183L211 186L208 188Z M231 174L242 175L247 174L250 172L247 170L234 171L231 172Z" fill="{{m.jatim.f}}" stroke="#FFFFFF" stroke-width="0.6" sc-camel-on-click="{{m.jatim.pick}}"><title>{{m.jatim.t}}</title></path>
+                  <path class="pv" d="M154 160L151 160L147 159L145 158L143 160L142 166L138 170L137 168L135 169L139 170L145 170L150 172L152 169L150 164L155 163L154 161Z" fill="{{m.banten.f}}" stroke="#FFFFFF" stroke-width="0.6" sc-camel-on-click="{{m.banten.pick}}"><title>{{m.banten.t}}</title></path>
+                  <path class="pv" d="M260 191L263 194L270 190L264 186L259 187L254 186L256 190L260 191Z" fill="{{m.bali.f}}" stroke="#FFFFFF" stroke-width="0.6" sc-camel-on-click="{{m.bali.pick}}"><title>{{m.bali.t}}</title></path>
+                  <path class="pv" d="M276 196L279 197L282 196L283 189L279 188L275 190L275 194L272 195L274 197Z M286 199L302 196L305 193L305 196L310 195L312 194L315 195L313 189L309 192L308 189L304 190L302 187L299 186L296 188L303 192L297 194L294 190L292 191L288 190L284 194L284 198L286 199Z M296 187L293 190L296 187Z" fill="{{m.ntb.f}}" stroke="#FFFFFF" stroke-width="0.6" sc-camel-on-click="{{m.ntb.pick}}"><title>{{m.ntb.t}}</title></path>
+                  <path class="pv" d="M319 191L318 193L320 191Z M317 208L322 208L328 214L332 215L337 212L334 207L332 206L329 206L327 204L325 201L323 203L317 202L312 204L313 207L317 208Z M326 195L334 195L336 196L339 197L343 197L349 196L353 194L357 195L362 193L365 189L363 186L361 188L358 191L356 193L352 191L347 191L345 193L339 189L331 188L328 189L326 190L323 195L326 195Z M349 219L352 218L350 216L348 218Z M362 223L368 221L370 220L370 217L367 218L362 221Z M365 190L368 190L367 188L365 190Z M371 215L375 215L379 213L384 212L390 206L392 204L390 200L393 198L390 199L384 200L382 204L380 203L375 204L372 210L375 211L371 214Z M368 192L372 192L377 188L374 188L371 189L367 192Z M379 192L381 189L379 190L376 191L379 192Z M384 191L392 189L385 187L383 188Z" fill="{{m.ntt.f}}" stroke="#FFFFFF" stroke-width="0.6" sc-camel-on-click="{{m.ntt.pick}}"><title>{{m.ntt.t}}</title></path>
+                  <path class="pv" d="M187 92L191 93L192 95L191 91L187 90Z M192 97L193 95L190 94L189 98L192 97Z M251 63L248 63L244 66L235 63L229 61L225 63L224 67L220 69L216 69L212 67L204 70L200 69L199 66L196 63L192 61L191 58L192 55L188 56L187 60L184 62L183 66L183 69L182 71L183 73L183 77L185 78L186 81L186 84L185 88L192 90L193 93L196 96L197 99L197 103L195 105L198 107L198 110L200 120L204 118L205 121L212 116L211 112L211 107L210 104L208 102L212 101L217 97L218 94L223 91L226 91L230 90L237 87L241 82L239 78L243 77L246 73L247 71L247 68L250 67L251 63Z" fill="{{m.kalbar.f}}" stroke="#FFFFFF" stroke-width="0.6" sc-camel-on-click="{{m.kalbar.pick}}"><title>{{m.kalbar.t}}</title></path>
+                  <path class="pv" d="M206 120L209 121L215 119L217 120L219 118L220 121L219 127L226 124L230 126L235 122L240 124L243 122L243 126L249 124L253 126L256 118L258 117L260 113L265 110L267 107L265 105L266 101L271 98L272 96L268 93L265 92L266 89L264 86L265 83L261 85L260 82L257 81L260 77L263 77L261 72L257 72L253 75L250 72L246 73L243 77L239 78L241 82L238 86L230 90L226 91L223 91L218 94L217 97L212 101L208 102L210 104L209 106L210 110L212 116L206 120Z" fill="{{m.kalteng.f}}" stroke="#FFFFFF" stroke-width="0.6" sc-camel-on-click="{{m.kalteng.pick}}"><title>{{m.kalteng.t}}</title></path>
+                  <path class="pv" d="M253 126L256 129L257 135L274 128L275 125L278 122L275 120L279 115L281 113L276 111L272 112L272 108L271 105L269 101L271 98L266 101L265 105L267 107L265 110L260 113L258 117L256 118L253 126Z M275 134L278 132L277 123L276 124L274 129L275 134Z" fill="{{m.kalsel.f}}" stroke="#FFFFFF" stroke-width="0.6" sc-camel-on-click="{{m.kalsel.pick}}"><title>{{m.kalsel.t}}</title></path>
+                  <path class="pv" d="M246 73L250 72L251 74L257 72L261 72L263 77L260 77L257 81L260 82L261 85L263 83L264 86L265 89L265 92L268 93L271 96L269 101L271 105L270 108L272 112L276 111L281 113L282 110L279 109L280 104L281 102L284 99L283 95L285 98L290 93L291 89L293 87L292 84L294 82L294 76L297 72L299 71L299 67L301 70L305 71L310 71L313 69L299 58L298 55L296 53L300 53L300 50L297 51L295 49L292 48L290 49L288 49L284 49L281 50L278 53L276 59L275 61L271 65L268 65L266 67L262 66L260 63L258 64L256 63L253 62L251 63L250 67L247 68L247 71L246 73Z" fill="{{m.kaltim.f}}" stroke="#FFFFFF" stroke-width="0.6" sc-camel-on-click="{{m.kaltim.pick}}"><title>{{m.kaltim.t}}</title></path>
+                  <path class="pv" d="M256 63L258 64L260 63L262 66L266 67L268 65L271 65L275 61L276 59L277 54L280 52L283 51L287 50L290 48L295 49L297 51L300 50L296 45L295 43L293 41L290 36L287 35L293 35L296 35L297 33L293 31L292 28L290 25L287 26L281 25L276 25L273 25L269 31L270 37L268 41L266 43L262 45L264 49L258 53L260 57L257 58L256 63Z" fill="{{m.kaltara.f}}" stroke="#FFFFFF" stroke-width="0.6" sc-camel-on-click="{{m.kaltara.pick}}"><title>{{m.kaltara.t}}</title></path>
+                  <path class="pv" d="M371 77L384 75L386 71L389 69L392 64L393 63L393 60L390 59L388 61L384 64L383 66L381 68L377 71L366 70L368 71L372 74L371 77Z M397 37L398 34L397 37Z M412 30L415 26L415 23L412 25L412 30Z" fill="{{m.sulut.f}}" stroke="#FFFFFF" stroke-width="0.6" sc-camel-on-click="{{m.sulut.pick}}"><title>{{m.sulut.t}}</title></path>
+                  <path class="pv" d="M320 92L321 96L318 99L322 100L324 105L324 108L327 107L330 108L335 110L340 111L345 113L349 116L347 119L355 122L358 123L355 121L352 117L349 111L346 109L344 106L348 107L350 103L357 101L362 94L366 92L368 95L370 91L368 89L361 90L364 91L354 92L353 94L348 94L343 95L340 100L337 99L332 94L327 90L326 82L328 79L331 76L334 75L340 76L343 75L341 73L350 69L352 70L354 68L346 68L344 66L338 64L336 68L334 69L331 71L330 69L329 71L326 72L324 76L325 79L324 83L321 82L323 83L323 88L324 93L322 90L320 92Z M363 102L366 98L367 101L371 101L372 98L369 97L368 99L367 96L364 97L362 100L363 102Z" fill="{{m.sulteng.f}}" stroke="#FFFFFF" stroke-width="0.6" sc-camel-on-click="{{m.sulteng.pick}}"><title>{{m.sulteng.t}}</title></path>
+                  <path class="pv" d="M332 162L332 165L333 160L332 156L332 162Z M319 127L319 129L321 133L321 137L319 143L318 150L318 153L322 155L325 153L328 154L330 153L332 154L329 148L330 144L332 142L330 139L330 134L332 130L331 124L329 122L328 120L336 115L340 116L339 119L344 120L347 119L349 116L345 113L340 113L335 110L331 107L327 107L324 108L322 111L323 115L320 117L321 122L318 123L319 127Z" fill="{{m.sulsel.f}}" stroke="#FFFFFF" stroke-width="0.6" sc-camel-on-click="{{m.sulsel.pick}}"><title>{{m.sulsel.t}}</title></path>
+                  <path class="pv" d="M350 150L351 152L353 149L351 147L350 150Z M339 119L340 123L337 126L343 133L347 134L345 142L348 144L352 145L353 141L355 139L359 138L361 140L360 137L362 139L363 134L361 135L359 133L357 130L354 128L355 125L355 122L347 119L344 120L340 117Z M356 151L359 150L362 145L361 141L356 144L357 147L355 150Z M359 153L362 155L363 153L367 150L365 148L365 143L367 144L366 138L363 140L361 147L362 149L360 150L359 153Z M364 135L366 137L368 134L365 133Z" fill="{{m.sultra.f}}" stroke="#FFFFFF" stroke-width="0.6" sc-camel-on-click="{{m.sultra.pick}}"><title>{{m.sultra.t}}</title></path>
+                  <path class="pv" d="M343 75L346 74L349 76L357 75L365 75L368 77L372 74L368 72L366 70L362 71L358 68L354 68L352 70L350 69L342 71L343 74Z" fill="{{m.gorontalo.f}}" stroke="#FFFFFF" stroke-width="0.6" sc-camel-on-click="{{m.gorontalo.pick}}"><title>{{m.gorontalo.t}}</title></path>
+                  <path class="pv" d="M320 92L317 98L317 103L318 106L316 107L315 113L312 116L310 117L310 121L312 127L317 126L319 127L318 123L321 122L320 117L323 115L322 111L324 108L324 105L322 101L318 99L321 96L320 92Z" fill="{{m.sulbar.f}}" stroke="#FFFFFF" stroke-width="0.6" sc-camel-on-click="{{m.sulbar.pick}}"><title>{{m.sulbar.t}}</title></path>
+                  <path class="pv" d="M430 188L426 186L430 188Z M401 185L404 183L409 185L411 183L414 181L411 179L406 181L403 181L401 185Z M431 130L433 129L428 129L432 128L431 130Z M412 131L419 129L420 125L417 124L414 121L404 123L406 128L412 131Z M465 189L470 186L467 187L465 189Z M450 184L452 186L453 184L451 182Z M428 127L430 122L433 123L435 126L441 123L449 126L454 125L455 127L466 132L467 128L466 126L463 122L460 120L455 120L449 117L444 120L443 118L432 119L431 121L427 122L429 125Z M472 184L476 180L476 175L474 176L471 178L470 181L469 185L472 184Z M491 158L490 154L491 158Z M492 159L495 154L496 150L492 159Z M510 171L514 167L508 161L508 165L508 169L509 171Z M511 163L510 159L511 163Z M511 159L516 157L514 155L513 153L511 156L511 158Z M511 161L515 164L517 160L514 158L511 160Z" fill="{{m.maluku.f}}" stroke="#FFFFFF" stroke-width="0.6" sc-camel-on-click="{{m.maluku.pick}}"><title>{{m.maluku.t}}</title></path>
+                  <path class="pv" d="M404 113L403 110L402 107L402 110L403 113Z M400 106L408 105L395 105L400 106Z M383 108L389 106L394 106L394 104L386 103L383 103L382 106L383 108Z M419 88L420 85L418 88Z M421 89L423 92L425 91L426 93L428 91L424 89L425 87L424 86L421 86Z M422 103L430 104L431 103L425 99L422 100L422 103Z M422 68L425 71L423 74L426 77L425 85L428 86L429 90L435 93L430 87L428 82L428 77L430 75L441 78L438 77L433 73L432 71L438 68L439 61L435 61L431 64L429 67L428 71L425 70L428 67L429 64L429 59L427 58L430 53L424 59L422 66Z M432 52L433 55L436 55L438 49L437 47L432 52Z" fill="{{m.malut.f}}" stroke="#FFFFFF" stroke-width="0.6" sc-camel-on-click="{{m.malut.pick}}"><title>{{m.malut.t}}</title></path>
+                  <path class="pv" d="M526 91L528 93L529 91L525 90L526 92Z M526 103L536 106L544 105L526 102Z M530 93L531 97L534 97L538 95L535 95L530 90Z M533 116L535 118L537 121L540 121L541 123L544 126L544 122L546 124L547 122L550 121L557 121L559 120L559 123L560 120L563 120L566 120L566 123L570 124L573 126L578 126L579 130L581 127L585 129L588 129L593 131L595 133L591 133L590 130L592 135L597 133L597 115L594 115L590 113L586 111L581 112L570 107L567 105L559 102L558 100L547 104L549 108L542 111L538 110L536 115L533 116Z" fill="{{m.papua.f}}" stroke="#FFFFFF" stroke-width="0.6" sc-camel-on-click="{{m.papua.pick}}"><title>{{m.papua.t}}</title></path>
+                  <path class="pv" d="M489 110L493 111L496 110L502 110L506 108L506 112L505 113L504 116L502 114L499 116L497 113L490 118L489 116L484 116L480 117L482 120L487 121L490 124L492 126L491 129L493 134L497 134L500 131L502 127L500 125L502 122L505 119L503 123L502 126L503 129L505 127L506 131L509 130L511 134L516 132L519 133L515 133L518 136L521 133L520 130L522 128L519 126L516 125L515 122L514 118L515 114L513 118L508 109L508 103L510 99L507 94L507 91L500 91L500 97L494 99L491 105L490 108Z" fill="{{m.papbar.f}}" stroke="#FFFFFF" stroke-width="0.6" sc-camel-on-click="{{m.papbar.pick}}"><title>{{m.papbar.t}}</title></path>
+                  <path class="pv" d="M569 187L566 189L570 190L569 187Z M555 190L564 190L567 187L570 186L571 183L573 179L568 177L561 178L557 183L554 189Z M554 149L557 151L560 153L559 155L562 157L564 164L569 168L571 170L566 171L568 173L573 179L572 183L571 186L574 186L576 188L584 186L596 199L598 171L595 168L597 163L597 151L589 149L588 147L585 148L582 148L584 147L573 146L574 143L570 142L566 142L564 144L561 142L560 141L556 142L557 143L554 149Z" fill="{{m.papsel.f}}" stroke="#FFFFFF" stroke-width="0.6" sc-camel-on-click="{{m.papsel.pick}}"><title>{{m.papsel.t}}</title></path>
+                  <path class="pv" d="M518 136L523 139L532 140L554 149L557 143L556 142L558 136L555 136L559 132L563 131L562 128L560 128L560 123L559 120L557 121L550 121L547 122L546 124L544 122L545 125L544 124L541 122L537 121L535 118L533 116L532 120L526 125L521 125L518 123L518 119L515 117L515 122L516 125L519 126L520 128L521 133L518 136Z" fill="{{m.papteng.f}}" stroke="#FFFFFF" stroke-width="0.6" sc-camel-on-click="{{m.papteng.pick}}"><title>{{m.papteng.t}}</title></path>
+                  <path class="pv" d="M558 141L561 142L564 144L566 142L570 142L572 144L584 147L582 148L584 147L588 147L589 149L597 151L597 133L593 133L590 132L595 133L593 131L589 130L585 129L581 127L579 130L578 126L573 126L570 126L568 123L566 120L563 120L560 120L560 123L560 128L562 128L563 131L559 132L558 136L555 135L557 137L556 140Z" fill="{{m.pappeg.f}}" stroke="#FFFFFF" stroke-width="0.6" sc-camel-on-click="{{m.pappeg.pick}}"><title>{{m.pappeg.t}}</title></path>
+                  <path class="pv" d="M453 105L457 108L461 107L460 103L453 105Z M464 93L467 92L461 92L464 93Z M465 97L468 99L469 95L464 94L465 97Z M458 84L462 85L464 85L467 86L463 83L468 86L471 86L470 82L465 82L459 83L461 84Z M500 91L493 87L486 86L483 87L479 91L471 92L471 95L467 100L472 101L473 99L474 101L477 100L479 102L481 104L481 107L485 111L489 110L489 106L493 98L497 97L500 91Z" fill="{{m.papbd.f}}" stroke="#FFFFFF" stroke-width="0.6" sc-camel-on-click="{{m.papbd.pick}}"><title>{{m.papbd.t}}</title></path>
+              <path d="{{selD}}" fill="none" stroke="#0B1F4B" stroke-width="1.5" stroke-linejoin="round" pointer-events="none"></path>
+              <circle cx="{{mk.x}}" cy="{{mk.y}}" r="{{mk.r}}" fill="none" stroke="#0B1F4B" stroke-width="1.3" pointer-events="none"></circle>
+            </svg>
+          </div>
+          <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px; font-size: 11.5px; color: #64748B;">
+            <span>Arahkan kursor ke provinsi untuk melihat nilai; klik untuk membuka profil. Batas 38 provinsi (termasuk pemekaran Papua 2022).</span>
+            <button type="button" sc-camel-on-click="{{toggleTbl}}" style="height: 28px; padding: 0 10px; border-radius: 7px; border: 1px solid #B8E3DF; background: #FFFFFF; font-family: inherit; font-size: 12px; font-weight: 600; color: #1D4ED8; cursor: pointer;">{{tblLabel}}</button>
+          </div>
+        </div>
+        <aside style="flex: 1 1 380px; min-width: 0; border-left: 1px solid #EEF2F7; padding: 14px 18px 16px; display: flex; flex-direction: column; gap: 12px; background: #FBFCFE;">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;">
+            <div><div style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.4px; color: #64748B;">{{pn.kind}}</div><div style="font-size: 17px; font-weight: 700; color: #0B1F4B;">{{pn.name}}</div></div>
+            <sc-if value="{{pn.isProv}}" hint-placeholder-val="{{true}}"><button type="button" sc-camel-on-click="{{clearSel}}" style="height: 28px; padding: 0 10px; border-radius: 7px; border: 1px solid #E3E8F0; background: #FFFFFF; font-family: inherit; font-size: 11.5px; font-weight: 600; color: #475569; cursor: pointer;">Kembali ke nasional</button></sc-if>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px;">
+            <div style="padding: 10px; border-radius: 9px; background: #FFFFFF; border: 1px solid #E3E8F0;"><div style="font-size: 11px; color: #64748B;">Populasi</div><div style="font-size: 15px; font-weight: 700; color: #0F172A;">{{pn.pop}}</div><div style="font-size: 10.5px; color: #64748B;">{{pn.popSub}}</div></div>
+            <div style="padding: 10px; border-radius: 9px; background: #EFF6FF; border: 1px solid #B8E3DF;"><div style="font-size: 11px; color: #1E40AF;">Kepadatan</div><div style="font-size: 15px; font-weight: 700; color: #1E40AF;">{{pn.dens}}</div><div style="font-size: 10.5px; color: #1D4ED8;">{{pn.densSub}}</div></div>
+            <div style="padding: 10px; border-radius: 9px; background: #FFFFFF; border: 1px solid #E3E8F0;"><div style="font-size: 11px; color: #64748B;">Luas wilayah</div><div style="font-size: 15px; font-weight: 700; color: #0F172A;">{{pn.luas}}</div><div style="font-size: 10.5px; color: #64748B;">{{pn.luasSub}}</div></div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 6px;">
+            <div style="display: flex; justify-content: space-between; gap: 8px; align-items: baseline;"><b style="font-size: 12px;">Komposisi kelompok usia</b><span style="font-size: 10.5px; color: #64748B; text-align: right;">{{pn.ageSrc}}</span></div>
+            <div style="display: flex; height: 14px; border-radius: 4px; overflow: hidden; background: #EEF2F7;">
+              <sc-for list="{{pn.age}}" as="a" hint-placeholder-count="3"><span title="{{a.l}}: {{a.v}}" style="display: block; width: {{a.w}}; background: {{a.c}};"></span></sc-for>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px;">
+              <sc-for list="{{pn.age}}" as="a" hint-placeholder-count="3"><div style="display: flex; align-items: center; gap: 5px; font-size: 11.5px; color: #475569;"><span style="flex: none; width: 9px; height: 9px; border-radius: 2px; background: {{a.c}};"></span>{{a.l}} <b style="color: #0F172A;">{{a.v}}</b></div></sc-for>
+            </div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 6px;">
+            <div style="display: flex; justify-content: space-between; gap: 8px; align-items: baseline;"><b style="font-size: 12px;">Jenis kelamin</b><span style="font-size: 10.5px; color: #64748B; text-align: right;">{{pn.sexSrc}}</span></div>
+            <sc-if value="{{pn.hasSex}}" hint-placeholder-val="{{true}}">
+              <div style="display: flex; flex-direction: column; gap: 5px;">
+                <div style="display: flex; height: 14px; border-radius: 4px; overflow: hidden;"><span title="Laki-laki {{pn.sexLp}}" style="display: block; width: {{pn.sexLw}}; background: #1E40AF;"></span><span title="Perempuan {{pn.sexPp}}" style="display: block; width: {{pn.sexPw}}; background: #82B394;"></span></div>
+                <div style="display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 11.5px; color: #475569;"><span><span style="display: inline-block; width: 9px; height: 9px; border-radius: 2px; background: #1E40AF; margin-right: 5px;"></span>Laki-laki <b style="color: #0F172A;">{{pn.sexL}}</b> ({{pn.sexLp}})</span><span><span style="display: inline-block; width: 9px; height: 9px; border-radius: 2px; background: #82B394; margin-right: 5px;"></span>Perempuan <b style="color: #0F172A;">{{pn.sexP}}</b> ({{pn.sexPp}})</span><span>Rasio jenis kelamin <b style="color: #0F172A;">{{pn.sexR}}</b></span></div>
+              </div>
+            </sc-if>
+            <sc-if value="{{pn.noSex}}" hint-placeholder-val="{{false}}"><div style="padding: 8px 10px; border-radius: 8px; background: #F8FAFC; border: 1px dashed #CBD5E1; font-size: 11.5px; color: #64748B;">Data jenis kelamin belum tersedia untuk wilayah ini.</div></sc-if>
+          </div>
+          <div style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 8px;">
+            <div style="padding: 10px; border-radius: 9px; background: #FFFFFF; border: 1px solid #E3E8F0;"><div style="font-size: 11px; color: #64748B;">Sektor unggulan</div><div style="font-size: 12.5px; font-weight: 700; color: {{pn.sekC}}; line-height: 17px;">{{pn.sek}}</div><div style="font-size: 10.5px; color: #64748B;">{{pn.sekSrc}}</div></div>
+            <div style="padding: 10px; border-radius: 9px; background: #FFFFFF; border: 1px solid #E3E8F0;"><div style="font-size: 11px; color: #64748B;">Migrasi risen</div><div style="font-size: 12.5px; font-weight: 700; color: {{pn.migC}}; line-height: 17px;">{{pn.mig}}</div><div style="font-size: 10.5px; color: #64748B;">{{pn.migSrc}}</div></div>
+          </div>
+          <a href="Peluang.dc.html" style="margin-top: auto; align-self: flex-start; font-size: 12.5px; font-weight: 600; text-decoration: none;">{{pn.pe}}</a>
+        </aside>
+      </div>
+      <sc-if value="{{showTbl}}" hint-placeholder-val="{{false}}">
+        <div style="border-top: 1px solid #EEF2F7;">
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 10px 18px;"><b style="font-size: 12.5px;">Data pembentuk peta · 38 provinsi</b><span style="font-size: 11.5px; color: #64748B;">Klik judul kolom untuk mengurutkan; klik baris untuk menyorot provinsi</span></div>
+          <div style="max-height: 340px; overflow-y: auto;">
+            <div style="display: grid; grid-template-columns: 44px minmax(0, 2fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.2fr); gap: 10px; padding: 8px 18px; background: #F8FAFC; position: sticky; top: 0;">
+              <span style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.4px; color: #64748B;">NO</span>
+              <sc-for list="{{sortBtns}}" as="s" hint-placeholder-count="4"><button type="button" sc-camel-on-click="{{s.pick}}" style="padding: 0; border: 0; background: transparent; font-family: inherit; font-size: 10.5px; font-weight: 700; letter-spacing: 0.4px; color: {{s.fg}}; text-align: {{s.al}}; cursor: pointer;">{{s.l}}</button></sc-for>
+            </div>
+            <sc-for list="{{tbl}}" as="r" hint-placeholder-count="8">
+              <a href="#sec-peta" sc-camel-on-click="{{r.pick}}" class="rw" style="display: grid; grid-template-columns: 44px minmax(0, 2fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.2fr); gap: 10px; align-items: center; padding: 7px 18px; border-top: 1px solid #EEF2F7; background: {{r.bg}}; font-size: 12px; color: #0F172A; text-decoration: none;"><span style="color: #64748B;">{{r.no}}</span><span style="font-weight: {{r.fw}};">{{r.n}}</span><span style="text-align: right;">{{r.pop}}</span><span style="text-align: right;">{{r.luas}}</span><span style="display: flex; justify-content: flex-end; align-items: center; gap: 6px;"><span style="width: 9px; height: 9px; border-radius: 2px; background: {{r.c}}; box-shadow: inset 0 0 0 1px rgba(15,23,42,.1);"></span><b>{{r.dens}}</b></span></a>
+            </sc-for>
+          </div>
+        </div>
+      </sc-if>
+      <div style="padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;"><span><b style="color: #475569;">Periode:</b> penduduk &amp; kepadatan pertengahan 2025; kelompok usia SP2020 Long Form; jenis kelamin 2022/2026</span><span><b style="color: #475569;">Diperbarui:</b> 12 Okt 2026</span><span><b style="color: #475569;">Sumber:</b> BPS (Statistik Indonesia 2026, Long Form SP2020), Kemenkes, Dukcapil Kemendagri</span><span style="padding: 0 6px; border-radius: 4px; background: #EFF6FF; color: #1D4ED8; font-weight: 600;">Divalidasi analis</span></div>
+      <sc-if value="{{hasMapPop}}" hint-placeholder-val="{{false}}">
+        <div role="dialog" aria-label="Profil singkat provinsi" style="position: absolute; z-index: 40; left: {{mp.popLeft}}; top: {{mp.popTop}}; width: min(206px, calc(100% - 24px)); max-height: 280px; box-sizing: border-box; overflow: auto; background: #FFFFFF; border: 1px solid #E7F1E9; border-radius: 10px; box-shadow: 0 12px 28px rgba(15,23,42,.2);">
+          <div style="position: sticky; top: 0; padding: 8px 10px; border-bottom: 1px solid #EEF2F7; display: flex; justify-content: space-between; align-items: flex-start; gap: 6px; background: #EFF6FF;">
+            <div><div style="font-size: 9px; font-weight: 700; letter-spacing: .4px; color: #64748B;">PROFIL WILAYAH</div><b style="font-size: 12px; line-height: 15px; color: #0B1F4B;">{{mp.name}}</b></div>
+            <button type="button" sc-camel-on-click="{{closeMapPop}}" aria-label="Tutup profil provinsi" style="flex: none; width: 20px; height: 20px; border: 0; border-radius: 5px; background: transparent; color: #64748B; font-family: inherit; font-size: 14px; cursor: pointer;">x</button>
+          </div>
+          <div style="padding: 8px 9px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 5px;">
+            <div style="padding: 6px; border: 1px solid #EEF2F7; border-radius: 7px;"><div style="font-size: 8px; color: #64748B;">POPULASI</div><b style="font-size: 11px; color: #0B1F4B;">{{mp.pop}}</b><div style="font-size: 8px; line-height: 10px; color: #64748B;">{{mp.popSub}}</div></div>
+            <div style="padding: 6px; border: 1px solid #EEF2F7; border-radius: 7px;"><div style="font-size: 8px; color: #64748B;">KEPADATAN</div><b style="font-size: 11px; color: #0B1F4B;">{{mp.dens}}</b><div style="font-size: 8px; line-height: 10px; color: #64748B;">{{mp.densSub}}</div></div>
+            <div style="padding: 6px; border: 1px solid #EEF2F7; border-radius: 7px; grid-column: 1 / -1;"><div style="font-size: 8px; color: #64748B;">LUAS WILAYAH</div><b style="font-size: 10px; color: #0B1F4B;">{{mp.luas}}</b><span style="font-size: 8px; color: #64748B;"> ? {{mp.luasSub}}</span></div>
+          </div>
+          <div style="padding: 0 9px 8px; display: flex; flex-direction: column; gap: 6px;">
+            <div style="padding: 7px; border: 1px solid #EEF2F7; border-radius: 7px;"><b style="font-size: 8px; letter-spacing: .3px; color: #475569;">KOMPOSISI USIA</b><sc-for list="{{mp.age}}" as="a" hint-placeholder-count="3"><div style="margin-top: 4px; display: grid; grid-template-columns: 35px 1fr 33px; gap: 4px; align-items: center; font-size: 8.5px;"><span>{{a.l}}</span><span style="height: 5px; border-radius: 99px; background: #EEF2F7; overflow: hidden;"><span style="display: block; width: {{a.w}}; height: 100%; background: {{a.c}};"></span></span><b style="text-align: right;">{{a.v}}</b></div></sc-for><div style="margin-top: 3px; font-size: 7.5px; line-height: 10px; color: #64748B;">Sumber: {{mp.ageSrc}}</div></div>
+            <sc-if value="{{mp.hasSex}}" hint-placeholder-val="{{true}}"><div style="padding: 6px 7px; border: 1px solid #EEF2F7; border-radius: 7px;"><b style="font-size: 8px; letter-spacing: .3px; color: #475569;">JENIS KELAMIN</b><div style="margin-top: 3px; font-size: 8px; line-height: 11px;">Laki-laki {{mp.sexLp}} ? Perempuan {{mp.sexPp}}</div><div style="font-size: 7.5px; line-height: 10px; color: #64748B;">Rasio {{mp.sexR}} laki-laki per 100 perempuan ? {{mp.sexSrc}}</div></div></sc-if>
+            <div style="padding: 6px 7px; border: 1px solid #EEF2F7; border-radius: 7px;"><b style="font-size: 8px; letter-spacing: .3px; color: #475569;">SEKTOR UNGGULAN</b><div style="margin-top: 3px; font-size: 8.5px; line-height: 11px;">{{mp.sek}}</div><div style="font-size: 7.5px; line-height: 10px; color: #64748B;">{{mp.sekSrc}}</div></div>
+          </div>
+          <div style="position: sticky; bottom: 0; padding: 6px 8px; border-top: 1px solid #EEF2F7; background: #FAFBFD;"><button type="button" sc-camel-on-click="{{closeMapPop}}" style="width: 100%; padding: 6px 8px; border: 0; border-radius: 6px; background: #1E40AF; color: #FFFFFF; font-family: inherit; font-size: 9px; font-weight: 600; cursor: pointer;">Lihat profil lengkap ></button></div>
+        </div>
+      </sc-if>
+    </section>
+
+    <!-- 2. Ranking masuk/keluar -->
+    <section id="sec-rank" style="background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; box-shadow: 0 1px 2px rgba(15,23,42,.05); scroll-margin-top: 16px;">
+      <div style="padding: 12px 18px; border-bottom: 1px solid #EEF2F7; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px;">
+        <div><h2 style="margin: 0; font-size: 14.5px; font-weight: 600;">Provinsi dengan pergerakan masuk/keluar tertinggi</h2><div style="font-size: 11.5px; color: #64748B;">Ranking dihitung dari data sumber, bukan AI · klik baris untuk menyorot di peta</div></div>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center;">
+          <div role="tablist" aria-label="Jenis pergerakan" style="display: flex; gap: 2px; padding: 3px; background: #EEF2F7; border-radius: 8px;">
+            <sc-for list="{{rkTabs}}" as="t" hint-placeholder-count="3"><button type="button" role="tab" sc-camel-on-click="{{t.pick}}" style="height: 28px; padding: 0 12px; border: 0; border-radius: 6px; background: {{t.bg}}; color: {{t.fg}}; font-family: inherit; font-size: 12px; font-weight: 600; cursor: pointer;">{{t.l}}</button></sc-for>
+          </div>
+          <div style="display: flex; gap: 2px; padding: 3px; background: #EEF2F7; border-radius: 8px;">
+            <sc-for list="{{topOpts}}" as="o" hint-placeholder-count="2">
+              <sc-if value="{{o.ok}}" hint-placeholder-val="{{true}}"><button type="button" sc-camel-on-click="{{o.pick}}" style="height: 28px; padding: 0 12px; border: 0; border-radius: 6px; background: {{o.bg}}; color: {{o.fg}}; font-family: inherit; font-size: 12px; font-weight: 600; cursor: pointer;">{{o.l}}</button></sc-if>
+              <sc-if value="{{o.no}}" hint-placeholder-val="{{false}}"><span class="tip" tabindex="0" style="height: 28px; padding: 0 12px; border-radius: 6px; display: inline-flex; align-items: center; color: #94A3B8; font-size: 12px; font-weight: 600; cursor: help;">{{o.l}}<span class="pop" style="width: 240px;">{{o.why}}</span></span></sc-if>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+      <div style="padding: 14px 18px 16px; display: flex; flex-direction: column; gap: 14px;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 8px;">
+          <div style="padding: 9px 12px; border-radius: 9px; background: #F8FAFC; border: 1px solid #EEF2F7;"><div style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.4px; color: #64748B;">DEFINISI</div><div style="font-size: 11.5px; line-height: 16px; color: #334155;">{{rk.def}}</div></div>
+          <div style="padding: 9px 12px; border-radius: 9px; background: #F8FAFC; border: 1px solid #EEF2F7;"><div style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.4px; color: #64748B;">SATUAN · PERIODE</div><div style="font-size: 11.5px; line-height: 16px; color: #334155;"><b>{{rk.unit}}</b> · {{rk.per}}</div></div>
+          <div style="padding: 9px 12px; border-radius: 9px; background: #F8FAFC; border: 1px solid #EEF2F7;"><div style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.4px; color: #64748B;">CAKUPAN</div><div style="font-size: 11.5px; line-height: 16px; color: #334155;">{{rk.scope}}</div></div>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 24px;">
+          <div style="flex: 1 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 4px;">
+            <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 8px; padding-bottom: 4px; border-bottom: 1px solid #EEF2F7;"><h3 style="margin: 0; font-size: 12.5px; font-weight: 700; color: #1E40AF;">▲ {{rk.inL}}</h3><span style="font-size: 11px; color: #64748B;">{{rk.unit}}</span></div>
+            <sc-for list="{{rk.rin}}" as="r" hint-placeholder-count="5">
+              <a href="#sec-peta" sc-camel-on-click="{{r.pick}}" class="bar" title="Sorot {{r.p}} di peta" style="display: grid; grid-template-columns: 24px minmax(0, 1.3fr) minmax(0, 1.6fr) 92px; gap: 10px; align-items: center; padding: 5px 6px; margin: 0 -6px; border-radius: 6px; background: {{r.bg}}; font-size: 12.5px; color: #0F172A; text-decoration: none;">
+                <span style="color: #64748B; font-weight: 600;">{{r.rk}}</span>
+                <span style="min-width: 0;"><span style="font-weight: {{r.fw}};">{{r.n}}</span> <span style="font-size: 11px; color: #64748B;">{{r.sub}}</span></span>
+                <span style="display: block; height: 14px; border-radius: 4px; background: #EEF2F7;"><span style="display: block; width: {{r.w}}; height: 14px; border-radius: 4px; background: #1D4ED8;"></span></span>
+                <b style="text-align: right;">{{r.v}}</b>
+              </a>
+            </sc-for>
+          </div>
+          <div style="flex: 1 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 4px;">
+            <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 8px; padding-bottom: 4px; border-bottom: 1px solid #EEF2F7;"><h3 style="margin: 0; font-size: 12.5px; font-weight: 700; color: #475569;">▼ {{rk.outL}}</h3><span style="font-size: 11px; color: #64748B;">{{rk.unit}}</span></div>
+            <sc-for list="{{rk.rout}}" as="r" hint-placeholder-count="5">
+              <a href="#sec-peta" sc-camel-on-click="{{r.pick}}" class="bar" title="Sorot {{r.p}} di peta" style="display: grid; grid-template-columns: 24px minmax(0, 1.3fr) minmax(0, 1.6fr) 92px; gap: 10px; align-items: center; padding: 5px 6px; margin: 0 -6px; border-radius: 6px; background: {{r.bg}}; font-size: 12.5px; color: #0F172A; text-decoration: none;">
+                <span style="color: #64748B; font-weight: 600;">{{r.rk}}</span>
+                <span style="min-width: 0;"><span style="font-weight: {{r.fw}};">{{r.n}}</span> <span style="font-size: 11px; color: #64748B;">{{r.sub}}</span></span>
+                <span style="display: block; height: 14px; border-radius: 4px; background: #EEF2F7;"><span style="display: block; width: {{r.w}}; height: 14px; border-radius: 4px; background: #64748B;"></span></span>
+                <b style="text-align: right;">{{r.v}}</b>
+              </a>
+            </sc-for>
+          </div>
+        </div>
+        <p style="margin: 0; font-size: 11.5px; line-height: 17px; color: #64748B;">{{rk.note}} Nilai yang sama mendapat peringkat yang sama. Panjang batang masuk dan keluar memakai skala yang sama.</p>
+      </div>
+      <div style="padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;"><span><b style="color: #475569;">Periode:</b> {{rk.per}}</span><span><b style="color: #475569;">Diperbarui:</b> 12 Okt 2026</span><span><b style="color: #475569;">Sumber:</b> {{rk.src}}</span><span style="padding: 0 6px; border-radius: 4px; background: #EFF6FF; color: #1D4ED8; font-weight: 600;">Definisi divalidasi analis</span></div>
+    </section>
+
+    <!-- 3. Tren pergerakan penduduk -->
+    <section id="sec-tren" style="background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; box-shadow: 0 1px 2px rgba(15,23,42,.05); scroll-margin-top: 16px;">
+      <div style="padding: 12px 18px; border-bottom: 1px solid #EEF2F7; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px;">
+        <div><h2 style="margin: 0; font-size: 14.5px; font-weight: 600;">Tren pergerakan penduduk</h2><div style="font-size: 11.5px; color: #64748B;">Satu tab per jenis pergerakan; setiap seri memakai satuannya sendiri</div></div>
+        <div role="tablist" aria-label="Jenis pergerakan" style="display: flex; gap: 2px; padding: 3px; background: #EEF2F7; border-radius: 8px;">
+          <sc-for list="{{trTabs}}" as="t" hint-placeholder-count="3"><button type="button" role="tab" sc-camel-on-click="{{t.pick}}" style="height: 28px; padding: 0 12px; border: 0; border-radius: 6px; background: {{t.bg}}; color: {{t.fg}}; font-family: inherit; font-size: 12px; font-weight: 600; cursor: pointer;">{{t.l}}</button></sc-for>
+        </div>
+      </div>
+      <div style="padding: 14px 18px 16px; display: flex; flex-direction: column; gap: 14px;">
+        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px;">
+          <sc-if value="{{isLine}}" hint-placeholder-val="{{true}}">
+            <div style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #475569;">Periode
+              <div style="display: flex; gap: 2px; padding: 3px; background: #EEF2F7; border-radius: 8px;">
+                <sc-for list="{{perOpts}}" as="p" hint-placeholder-count="3"><button type="button" sc-camel-on-click="{{p.pick}}" style="height: 26px; padding: 0 10px; border: 0; border-radius: 6px; background: {{p.bg}}; color: {{p.fg}}; font-family: inherit; font-size: 12px; font-weight: 600; cursor: pointer;">{{p.l}}</button></sc-for>
+              </div>
+            </div>
+          </sc-if>
+          <sc-if value="{{isMig}}" hint-placeholder-val="{{false}}"><span style="height: 30px; padding: 0 10px; border-radius: 8px; background: #F1F5F9; border: 1px dashed #CBD5E1; display: inline-flex; align-items: center; font-size: 12px; font-weight: 600; color: #475569;">Periode: data bulanan Dukcapil belum tersedia</span></sc-if>
+          <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #475569;">Wilayah
+            <sc-raw-select value="{{wil.v}}" sc-camel-on-change="{{wil.on}}" aria-label="Pilih wilayah" style="height: 32px; min-width: 240px; padding: 0 10px; border: 1px solid #E3E8F0; border-radius: 8px; background: #FFFFFF; font-family: inherit; font-size: 12.5px; color: #0F172A; cursor: pointer;">
+              <sc-for list="{{wil.opts}}" as="w" hint-placeholder-count="3"><option value="{{w.v}}">{{w.l}}</option></sc-for>
+            </sc-raw-select>
+          </label>
+          <span style="font-size: 11.5px; color: #64748B;">{{wil.note}}</span>
+          <span style="margin-left: auto; height: 26px; padding: 0 9px; border-radius: 6px; background: #EFF6FF; color: #1E40AF; font-size: 11.5px; font-weight: 600; display: inline-flex; align-items: center;">Satuan: {{tr.units}}</span>
+        </div>
+
+        <sc-if value="{{isLine}}" hint-placeholder-val="{{true}}">
+          <div style="display: flex; flex-direction: column; gap: 14px;">
+            <div style="display: flex; flex-wrap: wrap; gap: 16px;">
+              <sc-for list="{{charts}}" as="ch" hint-placeholder-count="2">
+                <div style="flex: 1 1 540px; min-width: 0; padding: 12px 14px 10px; border-radius: 10px; border: 1px solid #E3E8F0; display: flex; flex-direction: column; gap: 8px;">
+                  <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 6px;">
+                    <div style="display: flex; align-items: center; gap: 7px;"><span style="width: 14px; height: 3px; border-radius: 2px; background: {{ch.c}};"></span><b style="font-size: 12.5px;">{{ch.n}}</b><span style="font-size: 11px; color: #64748B;">{{ch.wil}}</span></div>
+                    <span style="font-size: 11.5px; color: #475569;">{{ch.last}}</span>
+                  </div>
+                  <div style="font-size: 10.5px; font-weight: 600; color: #64748B;">{{ch.u}} per bulan</div>
+                  <div style="display: flex; gap: 8px;">
+                    <div style="flex: none; width: 44px; height: 180px; display: flex; flex-direction: column; justify-content: space-between; text-align: right; font-size: 10.5px; color: #64748B;"><sc-for list="{{ch.yt}}" as="y" hint-placeholder-count="4"><span style="line-height: 1;">{{y}}</span></sc-for></div>
+                    <div style="position: relative; flex: 1; min-width: 0; height: 180px;">
+                      <svg sc-camel-view-box="0 0 600 180" sc-camel-preserve-aspect-ratio="none" aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; overflow: visible;">
+                        <path d="M0 0.5H600M0 60H600M0 120H600" stroke="#EEF2F7" fill="none" vector-effect="non-scaling-stroke"></path>
+                        <path d="M0 179.5H600" stroke="#CBD5E1" fill="none" vector-effect="non-scaling-stroke"></path>
+                        <path d="{{ch.selD}}" stroke="#94A3B8" stroke-dasharray="3 3" fill="none" vector-effect="non-scaling-stroke"></path>
+                        <path d="{{ch.d}}" fill="none" stroke="{{ch.c}}" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke"></path>
+                      </svg>
+                      <sc-for list="{{ch.pts}}" as="p" hint-placeholder-count="12">
+                        <span class="tip" tabindex="0" sc-camel-on-click="{{p.pick}}" style="position: absolute; left: {{p.l}}; top: {{p.t}}; width: 18px; height: 18px; margin-left: -9px; margin-top: -9px; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: {{p.z}};"><span class="pt" style="display: block; width: {{p.s}}; height: {{p.s}}; border-radius: 99px; background: {{p.bg}}; border: 2px solid {{p.c}}; box-sizing: border-box;"></span><span class="pop {{p.pc}}" style="width: 210px;">{{p.tip}}</span></span>
+                      </sc-for>
+                    </div>
+                  </div>
+                  <div style="position: relative; height: 16px; margin-left: 52px;">
+                    <sc-for list="{{ch.xs}}" as="x" hint-placeholder-count="12"><span style="position: absolute; left: {{x.x}}; transform: translateX(-50%); font-size: 10.5px; color: {{x.c}}; font-weight: {{x.fw}}; white-space: nowrap;">{{x.l}}</span></sc-for>
+                  </div>
+                  <div style="font-size: 11px; color: #64748B;">{{ch.note}}</div>
+                </div>
+              </sc-for>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 18px; padding: 10px 14px; border-radius: 10px; background: #EFF6FF; border: 1px solid #E7F1E9; font-size: 12px; color: #334155;">
+              <b style="color: #1E40AF;">{{rd.l}}</b>
+              <sc-for list="{{rd.items}}" as="it" hint-placeholder-count="2"><span>{{it.n}}: <b style="color: #0F172A;">{{it.v}}</b> {{it.u}} <span style="color: #1D4ED8; font-weight: 600;">{{it.d}}</span> <span style="color: #64748B;">{{it.dn}}</span></span></sc-for>
+              <span style="margin-left: auto; font-size: 11px; color: #64748B;">Klik titik pada grafik untuk membaca nilai bulan lain</span>
+            </div>
+            <p style="margin: 0; font-size: 11.5px; line-height: 17px; color: #64748B;">{{tr.cav}}</p>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{isMig}}" hint-placeholder-val="{{false}}">
+          <div style="display: flex; flex-wrap: wrap; gap: 16px;">
+            <div style="flex: 1 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 14px;">
+              <div style="display: flex; gap: 10px; padding: 10px 12px; border-radius: 10px; background: #F8FAFC; border: 1px dashed #CBD5E1; font-size: 12px; line-height: 18px; color: #334155;"><b style="flex: none; color: #1E40AF;">Data bulanan Dukcapil belum tersedia</b><span>Seri pindah–datang per provinsi belum dipublikasikan bulanan; banyak penduduk juga tidak memperbarui KTP saat pindah. Yang ditampilkan: perbandingan migrasi risen SP2020 Long Form dengan SUPAS 2025.</span></div>
+              <div style="display: flex; flex-direction: column; gap: 6px;">
+                <div style="display: flex; justify-content: space-between; gap: 8px; align-items: baseline;"><b style="font-size: 12.5px;">Migran risen · {{mg.name}}</b><span style="font-size: 11px; color: #64748B;">% penduduk · SP2020 Long Form</span></div>
+                <sc-for list="{{mg.a}}" as="r" hint-placeholder-count="2">
+                  <div style="display: grid; grid-template-columns: 150px minmax(0, 1fr) 84px; gap: 10px; align-items: center; font-size: 12px;"><span>{{r.l}}</span><span style="display: block; height: 14px; border-radius: 4px; background: #EEF2F7;"><span style="display: block; width: {{r.w}}; height: 14px; border-radius: 4px; background: {{r.c}};"></span></span><b style="text-align: right;">{{r.v}}</b></div>
+                </sc-for>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 6px;">
+                <div style="display: flex; justify-content: space-between; gap: 8px; align-items: baseline;"><b style="font-size: 12.5px;">Neto migrasi risen · SP2020 Long Form vs SUPAS 2025</b><span style="font-size: 11px; color: #64748B;">% penduduk · kiri = keluar lebih banyak</span></div>
+                <sc-for list="{{mg.b}}" as="r" hint-placeholder-count="2">
+                  <div style="display: grid; grid-template-columns: 150px minmax(0, 1fr) 84px; gap: 10px; align-items: center; font-size: 12px;"><span>{{r.l}}</span><span style="position: relative; display: block; height: 14px; border-radius: 4px; background: #EEF2F7;"><span style="position: absolute; left: 50%; top: -2px; bottom: -2px; width: 1px; background: #94A3B8;"></span><span style="position: absolute; top: 0; left: {{r.left}}; width: {{r.w}}; height: 14px; border-radius: 3px; background: {{r.c}};"></span></span><b style="text-align: right; color: {{r.fc}};">{{r.v}}</b></div>
+                </sc-for>
+              </div>
+              <sc-if value="{{mg.isDki}}" hint-placeholder-val="{{true}}">
+                <div style="display: flex; flex-direction: column; gap: 6px;">
+                  <div style="display: flex; justify-content: space-between; gap: 8px; align-items: baseline;"><b style="font-size: 12.5px;">Neto migrasi risen per kota · DKI Jakarta</b><span style="font-size: 11px; color: #64748B;">% penduduk · SUPAS 2025</span></div>
+                  <sc-for list="{{mg.kota}}" as="r" hint-placeholder-count="5">
+                    <div style="display: grid; grid-template-columns: 150px minmax(0, 1fr) 84px; gap: 10px; align-items: center; font-size: 12px;"><span>{{r.l}}</span><span style="position: relative; display: block; height: 12px; border-radius: 4px; background: #EEF2F7;"><span style="position: absolute; left: 50%; top: -2px; bottom: -2px; width: 1px; background: #94A3B8;"></span><span style="position: absolute; top: 0; left: {{r.left}}; width: {{r.w}}; height: 12px; border-radius: 3px; background: {{r.c}};"></span></span><b style="text-align: right; color: {{r.fc}};">{{r.v}}</b></div>
+                  </sc-for>
+                </div>
+              </sc-if>
+              <a href="#sec-peta" sc-camel-on-click="{{mg.pick}}" style="align-self: flex-start; font-size: 12px; font-weight: 600; text-decoration: none;">Sorot {{mg.name}} di peta ↑</a>
+            </div>
+            <div style="flex: 1 1 360px; min-width: 0; display: flex; flex-direction: column; gap: 12px;">
+              <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px;">
+                <sc-for list="{{supas}}" as="s" hint-placeholder-count="3"><div style="padding: 10px; border-radius: 9px; background: #FFFFFF; border: 1px solid #E3E8F0;"><div style="font-size: 11px; color: #64748B;">{{s.l}}</div><div style="font-size: 16px; font-weight: 700; color: #0F172A;">{{s.v}}</div><div style="font-size: 10.5px; color: #64748B;">{{s.s}}</div></div></sc-for>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 4px;">
+                <div style="display: flex; justify-content: space-between; gap: 8px; align-items: baseline;"><b style="font-size: 12.5px;">Mutasi penduduk terbesar per kab/kota</b><span style="font-size: 11px; color: #64748B;">ribu jiwa · Dukcapil DKB Sem II 2025</span></div>
+                <sc-for list="{{mut}}" as="r" hint-placeholder-count="5">
+                  <a href="#sec-peta" sc-camel-on-click="{{r.pick}}" class="bar" title="Sorot {{r.p}} di peta" style="display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) 60px; gap: 10px; align-items: center; padding: 4px 6px; margin: 0 -6px; border-radius: 6px; font-size: 12px; color: #0F172A; text-decoration: none;"><span>{{r.n}} <span style="font-size: 11px; color: #64748B;">{{r.p}}</span></span><span style="display: block; height: 12px; border-radius: 3px; background: #EEF2F7;"><span style="display: block; width: {{r.w}}; height: 12px; border-radius: 3px; background: #0EA5E9;"></span></span><b style="text-align: right;">{{r.v}}</b></a>
+                </sc-for>
+              </div>
+              <p style="margin: 0; font-size: 11.5px; line-height: 17px; color: #64748B;">Migrasi risen = tinggal di provinsi berbeda dibanding 5 tahun sebelumnya (satuan orang/persen penduduk). Mutasi Dukcapil = pencatatan pindah–datang administratif. Keduanya tidak dijumlahkan.</p>
+            </div>
+          </div>
+        </sc-if>
+      </div>
+      <div style="padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;"><span><b style="color: #475569;">Periode:</b> {{tr.per}}</span><span><b style="color: #475569;">Diperbarui:</b> 12 Okt 2026</span><span><b style="color: #475569;">Sumber:</b> {{tr.src}}</span><span style="padding: 0 6px; border-radius: 4px; background: #EFF6FF; color: #1D4ED8; font-weight: 600;">Divalidasi analis</span></div>
+    </section>
+
+    <!-- 4. Insight mobilitas -->
+    <section id="sec-insight" style="background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; box-shadow: 0 1px 2px rgba(15,23,42,.05); scroll-margin-top: 16px;">
+      <div style="padding: 12px 18px; border-bottom: 1px solid #EEF2F7; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px;">
+        <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;"><h2 style="margin: 0; font-size: 14.5px; font-weight: 600;">Insight mobilitas untuk investasi</h2><span style="height: 22px; padding: 0 8px; border-radius: 6px; background: #EEF2FF; border: 1px solid #C7D2FE; color: #3730A3; font-size: 11px; font-weight: 600; display: inline-flex; align-items: center;">✦ Analisis AI · diverifikasi analis</span></div>
+        <span style="font-size: 11.5px; color: #64748B;">Disusun AI dari data kartu 1–3; angka berasal dari sumber resmi yang ditampilkan</span>
+      </div>
+      <div style="padding: 14px 18px 16px; display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 12px;">
+        <sc-for list="{{ins}}" as="i" hint-placeholder-count="3">
+          <div style="display: flex; flex-direction: column; gap: 10px; padding: 14px; border-radius: 10px; border: 1px solid #C7D2FE; background: #F8F9FF;">
+            <div style="display: flex; gap: 10px; align-items: flex-start;"><span style="flex: none; width: 24px; height: 24px; border-radius: 99px; background: #3730A3; color: #FFFFFF; font-size: 12px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center;">{{i.no}}</span><b style="font-size: 13px; line-height: 19px; color: #1E1B4B;">{{i.t}}</b></div>
+            <div style="padding: 10px 12px; border-radius: 8px; background: #FFFFFF; border: 1px solid #E3E8F0;">
+              <div style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.4px; color: #1E40AF;">DASAR DATA · DARI SUMBER</div>
+              <ul style="margin: 6px 0 0; padding-left: 16px; display: flex; flex-direction: column; gap: 3px; font-size: 12px; line-height: 17px; color: #1E293B;"><sc-for list="{{i.basis}}" as="b" hint-placeholder-count="3"><li>{{b}}</li></sc-for></ul>
+            </div>
+            <div style="padding: 10px 12px; border-radius: 8px; background: #EEF2FF; border: 1px dashed #A5B4FC;">
+              <div style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.4px; color: #3730A3;">IMPLIKASI INVESTASI · AI</div>
+              <p style="margin: 6px 0 0; font-size: 12px; line-height: 18px; color: #1E293B;">{{i.impl}}</p>
+            </div>
+            <div style="margin-top: auto; display: flex; flex-wrap: wrap; gap: 6px;"><sc-for list="{{i.links}}" as="k" hint-placeholder-count="2"><a href="{{k.h}}" sc-camel-on-click="{{k.pick}}" style="height: 26px; padding: 0 10px; border-radius: 99px; border: 1px solid #B8E3DF; background: #FFFFFF; color: #1D4ED8; font-size: 11.5px; font-weight: 600; display: inline-flex; align-items: center; text-decoration: none;">{{k.l}}</a></sc-for></div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;"><span><b style="color: #475569;">Periode:</b> data s.d. Agt 2026</span><span><b style="color: #475569;">Diperbarui:</b> 12 Okt 2026</span><span><b style="color: #475569;">Sumber:</b> AI agent atas data kartu 1–3 (BPS, KCIC, Dukcapil)</span><span style="padding: 0 6px; border-radius: 4px; background: #EEF2FF; color: #3730A3; font-weight: 600;">Narasi AI diverifikasi analis · 10 Okt 2026</span></div>
+    </section>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script="" data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:2500}}">
+class Component extends DCLogic {
+  renderVals() {
+    const st = this.state || {};
+    const D = {"PV":[["aceh","Aceh",56835.02,5626000,99,[27.0,67.5,5.4],38639,36389,[2691209,2688728,"Kemenkes, Profil Kesehatan 2023 (data 2022)"]],["sumut","Sumatera Utara",72437.76,15785800,218,[26.9,67.4,5.7],182153,210629,[7666710,7638520,"Kemenkes, Profil Kesehatan 2023 (data 2022)"]],["sumbar","Sumatera Barat",42107.67,5914300,140,[24.7,68.1,7.2],178849,93180,[2822418,2801725,"Kemenkes, Profil Kesehatan 2023 (data 2022)"]],["riau","Riau",89900.78,6811200,76,[27.4,68.5,4.2],131829,152982,[3394578,3251812,"Kemenkes, Profil Kesehatan 2023 (data 2022)"]],["jambi","Jambi",49023.04,3768500,77,[25.6,69.2,5.2],52923,60678,[1853480,1789283,"Kemenkes, Profil Kesehatan 2023 (data 2022)"]],["sumsel","Sumatera Selatan",86771.92,8928500,103,[26.3,67.8,5.9],86897,113717,[4403279,4243407,"Kemenkes, Profil Kesehatan 2023 (data 2022)"]],["bengkulu","Bengkulu",20122.21,2138000,106,[25.4,69.1,5.5],34844,28896,[1044836,1002274,"Kemenkes, Profil Kesehatan 2023 (data 2022)"]],["lampung","Lampung",33570.76,9522900,284,[25.0,68.4,6.5],127641,103810,[4553556,4348010,"Kemenkes, Profil Kesehatan 2023 (data 2022)"]],["babel","Kepulauan Bangka Belitung",16690.23,1550800,93,[24.3,70.2,5.5],30370,18366,[753871,718556,"Kemenkes, Profil Kesehatan 2023 (data 2022)"]],["kepri","Kepulauan Riau",8170.38,2213500,268,[26.1,70.0,3.9],94199,83165,[1068834,1032381,"Kemenkes, Profil Kesehatan 2023 (data 2022)"]],["dki","DKI Jakarta",661.53,10678000,16155,[22.5,71.4,6.1],212457,797468,[5645916,5603669,"Kemenkes, Profil Kesehatan 2023 (data 2022)"]],["jabar","Jawa Barat",37053.33,50759000,1370,[23.8,70.0,6.2],716469,506569,[24628466,24008714,"Kemenkes, Profil Kesehatan 2023 (data 2022)"]],["jateng","Jawa Tengah",34347.43,38233900,1113,[21.9,69.6,8.5],778524,411888,[18863156,18625121,"Kemenkes, Profil Kesehatan 2023 (data 2022)"]],["diy","DI Yogyakarta",3170.36,3781500,1193,[20.0,68.6,11.3],178885,100654,[1819826,1857696,"Kemenkes, Profil Kesehatan 2023 (data 2022)"]],["jatim","Jawa Timur",48055.88,42089300,876,[20.9,70.0,9.1],364354,280954,[20521843,20622224,"Kemenkes, Profil Kesehatan 2023 (data 2022)"]],["banten","Banten",9355.88,12537400,1341,[25.4,70.0,4.6],240986,232471,[6169313,5975848,"Kemenkes, Profil Kesehatan 2023 (data 2022)"]],["bali","Bali",5582.83,4461300,798,[20.8,70.3,8.9],49171,74068,[2149392,2137801,"Kemenkes, Profil Kesehatan 2023 (data 2022)"]],["ntb","Nusa Tenggara Barat",19631.99,5731100,291,[27.3,67.3,5.4],162649,30932,[2727377,2746130,"Kemenkes, Profil Kesehatan 2023 (data 2022)"]],["ntt","Nusa Tenggara Timur",46378.11,5742600,124,[29.4,64.5,6.1],109377,57167,[2757448,2756768,"Kemenkes, Profil Kesehatan 2023 (data 2022)"]],["kalbar","Kalimantan Barat",147018.06,5766000,39,[25.4,69.2,5.4],58641,43690,[2817151,2664895,"Kemenkes, Profil Kesehatan 2023 (data 2022)"]],["kalteng","Kalimantan Tengah",153430.36,2845000,19,[24.5,70.6,4.9],71039,74884,[1380678,1292112,"Kemenkes, Profil Kesehatan 2023 (data 2022)"]],["kalsel","Kalimantan Selatan",37125.43,4323300,116,[26.5,68.2,5.3],59680,53865,[2092119,2049414,"Kemenkes, Profil Kesehatan 2023 (data 2022)"]],["kaltim","Kalimantan Timur",126951.76,4267600,34,[24.6,70.5,4.9],103780,127084,[2017337,1874512,"Kemenkes, Profil Kesehatan 2023 (data 2022)"]],["kaltara","Kalimantan Utara",69900.89,749400,11,[24.7,70.8,4.6],26144,26076,[371119,338501,"Kemenkes, Profil Kesehatan 2023 (data 2022)"]],["sulut","Sulawesi Utara",14488.43,2721400,188,[22.7,68.8,8.4],31330,31574,[1362527,1301786,"Kemenkes, Profil Kesehatan 2023 (data 2022)"]],["sulteng","Sulawesi Tengah",61496.98,3156100,51,[26.6,68.0,5.4],45678,44083,[1577983,1496975,"Kemenkes, Profil Kesehatan 2023 (data 2022)"]],["sulsel","Sulawesi Selatan",45323.98,9563100,211,[23.9,69.0,7.1],155301,153671,[4591593,4664337,"Kemenkes, Profil Kesehatan 2023 (data 2022)"]],["sultra","Sulawesi Tenggara",36139.3,2836700,78,[28.0,67.0,5.0],74740,35923,[1390921,1391961,"Kemenkes, Profil Kesehatan 2023 (data 2022)"]],["gorontalo","Gorontalo",12024.98,1242200,103,[24.3,69.8,5.9],20354,12856,[602644,602697,"Kemenkes, Profil Kesehatan 2023 (data 2022)"]],["sulbar","Sulawesi Barat",16590.67,1525300,92,[28.1,66.9,5.0],34464,24084,[735117,712069,"Kemenkes, Profil Kesehatan 2023 (data 2022)"]],["maluku","Maluku",46133.83,1970600,43,[25.6,68.7,5.7],27010,29750,[950317,936418,"Kemenkes, Profil Kesehatan 2023 (data 2022)"]],["malut","Maluku Utara",31465.98,1373800,42,[27.3,68.2,4.5],15136,15283,[688374,648994,"Kemenkes, Profil Kesehatan 2023 (data 2022)"]],["papua","Papua",81383.32,1073600,13,[33.2,62.1,4.7],null,null,[583740,538357,"Dukcapil DKB Semester I 2026"]],["papbar","Papua Barat",60308.59,587600,10,[26.2,70.7,3.1],null,null,[303080,285411,"Dukcapil DKB Semester I 2026"]],["papsel","Papua Selatan",117858.97,549700,5,[40.5,55.5,4.0],null,null,[306200,282637,"Dukcapil DKB Semester I 2026"]],["papteng","Papua Tengah",61079.59,1492300,24,[25.1,71.8,3.1],null,null,[730680,653547,"Dukcapil DKB Semester I 2026"]],["pappeg","Papua Pegunungan",52508.66,1484900,29,[19.2,77.3,3.5],null,null,[790520,690539,"Dukcapil DKB Semester I 2026"]],["papbd","Papua Barat Daya",39103.06,636400,16,[24.6,71.3,4.1],null,null,[328550,304238,"Dukcapil DKB Semester I 2026"]]],"PD":{"aceh":"M13 47L17 48L20 51L21 49L17 47L13 44L12 46L13 47Z M45 26L41 23L40 18L35 14L31 15L27 13L21 14L17 13L14 10L10 9L5 10L5 13L10 21L22 33L27 34L33 43L36 44L37 51L39 53L43 53L42 49L43 46L41 44L41 41L42 38L39 33L40 31L42 27Z","sumut":"M35 70L38 74L40 68L37 66L35 62L32 63L29 63L35 70Z M45 26L42 30L39 33L42 38L41 41L41 44L43 46L42 49L44 52L52 60L51 62L55 72L56 79L61 75L66 75L65 72L70 72L69 66L68 64L73 62L72 59L72 53L71 49L70 46L67 46L64 40L51 33L48 30L44 28L45 26Z","sumbar":"M58 103L53 93L50 94L49 97L52 102L56 105L57 103Z M69 118L67 114L67 118Z M65 111L63 108L62 111L65 112Z M71 121L73 125L72 122L73 120L70 118L71 121Z M70 72L65 70L67 74L61 75L56 79L64 82L65 85L72 93L72 98L75 102L78 107L78 110L80 114L84 111L82 103L86 103L89 101L89 98L92 96L81 88L80 86L77 82L78 79L73 77L71 76L70 73Z","riau":"M70 72L71 76L73 77L76 79L78 81L78 86L81 88L91 94L93 93L97 93L101 96L106 91L111 92L111 88L116 86L112 84L114 82L115 78L110 74L107 76L105 72L100 72L96 69L95 64L90 60L85 59L84 55L81 52L77 52L75 54L72 51L71 49L72 53L71 58L73 62L68 64L69 66L69 71Z M100 72L104 71L106 73L103 68L98 70L100 72Z M105 69L108 70L105 67L101 68L105 69Z M96 65L97 68L99 69L99 65L97 63Z M95 63L100 65L99 62L93 61L95 63Z M86 58L89 59L90 56L89 54L85 55Z","jambi":"M91 94L89 98L89 101L86 103L82 103L84 111L87 113L91 117L94 117L97 115L101 116L103 114L104 112L109 111L112 112L113 108L124 103L124 95L116 95L112 91L106 91L101 96L97 93L93 93L91 94Z","sumsel":"M94 117L97 121L99 121L106 125L105 128L101 131L106 133L107 137L112 137L112 141L115 142L117 145L123 144L123 142L124 138L132 135L136 130L139 131L140 134L143 135L144 131L143 129L144 125L146 123L145 120L142 119L142 116L140 115L132 112L131 111L128 112L131 109L127 107L125 106L124 103L114 106L112 112L109 109L104 112L103 114L101 116L97 115L94 117Z","bengkulu":"M96 151L98 152L95 150Z M80 114L84 117L88 123L96 129L97 133L110 144L114 145L116 143L114 140L111 140L107 137L105 134L101 131L103 129L106 127L99 124L97 121L94 117L91 117L89 114L84 111L80 114Z","lampung":"M114 145L118 148L127 158L126 153L134 157L136 152L141 158L144 145L144 139L143 135L140 134L139 131L136 130L132 135L124 138L123 142L123 144L117 145L114 145Z","babel":"M137 109L142 109L144 114L144 118L150 120L154 121L152 119L154 116L149 113L145 102L143 101L142 105L141 103L140 101L137 102L133 108L136 109Z M166 123L169 121L171 124L174 119L171 115L166 115L165 119L165 123Z","kepri":"M118 68L121 66L118 67Z M122 88L124 90L127 88L125 86L123 87Z M122 68L125 70L127 66L123 66L122 68Z M126 85L128 84L130 86L126 81L124 84Z M172 32L173 34L176 32L174 27L170 30L172 32Z","dki":"M154 160L155 163L157 160L154 160Z","jabar":"M150 172L150 176L152 177L163 179L169 182L175 183L177 181L181 181L179 177L178 174L181 173L181 169L178 169L178 165L175 162L172 163L169 161L167 162L164 161L162 159L158 158L157 164L150 164L150 168L150 172Z","jateng":"M181 181L184 182L187 181L197 183L198 181L202 179L203 182L207 183L206 185L207 188L209 186L211 184L212 181L211 175L215 177L217 174L217 171L218 169L216 167L211 168L210 165L206 165L202 171L199 170L196 171L190 169L188 170L185 170L181 169L181 173L178 174L179 177L181 181Z","diy":"M197 183L207 188L206 185L207 183L203 182L202 179L200 181L197 183Z","jatim":"M208 188L215 188L218 190L231 191L238 189L248 193L251 193L253 195L256 195L253 192L254 182L250 181L245 181L237 182L234 180L233 176L231 175L230 170L224 171L222 169L218 169L217 171L217 174L215 175L211 175L212 181L213 183L211 186L208 188Z M231 174L242 175L247 174L250 172L247 170L234 171L231 172Z","banten":"M154 160L151 160L147 159L145 158L143 160L142 166L138 170L137 168L135 169L139 170L145 170L150 172L152 169L150 164L155 163L154 161Z","bali":"M260 191L263 194L270 190L264 186L259 187L254 186L256 190L260 191Z","ntb":"M276 196L279 197L282 196L283 189L279 188L275 190L275 194L272 195L274 197Z M286 199L302 196L305 193L305 196L310 195L312 194L315 195L313 189L309 192L308 189L304 190L302 187L299 186L296 188L303 192L297 194L294 190L292 191L288 190L284 194L284 198L286 199Z M296 187L293 190L296 187Z","ntt":"M319 191L318 193L320 191Z M317 208L322 208L328 214L332 215L337 212L334 207L332 206L329 206L327 204L325 201L323 203L317 202L312 204L313 207L317 208Z M326 195L334 195L336 196L339 197L343 197L349 196L353 194L357 195L362 193L365 189L363 186L361 188L358 191L356 193L352 191L347 191L345 193L339 189L331 188L328 189L326 190L323 195L326 195Z M349 219L352 218L350 216L348 218Z M362 223L368 221L370 220L370 217L367 218L362 221Z M365 190L368 190L367 188L365 190Z M371 215L375 215L379 213L384 212L390 206L392 204L390 200L393 198L390 199L384 200L382 204L380 203L375 204L372 210L375 211L371 214Z M368 192L372 192L377 188L374 188L371 189L367 192Z M379 192L381 189L379 190L376 191L379 192Z M384 191L392 189L385 187L383 188Z","kalbar":"M187 92L191 93L192 95L191 91L187 90Z M192 97L193 95L190 94L189 98L192 97Z M251 63L248 63L244 66L235 63L229 61L225 63L224 67L220 69L216 69L212 67L204 70L200 69L199 66L196 63L192 61L191 58L192 55L188 56L187 60L184 62L183 66L183 69L182 71L183 73L183 77L185 78L186 81L186 84L185 88L192 90L193 93L196 96L197 99L197 103L195 105L198 107L198 110L200 120L204 118L205 121L212 116L211 112L211 107L210 104L208 102L212 101L217 97L218 94L223 91L226 91L230 90L237 87L241 82L239 78L243 77L246 73L247 71L247 68L250 67L251 63Z","kalteng":"M206 120L209 121L215 119L217 120L219 118L220 121L219 127L226 124L230 126L235 122L240 124L243 122L243 126L249 124L253 126L256 118L258 117L260 113L265 110L267 107L265 105L266 101L271 98L272 96L268 93L265 92L266 89L264 86L265 83L261 85L260 82L257 81L260 77L263 77L261 72L257 72L253 75L250 72L246 73L243 77L239 78L241 82L238 86L230 90L226 91L223 91L218 94L217 97L212 101L208 102L210 104L209 106L210 110L212 116L206 120Z","kalsel":"M253 126L256 129L257 135L274 128L275 125L278 122L275 120L279 115L281 113L276 111L272 112L272 108L271 105L269 101L271 98L266 101L265 105L267 107L265 110L260 113L258 117L256 118L253 126Z M275 134L278 132L277 123L276 124L274 129L275 134Z","kaltim":"M246 73L250 72L251 74L257 72L261 72L263 77L260 77L257 81L260 82L261 85L263 83L264 86L265 89L265 92L268 93L271 96L269 101L271 105L270 108L272 112L276 111L281 113L282 110L279 109L280 104L281 102L284 99L283 95L285 98L290 93L291 89L293 87L292 84L294 82L294 76L297 72L299 71L299 67L301 70L305 71L310 71L313 69L299 58L298 55L296 53L300 53L300 50L297 51L295 49L292 48L290 49L288 49L284 49L281 50L278 53L276 59L275 61L271 65L268 65L266 67L262 66L260 63L258 64L256 63L253 62L251 63L250 67L247 68L247 71L246 73Z","kaltara":"M256 63L258 64L260 63L262 66L266 67L268 65L271 65L275 61L276 59L277 54L280 52L283 51L287 50L290 48L295 49L297 51L300 50L296 45L295 43L293 41L290 36L287 35L293 35L296 35L297 33L293 31L292 28L290 25L287 26L281 25L276 25L273 25L269 31L270 37L268 41L266 43L262 45L264 49L258 53L260 57L257 58L256 63Z","sulut":"M371 77L384 75L386 71L389 69L392 64L393 63L393 60L390 59L388 61L384 64L383 66L381 68L377 71L366 70L368 71L372 74L371 77Z M397 37L398 34L397 37Z M412 30L415 26L415 23L412 25L412 30Z","sulteng":"M320 92L321 96L318 99L322 100L324 105L324 108L327 107L330 108L335 110L340 111L345 113L349 116L347 119L355 122L358 123L355 121L352 117L349 111L346 109L344 106L348 107L350 103L357 101L362 94L366 92L368 95L370 91L368 89L361 90L364 91L354 92L353 94L348 94L343 95L340 100L337 99L332 94L327 90L326 82L328 79L331 76L334 75L340 76L343 75L341 73L350 69L352 70L354 68L346 68L344 66L338 64L336 68L334 69L331 71L330 69L329 71L326 72L324 76L325 79L324 83L321 82L323 83L323 88L324 93L322 90L320 92Z M363 102L366 98L367 101L371 101L372 98L369 97L368 99L367 96L364 97L362 100L363 102Z","sulsel":"M332 162L332 165L333 160L332 156L332 162Z M319 127L319 129L321 133L321 137L319 143L318 150L318 153L322 155L325 153L328 154L330 153L332 154L329 148L330 144L332 142L330 139L330 134L332 130L331 124L329 122L328 120L336 115L340 116L339 119L344 120L347 119L349 116L345 113L340 113L335 110L331 107L327 107L324 108L322 111L323 115L320 117L321 122L318 123L319 127Z","sultra":"M350 150L351 152L353 149L351 147L350 150Z M339 119L340 123L337 126L343 133L347 134L345 142L348 144L352 145L353 141L355 139L359 138L361 140L360 137L362 139L363 134L361 135L359 133L357 130L354 128L355 125L355 122L347 119L344 120L340 117Z M356 151L359 150L362 145L361 141L356 144L357 147L355 150Z M359 153L362 155L363 153L367 150L365 148L365 143L367 144L366 138L363 140L361 147L362 149L360 150L359 153Z M364 135L366 137L368 134L365 133Z","gorontalo":"M343 75L346 74L349 76L357 75L365 75L368 77L372 74L368 72L366 70L362 71L358 68L354 68L352 70L350 69L342 71L343 74Z","sulbar":"M320 92L317 98L317 103L318 106L316 107L315 113L312 116L310 117L310 121L312 127L317 126L319 127L318 123L321 122L320 117L323 115L322 111L324 108L324 105L322 101L318 99L321 96L320 92Z","maluku":"M430 188L426 186L430 188Z M401 185L404 183L409 185L411 183L414 181L411 179L406 181L403 181L401 185Z M431 130L433 129L428 129L432 128L431 130Z M412 131L419 129L420 125L417 124L414 121L404 123L406 128L412 131Z M465 189L470 186L467 187L465 189Z M450 184L452 186L453 184L451 182Z M428 127L430 122L433 123L435 126L441 123L449 126L454 125L455 127L466 132L467 128L466 126L463 122L460 120L455 120L449 117L444 120L443 118L432 119L431 121L427 122L429 125Z M472 184L476 180L476 175L474 176L471 178L470 181L469 185L472 184Z M491 158L490 154L491 158Z M492 159L495 154L496 150L492 159Z M510 171L514 167L508 161L508 165L508 169L509 171Z M511 163L510 159L511 163Z M511 159L516 157L514 155L513 153L511 156L511 158Z M511 161L515 164L517 160L514 158L511 160Z","malut":"M404 113L403 110L402 107L402 110L403 113Z M400 106L408 105L395 105L400 106Z M383 108L389 106L394 106L394 104L386 103L383 103L382 106L383 108Z M419 88L420 85L418 88Z M421 89L423 92L425 91L426 93L428 91L424 89L425 87L424 86L421 86Z M422 103L430 104L431 103L425 99L422 100L422 103Z M422 68L425 71L423 74L426 77L425 85L428 86L429 90L435 93L430 87L428 82L428 77L430 75L441 78L438 77L433 73L432 71L438 68L439 61L435 61L431 64L429 67L428 71L425 70L428 67L429 64L429 59L427 58L430 53L424 59L422 66Z M432 52L433 55L436 55L438 49L437 47L432 52Z","papua":"M526 91L528 93L529 91L525 90L526 92Z M526 103L536 106L544 105L526 102Z M530 93L531 97L534 97L538 95L535 95L530 90Z M533 116L535 118L537 121L540 121L541 123L544 126L544 122L546 124L547 122L550 121L557 121L559 120L559 123L560 120L563 120L566 120L566 123L570 124L573 126L578 126L579 130L581 127L585 129L588 129L593 131L595 133L591 133L590 130L592 135L597 133L597 115L594 115L590 113L586 111L581 112L570 107L567 105L559 102L558 100L547 104L549 108L542 111L538 110L536 115L533 116Z","papbar":"M489 110L493 111L496 110L502 110L506 108L506 112L505 113L504 116L502 114L499 116L497 113L490 118L489 116L484 116L480 117L482 120L487 121L490 124L492 126L491 129L493 134L497 134L500 131L502 127L500 125L502 122L505 119L503 123L502 126L503 129L505 127L506 131L509 130L511 134L516 132L519 133L515 133L518 136L521 133L520 130L522 128L519 126L516 125L515 122L514 118L515 114L513 118L508 109L508 103L510 99L507 94L507 91L500 91L500 97L494 99L491 105L490 108Z","papsel":"M569 187L566 189L570 190L569 187Z M555 190L564 190L567 187L570 186L571 183L573 179L568 177L561 178L557 183L554 189Z M554 149L557 151L560 153L559 155L562 157L564 164L569 168L571 170L566 171L568 173L573 179L572 183L571 186L574 186L576 188L584 186L596 199L598 171L595 168L597 163L597 151L589 149L588 147L585 148L582 148L584 147L573 146L574 143L570 142L566 142L564 144L561 142L560 141L556 142L557 143L554 149Z","papteng":"M518 136L523 139L532 140L554 149L557 143L556 142L558 136L555 136L559 132L563 131L562 128L560 128L560 123L559 120L557 121L550 121L547 122L546 124L544 122L545 125L544 124L541 122L537 121L535 118L533 116L532 120L526 125L521 125L518 123L518 119L515 117L515 122L516 125L519 126L520 128L521 133L518 136Z","pappeg":"M558 141L561 142L564 144L566 142L570 142L572 144L584 147L582 148L584 147L588 147L589 149L597 151L597 133L593 133L590 132L595 133L593 131L589 130L585 129L581 127L579 130L578 126L573 126L570 126L568 123L566 120L563 120L560 120L560 123L560 128L562 128L563 131L559 132L558 136L555 135L557 137L556 140Z","papbd":"M453 105L457 108L461 107L460 103L453 105Z M464 93L467 92L461 92L464 93Z M465 97L468 99L469 95L464 94L465 97Z M458 84L462 85L464 85L467 86L463 83L468 86L471 86L470 82L465 82L459 83L461 84Z M500 91L493 87L486 86L483 87L479 91L471 92L471 95L467 100L472 101L473 99L474 101L477 100L479 102L481 104L481 107L485 111L489 110L489 106L493 98L497 97L500 91Z"},"CT":{"aceh":[25.0,31.0],"sumut":[56.0,52.5],"sumbar":[74.0,92.0],"riau":[92.0,72.5],"jambi":[103.0,104.0],"sumsel":[120.0,124.0],"bengkulu":[98.0,128.0],"lampung":[129.0,144.0],"babel":[143.5,111.0],"kepri":[173.0,30.5],"dki":[155.5,161.5],"jabar":[165.5,170.5],"jateng":[198.0,176.5],"diy":[202.0,183.5],"jatim":[232.0,182.0],"banten":[145.0,165.0],"bali":[262.0,190.0],"ntb":[299.5,192.5],"ntt":[344.0,191.5],"kalbar":[216.5,88.0],"kalteng":[239.0,99.5],"kalsel":[267.0,116.5],"kaltim":[279.5,80.5],"kaltara":[278.0,46.0],"sulut":[379.5,68.0],"sulteng":[344.0,93.5],"sulsel":[333.5,131.0],"sultra":[350.0,131.0],"gorontalo":[357.0,72.5],"sulbar":[317.0,109.5],"maluku":[447.0,124.5],"malut":[431.5,73.0],"papua":[565.0,117.5],"papbar":[501.0,113.5],"papsel":[576.0,170.0],"papteng":[539.0,132.5],"pappeg":[576.0,135.5],"papbd":[483.5,98.5]},"LF":[["Aceh",0.79,0.74,0.05],["Sumatera Utara",1.33,1.53,-0.21],["Sumatera Barat",3.45,1.83,1.67],["Riau",2.2,2.54,-0.35],["Jambi",1.59,1.82,-0.23],["Sumatera Selatan",1.1,1.44,-0.34],["Bengkulu",1.85,1.54,0.32],["Lampung",1.52,1.24,0.28],["Kepulauan Bangka Belitung",2.22,1.35,0.88],["Kepulauan Riau",4.75,4.21,0.56],["DKI Jakarta",2.15,7.62,-5.75],["Jawa Barat",1.58,1.12,0.46],["Jawa Tengah",2.27,1.21,1.07],["DI Yogyakarta",5.09,2.93,2.25],["Jawa Timur",0.95,0.73,0.22],["Banten",2.15,2.08,0.08],["Bali",1.2,1.79,-0.6],["Nusa Tenggara Barat",3.27,0.64,2.68],["Nusa Tenggara Timur",2.23,1.18,1.07],["Kalimantan Barat",1.16,0.86,0.3],["Kalimantan Tengah",2.82,2.97,-0.15],["Kalimantan Selatan",1.56,1.41,0.15],["Kalimantan Timur",2.93,3.56,-0.66],["Kalimantan Utara",3.92,3.91,0.01],["Sulawesi Utara",1.27,1.28,-0.01],["Sulawesi Tengah",1.64,1.58,0.06],["Sulawesi Selatan",1.83,1.81,0.02],["Sulawesi Tenggara",3.06,1.49,1.6],["Gorontalo",1.86,1.18,0.69],["Sulawesi Barat",2.61,1.84,0.79],["Maluku",1.57,1.73,-0.16],["Maluku Utara",1.27,1.28,-0.01],["Papua Barat",3.27,2.94,0.34],["Papua",0.98,1.72,-0.75]],"KRL":[["2025-07",31.4],["2025-08",28.95],["2025-09",28.7],["2025-10",31.78],["2025-11",30.37],["2025-12",null],["2026-01",30.21],["2026-02",27.79],["2026-03",29.95],["2026-04",30.6],["2026-05",28.96],["2026-06",30.47],["2026-07",32.46],["2026-08",null]],"UDR":[["2025-06",4.99],["2025-07",5.46],["2025-08",5.06],["2025-09",4.8],["2025-10",5.27],["2025-11",5.04],["2025-12",5.46],["2026-01",4.92],["2026-02",4.08],["2026-03",5.62],["2026-04",4.57],["2026-05",4.11],["2026-06",4.69],["2026-07",5.01],["2026-08",4.84]],"WIS":[["2025-08",93.57],["2025-09",94.36],["2025-10",96.0],["2025-11",96.45],["2025-12",105.98],["2026-01",102.04],["2026-02",91.14],["2026-03",126.34],["2026-04",97.55],["2026-05",106.16],["2026-06",107.19],["2026-07",107.44],["2026-08",104.3]],"WHO":[["2025-05",529],["2025-06",555],["2025-07",580],["2025-08",533.9],["2025-09",473.6],["2025-10",529.2],["2025-11",535.3],["2025-12",613.7],["2026-01",508.7],["2026-02",443.8],["2026-03",456.4],["2026-04",491.8],["2026-05",515.1],["2026-06",523.1],["2026-07",578.6],["2026-08",null]]};
+    const nf = (n, d) => Number(n).toLocaleString('id-ID', { minimumFractionDigits: d || 0, maximumFractionDigits: d || 0 });
+    const BT = 'belum tersedia';
+    const MON = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agt', 'Sep', 'Okt', 'Nov', 'Des'];
+    const ml = (k, full) => { const [y, mo] = k.split('-'); return MON[+mo - 1] + ' ' + (full ? y : y.slice(2)); };
+    const sgn = (v, d) => (v < 0 ? '−' : '+') + nf(Math.abs(v), d);
+
+    // ---------------- 1. Peta kepadatan ----------------
+    const COL = ['#1E40AF', '#0EA5E9', '#D4A72C', '#82B394', '#E7F1E9'];
+    const CLS = ['≥ 800', '200–799', '100–199', '30–99', '< 30'];
+    const clsOf = (d) => (d >= 800 ? 0 : d >= 200 ? 1 : d >= 100 ? 2 : d >= 30 ? 3 : 4);
+    const SEK = {
+      dki: ['Perdagangan Besar dan Eceran · 18,3% PDRB', 'BPS DKI Jakarta · struktur PDRB Tw III-2025'],
+      jabar: ['Industri Pengolahan', 'BPS Jawa Barat · struktur PDRB'],
+      jateng: ['Industri Pengolahan · 33,4% PDRB', 'BPS Jawa Tengah · struktur PDRB'],
+      jatim: ['Industri Pengolahan · 31,3% PDRB', 'BPS Jawa Timur · struktur PDRB 2025'],
+      sumut: ['Pertanian, Kehutanan, dan Perikanan · 23,6% PDRB', 'BPS Sumatera Utara · struktur PDRB']
+    };
+    const PV = D.PV.map(([id, n, luas, pop, dens, age, mi, mo, sx]) => ({ id, n, luas, pop, dens, age, mi, mo, sx }));
+    const byId = Object.fromEntries(PV.map((p) => [p.id, p]));
+    const idOf = Object.fromEntries(PV.map((p) => [p.n, p.id]));
+    const densRank = [...PV].sort((a, b) => b.dens - a.dens).map((p) => p.id);
+    const sel = st.sel && byId[st.sel] ? st.sel : null;
+    const cls = st.cls ?? null;
+    const go = (id) => () => this.setState({ sel: id });
+    const pickMap = (id) => (e) => { const path = e && e.currentTarget; const svg = path && path.ownerSVGElement; const section = svg && svg.closest('#sec-peta'); const sr = section && section.getBoundingClientRect(); const x = sr ? (e.clientX || svg.getBoundingClientRect().left) - sr.left : 180; const y = sr ? (e.clientY || svg.getBoundingClientRect().top) - sr.top : 120; const pw = Math.min(206, (sr ? sr.width : 500) - 24); const ph = 280; const sw = sr ? sr.width : 500; const sh = sr ? sr.height : 500; const left = Math.max(12, Math.min(sw - pw - 12, x < sw / 2 ? x + 14 : x - pw - 14)); const top = Math.max(52, Math.min(sh - ph - 12, y < sh / 2 ? y + 14 : y - ph - 14)); this.setState({ sel: id, mapPop: true, mapPopLeft: left + 'px', mapPopTop: top + 'px' }); };
+
+    const m = {};
+    PV.forEach((p) => {
+      const c = clsOf(p.dens);
+      m[p.id] = { f: cls === null || cls === c ? COL[c] : '#EEF2F7', t: p.n + ' · ' + nf(p.dens) + ' jiwa/km² · ' + nf(p.pop / 1e6, 2) + ' juta jiwa', pick: pickMap(p.id) };
+    });
+    const selD = sel ? D.PD[sel] : 'M0 0';
+    const mk = sel ? { x: D.CT[sel][0], y: D.CT[sel][1], r: byId[sel].luas < 10000 ? 6 : 0 } : { x: 0, y: 0, r: 0 };
+    const leg = CLS.map((l, i) => {
+      const on = cls === i;
+      return { l, c: COL[i], n: PV.filter((p) => clsOf(p.dens) === i).length, bg: on ? '#EFF6FF' : '#FFFFFF', bd: on ? '#0EA5E9' : '#E3E8F0', tt: on ? 'Klik lagi untuk menampilkan semua kelas' : 'Sorot provinsi dengan kepadatan ' + l + ' jiwa/km²', pick: () => this.setState({ cls: on ? null : i }) };
+    });
+    const provOpts = [{ v: '', l: 'Indonesia (nasional)' }].concat([...PV].sort((a, b) => a.n.localeCompare(b.n, 'id')).map((p) => ({ v: p.id, l: p.n })));
+
+    const AGEC = ['#82B394', '#0EA5E9', '#0B1F4B'];
+    const AGEL = ['0–14', '15–64', '65+'];
+    const ageArr = (a) => a.map((v, i) => ({ l: AGEL[i], v: nf(v, 1) + '%', w: v + '%', c: AGEC[i] }));
+    const sexB = (L, P, src) => ({ hasSex: true, noSex: false, sexL: nf(L), sexP: nf(P), sexLp: nf((L / (L + P)) * 100, 1) + '%', sexPp: nf((P / (L + P)) * 100, 1) + '%', sexLw: (L / (L + P)) * 100 + '%', sexPw: (P / (L + P)) * 100 + '%', sexR: nf((L / P) * 100, 1), sexSrc: src });
+    const noSex = { hasSex: false, noSex: true, sexL: BT, sexP: BT, sexLp: '', sexPp: '', sexLw: '0%', sexPw: '0%', sexR: BT, sexSrc: 'belum tersedia' };
+    const popT = PV.reduce((s, p) => s + p.pop, 0), luasT = PV.reduce((s, p) => s + p.luas, 0);
+    let pn;
+    if (sel) {
+      const p = byId[sel], sk = SEK[sel];
+      pn = {
+        kind: 'PROVINSI', name: p.n, isProv: true,
+        pop: nf(p.pop / 1e6, 2) + ' juta', popSub: 'jiwa · BPS pertengahan 2025',
+        dens: nf(p.dens) + ' /km²', densSub: 'peringkat ' + (densRank.indexOf(sel) + 1) + ' dari 38',
+        luas: nf(p.luas) + ' km²', luasSub: 'BPS 2025',
+        age: ageArr(p.age), ageSrc: 'BPS · SP2020 Long Form',
+        ...(p.sx ? sexB(p.sx[0], p.sx[1], p.sx[2]) : noSex),
+        sek: sk ? sk[0] : BT, sekSrc: sk ? sk[1] : 'struktur PDRB provinsi belum dimuat', sekC: sk ? '#0F172A' : '#94A3B8',
+        mig: p.mi == null ? BT : 'Masuk ' + nf(p.mi) + ' · keluar ' + nf(p.mo) + ' orang',
+        migSrc: p.mi == null ? 'SP2020 LF disusun sebelum pemekaran Papua 2022' : 'BPS · SP2020 Long Form', migC: p.mi == null ? '#94A3B8' : '#0F172A',
+        pe: 'Lihat peluang investasi provinsi →'
+      };
+    } else {
+      pn = {
+        kind: 'NASIONAL · KLIK PROVINSI UNTUK RINCIAN', name: 'Indonesia', isProv: false,
+        pop: nf(popT / 1e6, 1) + ' juta', popSub: 'jiwa · jumlah 38 provinsi, 2025',
+        dens: nf(popT / luasT) + ' /km²', densSub: 'rata-rata nasional',
+        luas: nf(luasT / 1e6, 2) + ' juta km²', luasSub: 'BPS 2025',
+        age: ageArr([22.74, 69.3, 7.96]), ageSrc: 'Dukcapil · DKB Semester I 2026',
+        ...sexB(146402289, 143722784, 'Dukcapil · DKB Semester I 2026'),
+        sek: 'Pilih provinsi', sekSrc: 'sektor unggulan dibaca per provinsi', sekC: '#64748B',
+        mig: '± 4 juta migran risen', migSrc: 'BPS · SUPAS 2025', migC: '#0F172A',
+        pe: 'Lihat peluang investasi daerah →'
+      };
+    }
+    const sortK = st.sortK || 'dens';
+    const SORT = { dens: (a, b) => b.dens - a.dens, pop: (a, b) => b.pop - a.pop, luas: (a, b) => b.luas - a.luas, n: (a, b) => a.n.localeCompare(b.n, 'id') };
+    const tbl = [...PV].sort(SORT[sortK]).map((p, i) => ({ no: i + 1, n: p.n, pop: nf(p.pop / 1e6, 2), luas: nf(p.luas), dens: nf(p.dens), c: COL[clsOf(p.dens)], bg: p.id === sel ? '#EFF6FF' : '#FFFFFF', fw: p.id === sel ? 700 : 500, pick: go(p.id) }));
+    const sortBtns = [['n', 'PROVINSI', 'left'], ['pop', 'POPULASI (JUTA)', 'right'], ['luas', 'LUAS (KM²)', 'right'], ['dens', 'KEPADATAN (JIWA/KM²)', 'right']]
+      .map(([k, l, al]) => ({ l: l + (sortK === k ? ' ▾' : ''), al, fg: sortK === k ? '#1D4ED8' : '#64748B', pick: () => this.setState({ sortK: k }) }));
+    const showTbl = !!st.showTbl;
+
+    // ---------------- 2. Ranking ----------------
+    const KOM = { 'Jakarta Selatan': 'dki', 'Jakarta Pusat': 'dki', 'Jakarta Barat': 'dki', 'Jakarta Timur': 'dki', 'Kota Tangerang': 'banten', 'Kota Tangerang Selatan': 'banten', 'Kab. Bogor': 'jabar', 'Kota Bekasi': 'jabar', 'Kota Depok': 'jabar', 'Kab. Bekasi': 'jabar' };
+    const kom = (l) => l.map(([n, v]) => ({ id: KOM[n], n, v, sub: byId[KOM[n]].n }));
+    const wis = (l) => l.map(([n, v]) => ({ id: idOf[n], n, v, sub: '' }));
+    const migL = (k) => PV.filter((p) => p[k] != null).map((p) => ({ id: p.id, n: p.n, v: p[k], sub: '' }));
+    const RK = {
+      migrasi: {
+        l: 'Migrasi risen', inL: 'Migran masuk', outL: 'Migran keluar', unit: 'orang', dec: 0, max: 10,
+        def: 'Penduduk 5 tahun ke atas yang 5 tahun sebelumnya tinggal di provinsi lain (masuk) atau kini tinggal di provinsi lain (keluar).',
+        per: '5 tahun sebelum SP2020 (Long Form, tabulasi 2022)', src: 'BPS · Long Form Sensus Penduduk 2020 (tabel 170 dan 171)',
+        scope: '32 provinsi. 6 provinsi Papua belum tersedia karena data disusun sebelum pemekaran 2022.',
+        note: 'Migran masuk mencakup yang datang dari luar negeri; migran keluar hanya yang pindah ke provinsi lain di Indonesia.',
+        inn: migL('mi'), out: migL('mo')
+      },
+      kerja: {
+        l: 'Komuter kerja', inL: 'Kab/kota tujuan utama', outL: 'Kab/kota asal utama', unit: 'orang komuter', dec: 0, max: 5,
+        def: 'Pekerja yang pulang-pergi setiap hari ke kab/kota lain tanpa pindah tempat tinggal.',
+        per: '2023', src: 'BPS · Survei Komuter Jabodetabek 2023',
+        scope: 'Kab/kota di Jabodetabek; sumber memuat 5 teratas. Baris disorot pada provinsinya di peta.',
+        note: 'Ranking komuter tingkat provinsi belum tersedia; data jalan tol (Jasa Marga) belum masuk.',
+        inn: kom([['Jakarta Selatan', 812300], ['Jakarta Pusat', 541700], ['Jakarta Barat', 389500], ['Jakarta Timur', 352100], ['Kota Tangerang', 218400]]),
+        out: kom([['Kab. Bogor', 486200], ['Kota Bekasi', 428900], ['Kota Depok', 352600], ['Kota Tangerang Selatan', 301400], ['Kab. Bekasi', 247800]])
+      },
+      wisata: {
+        l: 'Wisatawan nusantara', inL: 'Provinsi tujuan', outL: 'Provinsi asal', unit: 'juta perjalanan', dec: 1, max: 5,
+        def: 'Perjalanan wisatawan nusantara, bukan orang unik: satu orang dapat melakukan beberapa perjalanan.',
+        per: 'Tahun 2025', src: 'BPS · Statistik Wisatawan Nusantara 2025',
+        scope: '5 provinsi teratas yang dipublikasikan, menurut provinsi tujuan dan asal.',
+        note: 'Perjalanan dalam provinsi yang sama ikut dihitung pada provinsi tujuan dan asal.',
+        inn: wis([['Jawa Timur', 205.1], ['Jawa Barat', 181.9], ['Jawa Tengah', 160.3], ['DKI Jakarta', 81.2], ['Banten', 52.0]]),
+        out: wis([['Jawa Barat', 194.3], ['Jawa Timur', 190.6], ['Jawa Tengah', 149.8], ['DKI Jakarta', 101.4], ['Banten', 57.9]])
+      }
+    };
+    const rkJ = RK[st.rkJ] ? st.rkJ : 'migrasi';
+    const R = RK[rkJ];
+    const topN = Math.min(st.topN || 5, R.max);
+    const rmax = Math.max(...R.inn.map((x) => x.v), ...R.out.map((x) => x.v));
+    const rank = (list) => {
+      const s = [...list].sort((a, b) => b.v - a.v);
+      return s.slice(0, topN).map((x) => {
+        const rk = s.findIndex((y) => y.v === x.v) + 1, on = x.id === sel;
+        return { rk, n: x.n, sub: x.sub, p: byId[x.id].n, v: nf(x.v, R.dec), w: ((x.v / rmax) * 100).toFixed(1) + '%', bg: on ? '#EFF6FF' : 'transparent', fw: on ? 700 : 500, pick: go(x.id) };
+      });
+    };
+    const rk = { ...R, rin: rank(R.inn), rout: rank(R.out) };
+    delete rk.inn; delete rk.out;
+    const rkTabs = Object.entries(RK).map(([k, v]) => ({ l: v.l, bg: k === rkJ ? '#FFFFFF' : 'transparent', fg: k === rkJ ? '#1E40AF' : '#475569', pick: () => this.setState({ rkJ: k }) }));
+    const topOpts = [5, 10].map((n) => ({ l: 'Top ' + n, ok: n <= R.max, no: n > R.max, why: 'Sumber ' + R.src.replace('BPS · ', '') + ' hanya memuat ' + R.max + ' teratas.', bg: topN === n ? '#FFFFFF' : 'transparent', fg: topN === n ? '#1E40AF' : '#475569', pick: () => this.setState({ topN: n }) }));
+
+    // ---------------- 3. Tren ----------------
+    const SER = {
+      krl: { n: 'KRL Commuter Line', wil: 'Jabodetabek', u: 'juta penumpang', dec: 2, c: '#1D4ED8', data: D.KRL, der: { '2026-01': 'angka turunan: kumulatif Jan–Feb 58,0 juta dikurangi Feb' } },
+      whoosh: { n: 'Kereta Cepat Whoosh', wil: 'Jakarta–Bandung', u: 'ribu penumpang', dec: 1, c: '#0B1F4B', data: D.WHO, der: {} },
+      wis: { n: 'Perjalanan wisatawan nusantara', wil: 'Nasional', u: 'juta perjalanan', dec: 2, c: '#0EA5E9', data: D.WIS, der: {} },
+      udr: { n: 'Penumpang angkutan udara domestik', wil: 'Nasional', u: 'juta penumpang', dec: 2, c: '#1E40AF', data: D.UDR, der: { '2025-08': 'angka turunan dari perubahan −5,13% (mtm) Sep 2025', '2026-03': 'angka turunan dari perubahan −18,72% (mtm) Apr 2026', '2026-07': 'dilaporkan ±5,0 juta; angka turunan dari +6,91% (mtm)', '2026-08': 'dilaporkan ±4,8 juta; angka turunan dari −3,43% (mtm)' } }
+    };
+    const TT = { migrasi: 'Migrasi', kerja: 'Mobilitas kerja (komuter)', wisata: 'Wisata & penerbangan' };
+    const trT = TT[st.trT] ? st.trT : 'kerja';
+    const isLine = trT !== 'migrasi', isMig = trT === 'migrasi';
+    const trTabs = Object.entries(TT).map(([k, l]) => ({ l, bg: k === trT ? '#FFFFFF' : 'transparent', fg: k === trT ? '#1E40AF' : '#475569', pick: () => this.setState({ trT: k }) }));
+    const per = st.per ?? 12;
+    const perOpts = [[6, '6 bulan'], [12, '12 bulan'], [0, 'Semua']].map(([v, l]) => ({ l, bg: per === v ? '#FFFFFF' : 'transparent', fg: per === v ? '#1E40AF' : '#475569', pick: () => this.setState({ per: v }) }));
+    const WK = { all: ['Semua koridor tersedia', ['krl', 'whoosh']], krl: ['Jabodetabek · KRL Commuter Line', ['krl']], whoosh: ['Jakarta–Bandung · Whoosh', ['whoosh']] };
+    const wilK = WK[st.wilK] ? st.wilK : 'all';
+    const wilM = D.LF.some((r) => r[0] === st.wilM) ? st.wilM : 'DKI Jakarta';
+    let wil, keys = [];
+    if (trT === 'kerja') {
+      keys = WK[wilK][1];
+      wil = { v: wilK, opts: Object.entries(WK).map(([v, x]) => ({ v, l: x[0] })), note: 'Data komuter bulanan tersedia per koridor, belum per provinsi.', on: (e) => { if (e && e.target) this.setState({ wilK: e.target.value }); } };
+    } else if (trT === 'wisata') {
+      keys = ['wis', 'udr'];
+      wil = { v: 'nas', opts: [{ v: 'nas', l: 'Nasional' }], note: 'Seri bulanan per provinsi belum tersedia; hanya agregat nasional.', on: () => this.setState({ trT: 'wisata' }) };
+    } else {
+      wil = { v: wilM, opts: D.LF.map((r) => ({ v: r[0], l: r[0] })), note: 'Provinsi menurut batas SP2020 (34 provinsi).', on: (e) => { if (e && e.target) this.setState({ wilM: e.target.value }); } };
+    }
+    let axis = [...new Set(keys.flatMap((k) => SER[k].data.map((r) => r[0])))].sort();
+    if (per) axis = axis.slice(-per);
+    const valAt = (k, mth) => { const r = SER[k].data.find((x) => x[0] === mth); return r ? r[1] : null; };
+    const prevM = (mth) => { const [y, mo] = mth.split('-').map(Number); return mo === 1 ? (y - 1) + '-12' : y + '-' + String(mo - 1).padStart(2, '0'); };
+    const lastAny = [...axis].reverse().find((mth) => keys.some((k) => valAt(k, mth) != null)) || axis[axis.length - 1];
+    const pt = axis.includes(st.pt) ? st.pt : lastAny;
+    const n = axis.length;
+    const xp = (i) => (n > 1 ? i / (n - 1) : 0.5);
+    const charts = keys.map((k) => {
+      const S = SER[k];
+      const vals = axis.map((mth) => valAt(k, mth));
+      const nn = vals.filter((v) => v != null);
+      const mx = Math.max(...nn), mn = Math.min(...nn);
+      const pad = (mx - mn) * 0.18 || mx * 0.05 || 1;
+      const lo = mn - pad, hi = mx + pad;
+      const yp = (v) => 1 - (v - lo) / (hi - lo);
+      let d = '', pen = false;
+      vals.forEach((v, i) => { if (v == null) { pen = false; return; } d += (pen ? 'L' : 'M') + (xp(i) * 600).toFixed(1) + ' ' + (yp(v) * 180).toFixed(1); pen = true; });
+      const pts = [];
+      vals.forEach((v, i) => {
+        if (v == null) return;
+        const mth = axis[i], on = mth === pt, dv = S.der[mth];
+        pts.push({ l: (xp(i) * 100).toFixed(2) + '%', t: (yp(v) * 100).toFixed(2) + '%', s: on ? '12px' : '9px', bg: on ? S.c : dv ? '#FFFFFF' : '#E7F1E9', c: S.c, z: on ? 3 : 2, pc: xp(i) < 0.5 ? 'pl' : '', tip: ml(mth, true) + ' · ' + nf(v, S.dec) + ' ' + S.u + (dv ? ' (' + dv + ')' : ''), pick: () => this.setState({ pt: mth }) });
+      });
+      const gaps = axis.filter((mth, i) => vals[i] == null && mth >= (S.data.find((r) => r[1] != null) || [''])[0]);
+      const lastI = vals.map((v, i) => (v != null ? i : -1)).filter((i) => i >= 0).pop();
+      const derN = Object.keys(S.der).filter((mth) => axis.includes(mth));
+      const pre = axis.filter((mth, i) => vals[i] == null && !gaps.includes(mth));
+      const notes = [];
+      if (gaps.length) notes.push('Belum tersedia: ' + gaps.map((g) => ml(g, true)).join(', ') + '.');
+      if (pre.length) notes.push('Seri dimulai ' + ml(axis[pre.length], true) + '.');
+      if (derN.length) notes.push('Titik putih = angka turunan dari persentase perubahan yang dirilis (' + derN.map((g) => ml(g, true)).join(', ') + ').');
+      const ix = axis.indexOf(pt);
+      return {
+        n: S.n, wil: S.wil, u: S.u, c: S.c, d: d || 'M0 0',
+        last: lastI == null ? BT : 'Terakhir ' + ml(axis[lastI], true) + ': ' + nf(vals[lastI], S.dec) + ' ' + S.u,
+        yt: [hi, lo + ((hi - lo) * 2) / 3, lo + (hi - lo) / 3, lo].map((v) => nf(v, S.dec > 1 ? 1 : 0)),
+        selD: ix >= 0 ? 'M' + (xp(ix) * 600).toFixed(1) + ' 0V180' : 'M0 0',
+        pts, xs: axis.map((mth, i) => ({ x: (xp(i) * 100).toFixed(2) + '%', l: n > 12 && (n - 1 - i) % 2 ? '' : ml(mth), c: mth === pt ? '#1E40AF' : '#64748B', fw: mth === pt ? 700 : 400 })),
+        note: notes.join(' ') || 'Seri lengkap untuk periode terpilih.'
+      };
+    });
+    const rd = {
+      l: pt ? ml(pt, true) : BT,
+      items: keys.map((k) => {
+        const S = SER[k], v = pt ? valAt(k, pt) : null, pv = pt ? valAt(k, prevM(pt)) : null;
+        return { n: S.n, v: v == null ? BT : nf(v, S.dec), u: v == null ? '' : S.u, d: v != null && pv != null ? sgn(((v - pv) / pv) * 100, 1) + '% mtm' : '', dn: v != null && S.der[pt] ? '(' + S.der[pt] + ')' : '' };
+      })
+    };
+    const TR = {
+      kerja: { units: 'juta penumpang (KRL) · ribu penumpang (Whoosh)', per: 'bulanan, Mei 2025–Agt 2026', src: 'BPS · BRS Perkembangan Transportasi (KAI Commuter, KCIC)', cav: 'Satuan adalah perjalanan penumpang, bukan orang unik. KRL dan Whoosh memakai satuan berbeda sehingga digambar pada grafik terpisah dan tidak dijumlahkan. Data jalan tol (Jasa Marga) belum tersedia.' },
+      wisata: { units: 'juta perjalanan (wisnus) · juta penumpang (udara)', per: 'bulanan, Jun 2025–Agt 2026', src: 'BPS · BRS Pariwisata dan BRS Perkembangan Transportasi', cav: 'Perjalanan wisatawan nusantara dan penumpang udara domestik adalah ukuran berbeda (satu perjalanan wisata dapat memakai pesawat), sehingga tidak dijumlahkan. Data per bandara (InJourney) belum tersedia.' },
+      migrasi: { units: 'persen penduduk · ribu jiwa (mutasi)', per: 'SP2020 Long Form (2015–2020), SUPAS 2025, DKB Semester II 2025', src: 'BPS · Long Form SP2020 dan SUPAS 2025; Dukcapil Kemendagri', cav: '' }
+    };
+    const tr = TR[trT];
+    if (trT === 'kerja' && wilK !== 'all') tr.units = wilK === 'krl' ? 'juta penumpang' : 'ribu penumpang';
+
+    // migrasi (SP2020 LF vs SUPAS 2025)
+    const lf = D.LF.find((r) => r[0] === wilM);
+    const SUP = { 'DKI Jakarta': -5.4 };
+    const div = (l, v) => (v == null
+      ? { l, v: BT, left: '50%', w: '0%', c: 'transparent', fc: '#94A3B8' }
+      : { l, v: sgn(v, 2) + '%', left: v < 0 ? (50 - (Math.abs(v) / 10) * 50).toFixed(2) + '%' : '50%', w: ((Math.abs(v) / 10) * 50).toFixed(2) + '%', c: v < 0 ? '#64748B' : '#0EA5E9', fc: v < 0 ? '#475569' : '#1D4ED8' });
+    const mg = {
+      name: lf[0], isDki: lf[0] === 'DKI Jakarta',
+      a: [{ l: 'Masuk', v: nf(lf[1], 2) + '%', w: (lf[1] / 8) * 100 + '%', c: '#0EA5E9' }, { l: 'Keluar', v: nf(lf[2], 2) + '%', w: (lf[2] / 8) * 100 + '%', c: '#64748B' }],
+      b: [div('SP2020 Long Form', lf[3]), div('SUPAS 2025', SUP[lf[0]] ?? null)],
+      kota: [['Jakarta Pusat', -9.57], ['Jakarta Barat', -6.21], ['Jakarta Timur', -5.08], ['Jakarta Selatan', -4.66], ['Jakarta Utara', -3.44]].map(([l, v]) => div(l, v)),
+      pick: go(idOf[lf[0]])
+    };
+    const supas = [{ l: 'Migran risen', v: '± 4 juta', s: 'SUPAS 2025 · nasional' }, { l: 'Migran seumur hidup', v: '25,8 juta', s: 'SUPAS 2025 · nasional' }, { l: 'Komuter', v: '11 juta', s: 'SUPAS 2025 · nasional' }];
+    const MUT = [['Kab. Bogor', 133, 'jabar'], ['Kab. Bekasi', 104, 'jabar'], ['Kab. Bandung', 96, 'jabar'], ['Kab. Tangerang', 87, 'banten'], ['Kota Batam', 80, 'kepri']];
+    const mut = MUT.map(([nm, v, id]) => ({ n: nm, p: byId[id].n, v: v + ' rb', w: (v / 133) * 100 + '%', pick: go(id) }));
+
+    // ---------------- 4. Insight ----------------
+    const w26 = D.WHO.filter((r) => r[0] >= '2026-01' && r[1] != null).map((r) => r[1]);
+    const wAvg = w26.reduce((s, v) => s + v, 0) / w26.length;
+    const wLast = D.WHO.filter((r) => r[1] != null).pop();
+    const krlG = (348.9 / 328.15 - 1) * 100;
+    const komOut = RK.kerja.out, migOut = [...RK.migrasi.out].sort((a, b) => b.v - a.v), migIn = [...RK.migrasi.inn].sort((a, b) => b.v - a.v);
+    const ins = [
+      {
+        no: 1, t: 'Bandung Raya dapat ditawarkan sebagai daerah penyangga bagi investor yang membidik Jakarta',
+        basis: [
+          'Whoosh Jakarta–Bandung: 6,2 juta penumpang pada 2025 (KCIC); rata-rata Jan–' + MON[+wLast[0].slice(5) - 1] + ' 2026 ' + nf(wAvg, 1) + ' ribu penumpang/bulan, ' + ml(wLast[0], true) + ' ' + nf(wLast[1], 1) + ' ribu',
+          'Kepadatan Jawa Barat ' + nf(byId.jabar.dens) + ' jiwa/km² vs DKI Jakarta ' + nf(byId.dki.dens) + ' jiwa/km²',
+          'UMP 2026: Jawa Barat Rp2.317.601 vs DKI Jakarta Rp5.729.876'
+        ],
+        impl: 'Akses kereta cepat menjaga keterhubungan dengan pasar dan kantor pusat di Jakarta, sementara lahan dan upah di Bandung Raya lebih rendah. Kantor operasional, pusat R&D, dan industri kreatif dapat diarahkan ke sana.',
+        links: [{ l: 'Lihat tren Whoosh ↓', h: '#sec-tren', pick: () => this.setState({ trT: 'kerja', wilK: 'whoosh' }) }, { l: 'Sorot Jawa Barat di peta ↑', h: '#sec-peta', pick: go('jabar') }]
+      },
+      {
+        no: 2, t: 'Bekasi dan Bogor adalah kantong tenaga kerja yang sudah terhubung KRL',
+        basis: [
+          komOut[0].n + ' (' + nf(komOut[0].v) + ') dan ' + komOut[1].n + ' (' + nf(komOut[1].v) + ') adalah daerah asal komuter terbesar (Survei Komuter Jabodetabek 2023)',
+          'KRL Jabodetabek 348,9 juta penumpang pada 2025, naik ' + nf(krlG, 1) + '% dari 2024',
+          'Mutasi penduduk terbesar Semester II 2025: Kab. Bogor 133 rb dan Kab. Bekasi 104 rb (Dukcapil)'
+        ],
+        impl: 'Investor padat karya, logistik, dan hunian pekerja dapat diarahkan ke koridor Bekasi–Bogor yang memiliki pasokan pekerja dan akses KRL, misalnya kawasan berorientasi transit di sekitar stasiun.',
+        links: [{ l: 'Lihat ranking komuter ↑', h: '#sec-rank', pick: () => this.setState({ rkJ: 'kerja' }) }, { l: 'Lihat tren KRL ↓', h: '#sec-tren', pick: () => this.setState({ trT: 'kerja', wilK: 'krl' }) }]
+      },
+      {
+        no: 3, t: 'Arus keluar dari DKI Jakarta memperbesar pasar di provinsi penerima migran',
+        basis: [
+          migOut[0].n + ': migran keluar ' + nf(migOut[0].v) + ' orang, tertinggi dari 32 provinsi (SP2020 LF)',
+          'Neto migrasi risen DKI Jakarta −5,75% (SP2020 LF) dan −5,40% (SUPAS 2025)',
+          'Migran masuk terbesar: ' + migIn[0].n + ' ' + nf(migIn[0].v) + ' dan ' + migIn[1].n + ' ' + nf(migIn[1].v) + ' orang'
+        ],
+        impl: 'Permintaan hunian, ritel, dan layanan bergeser ke provinsi penerima. Investor yang menyasar pasar Jakarta dapat menempatkan fasilitas di Jawa Barat atau Jawa Tengah tanpa kehilangan akses pasar.',
+        links: [{ l: 'Lihat ranking migrasi ↑', h: '#sec-rank', pick: () => this.setState({ rkJ: 'migrasi' }) }, { l: 'Bandingkan SP2020 vs SUPAS ↓', h: '#sec-tren', pick: () => this.setState({ trT: 'migrasi', wilM: 'DKI Jakarta' }) }]
+      }
+    ];
+
+    const nav = [['#sec-peta', 'Peta'], ['#sec-rank', 'Ranking'], ['#sec-tren', 'Tren'], ['#sec-insight', 'Insight']].map(([h, l]) => ({ h, l }));
+    return {
+      nav, m, selD, mk, leg, clsOn: cls !== null, clsReset: () => this.setState({ cls: null }), provOpts, selV: sel || '',
+      onProv: (e) => { if (e && e.target) this.setState({ sel: e.target.value || null, mapPop: false }); },
+      pn, hasMapPop: !!sel && !!st.mapPop, mp: Object.assign({}, pn, { popLeft: st.mapPopLeft || '12px', popTop: st.mapPopTop || '72px' }), closeMapPop: () => this.setState({ mapPop: false }), clearSel: () => this.setState({ sel: null, mapPop: false }),
+      showTbl, tblLabel: showTbl ? 'Tutup tabel ▴' : 'Lihat data 38 provinsi ▾', toggleTbl: () => this.setState({ showTbl: !showTbl }), tbl, sortBtns,
+      rk, rkTabs, topOpts,
+      trTabs, isLine, isMig, perOpts, wil, tr, charts, rd, mg, supas, mut,
+      ins
+    };
+  }
+}
+
+</script>
+
+
+<script data-harmonisasi-tab-listener>document.addEventListener("click",function(event){var link=event.target.closest&&event.target.closest("[data-harmonisasi-tab]");if(!link)return;event.preventDefault();var index=Number(link.getAttribute("data-harmonisasi-tab"));if(Number.isInteger(index))window.parent.postMessage({type:"harmonisasi:tab",index:index},"*");},true);</script><script data-harmonisasi-vercel-runtime>(function(){function sendSize(){var h=Math.max(document.documentElement?document.documentElement.scrollHeight:0,document.body?document.body.scrollHeight:0);window.parent.postMessage({type:"harmonisasi:resize",height:h},"*");}function connect(){sendSize();if(window.ResizeObserver){var ro=new ResizeObserver(sendSize);if(document.documentElement)ro.observe(document.documentElement);if(document.body)ro.observe(document.body);}if(window.MutationObserver&&document.body)new MutationObserver(sendSize).observe(document.body,{childList:true,subtree:true,attributes:true,characterData:true});window.addEventListener("load",sendSize);window.addEventListener("resize",sendSize);setTimeout(sendSize,100);setTimeout(sendSize,600);}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",connect,{once:true});else connect();window.addEventListener("message",function(e){if(e.data&&e.data.type==="harmonisasi:resize-request")sendSize();});})();</script><script>
+(function() {
+  function cleanup() {
+    // 1. Metadata labels
+    var labels = ['Tanggal acuan:', 'Cakupan:', 'Periode data OSS:', 'Sumber utama:'];
+    var metaNodes = [];
+    document.querySelectorAll('span').forEach(function(node) {
+      var text = (node.textContent || '').replace(/\s+/g, ' ').trim();
+      if (labels.some(function(l) { return text.indexOf(l) === 0; })) {
+        metaNodes.push(node);
+        node.style.display = 'none';
+      }
+    });
+    if (metaNodes.length && metaNodes[0].parentElement) {
+      var p = metaNodes[0].parentElement;
+      if (Array.from(p.children).every(function(c) { return metaNodes.indexOf(c) !== -1; })) {
+        p.style.display = 'none';
+      }
+    }
+
+    // 2. Filter buttons
+    var filterLabels = ['Jenis:', 'Sektor (KBLI 2025):', 'Wilayah:', 'Jenis izin:', 'Tahap:'];
+    document.querySelectorAll('button').forEach(function(b) {
+      var t = (b.innerText || b.textContent || '').replace(/\s+/g, ' ').trim();
+      if (b.style.display !== 'none' && filterLabels.some(function(l) { return t.indexOf(l) === 0; })) {
+        b.style.display = 'none';
+      }
+    });
+
+    // 3. National scope text
+    document.querySelectorAll('div').forEach(function(d) {
+      var t = (d.textContent || '').replace(/\s+/g, ' ').trim();
+      if (t === 'Nasional · seluruh sektor · seluruh jenis izin') d.style.display = 'none';
+    });
+
+    // 4. Demografi section links
+    var sectionLinks = ['#sec-peta', '#sec-rank', '#sec-tren', '#sec-insight'];
+    sectionLinks.forEach(function(href) {
+      var link = document.querySelector('a[href="' + href + '"]');
+      var nav = link && link.closest('nav');
+      if (nav) nav.style.display = 'none';
+    });
+
+    // 5. Hide Isu dampak section
+    document.querySelectorAll('h2').forEach(function(h) {
+      if ((h.textContent || '').replace(/\s+/g, ' ').trim() === 'Isu dampak, hambatan, peluang & rekomendasi') {
+        var sec = h.closest('section');
+        if (sec) sec.style.display = 'none';
+      }
+    });
+
+    // 6. Focus regulation chart on 2026
+    var chartHeading = Array.from(document.querySelectorAll('h2')).find(function(h) {
+      return (h.textContent || '').indexOf('Sebaran regulasi menurut') === 0 ||
+        (h.textContent || '').indexOf('Jumlah regulasi menurut') === 0;
+    });
+    if (chartHeading) {
+      var chartSection = chartHeading.closest('section');
+      if (chartSection) {
+        var tabs = Array.from(chartSection.querySelectorAll('[role="tab"]'));
+        var sectorTab = tabs.find(function(t) { return (t.textContent || '').indexOf('Sektor') !== -1; });
+        var sectorMode = !!sectorTab && getComputedStyle(sectorTab).backgroundColor === 'rgb(255, 255, 255)';
+        var sectorLabel = sectorTab && sectorTab.querySelector('span');
+        if (sectorLabel && sectorLabel.textContent !== 'Sektor') sectorLabel.textContent = 'Sektor';
+        var title = 'Jumlah regulasi menurut ' + (sectorMode ? 'sektor' : 'jenis') + ' · 2026';
+        if (chartHeading.textContent !== title) chartHeading.textContent = title;
+
+        var chartContent = chartSection.children[1] && chartSection.children[1].children[0];
+        if (chartContent) {
+          if (sectorMode) {
+            var header = chartContent.children[0];
+            if (header && header.children.length >= 4) {
+              if (header.children[1].textContent.trim() === '2026') header.children[1].textContent = '';
+              header.children[2].style.display = '';
+              if (header.children[2].textContent.trim() !== '2026') header.children[2].textContent = '2026';
+              header.children[3].style.display = 'none';
+              header.style.gridTemplateColumns = 'minmax(0, 1fr) minmax(0, 0.9fr) 64px';
+            }
+            Array.from(chartContent.children).slice(1).forEach(function(row) {
+              var rowGrid = Array.from(row.children).find(function(c) { return getComputedStyle(c).display === 'grid'; });
+              if (!rowGrid || rowGrid.children.length < 4) return;
+              rowGrid.children[3].style.display = 'none';
+              rowGrid.style.gridTemplateColumns = 'minmax(0, 1fr) minmax(0, 0.9fr) 64px';
+            });
+          } else {
+            var bars = chartContent.children[0];
+            var years = chartContent.children[1];
+            if (bars && bars.children.length === 5) {
+              bars.style.display = 'flex';
+              Array.from(bars.children).slice(0, 4).forEach(function(b) { b.style.display = 'none'; });
+            }
+            if (years && years.children.length === 5) {
+              years.style.display = 'flex';
+              Array.from(years.children).slice(0, 4).forEach(function(y) { y.style.display = 'none'; });
+              var cur = years.children[4].querySelector('span');
+              if (cur && cur.textContent.trim() !== '2026') cur.textContent = '2026';
+            }
+            var table = chartContent.children[3];
+            if (table) {
+              Array.from(table.children).forEach(function(row) {
+                if (row.children.length < 4) return;
+                row.children[1].style.display = 'none';
+                row.children[3].style.display = 'none';
+                row.style.gridTemplateColumns = 'minmax(0, 1fr) 80px';
+                if (row.children[2].textContent.trim() === '2026*') row.children[2].textContent = '2026';
+              });
+            }
+          }
+        }
+        Array.from(chartSection.querySelectorAll('span')).forEach(function(sp) {
+          var tx = (sp.textContent || '').replace(/\s+/g, ' ').trim();
+          if (tx === 'Periode: akhir tahun 2022–2025; 2026 s.d. 12 Okt') {
+            sp.textContent = 'Periode: tahun 2026 hingga 12 Okt';
+          }
+        });
+      }
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    cleanup();
+    setTimeout(cleanup, 100);
+    setTimeout(cleanup, 500);
+  });
+  if (window.MutationObserver && document.documentElement) {
+    new MutationObserver(cleanup).observe(document.documentElement, {
+      attributes: true, attributeFilter: ['style'], childList: true, subtree: true
+    });
+  }
+})();
+</script>
+</body></html>
