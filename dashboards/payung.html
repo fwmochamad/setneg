@@ -447,15 +447,15 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
                         <span style="font-size: 11.5px; color: #16A34A; font-weight: 600;">100% Aktif</span>
                       </div>
                     </div>
-                    <div style="padding: 10px 14px; border-radius: 8px; background: #EFF6FF; border: 1px solid #BFDBFE; display: flex; flex-direction: column; gap: 2px;">
-                      <span style="font-size: 11px; color: #1E40AF; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3px;">Regulasi Pusat</span>
+                    <div role="button" tabindex="0" sc-camel-on-click="{{kpiJenis.pickPusat}}" title="Tampilkan hanya regulasi pusat di daftar regulasi investasi" style="padding: 10px 14px; border-radius: 8px; background: {{kpiJenis.pusatBg}}; border: 1.5px solid {{kpiJenis.pusatBd}}; display: flex; flex-direction: column; gap: 2px; cursor: pointer; transition: all .15s ease;">
+                      <span style="display: flex; justify-content: space-between; align-items: center; gap: 6px; font-size: 11px; color: #1E40AF; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3px;">Regulasi Pusat<span style="color: #3B82F6; font-weight: 700;">{{kpiJenis.pusatTag}}Filter ↓</span></span>
                       <div style="display: flex; align-items: baseline; gap: 6px;">
                         <b style="font-size: 22px; color: #1E40AF;">{{kpiJenis.pusat}}</b>
                         <span style="font-size: 11.5px; color: #3B82F6; font-weight: 600;">{{kpiJenis.pusatPct}} · UU, PP, Permen</span>
                       </div>
                     </div>
-                    <div style="padding: 10px 14px; border-radius: 8px; background: #FFFBEB; border: 1px solid #FDE68A; display: flex; flex-direction: column; gap: 2px;">
-                      <span style="font-size: 11px; color: #92400E; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3px;">Regulasi Daerah</span>
+                    <div role="button" tabindex="0" sc-camel-on-click="{{kpiJenis.pickDaerah}}" title="Tampilkan hanya regulasi daerah di daftar regulasi investasi" style="padding: 10px 14px; border-radius: 8px; background: {{kpiJenis.daerahBg}}; border: 1.5px solid {{kpiJenis.daerahBd}}; display: flex; flex-direction: column; gap: 2px; cursor: pointer; transition: all .15s ease;">
+                      <span style="display: flex; justify-content: space-between; align-items: center; gap: 6px; font-size: 11px; color: #92400E; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3px;">Regulasi Daerah<span style="color: #D97706; font-weight: 700;">{{kpiJenis.daerahTag}}Filter ↓</span></span>
                       <div style="display: flex; align-items: baseline; gap: 6px;">
                         <b style="font-size: 22px; color: #B45309;">{{kpiJenis.daerah}}</b>
                         <span style="font-size: 11.5px; color: #D97706; font-weight: 600;">{{kpiJenis.daerahPct}} · Perda Prov/Kab</span>
@@ -467,7 +467,7 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
                   <div style="display: flex; flex-direction: column; gap: 6px;">
                     <div style="display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: #64748B;">
                       <span style="font-weight: 600;">Komposisi Beban Regulasi 2026:</span>
-                      <span>Klik kartu di bawah untuk memfilter daftar regulasi</span>
+                      <span>Klik kartu Regulasi Pusat/Daerah atau kartu di bawah untuk memfilter &amp; scroll ke daftar regulasi</span>
                     </div>
                     <div style="display: flex; height: 18px; width: 100%; border-radius: 6px; overflow: hidden; background: #E2E8F0; box-shadow: inset 0 1px 2px rgba(0,0,0,0.06);">
                       <sc-for list="{{jenisItems}}" as="seg" hint-placeholder-count="6">
@@ -639,37 +639,99 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
         </section>
 
         <!-- 3. Daftar regulasi -->
-        <section id="sec-daftar" style="background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; box-shadow: 0 1px 2px rgba(15,23,42,.05); scroll-margin-top: 16px;">
-          <div style="padding: 12px 18px; border-bottom: 1px solid #EEF2F7; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px;">
-            <div><h2 style="margin: 0; font-size: 14.5px; font-weight: 600;">Daftar regulasi investasi</h2><div style="font-size: 11.5px; color: #64748B;">Diurutkan menurut tingkatan peraturan: UU, PP, Perpres, Permen, Kepmen, Perda</div></div>
-            <label style="display: flex; align-items: center; gap: 8px; width: 320px; max-width: 100%; height: 36px; padding: 0 10px; box-sizing: border-box; border: 1px solid #E3E8F0; border-radius: 9px;"><span style="color: #64748B;">⌕</span><input type="search" value="{{q}}" sc-camel-on-change="{{onSearch}}" placeholder="Cari judul, nomor, penerbit atau sektor…" style="flex: 1; min-width: 0; border: 0; outline: 0; font-family: inherit; font-size: 12.5px;"></label>
+        <section id="sec-daftar" style="background: #FFFFFF; border: 1px solid #EAECF0; border-radius: 12px; display: flex; flex-direction: column; scroll-margin-top: 16px;">
+          <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px; padding: 8px 12px; border-bottom: 1px solid #EAECF0;">
+            <span style="font-size: 16px; font-weight: 500; color: #344054;">Daftar Regulasi Investasi</span>
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <sc-if value="{{hasLvlFilter}}" hint-placeholder-val="{{false}}">
+                <span style="display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 4px 0 12px; box-sizing: border-box; border-radius: 8px; background: #F0F9FF; border: 1px solid #7CD4FD; font-size: 12px; color: #344054;"><b>Filter: {{lvlLabel}}</b><span style="color: #667085;">{{lvlNote}}</span><button type="button" sc-camel-on-click="{{resetLvl}}" title="Hapus filter tingkat peraturan" style="width: 22px; height: 22px; border: 0; border-radius: 5px; background: #FFFFFF; color: #0284C7; font-family: inherit; font-size: 13px; line-height: 1; cursor: pointer;">×</button></span>
+              </sc-if>
+              <div style="position: relative; width: 288px; max-width: 100%;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #94A3B8; pointer-events: none;"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+                <input type="search" value="{{q}}" sc-camel-on-change="{{onSearch}}" placeholder="Cari regulasi..." style="width: 100%; height: 36px; padding: 0 12px 0 36px; box-sizing: border-box; border-radius: 8px; border: 1px solid #E2E8F0; background: #FFFFFF; font-family: inherit; font-size: 14px; color: #0F172A; outline: 0;" />
+              </div>
+            </div>
           </div>
-          <div style="overflow-x: auto;">
-            <div style="min-width: 1180px;">
-              <div style="display: grid; grid-template-columns: 76px 1.3fr 2.6fr 1.5fr 0.9fr 0.7fr 1.2fr; gap: 12px; padding: 10px 18px; background: #F8FAFC; font-size: 10.5px; font-weight: 700; letter-spacing: 0.4px; color: #64748B;"><span>JENIS</span><span>NOMOR · TAHUN</span><span>JUDUL</span><span>INSTANSI PENERBIT</span><span>WILAYAH</span><span>STATUS</span><span>SEKTOR (KBLI 2025)</span></div>
-              <sc-for list="{{rows}}" as="r" hint-placeholder-count="10">
-                <div sc-camel-on-click="{{r.open}}" class="rw" style="display: grid; grid-template-columns: 76px 1.3fr 2.6fr 1.5fr 0.9fr 0.7fr 1.2fr; gap: 12px; align-items: center; padding: 10px 18px; border-top: 1px solid #EEF2F7; font-size: 12.5px;">
-                  <span style="justify-self: start; padding: 2px 7px; border-radius: 5px; background: {{r.jbg}}; color: #FFFFFF; font-size: 10.5px; font-weight: 700;">{{r.jl}}</span>
-                  <b>{{r.nomor}}</b>
-                  <span style="color: #1D4ED8; font-weight: 500;">{{r.judul}}</span>
-                  <span style="color: #475569;">{{r.pen}}</span>
-                  <span>{{r.wil}}</span>
-                  <span style="justify-self: start; padding: 2px 8px; border-radius: 5px; background: #EFF6FF; color: #1D4ED8; font-size: 11px; font-weight: 600;">Aktif</span>
-                  <span style="font-size: 11.5px; color: #475569;">{{r.sek}}</span>
+
+          <div style="padding: 12px; display: flex; flex-direction: column; gap: 16px; flex: 1;">
+            <sc-if value="{{noRows}}" hint-placeholder-val="{{false}}">
+              <div style="padding: 32px 0; text-align: center; font-size: 14px; color: #94A3B8;">No data found · <button type="button" sc-camel-on-click="{{resetF}}" style="padding: 0; border: 0; background: transparent; font-family: inherit; font-size: 14px; font-weight: 600; color: #2563EB; cursor: pointer;">Reset filter</button></div>
+            </sc-if>
+
+            <sc-for list="{{rows}}" as="r" hint-placeholder-count="5">
+              <article sc-camel-on-click="{{r.open}}" style="border-radius: 16px; border: 1px solid #E5E7EB; background: #FFFFFF; overflow: hidden; cursor: pointer; transition: border-color .15s ease, box-shadow .15s ease;">
+                <div style="padding: 12px 16px; display: flex; align-items: center; gap: 12px;">
+                  <div style="display: flex; align-items: center; gap: 8px; min-width: 0; flex: 1;">
+                    <span style="display: inline-flex; align-items: center; justify-content: center; border-radius: 999px; background: #0BA5EC; color: #FFFAFA; font-size: 12px; font-weight: 600; padding: 4px 12px; flex: none;">{{r.jenis}}</span>
+                    <p title="{{r.nomorJudul}}" style="margin: 0; font-size: 14px; font-weight: 500; color: #0F172A; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0;">{{r.nomorJudul}}</p>
+                  </div>
+                  <span style="display: inline-flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 600; color: #2563EB; flex: none;">Detail →</span>
                 </div>
-              </sc-for>
-              <sc-if value="{{noRows}}" hint-placeholder-val="{{false}}"><div style="padding: 28px 18px; text-align: center; font-size: 12.5px; color: #64748B; border-top: 1px solid #EEF2F7;">Tidak ada regulasi yang sesuai. <button type="button" sc-camel-on-click="{{resetF}}" style="padding: 0; border: 0; background: transparent; font-family: inherit; font-size: 12.5px; font-weight: 600; color: #1D4ED8; cursor: pointer;">Reset filter</button></div></sc-if>
+
+                <div style="background: #F9FAFB; border-top: 1px solid #EAECF0; padding: 12px 16px;">
+                  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px;">
+                    <div style="border-radius: 16px; padding: 12px 16px; background: #F0F9FF; border: 1px solid #7CD4FD;">
+                      <div style="display: flex; align-items: flex-start; gap: 12px;">
+                        <div style="flex: none; height: 28px; width: 28px; border-radius: 8px; display: flex; align-items: center; justify-content: center; background: #E0F2FE; color: #2563EB;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path><path d="M14 2v4a2 2 0 0 0 2 2h4"></path><path d="M10 9H8"></path><path d="M16 13H8"></path><path d="M16 17H8"></path></svg></div>
+                        <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px;">
+                          <p style="margin: 0; font-size: 14px; font-weight: 600; color: #0F172A;">Summary Peraturan</p>
+                          <p title="{{r.summary}}" style="margin: 0; font-size: 13px; line-height: 1.6; color: #334155; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">{{r.summary}}</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div style="border-radius: 16px; padding: 12px 16px; background: #FEFBE8; border: 1px solid #FDE272;">
+                      <div style="display: flex; align-items: flex-start; gap: 12px;">
+                        <div style="flex: none; height: 28px; width: 28px; border-radius: 8px; display: flex; align-items: center; justify-content: center; background: #FEF3C7; color: #D97706;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="6" x2="6" y1="3" y2="15"></line><circle cx="18" cy="6" r="3"></circle><circle cx="6" cy="18" r="3"></circle><path d="M18 9a9 9 0 0 1-9 9"></path></svg></div>
+                        <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px;">
+                          <p style="margin: 0; font-size: 14px; font-weight: 600; color: #0F172A;">Regulasi Turunan</p>
+                          <sc-if value="{{r.hasTurunan}}" hint-placeholder-val="{{true}}">
+                            <ul style="margin: 0; padding-left: 16px; list-style: disc; display: flex; flex-direction: column; gap: 4px;">
+                              <sc-for list="{{r.turunan}}" as="t" hint-placeholder-count="2"><li style="font-size: 13px; line-height: 1.6; color: #334155;">{{t}}</li></sc-for>
+                            </ul>
+                          </sc-if>
+                          <sc-if value="{{r.hasTurunan}}" hint-placeholder-val="{{false}}"><p style="margin: 0; font-size: 13px; line-height: 1.6; color: #334155;">-</p></sc-if>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div style="border-radius: 16px; padding: 12px 16px; background: #ECFDF3; border: 1px solid #6CE9A6;">
+                      <div style="display: flex; align-items: flex-start; gap: 12px;">
+                        <div style="flex: none; height: 28px; width: 28px; border-radius: 8px; display: flex; align-items: center; justify-content: center; background: #D1FADF; color: #059669;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9.94 15.5A2 2 0 0 0 8.5 14.06l-6.14-1.58a.5.5 0 0 1 0-.96L8.5 9.94A2 2 0 0 0 9.94 8.5l1.58-6.14a.5.5 0 0 1 .96 0l1.58 6.14A2 2 0 0 0 15.5 9.94l6.14 1.58a.5.5 0 0 1 0 .96l-6.14 1.58a2 2 0 0 0-1.44 1.44l-1.58 6.14a.5.5 0 0 1-.96 0Z"></path></svg></div>
+                        <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px;">
+                          <p style="margin: 0; font-size: 14px; font-weight: 600; color: #0F172A;">Insight - Impact</p>
+                          <p title="{{r.insight}}" style="margin: 0; font-size: 13px; line-height: 1.6; color: #334155; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">{{r.insight}}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </sc-for>
+
+            <sc-if value="{{hasRows}}" hint-placeholder-val="{{true}}">
+              <div style="padding-top: 8px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                  <button type="button" sc-camel-on-click="{{pg.first}}" aria-label="First page" title="Halaman pertama" style="display: inline-flex; align-items: center; justify-content: center; padding: 8px; border: 0; border-radius: 6px; background: {{pg.nb}}; color: {{pg.nc}}; cursor: pointer;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m11 17-5-5 5-5"></path><path d="m18 17-5-5 5-5"></path></svg></button>
+                  <button type="button" sc-camel-on-click="{{pg.prev}}" aria-label="Previous page" title="Halaman sebelumnya" style="display: inline-flex; align-items: center; justify-content: center; padding: 8px; border: 0; border-radius: 6px; background: {{pg.nb}}; color: {{pg.nc}}; cursor: pointer;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg></button>
+                  <div style="display: flex; align-items: center; gap: 12px;">
+                    <sc-for list="{{pg.pages}}" as="p" hint-placeholder-count="5">
+                      <sc-if value="{{p.gap}}" hint-placeholder-val="{{false}}"><span style="display: inline-flex; align-items: center; justify-content: center; color: #737373;" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg></span></sc-if>
+                      <sc-if value="{{p.gap}}" hint-placeholder-val="{{true}}"><button type="button" sc-camel-on-click="{{p.pick}}" aria-label="Page {{p.n}}" style="display: inline-flex; align-items: center; justify-content: center; padding: 0 16px; height: 40px; min-width: 40px; font-family: inherit; font-size: 14px; font-weight: 500; border: 0; border-radius: 6px; background: {{p.bg}}; color: {{p.fg}}; cursor: pointer;">{{p.n}}</button></sc-if>
+                    </sc-for>
+                  </div>
+                  <button type="button" sc-camel-on-click="{{pg.next}}" aria-label="Next page" title="Halaman berikutnya" style="display: inline-flex; align-items: center; justify-content: center; padding: 8px; border: 0; border-radius: 6px; background: {{pg.nb}}; color: {{pg.nc}}; cursor: pointer;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg></button>
+                  <button type="button" sc-camel-on-click="{{pg.last}}" aria-label="Last page" title="Halaman terakhir" style="display: inline-flex; align-items: center; justify-content: center; padding: 8px; border: 0; border-radius: 6px; background: {{pg.nb}}; color: {{pg.nc}}; cursor: pointer;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 17 5-5-5-5"></path><path d="m13 17 5-5-5-5"></path></svg></button>
+                </div>
+                <div style="font-size: 14px; color: #374151;">{{pageNote}}</div>
+              </div>
+            </sc-if>
+
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; width: 100%; font-size: 10px; color: #98A2B3;">
+              <span>Diurutkan menurut tingkatan peraturan: UU, PP, Perpres, Permen, Kepmen, Perda · {{restNote}}</span>
+              <span style="display: inline-flex; align-items: center;"><span style="margin-right: 8px;">Sumber :</span><b style="font-weight: 500;">JDIH Setneg, JDIH K/L, JDIH pemda</b><span style="margin: 0 12px; height: 16px; width: 1px; background: #EAECF0;" aria-hidden="true"></span><span style="font-weight: 500;">12 Okt 2026, 06.00 WIB</span></span>
             </div>
           </div>
-          <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px; padding: 12px 18px; border-top: 1px solid #EEF2F7;">
-            <span style="font-size: 12px; color: #64748B;">{{pageNote}}</span>
-            <div style="display: flex; align-items: center; gap: 4px;">
-              <button type="button" sc-camel-on-click="{{prevPage}}" aria-label="Sebelumnya" style="width: 30px; height: 30px; border-radius: 6px; border: 1px solid #E3E8F0; background: #FFFFFF; color: {{pgPrevC}}; font-family: inherit; cursor: pointer;">‹</button>
-              <sc-for list="{{pages}}" as="p" hint-placeholder-count="5"><button type="button" sc-camel-on-click="{{p.pick}}" style="min-width: 30px; height: 30px; border-radius: 6px; border: 1px solid {{p.bd}}; background: {{p.bg}}; color: {{p.fg}}; font-family: inherit; font-size: 12px; font-weight: 600; cursor: pointer;">{{p.n}}</button></sc-for>
-              <button type="button" sc-camel-on-click="{{nextPage}}" aria-label="Berikutnya" style="width: 30px; height: 30px; border-radius: 6px; border: 1px solid #E3E8F0; background: #FFFFFF; color: {{pgNextC}}; font-family: inherit; cursor: pointer;">›</button>
-            </div>
-          </div>
-          <div style="padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;"><span><b style="color: #475569;">Periode:</b> s.d. 12 Okt 2026</span><span><b style="color: #475569;">Diperbarui:</b> 12 Okt 2026, 06.00 WIB</span><span><b style="color: #475569;">Sumber:</b> JDIH Setneg, JDIH K/L, JDIH pemda</span><span>{{restNote}}</span></div>
         </section>
       </div>
     </sc-if>
@@ -867,9 +929,9 @@ class Component extends DCLogic {
         ['Konsekuensi', 'Pelanggaran berakibat sanksi administratif atau sanksi pidana sesuai ketentuan naskah.', ['Pasal 7', 'Pasal 8']]
       ];
     };
-    const sumAuto = (r) => 'Naskah ' + r.j + ' ' + r.nomor + ' mengatur ' + String(r.judul).toLowerCase() + '. Berlaku di ' + (r.wil === N ? 'seluruh Indonesia' : r.wil) + ' dan mencakup ' + sekText(r.sek) + '. Ringkasan pada panel di bawah disusun otomatis dari judul, penerbit, wilayah, dan cakupan sektor naskah; bukan kutipan pasal.';
+    const sumAuto = (r) => 'Naskah ' + r.nomor + ' mengatur ' + r.judul + '. Berlaku di ' + (r.wil === N ? 'seluruh Indonesia' : r.wil) + ' dan mencakup ' + sekText(r.sek) + '. Ringkasan pada panel di bawah disusun otomatis dari judul, penerbit, wilayah, dan cakupan sektor naskah; bukan kutipan pasal.';
     ALL.forEach((r) => {
-      if (DET[r.id]) return;
+      if (!r.id || DET[r.id]) return;
       DET[r.id] = {
         ring: ringAuto(r),
         log: [['Diundangkan', String(r.tahun), 'di ' + (r.wil === N ? 'Indonesia' : r.wil)], ['Status', '12 Okt 2026', 'Aktif'], ['Evaluasi', String(r.tahun + 3), 'jadwal evaluasi berkala']],
@@ -883,10 +945,14 @@ class Component extends DCLogic {
     const openReg = (key) => () => this.setState({ view: 'detail', sel: key, menu: null });
 
     // ---------- filter ----------
-    const fj = st.fj || 'Semua', fs = st.fs || 'Semua', fw = st.fw || 'Semua', q = (st.q || '').trim().toLowerCase();
+    const fj = st.fj || 'Semua', fs = st.fs || 'Semua', fw = st.fw || 'Semua', q = (st.q || '').trim().toLowerCase(), lvl = st.lvl || 'Semua';
+    const isDaerah = (r) => r.j === 'Perda';
     const pass = (r, skip) => (skip === 'j' || fj === 'Semua' || r.j === fj) && (skip === 's' || fs === 'Semua' || r.sek.includes(fs)) && (skip === 'w' || fw === 'Semua' || r.wil === fw)
+      && (skip === 'l' || lvl === 'Semua' || (lvl === 'Daerah' ? isDaerah(r) : !isDaerah(r)))
       && (!q || (r.nomor + ' ' + r.judul + ' ' + r.pen + ' ' + sekText(r.sek)).toLowerCase().includes(q));
     const set = (o) => this.setState({ menu: null, page: 0, ...o });
+    const scrollDaftar = () => requestAnimationFrame(() => requestAnimationFrame(() => { const el = document.getElementById('sec-daftar'); if (el && el.scrollIntoView) el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }));
+    const setLvl = (v) => { set({ lvl: lvl === v ? 'Semua' : v, fj: 'Semua', fs: 'Semua', fw: 'Semua', q: '' }); scrollDaftar(); };
     const F = [
       ['fj', 'Jenis', [['Semua', 'Semua jenis'], ...ORD.map((k) => [k, JL[k]])], 'j', (r, v) => r.j === v],
       ['fs', 'Sektor (KBLI 2025)', [['Semua', 'Semua sektor'], [X, 'Lintas sektor'], ...KB.filter(([k]) => SEKV[k] > 0).map(([k, n]) => [k, k + ' · ' + n])], 's', (r, v) => r.sek.includes(v)],
@@ -898,12 +964,12 @@ class Component extends DCLogic {
       return { l, v: cur === 'Semua' ? 'Semua' : lab, open: isOpen, bg: cur === 'Semua' ? '#FFFFFF' : '#EFF6FF', bd: cur === 'Semua' ? '#E3E8F0' : '#B8E3DF', toggle: () => this.setState({ menu: isOpen ? null : key }),
         opts: list.map(([v, ol]) => ({ l: ol, n: ALL.filter((r) => pass(r, skip) && (v === 'Semua' || getter(r, v))).length, bg: cur === v ? '#EFF6FF' : 'transparent', w: cur === v ? 700 : 500, pick: () => set({ [key]: v }) })) };
     });
-    const hasFilter = fj !== 'Semua' || fs !== 'Semua' || fw !== 'Semua' || !!q;
-    const resetF = () => set({ fj: 'Semua', fs: 'Semua', fw: 'Semua', q: '' });
+    const hasFilter = fj !== 'Semua' || fs !== 'Semua' || fw !== 'Semua' || lvl !== 'Semua' || !!q;
+    const resetF = () => set({ fj: 'Semua', fs: 'Semua', fw: 'Semua', lvl: 'Semua', q: '' });
     const ids = ALL.filter((r) => pass(r));
 
     // ---------- kartu 1 ----------
-    const jenisBar = ORD.map((k) => ({ l: JL[k], n: JSER[k][4], p: ((JSER[k][4] / 290) * 100).toFixed(1).replace('.', ',') + '%', w: Math.round((JSER[k][4] / 163) * 100) + '%', c: JC[k], bg: fj === k ? '#EFF6FF' : 'transparent', fw: fj === k ? 700 : 500, pick: () => set({ fj: k, fs: 'Semua', fw: 'Semua', q: '' }) }));
+    const jenisBar = ORD.map((k) => ({ l: JL[k], n: JSER[k][4], p: ((JSER[k][4] / 290) * 100).toFixed(1).replace('.', ',') + '%', w: Math.round((JSER[k][4] / 163) * 100) + '%', c: JC[k], bg: fj === k ? '#EFF6FF' : 'transparent', fw: fj === k ? 700 : 500, pick: () => set({ fj: k, fs: 'Semua', fw: 'Semua', lvl: 'Semua', q: '' }) }));
     const insightTotal = ORD.reduce((sum, k) => sum + JSER[k][4], 0);
     const leadingType = ORD.reduce((leading, k) => JSER[k][4] > JSER[leading][4] ? k : leading, ORD[0]);
     const centralRegulations = ORD.filter((k) => k !== 'Perda').reduce((sum, k) => sum + JSER[k][4], 0);
@@ -945,7 +1011,7 @@ class Component extends DCLogic {
         bg: isSel ? '#EFF6FF' : '#FFFFFF',
         bd: isSel ? '#1E40AF' : '#E2E8F0',
         cardBg: isSel ? '#EFF6FF' : '#FFFFFF',
-        pick: () => set({ fj: isSel ? 'Semua' : item.k, fs: 'Semua', fw: 'Semua', q: '' })
+        pick: () => set({ fj: isSel ? 'Semua' : item.k, fs: 'Semua', fw: 'Semua', lvl: 'Semua', q: '' })
       };
     });
 
@@ -953,15 +1019,27 @@ class Component extends DCLogic {
       total: 290,
       pusat: 251,
       pusatPct: '86,6%',
+      pusatLoaded: ALL.filter((r) => !isDaerah(r)).length,
+      pusatOn: lvl === 'Pusat',
+      pusatTag: lvl === 'Pusat' ? '✓ Dipilih · ' : '',
+      pusatBd: lvl === 'Pusat' ? '#1E40AF' : '#BFDBFE',
+      pusatBg: lvl === 'Pusat' ? '#DBEAFE' : '#EFF6FF',
+      pickPusat: () => setLvl('Pusat'),
       daerah: 39,
-      daerahPct: '13,4%'
+      daerahPct: '13,4%',
+      daerahLoaded: ALL.filter(isDaerah).length,
+      daerahOn: lvl === 'Daerah',
+      daerahTag: lvl === 'Daerah' ? '✓ Dipilih · ' : '',
+      daerahBd: lvl === 'Daerah' ? '#B45309' : '#FDE68A',
+      daerahBg: lvl === 'Daerah' ? '#FEF3C7' : '#FFFBEB',
+      pickDaerah: () => setLvl('Daerah')
     };
 
-    const hasJenisFilter = (fj !== 'Semua');
+    const hasJenisFilter = (fj !== 'Semua') || (lvl !== 'Semua');
     const activeJenisItem = JDATA_2026.find(x => x.k === fj);
-    const activeJenisName = activeJenisItem ? activeJenisItem.full : '';
-    const activeJenisCount = activeJenisItem ? activeJenisItem.n : 0;
-    const resetJenisFilter = () => set({ fj: 'Semua', fs: 'Semua', fw: 'Semua', q: '' });
+    const activeJenisName = activeJenisItem ? activeJenisItem.full : lvl === 'Pusat' ? 'Regulasi Pusat' : 'Regulasi Daerah';
+    const activeJenisCount = activeJenisItem ? activeJenisItem.n : lvl === 'Pusat' ? kpiJenis.pusatLoaded : kpiJenis.daerahLoaded;
+    const resetJenisFilter = () => set({ fj: 'Semua', fs: 'Semua', fw: 'Semua', lvl: 'Semua', q: '' });
 
     // Sektor KBLI 2025 murni 2026
     const sekAll = KB.filter(([k]) => SEKV[k] > 0).map(([k, n]) => ({ k, n, v: SEKV[k] })).sort((a, b) => b.v - a.v);
@@ -979,7 +1057,7 @@ class Component extends DCLogic {
         bg: isSel ? '#EFF6FF' : 'transparent',
         bd: isSel ? '#1E40AF' : '#E2E8F0',
         fw: isSel ? 700 : 500,
-        pick: () => set({ fs: isSel ? 'Semua' : x.k, fj: 'Semua', fw: 'Semua', q: '' })
+        pick: () => set({ fs: isSel ? 'Semua' : x.k, fj: 'Semua', fw: 'Semua', lvl: 'Semua', q: '' })
       };
     });
 
@@ -998,7 +1076,7 @@ class Component extends DCLogic {
     const activeSekItem = KB.find(x => x[0] === fs);
     const activeSektorName = activeSekItem ? (activeSekItem[0] + ' · ' + activeSekItem[1]) : '';
     const activeSektorCount = activeSekItem ? (SEKV[activeSekItem[0]] || 0) : 0;
-    const resetSektorFilter = () => set({ fs: 'Semua', fj: 'Semua', fw: 'Semua', q: '' });
+    const resetSektorFilter = () => set({ fs: 'Semua', fj: 'Semua', fw: 'Semua', lvl: 'Semua', q: '' });
 
     // ---------- isu ----------
     const io = st.io ?? null;
@@ -1010,12 +1088,39 @@ class Component extends DCLogic {
         src: src.concat(ISSUE_DETAILS[k].src).map(([l, u]) => ({ l, u })), regs: regs.map(regLink), pick: () => this.setState({ io: open ? null : k }) }; });
 
     // ---------- daftar ----------
-    const PG = 10, nPage = Math.max(1, Math.ceil(ids.length / PG)), page = Math.min(st.page || 0, nPage - 1);
+    const PG = 5, nPage = Math.max(1, Math.ceil(ids.length / PG)), page = Math.min(st.page || 0, nPage - 1);
     const keyOf = (r) => r.id || 'i' + r.i;
-    const rows = ids.slice(page * PG, page * PG + PG).map((r) => ({ jl: r.j === 'UU' ? 'UU' : r.j.toUpperCase(), jbg: JC[r.j], nomor: r.nomor, judul: r.judul, pen: r.pen, wil: r.wil, sek: sekText(r.sek), open: () => this.setState({ view: 'detail', sel: keyOf(r), menu: null }) }));
-    const lo = Math.max(0, Math.min(page - 2, nPage - 5)), hi = Math.min(nPage, lo + 5);
-    const pages = Array.from({ length: hi - lo }, (_, i) => lo + i).map((i) => ({ n: i + 1, bg: i === page ? '#0B1F4B' : '#FFFFFF', fg: i === page ? '#FFFFFF' : '#0F172A', bd: i === page ? '#0B1F4B' : '#E3E8F0', pick: () => this.setState({ page: i }) }));
-    const pageNote = ids.length ? 'Menampilkan ' + (page * PG + 1) + '–' + Math.min(ids.length, page * PG + PG) + ' dari ' + ids.length + ' regulasi bernaskah lengkap' + (hasFilter ? ' sesuai filter' : '') : 'Tidak ada hasil';
+    const ringOf = (r) => (r.id && RING_SUMMARY[r.id]) || sumAuto(r);
+    const turunanOf = (r) => {
+      const dr = r.id ? DET[r.id] : null;
+      if (!dr) return [];
+      const grp = dr.rel.find((x) => x[0] === 'Turunan' || x[0] === 'SEKTOR');
+      return grp ? grp[1].map(([ref, id2]) => (id2 && byId[id2] ? byId[id2].nomor : ref)) : [];
+    };
+    const insightOf = (r) => 'Menjadi rujukan kepastian berusaha bagi sektor ' + sekText(r.sek) + ' di ' + (r.wil === N ? 'seluruh Indonesia' : r.wil) + '. Diterbitkan ' + r.pen + ' (' + r.tahun + ') dan berstatus aktif per 12 Okt 2026.';
+    const rows = ids.slice(page * PG, page * PG + PG).map((r) => {
+      const turunan = turunanOf(r);
+      return { jenis: r.j === 'UU' ? 'UU' : r.j.toUpperCase(), nomorJudul: r.nomor + ' - ' + r.judul, summary: ringOf(r), turunan, hasTurunan: turunan.length > 0, insight: insightOf(r), open: () => this.setState({ view: 'detail', sel: keyOf(r), menu: null }) };
+    });
+    const clamp = (v, a, b) => Math.min(Math.max(v, a), b);
+    const win = [];
+    for (let i = 0; i < nPage; i++) {
+      if (i === 0 || i === nPage - 1 || Math.abs(i - page) <= 1) win.push(i);
+      else if (win[win.length - 1] !== 'gap') win.push('gap');
+    }
+    const pages = win.map((x) => x === 'gap'
+      ? { gap: true }
+      : { gap: false, n: x + 1, bg: x === page ? '#2D2B6C' : '#F5F5FF', fg: x === page ? '#FFFFFF' : '#344054', pick: () => this.setState({ page: x }) });
+    const pageNote = 'Menampilkan ' + (ids.length ? page * PG + 1 : 0) + '–' + Math.min(ids.length, page * PG + PG) + ' dari ' + ids.length + ' hasil' + (hasFilter ? ' (sesuai filter)' : '');
+    const pg = {
+      pages,
+      nb: page === 0 ? '#F6F6F6' : '#F5F5FF',
+      nc: page === 0 ? '#AAAAAA' : '#344054',
+      first: () => this.setState({ page: 0 }),
+      prev: () => this.setState({ page: clamp(page - 1, 0, nPage - 1) }),
+      next: () => this.setState({ page: clamp(page + 1, 0, nPage - 1) }),
+      last: () => this.setState({ page: nPage - 1 })
+    };
 
     // ---------- detail ----------
     const selKey = st.sel || this.props.startReg || 'uu25';
@@ -1038,10 +1143,10 @@ class Component extends DCLogic {
     const restNote = '290 regulasi aktif tercatat; ' + ALL.length + ' sudah bernaskah lengkap dan dimuat di sini, sisanya dapat ditelusuri di JDIH instansi penerbit.';
     return { isList: view === 'list', isDetail: view === 'detail', fl, hasFilter, resetF, filterNote: ids.length + ' regulasi sesuai filter',
       jenisBar, regulatoryInsight, sbTitle, sbTabs, sbJenis: sb === 'jenis', sbSektor: sb === 'sektor', jenisItems, kpiJenis, hasJenisFilter, activeJenisName, activeJenisCount, resetJenisFilter, sekRows, hasSektorFilter, activeSektorName, activeSektorCount, resetSektorFilter,
+      hasLvlFilter: lvl !== 'Semua', lvlLabel: lvl === 'Pusat' ? 'Regulasi Pusat' : 'Regulasi Daerah', lvlNote: (lvl === 'Pusat' ? kpiJenis.pusatLoaded : kpiJenis.daerahLoaded) + ' regulasi', resetLvl: () => set({ lvl: 'Semua', page: 0 }),
       yrL: '2026', yrPrevL: '2025', sekRows, sekTotal: Object.values(SEKV).reduce((a, b) => a + b, 0), allSekLabel: st.allSek ? 'Tampilkan 10 teratas' : 'Tampilkan semua kategori',
       toggleAllSek: () => this.setState({ allSek: !st.allSek }), isu,
-      q: st.q || '', onSearch: (e) => this.setState({ q: e && e.target ? e.target.value : '', page: 0 }), rows, noRows: rows.length === 0, pages, pageNote, restNote,
-      prevPage: () => this.setState({ page: Math.max(0, page - 1) }), nextPage: () => this.setState({ page: Math.min(nPage - 1, page + 1) }), pgPrevC: page === 0 ? '#CBD5E1' : '#0F172A', pgNextC: page >= nPage - 1 ? '#CBD5E1' : '#0F172A',
+      q: st.q || '', onSearch: (e) => this.setState({ q: e && e.target ? e.target.value : '', page: 0 }), rows, hasRows: rows.length > 0, noRows: ids.length === 0, pg, pageNote, restNote,
       d, back: () => this.setState({ view: 'list' }), prevReg: go(-1), nextReg: go(1) };
   }
 }
