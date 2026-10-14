@@ -425,6 +425,13 @@ document.addEventListener('DOMContentLoaded', async function() {
           });
         }
 
+        Array.from(doc.querySelectorAll('h2')).forEach(function (heading) {
+          if ((heading.textContent || '').replace(/\s+/g, ' ').trim() === 'Isu dampak, hambatan, peluang & rekomendasi') {
+            const section = heading.closest('section');
+            if (section) section.style.display = 'none';
+          }
+        });
+
         if (doc.documentElement && !observedDocuments.has(doc)) {
           observedDocuments.add(doc);
           new MutationObserver(function () {
