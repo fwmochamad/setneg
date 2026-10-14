@@ -526,25 +526,54 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
 
               <!-- TAB 2: SEKTOR KBLI 2025 (Fokus 2026) -->
               <sc-if value="{{sbSektor}}" hint-placeholder-val="{{false}}">
-                <div style="display: flex; flex-direction: column; gap: 8px;">
-                  <div style="display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) 70px 70px; gap: 10px; padding: 0 6px 4px; font-size: 10.5px; font-weight: 700; letter-spacing: 0.4px; color: #64748B;">
-                    <span>KATEGORI KBLI 2025</span>
-                    <span>DISTRIBUSI</span>
-                    <span style="text-align: right;">JUMLAH</span>
-                    <span style="text-align: right;">PORSI</span>
+                <div style="display: flex; flex-direction: column; gap: 10px;">
+                  
+                  <!-- Header kolom sektor murni 2026 (Tanpa perbandingan tahun sebelumnya) -->
+                  <div style="display: flex; justify-content: space-between; align-items: center; padding: 2px 4px 6px; border-bottom: 1px solid #EEF2F7; font-size: 11px; font-weight: 700; color: #64748B; letter-spacing: 0.3px;">
+                    <span>KATEGORI KBLI 2025 · TAHUN 2026</span>
+                    <span>JUMLAH REGULASI · PORSI</span>
                   </div>
-                  <sc-for list="{{sekRows}}" as="s" hint-placeholder-count="10">
-                    <button type="button" sc-camel-on-click="{{s.pick}}" class="bar" style="display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) 70px 70px; gap: 10px; align-items: center; padding: 6px 8px; border: 1.5px solid {{s.bd}}; border-radius: 6px; background: {{s.bg}}; font-family: inherit; font-size: 12px; color: #0F172A; text-align: left; cursor: pointer; transition: all .15s ease;">
-                      <span style="font-weight: {{s.fw}}; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{s.k}} · {{s.n}}</span>
-                      <span style="display: block; height: 10px; border-radius: 3px; background: #EEF2F7; overflow: hidden;">
-                        <span style="display: block; width: {{s.w}}; height: 100%; border-radius: 3px; background: #0EA5E9;"></span>
-                      </span>
-                      <b style="text-align: right;">{{s.v}}</b>
-                      <span style="text-align: right; color: #1D4ED8; font-weight: 600;">{{s.pct}}</span>
-                    </button>
-                  </sc-for>
-                  <button type="button" sc-camel-on-click="{{toggleAllSek}}" style="align-self: flex-start; margin-top: 4px; padding: 0; border: 0; background: transparent; font-family: inherit; font-size: 12px; font-weight: 600; color: #1D4ED8; cursor: pointer;">{{allSekLabel}}</button>
-                  <p style="margin: 4px 0 0; font-size: 11.5px; line-height: 17px; color: #64748B;">Satu regulasi dapat terkait lebih dari satu kategori KBLI 2025. Klik baris kategori untuk memfilter daftar regulasi di bawah.</p>
+
+                  <!-- Alert jika ada filter sektor aktif -->
+                  <sc-if value="{{hasSektorFilter}}" hint-placeholder-val="{{false}}">
+                    <div style="display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; border-radius: 8px; background: #EFF6FF; border: 1px solid #BFDBFE; font-size: 12px; color: #1E40AF;">
+                      <span>Filter aktif: <b>Sektor {{activeSektorName}}</b> ({{activeSektorCount}} regulasi)</span>
+                      <button type="button" sc-camel-on-click="{{resetSektorFilter}}" style="padding: 3px 8px; border: 1px solid #93C5FD; border-radius: 5px; background: #FFFFFF; font-size: 11px; font-weight: 600; color: #1E40AF; cursor: pointer;">Reset Filter</button>
+                    </div>
+                  </sc-if>
+
+                  <!-- List sektor dengan full-width bar (Line 1: Nama & Angka, Line 2: Bar 100% lebar, anti-glitch) -->
+                  <div style="display: flex; flex-direction: column; gap: 7px;">
+                    <sc-for list="{{sekRows}}" as="s" hint-placeholder-count="10">
+                      <div role="button" tabindex="0" sc-camel-on-click="{{s.pick}}" style="display: flex; flex-direction: column; gap: 6px; padding: 8px 12px; border: 1.5px solid {{s.bd}}; border-radius: 8px; background: {{s.bg}}; cursor: pointer; transition: all .15s ease;">
+                        
+                        <!-- Line 1: Kategori KBLI & Jumlah 2026 -->
+                        <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 10px; width: 100%;">
+                          <span style="font-size: 12.5px; font-weight: {{s.fw}}; color: #0F172A; line-height: 1.35; flex: 1;">
+                            <b style="color: #1E40AF; margin-right: 4px;">{{s.k}}</b> · {{s.n}}
+                          </span>
+                          <div style="display: flex; align-items: baseline; gap: 6px; flex: none;">
+                            <b style="font-size: 14px; color: #0F172A;">{{s.v}}</b>
+                            <span style="font-size: 11.5px; color: #2563EB; font-weight: 600;">({{s.pct}})</span>
+                          </div>
+                        </div>
+
+                        <!-- Line 2: Bar horizontal proporsional 2026 (100% aman dan selalu terlihat) -->
+                        <div style="width: 100%; height: 8px; border-radius: 4px; background: #EEF2F7; overflow: hidden; position: relative;">
+                          <div style="width: {{s.w}}; min-width: 6px; height: 100%; border-radius: 4px; background: #0EA5E9; transition: width .3s ease;"></div>
+                        </div>
+
+                      </div>
+                    </sc-for>
+                  </div>
+
+                  <!-- Toggle Top 10 vs Semua -->
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 4px;">
+                    <button type="button" sc-camel-on-click="{{toggleAllSek}}" style="padding: 0; border: 0; background: transparent; font-family: inherit; font-size: 12px; font-weight: 600; color: #1D4ED8; cursor: pointer;">{{allSekLabel}}</button>
+                    <span style="font-size: 11px; color: #64748B;">Klik kategori untuk memfilter daftar regulasi</span>
+                  </div>
+
+                  <p style="margin: 4px 0 0; font-size: 11.5px; line-height: 17px; color: #64748B;">Satu regulasi dapat terkait lebih dari satu kategori KBLI 2025. Data terfokus murni pada regulasi aktif tahun 2026.</p>
                 </div>
               </sc-if>
 
@@ -906,14 +935,20 @@ class Component extends DCLogic {
 
     const sbTabs = [
       ['jenis', 'Jenis peraturan'],
-      ['sektor', 'Sektor KBLI 2025']
+      ['sektor', 'Sektor']
     ].map(([k, l]) => ({
       l,
       bg: sb === k ? '#FFFFFF' : 'transparent',
       fg: sb === k ? '#0F172A' : '#64748B',
       pick: () => this.setState({ sb: k })
     }));
-    const sbTitle = sb === 'jenis' ? 'jenis peraturan' : 'sektor KBLI 2025';
+    const sbTitle = sb === 'jenis' ? 'jenis peraturan' : 'sektor';
+
+    const hasSektorFilter = (fs !== 'Semua');
+    const activeSekItem = KB.find(x => x[0] === fs);
+    const activeSektorName = activeSekItem ? (activeSekItem[0] + ' · ' + activeSekItem[1]) : '';
+    const activeSektorCount = activeSekItem ? (SEKV[activeSekItem[0]] || 0) : 0;
+    const resetSektorFilter = () => set({ fs: 'Semua', fj: 'Semua', fw: 'Semua', q: '' });
 
     // ---------- isu ----------
     const io = st.io ?? null;
@@ -950,7 +985,7 @@ class Component extends DCLogic {
 
     const restNote = '290 regulasi aktif tercatat; ' + ALL.length + ' sudah bernaskah lengkap dan dimuat di sini, sisanya dapat ditelusuri di JDIH instansi penerbit.';
     return { isList: view === 'list', isDetail: view === 'detail', fl, hasFilter, resetF, filterNote: ids.length + ' regulasi sesuai filter',
-      jenisBar, sbTitle, sbTabs, sbJenis: sb === 'jenis', sbSektor: sb === 'sektor', jenisItems, kpiJenis, hasJenisFilter, activeJenisName, activeJenisCount, resetJenisFilter, sekRows,
+      jenisBar, sbTitle, sbTabs, sbJenis: sb === 'jenis', sbSektor: sb === 'sektor', jenisItems, kpiJenis, hasJenisFilter, activeJenisName, activeJenisCount, resetJenisFilter, sekRows, hasSektorFilter, activeSektorName, activeSektorCount, resetSektorFilter,
       yrL: '2026', yrPrevL: '2025', sekRows, sekTotal: Object.values(SEKV).reduce((a, b) => a + b, 0), allSekLabel: st.allSek ? 'Tampilkan 10 teratas' : 'Tampilkan semua kategori',
       toggleAllSek: () => this.setState({ allSek: !st.allSek }), isu,
       q: st.q || '', onSearch: (e) => this.setState({ q: e && e.target ? e.target.value : '', page: 0 }), rows, noRows: rows.length === 0, pages, pageNote, restNote,
