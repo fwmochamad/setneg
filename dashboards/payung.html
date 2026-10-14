@@ -396,11 +396,11 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
                 <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin-top: 4px;">
                   <span style="font-size: 12px; color: #6B7280; font-family: ui-monospace, SFMono-Regular, Menlo, monospace;">ID: {{ews.id}}</span>
                   <span style="display: inline-flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 600; text-transform: uppercase; color: #2563EB;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"></path><path d="M7 14l4-4 4 3 6-7"></path></svg>{{ews.kat}}</span>
+                  <span style="padding: 2px 9px; border-radius: 5px; border: 1px solid; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: {{ews.sevFg}}; border-color: {{ews.sevBd}}; background: {{ews.sevBg}};">{{ews.level}}</span>
                 </div>
               </div>
             </div>
             <div style="display: flex; align-items: center; gap: 8px; flex: none;">
-              <span style="padding: 4px 12px; border-radius: 6px; border: 1px solid; font-size: 12px; font-weight: 700; text-transform: uppercase; color: {{ews.sevFg}}; border-color: {{ews.sevBd}}; background: {{ews.sevBg}};">{{ews.level}}</span>
               <button type="button" sc-camel-on-click="{{closeEws}}" aria-label="Tutup detail" title="Tutup (Esc)" style="padding: 8px; border: 0; border-radius: 8px; background: transparent; color: #9CA3AF; cursor: pointer;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"></path></svg></button>
             </div>
           </div>
@@ -408,15 +408,15 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
           <div class="ews-modal-body">
             <div class="ews-modal-main">
               <div>
-                <h3 class="ews-modal-h4">Ringkasan</h3>
+                <h3 class="ews-modal-h4"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.12 2.12 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.12 2.12 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.12 2.12 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.12 2.12 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.12 2.12 0 0 0 1.597-1.16z"></path></svg>Ringkasan</h3>
                 <p>{{ews.fakta}}</p>
               </div>
               <div>
-                <h3 class="ews-modal-h4">Dampak</h3>
+                <h3 class="ews-modal-h4"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"></path><path d="M12 9v4"></path><path d="M12 17h.01"></path></svg>Dampak</h3>
                 <p>{{ews.perk}}</p>
               </div>
               <div>
-                <h3 class="ews-modal-h4">Saran Untuk Presiden</h3>
+                <h3 class="ews-modal-h4"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"></path></svg>Saran Untuk Presiden</h3>
                 <p>{{ews.opsi}}</p>
               </div>
             </div>
