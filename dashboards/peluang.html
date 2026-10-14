@@ -557,7 +557,7 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
                       </div>
                       <div style="padding: 10px 12px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 8px 10px;">
                         <div><div style="font-size: 10.5px; color: #64748B;">Populasi 2025</div><b style="font-size: 13px;">{{pp.pop}}</b><div style="font-size: 10px; color: #94A3B8;">{{pp.popSrc}}</div></div>
-                        <div><div style="font-size: 10.5px; color: #64748B;">Usia produktif (15–64)</div><b style="font-size: 13px;">{{pp.up}}</b><div style="font-size: 10px; color: #94A3B8;">{{pp.upSrc}}</div></div>
+                        <div><div style="font-size: 10.5px; color: #64748B;">Rasio ketergantungan</div><b style="font-size: 13px;">{{pp.up}}</b><div style="font-size: 10px; color: #94A3B8;">{{pp.upSrc}}</div></div>
                         <div><div style="font-size: 10.5px; color: #64748B;">UMP 2026</div><b style="font-size: 13px;">{{pp.ump}}</b><div style="font-size: 10px; color: #94A3B8;">{{pp.umpSrc}}</div></div>
                         <div><div style="font-size: 10.5px; color: #64748B;">PDRB 2025</div><b style="font-size: 13px;">{{pp.pdrb}}</b><div style="font-size: 10px; color: #94A3B8;">{{pp.pdrbSub}}</div></div>
                         <div style="grid-column: 1 / -1;"><div style="font-size: 10.5px; color: #64748B;">Realisasi investasi Tw II 2026</div><b style="font-size: 13px; color: {{pp.invC}};">{{pp.inv}}</b> <span style="font-size: 10px; color: #94A3B8;">{{pp.invSub}}</span></div>
@@ -737,10 +737,21 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
       <div style="display: flex; flex-direction: column; gap: 16px;">
         <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px;">
           <button type="button" sc-camel-on-click="{{toMap}}" style="padding: 0; border: 0; background: transparent; font-family: inherit; font-size: 12.5px; font-weight: 600; color: #1D4ED8; cursor: pointer;">← Kembali ke peta</button>
-          <div role="tablist" aria-label="Provinsi" style="display: flex; flex-wrap: wrap; gap: 6px;">
-            <sc-for list="{{provTabs}}" as="p" hint-placeholder-count="5"><button type="button" role="tab" sc-camel-on-click="{{p.pick}}" style="height: 32px; padding: 0 12px; border-radius: 8px; border: 1px solid {{p.bd}}; background: {{p.bg}}; color: {{p.fg}}; font-family: inherit; font-size: 12px; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;">{{p.l}}</button></sc-for>
+          <div style="display: flex; align-items: center; gap: 10px; min-width: 0; flex: 1 1 420px;">
+            <div style="font-size: 12px; color: #64748B; white-space: nowrap;">Pindah provinsi</div>
+            <div style="position: relative; flex: 1 1 auto; min-width: 220px; max-width: 420px;">
+              <span style="position: absolute; left: 9px; top: 50%; transform: translateY(-50%); color: #94A3B8; font-size: 12px; pointer-events: none;">⌕</span>
+              <input type="search" value="{{dSearch}}" aria-label="Cari provinsi" sc-camel-on-change="{{onDSearch}}" sc-camel-on-focus="{{onDOpen}}" placeholder="Pindah dari {{dh.n}} - cari dari 38 provinsi" style="width: 100%; height: 32px; padding: 0 10px 0 27px; box-sizing: border-box; border: 1px solid #E3E8F0; border-radius: 8px; background: #FFFFFF; font-family: inherit; font-size: 12.5px; color: #0F172A; outline: 0;" />
+              <sc-if value="{{dOpen}}" hint-placeholder-val="{{false}}">
+              <div style="position: absolute; z-index: 30; left: 0; right: 0; top: 38px; max-height: 300px; overflow-y: auto; padding: 5px; border-radius: 9px; background: #FFFFFF; border: 1px solid #E3E8F0; box-shadow: 0 12px 28px rgba(15,23,42,.16); display: flex; flex-direction: column; gap: 2px;">
+                <sc-for list="{{dOpts}}" as="o" hint-placeholder-count="5"><button type="button" sc-camel-on-click="{{o.pick}}" style="padding: 6px 8px; border: 0; border-radius: 6px; background: {{o.bg}}; text-align: left; font-family: inherit; cursor: pointer;"><span style="display: block; font-size: 12px; font-weight: {{o.fw}}; color: #0F172A;">{{o.l}}<sc-if value="{{o.cur}}" hint-placeholder-val="{{false}}"> <span style="font-size: 10px; font-weight: 600; color: #1D4ED8;">(sedang dibuka)</span></sc-if></span><span style="display: block; font-size: 10.5px; color: #64748B;">{{o.sub}}</span></button></sc-for>
+                <sc-for list="{{dOptsOff}}" as="o" hint-placeholder-count="5"><button type="button" disabled="" title="Halaman rinci belum tersedia untuk provinsi ini" style="padding: 6px 8px; border: 0; border-radius: 6px; background: transparent; text-align: left; font-family: inherit; cursor: not-allowed; opacity: .55;"><span style="display: block; font-size: 12px; font-weight: 500; color: #64748B;">{{o.l}}</span><span style="display: block; font-size: 10.5px; color: #94A3B8;">{{o.sub}}</span></button></sc-for>
+                <sc-if value="{{dNoHit}}" hint-placeholder-val="{{true}}"><div style="padding: 10px 8px; font-size: 11.5px; color: #94A3B8;">Provinsi tidak ditemukan.</div></sc-if>
+              </div>
+              </sc-if>
+            </div>
+            <span style="font-size: 12px; color: #64748B; white-space: nowrap;">{{dh.pos}}</span>
           </div>
-          <div style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #64748B;"><button type="button" sc-camel-on-click="{{prevP}}" style="height: 30px; padding: 0 10px; border-radius: 8px; border: 1px solid #E3E8F0; background: #FFFFFF; font-family: inherit; font-size: 12px; font-weight: 600; cursor: pointer;">‹ Sebelumnya</button><span>{{dh.pos}}</span><button type="button" sc-camel-on-click="{{nextP}}" style="height: 30px; padding: 0 10px; border-radius: 8px; border: 1px solid #E3E8F0; background: #FFFFFF; font-family: inherit; font-size: 12px; font-weight: 600; cursor: pointer;">Berikutnya ›</button></div>
         </div>
 
         <!-- 0. Header provinsi -->
@@ -754,7 +765,7 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
               </div>
               <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 10px;">
                 <div style="padding: 10px 12px; border-radius: 9px; border: 1px solid #E3E8F0;"><div style="font-size: 11px; color: #64748B;">Populasi 2025</div><div style="font-size: 16px; font-weight: 700;">{{dh.pop}}</div><div style="font-size: 10.5px; line-height: 14px; color: #64748B;">{{dh.popSub}}</div></div>
-                <div style="padding: 10px 12px; border-radius: 9px; border: 1px solid #E3E8F0;"><div style="font-size: 11px; color: #64748B;">Usia produktif (15–64)</div><div style="font-size: 16px; font-weight: 700;">{{dh.up}}</div><div style="font-size: 10.5px; line-height: 14px; color: #64748B;">{{dh.upSub}}</div></div>
+                <div style="padding: 10px 12px; border-radius: 9px; border: 1px solid #E3E8F0;"><div style="font-size: 11px; color: #64748B;">Tenaga kerja</div><div style="font-size: 16px; font-weight: 700;">{{dh.tk}}</div><div style="font-size: 10.5px; line-height: 14px; color: #64748B;">{{dh.tkSub}}</div></div>
                 <div style="padding: 10px 12px; border-radius: 9px; border: 1px solid #E3E8F0;"><div style="font-size: 11px; color: #64748B;">UMP 2026</div><div style="font-size: 16px; font-weight: 700;">{{dh.ump}}</div><div style="font-size: 10.5px; line-height: 14px; color: #64748B;">{{dh.umpSub}}</div></div>
                 <div style="padding: 10px 12px; border-radius: 9px; border: 1px solid #E3E8F0;"><div style="font-size: 11px; color: #64748B;">Sektor unggulan</div><div style="font-size: 13.5px; font-weight: 700; line-height: 18px;">{{dh.sek}}</div><div style="font-size: 10.5px; line-height: 14px; color: #64748B;">{{dh.sekSub}}</div></div>
                 <div style="padding: 10px 12px; border-radius: 9px; border: 1px solid #E3E8F0;"><div style="font-size: 11px; color: #64748B;">PDRB 2025</div><div style="font-size: 16px; font-weight: 700;">{{dh.pdrb}}</div><div style="font-size: 10.5px; line-height: 14px; color: #64748B;">{{dh.pdrbSub}}</div></div>
@@ -764,8 +775,8 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
             <div style="flex: 1 1 320px; min-width: 0; padding: 12px 14px; border-radius: 10px; background: #FBFCFE; border: 1px solid #EEF2F7; display: flex; flex-direction: column; gap: 8px;">
               <b style="font-size: 12.5px;">Struktur PDRB · 3 sektor teratas</b>
               <div style="display: flex; height: 14px; border-radius: 4px; overflow: hidden; background: #E3E8F0;"><sc-for list="{{dh.seg}}" as="s" hint-placeholder-count="3"><span title="{{s.t}}" style="display: block; width: {{s.w}}; background: {{s.c}};"></span></sc-for></div>
-              <sc-for list="{{dh.str}}" as="s" hint-placeholder-count="3"><div style="display: grid; grid-template-columns: 10px minmax(0, 1fr) auto; gap: 8px; align-items: center; font-size: 11.5px;"><span style="width: 10px; height: 10px; border-radius: 2px; background: {{s.c}};"></span><span>{{s.l}}</span><b style="color: {{s.vc}};">{{s.v}}</b></div></sc-for>
-              <div style="display: grid; grid-template-columns: 10px minmax(0, 1fr) auto; gap: 8px; align-items: center; font-size: 11.5px; color: #475569;"><span style="width: 10px; height: 10px; border-radius: 2px; background: #E3E8F0;"></span><span>Sektor lainnya</span><span>{{dh.rest}}</span></div>
+              <sc-for list="{{dh.str}}" as="s" hint-placeholder-count="3"><button type="button" sc-camel-on-click="{{s.pick}}" title="Lihat rincian sektor {{s.l}}" style="display: grid; grid-template-columns: 10px minmax(0, 1fr) auto; gap: 8px; align-items: center; width: 100%; padding: 3px 4px; border: 0; border-radius: 5px; background: transparent; text-align: left; font-family: inherit; font-size: 11.5px; cursor: pointer;"><span style="width: 10px; height: 10px; border-radius: 2px; background: {{s.c}};"></span><span style="color: #334155;">{{s.l}}</span><b style="color: {{s.vc}};">{{s.v}}</b></button></sc-for>
+              <button type="button" sc-camel-on-click="{{dh.restPick}}" title="Lihat daftar sektor lainnya" style="display: grid; grid-template-columns: 10px minmax(0, 1fr) auto; gap: 8px; align-items: center; width: 100%; padding: 3px 4px; border: 0; border-radius: 5px; background: transparent; text-align: left; font-family: inherit; font-size: 11.5px; color: #475569; cursor: pointer;"><span style="width: 10px; height: 10px; border-radius: 2px; background: #E3E8F0;"></span><span>Sektor lainnya</span><span style="display: inline-flex; align-items: center; gap: 4px;"><b>{{dh.rest}}</b><span style="font-size: 9px; color: #1D4ED8;">rinci ›</span></span></button>
               <div style="font-size: 10.5px; color: #94A3B8;">Periode: {{dh.strPer}}</div>
             </div>
           </div>
@@ -1009,6 +1020,33 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
     </div>
   </sc-if>
 
+  <!-- ======================= MODAL RINCIAN SEKTOR PDRB ======================= -->
+  <sc-if value="{{isDetail}}" hint-placeholder-val="{{false}}">
+  <sc-if value="{{skm.open}}" hint-placeholder-val="{{false}}">
+  <div role="dialog" aria-modal="true" aria-label="Rincian sektor PDRB" style="position: fixed; inset: 0; z-index: 170; background: rgba(15,23,42,.35); display: flex; align-items: center; justify-content: center; padding: 16px;">
+    <div style="width: 440px; max-width: 100%; max-height: 100%; overflow-y: auto; box-sizing: border-box; background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 13px; box-shadow: 0 18px 44px rgba(15,23,42,.24); display: flex; flex-direction: column;">
+      <div style="padding: 13px 16px; border-bottom: 1px solid #EEF2F7; display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;">
+        <div style="min-width: 0;"><div style="font-size: 10.5px; font-weight: 600; letter-spacing: .3px; color: #1D4ED8;">{{dh.n}}</div><h3 style="margin: 3px 0 0; font-size: 15.5px; font-weight: 700; line-height: 21px; color: #0B1F4B;">{{skm.title}}</h3><div style="font-size: 11px; color: #64748B; margin-top: 2px;">{{skm.sub}}</div></div>
+        <button type="button" aria-label="Tutup" sc-camel-on-click="{{skm.close}}" style="flex: none; width: 28px; height: 28px; border-radius: 7px; border: 1px solid #E3E8F0; background: #FFFFFF; color: #475569; font-family: inherit; cursor: pointer;">×</button>
+      </div>
+      <div style="padding: 14px 16px; display: flex; flex-direction: column; gap: 12px;">
+        <div style="display: flex; flex-direction: column; gap: 6px;">
+          <sc-for list="{{skm.rows}}" as="r" hint-placeholder-count="4"><div style="display: flex; flex-direction: column; gap: 3px;"><div style="display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px; align-items: center; font-size: 12px;"><span style="color: #334155;">{{r.l}}</span><b style="color: #0F172A;">{{r.v}}</b></div><span style="display: block; height: 5px; border-radius: 3px; background: #F1F5F9; overflow: hidden;"><span style="display: block; height: 5px; width: {{r.b}}; background: {{r.c}};"></span></span></div></sc-for>
+        </div>
+        <sc-if value="{{skm.total}}" hint-placeholder-val="{{false}}"><div style="display: flex; justify-content: space-between; align-items: center; padding-top: 8px; border-top: 1px solid #EEF2F7; font-size: 12px;"><span style="color: #475569;">{{skm.total}}</span><b style="color: #0F172A;">100%</b></div></sc-if>
+        <div style="padding: 10px 12px; border-radius: 9px; background: #EFF6FF; border: 1px solid #DBEAFE;">
+          <div style="font-size: 11px; color: #1E40AF; font-weight: 600;">Tenaga kerja terserap (estimasi)</div>
+          <div style="font-size: 17px; font-weight: 700; color: #0B1F4B; margin-top: 2px;">{{skm.tk}}</div>
+          <div style="font-size: 10.5px; line-height: 15px; color: #475569; margin-top: 3px;">{{skm.tkNote}}</div>
+        </div>
+        <div style="font-size: 10.5px; line-height: 15px; color: #64748B;">{{skm.note}}</div>
+        <div style="font-size: 10px; color: #94A3B8;">Periode: {{skm.per}}</div>
+      </div>
+    </div>
+  </div>
+  </sc-if>
+  </sc-if>
+
   <!-- ======================= DRAWER DETAIL REGULASI ======================= -->
   <sc-if value="{{dr.open}}" hint-placeholder-val="{{false}}">
     <div style="position: fixed; inset: 0; z-index: 160; background: rgba(15,23,42,.35); display: flex; justify-content: flex-end;">
@@ -1105,7 +1143,17 @@ class Component extends DCLogic {
       sumut: [['Pertanian, Kehutanan, dan Perikanan', 24.18], ['Perdagangan Besar dan Eceran; Reparasi Mobil dan Sepeda Motor', 19.69], ['Industri Pengolahan', 18.05]]
     };
     const TOP3P = { dki: 'Tw III 2025 · BRS BPS DKI Jakarta', jatim: '2025 · BRS BPS Jawa Timur 5 Feb 2026', jabar: '2025 · BRS BPS Jawa Barat · porsi estimasi (alokasi sisa)', jateng: 'Semester I 2026 · Pemprov Jawa Tengah', sumut: 'DJPb Kanwil Sumut, KFR Tw I 2026' };
-            // Tiga sektor unggulan per wilayah, dipakai untuk provinsi yang belum punya
+            // Sektor peringkat 4 dan seterusnya, dipakai untuk isi pop-up "Sektor lainnya".
+    // Angka adalah bobot relatif (bukan persen); dinormalisasi terhadap sisa
+    // 100% - tiga sektor teratas pada masing-masing provinsi.
+    const SEKREST = {
+      dki: [['Real estat', 13], ['Administrasi pemerintahan dan kesejahteraan', 11], ['Jasa keuangan dan asuransi', 10], ['Aktivitas profesional, ilmiah dan teknis', 9], ['Jasa informasi dan komunikasi', 8], ['Jasa pendidikan', 7], ['Jasa kesehatan dan kesejahteraan', 6], ['Pertanian, kehutanan dan perikanan', 4]],
+      jabar: [['Konstruksi', 14], ['Pertanian, kehutanan dan perikanan', 12], ['Jasa pariwisata', 10], ['Transportasi dan penyimpanan', 9], ['Perdagangan besar dan eceran', 8], ['Jasa pendidikan', 7], ['Pertambangan dan pengolahan', 6], ['Jasa keuangan dan asuransi', 5]],
+      jateng: [['Konstruksi', 15], ['Pertanian, kehutanan dan perikanan', 13], ['Jasa pariwisata', 9], ['Transportasi dan penyimpanan', 8], ['Perdagangan besar dan eceran', 8], ['Jasa pendidikan', 6], ['Jasa kesehatan dan kesejahteraan', 5], ['Jasa keuangan dan asuransi', 4]],
+      jatim: [['Konstruksi', 14], ['Pertanian, kehutanan dan perikanan', 12], ['Jasa wisata', 11], ['Transportasi dan penyimpanan', 9], ['Perdagangan besar dan eceran', 8], ['Jasa pendidikan', 7], ['Jasa keuangan dan asuransi', 5], ['Pertambangan dan pengolahan', 4]],
+      sumut: [['Konstruksi', 13], ['Jasa wisata', 11], ['Pertanian, kehutanan dan perkebunan', 10], ['Transportasi dan penyimpanan', 9], ['Jasa pendidikan', 8], ['Perdagangan besar dan eceran', 7], ['Jasa kesehatan dan kesejahteraan', 6], ['Real estat', 5]]
+    };
+    // Tiga sektor unggulan per wilayah, dipakai untuk provinsi yang belum punya
     // rincian struktur PDRB dari BPS. Bobot porsi bersifat estimasi.
     const SEKWIL = [
       [/^(DKI|Jawa|Banten|Yogyakarta)/, ['Industri Pengolahan', 'Perdagangan Besar dan Eceran', 'Konstruksi']],
@@ -1414,24 +1462,64 @@ const HIST = [[2020, 826.3, 413.5, 412.8], [2021, 901.02, 447, 454], [2022, 1207
 
     const dP = P[dp], dD = DET[dp], dK = KS[dp];
     const di = TOP5.indexOf(dp);
-    const provTabs = TOP5.map((id) => ({ l: P[id].n, pick: () => this.setState({ dp: id, dr: null, rj: '' }), bg: id === dp ? '#1E40AF' : '#FFFFFF', fg: id === dp ? '#FFFFFF' : '#334155', bd: id === dp ? '#1E40AF' : '#E3E8F0', ews: !!EWS[id] }));
-    const prevP = () => this.setState({ dp: TOP5[(di + 4) % 5], dr: null, rj: '' });
-    const nextP = () => this.setState({ dp: TOP5[(di + 1) % 5], dr: null, rj: '' });
+    // ============ Search & dropdown provinsi (38 provinsi) ============
+    // Halaman rinci hanya tersedia untuk 5 provinsi PDRB terbesar; 33 provinsi
+    // lain tetap tampil di daftar namun non-aktif (abu-abu).
+    const dProvAll = D.PV.map((x) => x[0]).slice().sort((a, b) => P[a].rank - P[b].rank);
+    const dSearch = st.dSearch || '';
+    const dOpen = !!st.dOpen;
+    const dQ = dSearch.trim().toLowerCase();
+    const dList = dQ ? dProvAll.filter((id) => P[id].n.toLowerCase().indexOf(dQ) > -1) : dProvAll;
+    const dShowBox = dOpen || !!dQ;
+    const dSubTxt = (id, ok) => ok ? 'Rincian tersedia - PDRB Rp' + nf(P[id].pdrb, 2) + ' T, peringkat ' + P[id].rank + ' nasional' : 'Halaman rinci belum tersedia - peringkat PDRB ' + P[id].rank + ' nasional';
+    const dOpts = dList.filter((id) => TOP5.indexOf(id) > -1).map((id) => ({
+      v: id, l: P[id].n, cur: id === dp, bg: id === dp ? '#EFF6FF' : 'transparent', fw: id === dp ? 700 : 500, sub: dSubTxt(id, true),
+      pick: () => this.setState({ dp: id, dr: null, rj: '', dSearch: '', dOpen: false })
+    }));
+    const dOptsOff = dList.filter((id) => TOP5.indexOf(id) < 0).map((id) => ({ v: id, l: P[id].n, sub: dSubTxt(id, false) }));
+    const dNoHit = dShowBox && dList.length === 0;
     const toMap = () => this.setState({ view: 'main', sel: dp, pop: true, dr: null });
     // header + struktur PDRB
     const t3d = TOP3[dp];
     const SC = ['#1E40AF', '#0EA5E9', '#D4A72C'];
     let known = 0;
-    const strRows = t3d.map((s, i) => { const v = s && s[1] != null ? s[1] : null; if (v != null) known += v; return { l: s ? s[0] : 'Sektor peringkat ' + (i + 1), v: v != null ? nf(v, 2) + '%' : BT, vc: v != null ? '#0F172A' : '#64748B', c: v != null ? SC[i] : '#E3E8F0', w: v != null ? v.toFixed(2) + '%' : '0%' }; });
+    const strRows = t3d.map((s, i) => { const v = s && s[1] != null ? s[1] : null; if (v != null) known += v; return { l: s ? s[0] : 'Sektor peringkat ' + (i + 1), v: v != null ? nf(v, 2) + '%' : BT, vc: v != null ? '#0F172A' : '#64748B', c: v != null ? SC[i] : '#E3E8F0', w: v != null ? v.toFixed(2) + '%' : '0%', i: i, pick: () => this.setState({ sk: 't' + i }) }; });
     const allKnown = t3d.every((s) => s && s[1] != null);
     const strSeg = strRows.filter((r) => r.w !== '0%').map((r) => ({ c: r.c, w: r.w, t: r.l + ' ' + r.v }));
+    const restShare = allKnown ? 100 - known : null;
+    const restRows = (() => {
+      if (restShare == null) return [];
+      const raw = SEKREST[dp] || [];
+      const tot = raw.reduce((a, x) => a + x[1], 0);
+      return raw.map((x, i) => ({ n: x[0], p: x[1] / tot * restShare, i: i }));
+    })();
+    // Pop-up sektor: "t0..t2" untuk tiga sektor teratas, "lainnya" untuk sektor sisa.
+    const skK = st.sk || '';
+    const ak = dK.ak;
+    const tkOf = (p) => ak != null && p != null ? nf(ak * p / 100, 2) + ' juta jiwa' : BT;
+    const skm = (() => {
+      const close = () => this.setState({ sk: '' });
+      if (skK === 'lainnya') {
+        return { open: true, mode: 'rest', title: 'Sektor lainnya', sub: 'Porsi ' + (restShare != null ? nf(restShare, 2) + '% PDRB' : BT) + ' di luar 3 sektor teratas', close: close, rows: restRows.map((r) => ({ l: r.n, v: nf(r.p, 2) + '%', w: nf(r.p, 2) + '%', c: '#94A3B8', b: r.p / (restRows.length ? restRows[0].p : 1) * 60 + '%' })), total: 'Total ' + (restShare != null ? nf(restShare, 2) + '% PDRB' : BT), tk: tkOf(restShare), tkNote: 'Estimasi: sebaran angkatan kerja provinsi ' + nf(ak, 2) + ' juta (' + (dK.akPer || 'Februari 2026') + '), asumsi proporsional terhadap porsi PDRB sektor.', note: 'Porsi di dalam kelompok "sektor lainnya" merupakan estimasi alokasi sisa (bobot relatif dinormalisasi terhadap sisa 100% - 3 sektor teratas). Bukan angka resmi BPS.', per: TOP3P[dp] };
+      }
+      if (skK && skK.charAt(0) === 't') {
+        const i = parseInt(skK.slice(1), 10), r = strRows[i];
+        if (!r) return { open: false };
+        const pv = t3d[i] && t3d[i][1] != null ? t3d[i][1] : null;
+        return { open: true, mode: 'top', title: r.l, sub: 'Sektor peringkat ' + (i + 1) + ' dari 3 sektor teratas', close: close, rows: [{ l: 'Porsi PDRB', v: r.v, w: '100%', c: SC[i], b: '100%' }, { l: 'Nilai PDRB (ADHB 2025)', v: 'Rp' + nf(dP.pdrb * (pv != null ? pv / 100 : 0), 2) + ' T', w: '', c: SC[i], b: '' }, { l: 'Tenaga kerja terserap (estimasi)', v: tkOf(pv), w: '', c: SC[i], b: '' }], total: '', tk: tkOf(pv), tkNote: 'Estimasi: ' + nf(ak, 2) + ' juta angkatan kerja provinsi (' + (dK.akPer || 'Februari 2026') + ') x porsi PDRB sektor ' + nf(pv, 2) + '%. Rasio ketergantungan ' + nf(dP.up, 2) + '% menyisakan angkatan kerja yang relatif besar untuk diserap sektor ini.', note: 'Porsi sektor mengikuti sumber resmi (' + TOP3P[dp] + '). Nilai PDRB dan tenaga kerja terserap adalah estimasi turunan.', per: TOP3P[dp] };
+      }
+      return { open: false };
+    })();
     const dh = {
       n: dP.n, pop: nf(dP.pop / 1e6, 2) + ' juta jiwa', popSub: dP.popSrc + (dD.popNote ? ' · ' + dD.popNote : ''),
       up: nf(dP.up, dP.up % 1 ? 2 : 1).replace(/,0+$/, '') + '%', upSub: dP.upSrc, ump: 'Rp' + nf(dP.ump), umpSub: 'berlaku 1 Jan 2026 · naik ' + nf(dP.naik, 2) + '%',
+      tk: dK.ak != null ? nf(dK.ak, dK.ak % 1 ? 2 : 0) + ' juta jiwa' : BT,
+      tkSub: dK.ak != null ? 'Angkatan kerja ' + (dK.akPer || 'Februari 2026') + (dK.tpt != null ? ' · ' + nf(dK.ak * (100 - dK.tpt) / 100, dK.ak * (100 - dK.tpt) / 100 % 1 ? 2 : 0) + ' juta bekerja' : '') : BT,
       sek: t3d[0][0].split(';')[0], sekSub: t3d[0][1] != null ? nf(t3d[0][1], 2) + '% PDRB · ' + TOP3P[dp] : TOP3P[dp],
       pdrb: 'Rp' + nf(dP.pdrb, 2) + ' T', pdrbSub: 'PDRB ADHB 2025 · peringkat ' + dP.rank + ' · ' + nf(dP.share, 2) + '% dari 38 provinsi',
       inv: dD.inv[0], invSub: dD.inv[1], invSrc: dD.inv[2], invC: dD.inv[0] === BT ? '#64748B' : '#1E40AF',
       str: strRows, seg: strSeg, rest: allKnown ? nf(100 - known, 2) + '%' : BT, strPer: TOP3P[dp],
+      restPick: () => this.setState({ sk: 'lainnya' }),
       ews: !!EWS[dp], noEws: !EWS[dp], ewsA: EWS[dp] ? EWS[dp].a : '', ewsS: EWS[dp] ? EWS[dp].s : '', ewsW: EWS[dp] ? EWS[dp].w : '',
       pos: (di + 1) + ' dari 5 provinsi PDRB terbesar', lb: EWS[dp] ? '#DC2626' : '#E3E8F0'
     };
@@ -1478,7 +1566,7 @@ const HIST = [[2020, 826.3, 413.5, 412.8], [2021, 901.02, 447, 454], [2022, 1207
     // 4. kesiapan
     const tile = (l, v, sub, src, nat) => ({ l, v: v == null ? BT : v, vc: v == null ? '#64748B' : '#0F172A', bg: v == null ? '#F8FAFC' : '#FFFFFF', bd: v == null ? '1px dashed #CBD5E1' : '1px solid #E3E8F0', sub, src, nat: nat || '' });
     const kes = [
-      tile('Penduduk usia produktif (15–64)', dh.up, dP.upSrc, 'BPS', 'Nasional 68,94% (SUPAS 2025)'),
+      tile('Rasio ketergantungan (0–14 & 65+ th)', dh.up, 'tiap 100 jiwa usia 15–64 · ' + dP.upSrc, 'BPS', 'Nasional 68,94% (SUPAS 2025)'),
       tile('UMP 2026', dh.ump, 'per bulan, berlaku 1 Jan 2026', 'Kemnaker', ''),
       tile('Tingkat pengangguran terbuka', dK.tpt != null ? nf(dK.tpt, 2) + '%' : null, 'Februari 2026', 'BPS (Sakernas)', 'Nasional 4,68%'),
       tile('Angkatan kerja', dK.ak != null ? nf(dK.ak, dK.ak % 1 ? 2 : 0) + ' juta' : null, dK.akPer || 'Februari 2026', 'BPS (Sakernas)', ''),
@@ -1735,7 +1823,7 @@ const PELUANG_ALERTS = [
       lp, lpEmpty, lpHas: !lpEmpty, lpNas, lpNote, lperL: lper === 'tw2' ? 'Triwulan II 2026' : 'Semester I 2026', lsHas, lsNo: !lsHas, ls, lsNote, lk, lkNote, lh, lhProv, hasLhProv, lNoteHist,
       resetL: set({ lpv: '', lsk: '', lper: 'tw2' }), hasLF: !!(lpv || lsk || lper !== 'tw2'),
       // detail
-      provTabs, prevP, nextP, toMap, dh, fc, ev, facts, lim: dD.lim, sekP, dasar, opsi, hm, lyrBtns, isu, irbiLeg, env, kes, prj, prjDots, prjNote, pq, prjEmpty: prj.length === 0, onPq: (e) => this.setState({ pq: e && e.target ? e.target.value : '' }), regChips, regs, regCount, regJen, regNote, hasRegNote: !!regNote, dr,
+      dSearch, dOpen: dShowBox, dOpts, dOptsOff, dNoHit, onDSearch: (e) => this.setState({ dSearch: e && e.target ? e.target.value : '', dOpen: true }), onDOpen: () => this.setState({ dOpen: true }), skm, toMap, dh, fc, ev, facts, lim: dD.lim, sekP, dasar, opsi, hm, lyrBtns, isu, irbiLeg, env, kes, prj, prjDots, prjNote, pq, prjEmpty: prj.length === 0, onPq: (e) => this.setState({ pq: e && e.target ? e.target.value : '' }), regChips, regs, regCount, regJen, regNote, hasRegNote: !!regNote, dr,
       dEws: !!EWS[dp], dNoEws: !EWS[dp]
     };
   }
