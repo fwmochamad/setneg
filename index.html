@@ -381,6 +381,8 @@ document.addEventListener('DOMContentLoaded', async function() {
         let labels = [];
         if (title.indexOf('Peluang Investasi Daerah') !== -1 || title.indexOf('Demografi') !== -1) {
           labels = ['Tanggal acuan:', 'Cakupan:'];
+        } else if (title.indexOf('Payung Kebijakan') !== -1) {
+          labels = ['Tanggal acuan:'];
         } else if (title.indexOf('Kemudahan Berusaha') !== -1) {
           labels = ['Periode data OSS:', 'Tanggal acuan:', 'Sumber utama:'];
         }
@@ -413,6 +415,15 @@ document.addEventListener('DOMContentLoaded', async function() {
             node.style.display = 'none';
           }
         });
+
+        if (title.indexOf('Demografi') !== -1) {
+          const sectionLinks = ['#sec-peta', '#sec-rank', '#sec-tren', '#sec-insight'];
+          sectionLinks.forEach(function (href) {
+            const link = doc.querySelector('a[href="' + href + '"]');
+            const nav = link && link.closest('nav');
+            if (nav) nav.style.display = 'none';
+          });
+        }
 
         if (doc.documentElement && !observedDocuments.has(doc)) {
           observedDocuments.add(doc);
