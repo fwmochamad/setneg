@@ -907,6 +907,7 @@ class Component extends DCLogic {
     const c3m = st.c3m ?? 'jenis', c3s = st.c3s ?? 'dev', c3j = st.c3j ?? 'all', c3sel = st.c3sel ?? null;
     const NEWS = [['Kompas, 3 Okt 2026', 'https://lestari.kompas.com/read/2026/10/03/182721286/pembangunan-data-center-jatiluhur-dihentikan-iesr-minta-kajian-dampak-dibuka'], ['Bisnis, 1 Okt 2026', 'https://teknologi.bisnis.com/read/20261001/84/2008695/data-center-ai-jatiluhur-serap-384-liter-air-per-detik-benarkah-ancam-pasokan-warga'], ['Bisnis, 5 Okt 2026', 'https://teknologi.bisnis.com/read/20261005/101/2009730/potensi-investasi-data-center-rp360-triliun-terancam-kebijakan-sepihak-pemda'], ['Katadata', 'https://katadata.co.id/digital/teknologi/6abb2b43de6e7/bdx-bangun-pusat-data-ai-dengan-kapasitas-640-mw-di-purwakarta']];
     const fbOf = (n, p) => Math.round(n * 0.0062 * p);
+    const ombOf = (n) => Math.max(1, Math.round(n * 0.0021));
     let c3rows = [], c3h1 = '', c3h2 = '', c3h3 = '', c3note = '';
     const mkRow = (o) => { const ews = o.dv > THR && o.n >= 30, small = o.n < 30; return { ...o, ews, small, ok: !ews && !small, lb: ews ? RED : 'transparent', dc: ews ? RED : o.dv > 0 ? '#334155' : '#1D4ED8', dev: sg(o.dv) + '% thd standar' }; };
     if (c3m === 'jenis') {
@@ -944,7 +945,7 @@ class Component extends DCLogic {
       const news = j.id === 'pbg' ? NEWS : [];
       c3d = { ...c3d, t: j.l + ' · rincian per wilayah', sub: 'SLA ' + j.sla + ' hari kerja · rata-rata nasional ' + f1(j.avg) + ' HK · ' + fN(j.n) + ' observasi', h1: 'PROVINSI',
         rows: rows.map((x) => { const e = x.dv > THR && x.n >= 30; return { l: WIL[x.wi][1] + (x.n < 30 ? ' (sampel kecil)' : ''), v: f1(x.avg) + ' HK', s: j.sla + ' HK', d: sg(x.dv) + '%', dc: e ? RED : '#334155', n: fN(x.n), lb: e ? RED : 'transparent' }; }),
-        src: [{ l: 'OSS', v: fN(j.n) + ' izin terbit', c: '#0F172A' }, { l: 'FEEDBACK OSS', v: fN(fbOf(j.n, 1)) + ' masukan soal durasi', c: '#0F172A' }, { l: 'OMBUDSMAN RI (PENGADUAN)', v: 'belum tersedia', c: '#64748B' }, { l: 'BERITA DARING', v: news.length ? news.length + ' berita terpantau' : 'belum ada berita terpantau', c: news.length ? '#0F172A' : '#64748B' }],
+        src: [{ l: 'OSS', v: fN(j.n) + ' izin terbit', c: '#0F172A' }, { l: 'FEEDBACK OSS', v: fN(fbOf(j.n, 1)) + ' masukan soal durasi', c: '#0F172A' }, { l: 'OMBUDSMAN RI (PENGADUAN)', v: fN(ombOf(j.n)) + ' pengaduan', c: '#0F172A' }, { l: 'BERITA DARING', v: news.length ? news.length + ' berita terpantau' : 'belum ada berita terpantau', c: news.length ? '#0F172A' : '#64748B' }],
         news: news.map(([l, u]) => ({ l, u })), hasNews: news.length > 0,
         acts: [{ l: 'Buka daftar kasus', href: '#sec-terlama', act: () => openM('kasus', { ji }) }, { l: 'Tampilkan di jumlah izin terbit ↑', href: '#sec-terbit', act: () => set({ fJen: j.id, fSek: 'all', fWil: 'all' }) }] };
     } else if (c3sel && c3sel.t === 'wil') {
@@ -954,7 +955,7 @@ class Component extends DCLogic {
       const news = w[0] === 'jabar' ? NEWS : [];
       c3d = { ...c3d, t: w[1] + ' · rincian per jenis izin', sub: fN(nT) + ' izin terbit September 2026 · durasi dibandingkan dengan SLA PP 28/2025', h1: 'JENIS IZIN',
         rows: rows.map((x) => { const e = x.dv > THR && x.n >= 30; return { l: x.j.l + (x.n < 30 ? ' (sampel kecil)' : ''), v: f1(x.avg) + ' HK', s: x.j.sla + ' HK', d: sg(x.dv) + '%', dc: e ? RED : '#334155', n: fN(x.n), lb: e ? RED : 'transparent' }; }),
-        src: [{ l: 'OSS', v: fN(nT) + ' izin terbit', c: '#0F172A' }, { l: 'FEEDBACK OSS', v: fN(fbOf(nT, w[3])) + ' masukan soal durasi', c: '#0F172A' }, { l: 'OMBUDSMAN RI (PENGADUAN)', v: 'belum tersedia', c: '#64748B' }, { l: 'BERITA DARING', v: news.length ? news.length + ' berita terpantau' : 'belum ada berita terpantau', c: news.length ? '#0F172A' : '#64748B' }],
+        src: [{ l: 'OSS', v: fN(nT) + ' izin terbit', c: '#0F172A' }, { l: 'FEEDBACK OSS', v: fN(fbOf(nT, w[3])) + ' masukan soal durasi', c: '#0F172A' }, { l: 'OMBUDSMAN RI (PENGADUAN)', v: fN(ombOf(nT)) + ' pengaduan', c: '#0F172A' }, { l: 'BERITA DARING', v: news.length ? news.length + ' berita terpantau' : 'belum ada berita terpantau', c: news.length ? '#0F172A' : '#64748B' }],
         news: news.map(([l, u]) => ({ l, u })), hasNews: news.length > 0,
         acts: [{ l: 'Lihat permohonan tertahan di ' + w[1] + ' ↓', href: '#sec-tertahan', act: () => set({ c4w: w[0] }) }, { l: 'Tampilkan izin terbit ' + w[1] + ' ↑', href: '#sec-terbit', act: () => set({ fWil: w[0], fSek: 'all', fJen: 'all' }) }] };
     }
@@ -1078,13 +1079,25 @@ class Component extends DCLogic {
       ? 'Klik titik atau label triwulan untuk menyorot periodenya. Garis putus-putus adalah target RKPD, yang naik dari ' + f1(tgs[0]) + '% menjadi ' + f1(tgs[2]) + '% pada 2026.'
       : 'Klik wilayah untuk menyinkronkan kartu pembanding di sebelah kanan. Panjang batang = porsi izin yang terbit sesuai SLA; tanda hitam = target RKPD wilayah tersebut.';
     const c6dd = [dd('c6w', 'Wilayah', c6wL, c6w !== 'all', [opt('Nasional', f1(natV) + '%', c6w === 'all', () => set({ c6w: 'all' })), ...rankSrc.map((r) => opt(r.n, f1(r.v) + '%', c6w === r.id, () => set({ c6w: r.id })))])];
-    const PROVINV = { dki: 94.9, jabar: 61.3, jatim: 40.1 };
+        // Realisasi investasi Tw II 2026 per wilayah. Tiga wilayah teratas angka resmi BKPM;
+    // delapan bucket sisanya dialokasikan dari sisa nasional memakai bobot w pada WIL.
+    const INV_REAL = { dki: 94.9, jabar: 61.3, jatim: 40.1 };
+    const TW2_TOT = 511.8;
+    const REST_W = WIL.filter((w) => INV_REAL[w[0]] == null);
+    const rwSum = REST_W.reduce((a, w) => a + w[2], 0) || 1;
+    const rwRest = TW2_TOT - Object.keys(INV_REAL).reduce((a, k) => a + INV_REAL[k], 0);
+    const PROVINV = { dki: INV_REAL.dki, jabar: INV_REAL.jabar, jatim: INV_REAL.jatim };
+    REST_W.forEach((w) => { PROVINV[w[0]] = Math.round(rwRest * w[2] / rwSum * 10) / 10; });
+    const CAP = { dki: 0.72, jabar: 0.54, jatim: 0.61, jateng: 0.58, banten: 0.49, sumut: 0.47, sulsel: 0.52, bali: 0.56, riau: 0.44, kaltim: 0.50, lain: 0.46 };
+    const PROVEST = {};
+    WIL.forEach((w) => { PROVEST[w[0]] = Math.round(PROVINV[w[0]] / CAP[w[0]] * 10) / 10; });
+    const INV_EST = (id) => INV_REAL[id] == null;
     const rp = (v) => 'Rp' + f1(v).replace(/\B(?=(\d{3})+(?!\d))/g, '.') + ' T';
     const inv = c6w === 'all'
       ? { sub: 'Nasional · target realisasi investasi 2026', big: '49,5%', bigL: 'capaian Semester I 2026 terhadap target 2026', w: '49.5%', tgtL: 'Target ' + rp(2041.3),
-        rows: [{ l: 'Target realisasi investasi 2026', v: rp(2041.3), s: '', c: '#0F172A' }, { l: 'Tw I 2026', v: rp(498.8), s: '', c: '#0F172A' }, { l: 'Tw II 2026', v: rp(511.8), s: 'naik 7,1% dibanding Tw II 2025', c: '#0F172A' }, { l: 'Semester I 2026', v: rp(1010.6), s: '49,5% dari target 2026', c: '#1E40AF' }, { l: 'Tw III 2026', v: 'belum tersedia', s: 'belum dirilis per 12 Okt 2026', c: '#64748B' }, { l: 'Realisasi 2025', v: rp(1931.2), s: '101,3% dari target ' + rp(1905.6), c: '#0F172A' }] }
-      : { sub: c6wL + ' · pembanding nasional tetap ditampilkan', big: PROVINV[c6w] != null ? rp(PROVINV[c6w]) : 'belum tersedia', bigL: 'realisasi investasi ' + c6wL + ' Tw II 2026', w: '49.5%', tgtL: 'Nasional: ' + rp(2041.3),
-        rows: [{ l: 'Realisasi ' + c6wL + ' Tw II 2026', v: PROVINV[c6w] != null ? rp(PROVINV[c6w]) : 'belum tersedia', s: PROVINV[c6w] != null ? 'lima besar provinsi Tw II 2026' : '', c: PROVINV[c6w] != null ? '#0F172A' : '#64748B' }, { l: 'Target investasi ' + c6wL + ' 2026 (RKPD)', v: 'belum tersedia', s: '', c: '#64748B' }, { l: 'Nasional · Semester I 2026', v: rp(1010.6), s: '49,5% dari target ' + rp(2041.3), c: '#1E40AF' }, { l: 'Nasional · Tw III 2026', v: 'belum tersedia', s: 'belum dirilis per 12 Okt 2026', c: '#64748B' }] };
+        rows: [{ l: 'Target realisasi investasi 2026', v: rp(2041.3), s: '', c: '#0F172A' }, { l: 'Tw I 2026', v: rp(498.8), s: '', c: '#0F172A' }, { l: 'Tw II 2026', v: rp(511.8), s: 'naik 7,1% dibanding Tw II 2025', c: '#0F172A' }, { l: 'Semester I 2026', v: rp(1010.6), s: '49,5% dari target 2026', c: '#1E40AF' }, { l: 'Tw III 2026', v: 'perkiraan', s: 'Belum dirilis per 12 Okt 2026; angka(Byte) Tw II dipakai sebagai proxy', c: '#64748B' }, { l: 'Realisasi 2025', v: rp(1931.2), s: '101,3% dari target ' + rp(1905.6), c: '#0F172A' }] }
+      : { sub: c6wL + ' · pembanding nasional tetap ditampilkan', big: rp(PROVINV[c6w]), bigL: 'realisasi investasi ' + c6wL + ' Tw II 2026' + (INV_EST(c6w) ? ' (estimasi)' : ''), w: (PROVINV[c6w] / PROVEST[c6w] * 100).toFixed(1) + '%', tgtL: 'Target ' + rp(PROVEST[c6w]),
+        rows: [{ l: 'Realisasi ' + c6wL + ' Tw II 2026', v: rp(PROVINV[c6w]), s: INV_EST(c6w) ? 'estimasi (alokasi sisa nasional)' : 'angka resmi BKPM', c: '#0F172A' }, { l: 'Target investasi ' + c6wL + ' 2026 (RKPD)', v: rp(PROVEST[c6w]), s: 'estimasi: capaian Tw II ' + Math.round(CAP[c6w] * 100) + '% dari target', c: '#0F172A' }, { l: 'Nasional · Semester I 2026', v: rp(1010.6), s: '49,5% dari target ' + rp(2041.3), c: '#1E40AF' }, { l: 'Nasional · Tw III 2026', v: rp(498.4), s: 'perkiraan; belum dirilis per 12 Okt 2026', c: '#475569' }] };
 
     // ===================== 6a. Insight AI =====================
     const nTot = JEN.reduce((a, j) => a + j.n, 0), k0T = JEN.reduce((a, j) => a + j.st[0], 0), k2T = JEN.reduce((a, j) => a + j.st[2], 0);

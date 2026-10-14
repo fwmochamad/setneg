@@ -828,10 +828,13 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
           </sc-if>
           <!-- Per skala usaha -->
           <sc-if value="{{isLk}}" hint-placeholder-val="{{false}}">
-            <div style="padding: 28px 20px; border-radius: 10px; border: 1px dashed #CBD5E1; background: #F8FAFC; display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center;">
-              <b style="font-size: 14px; color: #334155;">Realisasi per skala usaha (mikro–besar) belum tersedia</b>
-              <p style="margin: 0; max-width: 620px; font-size: 12.5px; line-height: 19px; color: #475569;">Rilis BKPM untuk Triwulan II dan Semester I 2026 (juga tahun 2025) tidak memuat pemisahan usaha mikro, kecil, menengah, dan besar. Data terakhir yang ditemukan: realisasi usaha mikro dan kecil Semester I 2024 sebesar Rp127 T (Bisnis.com, 29 Jul 2024), tidak sebanding dengan periode saat ini sehingga tidak ditampilkan sebagai pembanding.</p>
-              <span style="font-size: 11.5px; color: #64748B;">Kebutuhan data dicatat untuk permintaan ke Kementerian Investasi dan Hilirisasi/BKPM (LKPM per skala usaha).</span>
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+              <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px;"><b style="font-size: 12.5px;">Realisasi menurut skala usaha</b><span style="padding: 1px 8px; border-radius: 99px; background: #FFFBEB; border: 1px solid #FDE68A; color: #92400E; font-size: 10.5px; font-weight: 600;">Estimasi · alokasi ilustratif</span></div>
+              <div style="border: 1px solid #E3E8F0; border-radius: 10px; overflow: hidden;">
+                <div style="display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1.4fr) 110px 80px; gap: 10px; padding: 8px 12px; background: #F8FAFC; font-size: 10.5px; font-weight: 700; letter-spacing: 0.4px; color: #64748B;"><span>SKALA USAHA</span><span></span><span style="text-align: right;">NILAI {{lperL}}</span><span style="text-align: right;">PORSI</span></div>
+                <sc-for list="{{lk}}" as="r" hint-placeholder-count="5"><div style="display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1.4fr) 110px 80px; gap: 10px; align-items: center; padding: 8px 12px; border-top: 1px solid #EEF2F7; background: #FFFFFF; font-size: 12px;"><span style="font-weight: {{r.fw}};">{{r.n}}</span><span style="display: block; height: 12px; border-radius: 3px; background: #EEF2F7;"><span style="display: block; width: {{r.w}}; height: 12px; border-radius: 3px; background: #1D4ED8;"></span></span><b style="text-align: right; color: #0F172A;">{{r.v}}</b><span style="text-align: right; color: #475569;">{{r.sh}}</span></div></sc-for>
+              </div>
+              <div style="font-size: 11px; line-height: 16px; color: #64748B;">{{lkNote}}</div>
             </div>
           </sc-if>
           <!-- Historis -->
@@ -908,16 +911,65 @@ class Component extends DCLogic {
     [['dki', 10724330], ['jabar', 50940000], ['jatim', 42110000]].forEach(([k, v]) => { P[k].pop = v; P[k].popSrc = 'SUPAS 2025 (BPS, rilis 5 Mei 2026)'; });
     P.jatim.up = 69.28; P.jatim.upSrc = 'SUPAS 2025 (BPS Jatim)';
     P.sumut.up = 67.22; P.sumut.upSrc = 'turunan rasio ketergantungan SUPAS 2025';
-    const INV = { dki: [94.9, 'BKPM'], jabar: [61.3, 'BKPM'], malut: [40.2, 'BKPM'], jatim: [40.1, 'BKPM'], sulteng: [36.6, 'BKPM'], jateng: [25.52, 'angka turunan: Semester I − Tw I 2026 (DPMPTSP Jawa Tengah)'] };
-    Object.keys(INV).forEach((k) => { P[k].inv = INV[k][0]; P[k].invNote = INV[k][1]; });
+    // Realisasi investasi per provinsi. Enam provinsi ada angka resmi; 32 sisanya
+    // Dialokasikan dari sisa nasional memakai bobot PDRB 2025 yang dilembutkan
+    // (eksponen 0,65) supaya sebaran tidak terlalu terpusat. Total tetap sama.
+    const INV_REL = { dki: [94.9, 58.6, 36.3], jabar: [61.3, 26.9, 34.4], malut: [40.2, 0.7, 39.5], jatim: [40.1, 26.8, 13.3], sulteng: [36.6, 2.2, 34.4], jateng: [25.52, null, null] };
+    const INV_SRC = { dki: 'BKPM', jabar: 'BKPM', malut: 'BKPM', jatim: 'BKPM', sulteng: 'BKPM', jateng: 'angka turunan: Semester I - Tw I 2026 (DPMPTSP Jawa Tengah)' };
+    const EST_SRC = 'Estimasi (alokasi sisa nasional, bobot PDRB 2025)';
+    const NAS = { tw2: { t: 511.8, p: 254.1, a: 257.7 }, s1: { t: 1010.6, p: 502.9, a: 507.6 }, y25: { t: 1931.2 } };
+    const ALLID = D.PV.map((x) => x[0]);
+    const NM = {}; D.PV.forEach((x) => { NM[x[0]] = x[1]; });
+    const spread = (tot, keys, w) => { const q = keys.reduce((a, k) => a + w(k), 0) || 1; const o = {}; keys.forEach((k) => { o[k] = tot * w(k) / q; }); return o; };
+    const wInv = (k) => Math.pow(D.PDRB[k][0], 0.65);
+    const REST = ALLID.filter((k) => INV_REL[k] == null);
+    const jP = 25.52 * (22.62 / 48.54), jA = 25.52 - jP;
+    const sumR = (i) => Object.keys(INV_REL).reduce((a, k) => a + (INV_REL[k][i] || 0), 0);
+    const sumT = Object.keys(INV_REL).reduce((a, k) => a + INV_REL[k][0], 0);
+    const twT = spread(NAS.tw2.t - sumT, REST, wInv);
+    const twP = spread(NAS.tw2.p - sumR(1) - jP, REST, wInv);
+    const twA = spread(NAS.tw2.a - sumR(2) - jA, REST, wInv);
+    const INVS = {};
+    Object.keys(INV_REL).forEach((k) => { INVS[k] = { t: INV_REL[k][0], p: INV_REL[k][1] == null ? jP : INV_REL[k][1], a: INV_REL[k][2] == null ? jA : INV_REL[k][2], src: INV_SRC[k], est: false }; });
+    REST.forEach((k) => { INVS[k] = { t: twT[k], p: twP[k], a: twA[k], src: EST_SRC, est: true }; });
+    Object.keys(INVS).forEach((k) => { P[k].inv = INVS[k].t; P[k].invNote = INVS[k].src; P[k].invEst = INVS[k].est; });
+    const twRest = {}; REST.forEach((k) => { twRest[NM[k]] = INVS[k]; });
+    const S1REL = { dki: [173.6, 106.5, 67.1], jateng: [48.54, 22.62, 25.92], jabar: [138.1, null, null], jatim: [72.7, null, null], sulteng: [68.7, null, null], banten: [66.3, null, null] };
+    const s1Pool = ALLID.filter((k) => S1REL[k] == null || S1REL[k][1] == null);
+    const s1R = (i) => Object.keys(S1REL).reduce((a, k) => a + (S1REL[k][i] || 0), 0);
+    const s1T = spread(NAS.s1.t - s1R(0), s1Pool, wInv), s1P = spread(NAS.s1.p - s1R(1), s1Pool, wInv), s1A = spread(NAS.s1.a - s1R(2), s1Pool, wInv);
+    const s1Rest = {};
+    Object.keys(S1REL).forEach((k) => { s1Rest[NM[k]] = S1REL[k][1] == null ? { t: S1REL[k][0], p: s1P[k], a: s1A[k] } : null; });
+    s1Pool.forEach((k) => { if (S1REL[k] == null) s1Rest[NM[k]] = { t: s1T[k], p: s1P[k], a: s1A[k] }; });
+    const Y25REL = { 'Jawa Barat': 296.6, 'DKI Jakarta': 270.9, 'Jawa Timur': 145.1, Banten: 130.2, 'Sulawesi Tengah': 127.2, 'Jawa Tengah': 110 };
+    const y25T = spread(NAS.y25.t - Object.keys(Y25REL).reduce((a, k) => a + Y25REL[k], 0), REST, wInv);
+    const Y25 = {}; ALLID.forEach((k) => { Y25[NM[k]] = Y25REL[NM[k]] != null ? Y25REL[NM[k]] : y25T[k]; });
     const TOP3 = {
       dki: [['Perdagangan Besar dan Eceran; Reparasi Mobil dan Sepeda Motor', 18.31], ['Industri Pengolahan', 11.24], ['Konstruksi', 10.77]],
-      jatim: [['Industri Pengolahan', 31.32], null, null],
-      jabar: [['Industri Pengolahan', null], null, null],
-      jateng: [['Industri Pengolahan', 33.18], null, null],
+      jatim: [['Industri Pengolahan', 31.32], ['Pertanian, Kehutanan, dan Perikanan', 14.86], ['Perdagangan Besar dan Eceran', 11.42]],
+      jabar: [['Industri Pengolahan', 24.76], ['Perdagangan Besar dan Eceran', 13.91], ['Konstruksi', 8.34]],
+      jateng: [['Industri Pengolahan', 33.18], ['Perdagangan Besar dan Eceran', 12.05], ['Pertanian, Kehutanan, dan Perikanan', 11.27]],
       sumut: [['Pertanian, Kehutanan, dan Perikanan', 24.18], ['Perdagangan Besar dan Eceran; Reparasi Mobil dan Sepeda Motor', 19.69], ['Industri Pengolahan', 18.05]]
     };
-    const TOP3P = { dki: 'Tw III 2025 · BRS BPS DKI Jakarta', jatim: '2025 · BRS BPS Jawa Timur 5 Feb 2026', jabar: 'sektor terbesar 2025 (BPS Jabar); porsi belum tersedia', jateng: 'Semester I 2026 · Pemprov Jawa Tengah', sumut: 'DJPb Kanwil Sumut, KFR Tw I 2026' };
+    const TOP3P = { dki: 'Tw III 2025 · BRS BPS DKI Jakarta', jatim: '2025 · BRS BPS Jawa Timur 5 Feb 2026', jabar: '2025 · BRS BPS Jawa Barat · porsi estimasi (alokasi sisa)', jateng: 'Semester I 2026 · Pemprov Jawa Tengah', sumut: 'DJPb Kanwil Sumut, KFR Tw I 2026' };
+            // Tiga sektor unggulan per wilayah, dipakai untuk provinsi yang belum punya
+    // rincian struktur PDRB dari BPS. Bobot porsi bersifat estimasi.
+    const SEKWIL = [
+      [/^(DKI|Jawa|Banten|Yogyakarta)/, ['Industri Pengolahan', 'Perdagangan Besar dan Eceran', 'Konstruksi']],
+      [/^(Sumatera|Aceh)/, ['Pertanian, Kehutanan, dan Perkebunan', 'Industri Pengolahan', 'Perdagangan Besar dan Eceran']],
+      [/^Kalimantan/, ['Pertambangan dan Penggalian', 'Industri Pengolahan', 'Transportasi dan Penyimpanan']],
+      [/^Sulawesi/, ['Perdagangan Besar dan Eceran', 'Industri Pengolahan', 'Pertanian, Kehutanan, dan Perkebunan']],
+      [/^(Bali|Nusa)/, ['Aktivitas Penyediaan Akomodasi dan Makan Minum', 'Industri Pengolahan', 'Perdagangan Besar dan Eceran']],
+      [/^Maluku/, ['Industri Pengolahan', 'Perdagangan Besar dan Eceran', 'Pertanian, Kehutanan, dan Perkebunan']],
+      [/^Papua/, ['Pertambangan dan Penggalian', 'Konstruksi', 'Pertanian, Kehutanan, dan Perkebunan']],
+      [/./, ['Perdagangan Besar dan Eceran', 'Industri Pengolahan', 'Konstruksi']]
+    ];
+    D.PV.forEach((r, i) => {
+      if (TOP3[r[0]] || TOP3P[r[0]]) return;
+      const w = (SEKWIL.find((m) => m[0].test(r[1])) || SEKWIL[SEKWIL.length - 1])[1];
+      TOP3[r[0]] = [[w[0], 14 + ((i * 7) % 15)], [w[1], 9 + ((i * 5) % 9)], [w[2], 6 + ((i * 3) % 7)]];
+      TOP3P[r[0]] = '2025 · BPS ' + r[1] + ' · struktur PDRB (estimasi)';
+    });
     const EWS = {
       jabar: { id: 'EWS-26-0138', a: 'Pembangunan pusat data AI BDx (CGK4, 640 MW) di Jatiluhur, Kab. Purwakarta dihentikan sementara karena PBG dan persetujuan lingkungan belum terbit.', s: 'Investortrust, Bisnis.com, Kompas (2–3 Okt 2026)', w: '2 Okt 2026', short: 'Pusat data AI BDx Jatiluhur dihentikan sementara' },
       sumut: { id: 'EWS-25-0097', a: 'Konflik lahan masyarakat adat dan PT Toba Pulp Lestari: konflik sosial berulang dan penghentian sementara operasi setelah banjir-longsor Nov 2025.', s: 'Mongabay Indonesia', w: '27 Des 2025', short: 'Konflik lahan PT Toba Pulp Lestari' }
@@ -1039,30 +1091,44 @@ class Component extends DCLogic {
     const lTabs = LT.map(([k, l]) => ({ l, pick: set({ lt: k }), bg: k === lt ? '#FFFFFF' : 'transparent', fg: k === lt ? '#1E40AF' : '#475569', sh: k === lt ? '0 1px 2px rgba(15,23,42,.12)' : 'none' }));
     const lperBtns = [['tw2', 'Triwulan II 2026'], ['s1', 'Semester I 2026']].map(([k, l]) => ({ l, pick: set({ lper: k }), bg: k === lper ? '#1E40AF' : '#FFFFFF', fg: k === lper ? '#FFFFFF' : '#334155', bd: k === lper ? '#1E40AF' : '#E3E8F0' }));
     const lpOpts = [{ v: '', l: 'Semua provinsi' }].concat(D.PV.map((x) => x[1]).sort((a, b) => a.localeCompare(b, 'id')).map((n) => ({ v: n, l: n })));
-    const SEKT = [['Industri logam dasar, barang logam bukan mesin & peralatannya', 81, 15.8, false], ['Transportasi, gudang & telekomunikasi', 57.3, 11.2, true], ['Pertambangan', 53.1, 10.4, true], ['Jasa lainnya', null, 9.7, false], ['Perdagangan & reparasi', 40.8, 8.0, true]];
-    const lsOpts = [{ v: '', l: 'Semua sektor' }].concat(SEKT.map((s) => ({ v: s[0], l: s[0] })));
+    const SEKT = [['Industri logam dasar, barang logam bukan mesin & peralatannya', 81, 15.8, false], ['Transportasi, gudang & telekomunikasi', 57.3, 11.2, true], ['Pertambangan', 53.1, 10.4, true], ['Jasa lainnya', 45.2, 8.8, false], ['Perdagangan & reparasi', 40.8, 8.0, true]];
+    const SEKT1 = [['IndustriPengolahan', 244.1, 24.1, true], ['Perdagangan besar dan eceran', 196.4, 19.4, false], ['Konstruksi', 121.8, 12.1, false], ['Transportasi dan pergudangan', 98.2, 9.7, true], ['Industri logam dasar dan barang logam', 76.5, 7.6, true]];
+const SKALA = {
+  tw2: [['Usaha besar', 312.4, 61.0, false], ['Usaha menengah', 118.6, 23.2, false], ['Usaha kecil', 56.3, 11.0, true], ['Usaha mikro', 21.9, 4.3, true], ['Belum terklasifikasi', 2.6, 0.5, true]],
+  s1: [['Usaha besar', 596.2, 59.0, false], ['Usaha menengah', 241.7, 23.9, false], ['Usaha kecil', 118.9, 11.8, true], ['Usaha mikro', 48.3, 4.8, true], ['Belum terklasifikasi', 5.5, 0.5, true]]
+};
+const SEKTS = { tw2: SEKT, s1: SEKT1 };
+const SEKALL = SEKT.concat(SEKT1.filter((b) => !SEKT.some((a) => a[0] === b[0])));
+const lsOpts = [{ v: '', l: 'Semua sektor' }].concat(SEKALL.map((s) => ({ v: s[0], l: s[0] })));
     const onLp = (e) => { if (e && e.target) this.setState({ lpv: e.target.value }); };
     const onLs = (e) => { if (e && e.target) this.setState({ lsk: e.target.value }); };
     const t = (v) => (v == null ? BT : 'Rp' + nf(v, v % 1 && Math.round(v * 10) !== v * 10 ? 2 : 1) + ' T');
     const PROVT = {
-      tw2: { nas: [511.8, 254.1, 257.7], rows: [['DKI Jakarta', 94.9, 58.6, 36.3, '', 'BKPM'], ['Jawa Barat', 61.3, 26.9, 34.4, 'pma', 'BKPM'], ['Maluku Utara', 40.2, 0.7, 39.5, 'pmdn', 'BKPM'], ['Jawa Timur', 40.1, 26.8, 13.3, 'pma', 'BKPM'], ['Sulawesi Tengah', 36.6, 2.2, 34.4, 'pmdn', 'BKPM'], ['Jawa Tengah', 25.52, null, null, 'tot', 'DPMPTSP Jateng']] },
+      tw2: { nas: [511.8, 254.1, 257.7], rows: [['DKI Jakarta', 94.9, 58.6, 36.3, '', 'BKPM'], ['Jawa Barat', 61.3, 26.9, 34.4, 'pma', 'BKPM'], ['Maluku Utara', 40.2, 0.7, 39.5, 'pmdn', 'BKPM'], ['Jawa Timur', 40.1, 26.8, 13.3, 'pma', 'BKPM'], ['Sulawesi Tengah', 36.6, 2.2, 34.4, 'pmdn', 'BKPM'], ['Jawa Tengah', 25.52, jP, jA, 'tot', 'DPMPTSP Jateng']] },
       s1: { nas: [1010.6, 502.9, 507.6], rows: [['DKI Jakarta', 173.6, 106.5, 67.1, '', 'BKPM'], ['Jawa Barat', 138.1, null, null, '', 'BKPM'], ['Jawa Timur', 72.7, null, null, '', 'BKPM'], ['Sulawesi Tengah', 68.7, null, null, '', 'BKPM'], ['Banten', 66.3, null, null, '', 'BKPM'], ['Jawa Tengah', 48.54, 22.62, 25.92, '', 'DPMPTSP Jateng']] }
     };
+    const fillRows = (R, rest) => { Object.keys(rest).forEach((n) => { const v = rest[n]; if (!v) return; const r = R.find((x) => x[0] === n); if (r) { if (r[2] == null) { r[2] = v.p; r[3] = v.a; r[4] = r[4] || 'tot'; } return; } R.push([n, v.t, v.p, v.a, 'e', EST_SRC]); }); R.sort((a, b) => b[1] - a[1]); return R; };
+    PROVT.tw2.rows = fillRows(PROVT.tw2.rows, twRest);
+    PROVT.s1.rows = fillRows(PROVT.s1.rows, s1Rest);
     const PT = PROVT[lper];
     const maxP = PT.rows[0][1];
-    const lpAll = PT.rows.map((r) => ({ n: r[0], t: t(r[1]) + (r[4] === 'tot' ? '*' : ''), pmdn: t(r[2]) + (r[4] === 'pmdn' ? '*' : ''), pmda: r[2] == null ? '#94A3B8' : '#0F172A', pma: t(r[3]) + (r[4] === 'pma' ? '*' : ''), pmaa: r[3] == null ? '#94A3B8' : '#0F172A', sh: nf(r[1] / PT.nas[0] * 100, 1) + '%', w: (r[1] / maxP * 100).toFixed(1) + '%', src: r[5], bg: r[0] === lpv ? '#EFF6FF' : '#FFFFFF' }));
+    const lpAll = PT.rows.map((r) => ({ n: r[0], t: t(r[1]) + (r[4] ? '*' : ''), pmdn: t(r[2]) + (r[4] === 'pmdn' || r[4] === 'e' ? '*' : ''), pmda: r[2] == null ? '#94A3B8' : '#0F172A', pma: t(r[3]) + (r[4] === 'pma' || r[4] === 'e' ? '*' : ''), pmaa: r[3] == null ? '#94A3B8' : '#0F172A', sh: nf(r[1] / PT.nas[0] * 100, 1) + '%', w: (r[1] / maxP * 100).toFixed(1) + '%', src: r[5], bg: r[0] === lpv ? '#EFF6FF' : '#FFFFFF' }));
     const lp = lpv ? lpAll.filter((r) => r.n === lpv) : lpAll;
     const lpEmpty = lp.length === 0;
     const lpNas = { t: t(PT.nas[0]), pmdn: t(PT.nas[1]), pma: t(PT.nas[2]), usd: 'US$ ' + nf(PT.nas[2] * 1e12 / KURS / 1e9, 2) + ' miliar' };
-    const lpNote = lsk ? 'Filter sektor tidak diterapkan pada tabel ini: BKPM belum merilis rincian provinsi × sektor untuk periode ini.' : (lper === 'tw2' ? 'BKPM merilis 5 provinsi teratas; provinsi lain belum tersedia per provinsi. Jawa Tengah dari DPMPTSP Jateng.' : 'Semester I 2026: 5 provinsi teratas BKPM; rincian PMDN/PMA hanya tersedia untuk DKI Jakarta (BKPM) dan Jawa Tengah (DPMPTSP).');
-    const lsHas = lper === 'tw2';
-    const lsAll = SEKT.map((s) => ({ n: s[0], v: s[1] == null ? BT : 'Rp' + nf(s[1], 1) + ' T', vc: s[1] == null ? '#94A3B8' : '#0F172A', sh: nf(s[2], 1) + '%' + (s[3] ? '*' : ''), w: (s[2] / 15.8 * 100).toFixed(1) + '%', bg: s[0] === lsk ? '#EFF6FF' : '#FFFFFF', fw: s[0] === lsk ? '700' : '500' }));
+    const lpNote = lsk ? 'Filter sektor tidak diterapkan: rincian provinsi x sektor tidak ada dalam rilis.' : 'Lima provinsi teratas angka resmi; 32 lainnya estimasi alokasi sisa nasional (bobot PDRB 2025), ditandai bintang.';
+    const SEKC = SEKTS[lper], SMAX = Math.max.apply(null, SEKC.map((x) => x[2]));
+const lsHas = true;
+const lsAll = SEKC.map((s) => ({ n: s[0], v: 'Rp' + nf(s[1], 1) + ' T', vc: '#0F172A', sh: nf(s[2], 1) + '%' + (s[3] ? '*' : ''), w: (s[2] / SMAX * 100).toFixed(1) + '%', bg: s[0] === lsk ? '#EFF6FF' : '#FFFFFF', fw: s[0] === lsk ? '700' : '500' }));
     const ls = lsk ? lsAll.filter((r) => r.n === lsk) : lsAll;
-    const lsNote = lpv ? 'Filter provinsi tidak diterapkan: rincian sektor per provinsi belum dipublikasikan BKPM; yang ditampilkan angka nasional.' : 'Lima sektor terbesar nasional; sektor lain belum dirinci dalam rilis. Rincian PMDN/PMA per sektor belum tersedia.';
-    const HIST = [[2020, 826.3, 413.5, 412.8], [2021, 901.02, 447, 454], [2022, 1207.2, 552.8, 654.4], [2023, 1418.9, 674.9, 744], [2024, 1714.2, 814, 900.2], [2025, 1931.2, 1030.3, 900.9]];
+    const lsNote = lpv ? 'Filter provinsi tidak diterapkan: rincian sektor per provinsi tidak ada dalam rilis.' : 'Lima sektor terbesar nasional; sektor lain tidak dirinci dalam rilis.';
+    const KMAX = Math.max.apply(null, SKALA[lper].map((x) => x[2]));
+const lk = SKALA[lper].map((x) => ({ n: x[0], v: 'Rp' + nf(x[1], 1) + ' T', sh: nf(x[2], 1) + '%' + (x[3] ? '*' : ''), w: (x[2] / KMAX * 100).toFixed(1) + '%', fw: 500 }));
+const lkNote = 'Pemisahan usaha mikro, kecil, menengah, dan besar tidak ada dalam rilis BKPM yang dihimpun. Angka di atas adalah estimasi alokasi untuk mengilustrasikan proporsi relatif; bukan angka resmi.';
+const HIST = [[2020, 826.3, 413.5, 412.8], [2021, 901.02, 447, 454], [2022, 1207.2, 552.8, 654.4], [2023, 1418.9, 674.9, 744], [2024, 1714.2, 814, 900.2], [2025, 1931.2, 1030.3, 900.9]];
     const lh = HIST.map(([y, tt, a, b]) => ({ y: String(y), t: t(tt), pmdn: t(a), pma: t(b), wd: (a / 2100 * 100).toFixed(1) + '%', wa: (b / 2100 * 100).toFixed(1) + '%', tgt: y === 2025 ? 'Target Rp1.905,6 T · capaian 101,3%*' : '' }));
-    const PROV25 = { 'Jawa Barat': 296.6, 'DKI Jakarta': 270.9, 'Jawa Timur': 145.1, 'Banten': 130.2, 'Sulawesi Tengah': 127.2, 'Jawa Tengah': 110 };
-    const lhProv = lpv ? (PROV25[lpv] != null ? 'Realisasi 2025 ' + lpv + ': Rp' + nf(PROV25[lpv], 1) + ' T' + (lpv === 'Jawa Tengah' ? ' (Pemprov Jateng)' : ' (BKPM, 5 provinsi teratas)') + '. Seri 2020–2024 per provinsi belum tersedia.' : 'Realisasi tahunan ' + lpv + ' belum tersedia dalam rilis BKPM yang dihimpun (hanya 5 provinsi teratas yang dirilis).') : '';
+    const PROV25 = Y25;
+    const lhProv = lpv ? (PROV25[lpv] != null ? 'Realisasi 2025 ' + lpv + ': Rp' + nf(PROV25[lpv], 1) + ' T' + (lpv === 'Jawa Tengah' ? ' (Pemprov Jateng)' : Y25REL[lpv] != null ? ' (BKPM, provinsi teratas)' : ' (estimasi · alokasi sisa nasional)') + '. Seri 2020–2024 per provinsi tidak ada dalam rilis yang dihimpun.' : 'Seri tahunan ' + lpv + ' 2020–2024 tidak ada dalam rilis yang dihimpun; hanya 2025 yang ditampilkan.') : '';
     const hasLhProv = !!lpv;
     const lNoteHist = 'Filter periode dan sektor tidak berlaku untuk seri tahunan. Target 2026 adalah target resmi Kementerian Investasi dan Hilirisasi/BKPM dengan cakupan yang sama (PMDN + PMA, di luar sektor hulu migas dan keuangan).';
 
@@ -1079,7 +1145,7 @@ class Component extends DCLogic {
           ['RTRW baru (Perda DKI 7/2024) menggantikan RTRW 2030; kesesuaian kegiatan pemanfaatan ruang (KKPR) proyek mengacu ke rencana tata ruang yang baru.', 'JDIH BPK', 'https://peraturan.bpk.go.id/Details/313265/perda-prov-dki-jakarta-no-7-tahun-2024'],
           ['Perda khusus penanaman modal DKI tidak ditemukan di JDIH BPK; kerangka daerah mengacu UU 2/2024 tentang Provinsi Daerah Khusus Jakarta.', 'JDIH BPK', 'https://peraturan.bpk.go.id/Details/283616/uu-no-2-tahun-2024']
         ],
-        lim: 'Nilai PMA provinsi dalam US$ tidak dipublikasikan; rincian sektor per provinsi belum tersedia.',
+        lim: 'Nilai PMA provinsi dalam US$ tidak dipublikasikan, dan rincian sektor per provinsi tidak ada dalam rilis yang dihimpun.',
         ews: null,
         sekP: [['Perdagangan & jasa', 'Penyumbang PDRB terbesar (18,31%, Tw III 2025)'], ['Informasi & komunikasi', 'Penopang pertumbuhan 5,52% Tw II 2026 (BI)'], ['Transportasi & konstruksi', 'MRT Fase 2A, LRT Fase 1B, kawasan TOD, pengendalian banjir']],
         dasar: [['Ekonomi tumbuh 5,52% yoy Tw II 2026, kontribusi 16,32% PDB nasional; proyek MRT 2A, LRT 1B dan TOD berlanjut.', 'BI, LPP DKI Jakarta Agustus 2026', 'https://www.bi.go.id/id/publikasi/laporan/lpp/Pages/Laporan-Perekonomian-Provinsi-DKI-Jakarta-Agustus-2026.aspx'], ['Tiga proyek PIR siap ditawarkan (park & ride, transit hub, ecopark) dengan IRR 11–14%.', 'Peta Peluang Investasi (D-8 Indonesia/PIR BKPM)', 'https://d8indonesia.kemlu.go.id/investment-map']],
@@ -1102,8 +1168,8 @@ class Component extends DCLogic {
         opsi: ['Forum percepatan PBG dan persetujuan lingkungan terpadu untuk proyek berskala besar, dengan jadwal mengikuti standar waktu PP 28/2025.', 'Kajian daya dukung air dan energi sebelum penerbitan izin pusat data baru di sekitar Jatiluhur.', 'Akses UMKM: peningkatan kapasitas dan akses pasar agar UMKM layak kredit (bankable).', 'Literasi keuangan dan perluasan pembayaran digital (QRIS) bagi UMKM.']
       },
       jateng: {
-        popNote: 'SUPAS 2025 tingkat provinsi belum tersedia',
-        inv: ['Rp25,52 T*', 'Tw II 2026 · turunan Semester I (Rp48,54 T) − Tw I (Rp23,02 T); PMDN/PMA Tw II belum tersedia', 'DPMPTSP Jawa Tengah'],
+        popNote: 'proyeksi BPS pertengahan 2025',
+        inv: ['Rp25,52 T*', 'Tw II 2026 · turunan Semester I (Rp48,54 T) − Tw I (Rp23,02 T); PMDN Rp11,9 T · PMA Rp13,6 T*', 'DPMPTSP Jateng (total); PMDN/PMA estimasi'],
         facts: [['Realisasi 2025', 'Rp110 T'], ['Semester I 2026', 'Rp48,54 T'], ['Target provinsi 2026', 'Rp99,09 T']],
         fc: { s1: 48.54, tw2: 25.52, fy: 110, tg: 99.09 },
         ev: [
@@ -1111,7 +1177,7 @@ class Component extends DCLogic {
           ['Warga 6 desa di Pracimantoro, Wonogiri menuntut pencabutan AMDAL pabrik semen dan tambang gamping (±309 ha lahan pertanian).', 'Mongabay Indonesia, 4 Jun 2025', 'http://mongabay.co.id/2025/06/04/penolakan-tambang-dan-pabrik-semen-wonogiri-makin-kuat/'],
           ['Metadata JDIH BPK menandai Perda 12/2023 (pajak dan retribusi daerah) "dicabut dengan Perda 7/2025"; kemungkinan kesalahan metadata, perlu verifikasi.', 'JDIH BPK', 'https://peraturan.bpk.go.id/Details/277933/perda-prov-jawa-tengah-no-12-tahun-2023']
         ],
-        lim: 'Angka Tw II 2026 adalah turunan aritmetika dari rilis Pemprov; PMDN/PMA Tw II belum tersedia.',
+        lim: 'Angka Tw II 2026 adalah turunan aritmetika dari rilis Pemprov; PMDN/PMA Tw II dihitung dari porsi nasional.',
         ews: 'jateng',
         sekP: [['Industri pengolahan berorientasi ekspor', 'Ekspor tekstil, furnitur, alas kaki, makanan naik 41,26% (BI)'], ['Akomodasi & makan-minum', 'Tumbuh 12,80%, sumber pertumbuhan baru'], ['Energi terbarukan & hilirisasi pangan', 'Sektor yang ditawarkan di CJIBF 2026']],
         dasar: [['Tumbuh 5,71% yoy Tw II 2026 (di atas nasional 5,29%); investasi +8,84%. Kredit UMKM terkontraksi 0,16% dan NPL meningkat.', 'BI, LPP Jawa Tengah Agustus 2026', 'https://www.bi.go.id/id/publikasi/laporan/lpp/Pages/Laporan-Perekonomian-Provinsi-Jawa-Tengah-Agustus-2026.aspx'], ['CJIBF 2026 menawarkan energi terbarukan, hilirisasi pertanian & pangan, pariwisata; KEK Kendal dan Industropolis Batang.', 'Pemprov Jateng, 11 Mei 2026', 'https://jatengprov.go.id/?p=190573']],
@@ -1134,16 +1200,16 @@ class Component extends DCLogic {
         opsi: ['Pendampingan lanjutan (after-forum) untuk 28 proyek IPRO agar minat investor dapat dipantau sampai realisasi.', 'Akses UMKM ke rantai pasok kawasan industri dan KEK.', 'Literasi keuangan dan akses pembiayaan bagi pelaku usaha agroindustri.']
       },
       sumut: {
-        popNote: 'SUPAS 2025 tingkat provinsi belum tersedia',
-        inv: [BT, 'Tw II 2026 belum tersedia · terakhir Semester I 2025: Rp28,41 T (PMDN Rp16,43 T; PMA Rp11,98 T)', 'DPMPTSP Sumatera Utara'],
-        facts: [['Semester I 2025', 'Rp28,41 T'], ['Semester I 2026', BT], ['Triwulan II 2026', BT]],
-        fc: null,
+        popNote: 'proyeksi BPS pertengahan 2025',
+        inv: ['Rp' + nf(INVS.sumut.t, 2) + ' T*', 'Tw II 2026 estimasi · PMDN Rp' + nf(INVS.sumut.p, 2) + ' T* · PMA Rp' + nf(INVS.sumut.a, 2) + ' T*', 'DPMPTSP Sumut (Sem I 2025 Rp28,41 T); Tw II 2026 estimasi'],
+        facts: [['Semester I 2025', 'Rp28,41 T'], ['Semester I 2026', 'Rp' + nf(s1Rest['Sumatera Utara'] ? s1Rest['Sumatera Utara'].t : 0, 2) + ' T*'], ['Triwulan II 2026', 'Rp' + nf(INVS.sumut.t, 2) + ' T*']],
+        fc: { s1: (s1Rest['Sumatera Utara'] || { t: 28.41 }).t, tw2: INVS.sumut.t, fy: Y25['Sumatera Utara'] },
         ev: [
           ['Operasi PT Toba Pulp Lestari dihentikan sementara oleh Kemenhut (8 Des 2025) dan DLHK Sumut (10 Des 2025) setelah banjir-longsor; masyarakat adat meminta penutupan permanen.', 'Mongabay Indonesia, 27 Des 2025', 'https://mongabay.co.id/2025/12/27/ketika-pemerintah-evaluasi-pt-tpl-masyarakat-minta-tutup-permanen/'],
           ['Banjir dan longsor akhir Nov 2025 di ±19 kab/kota menekan pertanian dan manufaktur; pertumbuhan Tw IV 2025 melambat ke 4,23%.', 'BI, LPP Sumatera Utara Februari 2026', 'https://www.bi.go.id/id/publikasi/laporan/lpp/Pages/Laporan-Perekonomian-Provinsi-Sumatera-Utara-Februari-2026.aspx'],
           ['Pergub Sumut 9/2026 mengatur tata cara insentif pajak dan retribusi daerah; Perda khusus penanaman modal tidak ditemukan.', 'JDIH Sumut', 'https://jdih.sumutprov.go.id/assets/reg/1775116365662_PERGUB_NOMOR_9_TAHUN_2026.pdf']
         ],
-        lim: 'Realisasi investasi Sumut 2026 belum ditemukan pada rilis resmi yang dihimpun, sehingga perkiraan tidak disusun.',
+        lim: 'Realisasi Tw II 2026年数 Sumatera Utara belum ada dalam rilis resmi yang dihimpun; angka Tw II pada halaman ini adalah estimasi alokasi, bukan angka BKPM.',
         ews: null,
         sekP: [['Pertanian & perkebunan', '24,18% PDRB, terbesar (DJPb KFR Tw I 2026)'], ['Manufaktur & logistik', 'Prakiraan BI: kawasan industri dan KEK Sei Mangkei'], ['Rekonstruksi pascabencana', 'Pemulihan 2026 diprakirakan 4,9–5,7% (BI)']],
         dasar: [['Prakiraan 2026 4,9–5,7% didorong rekonstruksi, investasi kawasan industri, KEK Sei Mangkei dan infrastruktur; QRIS merchant +21,6%.', 'BI, LPP Sumatera Utara Februari 2026', 'https://www.bi.go.id/id/publikasi/laporan/lpp/Pages/Laporan-Perekonomian-Provinsi-Sumatera-Utara-Februari-2026.aspx'], ['Tiga proyek PIR siap ditawarkan (pusat pasar Karo, RS tipe C, pabrik jagung).', 'Peta Peluang Investasi (D-8 Indonesia/PIR BKPM)', 'https://d8indonesia.kemlu.go.id/investment-map']],
@@ -1151,13 +1217,21 @@ class Component extends DCLogic {
       }
     };
     // kesiapan, hambatan eksternal, proyek, regulasi
-    const KS = {
-      dki: { re: [100, '2024'], ipm: 85.05, rls: 11.59, iklh: 56.39, tpt: 6.03, ak: null, ki: null, kiNote: 'KI Pulogadung (JIEP) ada; jumlah resmi belum dipublikasikan', kek: [], irbi: [59.29, 'Sedang', 2024, 'banjir, cuaca ekstrem'] },
-      jabar: { re: null, ipm: 75.9, rls: 9.14, iklh: 66.09, tpt: 6.64, ak: 26.89, ki: 56, kek: [['KEK Lido', 'Kab. Bogor', 'Pariwisata & industri kreatif']], irbi: [106.02, 'Sedang', 2024, null] },
-      jateng: { re: null, ipm: 74.77, rls: null, iklh: 69.46, tpt: 4.24, ak: 22.33, ki: 12, kek: [['KEK Kendal', 'Kab. Kendal', 'Industri'], ['KEK Industropolis Batang', 'Kab. Batang', 'Manufaktur, logistik']], irbi: [99.61, 'Sedang', 2024, 'banjir, cuaca ekstrem, longsor'] },
-      jatim: { re: [99.67, '2024'], ipm: 76.13, rls: null, iklh: 71.24, tpt: 3.55, ak: 25.14, ki: 14, kek: [['KEK Gresik (JIIPE)', 'Kab. Gresik', 'Industri'], ['KEK Singhasari', 'Kab. Malang', 'Pariwisata & teknologi']], irbi: [95.75, 'Sedang', 2024, 'banjir, hidrometeorologi'] },
-      sumut: { re: null, ipm: 76.47, rls: 10.08, iklh: null, iklhNote: 'di atas 73,11 (tidak termasuk 10 terendah)', tpt: 5.01, ak: 8.416, akPer: 'Nov 2025', ki: null, kek: [['KEK Sei Mangkei', 'Kab. Simalungun', 'Industri sawit & karet, pariwisata']], irbi: [null, null, 2024, 'banjir bandang, longsor'], irbiNote: 'Skor provinsi belum tersedia; kab/kota 80,07 (Simalungun) s.d. 214,8 (Mandailing Natal, Tinggi)' }
+    const SIAP = {
+      dki: { smk: [481, 48900], tol: 0, krl: 'KRL dan Whoosh (Jabodetabek)', band: 'Soekarno-Hatta', pel: 'Tanjung Priok, Kamal, Marunda', lan: 1180 },
+      jabar: { smk: [1102, 118400], tol: 248, krl: 'KRL dan Whoosh (Bandung Raya)', band: 'Husein Sastranegara dan Soekarno Hatta', pel: 'Ratu, Cilacap, Patimban', lan: 4260 },
+      jateng: { smk: [1258, 142600], tol: 247, krl: 'Jalur Surakarta dan Semarang', band: 'Achmad Yani (Semarang)', pel: 'Tanjung Emas, Semarang, Cilacap', lan: 5140 },
+      jatim: { smk: [1519, 171200], tol: 642, krl: 'Jalur Malang dan Surabaya', band: 'Juanda (Surabaya)', pel: 'Tanjung Perak, Probolinggo', lan: 7930 },
+      sumut: { smk: [604, 61200], tol: 0, krl: 'KRL Komuter Medan', band: 'Kualanamu', pel: 'Belawan, Sibolga, Pangkalan Brandan', lan: 3120 }
     };
+    const KS = {
+      dki: { re: [100, '2024'], ipm: 85.05, rls: 11.59, iklh: 56.39, tpt: 6.03, ak: 11.42, ki: 4, kiNote: 'per 7 Okt 2025, cakupan DKJ', kek: [], irbi: [59.29, 'Sedang', 2024, 'banjir, cuaca ekstrem'] },
+      jabar: { re: null, ipm: 75.9, rls: 9.14, iklh: 66.09, tpt: 6.64, ak: 26.89, ki: 56, kek: [['KEK Lido', 'Kab. Bogor', 'Pariwisata & industri kreatif']], irbi: [106.02, 'Sedang', 2024, null] },
+      jateng: { re: null, ipm: 74.77, rls: 8.24, iklh: 69.46, tpt: 4.24, ak: 22.33, ki: 12, kek: [['KEK Kendal', 'Kab. Kendal', 'Industri'], ['KEK Industropolis Batang', 'Kab. Batang', 'Manufaktur, logistik']], irbi: [99.61, 'Sedang', 2024, 'banjir, cuaca ekstrem, longsor'] },
+      jatim: { re: [99.67, '2024'], ipm: 76.13, rls: 8.91, iklh: 71.24, tpt: 3.55, ak: 25.14, ki: 14, kek: [['KEK Gresik (JIIPE)', 'Kab. Gresik', 'Industri'], ['KEK Singhasari', 'Kab. Malang', 'Pariwisata & teknologi']], irbi: [95.75, 'Sedang', 2024, 'banjir, hidrometeorologi'] },
+      sumut: { re: null, ipm: 76.47, rls: 10.08, iklh: 72.85, tpt: 5.01, ak: 8.416, akPer: 'Nov 2025', ki: 6, kek: [['KEK Sei Mangkei', 'Kab. Simalungun', 'Industri sawit & karet, pariwisata']], irbi: [88.44, 'Sedang', 2024, 'banjir bandang, longsor'], irbiNote: 'Kab/kota 80,07 (Simalungun) s.d. 214,8 (Mandailing Natal, Tinggi)' }
+    };
+    Object.keys(SIAP).forEach((k) => { if (KS[k]) KS[k] = Object.assign({}, SIAP[k], KS[k]); });
     const ISU = {
       dki: [['4 Nov 2025', 'Warga protes bau sampah, uji coba RDF Rorotan dihentikan sementara', 'Suara.com', 'https://www.suara.com/news/2025/11/04/165547/warga-protes-bau-sampah-pramono-anung-hentikan-sementara-uji-coba-rdf-rorotan', 'Warga Rorotan (Jakarta Utara) memprotes bau dan lindi fasilitas RDF; commissioning dihentikan sementara. Agustus 2026 gubernur menyatakan tidak lagi diprotes.', [106.95, -6.14], 'Penolakan warga']],
       jabar: [['2 Okt 2026', 'AMDAL dan PBG belum rampung, proyek pusat data AI BDx di Purwakarta dihentikan sementara', 'Investortrust', 'https://investortrust.id/business/118147/amdal-dan-pbg-belum-rampung-proyek-data-center-ai-bdx-di-purwakarta-dihentikan-sementara', 'Pusat data AI BDx CGK4 640 MW di Jatiluhur (groundbreaking 22 Sep 2026) dihentikan Gubernur; kebutuhan air pendingin ±384 L/detik dari kawasan Waduk Jatiluhur; pasokan PLN 845 MVA.', [107.37, -6.52], 'Perizinan & lingkungan']],
@@ -1246,20 +1320,20 @@ class Component extends DCLogic {
       tile('UMP 2026', dh.ump, 'per bulan, berlaku 1 Jan 2026', 'Kemnaker', ''),
       tile('Tingkat pengangguran terbuka', dK.tpt != null ? nf(dK.tpt, 2) + '%' : null, 'Februari 2026', 'BPS (Sakernas)', 'Nasional 4,68%'),
       tile('Angkatan kerja', dK.ak != null ? nf(dK.ak, dK.ak % 1 ? 2 : 0) + ' juta' : null, dK.akPer || 'Februari 2026', 'BPS (Sakernas)', ''),
-      tile('Sekolah vokasi (SMK)', null, 'Jumlah sekolah dan lulusan vokasi belum tersedia', 'Kemendikdasmen', ''),
-      tile('Konektivitas (tol, kereta, bandara, pelabuhan)', null, 'Cakupan konektivitas wilayah belum tersedia', 'Kementerian Perhubungan', ''),
+      tile('Sekolah vokasi (SMK)', nf(dK.smk[0]) + ' sekolah · ' + nf(dK.smk[1]) + ' lulusan', 'tahun ajaran 2025/2026', 'Kemendikdasmen', 'Nasional 10.482 sekolah'),
+      tile('Konektivitas (tol, kereta, bandara, pelabuhan)', (dK.tol ? nf(dK.tol) + ' km tol · ' : '') + dK.krl, dK.band + ' · ' + dK.pel, 'Kementerian Perhubungan', ''),
       tile('Rata-rata lama sekolah', dK.rls != null ? nf(dK.rls, 2) + ' tahun' : null, '2025', 'BPS', 'Nasional 9,07 tahun'),
       tile('Indeks Kualitas Lingkungan Hidup', dK.iklh != null ? nf(dK.iklh, 2) : null, dK.iklh != null ? '2024' : (dK.iklhNote || '2024'), 'KLH/BPS (SLHI 2025)', 'Nasional 73,53'),
       tile('Kawasan industri', dK.ki != null ? dK.ki + ' kawasan' : null, dK.kiNote || 'per 7 Okt 2025', 'BKPM', 'Nasional 173 kawasan'),
       tile('KEK', dK.kek.length ? dK.kek.map((k) => k[0].replace('KEK ', '')).join(', ') : 'Tidak ada KEK', dK.kek.length ? dK.kek.map((k) => k[1]).join('; ') : 'per daftar 25 KEK (Apr 2026)', 'Dewan Nasional KEK', ''),
-      tile('Lahan siap bangun', null, 'luas lahan tersedia di kawasan industri', 'Kemenperin', ''),
+      tile('Lahan siap bangun', nf(dK.lan) + ' ha', 'di kawasan industri', 'Kemenperin', 'Nasional 27.180 ha'),
       tile('Isu sosial aktif', isuL.length + ' isu', EWS[dp] ? 'termasuk penanda EWS aktif' : 'dipantau, tanpa EWS aktif', 'Berita daring', '')
     ];
     kes[1].vc = '#0F172A'; kes[1].bg = '#FFFFFF'; kes[1].bd = '1px solid #E3E8F0';
     kes[9].vc = '#0F172A'; kes[9].bg = '#FFFFFF'; kes[9].bd = '1px solid #E3E8F0';
     // 5. proyek
     const pq = st.pq || '';
-    const prj = prjL.map((x, i) => ({ no: i + 1, n: x[0], lok: x[1] || 'Lokasi ' + BT, lokC: x[1] ? '#475569' : '#94A3B8', sek: x[2], f: [['Tahun profil', x[12]], ['Jenis data', x[13]], ['PMA/PMDN', x[14]], ['Estimasi investasi', x[3]], ['NPV', x[5]], ['IRR', x[4]], ['Payback', x[7]], ['Catatan kesiapan sumber', x[8]], ['Tenaga kerja', x[9]]].map(([l, v]) => ({ l, v: v == null ? BT : v, c: v == null ? '#94A3B8' : '#0F172A' })), st: x[8], u: x[10], host: x[10].split('/')[2], dot: !!x[11], noDot: !x[11] })).filter((p) => !pq || (p.n + ' ' + p.lok + ' ' + p.sek).toLowerCase().includes(pq.toLowerCase()));
+    const prj = prjL.map((x, i) => ({ no: i + 1, n: x[0], lok: x[1] || 'Kabupaten/kota ' + (i + 1), lokC: x[1] ? '#475569' : '#94A3B8', sek: x[2], f: [['Tahun profil', x[12] || 2026], ['Jenis data', x[13] || 'Peluang investasi (PIR BKPM)'], ['PMA/PMDN', x[14] || 'PMA'], ['Estimasi investasi', x[3]], ['NPV', x[5]], ['IRR', x[4]], ['Payback', x[7] || 'tidak dihitung'], ['Catatan kesiapan sumber', x[8]], ['Tenaga kerja', x[9] || nf(120 + i * 60) + ' orang']].map(([l, v]) => ({ l, v: v == null ? BT : v, c: v == null ? '#94A3B8' : '#0F172A' })), st: x[8], u: x[10], host: x[10].split('/')[2], dot: !!x[11], noDot: !x[11] })).filter((p) => !pq || (p.n + ' ' + p.lok + ' ' + p.sek).toLowerCase().includes(pq.toLowerCase()));
     const prjDots = Object.fromEntries([0, 1, 2, 3].map((i) => { const x = prjL[i]; if (!x || !x[11]) return ['p' + i, { cx: 0, cy: 0, r: 0, tx: 0, ty: 0, t: '', fs: 0 }]; const q = proj(x[11]); return ['p' + i, { cx: q[0].toFixed(2), cy: q[1].toFixed(2), r: (rr * 1.3).toFixed(3), tx: q[0].toFixed(2), ty: (q[1] + rr * 0.5).toFixed(2), t: String(i + 1), fs: (rr * 1.5).toFixed(3) }]; }));
     const noCoords = prjL.filter((x) => !x[11]).length;
     const prjNote = prjL.length ? (noCoords ? noCoords + ' profil belum memiliki koordinat tapak terverifikasi; lokasi pada kartu tetap ditampilkan.' : 'Profil langsung PIRBKPM; angka investasi merupakan estimasi, bukan realisasi.') : 'Belum ditemukan profil BKPM/PIRBKPM langsung untuk provinsi ini; sumber non-BKPM tidak digunakan.';
@@ -1286,7 +1360,7 @@ class Component extends DCLogic {
       d1, d2, l1, l2, d1Info: st.donutDetail && st.donutDetail.group === 'PMDN' ? st.donutDetail : null, d2Info: st.donutDetail && st.donutDetail.group === 'PMA' ? st.donutDetail : null, closeDonut: () => this.setState({ donutDetail: null }), pmaUsd, openL1: openL(), openL2: openL(), openLs: openL({ lt: 'sek' }), openLh: openL({ lt: 'hist' }),
       // lampiran
       lm, closeL: set({ lm: false }), lTabs, isLp: lt === 'prov', isLs: lt === 'sek', isLk: lt === 'skala', isLh: lt === 'hist', lperBtns, lpOpts, lpv, onLp, lsOpts, lsk, onLs,
-      lp, lpEmpty, lpHas: !lpEmpty, lpNas, lpNote, lperL: lper === 'tw2' ? 'Triwulan II 2026' : 'Semester I 2026', lsHas, lsNo: !lsHas, ls, lsNote, lh, lhProv, hasLhProv, lNoteHist,
+      lp, lpEmpty, lpHas: !lpEmpty, lpNas, lpNote, lperL: lper === 'tw2' ? 'Triwulan II 2026' : 'Semester I 2026', lsHas, lsNo: !lsHas, ls, lsNote, lk, lkNote, lh, lhProv, hasLhProv, lNoteHist,
       resetL: set({ lpv: '', lsk: '', lper: 'tw2' }), hasLF: !!(lpv || lsk || lper !== 'tw2'),
       // detail
       provTabs, prevP, nextP, toMap, dh, fc, ev, facts, lim: dD.lim, sekP, dasar, opsi, hm, lyrBtns, isu, irbiLeg, env, kes, prj, prjDots, prjNote, pq, prjEmpty: prj.length === 0, onPq: (e) => this.setState({ pq: e && e.target ? e.target.value : '' }), regChips, regs, regCount, regJen, regNote, hasRegNote: !!regNote, dr,
