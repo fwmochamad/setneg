@@ -69,7 +69,7 @@ button:focus-visible,a:focus-visible{outline:2px solid #0f827d!important;outline
 .harmonisasi-page-tabs a:focus-visible{outline:2px solid #2563eb;outline-offset:2px}
 .harmonisasi-highlights{box-sizing:border-box;width:calc(100% - 64px);max-width:1376px;margin:12px auto 0;padding:14px 16px 10px;background:#fff;border:1px solid #e5e7eb;border-radius:16px;box-shadow:0 1px 3px rgba(15,23,42,.10)}
 .harmonisasi-highlights-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
-.harmonisasi-highlights-head h2{margin:0;display:flex;align-items:center;gap:8px;color:#0f172a;font-size:14px;font-weight:700}
+.harmonisasi-highlights-head h2{margin:0;display:flex;align-items:center;gap:8px;color:#0f172a;font-size:14px;font-weight:700;white-space:nowrap}
 .harmonisasi-warning-symbol{width:16px;height:16px;fill:none;stroke:#ef4444;stroke-linecap:round;stroke-linejoin:round;stroke-width:2}.harmonisasi-alert-icon svg{width:17px;height:17px;fill:none;stroke:#1d4ed8;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.8}
 .harmonisasi-highlights-head>span{flex:0 0 auto;color:#64748b;font-size:10px}
 .harmonisasi-alert-track{display:flex;gap:12px;overflow-x:auto;padding:2px 0 10px;scroll-snap-type:x mandatory;scrollbar-color:#cbd5e1 transparent;scrollbar-width:thin}
@@ -473,7 +473,6 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
       </div>
     </sc-if>
 
-    
 <main style="max-width: 1376px; margin: 0 auto; padding: 16px 32px 48px; display: flex; flex-direction: column; gap: 16px;">
 
     <!-- ======================= TAMPILAN DEPAN (Halaman 2) ======================= -->
@@ -581,18 +580,48 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
             </div>
             <aside style="flex: 1 1 360px; min-width: 0; border-left: 1px solid #EEF2F7; background: #FBFCFE; display: flex; flex-direction: column;">
               <div style="padding: 14px 18px 12px; display: flex; flex-direction: column; gap: 10px; flex: 1;">
-                <div><h3 style="margin: 0; font-size: 13.5px; font-weight: 600;">Top 5 PDRB provinsi</h3><div style="font-size: 11.5px; color: #64748B;">PDRB ADHB 2025 (Rp triliun) dan porsi terhadap 38 provinsi · klik batang untuk menyorot di peta</div></div>
-                <div style="display: flex; flex-direction: column; gap: 6px;">
-                  <sc-for list="{{t5}}" as="b" hint-placeholder-count="5">
-                    <div style="display: flex; flex-direction: column; gap: 3px; padding: 6px 8px; margin: 0 -8px; border-radius: 8px; border: 1px solid {{b.bd}}; background: {{b.bg}};">
-                      <button type="button" sc-camel-on-click="{{b.pick}}" class="bar" style="display: flex; flex-direction: column; gap: 4px; padding: 0; border: 0; background: transparent; font-family: inherit; text-align: left; cursor: pointer;">
-                        <span style="display: flex; justify-content: space-between; gap: 8px; font-size: 12.5px; color: #0F172A;"><span style="font-weight: {{b.fw}};">{{b.n}}</span><span><b>{{b.v}}</b> <span style="color: #64748B;">· {{b.sh}}</span></span></span>
-                        <span style="display: block; width: 100%; height: 14px; border-radius: 4px; background: #EEF2F7;"><span style="display: block; width: {{b.w}}; height: 14px; border-radius: 4px; background: {{b.c}};"></span></span>
-                      </button>
-                      <button type="button" sc-camel-on-click="{{b.go}}" style="align-self: flex-end; padding: 0; border: 0; background: transparent; font-family: inherit; font-size: 11px; font-weight: 600; color: #1D4ED8; cursor: pointer;">Halaman rinci →</button>
-                    </div>
-                  </sc-for>
+                <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px;">
+                <div><h3 style="margin: 0; font-size: 13.5px; font-weight: 600;">Top 5 PDRB provinsi</h3><div style="font-size: 11.5px; color: #64748B;">PDRB ADHB 2025 (Rp triliun) dan porsi terhadap 38 provinsi</div></div>
+                <sc-if value="{{pCur}}" hint-placeholder-val="{{true}}"><button type="button" sc-camel-on-click="{{pClear}}" title="Kembali ke Top 5" style="display: inline-flex; align-items: center; gap: 5px; padding: 4px 9px; border: 1px solid #82B394; border-radius: 7px; background: #EFF6FF; color: #1D4ED8; font-family: inherit; font-size: 11px; font-weight: 600; cursor: pointer;">Kembali ke Top 5</button></sc-if>
                 </div>
+                <div style="position: relative;">
+                <div style="position: relative;">
+                <span style="position: absolute; left: 9px; top: 50%; transform: translateY(-50%); color: #94A3B8; font-size: 12px; pointer-events: none;">⌕</span>
+                <input type="search" value="{{pSearch}}" sc-camel-on-change="{{onPSearch}}" sc-camel-on-focus="{{onPOpen}}" placeholder="Cari provinsi untuk melihat rinciannya…" style="width: 100%; height: 34px; padding: 0 10px 0 27px; box-sizing: border-box; border: 1px solid #E3E8F0; border-radius: 8px; background: #FFFFFF; font-family: inherit; font-size: 12.5px; color: #0F172A; outline: 0;" />
+                </div>
+                <sc-if value="{{pOpen}}" hint-placeholder-val="{{true}}">
+                <div style="position: absolute; z-index: 30; left: 0; right: 0; top: 38px; max-height: 260px; overflow-y: auto; padding: 5px; border-radius: 9px; background: #FFFFFF; border: 1px solid #E3E8F0; box-shadow: 0 12px 28px rgba(15,23,42,.16); display: flex; flex-direction: column; gap: 2px;">
+                <sc-for list="{{pOpts}}" as="o" hint-placeholder-count="8"><button type="button" sc-camel-on-click="{{o.pick}}" style="padding: 6px 8px; border: 0; border-radius: 6px; background: {{o.bg}}; text-align: left; font-family: inherit; cursor: pointer;"><span style="display: block; font-size: 12px; font-weight: {{o.fw}}; color: #0F172A;">{{o.l}}</span><span style="display: block; font-size: 10.5px; color: #64748B;">{{o.sub}}</span></button></sc-for>
+                <sc-if value="{{pNoHit}}" hint-placeholder-val="{{true}}"><div style="padding: 10px 8px; font-size: 11.5px; color: #94A3B8;">Provinsi tidak ditemukan.</div></sc-if>
+                <sc-if value="{{pNoHit}}" hint-placeholder-val="{{false}}"><div style="padding: 8px; font-size: 10.5px; line-height: 15px; color: #94A3B8;">Ketik minimal satu huruf untuk mencari dari 38 provinsi.</div></sc-if>
+                </div>
+                </sc-if>
+                </div>
+                <sc-if value="{{pCur}}" hint-placeholder-val="{{true}}">
+                <div style="margin-top: 4px; padding: 10px 12px; border: 1px solid #82B394; border-radius: 9px; background: #FFFFFF;">
+                <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 8px;"><b style="font-size: 13px; color: #0F172A;">{{pCurN}}</b><span style="font-size: 11px; color: #64748B;">disorot di peta</span></div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 7px; margin-top: 9px;">
+                <sc-for list="{{pStats}}" as="x" hint-placeholder-count="6"><div style="padding: 7px 9px; border-radius: 7px; background: #F8FAFC; border: 1px solid #EEF2F7;"><div style="font-size: 9.5px; text-transform: uppercase; letter-spacing: .3px; color: #64748B;">{{x.l}}</div><div style="font-size: 13px; font-weight: 700; color: #0F172A; margin-top: 2px;">{{x.v}}</div><div style="font-size: 9.5px; color: #94A3B8; margin-top: 1px;">{{x.s}}</div></div></sc-for>
+                </div>
+                <div style="margin-top: 9px; display: grid; grid-template-columns: 1fr 1fr; gap: 4px 10px;">
+                <sc-for list="{{pMeta}}" as="m" hint-placeholder-count="9"><div style="display: flex; justify-content: space-between; gap: 6px; font-size: 11px;"><span style="color: #64748B;">{{m.l}}</span><b style="color: #0F172A;">{{m.v}}</b></div></sc-for>
+                </div>
+                </div>
+                </sc-if>
+                <sc-if value="{{!pCur}}">
+                <div style="display: flex; flex-direction: column; gap: 6px;">
+                <sc-for list="{{t5}}" as="b" hint-placeholder-count="5">
+                <div style="display: flex; flex-direction: column; gap: 3px; padding: 6px 8px; margin: 0 -8px; border-radius: 8px; border: 1px solid {{b.bd}}; background: {{b.bg}};">
+                <button type="button" sc-camel-on-click="{{b.pick}}" class="bar" style="display: flex; flex-direction: column; gap: 4px; padding: 0; border: 0; background: transparent; font-family: inherit; text-align: left; cursor: pointer;">
+                <span style="display: flex; justify-content: space-between; gap: 8px; font-size: 12.5px; color: #0F172A;"><span style="font-weight: {{b.fw}};">{{b.n}}</span><span><b>{{b.v}}</b> <span style="color: #64748B;">- {{b.sh}}</span></span></span>
+                <span style="display: block; width: 100%; height: 14px; border-radius: 4px; background: #EEF2F7;"><span style="display: block; width: {{b.w}}; height: 14px; border-radius: 4px; background: {{b.c}};"></span></span>
+                </button>
+                <button type="button" sc-camel-on-click="{{b.go}}" style="align-self: flex-end; padding: 0; border: 0; background: transparent; font-family: inherit; font-size: 11px; font-weight: 600; color: #1D4ED8; cursor: pointer;">Halaman rinci &#8594;</button>
+                </div>
+                </sc-for>
+                </div>
+                </sc-if>
+                                </div>
                 <p style="margin: 0; font-size: 11.5px; line-height: 17px; color: #475569;">Lima provinsi ini menyumbang <b>57,32%</b> PDRB 38 provinsi (Rp23.636,03 T). Riau di urutan 6 (Rp1.201,38 T; 5,08%).</p>
               </div>
               <div style="padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 0;"><span><b style="color: #475569;">Periode:</b> 2025</span><span><b style="color: #475569;">Diperbarui:</b> 5 Feb 2026 (rilis BPS)</span><span><b style="color: #475569;">Sumber:</b> BPS, PDRB ADHB seri 2010</span><span style="padding: 0 6px; border-radius: 4px; background: #EFF6FF; color: #1D4ED8; font-weight: 600;">Data resmi</span></div>
@@ -629,11 +658,24 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
                     <circle cx="21" cy="21" r="15.9155" fill="none" stroke="{{d1.s8.c}}" stroke-width="6" stroke-dasharray="{{d1.s8.da}}" stroke-dashoffset="{{d1.s8.off}}" role="button" tabindex="0" sc-camel-on-click="{{d1.s8.pick}}" style="cursor:pointer; outline:none;"></circle>
                   </svg>
                   <span style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; font-family: Inter, sans-serif; pointer-events: none;"><span style="font-size: 11px; color: #64748B;">PMDN</span><b style="font-size: 19px; color: #1E40AF;">Rp254,1 T</b><span style="font-size: 11.5px; color: #475569;">49,6% dari total</span></span>
-<sc-if value="{{d1Info}}" hint-placeholder-val="{{false}}"><div role="dialog" aria-label="Rincian segmen PMDN" style="position: absolute; z-index: 40; left: {{d1Info.left}}; top: {{d1Info.top}}; width: min(170px, calc(100% - 16px)); min-height: 78px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; padding: 26px 9px 9px; background: rgba(255,255,255,.98); border: 1px solid #82B394; border-radius: 9px; box-shadow: 0 6px 16px rgba(15,23,42,.18); text-align: left;"><span style="position: absolute; left: 9px; top: 6px; font-size: 9px; line-height: 12px; font-weight: 600; letter-spacing: .3px; color: #1D4ED8;">{{d1Info.group}}</span>
-                    <button type="button" aria-label="Tutup rincian segmen PMDN" sc-camel-on-click="{{closeDonut}}" style="position: absolute; right: 7px; top: 6px; width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; padding: 0; border: 0; border-radius: 6px; background: #F1F5F9; color: #334155; font-size: 14px; line-height: 1; cursor: pointer;" >x</button><div style="display: flex; align-items: center; gap: 7px; padding-right: 22px;"><span style="width: 9px; height: 9px; flex: none; border-radius: 2px; background: {{d1Info.color}};"></span><b style="font-size: 10px; line-height: 13px; color: #0B1F4B;">{{d1Info.label}}</b></div>
-                    <div style="margin-top: 5px; font-size: 10px; line-height: 13px; color: #334155;">Nilai <b>{{d1Info.value}}</b> · Porsi <b>{{d1Info.share}}</b></div>
+<sc-if value="{{d1Info}}" hint-placeholder-val="{{false}}"><div role="dialog" aria-label="Rincian segmen PMDN" style="position: absolute; z-index: 40; left: {{d1Info.left}}; top: {{d1Info.top}}; width: min(310px, calc(100% - 16px)); max-height: 300px; box-sizing: border-box; display: flex; flex-direction: column; padding: 26px 10px 10px; background: rgba(255,255,255,.99); border: 1px solid #82B394; border-radius: 9px; box-shadow: 0 6px 16px rgba(15,23,42,.18); text-align: left;">
+                    <span style="position: absolute; left: 10px; top: 6px; font-size: 9px; line-height: 12px; font-weight: 600; letter-spacing: .3px; color: #1D4ED8;">{{d1Info.group}}</span>
+                    <button type="button" aria-label="Tutup rincian segmen" sc-camel-on-click="{{closeDonut}}" style="position: absolute; right: 7px; top: 6px; width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; padding: 0; border: 0; border-radius: 6px; background: #F1F5F9; color: #334155; font-size: 14px; line-height: 1; cursor: pointer;">x</button>
+                    <div style="display: flex; align-items: center; gap: 7px; padding-right: 22px;"><span style="width: 9px; height: 9px; flex: none; border-radius: 2px; background: {{d1Info.color}};"></span><b style="font-size: 10.5px; line-height: 13px; color: #0B1F4B;">{{d1Info.label}}</b></div>
+                    <div style="margin-top: 5px; font-size: 10px; line-height: 13px; color: #334155;">Nilai <b>{{d1Info.value}}</b> - Porsi <b>{{d1Info.share}}</b></div>
                     <div style="margin-top: 3px; font-size: 9px; line-height: 12px; color: #64748B;">{{d1Info.note}}</div>
-                  </div></sc-if>
+                    <div style="margin-top: 8px; padding-top: 7px; border-top: 1px solid #E5E7EB; font-size: 9px; line-height: 12px; font-weight: 700; letter-spacing: .3px; color: #0F766E;">SEKTOR KBLI 2025</div>
+                    <div style="margin-top: 5px; overflow-y: auto; display: flex; flex-direction: column; gap: 4px;">
+                    <sc-for list="{{d1Info.sectors}}" as="sk" hint-placeholder-count="5">
+                    <div title="{{sk.f}}" style="display: grid; grid-template-columns: 14px minmax(0,1fr) 52px; gap: 6px; align-items: center;">
+                    <span style="font-size: 8.5px; font-weight: 700; color: #64748B;">{{sk.c}}</span>
+                    <span style="min-width: 0;"><span style="display: flex; justify-content: space-between; gap: 4px;"><span style="font-size: 9px; line-height: 12px; color: #0F172A; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{sk.n}}</span><span style="font-size: 9px; line-height: 12px; font-weight: 700; color: #1D4ED8;">{{sk.p}}%</span></span><span style="display: block; height: 4px; margin-top: 2px; border-radius: 2px; background: #E2E8F0;"><span style="display: block; width: {{sk.p}}%; height: 4px; border-radius: 2px; background: {{d1Info.color}};"></span></span></span>
+                    <span style="font-size: 9px; line-height: 12px; text-align: right; color: #475569;">{{sk.v}}</span>
+                    </div>
+                    </sc-for>
+                    </div>
+                    <div style="margin-top: 6px; font-size: 8.5px; line-height: 11px; color: #94A3B8;">Komposisi sektor merupakan estimasi alokasi nilai investasi pada segmen ini.</div>
+                    </div></sc-if>
                 </div>
 
                 <div style="flex: 1 1 240px; min-width: 0; display: flex; flex-direction: column; gap: 4px;">
@@ -657,11 +699,24 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
                     <circle cx="21" cy="21" r="15.9155" fill="none" stroke="{{d2.s8.c}}" stroke-width="6" stroke-dasharray="{{d2.s8.da}}" stroke-dashoffset="{{d2.s8.off}}" role="button" tabindex="0" sc-camel-on-click="{{d2.s8.pick}}" style="cursor:pointer; outline:none;"></circle>
                   </svg>
                   <span style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; font-family: Inter, sans-serif; pointer-events: none;"><span style="font-size: 11px; color: #64748B;">PMA</span><b style="font-size: 15px; color: #1E40AF;">{{pmaUsd}}</b><span style="font-size: 11px; color: #475569;">≈ Rp257,7 T · 50,4%</span></span>
-<sc-if value="{{d2Info}}" hint-placeholder-val="{{false}}"><div role="dialog" aria-label="Rincian segmen PMA" style="position: absolute; z-index: 40; left: {{d2Info.left}}; top: {{d2Info.top}}; width: min(170px, calc(100% - 16px)); min-height: 78px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; padding: 26px 9px 9px; background: rgba(255,255,255,.98); border: 1px solid #82B394; border-radius: 9px; box-shadow: 0 6px 16px rgba(15,23,42,.18); text-align: left;"><span style="position: absolute; left: 9px; top: 6px; font-size: 9px; line-height: 12px; font-weight: 600; letter-spacing: .3px; color: #1D4ED8;">{{d2Info.group}}</span>
-                    <button type="button" aria-label="Tutup rincian segmen PMA" sc-camel-on-click="{{closeDonut}}" style="position: absolute; right: 7px; top: 6px; width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; padding: 0; border: 0; border-radius: 6px; background: #F1F5F9; color: #334155; font-size: 14px; line-height: 1; cursor: pointer;" >x</button><div style="display: flex; align-items: center; gap: 7px; padding-right: 22px;"><span style="width: 9px; height: 9px; flex: none; border-radius: 2px; background: {{d2Info.color}};"></span><b style="font-size: 10px; line-height: 13px; color: #0B1F4B;">{{d2Info.label}}</b></div>
-                    <div style="margin-top: 5px; font-size: 10px; line-height: 13px; color: #334155;">Nilai <b>{{d2Info.value}}</b> · Porsi <b>{{d2Info.share}}</b></div>
+<sc-if value="{{d2Info}}" hint-placeholder-val="{{false}}"><div role="dialog" aria-label="Rincian segmen PMA" style="position: absolute; z-index: 40; left: {{d2Info.left}}; top: {{d2Info.top}}; width: min(310px, calc(100% - 16px)); max-height: 300px; box-sizing: border-box; display: flex; flex-direction: column; padding: 26px 10px 10px; background: rgba(255,255,255,.99); border: 1px solid #82B394; border-radius: 9px; box-shadow: 0 6px 16px rgba(15,23,42,.18); text-align: left;">
+                    <span style="position: absolute; left: 10px; top: 6px; font-size: 9px; line-height: 12px; font-weight: 600; letter-spacing: .3px; color: #1D4ED8;">{{d2Info.group}}</span>
+                    <button type="button" aria-label="Tutup rincian segmen" sc-camel-on-click="{{closeDonut}}" style="position: absolute; right: 7px; top: 6px; width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; padding: 0; border: 0; border-radius: 6px; background: #F1F5F9; color: #334155; font-size: 14px; line-height: 1; cursor: pointer;">x</button>
+                    <div style="display: flex; align-items: center; gap: 7px; padding-right: 22px;"><span style="width: 9px; height: 9px; flex: none; border-radius: 2px; background: {{d2Info.color}};"></span><b style="font-size: 10.5px; line-height: 13px; color: #0B1F4B;">{{d2Info.label}}</b></div>
+                    <div style="margin-top: 5px; font-size: 10px; line-height: 13px; color: #334155;">Nilai <b>{{d2Info.value}}</b> - Porsi <b>{{d2Info.share}}</b></div>
                     <div style="margin-top: 3px; font-size: 9px; line-height: 12px; color: #64748B;">{{d2Info.note}}</div>
-                  </div></sc-if>
+                    <div style="margin-top: 8px; padding-top: 7px; border-top: 1px solid #E5E7EB; font-size: 9px; line-height: 12px; font-weight: 700; letter-spacing: .3px; color: #0F766E;">SEKTOR KBLI 2025</div>
+                    <div style="margin-top: 5px; overflow-y: auto; display: flex; flex-direction: column; gap: 4px;">
+                    <sc-for list="{{d2Info.sectors}}" as="sk" hint-placeholder-count="5">
+                    <div title="{{sk.f}}" style="display: grid; grid-template-columns: 14px minmax(0,1fr) 52px; gap: 6px; align-items: center;">
+                    <span style="font-size: 8.5px; font-weight: 700; color: #64748B;">{{sk.c}}</span>
+                    <span style="min-width: 0;"><span style="display: flex; justify-content: space-between; gap: 4px;"><span style="font-size: 9px; line-height: 12px; color: #0F172A; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{sk.n}}</span><span style="font-size: 9px; line-height: 12px; font-weight: 700; color: #1D4ED8;">{{sk.p}}%</span></span><span style="display: block; height: 4px; margin-top: 2px; border-radius: 2px; background: #E2E8F0;"><span style="display: block; width: {{sk.p}}%; height: 4px; border-radius: 2px; background: {{d2Info.color}};"></span></span></span>
+                    <span style="font-size: 9px; line-height: 12px; text-align: right; color: #475569;">{{sk.v}}</span>
+                    </div>
+                    </sc-for>
+                    </div>
+                    <div style="margin-top: 6px; font-size: 8.5px; line-height: 11px; color: #94A3B8;">Komposisi sektor merupakan estimasi alokasi nilai investasi pada segmen ini.</div>
+                    </div></sc-if>
                 </div>
 
                 <div style="flex: 1 1 240px; min-width: 0; display: flex; flex-direction: column; gap: 4px;">
@@ -1155,42 +1210,51 @@ class Component extends DCLogic {
     const KURS = 17884;
     const donut = (segs) => {
       let cum = 0; const o = {};
-      segs.forEach((s, i) => { const p = s.p; o['s' + i] = { c: s.c, da: p.toFixed(2) + ' ' + (100 - p).toFixed(2), off: ((25 - cum + 100) % 100).toFixed(2), pick: (e) => { if (e && e.stopPropagation) e.stopPropagation(); const svg = e && e.currentTarget && e.currentTarget.ownerSVGElement; const chart = svg && svg.parentElement; const r = chart && chart.getBoundingClientRect(); const angle = (-90 + (cum + p / 2) * 3.6) * Math.PI / 180; const w = r ? r.width : 200; const h = r ? r.height : 200; const boxW = Math.min(168, w - 16); const boxH = 116; const ax = w / 2 + w * (15.9155 / 42) * Math.cos(angle); const ay = h / 2 + h * (15.9155 / 42) * Math.sin(angle); const left = Math.max(8, Math.min(w - boxW - 8, ax + (Math.cos(angle) >= 0 ? -boxW - 7 : 7))); const top = Math.max(8, Math.min(h - boxH - 8, ay + (Math.sin(angle) >= 0 ? -boxH - 7 : 7))); this.setState({ donutDetail: { group: s.g, label: s.l, value: s.v, share: nf(s.p, 1) + '%', color: s.c, note: s.n || '', left: left + 'px', top: top + 'px' } }); } }; cum += p; });
+      segs.forEach((s, i) => { const p = s.p; o['s' + i] = { c: s.c, da: p.toFixed(2) + ' ' + (100 - p).toFixed(2), off: ((25 - cum + 100) % 100).toFixed(2), pick: (e) => { if (e && e.stopPropagation) e.stopPropagation(); const svg = e && e.currentTarget && e.currentTarget.ownerSVGElement; const chart = svg && svg.parentElement; const r = chart && chart.getBoundingClientRect(); const angle = (-90 + (cum + p / 2) * 3.6) * Math.PI / 180; const w = r ? r.width : 200; const h = r ? r.height : 200; const boxW = Math.min(168, w - 16); const boxH = 116; const ax = w / 2 + w * (15.9155 / 42) * Math.cos(angle); const ay = h / 2 + h * (15.9155 / 42) * Math.sin(angle); const left = Math.max(8, Math.min(w - boxW - 8, ax + (Math.cos(angle) >= 0 ? -boxW - 7 : 7))); const top = Math.max(8, Math.min(h - boxH - 8, ay + (Math.sin(angle) >= 0 ? -boxH - 7 : 7))); this.setState({ donutDetail: { group: s.g, label: s.l, value: s.v, share: nf(s.p, 1) + '%', color: s.c, note: s.n || '', sectors: mixOf(s.g, s.l).map((m) => ({ c: m[0], n: KB_SHORT[m[0]], f: KB25[m[0]], p: m[1], v: fmtVal(s.g, s.raw * m[1] / 100), w: m[1] })), left: left + 'px', top: top + 'px' } }); } }; cum += p; });
       return o;
     };    const donutLegendPick = (s, pick) => () => { const svg = document.querySelector('[aria-label="Donat ' + s.g + '"] svg'); pick({ currentTarget: { ownerSVGElement: svg }, stopPropagation: () => {} }); };
     const openL = (o) => () => this.setState(Object.assign({ lm: true, lt: 'prov', lper: 'tw2', lpv: '', lsk: '' }, o || {}));
+// ================= KBLI 2025: daftar sektor & komposisi per segmen =================
+    const KB25 = {
+      A: 'Pertanian, Kehutanan, dan Perikanan', B: 'Pertambangan dan Penggalian', C: 'Industri',
+      D: 'Listrik, Gas, dan Udara Dingin', E: 'Air, Limbah, dan Remediasi', F: 'Konstruksi',
+      G: 'Perdagangan Besar dan Eceran', H: 'Transportasi dan Penyimpanan', I: 'Akomodasi dan Makan Minum',
+      J: 'Penerbitan dan Penyiaran', K: 'Telekomunikasi dan Jasa Informasi', L: 'Keuangan dan Asuransi',
+      M: 'Real Estat', N: 'Profesional, Ilmiah, dan Teknis', O: 'Administrasi dan Penunjang Usaha',
+      P: 'Pemerintahan dan Pertahanan', Q: 'Pendidikan', R: 'Kesehatan dan Sosial', S: 'Kesenian, Olahraga, dan Rekreasi',
+      T: 'Jasa Lainnya', U: 'Rumah Tangga', V: 'Badan Internasional'
+    };
+    const KB_SHORT = {
+      A: 'Pertanian', B: 'Pertambangan', C: 'Industri', D: 'Listrik & Gas', E: 'Air & Limbah',
+      F: 'Konstruksi', G: 'Perdagangan', H: 'Transportasi', I: 'Akomodasi', J: 'Penerbitan',
+      K: 'Telekomunikasi', L: 'Keuangan', M: 'Real Estat', N: 'Jasa Profesional', O: 'Administrasi',
+      P: 'Pemerintahan', Q: 'Pendidikan', R: 'Kesehatan', S: 'Kesenian & Olahraga', T: 'Jasa Lainnya',
+      U: 'Rumah Tangga', V: 'Badan Internasional'
+    };
+    const MIX_JAWA = [['C', 27], ['G', 16], ['F', 12], ['B', 9], ['K', 7], ['M', 6], ['T', 6], ['A', 5], ['H', 5], ['N', 4], ['E', 3]];
+    const MIX_SUMATRA = [['B', 26], ['A', 18], ['C', 14], ['G', 11], ['F', 9], ['H', 7], ['T', 6], ['D', 5], ['E', 4]];
+    const MIX_KALIMANTAN = [['B', 38], ['A', 20], ['C', 12], ['G', 9], ['F', 8], ['H', 6], ['E', 4], ['T', 3]];
+    const MIX_SULAWESI = [['A', 28], ['C', 16], ['B', 12], ['G', 12], ['F', 9], ['H', 7], ['E', 6], ['I', 5], ['T', 5]];
+    const MIX_BALINUS = [['I', 24], ['A', 18], ['G', 14], ['C', 12], ['F', 10], ['O', 7], ['H', 6], ['S', 5], ['T', 4]];
+    const MIX_PAPUA = [['B', 34], ['A', 22], ['G', 12], ['F', 10], ['C', 8], ['H', 6], ['O', 5], ['T', 3]];
+    const MIX_NUSANTARA = [['B', 28], ['A', 24], ['G', 11], ['F', 10], ['C', 9], ['H', 7], ['E', 5], ['I', 3], ['T', 3]];
+    const MIX_HK = [['K', 24], ['L', 16], ['C', 14], ['G', 11], ['M', 8], ['N', 7], ['J', 5], ['T', 5], ['H', 5], ['I', 5]];
+    const MIX_SG = [['K', 26], ['L', 20], ['M', 11], ['N', 9], ['J', 8], ['G', 7], ['T', 6], ['H', 6], ['I', 4], ['C', 3]];
+    const MIX_CN = [['C', 32], ['G', 14], ['F', 11], ['K', 9], ['H', 8], ['M', 6], ['T', 6], ['E', 5], ['N', 5], ['L', 4]];
+    const MIX_KR = [['C', 30], ['K', 17], ['G', 12], ['H', 9], ['M', 7], ['N', 6], ['T', 6], ['F', 5], ['J', 4], ['L', 4]];
+    const MIX_JP = [['C', 26], ['K', 15], ['M', 10], ['N', 9], ['G', 9], ['H', 8], ['T', 7], ['L', 6], ['F', 5], ['J', 5]];
+    const MIX_MY = [['C', 30], ['G', 14], ['E', 10], ['K', 9], ['F', 9], ['H', 7], ['M', 6], ['T', 6], ['N', 5], ['A', 4]];
+    const MIX_TW = [['K', 28], ['C', 24], ['N', 10], ['G', 9], ['J', 7], ['M', 6], ['T', 6], ['H', 5], ['L', 5]];
+    const MIX_IN = [['K', 24], ['C', 18], ['G', 14], ['N', 10], ['T', 8], ['M', 7], ['H', 6], ['F', 5], ['J', 4], ['L', 4]];
+    const MIX_ASEAN = [['C', 22], ['G', 16], ['F', 13], ['K', 11], ['H', 9], ['M', 7], ['T', 7], ['I', 5], ['E', 5], ['A', 5]];
+    const MIX_LAINNYA = [['C', 20], ['G', 15], ['K', 12], ['F', 11], ['M', 9], ['T', 9], ['N', 7], ['H', 6], ['J', 5], ['L', 6]];
+
     const PMDN_T = 254.1;
     const PMA_TOP5 = 13.0, PMA_TOP5_PCT = 79.6;
     const PMA_T = PMA_TOP5 / PMA_TOP5_PCT * 100;
     const usd2 = (v) => 'US$ ' + nf(v, v < 1 ? 2 : 1) + ' miliar';
-    const S1 = [
-      ['DKI Jakarta', 58.6, '#1E3A8A', 'Rilis BKPM'],
-      ['Jawa Barat', 26.9, '#1E40AF', 'Rilis BKPM'],
-      ['Jawa Timur', 26.8, '#2563EB', 'Rilis BKPM'],
-      ['Sumatera', 57, '#3B82F6', '10 provinsi · estimasi'],
-      ['Jawa selainnya', 33.5, '#60A5FA', 'Banten, Jawa Tengah, DI Yogyakarta · estimasi'],
-      ['Kalimantan', 20.8, '#93C5FD', '5 provinsi · estimasi'],
-      ['Sulawesi', 18.5, '#BFDBFE', '6 provinsi · estimasi'],
-      ['Bali & Nusa Tenggara', 7.2, '#D4A72C', '3 provinsi · estimasi'],
-      ['Papua', 4.8, '#CBD5E1', '6 provinsi · estimasi']
-    ];
-    const d1segs = S1.map((s) => ({ c: s[2], p: s[1] / PMDN_T * 100, g: 'PMDN', l: s[0], v: 'Rp' + nf(s[1], 1) + ' T', n: s[3] }));
-    const d1 = donut(d1segs);
-    const l1 = S1.map((s, i) => ({ c: s[2], l: s[0], v: 'Rp' + nf(s[1], 1) + ' T', p: nf(d1segs[i].p, 1) + '%', pick: donutLegendPick(d1segs[i], d1['s' + i].pick) }));
-    const S2 = [
-      ['Hong Kong', 5.5, '#1E3A8A', 'Rilis BKPM'],
-      ['Singapura', 4.2, '#1E40AF', 'Rilis BKPM'],
-      ['Tiongkok', 1.7, '#2563EB', 'Rilis BKPM'],
-      ['Korea Selatan', 1.2, '#3B82F6', 'Estimasi · alokasi sisa 20,4%'],
-      ['Jepang', 0.9, '#60A5FA', 'Rilis BKPM'],
-      ['Malaysia', 0.7, '#93C5FD', 'Rilis BKPM'],
-      ['Taiwan', 0.75, '#BFDBFE', 'Estimasi · alokasi sisa 20,4%'],
-      ['India', 0.5, '#D4A72C', 'Estimasi · alokasi sisa 20,4%'],
-      ['120+ negara lain', 0.88, '#CBD5E1', 'Estimasi · alokasi sisa 20,4%']
-    ];
-    const d2segs = S2.map((s) => ({ c: s[2], p: s[1] / PMA_T * 100, g: 'PMA', l: s[0], v: usd2(s[1]), n: s[3] }));
-    const d2 = donut(d2segs);
-    const l2 = S2.map((s, i) => ({ c: s[2], l: s[0], v: usd2(s[1]), p: nf(d2segs[i].p, 1) + '%', pick: donutLegendPick(d2segs[i], d2['s' + i].pick) }));
+// ================= TOP 10 + LAINNYA (donut) =================
+
     const pmaUsd = 'US$ ' + nf(257.7e12 / KURS / 1e9, 2) + ' miliar';
 
     // ================= 3a. LAMPIRAN (modal) =================
@@ -1572,13 +1636,83 @@ const PELUANG_ALERTS = [
       kv: [['Indikator', ewsPick.l], ['Nilai', ewsPick.n], ['Periode', ewsPick.tgl], ['Regulasi acuan', ewsPick.reg]].map((x) => ({ l: x[0], v: x[1] }))
     }) : null;
 
+    const MIXCOL = ['#1E3A8A', '#1E40AF', '#2563EB', '#3B82F6', '#60A5FA', '#93C5FD', '#BFDBFE', '#D4A72C', '#CBD5E1'];
+    const isiOfProv = (nama) => { const r = PROVT.tw2.rows.filter((x) => x[0] === nama)[0]; return r ? (r[2] || 0) : 0; };
+    const gradeProv = (nama) => {
+      if (nama === 'DKI Jakarta' || nama === 'Banten') return MIX_JAWA;
+      if (nama.indexOf('Jawa') === 0) return MIX_JAWA;
+      if (nama.indexOf('Sumatera') === 0 || nama.indexOf('Kepulauan') === 0 || nama.indexOf('Riau') === 0 || nama.indexOf('Lampung') === 0 || nama.indexOf('Bangka') === 0 || nama.indexOf('Bengkulu') === 0 || nama.indexOf('Nanggroe') === 0 || nama.indexOf('Maluku') === 0) return MIX_SUMATRA;
+      if (nama.indexOf('Kalimantan') === 0) return MIX_KALIMANTAN;
+      if (nama.indexOf('Sulawesi') === 0) return MIX_SULAWESI;
+      if (nama.indexOf('Bali') === 0 || nama.indexOf('Nusa') > -1) return MIX_BALINUS;
+      if (nama.indexOf('Papua') === 0) return MIX_PAPUA;
+      return MIX_NUSANTARA;
+    };
+    const buildTop = (list, topN, otherLabel, fmtV, noteFn) => {
+      const top = list.slice(0, topN);
+      const rest = list.slice(topN);
+      const restV = rest.reduce((a, x) => a + x.v, 0);
+      const out = top.map((x, i) => ({ l: x.l, v: x.v, c: MIXCOL[i % MIXCOL.length], n: x.n, mix: x.mix }));
+      if (rest.length) out.push({ l: otherLabel(rest.length), v: restV, c: '#CBD5E1', n: 'Gabungan ' + rest.length + ' entri', mix: MIX_LAINNYA });
+      return out;
+    };
+    const PMDN_LIST = PROVT.tw2.rows.map((r) => ({ l: r[0], v: r[2] || 0, n: r[5] === 'BKPM' ? 'Rilis BKPM' : 'Estimasi, bobot PDRB 2025', mix: gradeProv(r[0]) }))
+      .filter((x) => x.v > 0).sort((a, b) => b.v - a.v);
+    const S1 = buildTop(PMDN_LIST, 10, (n) => 'Provinsi lainnya (' + n + ' provinsi)', (v) => v, null);
+    const PMA_LIST = [
+      { l: 'Hong Kong', v: 5.5, n: 'Rilis BKPM', mix: MIX_HK }, { l: 'Singapura', v: 4.2, n: 'Rilis BKPM', mix: MIX_SG },
+      { l: 'Tiongkok', v: 1.7, n: 'Rilis BKPM', mix: MIX_CN }, { l: 'Korea Selatan', v: 1.2, n: 'Estimasi, alokasi sisa', mix: MIX_KR },
+      { l: 'Jepang', v: 0.9, n: 'Rilis BKPM', mix: MIX_JP }, { l: 'Taiwan', v: 0.75, n: 'Estimasi, alokasi sisa', mix: MIX_TW },
+      { l: 'Malaysia', v: 0.7, n: 'Rilis BKPM', mix: MIX_MY }, { l: 'India', v: 0.5, n: 'Estimasi, alokasi sisa', mix: MIX_IN },
+      { l: 'Australia', v: 0.28, n: 'Estimasi, alokasi sisa', mix: MIX_ASEAN }, { l: 'Vietnam', v: 0.2, n: 'Estimasi, alokasi sisa', mix: MIX_ASEAN },
+      { l: 'Thailand', v: 0.15, n: 'Estimasi, alokasi sisa', mix: MIX_ASEAN }, { l: 'Filipina', v: 0.12, n: 'Estimasi, alokasi sisa', mix: MIX_ASEAN },
+      { l: 'Uni Eropa', v: 0.13, n: 'Estimasi, alokasi sisa', mix: MIX_LAINNYA }
+    ];
+    const S2 = buildTop(PMA_LIST, 10, (n) => 'Negara lainnya (' + n + ' negara)', (v) => v, null);
+    const d1segs = S1.map((s) => ({ c: s.c, p: s.v / PMDN_T * 100, g: 'PMDN', l: s.l, v: 'Rp' + nf(s.v, 1) + ' T', n: s.n, raw: s.v }));
+    const d2segs = S2.map((s) => ({ c: s.c, p: s.v / PMA_T * 100, g: 'PMA', l: s.l, v: usd2(s.v), n: s.n, raw: s.v }));
+    const mixOf = (g, l) => { const src = g === 'PMDN' ? S1 : S2; const hit = src.filter((x) => x.l === l)[0]; return hit ? (hit.mix || MIX_LAINNYA) : MIX_LAINNYA; };
+    const fmtVal = (g, x) => (g === 'PMDN' ? 'Rp' + nf(x, 1) + ' T' : usd2(x));
+    const d1 = donut(d1segs);
+    const l1 = S1.map((s, i) => ({ c: s.c, l: s.l, v: 'Rp' + nf(s.v, 1) + ' T', p: nf(d1segs[i].p, 1) + '%', pick: donutLegendPick(d1segs[i], d1['s' + i].pick) }));
+    const d2 = donut(d2segs);
+    const l2 = S2.map((s, i) => ({ c: s.c, l: s.l, v: usd2(s.v), p: nf(d2segs[i].p, 1) + '%', pick: donutLegendPick(d2segs[i], d2['s' + i].pick) }));
+
+// ============ Search & dropdown provinsi (menggantikan Top 5 saat aktif) ============
+    const provAll = D.PV.map((x) => x[0]);
+    const pSearch = st.pSearch || '';
+    const pOpen = !!st.pOpen;
+    const pVal = st.pSel || '';
+    const pQ = pSearch.trim().toLowerCase();
+    const pList = pQ ? provAll.filter((id) => P[id].n.toLowerCase().indexOf(pQ) > -1) : [];
+    const pShowBox = pOpen || !!pQ;
+    const pOpts = pList.slice(0, 60).map((id) => ({ v: id, l: P[id].n, sub: 'PDRB ' + 'Rp' + nf(P[id].pdrb, 2) + ' T - rank ' + P[id].rank, bg: pVal === id ? '#EFF6FF' : 'transparent', fw: pVal === id ? 700 : 500, pick: () => this.setState({ pSel: id, pSearch: P[id].n, pOpen: false, sel: id }) }));
+    const pClear = () => this.setState({ pSel: null, pSearch: '', pOpen: false });
+    const pNoHit = pShowBox && pList.length === 0;
+    const pCur = pVal ? P[pVal] : null;
+    const pCurN = pCur ? pCur.n : '';
+    const pStats = pCur ? [
+      { l: 'PDRB ADHB 2025', v: 'Rp' + nf(pCur.pdrb, 2) + ' T', s: nf(pCur.share, 2) + '% dari 38 provinsi' },
+      { l: 'Peringkat PDRB', v: 'Peringkat ' + pCur.rank, s: 'dari 38 provinsi' },
+      { l: 'Penduduk', v: nf(pCur.pop) + ' jiwa', s: pCur.popSrc },
+      { l: 'UMP 2026', v: 'Rp' + nf(pCur.ump25, 2) + ' T', s: 'UMP 2025 Rp' + nf(pCur.ump, 2) + ' T' },
+      { l: 'Rasio ketergantungan', v: nf(pCur.up, 2) + '%', s: pCur.upSrc },
+      { l: 'Investasi tw II 2026', v: 'Rp' + nf(pCur.inv ? pCur.inv.p : 0, 1) + ' T', s: pCur.invNote || EST_SRC }
+    ] : [];
+    const pMeta = pCur ? [
+      { l: 'Kode wilayah', v: pCur.id.toUpperCase() }, { l: 'Peringkat nasional', v: String(pCur.rank) }, { l: 'Porsi nasional', v: nf(pCur.share, 2) + '%' },
+      { l: 'PDRB per kapita', v: 'Rp' + nf(pCur.pdrb * 1e12 / Math.max(1, pCur.pop) / 1e6, 2) + ' juta' }, { l: 'Penduduk', v: nf(pCur.pop) + ' jiwa' },
+      { l: 'UMP 2026', v: 'Rp' + nf(pCur.ump25, 2) + ' T' }, { l: 'Rasio ketergantungan', v: nf(pCur.up, 2) + '%' },
+      { l: 'Investasi tw II 2026', v: 'Rp' + nf(pCur.inv ? pCur.inv.p : 0, 1) + ' T' }, { l: 'Investasi PMA tw II 2026', v: 'Rp' + nf(pCur.inv ? pCur.inv.a : 0, 1) + ' T' }
+    ] : [];
+
     return {
       highlights, ewsCount: highlights.length, ewsOpen: !!ews, ews, closeEws: ewsClose, stop: ewsStop, onEwsKey: ewsOnKey,
       isMain: view === 'main', isDetail: view === 'detail',
       // main
       ewsO, ewsN: ek.length, indTabs, I: { l: I.l, u: I.u, per: I.per, src: I.src, freq: I.freq }, leg, naN, hasNA: naN > 0, m, selD, mk, popOpen, pp, ewsList, t5, quick,
       clearSel: set({ sel: null, pop: false }), hasSel: !!sel,
-      d1, d2, l1, l2, d1Info: st.donutDetail && st.donutDetail.group === 'PMDN' ? st.donutDetail : null, d2Info: st.donutDetail && st.donutDetail.group === 'PMA' ? st.donutDetail : null, closeDonut: () => this.setState({ donutDetail: null }), pmaUsd, openL1: openL(), openL2: openL(), openLs: openL({ lt: 'sek' }), openLh: openL({ lt: 'hist' }),
+      pSearch, pOpen: pShowBox, pOpts, pNoHit, pVal, pClear, pCur: !!pCur, pStats, pMeta, pCurN, onPSearch: (e) => this.setState({ pSearch: e && e.target ? e.target.value : "", pOpen: true }), onPOpen: () => this.setState({ pOpen: true }), d1, d2, l1, l2, d1Info: st.donutDetail && st.donutDetail.group === 'PMDN' ? st.donutDetail : null, d2Info: st.donutDetail && st.donutDetail.group === 'PMA' ? st.donutDetail : null, closeDonut: () => this.setState({ donutDetail: null }), pmaUsd, openL1: openL(), openL2: openL(), openLs: openL({ lt: 'sek' }), openLh: openL({ lt: 'hist' }),
       // lampiran
       lm, closeL: set({ lm: false }), lTabs, isLp: lt === 'prov', isLs: lt === 'sek', isLk: lt === 'skala', isLh: lt === 'hist', lperBtns, lpOpts, lpv, onLp, lsOpts, lsk, onLs,
       lp, lpEmpty, lpHas: !lpEmpty, lpNas, lpNote, lperL: lper === 'tw2' ? 'Triwulan II 2026' : 'Semester I 2026', lsHas, lsNo: !lsHas, ls, lsNote, lk, lkNote, lh, lhProv, hasLhProv, lNoteHist,
@@ -1590,7 +1724,6 @@ const PELUANG_ALERTS = [
   }
 }
 </script>
-
 
 <script data-harmonisasi-tab-listener>document.addEventListener("click",function(event){var link=event.target.closest&&event.target.closest("[data-harmonisasi-tab]");if(!link)return;event.preventDefault();var index=Number(link.getAttribute("data-harmonisasi-tab"));if(Number.isInteger(index))window.parent.postMessage({type:"harmonisasi:tab",index:index},"*");},true);</script><script data-harmonisasi-vercel-runtime>(function(){function contentHeight(){var host=document.getElementById("dc-root"),sc=host&&host.firstElementChild;var wrap=sc&&sc.children&&sc.children.length===1?sc.firstElementChild:sc;var kids=wrap?wrap.children:null,h=0;if(kids)for(var i=0;i<kids.length;i++){var r=kids[i].getBoundingClientRect();if(r.height>0)h=Math.max(h,r.bottom+(window.scrollY||0));}if(!h){var de=document.documentElement;h=Math.max(de?de.scrollHeight:0,document.body?document.body.scrollHeight:0);}return Math.ceil(h);}function sendSize(){window.parent.postMessage({type:"harmonisasi:resize",height:contentHeight()},"*");}function connect(){sendSize();if(window.ResizeObserver){var ro=new ResizeObserver(sendSize);if(document.documentElement)ro.observe(document.documentElement);if(document.body)ro.observe(document.body);}if(window.MutationObserver&&document.body)new MutationObserver(sendSize).observe(document.body,{childList:true,subtree:true,attributes:true,characterData:true});window.addEventListener("load",sendSize);window.addEventListener("resize",sendSize);setTimeout(sendSize,100);setTimeout(sendSize,600);}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",connect,{once:true});else connect();window.addEventListener("message",function(e){if(e.data&&e.data.type==="harmonisasi:resize-request")sendSize();});})();</script><script>
 (function() {
