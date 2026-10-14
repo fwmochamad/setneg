@@ -409,61 +409,154 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
             <div style="padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;"><span><b style="color: #475569;">Periode:</b> s.d. 12 Okt 2026</span><span><b style="color: #475569;">Diperbarui:</b> 12 Okt 2026, 06.00 WIB</span><span><b style="color: #475569;">Sumber:</b> JDIH Setneg, JDIH K/L, JDIH pemda, peraturan.bpk.go.id</span><span style="padding: 0 6px; border-radius: 4px; background: #EFF6FF; color: #1D4ED8; font-weight: 600;">Divalidasi analis</span></div>
           </section>
 
-          <!-- 2. Sebaran regulasi -->
+          <!-- 2. Sebaran regulasi (Fokus 2026) -->
           <section style="flex: 1 1 620px; min-width: 0; background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; box-shadow: 0 1px 2px rgba(15,23,42,.05); display: flex; flex-direction: column;">
             <div style="padding: 12px 18px; border-bottom: 1px solid #EEF2F7; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px;">
-              <h2 style="margin: 0; font-size: 14.5px; font-weight: 600;">Sebaran regulasi menurut {{sbLabel}}</h2>
+              <h2 style="margin: 0; font-size: 14.5px; font-weight: 600;">Jumlah regulasi menurut {{sbTitle}} · 2026</h2>
               <div role="tablist" style="display: flex; gap: 2px; padding: 3px; background: #EEF2F7; border-radius: 8px;">
-                <sc-for list="{{sbTabs}}" as="t" hint-placeholder-count="2"><button type="button" role="tab" sc-camel-on-click="{{t.pick}}" style="height: 28px; padding: 0 12px; border: 0; border-radius: 6px; background: {{t.bg}}; color: {{t.fg}}; font-family: inherit; font-size: 12px; font-weight: 600; cursor: pointer;">{{t.l}}</button></sc-for>
+                <sc-for list="{{sbTabs}}" as="t" hint-placeholder-count="2">
+                  <button type="button" role="tab" sc-camel-on-click="{{t.pick}}" style="height: 28px; padding: 0 12px; border: 0; border-radius: 6px; background: {{t.bg}}; color: {{t.fg}}; font-family: inherit; font-size: 12px; font-weight: 600; cursor: pointer; transition: all .15s ease;">{{t.l}}</button>
+                </sc-for>
               </div>
             </div>
-            <div style="padding: 16px 18px; display: flex; flex-direction: column; gap: 12px; flex: 1;">
+
+            <div style="padding: 16px 18px; display: flex; flex-direction: column; gap: 14px; flex: 1;">
+              
+              <!-- TAB 1: JENIS PERATURAN 2026 -->
               <sc-if value="{{sbJenis}}" hint-placeholder-val="{{true}}">
-                <div style="display: flex; flex-direction: column; gap: 10px;">
-                  <div style="display: flex; gap: 18px; align-items: flex-end; height: 200px; padding: 0 4px; border-bottom: 1px solid #CBD5E1;">
-                    <sc-for list="{{years}}" as="y" hint-placeholder-count="5">
-                      <button type="button" sc-camel-on-click="{{y.pick}}" style="flex: 1; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; align-items: stretch; gap: 4px; padding: 0; border: 0; background: transparent; font-family: inherit; cursor: pointer;">
-                        <b style="font-size: 12px; color: {{y.tc}}; text-align: center;">{{y.total}}</b>
-                        <span style="display: flex; flex-direction: column-reverse; height: {{y.h}}; border-radius: 4px 4px 0 0; overflow: hidden; outline: {{y.ol}}; outline-offset: 2px;">
-                          <sc-for list="{{y.seg}}" as="s" hint-placeholder-count="6"><span role="button" tabindex="0" aria-label="{{s.t}}" sc-camel-on-click="{{s.pick}}" title="{{s.t}}" style="display: block; height: {{s.h}}; background: {{s.c}}; cursor: pointer;"></span></sc-for>
+                <div style="display: flex; flex-direction: column; gap: 14px;">
+                  
+                  <!-- Ringkasan Kluster Eksekutif -->
+                  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 10px;">
+                    <div style="padding: 10px 14px; border-radius: 8px; background: #F8FAFC; border: 1px solid #E2E8F0; display: flex; flex-direction: column; gap: 2px;">
+                      <span style="font-size: 11px; color: #64748B; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3px;">Total Regulasi 2026</span>
+                      <div style="display: flex; align-items: baseline; gap: 6px;">
+                        <b style="font-size: 22px; color: #0F172A;">{{kpiJenis.total}}</b>
+                        <span style="font-size: 11.5px; color: #16A34A; font-weight: 600;">100% Aktif</span>
+                      </div>
+                    </div>
+                    <div style="padding: 10px 14px; border-radius: 8px; background: #EFF6FF; border: 1px solid #BFDBFE; display: flex; flex-direction: column; gap: 2px;">
+                      <span style="font-size: 11px; color: #1E40AF; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3px;">Regulasi Pusat</span>
+                      <div style="display: flex; align-items: baseline; gap: 6px;">
+                        <b style="font-size: 22px; color: #1E40AF;">{{kpiJenis.pusat}}</b>
+                        <span style="font-size: 11.5px; color: #3B82F6; font-weight: 600;">{{kpiJenis.pusatPct}} · UU, PP, Permen</span>
+                      </div>
+                    </div>
+                    <div style="padding: 10px 14px; border-radius: 8px; background: #FFFBEB; border: 1px solid #FDE68A; display: flex; flex-direction: column; gap: 2px;">
+                      <span style="font-size: 11px; color: #92400E; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3px;">Regulasi Daerah</span>
+                      <div style="display: flex; align-items: baseline; gap: 6px;">
+                        <b style="font-size: 22px; color: #B45309;">{{kpiJenis.daerah}}</b>
+                        <span style="font-size: 11.5px; color: #D97706; font-weight: 600;">{{kpiJenis.daerahPct}} · Perda Prov/Kab</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Visual Komposisi Horizontal Interaktif (Segmented Distribution Bar) -->
+                  <div style="display: flex; flex-direction: column; gap: 6px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: #64748B;">
+                      <span style="font-weight: 600;">Komposisi Beban Regulasi 2026:</span>
+                      <span>Klik kartu di bawah untuk memfilter daftar regulasi</span>
+                    </div>
+                    <div style="display: flex; height: 18px; width: 100%; border-radius: 6px; overflow: hidden; background: #E2E8F0; box-shadow: inset 0 1px 2px rgba(0,0,0,0.06);">
+                      <sc-for list="{{jenisItems}}" as="seg" hint-placeholder-count="6">
+                        <span role="button" tabindex="0" sc-camel-on-click="{{seg.pick}}" title="{{seg.full}}: {{seg.n}} regulasi ({{seg.pStr}})" style="width: {{seg.segW}}; height: 100%; background: {{seg.c}}; cursor: pointer; transition: opacity .15s ease; position: relative;"></span>
+                      </sc-for>
+                    </div>
+                  </div>
+
+                  <!-- Grid Kartu Interaktif Menurut Jenis Peraturan (2026 Saja) -->
+                  <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 8px;">
+                    <sc-for list="{{jenisItems}}" as="it" hint-placeholder-count="6">
+                      <div role="button" tabindex="0" sc-camel-on-click="{{it.pick}}" style="padding: 10px 12px; border: 1.5px solid {{it.bd}}; border-radius: 9px; background: {{it.bg}}; cursor: pointer; transition: all .15s ease; display: flex; flex-direction: column; gap: 6px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                          <div style="display: flex; align-items: center; gap: 7px;">
+                            <span style="width: 10px; height: 10px; border-radius: 3px; background: {{it.c}}; flex: none;"></span>
+                            <b style="font-size: 13px; color: #0F172A;">{{it.l}}</b>
+                          </div>
+                          <div style="display: flex; align-items: baseline; gap: 4px;">
+                            <b style="font-size: 16px; color: #0F172A;">{{it.n}}</b>
+                            <span style="font-size: 11.5px; color: #64748B; font-weight: 600;">({{it.pStr}})</span>
+                          </div>
+                        </div>
+                        
+                        <!-- Progress bar proporsional -->
+                        <div style="width: 100%; height: 6px; border-radius: 3px; background: #EEF2F7; overflow: hidden;">
+                          <div style="width: {{it.barW}}; height: 100%; background: {{it.c}}; border-radius: 3px;"></div>
+                        </div>
+
+                        <div style="display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: #64748B;">
+                          <span style="font-weight: 500;">{{it.level}}</span>
+                          <span style="color: #2563EB; font-weight: 600;">Filter ↓</span>
+                        </div>
+                      </div>
+                    </sc-for>
+                  </div>
+
+                  <!-- Alert Keterangan Filter Aktif -->
+                  <sc-if value="{{hasJenisFilter}}" hint-placeholder-val="{{false}}">
+                    <div style="display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; border-radius: 8px; background: #EFF6FF; border: 1px solid #BFDBFE; font-size: 12px; color: #1E40AF;">
+                      <span>Filter aktif: <b>{{activeJenisName}}</b> ({{activeJenisCount}} regulasi)</span>
+                      <button type="button" sc-camel-on-click="{{resetJenisFilter}}" style="padding: 3px 8px; border: 1px solid #93C5FD; border-radius: 5px; background: #FFFFFF; font-size: 11px; font-weight: 600; color: #1E40AF; cursor: pointer;">Reset Filter</button>
+                    </div>
+                  </sc-if>
+
+                  <!-- Tabel Rinci Instrumen 2026 -->
+                  <div style="border: 1px solid #E2E8F0; border-radius: 8px; overflow: hidden;">
+                    <div style="display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.4fr) 80px 70px; gap: 8px; padding: 7px 12px; background: #F8FAFC; font-size: 10.5px; font-weight: 700; color: #64748B; letter-spacing: 0.3px;">
+                      <span>JENIS PERATURAN</span>
+                      <span>KEWENANGAN / LEVEL</span>
+                      <span style="text-align: right;">JUMLAH</span>
+                      <span style="text-align: right;">PORSI</span>
+                    </div>
+                    <sc-for list="{{jenisItems}}" as="r" hint-placeholder-count="6">
+                      <div role="button" tabindex="0" sc-camel-on-click="{{r.pick}}" style="display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.4fr) 80px 70px; gap: 8px; padding: 7px 12px; border-top: 1px solid #F1F5F9; font-size: 12px; color: #0F172A; align-items: center; background: {{r.cardBg}}; cursor: pointer;">
+                        <span style="display: inline-flex; align-items: center; gap: 6px;">
+                          <span style="width: 8px; height: 8px; border-radius: 2px; background: {{r.c}};"></span>
+                          <b>{{r.full}}</b>
                         </span>
-                      </button>
+                        <span style="color: #64748B; font-size: 11.5px;">{{r.auth}}</span>
+                        <b style="text-align: right; color: #0F172A;">{{r.n}}</b>
+                        <span style="text-align: right; font-weight: 600; color: #2563EB;">{{r.pStr}}</span>
+                      </div>
                     </sc-for>
                   </div>
-                  <sc-if value="{{sbDetail}}" hint-placeholder-val="{{false}}"><div style="display:flex;align-items:center;gap:8px;margin:8px 0;padding:9px 11px;border:1px solid #E3E8F0;border-radius:8px;background:#F8FAFC;font-size:12px;"><span style="width:10px;height:10px;border-radius:2px;background:{{sbDetail.color}};"></span><b>{{sbDetail.label}}</b><span>{{sbDetail.year}}: {{sbDetail.count}} regulasi</span></div></sc-if><div style="display: flex; gap: 18px; padding: 0 4px;"><sc-for list="{{years}}" as="y" hint-placeholder-count="5"><span style="flex: 1; text-align: center; font-size: 11.5px; font-weight: {{y.fw}}; color: {{y.tc}};">{{y.l}}</span></sc-for></div>
-                  <div style="display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 11.5px; color: #334155;"><sc-for list="{{jenisLeg}}" as="g" hint-placeholder-count="6"><span style="display: inline-flex; align-items: center; gap: 5px;"><span style="width: 9px; height: 9px; border-radius: 2px; background: {{g.c}};"></span>{{g.l}}</span></sc-for></div>
-                  <div style="border: 1px solid #E3E8F0; border-radius: 10px; overflow: hidden;">
-                    <div style="display: grid; grid-template-columns: minmax(0, 1fr) 80px 80px 90px; gap: 8px; padding: 8px 12px; background: #F8FAFC; font-size: 10.5px; font-weight: 700; letter-spacing: 0.4px; color: #64748B;"><span>JENIS</span><span style="text-align: right;">{{yrPrevL}}</span><span style="text-align: right;">{{yrL}}</span><span style="text-align: right;">PERUBAHAN</span></div>
-                    <sc-for list="{{jenisCmp}}" as="r" hint-placeholder-count="6">
-                      <a href="#sec-daftar" sc-camel-on-click="{{r.pick}}" class="rw" style="display: grid; grid-template-columns: minmax(0, 1fr) 80px 80px 90px; gap: 8px; padding: 7px 12px; border-top: 1px solid #EEF2F7; font-size: 12px; color: #0F172A; text-decoration: none;"><span>{{r.l}}</span><span style="text-align: right; color: #64748B;">{{r.a}}</span><b style="text-align: right;">{{r.b}}</b><span style="text-align: right; font-weight: 600; color: #1D4ED8;">{{r.d}}</span></a>
-                    </sc-for>
-                  </div>
+
                 </div>
               </sc-if>
+
+              <!-- TAB 2: SEKTOR KBLI 2025 (Fokus 2026) -->
               <sc-if value="{{sbSektor}}" hint-placeholder-val="{{false}}">
-                <div style="display: flex; flex-direction: column; gap: 4px;">
-                  <div style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr) 64px 70px; gap: 10px; padding: 0 6px 4px; font-size: 10.5px; font-weight: 700; letter-spacing: 0.4px; color: #64748B;"><span>KATEGORI KBLI 2025</span><span></span><span style="text-align: right;">{{yrL}}</span><span style="text-align: right;">VS {{yrPrevL}}</span></div>
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                  <div style="display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) 70px 70px; gap: 10px; padding: 0 6px 4px; font-size: 10.5px; font-weight: 700; letter-spacing: 0.4px; color: #64748B;">
+                    <span>KATEGORI KBLI 2025</span>
+                    <span>DISTRIBUSI</span>
+                    <span style="text-align: right;">JUMLAH</span>
+                    <span style="text-align: right;">PORSI</span>
+                  </div>
                   <sc-for list="{{sekRows}}" as="s" hint-placeholder-count="10">
-                    <div style="display: flex; flex-direction: column;">
-                      <button type="button" sc-camel-on-click="{{s.pick}}" class="bar" style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr) 64px 70px; gap: 10px; align-items: center; padding: 4px 6px; border: 1px solid {{s.bd}}; border-radius: 6px; background: {{s.bg}}; font-family: inherit; font-size: 12px; color: #0F172A; text-align: left; cursor: pointer;">
-                        <span style="font-weight: {{s.fw}};">{{s.k}} · {{s.n}}</span>
-                        <span style="display: block; height: 12px; border-radius: 3px; background: #EEF2F7;"><span style="display: block; width: {{s.w}}; height: 12px; border-radius: 3px; background: #0EA5E9;"></span></span>
-                        <b style="text-align: right;">{{s.v}}</b><span style="text-align: right; color: #1D4ED8; font-weight: 600;">{{s.d}}</span>
-                      </button>
-                      <sc-if value="{{s.open}}" hint-placeholder-val="{{false}}">
-                        <div style="margin: 4px 0 6px; padding: 10px 12px; border-radius: 8px; background: #EFF6FF; border: 1px solid #E7F1E9; display: flex; flex-wrap: wrap; gap: 14px; align-items: flex-end;">
-                          <div style="display: flex; gap: 10px; align-items: flex-end; height: 70px;"><sc-for list="{{s.ser}}" as="z" hint-placeholder-count="5"><span style="display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 3px; height: 70px; font-size: 10.5px; color: #475569;"><b>{{z.v}}</b><span style="display: block; width: 22px; height: {{z.h}}; border-radius: 3px 3px 0 0; background: {{z.c}};"></span>{{z.l}}</span></sc-for></div>
-                          <div style="flex: 1 1 200px; font-size: 11.5px; line-height: 17px; color: #334155;">{{s.note}} <a href="#sec-daftar" sc-camel-on-click="{{s.filter}}" style="font-weight: 600; text-decoration: none;">Tampilkan di daftar ↓</a></div>
-                        </div>
-                      </sc-if>
-                    </div>
+                    <button type="button" sc-camel-on-click="{{s.pick}}" class="bar" style="display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) 70px 70px; gap: 10px; align-items: center; padding: 6px 8px; border: 1.5px solid {{s.bd}}; border-radius: 6px; background: {{s.bg}}; font-family: inherit; font-size: 12px; color: #0F172A; text-align: left; cursor: pointer; transition: all .15s ease;">
+                      <span style="font-weight: {{s.fw}}; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{s.k}} · {{s.n}}</span>
+                      <span style="display: block; height: 10px; border-radius: 3px; background: #EEF2F7; overflow: hidden;">
+                        <span style="display: block; width: {{s.w}}; height: 100%; border-radius: 3px; background: #0EA5E9;"></span>
+                      </span>
+                      <b style="text-align: right;">{{s.v}}</b>
+                      <span style="text-align: right; color: #1D4ED8; font-weight: 600;">{{s.pct}}</span>
+                    </button>
                   </sc-for>
                   <button type="button" sc-camel-on-click="{{toggleAllSek}}" style="align-self: flex-start; margin-top: 4px; padding: 0; border: 0; background: transparent; font-family: inherit; font-size: 12px; font-weight: 600; color: #1D4ED8; cursor: pointer;">{{allSekLabel}}</button>
-                  <p style="margin: 4px 0 0; font-size: 11.5px; line-height: 17px; color: #64748B;">Satu regulasi dapat terkait lebih dari satu kategori, sehingga jumlah per kategori ({{sekTotal}}) lebih besar dari 290 regulasi unik.</p>
+                  <p style="margin: 4px 0 0; font-size: 11.5px; line-height: 17px; color: #64748B;">Satu regulasi dapat terkait lebih dari satu kategori KBLI 2025. Klik baris kategori untuk memfilter daftar regulasi di bawah.</p>
                 </div>
               </sc-if>
+
             </div>
-            <div style="padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;"><span><b style="color: #475569;">Periode:</b> akhir tahun 2022–2025; 2026 s.d. 12 Okt</span><span><b style="color: #475569;">Diperbarui:</b> 12 Okt 2026</span><span><b style="color: #475569;">Sumber:</b> JDIH K/L sektor · klasifikasi KBLI 2025 (Peraturan BPS 7/2025)</span><span style="padding: 0 6px; border-radius: 4px; background: #EFF6FF; color: #1D4ED8; font-weight: 600;">Klasifikasi disahkan analis</span></div>
+
+            <!-- FOOTER RESMI (BERSIH 2026 SAJA) -->
+            <div style="padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;">
+              <span><b style="color: #475569;">Periode data:</b> tahun 2026 hingga 12 Okt</span>
+              <span><b style="color: #475569;">Diperbarui:</b> 12 Okt 2026</span>
+              <span><b style="color: #475569;">Sumber data:</b> JDIH K/L sektor · klasifikasi KBLI 2025 (Peraturan BPS No. 7/2025)</span>
+              <span style="padding: 0 6px; border-radius: 4px; background: #EFF6FF; color: #1D4ED8; font-weight: 600;">Klasifikasi disahkan analis</span>
+            </div>
           </section>
         </div>
 
@@ -743,23 +836,84 @@ class Component extends DCLogic {
     // ---------- kartu 1 ----------
     const jenisBar = ORD.map((k) => ({ l: JL[k], n: JSER[k][4], p: ((JSER[k][4] / 290) * 100).toFixed(1).replace('.', ',') + '%', w: Math.round((JSER[k][4] / 163) * 100) + '%', c: JC[k], bg: fj === k ? '#EFF6FF' : 'transparent', fw: fj === k ? 700 : 500, pick: () => set({ fj: k, fs: 'Semua', fw: 'Semua', q: '' }) }));
 
-    // ---------- kartu 2: sebaran ----------
-    const sb = st.sb || 'jenis', yi = st.yi ?? 4;
-    const tot = YRS.map((_, i) => ORD.reduce((a, k) => a + JSER[k][i], 0)), mxT = Math.max(...tot);
-    const years = YRS.map((y, i) => ({ l: i === 4 ? '2026*' : String(y), total: tot[i], h: Math.round((tot[i] / mxT) * 168) + 'px', ol: i === yi ? '2px solid #1E40AF' : '0', fw: i === yi ? 700 : 500, tc: i === yi ? '#0F172A' : '#64748B', pick: () => this.setState({ yi: i }),
-      seg: ORD.map((k) => ({ c: JC[k], h: ((JSER[k][i] / tot[i]) * 100).toFixed(2) + '%', t: JL[k] + ' ' + y + ': ' + JSER[k][i], pick: () => this.setState({ yi: i, sbDetail: { year: i === 4 ? '2026*' : String(y), label: JL[k], count: JSER[k][i], color: JC[k] } }) })) }));
-    const yp = Math.max(0, yi - 1);
-    const jenisCmp = ORD.map((k) => { const a = JSER[k][yp], b = JSER[k][yi], dd = b - a; return { l: JL[k], a, b, d: yi === 0 ? '—' : (dd >= 0 ? '+' : '−') + Math.abs(dd), pick: () => set({ fj: k, fs: 'Semua', fw: 'Semua', q: '' }) }; });
-    const sekAll = KB.filter(([k]) => SEKV[k] > 0).map(([k, n]) => ({ k, n, ser: FY.map((f, i) => (i === 4 ? SEKV[k] : Math.round(SEKV[k] * f))) })).sort((a, b) => b.ser[4] - a.ser[4]);
-    const mxS = Math.max(...sekAll.map((x) => x.ser[yi]));
-    const so = st.so || null;
-    const sekRows = (st.allSek ? sekAll : sekAll.slice(0, 10)).map((x) => { const v = x.ser[yi], a = x.ser[yp], open = so === x.k, mx2 = Math.max(...x.ser);
-      return { k: x.k, n: x.n, v, d: yi === 0 ? '—' : (v - a >= 0 ? '+' : '−') + Math.abs(v - a), w: Math.round((v / mxS) * 100) + '%', open, bg: open ? '#EFF6FF' : 'transparent', bd: open ? '#B8E3DF' : 'transparent', fw: open ? 700 : 500,
-        pick: () => this.setState({ so: open ? null : x.k }), filter: () => set({ fs: x.k, fj: 'Semua', fw: 'Semua', q: '' }),
-        ser: x.ser.map((sv, i) => ({ v: sv, l: i === 4 ? '2026*' : String(YRS[i]), h: Math.max(2, Math.round((sv / mx2) * 48)) + 'px', c: i === yi ? '#1E40AF' : '#82B394' })),
-        note: x.n + ': ' + x.ser[4] + ' regulasi aktif pada 2026 (' + (x.ser[4] - x.ser[3] >= 0 ? '+' : '−') + Math.abs(x.ser[4] - x.ser[3]) + ' dibanding akhir 2025).' }; });
-    const sbTabs = [['jenis', 'Jenis peraturan'], ['sektor', 'Sektor KBLI 2025']].map(([k, l]) => ({ l, bg: sb === k ? '#FFFFFF' : 'transparent', fg: sb === k ? '#0F172A' : '#64748B', pick: () => this.setState({ sb: k }) }));
-    const jenisLeg = ORD.map((k) => ({ l: JL[k], c: JC[k] }));
+    // ---------- kartu 2: sebaran 2026 (fokus mode) ----------
+    const sb = st.sb || 'jenis';
+
+    const JDATA_2026 = [
+      { k: 'Permen', l: 'Permen', full: 'Peraturan Menteri', n: 163, pct: 56.2, pStr: '56,2%', c: '#0EA5E9', auth: 'Menteri / Kepala Lembaga', level: 'Teknis Operasional K/L' },
+      { k: 'Perda', l: 'Perda', full: 'Peraturan Daerah', n: 39, pct: 13.4, pStr: '13,4%', c: '#D4A72C', auth: 'Pemerintah Daerah (Prov/Kab/Kota)', level: 'Regulasi Daerah' },
+      { k: 'PP', l: 'PP', full: 'Peraturan Pemerintah', n: 31, pct: 10.7, pStr: '10,7%', c: '#1E40AF', auth: 'Pemerintah Pusat', level: 'Pelaksana Nasional' },
+      { k: 'Perpres', l: 'Perpres', full: 'Peraturan Presiden', n: 25, pct: 8.6, pStr: '8,6%', c: '#1D4ED8', auth: 'Presiden RI', level: 'Kebijakan Strategis' },
+      { k: 'UU', l: 'UU / Perppu', full: 'Undang-Undang / Perppu', n: 22, pct: 7.6, pStr: '7,6%', c: '#0B1F4B', auth: 'DPR RI & Presiden', level: 'Landasan Hukum Primer' },
+      { k: 'Kepmen', l: 'Kepmen', full: 'Keputusan Menteri', n: 10, pct: 3.4, pStr: '3,4%', c: '#06B6D4', auth: 'Menteri / Pimpinan Lembaga', level: 'Penetapan Sektoral' }
+    ];
+
+    const maxJenisN = 163;
+    const jenisItems = JDATA_2026.map((item) => {
+      const isSel = (fj === item.k);
+      return {
+        k: item.k,
+        l: item.l,
+        full: item.full,
+        n: item.n,
+        pStr: item.pStr,
+        c: item.c,
+        auth: item.auth,
+        level: item.level,
+        isSel,
+        barW: Math.round((item.n / maxJenisN) * 100) + '%',
+        segW: item.pct + '%',
+        bg: isSel ? '#EFF6FF' : '#FFFFFF',
+        bd: isSel ? '#1E40AF' : '#E2E8F0',
+        cardBg: isSel ? '#EFF6FF' : '#FFFFFF',
+        pick: () => set({ fj: isSel ? 'Semua' : item.k, fs: 'Semua', fw: 'Semua', q: '' })
+      };
+    });
+
+    const kpiJenis = {
+      total: 290,
+      pusat: 251,
+      pusatPct: '86,6%',
+      daerah: 39,
+      daerahPct: '13,4%'
+    };
+
+    const hasJenisFilter = (fj !== 'Semua');
+    const activeJenisItem = JDATA_2026.find(x => x.k === fj);
+    const activeJenisName = activeJenisItem ? activeJenisItem.full : '';
+    const activeJenisCount = activeJenisItem ? activeJenisItem.n : 0;
+    const resetJenisFilter = () => set({ fj: 'Semua', fs: 'Semua', fw: 'Semua', q: '' });
+
+    // Sektor KBLI 2025 murni 2026
+    const sekAll = KB.filter(([k]) => SEKV[k] > 0).map(([k, n]) => ({ k, n, v: SEKV[k] })).sort((a, b) => b.v - a.v);
+    const mxS = Math.max(...sekAll.map(x => x.v));
+    const sekRows = (st.allSek ? sekAll : sekAll.slice(0, 10)).map(x => {
+      const isSel = (fs === x.k);
+      const pct = ((x.v / 290) * 100).toFixed(1).replace('.', ',') + '%';
+      return {
+        k: x.k,
+        n: x.n,
+        v: x.v,
+        pct,
+        w: Math.round((x.v / mxS) * 100) + '%',
+        isSel,
+        bg: isSel ? '#EFF6FF' : 'transparent',
+        bd: isSel ? '#1E40AF' : '#E2E8F0',
+        fw: isSel ? 700 : 500,
+        pick: () => set({ fs: isSel ? 'Semua' : x.k, fj: 'Semua', fw: 'Semua', q: '' })
+      };
+    });
+
+    const sbTabs = [
+      ['jenis', 'Jenis peraturan'],
+      ['sektor', 'Sektor KBLI 2025']
+    ].map(([k, l]) => ({
+      l,
+      bg: sb === k ? '#FFFFFF' : 'transparent',
+      fg: sb === k ? '#0F172A' : '#64748B',
+      pick: () => this.setState({ sb: k })
+    }));
+    const sbTitle = sb === 'jenis' ? 'jenis peraturan' : 'sektor KBLI 2025';
 
     // ---------- isu ----------
     const io = st.io ?? null;
@@ -796,8 +950,8 @@ class Component extends DCLogic {
 
     const restNote = '290 regulasi aktif tercatat; ' + ALL.length + ' sudah bernaskah lengkap dan dimuat di sini, sisanya dapat ditelusuri di JDIH instansi penerbit.';
     return { isList: view === 'list', isDetail: view === 'detail', fl, hasFilter, resetF, filterNote: ids.length + ' regulasi sesuai filter',
-      jenisBar, sbLabel: sb === 'jenis' ? 'jenis peraturan' : 'sektor KBLI 2025', sbTabs, sbJenis: sb === 'jenis', sbSektor: sb === 'sektor', years, sbDetail: st.sbDetail || null, jenisLeg, jenisCmp,
-      yrL: yi === 4 ? '2026*' : String(YRS[yi]), yrPrevL: yi === 0 ? '—' : String(YRS[yp]), sekRows, sekTotal: Object.values(SEKV).reduce((a, b) => a + b, 0), allSekLabel: st.allSek ? 'Tampilkan 10 teratas' : 'Tampilkan semua kategori',
+      jenisBar, sbTitle, sbTabs, sbJenis: sb === 'jenis', sbSektor: sb === 'sektor', jenisItems, kpiJenis, hasJenisFilter, activeJenisName, activeJenisCount, resetJenisFilter, sekRows,
+      yrL: '2026', yrPrevL: '2025', sekRows, sekTotal: Object.values(SEKV).reduce((a, b) => a + b, 0), allSekLabel: st.allSek ? 'Tampilkan 10 teratas' : 'Tampilkan semua kategori',
       toggleAllSek: () => this.setState({ allSek: !st.allSek }), isu,
       q: st.q || '', onSearch: (e) => this.setState({ q: e && e.target ? e.target.value : '', page: 0 }), rows, noRows: rows.length === 0, pages, pageNote, restNote,
       prevPage: () => this.setState({ page: Math.max(0, page - 1) }), nextPage: () => this.setState({ page: Math.min(nPage - 1, page + 1) }), pgPrevC: page === 0 ? '#CBD5E1' : '#0F172A', pgNextC: page >= nPage - 1 ? '#CBD5E1' : '#0F172A',
@@ -858,72 +1012,6 @@ class Component extends DCLogic {
       }
     });
 
-    // 6. Focus regulation chart on 2026
-    var chartHeading = Array.from(document.querySelectorAll('h2')).find(function(h) {
-      return (h.textContent || '').indexOf('Sebaran regulasi menurut') === 0 ||
-        (h.textContent || '').indexOf('Jumlah regulasi menurut') === 0;
-    });
-    if (chartHeading) {
-      var chartSection = chartHeading.closest('section');
-      if (chartSection) {
-        var tabs = Array.from(chartSection.querySelectorAll('[role="tab"]'));
-        var sectorTab = tabs.find(function(t) { return (t.textContent || '').indexOf('Sektor') !== -1; });
-        var sectorMode = !!sectorTab && getComputedStyle(sectorTab).backgroundColor === 'rgb(255, 255, 255)';
-        var sectorLabel = sectorTab && sectorTab.querySelector('span');
-        if (sectorLabel && sectorLabel.textContent !== 'Sektor') sectorLabel.textContent = 'Sektor';
-        var title = 'Jumlah regulasi menurut ' + (sectorMode ? 'sektor' : 'jenis') + ' · 2026';
-        if (chartHeading.textContent !== title) chartHeading.textContent = title;
-
-        var chartContent = chartSection.children[1] && chartSection.children[1].children[0];
-        if (chartContent) {
-          if (sectorMode) {
-            var header = chartContent.children[0];
-            if (header && header.children.length >= 4) {
-              if (header.children[1].textContent.trim() === '2026') header.children[1].textContent = '';
-              header.children[2].style.display = '';
-              if (header.children[2].textContent.trim() !== '2026') header.children[2].textContent = '2026';
-              header.children[3].style.display = 'none';
-              header.style.gridTemplateColumns = 'minmax(0, 1fr) minmax(0, 0.9fr) 64px';
-            }
-            Array.from(chartContent.children).slice(1).forEach(function(row) {
-              var rowGrid = Array.from(row.children).find(function(c) { return getComputedStyle(c).display === 'grid'; });
-              if (!rowGrid || rowGrid.children.length < 4) return;
-              rowGrid.children[3].style.display = 'none';
-              rowGrid.style.gridTemplateColumns = 'minmax(0, 1fr) minmax(0, 0.9fr) 64px';
-            });
-          } else {
-            var bars = chartContent.children[0];
-            var years = chartContent.children[1];
-            if (bars && bars.children.length === 5) {
-              bars.style.display = 'flex';
-              Array.from(bars.children).slice(0, 4).forEach(function(b) { b.style.display = 'none'; });
-            }
-            if (years && years.children.length === 5) {
-              years.style.display = 'flex';
-              Array.from(years.children).slice(0, 4).forEach(function(y) { y.style.display = 'none'; });
-              var cur = years.children[4].querySelector('span');
-              if (cur && cur.textContent.trim() !== '2026') cur.textContent = '2026';
-            }
-            var table = chartContent.children[3];
-            if (table) {
-              Array.from(table.children).forEach(function(row) {
-                if (row.children.length < 4) return;
-                row.children[1].style.display = 'none';
-                row.children[3].style.display = 'none';
-                row.style.gridTemplateColumns = 'minmax(0, 1fr) 80px';
-                if (row.children[2].textContent.trim() === '2026*') row.children[2].textContent = '2026';
-              });
-            }
-          }
-        }
-        Array.from(chartSection.querySelectorAll('span')).forEach(function(sp) {
-          var tx = (sp.textContent || '').replace(/\s+/g, ' ').trim();
-          if (tx === 'Periode: akhir tahun 2022–2025; 2026 s.d. 12 Okt') {
-            sp.textContent = 'Periode: tahun 2026 hingga 12 Okt';
-          }
-        });
-      }
-    }
   }
 
   document.addEventListener('DOMContentLoaded', function() {
@@ -931,6 +1019,10 @@ class Component extends DCLogic {
     setTimeout(cleanup, 100);
     setTimeout(cleanup, 500);
   });
+  if (document.readyState === 'interactive' || document.readyState === 'complete') {
+    cleanup();
+  }
+
   if (window.MutationObserver && document.documentElement) {
     new MutationObserver(cleanup).observe(document.documentElement, {
       attributes: true, attributeFilter: ['style'], childList: true, subtree: true
