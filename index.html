@@ -374,40 +374,70 @@ document.addEventListener('DOMContentLoaded', async function() {
 
   <script>
     (function () {
-      function hideMetadataInDocument(doc) {
-        if (!doc) return;
-        const labels = ['Tanggal acuan:', 'Cakupan:', 'Periode data OSS:', 'Sumber utama:'];
-        Array.from(doc.querySelectorAll('*')).forEach(function (node) {
-          const text = (node.textContent || '').replace(/\s+/g, ' ').trim();
-          if (!text) return;
-          if (!labels.some(function (label) { return text.indexOf(label) !== -1; })) return;
+      const observedDocuments = new WeakSet();
 
-          let parent = node;
-          while (parent && parent !== doc.body && parent !== doc.documentElement) {
-            const tag = parent.tagName && parent.tagName.toUpperCase();
-            if (tag && ['DIV', 'SECTION', 'ARTICLE', 'HEADER', 'FOOTER', 'MAIN', 'ASIDE', 'SPAN', 'LI', 'P', 'BUTTON', 'NAV'].indexOf(tag) !== -1) {
-              parent.style.display = 'none';
-              break;
-            }
-            parent = parent.parentElement;
+      function hideMetadataInDocument(doc, title) {
+        if (!doc) return;
+        let labels = [];
+        if (title.indexOf('Peluang Investasi Daerah') !== -1 || title.indexOf('Demografi') !== -1) {
+          labels = ['Tanggal acuan:', 'Cakupan:'];
+        } else if (title.indexOf('Kemudahan Berusaha') !== -1) {
+          labels = ['Periode data OSS:', 'Tanggal acuan:', 'Sumber utama:'];
+        }
+        const metadataNodes = [];
+        Array.from(doc.querySelectorAll('span')).forEach(function (node) {
+          const text = (node.textContent || '').replace(/\s+/g, ' ').trim();
+          if (!labels.some(function (label) { return text.indexOf(label) === 0; })) return;
+          metadataNodes.push(node);
+          node.style.display = 'none';
+        });
+
+        const metadataParent = metadataNodes.length ? metadataNodes[0].parentElement : null;
+        if (metadataParent && Array.from(metadataParent.children).every(function (child) {
+          return metadataNodes.indexOf(child) !== -1;
+        })) {
+          metadataParent.style.display = 'none';
+        }
+
+        const filterLabels = ['Jenis:', 'Sektor (KBLI 2025):', 'Wilayah:', 'Jenis izin:', 'Tahap:'];
+        Array.from(doc.querySelectorAll('button')).forEach(function (button) {
+          const text = (button.innerText || button.textContent || '').replace(/\s+/g, ' ').trim();
+          if (button.style.display !== 'none' && filterLabels.some(function (label) { return text.indexOf(label) === 0; })) {
+            button.style.display = 'none';
           }
         });
+
+        Array.from(doc.querySelectorAll('div')).forEach(function (node) {
+          const text = (node.textContent || '').replace(/\s+/g, ' ').trim();
+          if (text === 'Nasional · seluruh sektor · seluruh jenis izin') {
+            node.style.display = 'none';
+          }
+        });
+
+        if (doc.documentElement && !observedDocuments.has(doc)) {
+          observedDocuments.add(doc);
+          new MutationObserver(function () {
+            hideMetadataInDocument(doc, title);
+          }).observe(doc.documentElement, { attributes: true, attributeFilter: ['style'], childList: true, subtree: true });
+        }
       }
 
       function applyMetadataCleanup() {
         Array.from(document.querySelectorAll('iframe')).forEach(function (frame) {
-          try {
-            const doc = frame.contentDocument || (frame.contentWindow && frame.contentWindow.document);
-            if (doc) hideMetadataInDocument(doc);
-          } catch (error) {
-            // Ignore cross-origin or unloaded frame access.
-          }
+          const doc = frame.contentDocument;
+          if (doc) hideMetadataInDocument(doc, frame.title || '');
         });
       }
 
       document.addEventListener('DOMContentLoaded', function () {
         setTimeout(applyMetadataCleanup, 200);
         setTimeout(applyMetadataCleanup, 1000);
+        let attempts = 0;
+        const cleanupInterval = setInterval(function () {
+          applyMetadataCleanup();
+          attempts += 1;
+          if (attempts === 20) clearInterval(cleanupInterval);
+        }, 250);
       });
 
       window.addEventListener('hashchange', function () {
