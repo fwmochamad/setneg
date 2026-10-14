@@ -392,7 +392,7 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
             <div style="padding: 14px 18px; border-bottom: 1px solid #EEF2F7; display: flex; justify-content: space-between; align-items: center; gap: 8px;"><h2 style="margin: 0; font-size: 14.5px; font-weight: 600;">Jumlah regulasi investasi berlaku</h2><span style="font-size: 11.5px; color: #64748B;">Hanya status aktif · urut hierarki</span></div>
             <div style="padding: 16px 18px; display: flex; flex-direction: column; gap: 14px; flex: 1;">
               <a href="#sec-daftar" sc-camel-on-click="{{resetF}}" class="ck" style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 10px; padding: 12px 14px; border-radius: 10px; border: 1px solid #E7F1E9; background: #EFF6FF; color: #0F172A; text-decoration: none;">
-                <span><span style="display: block; font-size: 12px; color: #475569;">Regulasi aktif pada 12 Okt 2026</span><span style="display: flex; align-items: baseline; gap: 6px;"><b style="font-size: 34px; letter-spacing: -0.5px; color: #1E40AF;">290</b><span style="font-size: 13px; color: #475569;">regulasi unik</span></span></span>
+                <span><span style="display: block; font-size: 12px; color: #475569;">Regulasi aktif pada 12 Okt 2026</span><span style="display: flex; align-items: baseline; gap: 6px;"><b style="font-size: 34px; letter-spacing: -0.5px; color: #1E40AF;">290</b><span style="font-size: 13px; color: #475569;">regulasi</span></span></span>
                 <span style="display: flex; flex-direction: column; align-items: flex-end; gap: 4px; font-size: 11.5px; color: #475569;"><span><b style="color: #1D4ED8;">284</b> status terverifikasi</span><span><b style="color: #475569;">6</b> status belum terverifikasi</span><span style="font-weight: 600; color: #1D4ED8;">Lihat daftar pembentuk ↓</span></span>
               </a>
               <div style="display: flex; flex-direction: column; gap: 6px;">
@@ -405,6 +405,18 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
                 </sc-for>
               </div>
               <p style="margin: 0; font-size: 11.5px; line-height: 17px; color: #64748B;">Satu regulasi dihitung sekali walau mengatur beberapa sektor; perubahan dan pencabutan sebagian tidak menambah jumlah. Regulasi dicabut tidak ditampilkan.</p>
+              <div style="position: relative; overflow: hidden; padding: 14px 16px; border: 1px solid #D8E5FF; border-radius: 10px; background: linear-gradient(135deg, #F5F8FF 0%, #F4FBFF 58%, #F0FDFA 100%);">
+                <div style="position: absolute; top: 0; bottom: 0; left: 0; width: 3px; background: linear-gradient(180deg, #4F46E5, #0EA5E9, #14B8A6);"></div>
+                <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 8px;">
+                  <div style="display: flex; align-items: center; gap: 7px;"><span style="width: 22px; height: 22px; border-radius: 7px; display: inline-flex; align-items: center; justify-content: center; background: #E0E7FF; color: #4338CA; font-size: 13px;">✦</span><b style="font-size: 12.5px; color: #1E3A8A;">Insight AI</b></div>
+                  <span style="padding: 3px 7px; border-radius: 99px; background: rgba(255,255,255,.8); color: #64748B; font-size: 10px; font-weight: 600;">POLA DATA 2026</span>
+                </div>
+                <p style="margin: 0; font-size: 12px; line-height: 18px; color: #334155;">{{regulatoryInsight.summary}}</p>
+                <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px;">
+                  <span style="padding: 4px 8px; border: 1px solid #DCE5F2; border-radius: 6px; background: rgba(255,255,255,.75); color: #475569; font-size: 10.5px;"><b style="color: #1D4ED8;">{{regulatoryInsight.topPct}}</b> · {{regulatoryInsight.topLabel}}</span>
+                  <span style="padding: 4px 8px; border: 1px solid #DCE5F2; border-radius: 6px; background: rgba(255,255,255,.75); color: #475569; font-size: 10.5px;"><b style="color: #0F766E;">{{regulatoryInsight.pusatPct}}</b> · regulasi pusat</span>
+                </div>
+              </div>
             </div>
             <div style="padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;"><span><b style="color: #475569;">Periode:</b> s.d. 12 Okt 2026</span><span><b style="color: #475569;">Diperbarui:</b> 12 Okt 2026, 06.00 WIB</span><span><b style="color: #475569;">Sumber:</b> JDIH Setneg, JDIH K/L, JDIH pemda, peraturan.bpk.go.id</span><span style="padding: 0 6px; border-radius: 4px; background: #EFF6FF; color: #1D4ED8; font-weight: 600;">Divalidasi analis</span></div>
           </section>
@@ -692,13 +704,8 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
           <section style="flex: 2 1 640px; min-width: 0; background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; display: flex; flex-direction: column;">
             <div style="padding: 12px 18px; border-bottom: 1px solid #EEF2F7; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px;"><h3 style="margin: 0; font-size: 14.5px; font-weight: 600;">Ringkasan substansi</h3><span style="height: 22px; padding: 0 8px; border-radius: 6px; background: #EEF2FF; border: 1px solid #C7D2FE; color: #3730A3; font-size: 11px; font-weight: 600; display: inline-flex; align-items: center;">{{d.aiLabel}}</span></div>
             <sc-if value="{{d.hasRing}}" hint-placeholder-val="{{true}}">
-              <div style="padding: 16px 18px; display: flex; flex-direction: column; gap: 12px; flex: 1;">
-                <sc-for list="{{d.ring}}" as="x" hint-placeholder-count="4">
-                  <div style="display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 12px; padding-bottom: 10px; border-bottom: 1px dashed #E3E8F0;">
-                    <b style="font-size: 12.5px; color: #1E40AF;">{{x.h}}</b>
-                    <div><p style="margin: 0; font-size: 13px; line-height: 20px; color: #334155;">{{x.p}}</p><div style="margin-top: 6px; display: flex; flex-wrap: wrap; gap: 6px;"><sc-for list="{{x.pasal}}" as="ps" hint-placeholder-count="1"><a href="{{d.naskah}}" target="_blank" rel="noopener" style="height: 22px; padding: 0 8px; border-radius: 99px; border: 1px solid #B8E3DF; background: #EFF6FF; font-size: 11px; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center;">{{ps}} ↗</a></sc-for></div></div>
-                  </div>
-                </sc-for>
+              <div style="padding: 16px 18px; flex: 1;">
+                <p style="margin: 0; font-size: 13px; line-height: 20px; color: #334155;">{{d.ringSummary}}<sc-if value="{{d.hasPasal}}" hint-placeholder-val="{{false}}"> <span style="font-weight: 600;">Rujukan:</span> <sc-for list="{{d.pasal}}" as="ps" hint-placeholder-count="1"><a href="{{d.naskah}}" target="_blank" rel="noopener" style="margin-right: 6px; font-size: 12px; font-weight: 600; text-decoration: none; white-space: nowrap;">{{ps}} ↗</a></sc-for></sc-if></p>
               </div>
             </sc-if>
             <sc-if value="{{d.noRing}}" hint-placeholder-val="{{false}}"><div style="margin: 16px 18px; padding: 24px 16px; border-radius: 10px; border: 1px dashed #CBD5E1; background: #F8FAFC; text-align: center; font-size: 12.5px; color: #475569;">Ringkasan substansi belum tersedia. Ringkasan AI sedang menunggu review analis di Back Office.</div></sc-if>
@@ -838,6 +845,16 @@ class Component extends DCLogic {
         log: [['Ditetapkan', '2022', 'RTRW 2022–2042'], ['Status', '12 Okt 2026', 'Aktif']], versi: [['Naskah asli', '2022']],
         rel: [['Induk', [['UU No. 26 Tahun 2007', '', 'Melaksanakan', 'penataan ruang'], ['PP No. 21 Tahun 2021', '', 'Merujuk', '']]], ['Turunan', [['RDTR kabupaten kawasan Rebana', '', 'Rencana rinci', '']]]] }
     };
+    const RING_SUMMARY = {
+      uu25: 'UU ini mengatur dasar penanaman modal dalam negeri dan asing, termasuk bentuk badan usaha, perlakuan, fasilitas, dan pelayanan. Investor serta pemerintah pusat dan daerah menjadi pihak yang diatur. Investor wajib menerapkan tata kelola perusahaan yang baik, tanggung jawab sosial, pelaporan kegiatan, menghormati budaya setempat, dan mematuhi peraturan; pelanggaran dapat dikenai sanksi administratif hingga pencabutan kegiatan atau fasilitas penanaman modal.',
+      uu6: 'UU Cipta Kerja menyederhanakan perizinan berusaha berbasis risiko sekaligus mengubah ketentuan dalam berbagai undang-undang sektoral. Pengaturan ini berlaku bagi pelaku usaha serta kementerian/lembaga dan pemerintah daerah. Pelaku usaha mengurus izin sesuai tingkat risiko kegiatannya, sementara pemerintah pusat dan daerah menyesuaikan peraturan pelaksana.',
+      pp28: 'PP ini menetapkan standar dan tata cara perizinan berusaha berbasis risiko melalui OSS, termasuk perizinan dasar seperti KKPR, persetujuan lingkungan, PBG, dan standar waktu layanan. Pelaku usaha serta instansi pusat dan daerah memproses perizinan melalui OSS sesuai ketentuan; persetujuan KKPR diproses dalam batas waktu yang ditetapkan. Jika tenggat terlampaui, perizinan tertentu dapat dianggap disetujui (fiktif positif), sedangkan ketidakpatuhan dapat dikenai sanksi administratif.',
+      pp35: 'PP ini mengatur ketentuan umum pemungutan pajak daerah dan retribusi daerah sebagai pelaksanaan UU Hubungan Keuangan antara Pemerintah Pusat dan Pemerintahan Daerah. Pemerintah daerah serta wajib pajak dan retribusi menjadi pihak yang diatur; pemerintah daerah perlu menyesuaikan peraturan daerah, dan aturan yang tidak sesuai dapat dievaluasi serta diminta untuk diubah.',
+      perpres10: 'Perpres ini menetapkan bidang usaha prioritas, bidang usaha yang dialokasikan atau bermitra dengan UMKM, serta bidang usaha dengan persyaratan tertentu. Penanam modal dalam negeri dan asing wajib memenuhi persyaratan bidang usaha yang dipilih; perizinan tidak dapat diterbitkan untuk bidang usaha yang tertutup bagi penanaman modal.',
+      pm5: 'Peraturan ini menjadi pedoman layanan perizinan berusaha berbasis risiko dan fasilitas penanaman modal melalui OSS bagi pelaku usaha, DPMPTSP, serta kementerian/lembaga. Pelaku usaha mengajukan izin sesuai tingkat risiko, mulai dari NIB hingga izin. Ketidakpatuhan dapat dikenai sanksi administratif, termasuk bagi instansi yang tidak memproses perizinan melalui OSS.',
+      atr13: 'Peraturan ini mengatur penerbitan KKPR dan sinkronisasi program pemanfaatan ruang bagi pelaku usaha serta pemerintah daerah yang menyusun RDTR. Pelaku usaha harus memperoleh KKPR sebelum memanfaatkan ruang; jika RDTR digital belum tersedia, KKPR diterbitkan melalui penilaian PKKPR.',
+      jabar9: 'Perda ini menetapkan rencana struktur dan pola ruang Provinsi Jawa Barat 2022–2042, termasuk kawasan industri dan kawasan strategis. Pemerintah daerah, pelaku usaha, dan masyarakat perlu mengacu pada arahan zonasi RTRW dalam pemanfaatan ruang; pelanggaran dapat dikenai sanksi administratif.'
+    };
     const IDS = ['uu25', 'uu6', 'pp28', 'pp35', 'perpres10', 'pm5', 'atr13', 'jabar9'];
     const byId = Object.fromEntries(ALL.filter((r) => r.id).map((r) => [r.id, r]));
     const openReg = (key) => () => this.setState({ view: 'detail', sel: key, menu: null });
@@ -864,6 +881,16 @@ class Component extends DCLogic {
 
     // ---------- kartu 1 ----------
     const jenisBar = ORD.map((k) => ({ l: JL[k], n: JSER[k][4], p: ((JSER[k][4] / 290) * 100).toFixed(1).replace('.', ',') + '%', w: Math.round((JSER[k][4] / 163) * 100) + '%', c: JC[k], bg: fj === k ? '#EFF6FF' : 'transparent', fw: fj === k ? 700 : 500, pick: () => set({ fj: k, fs: 'Semua', fw: 'Semua', q: '' }) }));
+    const insightTotal = ORD.reduce((sum, k) => sum + JSER[k][4], 0);
+    const leadingType = ORD.reduce((leading, k) => JSER[k][4] > JSER[leading][4] ? k : leading, ORD[0]);
+    const centralRegulations = ORD.filter((k) => k !== 'Perda').reduce((sum, k) => sum + JSER[k][4], 0);
+    const formatShare = (count) => ((count / insightTotal) * 100).toFixed(1).replace('.', ',') + '%';
+    const regulatoryInsight = {
+      topLabel: JL[leadingType],
+      topPct: formatShare(JSER[leadingType][4]),
+      pusatPct: formatShare(centralRegulations),
+      summary: `${formatShare(JSER[leadingType][4])} regulasi berbentuk ${JL[leadingType]}, sedangkan ${formatShare(centralRegulations)} diterbitkan di tingkat pusat. Komposisi ini menonjolkan peran aturan teknis kementerian/lembaga; penyelarasan aturan pusat dengan Perda penting agar pelaksanaannya konsisten.`
+    };
 
     // ---------- kartu 2: sebaran 2026 (fokus mode) ----------
     const sb = st.sb || 'jenis';
@@ -976,7 +1003,9 @@ class Component extends DCLogic {
     const naskah = r.j === 'Perda' || r.j === 'Permen' || r.j === 'Kepmen' ? 'https://peraturan.bpk.go.id' : 'https://jdih.setneg.go.id';
     const d = { pos: (pos + 1) + ' dari ' + nav.length, jf: JF[r.j], jbg: JC[r.j], nomor: r.nomor, judul: r.judul, pen: r.pen, tahun: r.tahun, wil: r.wil, sek: sekText(r.sek), naskah, naskahL: naskah.replace('https://', ''),
       hasRing: !!D, noRing: !D, aiLabel: D ? '✦ Ringkasan AI · diverifikasi analis' : '✦ Ringkasan AI · menunggu review', verif: D ? 'diverifikasi 30 Sep 2026' : 'belum diverifikasi',
-      ring: D ? D.ring.map(([h, p, ps]) => ({ h, p, pasal: ps })) : [],
+      ringSummary: D ? RING_SUMMARY[r.id] : '',
+      pasal: D ? Array.from(new Set(D.ring.reduce((all, [, , ps]) => all.concat(ps), []))) : [],
+      hasPasal: !!D && D.ring.some(([, , ps]) => ps.length > 0),
       log: D ? D.log.map(([a, b, c]) => ({ a, b, c })) : [{ a: 'Diundangkan', b: String(r.tahun), c: '' }, { a: 'Status', b: '12 Okt 2026', c: 'Aktif' }],
       versi: D ? D.versi.map(([l, t]) => ({ l, t })) : [{ l: 'Naskah asli', t: String(r.tahun) }],
       hasRel: !!D, noRel: !D,
@@ -985,7 +1014,7 @@ class Component extends DCLogic {
 
     const restNote = '290 regulasi aktif tercatat; ' + ALL.length + ' sudah bernaskah lengkap dan dimuat di sini, sisanya dapat ditelusuri di JDIH instansi penerbit.';
     return { isList: view === 'list', isDetail: view === 'detail', fl, hasFilter, resetF, filterNote: ids.length + ' regulasi sesuai filter',
-      jenisBar, sbTitle, sbTabs, sbJenis: sb === 'jenis', sbSektor: sb === 'sektor', jenisItems, kpiJenis, hasJenisFilter, activeJenisName, activeJenisCount, resetJenisFilter, sekRows, hasSektorFilter, activeSektorName, activeSektorCount, resetSektorFilter,
+      jenisBar, regulatoryInsight, sbTitle, sbTabs, sbJenis: sb === 'jenis', sbSektor: sb === 'sektor', jenisItems, kpiJenis, hasJenisFilter, activeJenisName, activeJenisCount, resetJenisFilter, sekRows, hasSektorFilter, activeSektorName, activeSektorCount, resetSektorFilter,
       yrL: '2026', yrPrevL: '2025', sekRows, sekTotal: Object.values(SEKV).reduce((a, b) => a + b, 0), allSekLabel: st.allSek ? 'Tampilkan 10 teratas' : 'Tampilkan semua kategori',
       toggleAllSek: () => this.setState({ allSek: !st.allSek }), isu,
       q: st.q || '', onSearch: (e) => this.setState({ q: e && e.target ? e.target.value : '', page: 0 }), rows, noRows: rows.length === 0, pages, pageNote, restNote,
