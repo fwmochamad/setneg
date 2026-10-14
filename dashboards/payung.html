@@ -101,6 +101,18 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
 
 @media(max-width:680px){.sc-host{display:block!important;width:100%!important;max-width:100%!important;min-width:0!important}.sc-host>div{box-sizing:border-box!important;width:100%!important;max-width:100%!important;min-width:0!important}.setneg-global-header{box-sizing:border-box!important;width:100%!important;max-width:100%!important;min-width:0!important;overflow:hidden!important}.setneg-global-nav{box-sizing:border-box!important;min-width:0!important}.setneg-brand{max-width:calc(100% - 100px)!important}.harmonisasi-page-tabs{box-sizing:border-box!important;min-width:0!important}}
 @media(max-width:520px){.harmonisasi-page-tabs{width:calc(100% - 20px)!important;max-width:calc(100% - 20px)!important;display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;white-space:normal!important;overflow:visible!important;justify-content:stretch!important}.harmonisasi-page-tabs a{min-width:0!important;min-height:40px!important;padding:5px 7px!important;justify-content:center!important;white-space:normal!important;text-align:center!important;line-height:1.25!important}}
+@media(max-width:520px){.harmonisasi-page-tabs{width:calc(100% - 20px)!important;max-width:calc(100% - 20px)!important;display:grid!important;grid-template-columns:1fr!important}}
+.ews-modal-backdrop{position:fixed;inset:0;z-index:2000;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(0,0,0,.6);backdrop-filter:blur(2px)}
+.ews-modal-panel{background:#fff;border-radius:8px;box-shadow:0 25px 50px -12px rgba(0,0,0,.35);max-width:1024px;width:100%;max-height:90vh;display:flex;flex-direction:column;overflow:hidden;border:1px solid #E5E7EB;outline:none}
+.ews-modal-body{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);flex:1;min-height:0;overflow:hidden}
+.ews-modal-main{padding:24px;overflow-y:auto;display:flex;flex-direction:column;gap:24px}
+.ews-modal-side{padding:24px;background:#F9FAFB;border-left:1px solid #E5E7EB;overflow-y:auto;display:flex;flex-direction:column;gap:24px}
+.ews-modal-h4{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#6B7280;margin:0 0 8px}
+.ews-modal-body p{margin:0;font-size:14px;line-height:1.6;color:#111827}
+.harmonisasi-alert-card{cursor:pointer;transition:border-color .15s ease,box-shadow .15s ease,transform .15s ease}
+.harmonisasi-alert-card:hover,.harmonisasi-alert-card:focus-visible{border-color:#f59e0b!important;box-shadow:0 6px 18px rgba(180,83,9,.16)!important;transform:translateY(-1px);outline:none}
+.harmonisasi-alert-card:focus-visible{box-shadow:0 0 0 3px rgba(245,158,11,.35)!important}
+@media(max-width:860px){.ews-modal-backdrop{padding:0;align-items:flex-end}.ews-modal-panel{max-width:100%;max-height:94vh;border-radius:12px 12px 0 0}.ews-modal-body{grid-template-columns:1fr;overflow-y:auto}.ews-modal-main,.ews-modal-side{overflow:visible;border-left:0;border-top:1px solid #E5E7EB}.ews-modal-main{padding:16px}.ews-modal-side{padding:16px}}
 </style></head>
 <body>
 <x-dc>
@@ -361,8 +373,92 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
 <style>body{margin:0} a{color:#1D4ED8} a:hover{color:#1E40AF} .ck{cursor:pointer;transition:box-shadow .12s,border-color .12s,background .12s} .ck:hover{box-shadow:0 2px 10px rgba(15,23,42,.08);border-color:#82B394 !important} .rw{cursor:pointer} .rw:hover{background:#EFF6FF !important} .tip{position:relative;outline:none} .tip .pop{display:none;position:absolute;z-index:95;right:0;top:calc(100% + 6px);width:300px;padding:10px 12px;border-radius:10px;background:#0B1F3A;color:#E2E8F0;font-size:11.5px;line-height:17px;font-weight:400;letter-spacing:0;text-align:left;white-space:normal;box-shadow:0 12px 32px rgba(15,23,42,.3)} .tip:hover .pop,.tip:focus .pop{display:block} .bar:hover{filter:brightness(1.08)}</style>
 </helmet>
 <div style="min-height: 100vh; background: #F4F7FB; font-family: Inter, system-ui, sans-serif; color: #0F172A;">
-  <header class="setneg-global-header" aria-label="Header Dashboard Presiden RI"><div class="setneg-header-inner"><a class="setneg-brand" href="#top" aria-label="Dashboard Presiden RI"><img alt="Logo Setneg RI" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Logo_Setneg_RI.svg/330px-Logo_Setneg_RI.svg.png"><span class="setneg-brand-copy"><strong>DASHBOARD PRESIDEN RI</strong><span>Badan Teknologi, Data dan Informasi</span><span>Kementerian Sekretariat Negara Republik Indonesia</span></span></a><nav class="setneg-global-nav" aria-label="Navigasi utama"><button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.5"/></svg><span>Eksekutif</span></button><button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"/><path d="m9 12 2 2 4-4"/></svg><span>Pertahanan &amp; Keamanan</span></button><button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 3v18h18"/><path d="m7 14 4-4 4 3 6-7"/></svg><span>Ekonomi</span></button><button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 11h16v2a8 8 0 0 1-16 0v-2Z"/><path d="M8 7c0-1 1-1 1-2M12 7c0-1 1-1 1-2M16 7c0-1 1-1 1-2"/></svg><span>MBG</span></button><button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 3h10l4 4v14H5z"/><path d="M15 3v5h4M8 12h8M8 16h8"/></svg><span>Kebijakan</span></button><button type="button" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="6" cy="6" r="2"/><circle cx="18" cy="6" r="2"/><circle cx="12" cy="18" r="2"/><path d="M8 7.5 10.8 16M16 7.5 13.2 16M8 6h8"/></svg><span>Harmonisasi</span></button></nav><div class="setneg-header-tools"><button class="setneg-theme-button" type="button" aria-label="Ganti tema"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.5 14.4A8.5 8.5 0 0 1 9.6 3.5 8.7 8.7 0 1 0 20.5 14.4Z"/></svg></button><div class="setneg-user"><span class="setneg-avatar">PS</span><span class="setneg-user-copy"><strong>Prabowo Subianto</strong><span>Presiden</span></span><svg class="setneg-user-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div></div></div></header><nav class="harmonisasi-page-tabs" aria-label="Navigasi tab Harmonisasi Investasi"><a href="#harmonisasi-page-0" aria-current="page" data-harmonisasi-tab="0">Payung Kebijakan Investasi</a><a href="#harmonisasi-page-1" data-harmonisasi-tab="1">Peluang Investasi Daerah</a><a href="#harmonisasi-page-2" data-harmonisasi-tab="2">Demografi &amp; Mobilitas Penduduk</a><a href="#harmonisasi-page-3" data-harmonisasi-tab="3">Kemudahan Berusaha &amp; Pelayanan Perizinan</a></nav><section class="harmonisasi-highlights" aria-label="Highlight Payung Kebijakan Investasi"><div class="harmonisasi-highlights-head"><h2><svg class="harmonisasi-warning-symbol" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3 2.8 19h18.4L12 3Z"></path><path d="M12 9v4m0 3h.01"></path></svg> Highlight Payung Kebijakan Investasi</h2><span>3 Alerts Aktif</span></div><div class="harmonisasi-alert-track" role="list"><article class="harmonisasi-alert-card" role="listitem"><div class="harmonisasi-alert-heading"><span class="harmonisasi-alert-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m4 16 5-5 4 4 7-7"></path><path d="M14 8h6v6"></path></svg></span><div class="harmonisasi-alert-title"><strong>Kebutuhan air pusat data BDX</strong><span>Level: WARNING</span></div><div class="harmonisasi-alert-meta"><span>2 Okt 2026</span><span>Alert aktif</span></div></div><div class="harmonisasi-alert-details"><div><b>Masalah</b><p>Kebutuhan air dan kajian lingkungan menjadi hambatan bagi rencana pusat data di Purwakarta.</p></div><div><b>Dampak</b><p>Persetujuan lingkungan dan kesiapan proyek dapat tertunda.</p></div><div><b>Rekomendasi</b><p>Tuntaskan kajian daya dukung air dan persetujuan lingkungan sebelum konstruksi.</p></div></div></article><article class="harmonisasi-alert-card" role="listitem"><div class="harmonisasi-alert-heading"><span class="harmonisasi-alert-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m4 16 5-5 4 4 7-7"></path><path d="M14 8h6v6"></path></svg></span><div class="harmonisasi-alert-title"><strong>Konflik lahan PT Toba Pulp Lestari</strong><span>Level: WARNING</span></div><div class="harmonisasi-alert-meta"><span>27 Des 2025</span><span>Alert aktif</span></div></div><div class="harmonisasi-alert-details"><div><b>Masalah</b><p>Konflik lahan masyarakat adat tercatat di kawasan Danau Toba.</p></div><div><b>Dampak</b><p>Penolakan sosial berpotensi mengganggu kepastian pelaksanaan investasi.</p></div><div><b>Rekomendasi</b><p>Verifikasi hak atas lahan dan lakukan dialog dengan masyarakat terdampak.</p></div></div></article><article class="harmonisasi-alert-card" role="listitem"><div class="harmonisasi-alert-heading"><span class="harmonisasi-alert-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m4 16 5-5 4 4 7-7"></path><path d="M14 8h6v6"></path></svg></span><div class="harmonisasi-alert-title"><strong>Penolakan reklamasi Surabaya Waterfront Land</strong><span>Level: WARNING</span></div><div class="harmonisasi-alert-meta"><span>17 Mei 2026</span><span>Alert aktif</span></div></div><div class="harmonisasi-alert-details"><div><b>Masalah</b><p>Nelayan menyampaikan penolakan terhadap rencana reklamasi di pesisir timur Surabaya.</p></div><div><b>Dampak</b><p>Tahapan proyek berisiko tertunda dan memicu konflik sosial.</p></div><div><b>Rekomendasi</b><p>Pastikan konsultasi publik dan mitigasi dampak penghidupan sebelum keputusan lanjutan.</p></div></div></article></div></section>
+  <header class="setneg-global-header" aria-label="Header Dashboard Presiden RI"><div class="setneg-header-inner"><a class="setneg-brand" href="#top" aria-label="Dashboard Presiden RI"><img alt="Logo Setneg RI" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Logo_Setneg_RI.svg/330px-Logo_Setneg_RI.svg.png"><span class="setneg-brand-copy"><strong>DASHBOARD PRESIDEN RI</strong><span>Badan Teknologi, Data dan Informasi</span><span>Kementerian Sekretariat Negara Republik Indonesia</span></span></a><nav class="setneg-global-nav" aria-label="Navigasi utama"><button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.5"/></svg><span>Eksekutif</span></button><button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"/><path d="m9 12 2 2 4-4"/></svg><span>Pertahanan &amp; Keamanan</span></button><button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 3v18h18"/><path d="m7 14 4-4 4 3 6-7"/></svg><span>Ekonomi</span></button><button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 11h16v2a8 8 0 0 1-16 0v-2Z"/><path d="M8 7c0-1 1-1 1-2M12 7c0-1 1-1 1-2M16 7c0-1 1-1 1-2"/></svg><span>MBG</span></button><button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 3h10l4 4v14H5z"/><path d="M15 3v5h4M8 12h8M8 16h8"/></svg><span>Kebijakan</span></button><button type="button" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="6" cy="6" r="2"/><circle cx="18" cy="6" r="2"/><circle cx="12" cy="18" r="2"/><path d="M8 7.5 10.8 16M16 7.5 13.2 16M8 6h8"/></svg><span>Harmonisasi</span></button></nav><div class="setneg-header-tools"><button class="setneg-theme-button" type="button" aria-label="Ganti tema"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.5 14.4A8.5 8.5 0 0 1 9.6 3.5 8.7 8.7 0 1 0 20.5 14.4Z"/></svg></button><div class="setneg-user"><span class="setneg-avatar">PS</span><span class="setneg-user-copy"><strong>Prabowo Subianto</strong><span>Presiden</span></span><svg class="setneg-user-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div></div></div></header><nav class="harmonisasi-page-tabs" aria-label="Navigasi tab Harmonisasi Investasi"><a href="#harmonisasi-page-0" aria-current="page" data-harmonisasi-tab="0">Payung Kebijakan Investasi</a><a href="#harmonisasi-page-1" data-harmonisasi-tab="1">Peluang Investasi Daerah</a><a href="#harmonisasi-page-2" data-harmonisasi-tab="2">Demografi &amp; Mobilitas Penduduk</a><a href="#harmonisasi-page-3" data-harmonisasi-tab="3">Kemudahan Berusaha &amp; Pelayanan Perizinan</a></nav><section class="harmonisasi-highlights" aria-label="Highlight Payung Kebijakan Investasi"><div class="harmonisasi-highlights-head"><h2><svg class="harmonisasi-warning-symbol" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3 2.8 19h18.4L12 3Z"></path><path d="M12 9v4m0 3h.01"></path></svg> Highlight Payung Kebijakan Investasi</h2><span>{{ewsCount}} Alerts Aktif</span></div><div class="harmonisasi-alert-track" role="list"><sc-for list="{{highlights}}" as="h" hint-placeholder-count="3"><article class="harmonisasi-alert-card" role="listitem" tabindex="0" aria-haspopup="dialog" title="Klik untuk melihat detail Early Warning" sc-camel-on-click="{{h.open}}" sc-camel-onKeyDown="{{h.key}}"><div class="harmonisasi-alert-heading"><span class="harmonisasi-alert-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m4 16 5-5 4 4 7-7"></path><path d="M14 8h6v6"></path></svg></span><div class="harmonisasi-alert-title"><strong>{{h.short}}</strong><span>Level: {{h.level}}</span></div><div class="harmonisasi-alert-meta"><span>{{h.tgl}}</span><span>Alert aktif</span></div></div><div class="harmonisasi-alert-details"><div><b>Masalah</b><p>{{h.m}}</p></div><div><b>Dampak</b><p>{{h.d}}</p></div><div><b>Rekomendasi</b><p>{{h.r}}</p></div></div></article></sc-for></div></section>
   <main style="max-width: 1376px; margin: 0 auto; padding: 16px 32px 48px; display: flex; flex-direction: column; gap: 16px;">
+
+    <sc-if value="{{ewsOpen}}">
+      <div class="ews-modal-backdrop" sc-camel-on-click="{{closeEws}}">
+        <div class="ews-modal-panel" data-ews-modal="1" role="dialog" aria-modal="true" tabindex="0" sc-camel-on-click="{{stop}}" sc-camel-onKeyDown="{{onEwsKey}}">
+          <div style="padding: 16px 24px; border-bottom: 1px solid #E5E7EB; display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; flex: none;">
+            <div style="display: flex; align-items: center; gap: 12px; min-width: 0;">
+              <span style="padding: 8px; border-radius: 8px; background: rgba(239,68,68,.1); border: 1px solid rgba(239,68,68,.3); color: #DC2626; display: inline-flex; flex: none;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2.8 19h18.4L12 3Z"></path><path d="M12 9v4m0 3h.01"></path></svg></span>
+              <div style="min-width: 0;">
+                <h2 style="margin: 0; font-size: 18px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: #111827; line-height: 1.3;">{{ews.title}}</h2>
+                <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin-top: 4px;">
+                  <span style="font-size: 12px; color: #6B7280; font-family: ui-monospace, SFMono-Regular, Menlo, monospace;">ID: {{ews.id}}</span>
+                  <span style="display: inline-flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 600; text-transform: uppercase; color: #2563EB;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"></path><path d="M7 14l4-4 4 3 6-7"></path></svg>{{ews.kat}}</span>
+                </div>
+              </div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px; flex: none;">
+              <span style="padding: 4px 12px; border-radius: 6px; border: 1px solid; font-size: 12px; font-weight: 700; text-transform: uppercase; color: {{ews.sevFg}}; border-color: {{ews.sevBd}}; background: {{ews.sevBg}};">{{ews.level}}</span>
+              <button type="button" sc-camel-on-click="{{closeEws}}" aria-label="Tutup detail" title="Tutup (Esc)" style="padding: 8px; border: 0; border-radius: 8px; background: transparent; color: #9CA3AF; cursor: pointer;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"></path></svg></button>
+            </div>
+          </div>
+
+          <div class="ews-modal-body">
+            <div class="ews-modal-main">
+              <div>
+                <h3 class="ews-modal-h4">Ringkasan</h3>
+                <p>{{ews.fakta}}</p>
+              </div>
+              <div style="flex: 1;">
+                <h3 class="ews-modal-h4">Saran Untuk Presiden</h3>
+                <p>{{ews.opsi}}</p>
+                <div style="margin-top: 16px; padding: 16px; border-radius: 8px; background: #EFF6FF; border: 1px solid #BFDBFE;">
+                  <h4 style="margin: 0 0 8px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: #1D4ED8;">Langkah yang dapat ditindaklanjuti:</h4>
+                  <div style="display: flex; flex-direction: column; gap: 12px;">
+                    <div>
+                      <p style="margin: 0 0 6px; font-size: 12px; font-weight: 600; color: #1E40AF;">Ringkasan AI:</p>
+                      <p style="font-weight: 600; color: #111827;">{{ews.ewsA}}</p>
+                    </div>
+                    <div style="padding-top: 8px; border-top: 1px solid #BFDBFE;">
+                      <p style="margin: 0 0 6px; font-size: 12px; font-weight: 600; color: #1E40AF;">Analisis Detail:</p>
+                      <p style="color: #1F2937; white-space: pre-line;">{{ews.asumsi}}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="ews-modal-side">
+              <div>
+                <h3 class="ews-modal-h4" style="display: flex; align-items: center; gap: 8px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"></path></svg>Sumber Data &amp; Referensi</h3>
+                <div style="display: flex; flex-direction: column; gap: 12px;">
+                  <sc-for list="{{ews.src}}" as="s" hint-placeholder-count="2">
+                    <a href="{{s.u}}" target="_blank" rel="noopener noreferrer" style="display: block; padding: 12px; border-radius: 6px; border: 1px solid #E5E7EB; background: #FFFFFF; text-decoration: none; color: inherit;">
+                      <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; margin-bottom: 8px;">
+                        <span style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: #16A34A;">WEB</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #9CA3AF; flex: none;"><path d="M15 3h6v6"></path><path d="M10 14 21 3"></path><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path></svg>
+                      </div>
+                      <div style="font-size: 14px; font-weight: 500; color: #111827; line-height: 1.35;">{{s.l}}</div>
+                      <div style="margin-top: 4px; font-size: 12px; color: #6B7280; word-break: break-all;">{{s.u}}</div>
+                    </a>
+                  </sc-for>
+                </div>
+              </div>
+              <div>
+                <h3 class="ews-modal-h4">Poin Penting</h3>
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                  <sc-for list="{{ews.kv}}" as="v" hint-placeholder-count="5">
+                    <div style="padding: 10px; border-radius: 6px; border: 1px solid #E5E7EB; background: #FFFFFF;">
+                      <div style="font-size: 10px; text-transform: uppercase; letter-spacing: .05em; color: #6B7280; margin-bottom: 4px;">{{v.l}}:</div>
+                      <div style="font-size: 14px; font-weight: 600; color: #111827;">{{v.v}}</div>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style="padding: 12px 24px; background: #F9FAFB; border-top: 1px solid #E5E7EB; display: flex; align-items: center; flex-wrap: wrap; gap: 8px; flex: none; font-size: 11px; color: #6B7280;">
+            <span style="display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 999px; background: #FEF3C7; border: 1px solid #FCD34D; color: #92400E; font-weight: 700;">RAHASIA</span>
+            <span>Klasifikasi: <b style="color: #475569;">Internal · EWSPayung</b></span>
+            <span style="margin-left: auto;">Acuan {{ews.tgl}} · JDIH Setneg &amp; media terkait</span>
+          </div>
+        </div>
+      </div>
+    </sc-if>
 
     <!-- ======================= DAFTAR ======================= -->
     <sc-if value="{{isList}}" hint-placeholder-val="{{true}}">
@@ -1175,6 +1271,30 @@ class Component extends DCLogic {
       rel: D ? D.rel.map(([t, items]) => ({ t: t.toUpperCase(), items: items.map(([ref, id, rel, note]) => { const tgt = id && byId[id];
         return { ref: tgt ? tgt.nomor : ref, rel, note: note || (tgt ? tgt.judul : '—'), c: tgt ? '#1D4ED8' : '#0F172A', cls: tgt ? 'rw' : '', open: tgt ? openReg(id) : null }; }) })) : [] };
 
+    // ---------- highlight EWS + pop-up detail ----------
+    const HL_KEYS = ['dc', 'tpl', 'swl'];
+    const HL_SHORT = {
+      dc: { s: 'Kebutuhan air pusat data BDX', m: 'Kebutuhan air dan kajian lingkungan menjadi hambatan bagi rencana pusat data di Purwakarta.', d: 'Persetujuan lingkungan dan kesiapan proyek dapat tertunda.', r: 'Tuntaskan kajian daya dukung air dan persetujuan lingkungan sebelum konstruksi.' },
+      tpl: { s: 'Konflik lahan PT Toba Pulp Lestari', m: 'Konflik lahan masyarakat adat tercatat di kawasan Danau Toba.', d: 'Penolakan sosial berpotensi mengganggu kepastian pelaksanaan investasi.', r: 'Verifikasi hak atas lahan dan lakukan dialog dengan masyarakat terdampak.' },
+      swl: { s: 'Penolakan reklamasi Surabaya Waterfront Land', m: 'Nelayan menyampaikan penolakan terhadap rencana reklamasi di pesisir timur Surabaya.', d: 'Tahapan proyek berisiko tertunda dan memicu konflik sosial.', r: 'Pastikan konsultasi publik dan mitigasi dampak penghidupan sebelum keputusan lanjutan.' }
+    };
+    const ewsKey = st.ews || null;
+    const openEws = (k) => this.setState({ ews: k });
+    const closeEws = () => this.setState({ ews: null });
+    const stopProp = (e) => { if (e && e.stopPropagation) e.stopPropagation(); };
+    const onEwsKey = (e) => { if (e && (e.key === 'Escape' || e.key === 'Esc')) { if (e.stopPropagation) e.stopPropagation(); closeEws(); } };
+    const openKey = (k) => (e) => { if (e && (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar')) { if (e.preventDefault) e.preventDefault(); openEws(k); } };
+    const ewsRow = (x) => ({ k: x[0], t: x[1], title: x[1], short: (HL_SHORT[x[0]] || {}).s || x[1], lok: x[2], kat: x[3], tgl: x[4], reg: x[5], ews: x[6], ewsA: x[7], ewsW: x[9], stt: x[10], fakta: x[11], asumsi: x[13], opsi: x[14], src: (x[15] || []).map((s) => ({ l: s[0], u: s[1] })), m: (HL_SHORT[x[0]] || {}).m || '', d: (HL_SHORT[x[0]] || {}).d || '', r: (HL_SHORT[x[0]] || {}).r || '' });
+    const highlights = ISU.filter((x) => HL_KEYS.indexOf(x[0]) > -1).map((x) => Object.assign(ewsRow(x), { level: 'WARNING', open: () => openEws(x[0]), key: openKey(x[0]) }));
+    const ewsPick = highlights.filter((h) => h.k === ewsKey)[0];
+    const sev = (lvl) => lvl === 'CRITICAL' || lvl === 'HIGH'
+      ? { sevFg: '#DC2626', sevBd: '#DC2626', sevBg: '#FEF2F2' }
+      : lvl === 'WARNING' || lvl === 'MEDIUM' ? { sevFg: '#D97706', sevBd: '#D97706', sevBg: '#FFFBEB' } : { sevFg: '#2563EB', sevBd: '#2563EB', sevBg: '#EFF6FF' };
+    const ews = ewsPick ? Object.assign({}, ewsPick, sev(ewsPick.level), {
+      id: 'EWS-' + ewsPick.k.toUpperCase() + '-2026',
+      kv: [['Lokasi', ewsPick.lok], ['Kategori', ewsPick.kat], ['Waktu', ewsPick.tgl], ['Status', ewsPick.stt], ['Regulasi acuan', ewsPick.reg], ['Indikator', ewsPick.ewsA]].map((p) => ({ l: p[0], v: p[1] || '-' }))
+    }) : null;
+
     const restNote = '290 regulasi aktif tercatat; ' + ALL.length + ' sudah bernaskah lengkap dan dimuat di sini, sisanya dapat ditelusuri di JDIH instansi penerbit.';
 
     // ---------- label filter aktif di card daftar ----------
@@ -1190,6 +1310,7 @@ class Component extends DCLogic {
       hasLvlFilter: chips.length > 0, chips,
       yrL: '2026', yrPrevL: '2025', sekRows, sekTotal: Object.values(SEKV).reduce((a, b) => a + b, 0), allSekLabel: st.allSek ? 'Tampilkan 10 teratas' : 'Tampilkan semua kategori',
       toggleAllSek: () => this.setState({ allSek: !st.allSek }), isu,
+      highlights, ewsCount: highlights.length, ewsOpen: !!ews, ews, closeEws, stop: stopProp, onEwsKey,
       q: st.q || '', onSearch: (e) => this.setState({ q: e && e.target ? e.target.value : '', page: 0 }), rows, hasRows: rows.length > 0, noRows: ids.length === 0, pg, pageNote, restNote,
       d, back: () => this.setState({ view: 'list' }), prevReg: go(-1), nextReg: go(1) };
   }
@@ -1199,7 +1320,15 @@ class Component extends DCLogic {
 
 <script data-harmonisasi-tab-listener>document.addEventListener("click",function(event){var link=event.target.closest&&event.target.closest("[data-harmonisasi-tab]");if(!link)return;event.preventDefault();var index=Number(link.getAttribute("data-harmonisasi-tab"));if(Number.isInteger(index))window.parent.postMessage({type:"harmonisasi:tab",index:index},"*");},true);</script><script data-harmonisasi-vercel-runtime>(function(){function contentHeight(){var host=document.getElementById("dc-root"),sc=host&&host.firstElementChild;var wrap=sc&&sc.children&&sc.children.length===1?sc.firstElementChild:sc;var kids=wrap?wrap.children:null,h=0;if(kids)for(var i=0;i<kids.length;i++){var r=kids[i].getBoundingClientRect();if(r.height>0)h=Math.max(h,r.bottom+(window.scrollY||0));}if(!h){var de=document.documentElement;h=Math.max(de?de.scrollHeight:0,document.body?document.body.scrollHeight:0);}return Math.ceil(h);}function sendSize(){window.parent.postMessage({type:"harmonisasi:resize",height:contentHeight()},"*");}function connect(){sendSize();if(window.ResizeObserver){var ro=new ResizeObserver(sendSize);if(document.documentElement)ro.observe(document.documentElement);if(document.body)ro.observe(document.body);}if(window.MutationObserver&&document.body)new MutationObserver(sendSize).observe(document.body,{childList:true,subtree:true,attributes:true,characterData:true});window.addEventListener("load",sendSize);window.addEventListener("resize",sendSize);setTimeout(sendSize,100);setTimeout(sendSize,600);}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",connect,{once:true});else connect();window.addEventListener("message",function(e){if(e.data&&e.data.type==="harmonisasi:resize-request")sendSize();});})();</script><script>
 (function() {
+var lastEwsModal = null;
   function cleanup() {
+    // 0. Fokuskan pop-up detail EWS saat baru dibuka (agar tombol Esc langsung bekerja)
+    var modal = document.querySelector('[data-ews-modal]');
+    if (modal && modal !== lastEwsModal) {
+      lastEwsModal = modal;
+      try { modal.focus({ preventScroll: true }); } catch (e) { try { modal.focus(); } catch (e2) {} }
+    }
+    if (!modal) lastEwsModal = null;
     // 1. Metadata labels
     var labels = ['Tanggal acuan:', 'Cakupan:', 'Periode data OSS:', 'Sumber utama:'];
     var metaNodes = [];
