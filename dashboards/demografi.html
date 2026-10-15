@@ -778,10 +778,18 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
               <div style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.4px; color: #1E40AF;">DASAR DATA · DARI SUMBER</div>
               <ul style="margin: 6px 0 0; padding-left: 16px; display: flex; flex-direction: column; gap: 3px; font-size: 12px; line-height: 17px; color: #1E293B;"><sc-for list="{{i.basis}}" as="b" hint-placeholder-count="3"><li>{{b}}</li></sc-for></ul>
             </div>
-            <div style="padding: 10px 12px; border-radius: 8px; background: #EEF2FF; border: 1px dashed #A5B4FC;">
+            <div style="padding: 12px; border-radius: 8px; background: #EEF2FF; border: 1px solid #C7D2FE; display: flex; flex-direction: column; gap: 10px;">
               <div style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.4px; color: #3730A3;">IMPLIKASI INVESTASI · AI</div>
-              <p style="margin: 6px 0 0; font-size: 12px; line-height: 18px; color: #1E293B;">{{i.impl}}</p>
+              <b style="font-size: 13.5px; line-height: 19px; color: #1E1B4B;">{{i.vp}}</b>
+              <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px;"><sc-for list="{{i.keys}}" as="k" hint-placeholder-count="3"><div style="padding: 7px 8px; border-radius: 8px; background: #FFFFFF; border: 1px solid #E0E7FF;"><b style="display: block; font-size: 15px; color: #1E40AF; letter-spacing: -0.2px;">{{k.v}}</b><span style="display: block; font-size: 10.5px; line-height: 14px; color: #64748B;">{{k.l}}</span></div></sc-for></div>
+              <p style="margin: 0; font-size: 12px; line-height: 18px; color: #1E293B;">{{i.impl}}</p>
+              <div>
+                <div style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.4px; color: #3730A3;">PELUANG YANG DAPAT DITAWARKAN</div>
+                <div style="margin-top: 6px; display: flex; flex-direction: column; gap: 5px;"><sc-for list="{{i.opp}}" as="o" hint-placeholder-count="3"><div style="display: grid; grid-template-columns: 118px minmax(0, 1fr); gap: 8px; align-items: start; font-size: 12px; line-height: 17px; color: #1E293B;"><span style="justify-self: start; padding: 1px 7px; border-radius: 99px; background: #FFFFFF; border: 1px solid #C7D2FE; color: #3730A3; font-size: 10.5px; font-weight: 700; white-space: nowrap;">{{o.s}}</span><span>{{o.t}}</span></div></sc-for></div>
+              </div>
+              <div style="padding: 8px 10px; border-radius: 8px; background: #FFFFFF; border-left: 3px solid #1E40AF; font-size: 11.5px; line-height: 17px; color: #334155;"><b style="color: #1E40AF;">Dukungan bagi investor:</b> {{i.dukung}}</div>
             </div>
+            <button type="button" sc-camel-on-click="{{cta.pick}}" style="align-self: flex-start; padding: 0; border: 0; background: transparent; font-family: inherit; font-size: 12px; font-weight: 700; color: #1D4ED8; cursor: pointer;">{{cta.l}}</button>
             <div style="margin-top: auto; display: flex; flex-wrap: wrap; gap: 6px;"><sc-for list="{{i.links}}" as="k" hint-placeholder-count="2"><a href="{{k.h}}" sc-camel-on-click="{{k.pick}}" style="height: 26px; padding: 0 10px; border-radius: 99px; border: 1px solid #B8E3DF; background: #FFFFFF; color: #1D4ED8; font-size: 11.5px; font-weight: 600; display: inline-flex; align-items: center; text-decoration: none;">{{k.l}}</a></sc-for></div>
           </div>
         </sc-for>
@@ -1269,6 +1277,11 @@ class Component extends DCLogic {
     const wLast = D.WHO.filter((r) => r[1] != null).pop();
     const krlG = (348.9 / 328.15 - 1) * 100;
     const komOut = [['Kab. Bogor', 486200], ['Kota Bekasi', 428900]], migOut = [...RK.migrasi.out].sort((a, b) => b.v - a.v), migIn = [...RK.migrasi.inn].sort((a, b) => b.v - a.v);
+    const toPeluang = () => { try { window.parent.postMessage({ type: 'harmonisasi:tab', index: 1 }, '*'); } catch (e) {} };
+    const UMP_JB = 2317601, UMP_DKI = 5729876, umpGap = (1 - UMP_JB / UMP_DKI) * 100;
+    const komTot = komOut[0][1] + komOut[1][1];
+    const dkiOut = byId.dki.mo, dkiNet = byId.dki.mi - byId.dki.mo;
+    const cta = { l: 'Lihat proyek siap investasi di Peluang Investasi Daerah →', pick: toPeluang };
     const ins = [
       {
         no: 1, t: 'Bandung Raya dapat ditawarkan sebagai daerah penyangga bagi investor yang membidik Jakarta',
@@ -1278,6 +1291,14 @@ class Component extends DCLogic {
           'UMP 2026: Jawa Barat Rp2.317.601 vs DKI Jakarta Rp5.729.876'
         ],
         impl: 'Akses kereta cepat menjaga keterhubungan dengan pasar dan kantor pusat di Jakarta, sementara lahan dan upah di Bandung Raya lebih rendah. Kantor operasional, pusat R&D, dan industri kreatif dapat diarahkan ke sana.',
+        vp: 'Biaya tenaga kerja ' + nf(umpGap, 0) + '% lebih rendah dari Jakarta, tetap ±45 menit dari pusat bisnis nasional.',
+        keys: [{ v: '−' + nf(umpGap, 0) + '%', l: 'UMP vs DKI Jakarta' }, { v: '±45 mnt', l: 'Jakarta–Bandung (Whoosh)' }, { v: nf(wAvg, 0) + ' rb', l: 'penumpang Whoosh/bulan 2026' }],
+        opp: [
+          { s: 'Jasa & BPO', t: 'Kantor operasional, pusat layanan pelanggan, dan shared service center di Kota Bandung dan Cimahi' },
+          { s: 'Riset & teknologi', t: 'Pusat R&D dan pengembangan perangkat lunak dekat kampus teknik dan talenta digital Bandung Raya' },
+          { s: 'Industri kreatif', t: 'Studio animasi, fesyen, dan kuliner berorientasi pasar Jakarta dengan biaya operasional lebih rendah' }
+        ],
+        dukung: 'Perizinan berusaha berbasis risiko melalui OSS; insentif fiskal (tax allowance/tax holiday) bagi bidang usaha yang memenuhi syarat sesuai ketentuan; kawasan Tegalluar terhubung langsung stasiun kereta cepat.',
         links: [{ l: 'Lihat tren Whoosh ↓', h: '#sec-tren', pick: () => this.setState({ trT: 'kerja', wilK: 'whoosh' }) }, { l: 'Sorot Jawa Barat di peta ↑', h: '#sec-peta', pick: go('jabar') }]
       },
       {
@@ -1288,16 +1309,32 @@ class Component extends DCLogic {
           'Mutasi penduduk terbesar Semester II 2025: Kab. Bogor 133 rb dan Kab. Bekasi 104 rb (Dukcapil)'
         ],
         impl: 'Investor padat karya, logistik, dan hunian pekerja dapat diarahkan ke koridor Bekasi–Bogor yang memiliki pasokan pekerja dan akses KRL, misalnya kawasan berorientasi transit di sekitar stasiun.',
+        vp: 'Pasokan ' + nf(komTot / 1000, 0) + ' ribu pekerja komuter sudah tersedia dan terhubung KRL, tanpa perlu membangun akses baru.',
+        keys: [{ v: nf(komTot / 1000, 0) + ' rb', l: 'komuter asal Bogor & Bekasi' }, { v: '+' + nf(krlG, 1) + '%', l: 'penumpang KRL 2025' }, { v: '237 rb', l: 'penduduk pindah masuk Sem II 2025' }],
+        opp: [
+          { s: 'Logistik', t: 'Pergudangan dan pusat distribusi e-commerce di koridor Cikarang–Bekasi dekat tol dan pelabuhan' },
+          { s: 'Manufaktur', t: 'Industri padat karya (otomotif, elektronik, makanan-minuman) di kawasan industri Bekasi dan Bogor' },
+          { s: 'Properti', t: 'Hunian pekerja dan kawasan berorientasi transit di sekitar stasiun KRL' }
+        ],
+        dukung: 'Puluhan kawasan industri siap bangun di Jawa Barat; perizinan melalui OSS; tersedia skema kerja sama pemerintah–badan usaha untuk pengembangan kawasan transit.',
         links: [{ l: 'Lihat ranking komuter ↑', h: '#sec-rank', pick: () => this.setState({ rkJ: 'kerja' }) }, { l: 'Lihat tren KRL ↓', h: '#sec-tren', pick: () => this.setState({ trT: 'kerja', wilK: 'krl' }) }]
       },
       {
         no: 3, t: 'Arus keluar dari DKI Jakarta memperbesar pasar di provinsi penerima migran',
         basis: [
-          migOut[0].n + ': migran keluar ' + nf(migOut[0].v) + ' orang, tertinggi dari 32 provinsi (SP2020 LF)',
+          'DKI Jakarta: migran keluar ' + nf(dkiOut) + ' orang, neto ' + (dkiNet < 0 ? '−' : '+') + nf(Math.abs(dkiNet)) + ' orang (SP2020 LF)',
           'Neto migrasi risen DKI Jakarta −5,75% (SP2020 LF) dan −5,40% (SUPAS 2025)',
           'Migran masuk terbesar: ' + migIn[0].n + ' ' + nf(migIn[0].v) + ' dan ' + migIn[1].n + ' ' + nf(migIn[1].v) + ' orang'
         ],
         impl: 'Permintaan hunian, ritel, dan layanan bergeser ke provinsi penerima. Investor yang menyasar pasar Jakarta dapat menempatkan fasilitas di Jawa Barat atau Jawa Tengah tanpa kehilangan akses pasar.',
+        vp: 'Pasar konsumen tumbuh di provinsi penerima: ' + nf((migIn[0].v + migIn[1].v) / 1e6, 1) + ' juta pendatang baru di ' + migIn[0].n + ' dan ' + migIn[1].n + '.',
+        keys: [{ v: nf(dkiOut / 1000, 0) + ' rb', l: 'migran keluar DKI Jakarta' }, { v: nf(migIn[0].v / 1000, 0) + ' rb', l: 'migran masuk ' + migIn[0].n }, { v: nf(migIn[1].v / 1000, 0) + ' rb', l: 'migran masuk ' + migIn[1].n }],
+        opp: [
+          { s: 'Properti', t: 'Perumahan terjangkau dan hunian vertikal di kota penyangga provinsi penerima migran' },
+          { s: 'Ritel & jasa', t: 'Ritel modern, pusat perbelanjaan, dan jasa keuangan mengikuti pergeseran konsumen' },
+          { s: 'Layanan sosial', t: 'Rumah sakit, klinik, dan sekolah swasta untuk keluarga muda pendatang' }
+        ],
+        dukung: 'Program perumahan nasional dan pembiayaan rumah bersubsidi menopang permintaan; perizinan melalui OSS; pemda penerima menyediakan pendampingan investasi melalui DPMPTSP.',
         links: [{ l: 'Lihat ranking migrasi ↑', h: '#sec-rank', pick: () => this.setState({ rkJ: 'migrasi' }) }, { l: 'Bandingkan SP2020 vs SUPAS ↓', h: '#sec-tren', pick: () => this.setState({ trT: 'migrasi', wilM: 'DKI Jakarta' }) }]
       }
     ];
@@ -1339,7 +1376,7 @@ class Component extends DCLogic {
       showTbl, tblLabel: showTbl ? 'Tutup tabel ▴' : 'Lihat data 38 provinsi ▾', toggleTbl: () => this.setState({ showTbl: !showTbl }), tbl, sortBtns,
       rk, rkTabs, topOpts, rkBars, rkCol, rkHead,
       trTabs, isLine, isMig, perOpts, wil, tr, charts, rd, mg, supas, mut,
-      ins
+      ins, cta
     };
   }
 }
