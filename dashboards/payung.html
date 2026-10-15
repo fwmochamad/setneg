@@ -135,7 +135,7 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
 .harmonisasi-alert-card:hover,.harmonisasi-alert-card:focus-visible{border-color:#f59e0b!important;box-shadow:0 6px 18px rgba(180,83,9,.16)!important;transform:translateY(-1px);outline:none}
 .harmonisasi-alert-card:focus-visible{box-shadow:0 0 0 3px rgba(245,158,11,.35)!important}
 @media(max-width:860px){.ews-modal-backdrop{padding:0;align-items:stretch}.ews-modal-panel{max-width:100%;border-radius:0;max-height:none;height:100%}.ews-modal-body{grid-template-columns:1fr;overflow-y:auto}.ews-modal-main,.ews-modal-side{overflow:visible;border-left:0;border-top:1px solid #E5E7EB}.ews-modal-main{padding:20px 16px}.ews-modal-side{padding:16px}}
-</style></head>
+</style><style id="harmonisasi-simplify">.info-i{display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;margin-left:6px;border-radius:99px;border:1px solid #CBD5E1;color:#64748B;font-size:9.5px;font-weight:700;font-style:normal;vertical-align:2px;cursor:help;position:relative;letter-spacing:0}.info-i .pop{font-weight:400;text-transform:none;letter-spacing:0;left:0;right:auto;width:300px}.cf{align-items:center}.cf .info-i{margin-left:auto}.cf .info-i .pop{left:auto;right:0;white-space:normal}.mzi-l li:nth-child(n+3){display:none}</style><style id="harmonisasi-ringkas">.ri-card{background:#FFFFFF;border:1px solid #E3E8F0;border-radius:12px;box-shadow:0 1px 2px rgba(15,23,42,.05)}.ri-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px;padding:12px 18px 10px}.ri-strip{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:1px;background:#E3E8F0;border-top:1px solid #E3E8F0;border-radius:0 0 12px 12px;overflow:hidden}.ri-item{display:flex;flex-direction:column;align-items:flex-start;gap:5px;min-width:0;padding:12px 14px 14px;border:0;background:#FFFFFF;font-family:inherit;text-align:left;cursor:pointer;transition:background .12s}.ri-item:hover,.ri-item:focus-visible{background:#F8FAFC}.ri-l{font-size:10.5px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;color:#64748B;line-height:13px;min-height:26px}.ri-v{font-size:20px;line-height:24px;font-weight:700;color:#0F172A;letter-spacing:-.02em}.ri-s{font-size:11px;line-height:15px;color:#64748B}.ri-c{display:inline-flex;align-items:center;gap:5px;height:20px;padding:0 8px;border-radius:99px;font-size:10.5px;font-weight:700}.ri-c:before{content:"";width:6px;height:6px;border-radius:99px;background:currentColor}.ri-a{margin-top:auto;width:100%;box-sizing:border-box;padding:6px 8px;border-radius:7px;background:#F8FAFC;font-size:11px;line-height:15px;color:#1E293B}.ri-a b{color:#0F172A}@media(max-width:1100px){.ri-strip{grid-template-columns:repeat(2,minmax(0,1fr))}.ri-item:last-child{grid-column:span 2}}</style></head>
 <body>
 <x-dc>
 <helmet>
@@ -492,6 +492,24 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
     <!-- ======================= DAFTAR ======================= -->
     <sc-if value="{{isList}}" hint-placeholder-val="{{true}}">
       <div style="display: flex; flex-direction: column; gap: 16px;">
+        <!-- Ringkasan Informasi: hal yang perlu menjadi atensi Presiden -->
+        <section class="ri-card" aria-label="Ringkasan informasi">
+          <div class="ri-head">
+            <div style="display: flex; align-items: center; gap: 9px;"><span style="flex: none; width: 26px; height: 26px; border-radius: 8px; background: #0B1F4B; display: inline-flex; align-items: center; justify-content: center;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"></path><circle cx="12" cy="12" r="2.5"></circle></svg></span><div><h2 style="margin: 0; font-size: 14.5px; font-weight: 600;">Ringkasan Informasi</h2></div></div>
+            <div style="display: flex; flex-wrap: wrap; gap: 6px;"><span class="ri-c" style="background: #FEF3C7; color: #B45309;">{{ri.nWarn}} perlu atensi</span><span class="ri-c" style="background: #DBEAFE; color: #1D4ED8;">{{ri.nWatch}} dipantau</span><span class="ri-c" style="background: #DCFCE7; color: #15803D;">{{ri.nOk}} terkendali</span></div>
+          </div>
+          <div class="ri-strip" role="list">
+            <sc-for list="{{ri.items}}" as="r" hint-placeholder-count="5">
+            <button type="button" role="listitem" class="ri-item" sc-camel-on-click="{{r.go}}" title="Klik untuk melihat rincian" style="box-shadow: inset 0 3px 0 {{r.cc}};">
+              <span class="ri-l">{{r.l}}</span>
+              <b class="ri-v">{{r.v}}</b>
+              <span class="ri-s">{{r.s}}</span>
+              <span class="ri-c" style="background: {{r.cb}}; color: {{r.cc}};">{{r.stL}}</span>
+              <span class="ri-a"><b>Atensi:</b> {{r.a}}</span>
+            </button>
+            </sc-for>
+          </div>
+        </section>
         <!-- Filter -->
         <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px;">
           <span style="height: 36px; padding: 0 12px; border-radius: 8px; background: #FFFFFF; border: 1px solid #E3E8F0; font-size: 12px; color: #475569; display: inline-flex; align-items: center; gap: 4px; box-sizing: border-box;">Tanggal acuan: <b style="color: #0F172A;">12 Okt 2026</b></span>
@@ -512,55 +530,31 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
         </div>
 
         <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: stretch;">
-          <!-- 1. Jumlah regulasi berlaku -->
-          <section style="flex: 1 1 520px; min-width: 0; background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; box-shadow: 0 1px 2px rgba(15,23,42,.05); display: flex; flex-direction: column;">
-            <div style="padding: 14px 18px; border-bottom: 1px solid #EEF2F7; display: flex; justify-content: space-between; align-items: center; gap: 8px;"><h2 style="margin: 0; font-size: 14.5px; font-weight: 600;">Jumlah regulasi investasi berlaku</h2><span style="font-size: 11.5px; color: #64748B;">Hanya status aktif · urut hierarki</span></div>
-            <div style="padding: 16px 18px; display: flex; flex-direction: column; gap: 14px; flex: 1;">
-              <a href="#sec-daftar" sc-camel-on-click="{{resetF}}" class="ck" style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 10px; padding: 12px 14px; border-radius: 10px; border: 1px solid #E7F1E9; background: #EFF6FF; color: #0F172A; text-decoration: none;">
-                <span><span style="display: block; font-size: 12px; color: #475569;">Regulasi aktif pada 12 Okt 2026</span><span style="display: flex; align-items: baseline; gap: 6px;"><b style="font-size: 34px; letter-spacing: -0.5px; color: #1E40AF;">290</b><span style="font-size: 13px; color: #475569;">regulasi</span></span></span>
-                <span style="display: flex; flex-direction: column; align-items: flex-end; gap: 4px; font-size: 11.5px; color: #475569;"><span><b style="color: #1D4ED8;">284</b> status terverifikasi</span><span><b style="color: #475569;">6</b> status belum terverifikasi</span><span style="font-weight: 600; color: #1D4ED8;">Lihat daftar pembentuk ↓</span></span>
+          <!-- 1. Ringkasan regulasi (gaya acuan: 2 KPI) -->
+          <div style="flex: 0 1 360px; min-width: 280px; display: flex; flex-direction: column; gap: 16px;">
+            <section style="background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; box-shadow: 0 1px 2px rgba(15,23,42,.05); display: flex; flex-direction: column;">
+              <a href="#sec-daftar" sc-camel-on-click="{{resetF}}" style="padding: 16px 16px 14px; display: flex; flex-direction: column; gap: 6px; color: inherit; text-decoration: none;">
+                <span style="font-size: 12.5px; color: #475569;">Total Regulasi Investasi <span class="tip info-i" tabindex="0" aria-label="Keterangan">i<span class="pop">Regulasi aktif per 12 Okt 2026, diurutkan menurut hierarki. Satu regulasi dihitung sekali walau mengatur beberapa sektor; regulasi dicabut tidak ditampilkan. 284 status terverifikasi, 6 belum.</span></span></span>
+                <b style="font-size: 30px; line-height: 36px; color: #0F172A; letter-spacing: -0.5px;">290</b>
+                <span style="font-size: 11.5px; color: #475569;">Keselarasan: <b style="color: #15803D;">271 dari 284</b> dinilai (95,42%)</span>
+                <span style="display: block; height: 8px; border-radius: 99px; background: #E2E8F0;"><span style="display: block; width: 95.42%; height: 8px; border-radius: 99px; background: #22C55E;"></span></span>
+                <span style="font-size: 11.5px; font-weight: 600; color: #1D4ED8;">Lihat daftar regulasi ↓</span>
               </a>
-              <div style="display: flex; flex-direction: column; gap: 6px;">
-                <sc-for list="{{jenisBar}}" as="j" hint-placeholder-count="6">
-                  <a href="#sec-daftar" sc-camel-on-click="{{j.pick}}" class="bar" title="{{j.l}}: {{j.n}} regulasi aktif" style="display: grid; grid-template-columns: 92px minmax(0, 1fr) 96px; gap: 10px; align-items: center; padding: 3px 6px; margin: 0 -6px; border-radius: 6px; background: {{j.bg}}; font-size: 12.5px; color: #0F172A; text-decoration: none;">
-                    <span style="font-weight: {{j.fw}};">{{j.l}}</span>
-                    <span style="display: block; height: 16px; border-radius: 4px; background: #EEF2F7;"><span style="display: block; width: {{j.w}}; height: 16px; border-radius: 4px; background: {{j.c}};"></span></span>
-                    <span style="text-align: right;"><b>{{j.n}}</b> <span style="color: #64748B;">· {{j.p}}</span></span>
-                  </a>
-                </sc-for>
+              <div class="cf" style="margin-top: auto; padding: 8px 16px; border-top: 1px solid #EEF2F7; font-size: 10.5px; color: #94A3B8; display: flex; gap: 10px;"><span><b style="color: #64748B; font-weight: 600;">Sumber:</b> peraturan.bpk.go.id · JDIH</span><span>12 Okt 2026, 06.00 WIB</span></div>
+            </section>
+            <section style="background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; box-shadow: 0 1px 2px rgba(15,23,42,.05); display: flex; flex-direction: column;">
+              <div style="padding: 16px 16px 14px; display: flex; flex-direction: column; gap: 6px;">
+                <span style="font-size: 12.5px; color: #475569;">Regulasi Tidak Selaras <span class="tip info-i" tabindex="0" aria-label="Keterangan">i<span class="pop">Indikasi ketidakselarasan hasil penilaian analis, bukan putusan hukum. 6 dalam penanganan, 2 menunggu keputusan, 2 selesai, 3 belum ditindaklanjuti.</span></span></span>
+                <b style="font-size: 30px; line-height: 36px; color: #0F172A; letter-spacing: -0.5px;">13</b>
+                <span style="font-size: 11.5px; color: #475569;">6 dalam penanganan · 2 selesai</span>
+                <button type="button" sc-camel-on-click="{{toKeselarasan}}" style="margin-top: 4px; height: 34px; border: 0; border-radius: 8px; background: #EEF2FF; color: #3730A3; font-family: inherit; font-size: 12.5px; font-weight: 600; cursor: pointer;">Lihat Detail</button>
               </div>
-              <p style="margin: 0; font-size: 11.5px; line-height: 17px; color: #64748B;">Satu regulasi dihitung sekali walau mengatur beberapa sektor; perubahan dan pencabutan sebagian tidak menambah jumlah. Regulasi dicabut tidak ditampilkan.</p>
-              <div style="position: relative; overflow: hidden; padding: 14px 16px; border: 1px solid #D8E5FF; border-radius: 10px; background: linear-gradient(135deg, #F5F8FF 0%, #F4FBFF 58%, #F0FDFA 100%);">
-                <div style="position: absolute; top: 0; bottom: 0; left: 0; width: 3px; background: linear-gradient(180deg, #4F46E5, #0EA5E9, #14B8A6);"></div>
-                <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 8px;">
-                  <div style="display: flex; align-items: center; gap: 7px;"><span style="width: 22px; height: 22px; border-radius: 7px; display: inline-flex; align-items: center; justify-content: center; background: #E0E7FF; color: #4338CA; font-size: 13px;">✦</span><b style="font-size: 12.5px; color: #1E3A8A;">Insight AI</b></div>
-                  <span style="padding: 3px 7px; border-radius: 99px; background: rgba(255,255,255,.8); color: #64748B; font-size: 10px; font-weight: 600;">POLA DATA 2026</span>
-                </div>
-                <p style="margin: 0; font-size: 12px; line-height: 18px; color: #334155;">{{regulatoryInsight.summary}}</p>
-                <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px;">
-                  <span style="padding: 4px 8px; border: 1px solid #DCE5F2; border-radius: 6px; background: rgba(255,255,255,.75); color: #475569; font-size: 10.5px;"><b style="color: #1D4ED8;">{{regulatoryInsight.topPct}}</b> · {{regulatoryInsight.topLabel}}</span>
-                  <span style="padding: 4px 8px; border: 1px solid #DCE5F2; border-radius: 6px; background: rgba(255,255,255,.75); color: #475569; font-size: 10.5px;"><b style="color: #0F766E;">{{regulatoryInsight.pusatPct}}</b> · regulasi pusat</span>
-                </div>
-              </div>
-
-              <div style="position: relative; overflow: hidden; padding: 14px 16px; border: 1px solid #CFEFE7; border-radius: 10px; background: linear-gradient(135deg, #F4FBFF 0%, #F6FDF9 58%, #F5F8FF 100%);">
-                <div style="position: absolute; top: 0; bottom: 0; left: 0; width: 3px; background: linear-gradient(180deg, #0EA5E9, #14B8A6, #4F46E5);"></div>
-                <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 8px;">
-                  <div style="display: flex; align-items: center; gap: 7px;"><span style="width: 22px; height: 22px; border-radius: 7px; display: inline-flex; align-items: center; justify-content: center; background: #CCFBF1; color: #0F766E; font-size: 13px;">✦</span><b style="font-size: 12.5px; color: #134E4A;">Insight AI</b><span style="font-size: 11px; color: #0F766E; font-weight: 600;">· Sebaran menurut sektor KBLI 2025</span></div>
-                  <span style="padding: 3px 7px; border-radius: 99px; background: rgba(255,255,255,.8); color: #64748B; font-size: 10px; font-weight: 600;">CAKUPAN SEKTOR</span>
-                </div>
-                <p style="margin: 0; font-size: 12px; line-height: 18px; color: #334155;">{{sectorInsight.summary}}</p>
-                <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px;">
-                  <button type="button" sc-camel-on-click="{{sectorInsight.pickTop}}" title="Tampilkan daftar regulasi sektor {{sectorInsight.topCode}}" style="padding: 4px 8px; border: 1px solid #A7F3D0; border-radius: 6px; background: rgba(255,255,255,.75); color: #475569; font-family: inherit; font-size: 10.5px; cursor: pointer;"><b style="color: #047857;">{{sectorInsight.topPct}}</b> · {{sectorInsight.topLabel}} <span style="color: #059669; font-weight: 700;">Filter ↓</span></button>
-                  <span style="padding: 4px 8px; border: 1px solid #DCE5F2; border-radius: 6px; background: rgba(255,255,255,.75); color: #475569; font-size: 10.5px;"><b style="color: #1D4ED8;">{{sectorInsight.top3Pct}}</b> · 3 sektor teratas ({{sectorInsight.top3Codes}})</span>
-                </div>
-              </div>
-            </div>
-            <div style="padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;"><span><b style="color: #475569;">Periode:</b> s.d. 12 Okt 2026</span><span><b style="color: #475569;">Diperbarui:</b> 12 Okt 2026, 06.00 WIB</span><span><b style="color: #475569;">Sumber:</b> JDIH Setneg, JDIH K/L, JDIH pemda, peraturan.bpk.go.id</span><span style="padding: 0 6px; border-radius: 4px; background: #EFF6FF; color: #1D4ED8; font-weight: 600;">Divalidasi analis</span></div>
-          </section>
+              <div class="cf" style="margin-top: auto; padding: 8px 16px; border-top: 1px solid #EEF2F7; font-size: 10.5px; color: #94A3B8; display: flex; gap: 10px;"><span><b style="color: #64748B; font-weight: 600;">Sumber:</b> Analisis Keselarasan Regulasi</span><span>12 Okt 2026, 06.00 WIB</span></div>
+            </section>
+          </div>
 
           <!-- 2. Sebaran regulasi (Fokus 2026) -->
-          <section style="flex: 1 1 620px; min-width: 0; background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; box-shadow: 0 1px 2px rgba(15,23,42,.05); display: flex; flex-direction: column;">
+          <section id="sec-sebaran" style="scroll-margin-top: 16px; flex: 1 1 620px; min-width: 0; background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; box-shadow: 0 1px 2px rgba(15,23,42,.05); display: flex; flex-direction: column;">
             <div style="padding: 12px 18px; border-bottom: 1px solid #EEF2F7; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px;">
               <h2 style="margin: 0; font-size: 14.5px; font-weight: 600;">Jumlah regulasi menurut {{sbTitle}} · 2026</h2>
               <div role="tablist" style="display: flex; gap: 2px; padding: 3px; background: #EEF2F7; border-radius: 8px;">
@@ -574,103 +568,25 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
               
               <!-- TAB 1: JENIS PERATURAN 2026 -->
               <sc-if value="{{sbJenis}}" hint-placeholder-val="{{true}}">
-                <div style="display: flex; flex-direction: column; gap: 14px;">
-                  
-                  <!-- Ringkasan Kluster Eksekutif -->
-                  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 10px;">
-                    <div style="padding: 10px 14px; border-radius: 8px; background: #F8FAFC; border: 1px solid #E2E8F0; display: flex; flex-direction: column; gap: 2px;">
-                      <span style="font-size: 11px; color: #64748B; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3px;">Total Regulasi 2026</span>
-                      <div style="display: flex; align-items: baseline; gap: 6px;">
-                        <b style="font-size: 22px; color: #0F172A;">{{kpiJenis.total}}</b>
-                        <span style="font-size: 11.5px; color: #16A34A; font-weight: 600;">100% Aktif</span>
-                      </div>
-                    </div>
-                    <div role="button" tabindex="0" sc-camel-on-click="{{kpiJenis.pickPusat}}" title="Tampilkan hanya regulasi pusat di daftar regulasi investasi" style="padding: 10px 14px; border-radius: 8px; background: {{kpiJenis.pusatBg}}; border: 1.5px solid {{kpiJenis.pusatBd}}; display: flex; flex-direction: column; gap: 2px; cursor: pointer; transition: all .15s ease;">
-                      <span style="display: flex; justify-content: space-between; align-items: center; gap: 6px; font-size: 11px; color: #1E40AF; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3px;">Regulasi Pusat<span style="color: #3B82F6; font-weight: 700;">{{kpiJenis.pusatTag}}Filter ↓</span></span>
-                      <div style="display: flex; align-items: baseline; gap: 6px;">
-                        <b style="font-size: 22px; color: #1E40AF;">{{kpiJenis.pusat}}</b>
-                        <span style="font-size: 11.5px; color: #3B82F6; font-weight: 600;">{{kpiJenis.pusatPct}} · UU, PP, Permen</span>
-                      </div>
-                    </div>
-                    <div role="button" tabindex="0" sc-camel-on-click="{{kpiJenis.pickDaerah}}" title="Tampilkan hanya regulasi daerah di daftar regulasi investasi" style="padding: 10px 14px; border-radius: 8px; background: {{kpiJenis.daerahBg}}; border: 1.5px solid {{kpiJenis.daerahBd}}; display: flex; flex-direction: column; gap: 2px; cursor: pointer; transition: all .15s ease;">
-                      <span style="display: flex; justify-content: space-between; align-items: center; gap: 6px; font-size: 11px; color: #92400E; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3px;">Regulasi Daerah<span style="color: #D97706; font-weight: 700;">{{kpiJenis.daerahTag}}Filter ↓</span></span>
-                      <div style="display: flex; align-items: baseline; gap: 6px;">
-                        <b style="font-size: 22px; color: #B45309;">{{kpiJenis.daerah}}</b>
-                        <span style="font-size: 11.5px; color: #D97706; font-weight: 600;">{{kpiJenis.daerahPct}} · Perda Prov/Kab</span>
-                      </div>
-                    </div>
+                <div style="display: flex; flex-direction: column; gap: 10px;">
+                  <div style="display: flex; flex-wrap: wrap; gap: 6px; align-items: center;">
+                    <button type="button" sc-camel-on-click="{{kpiJenis.pickPusat}}" title="Filter regulasi pusat" style="height: 28px; padding: 0 10px; border-radius: 99px; border: 1px solid #BFDBFE; background: {{kpiJenis.pusatBg}}; color: #1E40AF; font-family: inherit; font-size: 11.5px; font-weight: 600; cursor: pointer;">Pusat <b>{{kpiJenis.pusat}}</b> · {{kpiJenis.pusatPct}}</button>
+                    <button type="button" sc-camel-on-click="{{kpiJenis.pickDaerah}}" title="Filter regulasi daerah" style="height: 28px; padding: 0 10px; border-radius: 99px; border: 1px solid #FDE68A; background: {{kpiJenis.daerahBg}}; color: #92400E; font-family: inherit; font-size: 11.5px; font-weight: 600; cursor: pointer;">Daerah <b>{{kpiJenis.daerah}}</b> · {{kpiJenis.daerahPct}}</button>
+                    <span style="margin-left: auto; font-size: 11px; color: #94A3B8;">Klik batang untuk memfilter daftar</span>
                   </div>
-
-                  <!-- Visual Komposisi Horizontal Interaktif (Segmented Distribution Bar) -->
-                  <div style="display: flex; flex-direction: column; gap: 6px;">
-                    <div style="display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: #64748B;">
-                      <span style="font-weight: 600;">Komposisi Beban Regulasi 2026:</span>
-                      <span>Klik kartu Regulasi Pusat/Daerah atau kartu di bawah untuk memfilter &amp; scroll ke daftar regulasi</span>
+                  <sc-for list="{{jenisItems}}" as="it" hint-placeholder-count="6">
+                    <div role="button" tabindex="0" sc-camel-on-click="{{it.pick}}" title="{{it.full}} · {{it.auth}}" class="rw" style="display: grid; grid-template-columns: 150px minmax(0, 1fr) 92px; gap: 10px; align-items: center; padding: 5px 6px; border-radius: 6px; background: {{it.bg}}; cursor: pointer; font-size: 12.5px; color: #0F172A;">
+                      <span style="font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{it.full}}</span>
+                      <span style="display: block; height: 14px; border-radius: 4px; background: #EEF2F7;"><span style="display: block; width: {{it.barW}}; height: 14px; border-radius: 4px; background: {{it.c}};"></span></span>
+                      <span style="text-align: right;"><b>{{it.n}}</b> <span style="color: #64748B;">· {{it.pStr}}</span></span>
                     </div>
-                    <div style="display: flex; height: 18px; width: 100%; border-radius: 6px; overflow: hidden; background: #E2E8F0; box-shadow: inset 0 1px 2px rgba(0,0,0,0.06);">
-                      <sc-for list="{{jenisItems}}" as="seg" hint-placeholder-count="6">
-                        <span role="button" tabindex="0" sc-camel-on-click="{{seg.pick}}" title="{{seg.full}}: {{seg.n}} regulasi ({{seg.pStr}})" style="width: {{seg.segW}}; height: 100%; background: {{seg.c}}; cursor: pointer; transition: opacity .15s ease; position: relative;"></span>
-                      </sc-for>
-                    </div>
-                  </div>
-
-                  <!-- Grid Kartu Interaktif Menurut Jenis Peraturan (2026 Saja) -->
-                  <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 8px;">
-                    <sc-for list="{{jenisItems}}" as="it" hint-placeholder-count="6">
-                      <div role="button" tabindex="0" sc-camel-on-click="{{it.pick}}" style="padding: 10px 12px; border: 1.5px solid {{it.bd}}; border-radius: 9px; background: {{it.bg}}; cursor: pointer; transition: all .15s ease; display: flex; flex-direction: column; gap: 6px;">
-                        <div style="display: flex; justify-content: space-between; align-items: center;">
-                          <div style="display: flex; align-items: center; gap: 7px;">
-                            <span style="width: 10px; height: 10px; border-radius: 3px; background: {{it.c}}; flex: none;"></span>
-                            <b style="font-size: 13px; color: #0F172A;">{{it.l}}</b>
-                          </div>
-                          <div style="display: flex; align-items: baseline; gap: 4px;">
-                            <b style="font-size: 16px; color: #0F172A;">{{it.n}}</b>
-                            <span style="font-size: 11.5px; color: #64748B; font-weight: 600;">({{it.pStr}})</span>
-                          </div>
-                        </div>
-                        
-                        <!-- Progress bar proporsional -->
-                        <div style="width: 100%; height: 6px; border-radius: 3px; background: #EEF2F7; overflow: hidden;">
-                          <div style="width: {{it.barW}}; height: 100%; background: {{it.c}}; border-radius: 3px;"></div>
-                        </div>
-
-                        <div style="display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: #64748B;">
-                          <span style="font-weight: 500;">{{it.level}}</span>
-                          <span style="color: #2563EB; font-weight: 600;">Filter ↓</span>
-                        </div>
-                      </div>
-                    </sc-for>
-                  </div>
-
-                  <!-- Alert Keterangan Filter Aktif -->
+                  </sc-for>
                   <sc-if value="{{hasJenisFilter}}" hint-placeholder-val="{{false}}">
-                    <div style="display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; border-radius: 8px; background: #EFF6FF; border: 1px solid #BFDBFE; font-size: 12px; color: #1E40AF;">
+                    <div style="display: flex; align-items: center; justify-content: space-between; padding: 7px 10px; border-radius: 8px; background: #EFF6FF; font-size: 12px; color: #1E40AF;">
                       <span>Filter aktif: <b>{{activeJenisName}}</b> ({{activeJenisCount}} regulasi)</span>
-                      <button type="button" sc-camel-on-click="{{resetJenisFilter}}" style="padding: 3px 8px; border: 1px solid #93C5FD; border-radius: 5px; background: #FFFFFF; font-size: 11px; font-weight: 600; color: #1E40AF; cursor: pointer;">Reset Filter</button>
+                      <button type="button" sc-camel-on-click="{{resetJenisFilter}}" style="padding: 2px 8px; border: 1px solid #93C5FD; border-radius: 5px; background: #FFFFFF; font-family: inherit; font-size: 11px; font-weight: 600; color: #1E40AF; cursor: pointer;">Reset</button>
                     </div>
                   </sc-if>
-
-                  <!-- Tabel Rinci Instrumen 2026 -->
-                  <div style="border: 1px solid #E2E8F0; border-radius: 8px; overflow: hidden;">
-                    <div style="display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.4fr) 80px 70px; gap: 8px; padding: 7px 12px; background: #F8FAFC; font-size: 10.5px; font-weight: 700; color: #64748B; letter-spacing: 0.3px;">
-                      <span>JENIS PERATURAN</span>
-                      <span>KEWENANGAN / LEVEL</span>
-                      <span style="text-align: right;">JUMLAH</span>
-                      <span style="text-align: right;">PORSI</span>
-                    </div>
-                    <sc-for list="{{jenisItems}}" as="r" hint-placeholder-count="6">
-                      <div role="button" tabindex="0" sc-camel-on-click="{{r.pick}}" style="display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.4fr) 80px 70px; gap: 8px; padding: 7px 12px; border-top: 1px solid #F1F5F9; font-size: 12px; color: #0F172A; align-items: center; background: {{r.cardBg}}; cursor: pointer;">
-                        <span style="display: inline-flex; align-items: center; gap: 6px;">
-                          <span style="width: 8px; height: 8px; border-radius: 2px; background: {{r.c}};"></span>
-                          <b>{{r.full}}</b>
-                        </span>
-                        <span style="color: #64748B; font-size: 11.5px;">{{r.auth}}</span>
-                        <b style="text-align: right; color: #0F172A;">{{r.n}}</b>
-                        <span style="text-align: right; font-weight: 600; color: #2563EB;">{{r.pStr}}</span>
-                      </div>
-                    </sc-for>
-                  </div>
-
                 </div>
               </sc-if>
 
@@ -729,20 +645,15 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
 
             </div>
 
-            <!-- FOOTER RESMI (BERSIH 2026 SAJA) -->
-            <div style="padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;">
-              <span><b style="color: #475569;">Periode data:</b> tahun 2026 hingga 12 Okt</span>
-              <span><b style="color: #475569;">Diperbarui:</b> 12 Okt 2026</span>
-              <span><b style="color: #475569;">Sumber data:</b> JDIH K/L sektor · klasifikasi KBLI 2025 (Peraturan BPS No. 7/2025)</span>
-              <span style="padding: 0 6px; border-radius: 4px; background: #EFF6FF; color: #1D4ED8; font-weight: 600;">Klasifikasi disahkan analis</span>
-            </div>
+            <div class="mzi"><span class="mzi-b">Insight AI</span><ul class="mzi-l"><sc-for list="{{payIns}}" as="i" hint-placeholder-count="2"><li>{{i}}</li></sc-for></ul><span class="mzi-s">Terverifikasi analis</span></div>
+            <div class="cf" style="margin-top: auto; padding: 8px 16px; border-top: 1px solid #EEF2F7; font-size: 10.5px; color: #94A3B8; display: flex; gap: 10px;"><span><b style="color: #64748B; font-weight: 600;">Sumber:</b> JDIH K/L · klasifikasi KBLI 2025 (Peraturan BPS No. 7/2025)</span><span>12 Okt 2026, 06.00 WIB</span></div>
           </section>
         </div>
 
         <!-- 5. Isu dampak, hambatan, peluang & rekomendasi -->
         <section style="background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; box-shadow: 0 1px 2px rgba(15,23,42,.05);">
           <div style="padding: 12px 18px; border-bottom: 1px solid #EEF2F7; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px;">
-            <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;"><h2 style="margin: 0; font-size: 14.5px; font-weight: 600;">Isu dampak, hambatan, peluang &amp; rekomendasi</h2><span style="height: 22px; padding: 0 8px; border-radius: 6px; background: #EEF2FF; border: 1px solid #C7D2FE; color: #3730A3; font-size: 11px; font-weight: 600; display: inline-flex; align-items: center;">✦ Analisis AI · diverifikasi analis</span></div>
+            <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;"><h2 style="margin: 0; font-size: 14.5px; font-weight: 600;">Isu dampak, hambatan, peluang &amp; rekomendasi</h2><span title="✦ Analisis AI · diverifikasi analis" style="height: 22px; padding: 0 8px; border-radius: 6px; background: #EEF2FF; border: 1px solid #C7D2FE; color: #3730A3; font-size: 11px; font-weight: 600; display: inline-flex; align-items: center;">✦ AI</span></div>
             <span style="font-size: 11.5px; color: #64748B;">Hambatan diringkas dari sumber; peluang adalah opsi tindak lanjut bersyarat, bukan status atau komitmen proyek</span>
           </div>
           <div style="display: flex; flex-direction: column;">
@@ -870,7 +781,7 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
               <span style="display: inline-flex; align-items: center;"><span style="margin-right: 8px;">Sumber :</span><b style="color: #475569;">JDIH Setneg, JDIH K/L, JDIH pemda</b><span style="margin: 0 12px; height: 16px; width: 1px; background: #EAECF0;" aria-hidden="true"></span><span style="font-weight: 500;">12 Okt 2026, 06.00 WIB</span></span>
             </div>
           </div>
-                <div class="mzi"><span class="mzi-b">Insight AI</span><ul class="mzi-l"><sc-for list="{{mini.daftar}}" as="i" hint-placeholder-count="3"><li>{{i}}</li></sc-for></ul><span class="mzi-s">Terverifikasi analis</span></div>
+                
         </section>
       </div>
     </sc-if>
@@ -1146,6 +1057,7 @@ class Component extends DCLogic {
 
     // ---------- kartu 2: sebaran 2026 (fokus mode) ----------
     const sb = st.sb || 'jenis';
+    const toKeselarasan = () => { try { window.parent.postMessage({ type: 'harmonisasi:tab', index: 4 }, '*'); } catch (e) {} };
 
     const JDATA_2026 = [
       { k: 'Permen', l: 'Permen', full: 'Peraturan Menteri', n: 163, pct: 56.2, pStr: '56,2%', c: '#0EA5E9', auth: 'Menteri / Kepala Lembaga', level: 'Teknis Operasional K/L' },
@@ -1426,11 +1338,24 @@ const closeEws = () => this.setState({ ews: null });
     if (fs !== 'Semua') chips.push({ l: fs === X ? 'Lintas sektor' : fs + ' · ' + String(KN[fs] || '').split(',')[0], n: cntAll((r) => r.sek.includes(fs)) + ' regulasi', clear: () => set({ fs: 'Semua' }) });
     if (fw !== 'Semua') chips.push({ l: fw, n: cntAll((r) => r.wil === fw) + ' regulasi', clear: () => set({ fw: 'Semua' }) });
     if (q) chips.push({ l: 'Pencarian "' + st.q.trim() + '"', n: ids.length + ' hasil', clear: () => set({ q: '' }) });
+    // ---- Ringkasan Informasi (atensi Presiden) ----
+    const riSt = { warn: ['Perlu atensi', '#FEF3C7', '#B45309'], watch: ['Dipantau', '#DBEAFE', '#1D4ED8'], ok: ['Terkendali', '#DCFCE7', '#15803D'] };
+    const riGo = (id) => () => { setTimeout(() => { const el = document.getElementById(id); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 30); };
+    const riMake = (per, items) => ({ per, items: items.map((x) => ({ ...x, stL: riSt[x.st][0], cb: riSt[x.st][1], cc: riSt[x.st][2] })),
+      nWarn: items.filter((x) => x.st === 'warn').length, nWatch: items.filter((x) => x.st === 'watch').length, nOk: items.filter((x) => x.st === 'ok').length });
+    const ri = riMake('regulasi aktif per 12 Okt 2026', [
+      { l: 'Regulasi investasi berlaku', v: '290', s: '284 status terverifikasi · 6 belum', st: 'ok', a: 'Basis regulasi lengkap; jaga pemutakhiran JDIH daerah.', go: riGo('sec-daftar') },
+      { l: 'Tingkat keselarasan', v: '95,42%', s: '271 dari 284 regulasi dinilai', st: 'ok', a: '6 Perda baru belum dinilai; jadwalkan pada siklus berikutnya.', go: toKeselarasan },
+      { l: 'Regulasi tidak selaras', v: '13', s: '3 belum ditindaklanjuti · 2 menunggu keputusan', st: 'warn', a: 'Dorong keputusan lintas kementerian untuk 2 kasus tertahan.', go: toKeselarasan },
+      { l: 'Dominasi aturan teknis', v: regulatoryInsight.topPct, s: 'regulasi berbentuk ' + regulatoryInsight.topLabel, st: 'watch', a: 'Pastikan aturan teknis K/L tidak menambah syarat di luar PP 28/2025.', go: riGo('sec-sebaran') },
+      { l: 'Peringatan dini aktif', v: highlights.length + ' isu', s: highlights.length ? highlights[0].short : 'tidak ada isu aktif', st: highlights.length ? 'warn' : 'ok', a: 'Selesaikan kajian lingkungan & konflik lahan sebelum proyek berjalan.', go: () => { try { document.body.scrollIntoView({ behavior: 'smooth' }); } catch (e) {} } }
+    ]);
     return { isList: view === 'list', isDetail: view === 'detail', fl, hasFilter, resetF, filterNote: ids.length + ' regulasi sesuai filter',
       jenisBar, regulatoryInsight, sectorInsight, sbTitle, sbTabs, sbJenis: sb === 'jenis', sbSektor: sb === 'sektor', jenisItems, kpiJenis, hasJenisFilter, activeJenisName, activeJenisCount, resetJenisFilter, sekRows, hasSektorFilter, activeSektorName, activeSektorCount, resetSektorFilter,
       hasLvlFilter: chips.length > 0, chips,
       yrL: '2026', yrPrevL: '2025', sekRows, sekTotal: Object.values(SEKV).reduce((a, b) => a + b, 0), allSekLabel: st.allSek ? 'Tampilkan 10 teratas' : 'Tampilkan semua kategori',
       toggleAllSek: () => this.setState({ allSek: !st.allSek }), isu,
+      ri, toKeselarasan, payIns: [sb === 'jenis' ? regulatoryInsight.summary : sectorInsight.summary],
       highlights, ewsCount: highlights.length, ewsOpen: !!ews, ews, ewsStamp: ewsStamp, closeEws, stop: stopProp, onEwsKey,
       q: st.q || '', onSearch: (e) => this.setState({ q: e && e.target ? e.target.value : '', page: 0 }), rows, hasRows: rows.length > 0, noRows: ids.length === 0, pg, pageNote, restNote,
       d, back: () => this.setState({ view: 'list' }), prevReg: go(-1), nextReg: go(1) };
