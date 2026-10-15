@@ -135,7 +135,7 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
 
 @media(max-width:680px){.sc-host{display:block!important;width:100%!important;max-width:100%!important;min-width:0!important}.sc-host>div{box-sizing:border-box!important;width:100%!important;max-width:100%!important;min-width:0!important}.setneg-global-header{box-sizing:border-box!important;width:100%!important;max-width:100%!important;min-width:0!important;overflow:hidden!important}.setneg-global-nav{box-sizing:border-box!important;min-width:0!important}.setneg-brand{max-width:calc(100% - 100px)!important}.harmonisasi-page-tabs{box-sizing:border-box!important;min-width:0!important}}
 @media(max-width:520px){.harmonisasi-page-tabs{width:calc(100% - 20px)!important;max-width:calc(100% - 20px)!important;display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;white-space:normal!important;overflow:visible!important;justify-content:stretch!important}.harmonisasi-page-tabs a{min-width:0!important;min-height:40px!important;padding:5px 7px!important;justify-content:center!important;white-space:normal!important;text-align:center!important;line-height:1.25!important}}
-</style></head>
+</style><style id="harmonisasi-vp-overlay">[data-vp-overlay]{top:var(--ews-vp-top,0px)!important;bottom:auto!important;height:var(--ews-vp-h,100vh)!important;box-sizing:border-box}.mzl-backdrop[data-vp-overlay]{align-items:center;overflow:hidden}.mzl-panel{max-height:100%}.mzl-body{min-height:0}@media(max-width:640px){.mzl-backdrop[data-vp-overlay]{align-items:stretch}.mzl-panel{max-height:none}}</style></head>
 <body>
 <x-dc>
 <helmet>
@@ -506,17 +506,17 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
       </div>
       <div style="padding: 12px 18px 16px; display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px;">
         <sc-for list="{{recap}}" as="r" hint-placeholder-count="3">
-        <button type="button" sc-camel-on-click="{{r.open}}" title="{{r.tt}}" style="display: flex; align-items: center; gap: 13px; padding: 16px 15px; border: 1px solid {{r.bd}}; border-left: 6px solid {{r.c}}; border-radius: 12px; background: {{r.bg}}; font-family: inherit; text-align: left; cursor: pointer; transition: transform .12s, box-shadow .12s;">
-          <span aria-hidden="true" style="flex: none; width: 46px; height: 46px; border-radius: 13px; background-color: {{r.c}}; background-image: url({{r.ico}}); background-size: 25px 25px; background-position: center; background-repeat: no-repeat;"></span>
-          <span style="min-width: 0;"><span style="display: block; font-size: 11.5px; font-weight: 700; letter-spacing: .02em; text-transform: uppercase; color: {{r.c}};">{{r.l}}</span><b style="display: block; font-size: 30px; line-height: 34px; font-weight: 800; color: #0B1F4B; letter-spacing: -0.02em;">{{r.v}}</b><span style="display: block; font-size: 11.5px; line-height: 16px; font-weight: 600; color: #475569;">{{r.s}}</span></span>
+        <button type="button" sc-camel-on-click="{{r.open}}" title="{{r.tt}}" style="display: flex; align-items: center; gap: 13px; padding: 16px 15px; border: 1px solid {{r.bd}}; border-left: 3px solid {{r.c}}; border-radius: 12px; background: {{r.bg}}; font-family: inherit; text-align: left; cursor: pointer; transition: transform .12s, box-shadow .12s;">
+          <span aria-hidden="true" style="flex: none; width: 46px; height: 46px; border-radius: 13px; background-color: {{r.ib}}; background-image: url({{r.ico}}); background-size: 25px 25px; background-position: center; background-repeat: no-repeat;"></span>
+          <span style="min-width: 0;"><span style="display: block; font-size: 11.5px; font-weight: 700; letter-spacing: .02em; text-transform: uppercase; color: {{r.c}};">{{r.l}}</span><b style="display: block; font-size: 30px; line-height: 34px; font-weight: 800; color: #1E293B; letter-spacing: -0.02em;">{{r.v}}</b><span style="display: block; font-size: 11.5px; line-height: 16px; font-weight: 600; color: #475569;">{{r.s}}</span></span>
         </button>
         </sc-for>
       </div>
       <div style="padding: 0 18px 16px; display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px;">
         <sc-for list="{{recap2}}" as="r" hint-placeholder-count="4">
-        <button type="button" sc-camel-on-click="{{r.open}}" title="{{r.tt}}" style="display: flex; align-items: center; gap: 12px; padding: 12px 13px; border: 1px solid {{r.bd}}; border-left: 6px solid {{r.c}}; border-radius: 12px; background: {{r.bg}}; font-family: inherit; text-align: left; cursor: pointer; transition: transform .12s, box-shadow .12s;">
-          <span aria-hidden="true" style="flex: none; width: 40px; height: 40px; border-radius: 11px; background-color: {{r.c}}; background-image: url({{r.ico}}); background-size: 21px 21px; background-position: center; background-repeat: no-repeat;"></span>
-          <span style="min-width: 0;"><span style="display: block; font-size: 11px; font-weight: 700; letter-spacing: .02em; text-transform: uppercase; color: {{r.c}};">{{r.l}}</span><b style="display: block; font-size: 23px; line-height: 28px; font-weight: 800; color: #0B1F4B; letter-spacing: -0.02em;">{{r.v}}</b><span style="display: block; font-size: 11px; line-height: 15px; font-weight: 600; color: #475569;">{{r.s}}</span></span>
+        <button type="button" sc-camel-on-click="{{r.open}}" title="{{r.tt}}" style="display: flex; align-items: center; gap: 12px; padding: 12px 13px; border: 1px solid {{r.bd}}; border-left: 3px solid {{r.c}}; border-radius: 12px; background: {{r.bg}}; font-family: inherit; text-align: left; cursor: pointer; transition: transform .12s, box-shadow .12s;">
+          <span aria-hidden="true" style="flex: none; width: 40px; height: 40px; border-radius: 11px; background-color: {{r.ib}}; background-image: url({{r.ico}}); background-size: 21px 21px; background-position: center; background-repeat: no-repeat;"></span>
+          <span style="min-width: 0;"><span style="display: block; font-size: 11px; font-weight: 700; letter-spacing: .02em; text-transform: uppercase; color: {{r.c}};">{{r.l}}</span><b style="display: block; font-size: 23px; line-height: 28px; font-weight: 800; color: #1E293B; letter-spacing: -0.02em;">{{r.v}}</b><span style="display: block; font-size: 11px; line-height: 15px; font-weight: 600; color: #475569;">{{r.s}}</span></span>
         </button>
         </sc-for>
       </div>
@@ -903,7 +903,7 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
 
   <!-- Modal daftar pembentuk -->
   <sc-if value="{{mOpen}}" hint-placeholder-val="{{false}}">
-    <div class="mzl-backdrop">
+    <div class="mzl-backdrop" data-vp-overlay="1">
       <div role="dialog" aria-modal="true" class="mzl-panel">
         <div class="mzl-head">
           <div style="min-width: 0;"><h3 style="margin: 0; font-size: 15px; font-weight: 600;">{{m.t}}</h3><div style="font-size: 11.5px; color: #64748B;">{{m.sub}}</div></div>
@@ -1024,28 +1024,28 @@ class Component extends DCLogic {
 // ---------- 0. Ringkasan singkat ----------
     // Tiga angka utama untuk pembaca cepat: total permintaan izin, izin yang
     // sudah terbit, dan izin yang perlu perhatian karena melewati SLA.
-    const svgIco = (inner) => ('data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">' + inner + '</svg>').replace(/'/g, '%27'));
-    const I_DOC = svgIco('<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"></path><path d="M14 2v6h6"></path><path d="M9 15h6"></path><path d="M9 11h3"></path>');
-    const I_OK = svgIco('<path d="M22 11.1V12a10 10 0 1 1-5.9-9.1"></path><path d="M22 4 12 14l-3-3"></path>');
-    const I_AL = svgIco('<path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"></path><path d="M12 9v4"></path><path d="M12 17h.01"></path>');
+    const svgIco = (inner, col) => ('data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="' + (col || '#FFFFFF') + '" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">' + inner + '</svg>').replace(/'/g, '%27'));
+    const I_DOC = svgIco('<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"></path><path d="M14 2v6h6"></path><path d="M9 15h6"></path><path d="M9 11h3"></path>', '#3B5B92');
+    const I_OK = svgIco('<path d="M22 11.1V12a10 10 0 1 1-5.9-9.1"></path><path d="M22 4 12 14l-3-3"></path>', '#3F7D6E');
+    const I_AL = svgIco('<path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"></path><path d="M12 9v4"></path><path d="M12 17h.01"></path>', '#A16A2A');
     const dTer = tot - terS[4];
     const recap = [
       {
         l: 'Total permintaan izin', v: fN(masS[5]),
         s: 'izin masuk sepanjang September 2026, seluruh Indonesia',
-        c: '#1D4ED8', bg: '#EFF6FF', bd: '#BFDBFE', ico: I_DOC, tt: 'Lihat daftar pembentuk permintaan izin',
+        c: '#3B5B92', bg: '#F7F9FC', bd: '#E3E9F2', ib: '#E6EDF7', ico: I_DOC, tt: 'Lihat daftar pembentuk permintaan izin',
         open: () => openM('terbit', { ...filt1, tab: 'all' })
       },
       {
         l: 'Sudah diterbitkan', v: fN(tot),
         s: (dTer >= 0 ? '+' : '') + fN(Math.abs(dTer)) + ' dari Agustus - ' + pc(tot, masS[5]) + ' dari permintaan',
-        c: '#047857', bg: '#ECFDF3', bd: '#A7F3D0', ico: I_OK, tt: 'Lihat daftar izin yang sudah terbit',
+        c: '#3F7D6E', bg: '#F6FAF8', bd: '#E1EDE8', ib: '#E3F0EC', ico: I_OK, tt: 'Lihat daftar izin yang sudah terbit',
         open: () => openM('terbit', { ...filt1, tab: '0' })
       },
       {
         l: 'Perlu perhatian', v: fN(stC[1]),
         s: pc(stC[1], tot) + ' dari izin terbit - melewati batas SLA',
-        c: '#B45309', bg: '#FFFBEB', bd: '#FDE68A', ico: I_AL, tt: 'Lihat daftar izin yang melewati SLA',
+        c: '#A16A2A', bg: '#FCFAF5', bd: '#EFE5D3', ib: '#F6ECDB', ico: I_AL, tt: 'Lihat daftar izin yang melewati SLA',
         open: () => openM('terbit', { ...filt1, tab: '1' })
       }
     ];
@@ -1295,15 +1295,15 @@ class Component extends DCLogic {
     // ---------- Ringkasan: baris kedua, mewakili kartu 2–6 ----------
     const goSec = (id) => () => { const el = document.getElementById(id); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' }); };
     const natTw3 = serieFor('all')[4];
-    const I_CLK = svgIco('<circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path>');
-    const I_HG = svgIco('<path d="M5 22h14"></path><path d="M5 2h14"></path><path d="M17 22v-4.172a2 2 0 0 0-.586-1.414L12 12l-4.414 4.414A2 2 0 0 0 7 17.828V22"></path><path d="M7 2v4.172a2 2 0 0 0 .586 1.414L12 12l4.414-4.414A2 2 0 0 0 17 6.172V2"></path>');
-    const I_TG = svgIco('<circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle>');
-    const I_LK = svgIco('<path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>');
+    const I_CLK = svgIco('<circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path>', '#5B5B9A');
+    const I_HG = svgIco('<path d="M5 22h14"></path><path d="M5 2h14"></path><path d="M17 22v-4.172a2 2 0 0 0-.586-1.414L12 12l-4.414 4.414A2 2 0 0 0 7 17.828V22"></path><path d="M7 2v4.172a2 2 0 0 0 .586 1.414L12 12l4.414-4.414A2 2 0 0 0 17 6.172V2"></path>', '#3D7A8C');
+    const I_TG = svgIco('<circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle>', '#3F7A75');
+    const I_LK = svgIco('<path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>', '#9A4F5C');
     const recap2 = [
-      { l: 'Rata-rata waktu selesai', v: slaAll + ' HK', s: ewsJ.length + ' dari ' + JEN.length + ' jenis izin melewati SLA > ' + THR + '%', c: '#6D28D9', bg: '#F5F3FF', bd: '#DDD6FE', ico: I_CLK, tt: 'Ke kartu waktu penyelesaian vs SLA', open: goSec('sec-sla') },
-      { l: 'Permohonan tertahan', v: fN(nat4), s: pc(nat4, 11874) + ' dari 11.874 permohonan dalam proses', c: '#0E7490', bg: '#ECFEFF', bd: '#A5F3FC', ico: I_HG, tt: 'Ke kartu permohonan tertahan', open: goSec('sec-tertahan') },
-      { l: 'Kepatuhan SLA · Tw III', v: f1(natTw3) + '%', s: sg(natTw3 - TGW.all[1]) + ' poin vs target ' + TGW.all[1] + '%', c: '#0F766E', bg: '#F0FDFA', bd: '#99F6E4', ico: I_TG, tt: 'Ke kartu tren kemudahan berusaha', open: goSec('sec-tren') },
-      { l: 'Hambatan regulasi', v: HB.filter((h) => h.ews).length + ' EWS', s: nStat('Menunggu verifikasi') + ' menunggu verifikasi · ' + regTop[0] + ' paling terkait', c: '#BE123C', bg: '#FFF1F2', bd: '#FECDD3', ico: I_LK, tt: 'Ke kartu keterkaitan hambatan izin & regulasi', open: goSec('sec-hambatan') }
+      { l: 'Rata-rata waktu selesai', v: slaAll + ' HK', s: ewsJ.length + ' dari ' + JEN.length + ' jenis izin melewati SLA > ' + THR + '%', c: '#5B5B9A', bg: '#F8F8FC', bd: '#E5E5F1', ib: '#E8E8F4', ico: I_CLK, tt: 'Ke kartu waktu penyelesaian vs SLA', open: goSec('sec-sla') },
+      { l: 'Permohonan tertahan', v: fN(nat4), s: pc(nat4, 11874) + ' dari 11.874 permohonan dalam proses', c: '#3D7A8C', bg: '#F6FAFB', bd: '#DFEBEF', ib: '#E1EFF3', ico: I_HG, tt: 'Ke kartu permohonan tertahan', open: goSec('sec-tertahan') },
+      { l: 'Kepatuhan SLA · Tw III', v: f1(natTw3) + '%', s: sg(natTw3 - TGW.all[1]) + ' poin vs target ' + TGW.all[1] + '%', c: '#3F7A75', bg: '#F6FAFA', bd: '#DDEBEA', ib: '#E0EFEE', ico: I_TG, tt: 'Ke kartu tren kemudahan berusaha', open: goSec('sec-tren') },
+      { l: 'Hambatan regulasi', v: HB.filter((h) => h.ews).length + ' EWS', s: nStat('Menunggu verifikasi') + ' menunggu verifikasi · ' + regTop[0] + ' paling terkait', c: '#9A4F5C', bg: '#FCF8F8', bd: '#EFE0E3', ib: '#F3E3E6', ico: I_LK, tt: 'Ke kartu keterkaitan hambatan izin & regulasi', open: goSec('sec-hambatan') }
     ];
     const c6dd = [dd('c6w', 'Wilayah', c6wL, c6w !== 'all', [opt('Nasional', f1(natV) + '%', c6w === 'all', () => set({ c6w: 'all' })), ...rankSrc.map((r) => opt(r.n, f1(r.v) + '%', c6w === r.id, () => set({ c6w: r.id })))]),
       dd('c6c', 'Bandingkan', cmpOn ? cmpL : 'Tidak ada', cmpOn, [opt('Tidak ada', '', !cmpOn, () => set({ c6c: null })), ...(c6w !== 'all' ? [opt('Nasional', f1(natV) + '%', c6c === 'all', () => set({ c6c: 'all' }))] : []), ...rankSrc.filter((r) => r.id !== c6w).map((r) => opt(r.n, f1(r.v) + '%', c6c === r.id, () => set({ c6c: r.id })))])];
@@ -1672,5 +1672,5 @@ const pzClose = () => this.setState({ ews: null });
   if (window.MutationObserver && document.body) new MutationObserver(focusEwsModal).observe(document.body, { childList: true, subtree: true });
 })();
 </script>
-<script data-ews-viewport>(function(){var root=document.documentElement,open=false;function apply(top,h){root.style.setProperty("--ews-vp-top",Math.max(0,top)+"px");root.style.setProperty("--ews-vp-h",h+"px");}window.addEventListener("message",function(e){var d=e.data;if(d&&d.type==="harmonisasi:viewport")apply(Number(d.top)||0,Number(d.height)||window.innerHeight);});function check(){var now=!!document.querySelector("[data-ews-modal]");if(now===open)return;open=now;if(window.parent!==window)window.parent.postMessage({type:"harmonisasi:modal",open:open},"*");}if(window.MutationObserver)new MutationObserver(check).observe(root,{childList:true,subtree:true});})();</script>
+<script data-ews-viewport>(function(){var root=document.documentElement,open=false;function apply(top,h){root.style.setProperty("--ews-vp-top",Math.max(0,top)+"px");root.style.setProperty("--ews-vp-h",h+"px");}window.addEventListener("message",function(e){var d=e.data;if(d&&d.type==="harmonisasi:viewport")apply(Number(d.top)||0,Number(d.height)||window.innerHeight);});function check(){var now=!!document.querySelector("[data-ews-modal],[data-vp-overlay]");if(now===open)return;open=now;if(window.parent!==window)window.parent.postMessage({type:"harmonisasi:modal",open:open},"*");}if(window.MutationObserver)new MutationObserver(check).observe(root,{childList:true,subtree:true});})();</script>
 </body></html>

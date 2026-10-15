@@ -136,7 +136,7 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
 
 @media(max-width:680px){.sc-host{display:block!important;width:100%!important;max-width:100%!important;min-width:0!important}.sc-host>div{box-sizing:border-box!important;width:100%!important;max-width:100%!important;min-width:0!important}.setneg-global-header{box-sizing:border-box!important;width:100%!important;max-width:100%!important;min-width:0!important;overflow:hidden!important}.setneg-global-nav{box-sizing:border-box!important;min-width:0!important}.setneg-brand{max-width:calc(100% - 100px)!important}.harmonisasi-page-tabs{box-sizing:border-box!important;min-width:0!important}}
 @media(max-width:520px){.harmonisasi-page-tabs{width:calc(100% - 20px)!important;max-width:calc(100% - 20px)!important;display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;white-space:normal!important;overflow:visible!important;justify-content:stretch!important}.harmonisasi-page-tabs a{min-width:0!important;min-height:40px!important;padding:5px 7px!important;justify-content:center!important;white-space:normal!important;text-align:center!important;line-height:1.25!important}}
-</style></head>
+</style><style id="harmonisasi-vp-overlay">[data-vp-overlay]{top:var(--ews-vp-top,0px)!important;bottom:auto!important;height:var(--ews-vp-h,100vh)!important;box-sizing:border-box}.mzl-backdrop[data-vp-overlay]{align-items:center;overflow:hidden}.mzl-panel{max-height:100%}.mzl-body{min-height:0}@media(max-width:640px){.mzl-backdrop[data-vp-overlay]{align-items:stretch}.mzl-panel{max-height:none}}</style></head>
 <body>
 <x-dc>
 <helmet>
@@ -1131,7 +1131,7 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
 
   <!-- ======================= MODAL LAMPIRAN RINCI PMDN/PMA ======================= -->
   <sc-if value="{{lm}}" hint-placeholder-val="{{false}}">
-    <div style="position: fixed; inset: 0; z-index: 150; background: rgba(15,23,42,.45); display: flex; align-items: flex-start; justify-content: center; padding: 40px 24px; overflow-y: auto;">
+    <div data-vp-overlay="1" style="position: fixed; inset: 0; z-index: 150; background: rgba(15,23,42,.45); display: flex; align-items: flex-start; justify-content: center; padding: 24px 16px; overflow-y: auto; overscroll-behavior: contain;">
       <div role="dialog" aria-modal="true" aria-label="Lampiran rinci PMDN dan PMA" style="width: 1000px; max-width: 100%; background: #FFFFFF; border-radius: 14px; box-shadow: 0 24px 64px rgba(15,23,42,.3); overflow: hidden;">
         <div style="padding: 14px 18px; border-bottom: 1px solid #EEF2F7; display: flex; justify-content: space-between; align-items: center; gap: 10px;">
           <div><h2 style="margin: 0; font-size: 15.5px; font-weight: 700;">Lampiran rinci realisasi PMDN &amp; PMA</h2><div style="font-size: 11.5px; color: #64748B;">Data pembentuk angka pada kartu realisasi · nilai resmi BKPM, bukan hasil AI</div></div>
@@ -1204,7 +1204,7 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
 
   <!-- ======================= DRAWER DETAIL REGULASI ======================= -->
   <sc-if value="{{dr.open}}" hint-placeholder-val="{{false}}">
-    <div style="position: fixed; inset: 0; z-index: 160; background: rgba(15,23,42,.35); display: flex; justify-content: flex-end;">
+    <div data-vp-overlay="1" style="position: fixed; inset: 0; z-index: 160; background: rgba(15,23,42,.35); display: flex; justify-content: flex-end;">
       <aside role="dialog" aria-modal="true" aria-label="Detail peraturan" style="width: 460px; max-width: 100%; height: 100%; background: #FFFFFF; box-shadow: -16px 0 48px rgba(15,23,42,.22); display: flex; flex-direction: column;">
         <div style="padding: 14px 18px; border-bottom: 1px solid #EEF2F7; display: flex; justify-content: space-between; align-items: center; gap: 8px;">
           <div style="display: flex; align-items: center; gap: 8px;"><span style="padding: 2px 7px; border-radius: 5px; background: {{dr.jbg}}; color: #FFFFFF; font-size: 10.5px; font-weight: 700;">{{dr.j}}</span><span style="font-size: 12px; color: #64748B;">{{dr.pos}}</span></div>
@@ -2241,5 +2241,5 @@ const ewsClose = () => this.setState({ ews: null });
   if (window.MutationObserver && document.body) new MutationObserver(focusEwsModal).observe(document.body, { childList: true, subtree: true });
 })();
 </script>t>
-<script data-ews-viewport>(function(){var root=document.documentElement,open=false;function apply(top,h){root.style.setProperty("--ews-vp-top",Math.max(0,top)+"px");root.style.setProperty("--ews-vp-h",h+"px");}window.addEventListener("message",function(e){var d=e.data;if(d&&d.type==="harmonisasi:viewport")apply(Number(d.top)||0,Number(d.height)||window.innerHeight);});function check(){var now=!!document.querySelector("[data-ews-modal]");if(now===open)return;open=now;if(window.parent!==window)window.parent.postMessage({type:"harmonisasi:modal",open:open},"*");}if(window.MutationObserver)new MutationObserver(check).observe(root,{childList:true,subtree:true});})();</script>
+<script data-ews-viewport>(function(){var root=document.documentElement,open=false;function apply(top,h){root.style.setProperty("--ews-vp-top",Math.max(0,top)+"px");root.style.setProperty("--ews-vp-h",h+"px");}window.addEventListener("message",function(e){var d=e.data;if(d&&d.type==="harmonisasi:viewport")apply(Number(d.top)||0,Number(d.height)||window.innerHeight);});function check(){var now=!!document.querySelector("[data-ews-modal],[data-vp-overlay]");if(now===open)return;open=now;if(window.parent!==window)window.parent.postMessage({type:"harmonisasi:modal",open:open},"*");}if(window.MutationObserver)new MutationObserver(check).observe(root,{childList:true,subtree:true});})();</script>
 </body></html>
