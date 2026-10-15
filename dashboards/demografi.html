@@ -631,12 +631,9 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
           <div style="padding: 9px 12px; border-radius: 9px; background: #F8FAFC; border: 1px solid #EEF2F7;"><div style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.4px; color: #64748B;">SATUAN · PERIODE</div><div style="font-size: 11.5px; line-height: 16px; color: #334155;"><b>{{rk.unit}}</b> · {{rk.per}}</div></div>
           <div style="padding: 9px 12px; border-radius: 9px; background: #F8FAFC; border: 1px solid #EEF2F7;"><div style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.4px; color: #64748B;">CAKUPAN</div><div style="font-size: 11.5px; line-height: 16px; color: #334155;">{{rk.scope}}</div></div>
         </div>
-        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px;">
-          <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 6px;"><span style="font-size: 11.5px; font-weight: 600; color: #64748B;">Urutkan:</span><sc-for list="{{rkSorts}}" as="o" hint-placeholder-count="5"><button type="button" sc-camel-on-click="{{o.pick}}" style="height: 28px; padding: 0 11px; border-radius: 99px; border: 1px solid {{o.bd}}; background: {{o.bg}}; color: {{o.fg}}; font-family: inherit; font-size: 11.5px; font-weight: 600; cursor: pointer;">{{o.l}}</button></sc-for></div>
-          <span style="font-size: 11.5px; color: #64748B;">{{rkHead}}</span>
-        </div>
+        <div style="font-size: 11.5px; color: #64748B;">{{rkHead}}</div>
         <div style="display: flex; flex-direction: column; gap: 6px;">
-          <div style="display: grid; grid-template-columns: minmax(120px, 210px) minmax(0, 1fr) 96px; gap: 12px; padding: 0 6px; font-size: 10.5px; font-weight: 700; letter-spacing: .04em; color: #94A3B8;"><span style="text-align: right;">WILAYAH</span><span>{{rk.inL}} + {{rk.outL}}</span><span style="text-align: right;">NETO</span></div>
+          <div role="row" style="display: grid; grid-template-columns: minmax(120px, 210px) minmax(0, 1fr) 96px; gap: 12px; align-items: center; padding: 6px; border-bottom: 1px solid #E3E8F0; background: #F8FAFC; border-radius: 6px 6px 0 0;"><button type="button" sc-camel-on-click="{{rkCol.pop.pick}}" title="{{rkCol.pop.t}}" aria-sort="{{rkCol.pop.aria}}" style="display: inline-flex; align-items: center; gap: 4px; justify-self: end; padding: 3px 6px; border: 0; border-radius: 5px; background: {{rkCol.pop.bg}}; font-family: inherit; font-size: 10.5px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: #475569; cursor: pointer;">Wilayah · penduduk <span style="color: {{rkCol.pop.c}};">{{rkCol.pop.ic}}</span></button><span style="display: flex; flex-wrap: wrap; gap: 6px;"><button type="button" sc-camel-on-click="{{rkCol.mi.pick}}" title="{{rkCol.mi.t}}" aria-sort="{{rkCol.mi.aria}}" style="display: inline-flex; align-items: center; gap: 4px; border-left: 3px solid #B9A9F7; justify-self: start; padding: 3px 6px; border: 0; border-radius: 5px; background: {{rkCol.mi.bg}}; font-family: inherit; font-size: 10.5px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: #475569; cursor: pointer;">{{rk.inL}} <span style="color: {{rkCol.mi.c}};">{{rkCol.mi.ic}}</span></button><button type="button" sc-camel-on-click="{{rkCol.mo.pick}}" title="{{rkCol.mo.t}}" aria-sort="{{rkCol.mo.aria}}" style="display: inline-flex; align-items: center; gap: 4px; border-left: 3px solid #9EDCF2; justify-self: start; padding: 3px 6px; border: 0; border-radius: 5px; background: {{rkCol.mo.bg}}; font-family: inherit; font-size: 10.5px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: #475569; cursor: pointer;">{{rk.outL}} <span style="color: {{rkCol.mo.c}};">{{rkCol.mo.ic}}</span></button></span><button type="button" sc-camel-on-click="{{rkCol.net.pick}}" title="{{rkCol.net.t}}" aria-sort="{{rkCol.net.aria}}" style="display: inline-flex; align-items: center; gap: 4px; justify-self: end; padding: 3px 6px; border: 0; border-radius: 5px; background: {{rkCol.net.bg}}; font-family: inherit; font-size: 10.5px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: #475569; cursor: pointer;">Neto <span style="color: {{rkCol.net.c}};">{{rkCol.net.ic}}</span></button></div>
           <sc-for list="{{rkBars}}" as="r" hint-placeholder-count="5">
             <a href="#sec-peta" sc-camel-on-click="{{r.pick}}" title="{{r.t}}" style="display: grid; grid-template-columns: minmax(120px, 210px) minmax(0, 1fr) 96px; gap: 12px; align-items: center; padding: 5px 6px; border-radius: 8px; background: {{r.bg}}; color: #0F172A; text-decoration: none; transition: background .12s;" class="rw">
               <span style="text-align: right; min-width: 0; line-height: 1.2;"><span style="display: block; font-size: 12.5px; font-weight: {{r.fw}};">{{r.n}}</span><span style="display: block; font-size: 10.5px; color: #64748B;">{{r.sub}}</span></span>
@@ -1115,18 +1112,21 @@ class Component extends DCLogic {
     R.inn.forEach((x) => { pm[x.n] = { id: x.id, n: x.n, sub: x.sub, mi: x.v, mo: null }; });
     R.out.forEach((x) => { pm[x.n] = pm[x.n] || { id: x.id, n: x.n, sub: x.sub, mi: null }; pm[x.n].mo = x.v; });
     const pairs = Object.values(pm).map((x) => ({ ...x, pop: rkJ === 'kerja' ? KAB_POP[x.n] || 0 : (byId[x.id] ? byId[x.id].pop : 0) }));
-    const SORTS = [['pop', 'Jumlah penduduk'], ['inD', R.inL + ' terbanyak'], ['inA', R.inL + ' tersedikit'], ['outD', R.outL + ' terbanyak'], ['outA', R.outL + ' tersedikit']];
-    const rkS = SORTS.some(([k]) => k === st.rkS) ? st.rkS : 'pop';
-    const sortKey = { pop: ['pop', -1], inD: ['mi', -1], inA: ['mi', 1], outD: ['mo', -1], outA: ['mo', 1] }[rkS];
+    // urutan gaya datatable: klik header kolom = urut turun, klik lagi = urut naik
+    const COLS = { pop: 'jumlah penduduk', mi: R.inL.toLowerCase(), mo: R.outL.toLowerCase(), net: 'neto' };
+    const rkC = COLS[st.rkC] ? st.rkC : 'pop', rkD = st.rkD === 1 ? 1 : -1;
+    const rkS = rkC;
+    const sortKey = [rkC, rkD];
     const maxN = rkJ === 'kerja' ? pairs.length : R.max;
     const topN2 = Math.min(st.topN || 5, maxN);
+    pairs.forEach((x) => { x.net = x.mi != null && x.mo != null ? x.mi - x.mo : null; });
     const pShown = pairs.filter((x) => x[sortKey[0]] != null).sort((a, b) => (a[sortKey[0]] - b[sortKey[0]]) * sortKey[1]).slice(0, topN2);
     const totMax = Math.max(1, ...pShown.map((x) => (x.mi || 0) + (x.mo || 0)));
     const fmtPop = (v) => (v >= 1e6 ? nf(v / 1e6, 1) + ' jt jiwa' : nf(v) + ' jiwa');
     const rkBars = pShown.map((x, i) => {
       const a = x.mi || 0, b = x.mo || 0, t = a + b, on = x.id === sel, net = x.mi != null && x.mo != null ? a - b : null;
       return {
-        no: i + 1, n: x.n, sub: rkS === 'pop' ? 'penduduk ' + fmtPop(x.pop) + (rkJ === 'kerja' ? ' (perkiraan)' : '') : x.sub,
+        no: i + 1, n: x.n, sub: (x.pop ? 'penduduk ' + fmtPop(x.pop) + (rkJ === 'kerja' ? ' (perkiraan)' : '') : '') + (x.sub && rkJ !== 'kerja' ? ' · ' + x.sub : ''),
         w: ((t / totMax) * 100).toFixed(1) + '%',
         wi: t ? ((a / t) * 100).toFixed(1) + '%' : '0%', wo: t ? ((b / t) * 100).toFixed(1) + '%' : '0%',
         vi: x.mi != null && a / totMax >= 0.16 ? nf(a, R.dec) : '', vo: x.mo != null && b / totMax >= 0.16 ? nf(b, R.dec) : '',
@@ -1135,8 +1135,9 @@ class Component extends DCLogic {
         bg: on ? '#EFF6FF' : 'transparent', fw: on ? 700 : 600, pick: go(x.id)
       };
     });
-    const rkSorts = SORTS.map(([k, l]) => ({ l, bg: k === rkS ? '#1E40AF' : '#FFFFFF', fg: k === rkS ? '#FFFFFF' : '#334155', bd: k === rkS ? '#1E40AF' : '#E3E8F0', pick: () => this.setState({ rkS: k }) }));
-    const rkHead = (rkS === 'pop' ? 'Top ' + pShown.length + ' menurut jumlah penduduk' : 'Top ' + pShown.length + ' · ' + SORTS.find(([k]) => k === rkS)[1].toLowerCase()) + ' · ' + R.unit;
+    const colH = (k) => { const on = rkC === k; return { ic: on ? (rkD < 0 ? '▼' : '▲') : '↕', c: on ? '#1E40AF' : '#94A3B8', bg: on ? '#EFF6FF' : 'transparent', aria: on ? (rkD < 0 ? 'descending' : 'ascending') : 'none', t: 'Urutkan menurut ' + COLS[k] + (on && rkD < 0 ? ' (terkecil dulu)' : ' (terbesar dulu)'), pick: () => this.setState({ rkC: k, rkD: on ? -rkD : -1 }) }; };
+    const rkCol = { pop: colH('pop'), mi: colH('mi'), mo: colH('mo'), net: colH('net') };
+    const rkHead = 'Top ' + pShown.length + ' menurut ' + COLS[rkC] + (rkD < 0 ? ' (terbesar dulu)' : ' (terkecil dulu)') + ' · ' + R.unit + ' · klik judul kolom untuk mengurutkan';
     const rkTabs = Object.entries(RK).map(([k, v]) => ({ l: v.l, bg: k === rkJ ? '#FFFFFF' : 'transparent', fg: k === rkJ ? '#1E40AF' : '#475569', pick: () => this.setState({ rkJ: k }) }));
     const topOpts = [5, 10].map((n) => ({ l: 'Top ' + n, ok: n <= maxN, no: n > maxN, why: 'Sumber ' + R.src.replace('BPS · ', '') + ' hanya memuat ' + R.max + ' teratas.', bg: topN2 === n ? '#FFFFFF' : 'transparent', fg: topN2 === n ? '#1E40AF' : '#475569', pick: () => this.setState({ topN: n }) }));
 
@@ -1336,7 +1337,7 @@ class Component extends DCLogic {
       onProv: (e) => { if (e && e.target) this.setState({ sel: e.target.value || null, mapPop: false }); },
       pn, hasMapPop: !!sel && !!st.mapPop, mp: Object.assign({}, pn, { popLeft: st.mapPopLeft || '12px', popTop: st.mapPopTop || '72px' }), closeMapPop: () => this.setState({ mapPop: false }), clearSel: () => this.setState({ sel: null, mapPop: false }),
       showTbl, tblLabel: showTbl ? 'Tutup tabel ▴' : 'Lihat data 38 provinsi ▾', toggleTbl: () => this.setState({ showTbl: !showTbl }), tbl, sortBtns,
-      rk, rkTabs, topOpts, rkBars, rkSorts, rkHead,
+      rk, rkTabs, topOpts, rkBars, rkCol, rkHead,
       trTabs, isLine, isMig, perOpts, wil, tr, charts, rd, mg, supas, mut,
       ins
     };
