@@ -557,6 +557,22 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
           <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px; font-size: 11.5px; color: #64748B;">
             <span>Arahkan kursor ke provinsi untuk melihat nilai; klik untuk membuka profil. Batas 38 provinsi (termasuk pemekaran Papua 2022).</span>
             <button type="button" sc-camel-on-click="{{toggleTbl}}" style="height: 28px; padding: 0 10px; border-radius: 7px; border: 1px solid #B8E3DF; background: #FFFFFF; font-family: inherit; font-size: 12px; font-weight: 600; color: #1D4ED8; cursor: pointer;">{{tblLabel}}</button>
+<div style="flex: 1 1 auto; min-height: 150px; max-height: 360px; display: flex; flex-direction: column; border: 1px solid #C7D2FE; border-radius: 10px; background: #F8F9FF; overflow: hidden;">
+              <div style="padding: 9px 12px; border-bottom: 1px solid #E0E7FF; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; background: #EEF2FF;">
+                <div style="display: flex; align-items: center; gap: 7px; min-width: 0;"><span style="flex: none; padding: 2px 7px; border-radius: 5px; background: #3730A3; color: #FFFFFF; font-size: 10px; font-weight: 700;">Insight AI</span><b style="font-size: 12px; color: #1E1B4B;">Pola demografi &amp; mobilitas nasional</b></div>
+                <span style="font-size: 10px; color: #6366F1; white-space: nowrap;">Umum - tidak berubah per provinsi</span>
+              </div>
+              <div style="flex: 1 1 auto; min-height: 0; overflow-y: auto; padding: 9px 10px; display: flex; flex-direction: column; gap: 8px;">
+                <sc-for list="{{mapIns}}" as="i" hint-placeholder-count="6">
+                <div style="padding: 10px 11px; border-radius: 9px; border: 1px solid #E0E7FF; background: #FFFFFF;">
+                  <div style="display: flex; gap: 8px; align-items: flex-start;"><span style="flex: none; width: 20px; height: 20px; border-radius: 99px; background: #3730A3; color: #FFFFFF; font-size: 10.5px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center;">{{i.no}}</span><div style="min-width: 0;"><div style="font-size: 9.5px; font-weight: 700; letter-spacing: .3px; color: #6366F1; text-transform: uppercase;">{{i.j}}</div><b style="display: block; font-size: 12px; line-height: 17px; color: #1E1B4B;">{{i.t}}</b></div></div>
+                  <ul style="margin: 7px 0 0; padding-left: 16px; display: flex; flex-direction: column; gap: 3px; font-size: 11px; line-height: 16px; color: #334155;"><sc-for list="{{i.basis}}" as="b" hint-placeholder-count="3"><li>{{b}}</li></sc-for></ul>
+                  <div style="margin-top: 7px; padding: 7px 9px; border-radius: 7px; background: #EEF2FF; border: 1px dashed #A5B4FC; font-size: 10.5px; line-height: 15px; color: #312E81;"><b style="color: #3730A3;">Implikasi:</b> {{i.impl}}</div>
+                </div>
+                </sc-for>
+                <div style="font-size: 9.5px; line-height: 14px; color: #818CF8; padding: 0 2px 2px;">Disusun dari agregat 38 provinsi (BPS, Kemenkes, Dukcapil). Angka bersifat estimasi turunan untuk perbandingan antarwilayah.</div>
+              </div>
+            </div>
           </div>
         </div>
         <aside style="flex: 1 1 380px; min-width: 0; border-left: 1px solid #EEF2F7; padding: 14px 18px 16px; display: flex; flex-direction: column; gap: 12px; background: #FBFCFE;">
@@ -610,8 +626,7 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
             <div style="padding: 10px; border-radius: 9px; background: #FFFFFF; border: 1px solid #E3E8F0;"><div style="font-size: 11px; color: #64748B;">Sektor unggulan</div><div style="font-size: 12.5px; font-weight: 700; color: {{pn.sekC}}; line-height: 17px;">{{pn.sek}}</div><div style="font-size: 10.5px; color: #64748B;">{{pn.sekSrc}}</div></div>
             <div style="padding: 10px; border-radius: 9px; background: #FFFFFF; border: 1px solid #E3E8F0;"><div style="font-size: 11px; color: #64748B;">Migrasi risen</div><div style="font-size: 12.5px; font-weight: 700; color: {{pn.migC}}; line-height: 17px;">{{pn.mig}}</div><div style="font-size: 10.5px; color: #64748B;">{{pn.migSrc}}</div></div>
           </div>
-          <a href="Peluang.dc.html" style="margin-top: auto; align-self: flex-start; font-size: 12.5px; font-weight: 600; text-decoration: none;">{{pn.pe}}</a>
-        </aside>
+                  </aside>
       </div>
       <sc-if value="{{showTbl}}" hint-placeholder-val="{{false}}">
         <div style="border-top: 1px solid #EEF2F7;">
@@ -988,6 +1003,93 @@ class Component extends DCLogic {
     const sexB = (L, P, src) => ({ hasSex: true, noSex: false, sexL: nf(L), sexP: nf(P), sexLp: nf((L / (L + P)) * 100, 1) + '%', sexPp: nf((P / (L + P)) * 100, 1) + '%', sexLw: (L / (L + P)) * 100 + '%', sexPw: (P / (L + P)) * 100 + '%', sexR: nf((L / P) * 100, 1), sexSrc: src });
     const noSex = { hasSex: false, noSex: true, sexL: BT, sexP: BT, sexLp: '', sexPp: '', sexLw: '0%', sexPw: '0%', sexR: BT, sexSrc: 'belum tersedia' };
     const popT = PV.reduce((s, p) => s + p.pop, 0), luasT = PV.reduce((s, p) => s + p.luas, 0);
+// ============ Insight AI umum (nasional) untuk card peta ============
+    // Sengaja dihitung dari agregat seluruh 38 provinsi, bukan dari provinsi
+    // terpilih, sehingga isinya stabil dan tidak berubah ketika pengguna
+    // mengklik atau mencari wilayah di peta.
+    const mapIns = (() => {
+      const clsN = CLS.map((l, i) => ({ l, n: PV.filter((p) => clsOf(p.dens) === i).length }));
+      const topPop = [...PV].sort((a, b) => b.pop - a.pop);
+      const top5Pop = topPop.slice(0, 5);
+      const share5 = top5Pop.reduce((s, p) => s + p.pop, 0) / popT * 100;
+      const densN = popT / luasT;
+      const jw = ['jabar', 'jateng', 'banten', 'diy'].map((k) => byId[k]).filter(Boolean);
+      const jwShare = jw.reduce((s, p) => s + p.pop, 0) / popT * 100;
+      const kal = ['kaltim', 'kalteng', 'kalsel', 'kalbar'].map((k) => byId[k]).filter(Boolean);
+      const kalShare = kal.reduce((s, p) => s + p.pop, 0) / popT * 100;
+      const kep = ['kepri', 'bali', 'lampung'].map((k) => byId[k]).filter(Boolean);
+      const kepShare = kep.reduce((s, p) => s + p.pop, 0) / popT * 100;
+      const a3 = [22.74, 69.3, 7.96];
+      const dep = (a3[0] + a3[2]) / a3[1] * 100;
+      const dki = byId.dki, rar = byId[densRank[densRank.length - 1]];
+      const rap = [...PV].sort((a, b) => (b.mi || 0) - (a.mi || 0)).slice(0, 3);
+      const imig = PV.reduce((s, p) => s + (p.mi || 0), 0);
+      const omig = PV.reduce((s, p) => s + (p.mo || 0), 0);
+      const ab = ageBands(a3, popT, [146402289, 143722784]);
+      const muda = ab[3], prod = ab[4];
+      return [
+        {
+          no: 1, j: 'Distribusi spasial',
+          t: 'Penduduk Indonesia terkonsentrasi di lima provinsi, sisanya tersebar dengan kepadatan rendah',
+          basis: [
+            'Lima provinsi dengan penduduk terbesar (' + top5Pop.map((p) => p.n).join(', ') + ') menyerap ' + nf(share5, 1) + '% dari penduduk nasional',
+            'Kepadatan rata-rata nasional ' + nf(densN) + ' jiwa/km2, tetapi ' + nf(dki.dens) + ' jiwa/km2 di ' + dki.n + ' dan hanya ' + nf(rar.dens) + ' jiwa/km2 di ' + rar.n,
+            'Sebaran kelas kepadatan: ' + clsN.map((x) => x.n + ' prov. pada ' + x.l + ' jiwa/km2').join(', ')
+          ],
+          impl: 'Konsumen massal dan pasar ritel layak diarahkan ke provinsi padat; industri, logistik, dan manufaktur lebih hemat biaya di wilayah kepadatan rendah.'
+        },
+        {
+          no: 2, j: 'Struktur usia',
+          t: 'Kelompok usia kerja 15-64 tahun masih dominan, namun rasio ketergantungan sudah mendekati 44 persen',
+          basis: [
+            'Komposisi nasional: 0-14 tahun ' + nf(a3[0], 2) + '%, 15-64 tahun ' + nf(a3[1], 2) + '%, 65+ tahun ' + nf(a3[2], 2) + '%',
+            'Rasio ketergantungan ' + nf(dep, 1) + ' orang non-usia kerja per 100 orang usia kerja',
+            'Rentang 15-24 tahun (' + muda.u + ' th) ' + muda.tPc + ' dan 25-34 tahun (' + prod.u + ' th) ' + prod.tPc + ' - dua kelompok entry-level terbesar'
+          ],
+          impl: 'Kebutuhan layanan kesehatan, pensiun, dan aksesibilitas meningkat lebih cepat daripada jumlah penduduk; pasar tenaga kerja entry-level masih besar.'
+        },
+        {
+          no: 3, j: 'Konsentrasi Jawa',
+          t: 'Sekitar dua pertiga penduduk berada di Jawa, sehingga permintaan pasar terpusat pada koridor Jakarta dan Surabaya',
+          basis: [
+            'Jawa Barat, Jawa Tengah, Banten, dan DI Yogyakarta: ' + nf(jwShare, 1) + '% penduduk nasional dalam empat provinsi',
+            'Kalimantan (Barat, Tengah, Selatan, Timur): ' + nf(kalShare, 1) + '% dalam empat provinsi',
+            'Kepulauan (Kepulauan Riau, Bali, Lampung): ' + nf(kepShare, 1) + '% dalam tiga provinsi'
+          ],
+          impl: 'Skala pasar terbesar ada di Jawa; wilayah luar Jawa unggul pada ketersediaan lahan, harga, dan sumber daya alam untuk manufaktur.'
+        },
+        {
+          no: 4, j: 'Mobilitas',
+          t: 'Migrasi masuk terpusat di beberapa provinsi, menandakan pasar kerja dan belanja yang tumbuh lebih cepat',
+          basis: [
+            'Total migrasi masuk ' + nf(imig / 1e3, 0) + ' ribu orang dan keluar ' + nf(omig / 1e3, 0) + ' ribu orang di 38 provinsi',
+            'Tiga penerima migrasi tertinggi: ' + rap.map((p) => p.n + ' ' + nf(p.mi, 0) + ' ribu').join(', '),
+            'KRL 32,46 juta dan Whoosh 578,6 ribu penumpang per bulan pada Juli 2026'
+          ],
+          impl: 'Wilayah dengan migrasi masuk bersih umumnya tumbuh lebih cepat dari jumlah penduduknya, sehingga lebih cocok untuk ritel dan jasa daripada industri padat.'
+        },
+        {
+          no: 5, j: 'Cakupan data',
+          t: 'Kelompok usia dan jenis kelamin hanya tersedia dalam tiga kelompok baku resmi',
+          basis: [
+            'Sumber: BPS Statistik Indonesia 2026, Long Form SP2020, Kemenkes, dan Dukcapil Kemendagri',
+            'Kelompok usia resmi hanya tersedia dalam tiga kelompok baku (0-14 / 15-64 / 65+); rentang yang lebih rinci bersifat estimasi turunan',
+            'Jumlah penduduk memakai proyeksi pertengahan 2025, rasio jenis kelamin memakai data 2022-2026'
+          ],
+          impl: 'Untuk perbandingan antarwilayah, pakai tiga kelompok baku agar sebanding; rentang rinci dipakai untuk melihat bentuk piramida umur.'
+        },
+        {
+          no: 6, j: 'Implikasi',
+          t: 'Pemilihan lokasi perlu memadukan skala pasar, ketersediaan tenaga kerja, dan tingkat kepadatan',
+          basis: [
+            'Skala: provinsi dengan populasi dan PDRB besar menopang pasar konsumsi',
+            'Tenaga kerja: bobot kelompok 15-24 tahun menentukan ketersediaan masuk perusahaan',
+            'Biaya: kepadatan tinggi menaikkan biaya lahan dan upah minimum'
+          ],
+          impl: 'Gunakan profil wilayah di panel kanan sebagai filter cepat, lalu cocokkan dengan mobilitas, produktivitas, dan ketersediaan lahan.'
+        }
+      ];
+    })();
     let pn;
     if (sel) {
     // Sektor unggulan hanya ada untuk 5 provinsi pada rilisan awal; sisanya diisi
@@ -1366,6 +1468,7 @@ const DEMOGRAFI_ALERTS = [
       // ============ Search & dropdown provinsi (38 provinsi) ============
       dSearch: dSearch,
       dOpen: !!(st.dOpen || dQ),
+      mapIns: mapIns,
       dOpts: dOpts,
       dNoHit: !dList.length,
       dNas: { bg: !sel ? '#EFF6FF' : 'transparent', fw: !sel ? 700 : 500 },
