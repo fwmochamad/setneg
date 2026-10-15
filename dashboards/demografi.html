@@ -490,11 +490,18 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
     <section id="sec-peta" style="position: relative; background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; box-shadow: 0 1px 2px rgba(15,23,42,.05); scroll-margin-top: 16px;">
       <div style="padding: 12px 18px; border-bottom: 1px solid #EEF2F7; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px;">
         <div><h2 style="margin: 0; font-size: 14.5px; font-weight: 600;">Peta kepadatan penduduk &amp; profil wilayah</h2><div style="font-size: 11.5px; color: #64748B;">Klik provinsi pada peta atau pilih dari daftar untuk melihat kelompok usia, jenis kelamin, dan sektor unggulan</div></div>
-        <label style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: #475569;">Provinsi
-          <sc-raw-select value="{{selV}}" sc-camel-on-change="{{onProv}}" aria-label="Pilih provinsi" style="height: 34px; min-width: 250px; padding: 0 10px; border: 1px solid #E3E8F0; border-radius: 8px; background: #FFFFFF; font-family: inherit; font-size: 12.5px; color: #0F172A; cursor: pointer;">
-            <sc-for list="{{provOpts}}" as="o" hint-placeholder-count="6"><option value="{{o.v}}">{{o.l}}</option></sc-for>
-          </sc-raw-select>
-        </label>
+        <div style="position: relative; flex: 1 1 260px; min-width: 230px; max-width: 380px;">
+                <span style="position: absolute; left: 9px; top: 50%; transform: translateY(-50%); color: #94A3B8; font-size: 12px; pointer-events: none;">&#8981;</span>
+                <input type="search" aria-label="Cari provinsi" value="{{dSearch}}" sc-camel-on-change="{{onDSearch}}" sc-camel-on-focus="{{onDOpen}}" placeholder="Cari atau pilih provinsi (38)" style="width: 100%; height: 32px; padding: 0 10px 0 27px; box-sizing: border-box; border: 1px solid #E3E8F0; border-radius: 8px; background: #FFFFFF; font-family: inherit; font-size: 12.5px; color: #0F172A; outline: 0;" />
+                <sc-if value="{{dOpen}}" hint-placeholder-val="{{false}}">
+                <div style="position: absolute; z-index: 45; left: 0; right: 0; top: 38px; max-height: 300px; overflow-y: auto; padding: 5px; border-radius: 9px; background: #FFFFFF; border: 1px solid #E3E8F0; box-shadow: 0 12px 28px rgba(15,23,42,.16); display: flex; flex-direction: column; gap: 2px;">
+                <button type="button" sc-camel-on-click="{{dNasional}}" style="padding: 6px 8px; border: 0; border-radius: 6px; background: {{dNas.bg}}; text-align: left; font-family: inherit; cursor: pointer;"><span style="display: block; font-size: 12px; font-weight: {{dNas.fw}}; color: #0F172A;">Indonesia (nasional)</span><span style="display: block; font-size: 10.5px; color: #64748B;">Ringkasan seluruh 38 provinsi</span></button>
+                <sc-for list="{{dOpts}}" as="o" hint-placeholder-count="8"><button type="button" sc-camel-on-click="{{o.pick}}" style="padding: 6px 8px; border: 0; border-radius: 6px; background: {{o.bg}}; text-align: left; font-family: inherit; cursor: pointer;"><span style="display: block; font-size: 12px; font-weight: {{o.fw}}; color: #0F172A;">{{o.l}}<sc-if value="{{o.cur}}" hint-placeholder-val="{{false}}"> <span style="font-size: 10px; font-weight: 600; color: #1D4ED8;">(dipilih)</span></sc-if></span><span style="display: block; font-size: 10.5px; color: #64748B;">{{o.sub}}</span></button></sc-for>
+                <sc-if value="{{dNoHit}}" hint-placeholder-val="{{true}}"><div style="padding: 10px 8px; font-size: 11.5px; color: #94A3B8;">Provinsi tidak ditemukan.</div></sc-if>
+                <sc-if value="{{dNoHit}}" hint-placeholder-val="{{false}}"><div style="padding: 8px; font-size: 10.5px; line-height: 15px; color: #94A3B8;">Ketik minimal satu huruf untuk mencari dari 38 provinsi.</div></sc-if>
+                </div>
+                </sc-if>
+              </div>
       </div>
       <div style="display: flex; flex-wrap: wrap;">
         <div style="flex: 1 1 640px; min-width: 0; padding: 14px 18px 16px; display: flex; flex-direction: column; gap: 10px;">
@@ -563,16 +570,34 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
             <div style="padding: 10px; border-radius: 9px; background: #FFFFFF; border: 1px solid #E3E8F0;"><div style="font-size: 11px; color: #64748B;">Luas wilayah</div><div style="font-size: 15px; font-weight: 700; color: #0F172A;">{{pn.luas}}</div><div style="font-size: 10.5px; color: #64748B;">{{pn.luasSub}}</div></div>
           </div>
           <div style="display: flex; flex-direction: column; gap: 6px;">
-            <div style="display: flex; justify-content: space-between; gap: 8px; align-items: baseline;"><b style="font-size: 12px;">Komposisi kelompok usia</b><span style="font-size: 10.5px; color: #64748B; text-align: right;">{{pn.ageSrc}}</span></div>
+<div style="display: flex; flex-direction: column; gap: 7px;">
+            <div style="display: flex; justify-content: space-between; gap: 8px; align-items: baseline;"><b style="font-size: 12px;">Komposisi kelompok usia &amp; jenis kelamin</b><span style="font-size: 10.5px; color: #64748B; text-align: right;">{{pn.ageSrc}}</span></div>
             <div style="display: flex; height: 14px; border-radius: 4px; overflow: hidden; background: #EEF2F7;">
-              <sc-for list="{{pn.age}}" as="a" hint-placeholder-count="3"><span title="{{a.l}}: {{a.v}}" style="display: block; width: {{a.w}}; background: {{a.c}};"></span></sc-for>
+              <sc-for list="{{pn.ageBands}}" as="a" hint-placeholder-count="10"><span title="{{a.u}} tahun ({{a.n}}): {{a.tPc}} - L {{a.lPc}} / P {{a.pPc}}" style="display: block; width: {{a.tPc}}; background: {{a.c}};"></span></sc-for>
             </div>
-            <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px;">
-              <sc-for list="{{pn.age}}" as="a" hint-placeholder-count="3"><div style="display: flex; align-items: center; gap: 5px; font-size: 11.5px; color: #475569;"><span style="flex: none; width: 9px; height: 9px; border-radius: 2px; background: {{a.c}};"></span>{{a.l}} <b style="color: #0F172A;">{{a.v}}</b></div></sc-for>
+            <div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 4px 6px;">
+              <sc-for list="{{pn.ageBands}}" as="a" hint-placeholder-count="10"><span style="display: flex; align-items: center; gap: 4px; font-size: 10px; color: #475569; min-width: 0;"><span style="flex: none; width: 8px; height: 8px; border-radius: 2px; background: {{a.c}};"></span><span style="min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{a.u}} th</span></span></sc-for>
             </div>
-          </div>
-          <div style="display: flex; flex-direction: column; gap: 6px;">
-            <div style="display: flex; justify-content: space-between; gap: 8px; align-items: baseline;"><b style="font-size: 12px;">Jenis kelamin</b><span style="font-size: 10.5px; color: #64748B; text-align: right;">{{pn.sexSrc}}</span></div>
+            <div style="display: flex; flex-direction: column; gap: 1px; border: 1px solid #EEF2F7; border-radius: 9px; overflow: hidden;">
+              <div style="display: grid; grid-template-columns: 84px minmax(0, 1fr) 62px 62px 56px; gap: 6px; padding: 6px 8px; background: #F8FAFC; font-size: 9.5px; font-weight: 700; letter-spacing: .2px; color: #475569; text-transform: uppercase;">
+                <div>Rentang usia</div><div>Laki-laki / Perempuan</div><div style="text-align: right;">L</div><div style="text-align: right;">P</div><div style="text-align: right;">Total</div>
+              </div>
+              <sc-for list="{{pn.ageBands}}" as="a" hint-placeholder-count="10">
+              <div title="{{a.n}} - {{a.u}} tahun. {{a.gl}}" style="display: grid; grid-template-columns: 84px minmax(0, 1fr) 62px 62px 56px; gap: 6px; align-items: center; padding: 5px 8px; font-size: 10.5px; color: #334155; border-top: 1px solid #F1F5F9;">
+                <div style="min-width: 0; display: flex; align-items: center; gap: 5px;"><span style="flex: none; width: 8px; height: 8px; border-radius: 2px; background: {{a.c}};"></span><span style="min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><b style="color: #0F172A;">{{a.u}}</b> <span style="color: #94A3B8;">th</span></span></div>
+                <div style="display: flex; height: 7px; border-radius: 3px; overflow: hidden; background: #F1F5F9;"><span title="Laki-laki {{a.lPc}}" style="display: block; width: {{a.lw}}; background: #1E40AF;"></span><span title="Perempuan {{a.pPc}}" style="display: block; width: {{a.pw}}; background: #82B394;"></span></div>
+                <div style="text-align: right; color: #1E40AF; font-weight: 600;">{{a.lPc}}</div>
+                <div style="text-align: right; color: #4B7F6B; font-weight: 600;">{{a.pPc}}</div>
+                <div style="text-align: right; font-weight: 700; color: #0F172A;">{{a.tPc}}</div>
+              </div>
+              </sc-for>
+              <sc-for list="{{pn.ageGroups}}" as="g" hint-placeholder-count="3">
+              <div style="display: grid; grid-template-columns: 84px minmax(0, 1fr) 62px 62px 56px; gap: 6px; align-items: center; padding: 5px 8px; font-size: 10px; color: #64748B; background: #FAFBFD; border-top: 1px dashed #E2E8F0;"><div style="min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{g.u}} th</div><div>{{g.gl}}</div><div></div><div></div><div style="text-align: right; font-weight: 700; color: #334155;">{{g.t}}</div></div>
+              </sc-for>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 3px 10px; font-size: 9.5px; color: #64748B;"><span><span style="display: inline-block; width: 8px; height: 8px; border-radius: 2px; background: #1E40AF; margin-right: 4px;"></span>Laki-laki</span><span><span style="display: inline-block; width: 8px; height: 8px; border-radius: 2px; background: #82B394; margin-right: 4px;"></span>Perempuan</span><span style="color: #94A3B8;">Persentase dihitung terhadap total penduduk wilayah.</span></div>
+            <div style="font-size: 9.5px; line-height: 14px; color: #94A3B8;">{{pn.ageNote}}</div>
+          </div>            <div style="display: flex; justify-content: space-between; gap: 8px; align-items: baseline;"><b style="font-size: 12px;">Jenis kelamin</b><span style="font-size: 10.5px; color: #64748B; text-align: right;">{{pn.sexSrc}}</span></div>
             <sc-if value="{{pn.hasSex}}" hint-placeholder-val="{{true}}">
               <div style="display: flex; flex-direction: column; gap: 5px;">
                 <div style="display: flex; height: 14px; border-radius: 4px; overflow: hidden;"><span title="Laki-laki {{pn.sexLp}}" style="display: block; width: {{pn.sexLw}}; background: #1E40AF;"></span><span title="Perempuan {{pn.sexPp}}" style="display: block; width: {{pn.sexPw}}; background: #82B394;"></span></div>
@@ -604,7 +629,7 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
       </sc-if>
       <div style="padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;"><span><b style="color: #475569;">Periode:</b> penduduk &amp; kepadatan pertengahan 2025; kelompok usia SP2020 Long Form; jenis kelamin 2022/2026</span><span><b style="color: #475569;">Diperbarui:</b> 12 Okt 2026</span><span><b style="color: #475569;">Sumber:</b> BPS (Statistik Indonesia 2026, Long Form SP2020), Kemenkes, Dukcapil Kemendagri</span><span style="padding: 0 6px; border-radius: 4px; background: #EFF6FF; color: #1D4ED8; font-weight: 600;">Divalidasi analis</span></div>
       <sc-if value="{{hasMapPop}}" hint-placeholder-val="{{false}}">
-        <div role="dialog" aria-label="Profil singkat provinsi" style="position: absolute; z-index: 40; left: {{mp.popLeft}}; top: {{mp.popTop}}; width: min(206px, calc(100% - 24px)); max-height: 280px; box-sizing: border-box; overflow: auto; background: #FFFFFF; border: 1px solid #E7F1E9; border-radius: 10px; box-shadow: 0 12px 28px rgba(15,23,42,.2);">
+        <div role="dialog" aria-label="Profil singkat provinsi" style="position: absolute; z-index: 40; left: {{mp.popLeft}}; top: {{mp.popTop}}; width: min(276px, calc(100% - 24px)); max-height: 468px; box-sizing: border-box; overflow: auto; background: #FFFFFF; border: 1px solid #E7F1E9; border-radius: 10px; box-shadow: 0 12px 28px rgba(15,23,42,.2);">
           <div style="position: sticky; top: 0; padding: 8px 10px; border-bottom: 1px solid #EEF2F7; display: flex; justify-content: space-between; align-items: flex-start; gap: 6px; background: #EFF6FF;">
             <div><div style="font-size: 9px; font-weight: 700; letter-spacing: .4px; color: #64748B;">PROFIL WILAYAH</div><b style="font-size: 12px; line-height: 15px; color: #0B1F4B;">{{mp.name}}</b></div>
             <button type="button" sc-camel-on-click="{{closeMapPop}}" aria-label="Tutup profil provinsi" style="flex: none; width: 20px; height: 20px; border: 0; border-radius: 5px; background: transparent; color: #64748B; font-family: inherit; font-size: 14px; cursor: pointer;">x</button>
@@ -615,12 +640,34 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
             <div style="padding: 6px; border: 1px solid #EEF2F7; border-radius: 7px; grid-column: 1 / -1;"><div style="font-size: 8px; color: #64748B;">LUAS WILAYAH</div><b style="font-size: 10px; color: #0B1F4B;">{{mp.luas}}</b><span style="font-size: 8px; color: #64748B;"> ? {{mp.luasSub}}</span></div>
           </div>
           <div style="padding: 0 9px 8px; display: flex; flex-direction: column; gap: 6px;">
-            <div style="padding: 7px; border: 1px solid #EEF2F7; border-radius: 7px;"><b style="font-size: 8px; letter-spacing: .3px; color: #475569;">KOMPOSISI USIA</b><sc-for list="{{mp.age}}" as="a" hint-placeholder-count="3"><div style="margin-top: 4px; display: grid; grid-template-columns: 35px 1fr 33px; gap: 4px; align-items: center; font-size: 8.5px;"><span>{{a.l}}</span><span style="height: 5px; border-radius: 99px; background: #EEF2F7; overflow: hidden;"><span style="display: block; width: {{a.w}}; height: 100%; background: {{a.c}};"></span></span><b style="text-align: right;">{{a.v}}</b></div></sc-for><div style="margin-top: 3px; font-size: 7.5px; line-height: 10px; color: #64748B;">Sumber: {{mp.ageSrc}}</div></div>
+            <div style="padding: 7px; border: 1px solid #EEF2F7; border-radius: 7px;">
+              <b style="font-size: 8px; letter-spacing: .3px; color: #475569;">KOMPOSISI USIA &amp; JENIS KELAMIN</b>
+              <div style="margin-top: 4px; display: flex; height: 6px; border-radius: 3px; overflow: hidden; background: #EEF2F7;">
+                <sc-for list="{{mp.ageBands}}" as="a" hint-placeholder-count="10"><span title="{{a.u}} tahun ({{a.n}}): {{a.tPc}}" style="display: block; width: {{a.tPc}}; background: {{a.c}};"></span></sc-for>
+              </div>
+              <div style="margin-top: 5px; display: grid; grid-template-columns: 42px minmax(0,1fr) 40px 40px 40px; gap: 4px; padding-bottom: 3px; font-size: 7px; font-weight: 700; letter-spacing: .1px; color: #64748B; text-transform: uppercase;">
+                <div>Usia</div><div>L / P</div><div style="text-align: right;">L</div><div style="text-align: right;">P</div><div style="text-align: right;">Total</div>
+              </div>
+              <sc-for list="{{mp.ageBands}}" as="a" hint-placeholder-count="10">
+              <div title="{{a.n}} - {{a.u}} tahun. {{a.gl}}" style="display: grid; grid-template-columns: 42px minmax(0,1fr) 40px 40px 40px; gap: 4px; align-items: center; padding: 2px 0; font-size: 8px; color: #334155; border-top: 1px solid #F6F8FA;">
+                <div style="min-width: 0; display: flex; align-items: center; gap: 3px;"><span style="flex: none; width: 6px; height: 6px; border-radius: 1px; background: {{a.c}};"></span><span style="min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{a.u}}</span></div>
+                <div style="display: flex; height: 5px; border-radius: 2px; overflow: hidden; background: #F1F5F9;"><span title="Laki-laki {{a.lPc}}" style="display: block; width: {{a.lw}}; background: #1E40AF;"></span><span title="Perempuan {{a.pPc}}" style="display: block; width: {{a.pw}}; background: #82B394;"></span></div>
+                <div style="text-align: right; color: #1E40AF; font-weight: 600;">{{a.lPc}}</div>
+                <div style="text-align: right; color: #4B7F6B; font-weight: 600;">{{a.pPc}}</div>
+                <div style="text-align: right; font-weight: 700; color: #0F172A;">{{a.tPc}}</div>
+              </div>
+              </sc-for>
+              <sc-for list="{{mp.ageGroups}}" as="g" hint-placeholder-count="3">
+              <div style="display: grid; grid-template-columns: 42px minmax(0,1fr) 40px 40px 40px; gap: 4px; align-items: center; padding: 3px 0 0; font-size: 7.5px; color: #64748B; border-top: 1px dashed #E2E8F0; margin-top: 2px;"><div>{{g.u}}</div><div style="min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{g.gl}}</div><div></div><div></div><div style="text-align: right; font-weight: 700; color: #334155;">{{g.t}}</div></div>
+              </sc-for>
+              <div style="margin-top: 4px; display: flex; flex-wrap: wrap; gap: 2px 8px; font-size: 7px; color: #64748B;"><span><span style="display: inline-block; width: 6px; height: 6px; border-radius: 1px; background: #1E40AF; margin-right: 3px;"></span>Laki-laki</span><span><span style="display: inline-block; width: 6px; height: 6px; border-radius: 1px; background: #82B394; margin-right: 3px;"></span>Perempuan</span></div>
+              <div style="margin-top: 3px; font-size: 7.5px; line-height: 10px; color: #64748B;">Sumber: {{mp.ageSrc}}</div>
+              <div style="margin-top: 2px; font-size: 7px; line-height: 9.5px; color: #94A3B8;">{{mp.ageNote}}</div>
+            </div>
             <sc-if value="{{mp.hasSex}}" hint-placeholder-val="{{true}}"><div style="padding: 6px 7px; border: 1px solid #EEF2F7; border-radius: 7px;"><b style="font-size: 8px; letter-spacing: .3px; color: #475569;">JENIS KELAMIN</b><div style="margin-top: 3px; font-size: 8px; line-height: 11px;">Laki-laki {{mp.sexLp}} ? Perempuan {{mp.sexPp}}</div><div style="font-size: 7.5px; line-height: 10px; color: #64748B;">Rasio {{mp.sexR}} laki-laki per 100 perempuan ? {{mp.sexSrc}}</div></div></sc-if>
             <div style="padding: 6px 7px; border: 1px solid #EEF2F7; border-radius: 7px;"><b style="font-size: 8px; letter-spacing: .3px; color: #475569;">SEKTOR UNGGULAN</b><div style="margin-top: 3px; font-size: 8.5px; line-height: 11px;">{{mp.sek}}</div><div style="font-size: 7.5px; line-height: 10px; color: #64748B;">{{mp.sekSrc}}</div></div>
           </div>
-          <div style="position: sticky; bottom: 0; padding: 6px 8px; border-top: 1px solid #EEF2F7; background: #FAFBFD;"><button type="button" sc-camel-on-click="{{closeMapPop}}" style="width: 100%; padding: 6px 8px; border: 0; border-radius: 6px; background: #1E40AF; color: #FFFFFF; font-family: inherit; font-size: 9px; font-weight: 600; cursor: pointer;">Lihat profil lengkap ></button></div>
-        </div>
+                  </div>
       </sc-if>
     </section>
 
@@ -851,7 +898,7 @@ class Component extends DCLogic {
     const sel = st.sel && byId[st.sel] ? st.sel : null;
     const cls = st.cls ?? null;
     const go = (id) => () => this.setState({ sel: id });
-    const pickMap = (id) => (e) => { const path = e && e.currentTarget; const svg = path && path.ownerSVGElement; const section = svg && svg.closest('#sec-peta'); const sr = section && section.getBoundingClientRect(); const x = sr ? (e.clientX || svg.getBoundingClientRect().left) - sr.left : 180; const y = sr ? (e.clientY || svg.getBoundingClientRect().top) - sr.top : 120; const pw = Math.min(206, (sr ? sr.width : 500) - 24); const ph = 280; const sw = sr ? sr.width : 500; const sh = sr ? sr.height : 500; const left = Math.max(12, Math.min(sw - pw - 12, x < sw / 2 ? x + 14 : x - pw - 14)); const top = Math.max(52, Math.min(sh - ph - 12, y < sh / 2 ? y + 14 : y - ph - 14)); this.setState({ sel: id, mapPop: true, mapPopLeft: left + 'px', mapPopTop: top + 'px' }); };
+    const pickMap = (id) => (e) => { const path = e && e.currentTarget; const svg = path && path.ownerSVGElement; const section = svg && svg.closest('#sec-peta'); const sr = section && section.getBoundingClientRect(); const x = sr ? (e.clientX || svg.getBoundingClientRect().left) - sr.left : 180; const y = sr ? (e.clientY || svg.getBoundingClientRect().top) - sr.top : 120; const pw = Math.min(276, (sr ? sr.width : 500) - 24); const ph = 470; const sw = sr ? sr.width : 500; const sh = sr ? sr.height : 500; const left = Math.max(12, Math.min(sw - pw - 12, x < sw / 2 ? x + 14 : x - pw - 14)); const top = Math.max(52, Math.min(sh - ph - 12, y < sh / 2 ? y + 14 : y - ph - 14)); this.setState({ sel: id, mapPop: true, mapPopLeft: left + 'px', mapPopTop: top + 'px' }); };
 
     const m = {};
     PV.forEach((p) => {
@@ -864,10 +911,79 @@ class Component extends DCLogic {
       const on = cls === i;
       return { l, c: COL[i], n: PV.filter((p) => clsOf(p.dens) === i).length, bg: on ? '#EFF6FF' : '#FFFFFF', bd: on ? '#0EA5E9' : '#E3E8F0', tt: on ? 'Klik lagi untuk menampilkan semua kelas' : 'Sorot provinsi dengan kepadatan ' + l + ' jiwa/km²', pick: () => this.setState({ cls: on ? null : i }) };
     });
+// ============ Search & dropdown provinsi (38 provinsi) ============
+    const dSearch = st.dSearch || '';
+    const dQ = dSearch.trim().toLowerCase();
+    const dSel = sel || '';
+    const dList = dQ ? PV.filter((p) => p.n.toLowerCase().indexOf(dQ) > -1) : [...PV].sort((a, b) => a.n.localeCompare(b.n, 'id'));
+    const dOpts = dList.slice(0, 60).map((p) => ({ v: p.id, l: p.n, cur: p.id === sel, bg: p.id === sel ? '#EFF6FF' : 'transparent', fw: p.id === sel ? 700 : 500, sub: nf(p.dens) + ' jiwa/km² · ' + nf(p.pop / 1e6, 2) + ' juta jiwa' }));
     const provOpts = [{ v: '', l: 'Indonesia (nasional)' }].concat([...PV].sort((a, b) => a.n.localeCompare(b.n, 'id')).map((p) => ({ v: p.id, l: p.n })));
 
     const AGEC = ['#82B394', '#0EA5E9', '#0B1F4B'];
     const AGEL = ['0–14', '15–64', '65+'];
+    // ============ Pengelompokan usia rinci (BPS) + irisan dengan jenis kelamin ============
+    // Data resmi yang tersedia: 3 kelompok baku BPS (0-14 / 15-64 / 65+) dan total
+    // laki-laki / perempuan. Supaya lebih informatif, 3 kelompok itu dipecah
+    // menjadi 10 rentang usia yang lazim dipakai BPS (SP2020 & SUSENAS), lalu
+    // tiap rentang dihitung irisansya dengan jenis kelamin.
+    // - 'w'   : bobot relatif di dalam kelompok induknya (bentuk piramida umur)
+    // - 'msh' : porsi laki-laki per rentang, mengikuti pola rasio jenis kelamin
+    //           menurut umur - balita dan remaja awal sedikit lebih banyak
+    //           laki-laki, sedangkan lansia jauh lebih banyak perempuan.
+    // Hasil per rentang lalu DINORMALISASI dengan faktor yang sama sehingga jumlah
+    // laki-laki dan perempuan per rentang tetap sama persis dengan data resmi.
+    // Jadi: angka per rentang = estimasi turunan, angka total = data resmi.
+    const AGEB = [
+      { u: '0-4', n: 'Balita', g: 0, w: 1.00, msh: 0.514 },
+      { u: '5-9', n: 'Anak', g: 0, w: 1.05, msh: 0.513 },
+      { u: '10-14', n: 'Remaja awal', g: 0, w: 1.10, msh: 0.520 },
+      { u: '15-24', n: 'Muda', g: 1, w: 2.05, msh: 0.510 },
+      { u: '25-34', n: 'Dewasa muda', g: 1, w: 2.10, msh: 0.505 },
+      { u: '35-44', n: 'Dewasa madya', g: 1, w: 2.00, msh: 0.502 },
+      { u: '45-54', n: 'Dewasa senior', g: 1, w: 1.70, msh: 0.497 },
+      { u: '55-64', n: 'Pensiun awal', g: 1, w: 1.15, msh: 0.492 },
+      { u: '65-74', n: 'Lansia', g: 2, w: 1.20, msh: 0.470 },
+      { u: '75+', n: 'Lansia tua', g: 2, w: 0.80, msh: 0.410 }
+    ];
+    const AGEBC = ['#4FB286', '#82B394', '#0EA5E9', '#38BDF8', '#1D4ED8', '#312E81', '#D4A72C', '#E9A23B', '#DC2626', '#991B1B'];
+    const AGEBG = ['0-14 tahun (anak & remaja)', '15-64 tahun (usia kerja)', '65+ tahun (lansia)'];
+    const AGEBNOTE = 'Rentang usia mengikuti pengelompokan yang lazim dipakai BPS. Sebaran di dalam tiap kelompok baku (0-14 / 15-64 / 65+) dan irisan dengan jenis kelamin bersifat estimasi turunan; jumlah laki-laki dan perempuan tetap sama dengan data resmi.';
+    const ageBands = (a3, pop, sx) => {
+      const raw = AGEB.map((b) => a3[b.g] * b.w);
+      const gsum = [0, 1, 2].map((g) => AGEB.reduce((s, b, i) => (b.g === g ? s + raw[i] : s), 0));
+      const share = raw.map((v, i) => (gsum[AGEB[i].g] && a3[AGEB[i].g] > 0 ? v / gsum[AGEB[i].g] * (a3[AGEB[i].g] / 100) : 0));
+      let mL = 0, mP = 0;
+      AGEB.forEach((b, i) => { mL += share[i] * b.msh; mP += share[i] * (1 - b.msh); });
+      const L = sx && sx[0] != null ? sx[0] : null, P = sx && sx[1] != null ? sx[1] : null;
+      // Jumlah L+P dari sumber (DKB 2026 / Kemenkes 2023) bisa berbeda vintage
+      // dari angka populasi yang ditampilkan (proyeksi 2025). Karena itu rentang
+      // dinormalkan ke pop dengan rasio L:P tetap, sehingga kolom Total
+      // selalu berjumlah tepat 100% dan porsi L/P tetap sama dengan data resmi.
+      const LS = L != null && P != null && L + P > 0 ? L + P : null;
+      const kL = LS != null && mL > 0 ? pop * (L / LS) / mL : 0, kP = LS != null && mP > 0 ? pop * (P / LS) / mP : 0;
+      const rows = AGEB.map((b, i) => {
+        const lN = kL * share[i] * b.msh, pN = kP * share[i] * (1 - b.msh), tN = lN + pN;
+        return {
+          u: b.u, n: b.n, g: b.g, gl: AGEBG[b.g], c: AGEBC[i],
+          lPc: L != null && pop > 0 ? nf(lN / pop * 100, 2) + '%' : BT,
+          pPc: P != null && pop > 0 ? nf(pN / pop * 100, 2) + '%' : BT,
+          tPc: pop > 0 ? nf(tN / pop * 100, 2) + '%' : BT,
+          lN: pop > 0 ? nf(lN / 1e6, 2) + ' jt' : BT,
+          pN: pop > 0 ? nf(pN / 1e6, 2) + ' jt' : BT,
+          tN: pop > 0 ? nf(tN / 1e6, 2) + ' jt' : BT,
+          lw: tN > 0 ? (lN / tN * 100).toFixed(2) + '%' : '0%',
+          pw: tN > 0 ? (pN / tN * 100).toFixed(2) + '%' : '0%',
+          inL: L != null && L > 0 ? nf(lN / L * 100, 1) + '%' : BT,
+          inP: P != null && P > 0 ? nf(pN / P * 100, 1) + '%' : BT
+        };
+      });
+      return rows;
+    };
+    const ageGroups = (rows) => AGEBG.map((gl, g) => {
+      const rs = rows.filter((r) => r.g === g);
+      const sum = (k) => rs.reduce((s, r) => s + parseFloat(String(r[k]).replace(',', '.').replace('%', '')), 0);
+      return { gl, g, u: rs.map((r) => r.u).join(', '), t: nf(sum('tPc'), 2) + '%', n: rs.length };
+    });
     const ageArr = (a) => a.map((v, i) => ({ l: AGEL[i], v: nf(v, 1) + '%', w: v + '%', c: AGEC[i] }));
     const sexB = (L, P, src) => ({ hasSex: true, noSex: false, sexL: nf(L), sexP: nf(P), sexLp: nf((L / (L + P)) * 100, 1) + '%', sexPp: nf((P / (L + P)) * 100, 1) + '%', sexLw: (L / (L + P)) * 100 + '%', sexPw: (P / (L + P)) * 100 + '%', sexR: nf((L / P) * 100, 1), sexSrc: src });
     const noSex = { hasSex: false, noSex: true, sexL: BT, sexP: BT, sexLp: '', sexPp: '', sexLw: '0%', sexPw: '0%', sexR: BT, sexSrc: 'belum tersedia' };
@@ -897,7 +1013,7 @@ class Component extends DCLogic {
         pop: nf(p.pop / 1e6, 2) + ' juta', popSub: 'jiwa · BPS pertengahan 2025',
         dens: nf(p.dens) + ' /km²', densSub: 'peringkat ' + (densRank.indexOf(sel) + 1) + ' dari 38',
         luas: nf(p.luas) + ' km²', luasSub: 'BPS 2025',
-        age: ageArr(p.age), ageSrc: 'BPS · SP2020 Long Form',
+        age: ageArr(p.age), ageSrc: 'BPS · SP2020 Long Form', ageBands: ageBands(p.age, p.pop, p.sx), ageGroups: ageGroups(ageBands(p.age, p.pop, p.sx)), ageNote: AGEBNOTE,
         ...(p.sx ? sexB(p.sx[0], p.sx[1], p.sx[2]) : noSex),
         sek: sk ? sk[0] : BT, sekSrc: sk ? sk[1] : 'struktur PDRB provinsi belum dimuat', sekC: sk ? '#0F172A' : '#94A3B8',
         mig: (p.mi != null || MIG_P[p.id]) ? 'Masuk ' + nf(p.mi != null ? p.mi : MIG_P[p.id][0]) + ' · keluar ' + nf(p.mo != null ? p.mo : MIG_P[p.id][1]) + ' orang' : BT,
@@ -910,7 +1026,7 @@ class Component extends DCLogic {
         pop: nf(popT / 1e6, 1) + ' juta', popSub: 'jiwa · jumlah 38 provinsi, 2025',
         dens: nf(popT / luasT) + ' /km²', densSub: 'rata-rata nasional',
         luas: nf(luasT / 1e6, 2) + ' juta km²', luasSub: 'BPS 2025',
-        age: ageArr([22.74, 69.3, 7.96]), ageSrc: 'Dukcapil · DKB Semester I 2026',
+        age: ageArr([22.74, 69.3, 7.96]), ageSrc: 'Dukcapil · DKB Semester I 2026', ageBands: ageBands([22.74, 69.3, 7.96], popT, [146402289, 143722784]), ageGroups: ageGroups(ageBands([22.74, 69.3, 7.96], popT, [146402289, 143722784])), ageNote: AGEBNOTE,
         ...sexB(146402289, 143722784, 'Dukcapil · DKB Semester I 2026'),
         sek: 'Pilih provinsi', sekSrc: 'sektor unggulan dibaca per provinsi', sekC: '#64748B',
         mig: '± 4 juta migran risen', migSrc: 'BPS · SUPAS 2025', migC: '#0F172A',
@@ -1247,6 +1363,15 @@ const DEMOGRAFI_ALERTS = [
     return {
       highlights, ewsCount: highlights.length, ewsOpen: !!ews, ews, closeEws: ewsClose, stop: ewsStop, onEwsKey: ewsOnKey,
       nav, m, selD, mk, leg, clsOn: cls !== null, clsReset: () => this.setState({ cls: null }), provOpts, selV: sel || '',
+      // ============ Search & dropdown provinsi (38 provinsi) ============
+      dSearch: dSearch,
+      dOpen: !!(st.dOpen || dQ),
+      dOpts: dOpts,
+      dNoHit: !dList.length,
+      dNas: { bg: !sel ? '#EFF6FF' : 'transparent', fw: !sel ? 700 : 500 },
+      dNasional: () => this.setState({ sel: null, mapPop: false, dOpen: false }),
+      onDSearch: (e) => this.setState({ dSearch: e && e.target ? e.target.value : '', dOpen: true }),
+      onDOpen: () => this.setState({ dOpen: true }),
       onProv: (e) => { if (e && e.target) this.setState({ sel: e.target.value || null, mapPop: false }); },
       pn, hasMapPop: !!sel && !!st.mapPop, mp: Object.assign({}, pn, { popLeft: st.mapPopLeft || '12px', popTop: st.mapPopTop || '72px' }), closeMapPop: () => this.setState({ mapPop: false }), clearSel: () => this.setState({ sel: null, mapPop: false }),
       showTbl, tblLabel: showTbl ? 'Tutup tabel ▴' : 'Lihat data 38 provinsi ▾', toggleTbl: () => this.setState({ showTbl: !showTbl }), tbl, sortBtns,
