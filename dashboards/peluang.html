@@ -6,6 +6,7 @@
 <script src="../assets/react.production.min.js"></script>
 <script src="../assets/react-dom.production.min.js"></script>
 <script src="../assets/dc-runtime.js"></script>
+<script src="../assets/peluang-geo.js"></script>
 <style id="setneg-theme-overrides">
 :root{font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#1f2937;background:#f7f9fc;color-scheme:light}
 html,body{min-height:100%;background:#f7f9fc!important;color:#1f2937!important;font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif!important}
@@ -88,10 +89,10 @@ button:focus-visible,a:focus-visible{outline:2px solid #0f827d!important;outline
 .harmonisasi-alert-details p{margin:0;color:#334155;font-size:9px;line-height:1.4;overflow-wrap:anywhere}
 .harmonisasi-alert-empty{padding:12px 14px;border:1px dashed #cbd5e1;border-radius:11px;background:#f8fafc;color:#64748b;font-size:11px}
 @media(max-width:760px){.harmonisasi-page-tabs,.harmonisasi-highlights{width:calc(100% - 24px)}.harmonisasi-alert-card{flex-basis:86%;min-width:270px}.harmonisasi-highlights{padding:12px}.harmonisasi-alert-details{gap:5px}.harmonisasi-alert-details>div{padding:6px}}
-.mzi{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;margin:12px 16px 14px;padding:10px 13px;border:1px solid #E0E7FF;border-radius:10px;background:#F8F9FF}.mzi-b{flex:none;padding:2px 8px;border-radius:5px;background:#3730A3;color:#FFFFFF;font-size:10.5px;font-weight:700;letter-spacing:.02em}.mzi-l{flex:1 1 340px;min-width:0;display:flex;flex-wrap:wrap;gap:3px 20px;margin:0;padding:0;list-style:none;font-size:12px;line-height:17px;color:#334155}.mzi-l li{position:relative;padding-left:13px}.mzi-l li:before{content:"";position:absolute;left:0;top:7px;width:5px;height:5px;border-radius:99px;background:#6366F1}.mzi-s{flex:none;font-size:10.5px;font-weight:600;color:#6366F1}@media(max-width:680px){.mzi{margin:10px 12px 12px}.mzi-l{flex:1 1 100%}}.ews-modal-backdrop{position:fixed;inset:0;z-index:2000;display:flex;align-items:flex-start;justify-content:center;overflow-y:auto;padding:24px 16px 32px;background:rgba(0,0,0,.6);backdrop-filter:blur(2px);overscroll-behavior:contain}
-.ews-modal-panel{background:#fff;border-radius:8px;box-shadow:0 25px 50px -12px rgba(0,0,0,.35);max-width:1024px;width:100%;display:flex;flex-direction:column;overflow:hidden;border:1px solid #E5E7EB;outline:none}
+.mzi{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;margin:12px 16px 14px;padding:10px 13px;border:1px solid #E0E7FF;border-radius:10px;background:#F8F9FF}.mzi-b{flex:none;padding:2px 8px;border-radius:5px;background:#3730A3;color:#FFFFFF;font-size:10.5px;font-weight:700;letter-spacing:.02em}.mzi-l{flex:1 1 340px;min-width:0;display:flex;flex-wrap:wrap;gap:3px 20px;margin:0;padding:0;list-style:none;font-size:12px;line-height:17px;color:#334155}.mzi-l li{position:relative;padding-left:13px}.mzi-l li:before{content:"";position:absolute;left:0;top:7px;width:5px;height:5px;border-radius:99px;background:#6366F1}.mzi-s{flex:none;font-size:10.5px;font-weight:600;color:#6366F1}@media(max-width:680px){.mzi{margin:10px 12px 12px}.mzi-l{flex:1 1 100%}}.ews-modal-backdrop{position:fixed;left:0;right:0;top:var(--ews-vp-top,0px);height:var(--ews-vp-h,100vh);z-index:2000;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:24px 16px;box-sizing:border-box;background:rgba(15,23,42,.55);backdrop-filter:blur(2px);overscroll-behavior:contain}
+.ews-modal-panel{background:#fff;border-radius:10px;box-shadow:0 25px 50px -12px rgba(0,0,0,.35);max-width:1024px;width:100%;max-height:100%;display:flex;flex-direction:column;overflow:hidden;border:1px solid #E5E7EB;outline:none}
 .ews-modal-body{display:grid;grid-template-columns:minmax(0,1.75fr) minmax(0,1fr);flex:1;min-height:0;overflow:hidden;overscroll-behavior:contain}
-.ews-modal-main{padding:26px 28px;overflow-y:auto;display:flex;flex-direction:column;gap:30px;overscroll-behavior:contain}
+.ews-modal-main{padding:28px 32px;overflow-y:auto;display:flex;flex-direction:column;gap:0;overscroll-behavior:contain}
 .ews-modal-side{padding:26px 24px;background:#F9FAFB;border-left:1px solid #E5E7EB;overflow-y:auto;display:flex;flex-direction:column;gap:24px;overscroll-behavior:contain}
 .ews-modal-h4{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#6B7280;margin:0 0 10px;display:flex;align-items:center;gap:6px}
 .ews-modal-body p{margin:0;font-size:14px;line-height:1.6;color:#111827}
@@ -108,23 +109,19 @@ button:focus-visible,a:focus-visible{outline:2px solid #0f827d!important;outline
 .ews-stamp-k{font-size:9.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#9CA3AF}
 .ews-stamp-v{font-size:13.5px;font-weight:700;color:#111827;white-space:nowrap}
 .ews-stamp-t{font-size:11px;color:#6B7280;white-space:nowrap;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
-.ews-sec{padding-left:15px;border-left:3px solid #E5E7EB}
-.ews-sec+.ews-sec{margin-top:4px;padding-top:28px;border-top:1px dashed #E2E8F0}
-.ews-sec .ews-modal-h4{margin:0 0 12px}
-.ews-sec p{margin:0;padding:13px 15px;border-radius:9px;border:1px solid #EEF2F7;background:#F9FAFB;font-size:14px;line-height:1.65;color:#111827}
-.ews-h4-ico{flex:none;width:26px;height:26px;border-radius:8px;display:inline-flex;align-items:center;justify-content:center}
-.ews-s1{border-left-color:#2563EB}
-.ews-s1 .ews-h4-ico{background:#EFF6FF;color:#2563EB}
-.ews-s2{border-left-color:#C2410C}
-.ews-s2 .ews-h4-ico{background:#FFF7ED;color:#C2410C}
-.ews-s3{border-left-color:#047857}
-.ews-s3 .ews-h4-ico{background:#ECFDF5;color:#047857}
+.ews-sec{padding:0}
+.ews-sec+.ews-sec{margin-top:22px;padding-top:22px;border-top:1px solid #EEF0F3}
+.ews-sec .ews-modal-h4{margin:0 0 8px;font-size:11px;font-weight:600;letter-spacing:.08em;color:#64748B}
+.ews-sec p{margin:0;padding:0;border:0;background:none;font-size:15px;line-height:1.7;color:#1F2937}
+.ews-s3{margin-top:26px!important;padding:18px 20px!important;border:0!important;border-left:2px solid #1a3a6e!important;border-radius:0 8px 8px 0;background:#F8FAFC}
+.ews-s3 .ews-modal-h4{color:#1a3a6e}
+.ews-s3 p{color:#0F172A}
 @media(max-width:640px){.ews-stamp{display:none}}
 
 .harmonisasi-alert-card{cursor:pointer;transition:border-color .15s ease,box-shadow .15s ease,transform .15s ease}
 .harmonisasi-alert-card:hover,.harmonisasi-alert-card:focus-visible{border-color:#f59e0b!important;box-shadow:0 6px 18px rgba(180,83,9,.16)!important;transform:translateY(-1px);outline:none}
 .harmonisasi-alert-card:focus-visible{box-shadow:0 0 0 3px rgba(245,158,11,.35)!important}
-@media(max-width:860px){.ews-modal-backdrop{padding:0;align-items:flex-start}.ews-modal-panel{max-width:100%;border-radius:0}.ews-modal-body{grid-template-columns:1fr;overflow-y:auto}.ews-modal-main,.ews-modal-side{overflow:visible;border-left:0;border-top:1px solid #E5E7EB}.ews-modal-main{padding:16px}.ews-modal-side{padding:16px}}
+@media(max-width:860px){.ews-modal-backdrop{padding:0;align-items:stretch}.ews-modal-panel{max-width:100%;border-radius:0;max-height:none;height:100%}.ews-modal-body{grid-template-columns:1fr;overflow-y:auto}.ews-modal-main,.ews-modal-side{overflow:visible;border-left:0;border-top:1px solid #E5E7EB}.ews-modal-main{padding:20px 16px}.ews-modal-side{padding:16px}}
 
 </style>
 <style id="harmonisasi-centered-tabs">
@@ -399,7 +396,7 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
 <style>body{margin:0} a{color:#1D4ED8} a:hover{color:#1E40AF} .ck{cursor:pointer;transition:box-shadow .12s,border-color .12s,background .12s} .ck:hover{box-shadow:0 2px 10px rgba(15,23,42,.08);border-color:#82B394 !important} .rw{cursor:pointer} .rw:hover{background:#EFF6FF !important} .tip{position:relative;outline:none} .tip .pop{display:none;position:absolute;z-index:95;right:0;top:calc(100% + 6px);width:300px;padding:10px 12px;border-radius:10px;background:#0B1F3A;color:#E2E8F0;font-size:11.5px;line-height:17px;font-weight:400;letter-spacing:0;text-align:left;white-space:normal;box-shadow:0 12px 32px rgba(15,23,42,.3)} .tip:hover .pop,.tip:focus .pop{display:block} .tip .pop.pl{left:0;right:auto} .bar:hover{filter:brightness(1.08)} .pv{cursor:pointer;transition:opacity .12s} .pv:hover{opacity:.72}</style>
 </helmet>
 <div style="min-height: 100vh; background: #F4F7FB; font-family: Inter, system-ui, sans-serif; color: #0F172A;">
-  <header class="setneg-global-header" aria-label="Header Dashboard Presiden RI"><div class="setneg-header-inner"><a class="setneg-brand" href="#top" aria-label="Dashboard Presiden RI"><img alt="Logo Setneg RI" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Logo_Setneg_RI.svg/330px-Logo_Setneg_RI.svg.png"><span class="setneg-brand-copy"><strong>DASHBOARD PRESIDEN RI</strong><span>Badan Teknologi, Data dan Informasi</span><span>Kementerian Sekretariat Negara Republik Indonesia</span></span></a><nav class="setneg-global-nav" aria-label="Navigasi utama"><button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.5"/></svg><span>Eksekutif</span></button><button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"/><path d="m9 12 2 2 4-4"/></svg><span>Pertahanan &amp; Keamanan</span></button><button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 3v18h18"/><path d="m7 14 4-4 4 3 6-7"/></svg><span>Ekonomi</span></button><button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 11h16v2a8 8 0 0 1-16 0v-2Z"/><path d="M8 7c0-1 1-1 1-2M12 7c0-1 1-1 1-2M16 7c0-1 1-1 1-2"/></svg><span>MBG</span></button><button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 3h10l4 4v14H5z"/><path d="M15 3v5h4M8 12h8M8 16h8"/></svg><span>Kebijakan</span></button><button type="button" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="6" cy="6" r="2"/><circle cx="18" cy="6" r="2"/><circle cx="12" cy="18" r="2"/><path d="M8 7.5 10.8 16M16 7.5 13.2 16M8 6h8"/></svg><span>Harmonisasi</span></button></nav><div class="setneg-header-tools"><button class="setneg-theme-button" type="button" aria-label="Ganti tema"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.5 14.4A8.5 8.5 0 0 1 9.6 3.5 8.7 8.7 0 1 0 20.5 14.4Z"/></svg></button><div class="setneg-user"><span class="setneg-avatar">PS</span><span class="setneg-user-copy"><strong>Prabowo Subianto</strong><span>Presiden</span></span><svg class="setneg-user-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div></div></div></header><nav class="harmonisasi-page-tabs" aria-label="Navigasi tab Harmonisasi Investasi"><a href="#harmonisasi-page-0" data-harmonisasi-tab="0">Payung Kebijakan Investasi</a><a href="#harmonisasi-page-1" aria-current="page" data-harmonisasi-tab="1">Peluang Investasi Daerah</a><a href="#harmonisasi-page-2" data-harmonisasi-tab="2">Demografi &amp; Mobilitas Penduduk</a><a href="#harmonisasi-page-3" data-harmonisasi-tab="3">Kemudahan Berusaha &amp; Pelayanan Perizinan</a></nav><section class="harmonisasi-highlights" aria-label="Highlight Peluang Investasi Daerah"><div class="harmonisasi-highlights-head"><h2><svg class="harmonisasi-warning-symbol" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3 2.8 19h18.4L12 3Z"></path><path d="M12 9v4m0 3h.01"></path></svg> Highlight Peluang Investasi Daerah</h2><span>{{ewsCount}} Alerts Aktif</span></div><div class="harmonisasi-alert-track" role="list"><sc-for list="{{highlights}}" as="h" hint-placeholder-count="3"><article class="harmonisasi-alert-card" role="listitem" tabindex="0" aria-haspopup="dialog" title="Klik untuk melihat detail Early Warning" sc-camel-on-click="{{h.open}}" sc-camel-onKeyDown="{{h.key}}"><div class="harmonisasi-alert-heading"><span class="harmonisasi-alert-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m4 16 5-5 4 4 7-7"></path><path d="M14 8h6v6"></path></svg></span><div class="harmonisasi-alert-title"><strong>{{h.short}}</strong><span>Level: {{h.level}}</span></div><div class="harmonisasi-alert-meta"><span>{{h.tgl}}</span><span>Alert aktif</span><span style="padding: 1px 7px; border-radius: 5px; background: {{h.verif.bg}}; border: 1px solid {{h.verif.bd}}; color: {{h.verif.c}}; font-weight: 700;">{{h.verif.t}}</span></div></div><div class="harmonisasi-alert-details"><div><b>Masalah</b><p>{{h.m}}</p></div><div><b>Dampak</b><p>{{h.d}}</p></div><div><b>Rekomendasi</b><p>{{h.r}}</p></div></div></article></sc-for></div></section>
+  <header class="setneg-global-header" aria-label="Header Dashboard Presiden RI"><div class="setneg-header-inner"><a class="setneg-brand" href="#top" aria-label="Dashboard Presiden RI"><img alt="Logo Setneg RI" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Logo_Setneg_RI.svg/330px-Logo_Setneg_RI.svg.png"><span class="setneg-brand-copy"><strong>DASHBOARD PRESIDEN RI</strong><span>Badan Teknologi, Data dan Informasi</span><span>Kementerian Sekretariat Negara Republik Indonesia</span></span></a><nav class="setneg-global-nav" aria-label="Navigasi utama"><button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.5"/></svg><span>Eksekutif</span></button><button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"/><path d="m9 12 2 2 4-4"/></svg><span>Pertahanan &amp; Keamanan</span></button><button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 3v18h18"/><path d="m7 14 4-4 4 3 6-7"/></svg><span>Ekonomi</span></button><button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 11h16v2a8 8 0 0 1-16 0v-2Z"/><path d="M8 7c0-1 1-1 1-2M12 7c0-1 1-1 1-2M16 7c0-1 1-1 1-2"/></svg><span>MBG</span></button><button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 3h10l4 4v14H5z"/><path d="M15 3v5h4M8 12h8M8 16h8"/></svg><span>Kebijakan</span></button><button type="button" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="6" cy="6" r="2"/><circle cx="18" cy="6" r="2"/><circle cx="12" cy="18" r="2"/><path d="M8 7.5 10.8 16M16 7.5 13.2 16M8 6h8"/></svg><span>Harmonisasi</span></button></nav><div class="setneg-header-tools"><button class="setneg-theme-button" type="button" aria-label="Ganti tema"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.5 14.4A8.5 8.5 0 0 1 9.6 3.5 8.7 8.7 0 1 0 20.5 14.4Z"/></svg></button><div class="setneg-user"><span class="setneg-avatar">PS</span><span class="setneg-user-copy"><strong>Prabowo Subianto</strong><span>Presiden</span></span><svg class="setneg-user-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div></div></div></header><nav class="harmonisasi-page-tabs" aria-label="Navigasi tab Harmonisasi Investasi"><a href="#harmonisasi-page-0" data-harmonisasi-tab="0">Payung Kebijakan Investasi</a><a href="#harmonisasi-page-1" aria-current="page" data-harmonisasi-tab="1">Peluang Investasi Daerah</a><a href="#harmonisasi-page-2" data-harmonisasi-tab="2">Demografi &amp; Mobilitas Penduduk</a><a href="#harmonisasi-page-3" data-harmonisasi-tab="3">Kemudahan Berusaha &amp; Pelayanan Perizinan</a><a href="#harmonisasi-page-4" data-harmonisasi-tab="4">Keselarasan Regulasi &amp; Tindak Lanjut</a></nav><section class="harmonisasi-highlights" aria-label="Highlight Peluang Investasi Daerah"><div class="harmonisasi-highlights-head"><h2><svg class="harmonisasi-warning-symbol" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3 2.8 19h18.4L12 3Z"></path><path d="M12 9v4m0 3h.01"></path></svg> Highlight Peluang Investasi Daerah</h2><span>{{ewsCount}} Alerts Aktif</span></div><div class="harmonisasi-alert-track" role="list"><sc-for list="{{highlights}}" as="h" hint-placeholder-count="3"><article class="harmonisasi-alert-card" role="listitem" tabindex="0" aria-haspopup="dialog" title="Klik untuk melihat detail Early Warning" sc-camel-on-click="{{h.open}}" sc-camel-onKeyDown="{{h.key}}"><div class="harmonisasi-alert-heading"><span class="harmonisasi-alert-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m4 16 5-5 4 4 7-7"></path><path d="M14 8h6v6"></path></svg></span><div class="harmonisasi-alert-title"><strong>{{h.short}}</strong><span>Level: {{h.level}}</span></div><div class="harmonisasi-alert-meta"><span>{{h.tgl}}</span><span>Alert aktif</span><span style="padding: 1px 7px; border-radius: 5px; background: {{h.verif.bg}}; border: 1px solid {{h.verif.bd}}; color: {{h.verif.c}}; font-weight: 700;">{{h.verif.t}}</span></div></div><div class="harmonisasi-alert-details"><div><b>Masalah</b><p>{{h.m}}</p></div><div><b>Dampak</b><p>{{h.d}}</p></div><div><b>Rekomendasi</b><p>{{h.r}}</p></div></div></article></sc-for></div></section>
   <sc-if value="{{ewsOpen}}">
       <div class="ews-modal-backdrop" sc-camel-on-click="{{closeEws}}">
         <div class="ews-modal-panel" data-ews-modal="1" role="dialog" aria-modal="true" tabindex="0" sc-camel-on-click="{{stop}}" sc-camel-onKeyDown="{{onEwsKey}}">
@@ -424,15 +421,15 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
           <div class="ews-modal-body">
             <div class="ews-modal-main">
               <div class="ews-sec ews-s1">
-                <h3 class="ews-modal-h4"><span class="ews-h4-ico"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.12 2.12 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.12 2.12 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.12 2.12 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.12 2.12 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.12 2.12 0 0 0 1.597-1.16z"></path></svg></span>Ringkasan</h3>
+                <h3 class="ews-modal-h4">Ringkasan</h3>
                 <p>{{ews.fakta}}</p>
               </div>
               <div class="ews-sec ews-s2">
-                <h3 class="ews-modal-h4"><span class="ews-h4-ico"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"></path><path d="M12 9v4"></path><path d="M12 17h.01"></path></svg></span>Dampak</h3>
+                <h3 class="ews-modal-h4">Dampak</h3>
                 <p>{{ews.perk}}</p>
               </div>
               <div class="ews-sec ews-s3">
-                <h3 class="ews-modal-h4"><span class="ews-h4-ico"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"></path></svg></span>Saran Untuk Presiden</h3>
+                <h3 class="ews-modal-h4">Saran Untuk Presiden</h3>
                 <p>{{ews.opsi}}</p>
               </div>
             </div>
@@ -822,6 +819,7 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
               <div style="font-size: 10.5px; color: #94A3B8;">Periode: {{dh.strPer}}</div>
             </div>
           </div>
+          <div class="mzi"><span class="mzi-b">Insight AI</span><ul class="mzi-l"><sc-for list="{{mini.prov}}" as="i" hint-placeholder-count="3"><li>{{i}}</li></sc-for></ul><span class="mzi-s">Terverifikasi analis</span></div>
           <div style="padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;"><span><b style="color: #475569;">Periode:</b> penduduk 2025 · UMP 2026 · PDRB 2025 · realisasi Tw II 2026</span><span><b style="color: #475569;">Diperbarui:</b> 12 Okt 2026</span><span><b style="color: #475569;">Sumber:</b> BPS, Kemnaker, Kementerian Investasi dan Hilirisasi/BKPM, DPMPTSP provinsi</span><span>* angka turunan dari rilis resmi</span><span style="padding: 0 6px; border-radius: 4px; background: #EFF6FF; color: #1D4ED8; font-weight: 600;">Data resmi</span></div>
         </section>
 
@@ -841,21 +839,49 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
                 <div style="margin-top: 6px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px;"><sc-for list="{{facts}}" as="x" hint-placeholder-count="3"><div style="padding: 8px 10px; border-radius: 8px; background: #F8FAFC; border: 1px solid #E3E8F0;"><div style="font-size: 10.5px; color: #64748B;">{{x.l}}</div><b style="font-size: 13.5px; color: {{x.c}};">{{x.v}}</b></div></sc-for></div>
               </div>
               <sc-if value="{{fc.has}}" hint-placeholder-val="{{true}}">
-                <div style="padding: 12px; border-radius: 10px; background: #F5F7FF; border: 1px dashed #A5B4FC; display: flex; flex-direction: column; gap: 6px;">
-                  <div style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.4px; color: #3730A3;">PERKIRAAN REALISASI 2026 · AI</div>
-                  <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px;"><b style="font-size: 20px; color: #3730A3;">{{fc.range}}</b><span style="font-size: 12px; color: #334155;">{{fc.vs}}</span></div>
-                  <div style="font-size: 12px; color: #334155;">{{fc.tg}}</div>
-                  <div style="font-size: 11.5px; line-height: 17px; color: #475569;"><b>Metode:</b> dua proyeksi laju berjalan (run-rate) — {{fc.m1}}; {{fc.m2}}. Rentang = nilai terendah–tertinggi kedua metode.<br><b>Keterbatasan:</b> tidak memperhitungkan pola musiman (realisasi semester II biasanya berbeda), Tw III 2026 belum dirilis, dan bukan angka resmi. {{lim}}</div>
+                <div style="padding: 12px 14px; border-radius: 10px; background: #F5F7FF; border: 1px solid #E0E7FF; display: flex; flex-direction: column; gap: 10px;">
+                  <div style="display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 10px;">
+                    <div style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.4px; color: #3730A3;">PERKIRAAN REALISASI 2026 · AI</div>
+                    <span style="font-size: 11.5px; color: #475569;">Semester I sudah <b style="color: #1E40AF;">{{fcv.prog}}</b> dari realisasi 2025</span>
+                  </div>
+                  <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px;"><b style="font-size: 22px; letter-spacing: -0.3px; color: #3730A3;">{{fc.range}}</b><span style="font-size: 12px; color: #334155;">{{fc.vs}}</span></div>
+                  <div role="img" aria-label="Semester I 2026 {{fcv.s1}}, perkiraan {{fc.range}}, realisasi 2025 {{fcv.fy}}" style="position: relative; height: 30px; margin: 4px 0 2px;">
+                    <span style="position: absolute; left: 0; right: 0; top: 9px; height: 12px; border-radius: 6px; background: #E2E8F0;"></span>
+                    <span title="Perkiraan realisasi 2026: {{fc.range}}" style="position: absolute; left: {{fcv.loL}}; width: {{fcv.rgW}}; top: 9px; height: 12px; border-radius: 6px; background: repeating-linear-gradient(135deg, #A5B4FC 0 4px, #C7D2FE 4px 8px); cursor: help;"></span>
+                    <span title="Semester I 2026: {{fcv.s1}}" style="position: absolute; left: 0; width: {{fcv.s1W}}; top: 9px; height: 12px; border-radius: 6px; background: #1E40AF; cursor: help;"></span>
+                    <span title="Realisasi 2025: {{fcv.fy}}" style="position: absolute; left: {{fcv.fyL}}; top: 2px; width: 2px; height: 26px; margin-left: -1px; background: #0F172A; cursor: help;"></span>
+                    <sc-if value="{{fcv.hasTg}}" hint-placeholder-val="{{false}}"><span title="Target provinsi 2026: {{fcv.tg}}" style="position: absolute; left: {{fcv.tgL}}; top: 2px; width: 0; height: 26px; border-left: 2px dashed #D97706; cursor: help;"></span></sc-if>
+                  </div>
+                  <div style="display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 11px; color: #475569;">
+                    <span style="display: inline-flex; align-items: center; gap: 5px;"><span style="width: 10px; height: 10px; border-radius: 3px; background: #1E40AF;"></span>Semester I 2026 · <b style="color: #0F172A;">{{fcv.s1}}</b></span>
+                    <span style="display: inline-flex; align-items: center; gap: 5px;"><span style="width: 10px; height: 10px; border-radius: 3px; background: repeating-linear-gradient(135deg, #A5B4FC 0 3px, #C7D2FE 3px 6px);"></span>Rentang perkiraan</span>
+                    <span style="display: inline-flex; align-items: center; gap: 5px;"><span style="width: 2px; height: 12px; background: #0F172A;"></span>Realisasi 2025 · <b style="color: #0F172A;">{{fcv.fy}}</b></span>
+                    <sc-if value="{{fcv.hasTg}}" hint-placeholder-val="{{false}}"><span style="display: inline-flex; align-items: center; gap: 5px;"><span style="width: 0; height: 12px; border-left: 2px dashed #D97706;"></span>Target 2026 · <b style="color: #0F172A;">{{fcv.tg}}</b></span></sc-if>
+                  </div>
+                  <button type="button" sc-camel-on-click="{{fcv.toggle}}" aria-expanded="{{fcv.open}}" style="align-self: flex-start; display: inline-flex; align-items: center; gap: 4px; padding: 0; border: 0; background: transparent; font-family: inherit; font-size: 11.5px; font-weight: 600; color: #3730A3; cursor: pointer;">Metode &amp; keterbatasan <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex: none; color: #3730A3; transition: transform .15s ease; transform: {{fcv.chev}};"><path d="m6 9 6 6 6-6"></path></svg></button>
+                  <sc-if value="{{fcv.open}}" hint-placeholder-val="{{false}}">
+                    <div style="padding-top: 8px; border-top: 1px solid #E0E7FF; font-size: 11.5px; line-height: 17px; color: #475569;"><sc-if value="{{fcv.hasTg}}" hint-placeholder-val="{{false}}"><div style="margin-bottom: 4px; color: #334155;">{{fc.tg}}</div></sc-if><b>Metode:</b> dua proyeksi laju berjalan (run-rate) — {{fc.m1}}; {{fc.m2}}. Rentang = nilai terendah–tertinggi kedua metode.<br><b>Keterbatasan:</b> tidak memperhitungkan pola musiman (realisasi semester II biasanya berbeda), Tw III 2026 belum dirilis, dan bukan angka resmi. {{lim}}</div>
+                  </sc-if>
                 </div>
               </sc-if>
               <sc-if value="{{fc.none}}" hint-placeholder-val="{{false}}"><div style="padding: 14px 12px; border-radius: 10px; background: #F8FAFC; border: 1px dashed #CBD5E1; font-size: 12px; line-height: 18px; color: #475569;"><b>Perkiraan belum disusun.</b> {{lim}} AI tidak mengisi angka yang belum tersedia.</div></sc-if>
               <div>
-                <div style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.4px; color: #3730A3;">HAMBATAN REGULASI · BUKTI</div>
-                <ol style="margin: 6px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px;">
-                  <sc-for list="{{ev}}" as="x" hint-placeholder-count="3"><li style="display: grid; grid-template-columns: 8px minmax(0, 1fr); gap: 10px; font-size: 12.5px; line-height: 18px; color: #1E293B;"><span style="width: 6px; height: 6px; margin-top: 7px; border-radius: 99px; background: #0EA5E9;"></span><span>{{x.t}} <a href="{{x.u}}" target="_blank" rel="noopener" style="font-size: 11.5px; font-weight: 600; text-decoration: none; white-space: nowrap;">{{x.s}} ↗</a></span></li></sc-for>
-                </ol>
+                <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 8px;"><div style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.4px; color: #3730A3;">HAMBATAN REGULASI · BUKTI</div><span style="font-size: 10.5px; color: #94A3B8;">Klik untuk rincian</span></div>
+                <div style="margin-top: 6px; display: flex; flex-direction: column; gap: 6px;">
+                  <sc-for list="{{evA}}" as="x" hint-placeholder-count="3">
+                    <div style="border: 1px solid {{x.bd}}; border-radius: 8px; background: {{x.bg}}; transition: background .15s ease, border-color .15s ease;">
+                      <button type="button" sc-camel-on-click="{{x.toggle}}" aria-expanded="{{x.open}}" style="width: 100%; display: grid; grid-template-columns: 22px minmax(0, 1fr) 14px; gap: 10px; align-items: center; padding: 8px 10px; border: 0; background: transparent; font-family: inherit; text-align: left; cursor: pointer;">
+                        <span style="width: 20px; height: 20px; border-radius: 99px; background: #EEF2FF; color: #3730A3; font-size: 10.5px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center;">{{x.no}}</span>
+                        <span style="font-size: 12.5px; line-height: 18px; color: #1E293B; overflow: hidden; text-overflow: ellipsis; white-space: {{x.ws}};">{{x.t}}</span>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex: none; color: #64748B; transition: transform .15s ease; transform: {{x.chev}};"><path d="m6 9 6 6 6-6"></path></svg>
+                      </button>
+                      <sc-if value="{{x.open}}" hint-placeholder-val="{{false}}"><div style="padding: 0 12px 10px 42px; font-size: 12px; line-height: 18px; color: #334155;"><div><a href="{{x.u}}" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 6px; background: #EFF6FF; font-size: 11px; font-weight: 600; text-decoration: none;">Sumber: {{x.s}} ↗</a></div></div></sc-if>
+                    </div>
+                  </sc-for>
+                </div>
               </div>
             </div>
+            <div class="mzi"><span class="mzi-b">Insight AI</span><ul class="mzi-l"><sc-for list="{{mini.lak}}" as="i" hint-placeholder-count="3"><li>{{i}}</li></sc-for></ul><span class="mzi-s">Terverifikasi analis</span></div>
             <div style="padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;"><span><b style="color: #475569;">Periode:</b> 2025 s.d. Tw II 2026; berita s.d. 12 Okt 2026</span><span><b style="color: #475569;">Diperbarui:</b> 12 Okt 2026 (analisis AI harian; versi tayang)</span><span><b style="color: #475569;">Sumber:</b> BKPM, BPS, berita daring, JDIH</span><span style="padding: 0 6px; border-radius: 4px; background: #EEF2FF; color: #3730A3; font-weight: 600;">Disahkan pimpinan</span></div>
           </section>
 
@@ -868,16 +894,39 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
             <div style="padding: 14px 18px; display: flex; flex-direction: column; gap: 12px; flex: 1;">
               <div>
                 <div style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.4px; color: #1E40AF;">SEKTOR PELUANG</div>
-                <div style="margin-top: 6px; display: flex; flex-direction: column; gap: 6px;"><sc-for list="{{sekP}}" as="x" hint-placeholder-count="3"><div style="padding: 8px 10px; border-radius: 8px; background: #EFF6FF; border: 1px solid #E7F1E9; font-size: 12px;"><b style="color: #1E40AF;">{{x.l}}</b><div style="font-size: 11.5px; color: #475569;">{{x.d}}</div></div></sc-for></div>
+                <div role="tablist" style="margin-top: 6px; display: flex; flex-wrap: wrap; gap: 6px;">
+                  <sc-for list="{{sekTabs}}" as="x" hint-placeholder-count="3"><button type="button" role="tab" aria-selected="{{x.on}}" sc-camel-on-click="{{x.pick}}" style="height: 30px; padding: 0 12px; border-radius: 99px; border: 1px solid {{x.bd}}; background: {{x.bg}}; color: {{x.fg}}; font-family: inherit; font-size: 12px; font-weight: 600; cursor: pointer; transition: background .15s ease, color .15s ease;">{{x.l}}</button></sc-for>
+                </div>
+                <div style="margin-top: 8px; padding: 10px 12px; border-radius: 8px; background: #EFF6FF; border-left: 3px solid #1E40AF; font-size: 12px; line-height: 18px; color: #1E293B;"><b style="color: #1E40AF;">{{sekCur.l}}</b> — {{sekCur.d}}</div>
               </div>
               <div>
-                <div style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.4px; color: #475569;">DASAR PELUANG</div>
-                <ul style="margin: 6px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px;"><sc-for list="{{dasar}}" as="x" hint-placeholder-count="2"><li style="font-size: 12px; line-height: 18px; color: #1E293B;">{{x.t}} <a href="{{x.u}}" target="_blank" rel="noopener" style="font-size: 11.5px; font-weight: 600; text-decoration: none;">{{x.s}} ↗</a></li></sc-for></ul>
+                <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 8px;"><div style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.4px; color: #475569;">DASAR PELUANG</div><span style="font-size: 10.5px; color: #94A3B8;">Klik untuk rincian</span></div>
+                <div style="margin-top: 6px; display: flex; flex-direction: column; gap: 6px;">
+                  <sc-for list="{{dasarA}}" as="x" hint-placeholder-count="3">
+                    <div style="border: 1px solid {{x.bd}}; border-radius: 8px; background: {{x.bg}}; transition: background .15s ease, border-color .15s ease;">
+                      <button type="button" sc-camel-on-click="{{x.toggle}}" aria-expanded="{{x.open}}" style="width: 100%; display: grid; grid-template-columns: minmax(0, 1fr) 14px; gap: 10px; align-items: center; padding: 8px 10px; border: 0; background: transparent; font-family: inherit; text-align: left; cursor: pointer;">
+                        <span style="font-size: 12.5px; line-height: 18px; color: #1E293B; overflow: hidden; text-overflow: ellipsis; white-space: {{x.ws}};">{{x.t}}</span>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex: none; color: #64748B; transition: transform .15s ease; transform: {{x.chev}};"><path d="m6 9 6 6 6-6"></path></svg>
+                      </button>
+                      <sc-if value="{{x.open}}" hint-placeholder-val="{{false}}"><div style="padding: 0 12px 10px 12px; font-size: 12px; line-height: 18px; color: #334155;"><div><a href="{{x.u}}" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 6px; background: #EFF6FF; font-size: 11px; font-weight: 600; text-decoration: none;">Sumber: {{x.s}} ↗</a></div></div></sc-if>
+                    </div>
+                  </sc-for>
+                </div>
               </div>
-              <div style="padding: 12px; border-radius: 10px; background: #EFF6FF; border: 1px solid #B8E3DF;">
-                <div style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.4px; color: #1D4ED8;">OPSI ARAH KEBIJAKAN · NETRAL</div>
-                <div style="margin-top: 6px; display: flex; flex-direction: column; gap: 6px;"><sc-for list="{{opsi}}" as="x" hint-placeholder-count="3"><div style="display: grid; grid-template-columns: 52px minmax(0, 1fr); gap: 8px; font-size: 12px; line-height: 18px;"><b style="color: #1D4ED8;">{{x.n}}</b><span style="color: #1E293B;">{{x.t}}</span></div></sc-for></div>
-                <div style="margin-top: 8px; font-size: 11px; color: #475569;">Opsi disajikan sebagai bahan pertimbangan, bukan keputusan; tindak lanjut ditentukan pemangku kepentingan berwenang.</div>
+              <div style="padding: 12px; border-radius: 10px; background: #F8FAFC; border: 1px solid #E3E8F0;">
+                <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px;">
+                  <div style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.4px; color: #1D4ED8;">OPSI ARAH KEBIJAKAN · NETRAL</div>
+                  <div style="display: flex; align-items: center; gap: 4px;">
+                    <button type="button" sc-camel-on-click="{{opNav.prev}}" aria-label="Opsi sebelumnya" style="width: 26px; height: 26px; border-radius: 6px; border: 1px solid #E3E8F0; background: #FFFFFF; color: #475569; font-family: inherit; cursor: pointer;">‹</button>
+                    <sc-for list="{{opNav.steps}}" as="x" hint-placeholder-count="3"><button type="button" sc-camel-on-click="{{x.pick}}" aria-label="Opsi {{x.n}}" style="width: 26px; height: 26px; border-radius: 6px; border: 1px solid #BFDBFE; background: {{x.bg}}; color: {{x.fg}}; font-family: inherit; font-size: 11.5px; font-weight: 700; cursor: pointer;">{{x.n}}</button></sc-for>
+                    <button type="button" sc-camel-on-click="{{opNav.next}}" aria-label="Opsi berikutnya" style="width: 26px; height: 26px; border-radius: 6px; border: 1px solid #E3E8F0; background: #FFFFFF; color: #475569; font-family: inherit; cursor: pointer;">›</button>
+                  </div>
+                </div>
+                <div style="margin-top: 10px; padding: 12px 14px; border-radius: 8px; background: #FFFFFF; border: 1px solid #E3E8F0; border-left: 3px solid #1D4ED8;">
+                  <div style="font-size: 11px; font-weight: 600; color: #64748B;">{{opNav.cur.n}} · {{opNav.pos}}</div>
+                  <div style="margin-top: 3px; font-size: 13px; line-height: 19px; color: #0F172A;">{{opNav.cur.t}}</div>
+                </div>
+                <div style="margin-top: 8px; font-size: 10.5px; color: #64748B;">Opsi disajikan sebagai bahan pertimbangan, bukan keputusan; tindak lanjut ditentukan pemangku kepentingan berwenang.</div>
               </div>
             </div>
             <div style="padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;"><span><b style="color: #475569;">Periode:</b> pemantauan mingguan s.d. 12 Okt 2026</span><span><b style="color: #475569;">Diperbarui:</b> 12 Okt 2026</span><span><b style="color: #475569;">Sumber:</b> Bank Indonesia (LPP), regionalinvestment BKPM, berita daring</span><span style="padding: 0 6px; border-radius: 4px; background: #EEF2FF; color: #3730A3; font-weight: 600;">Disahkan pimpinan</span></div>
@@ -892,13 +941,18 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
           </div>
           <div style="display: flex; flex-wrap: wrap;">
             <div style="flex: 3 1 560px; min-width: 0; display: flex; flex-direction: column;">
-              <sc-for list="{{isu}}" as="i" hint-placeholder-count="2">
-                <div style="padding: 12px 18px; border-bottom: 1px solid #EEF2F7; border-left: 4px solid {{i.lb}}; background: {{i.bg}}; display: grid; grid-template-columns: 24px minmax(0, 1fr) auto; gap: 10px;">
+              <sc-for list="{{isu}}" as="i" hint-placeholder-count="3">
+                <div style="padding: 12px 18px; border-bottom: 1px solid #EEF2F7; border-left: 4px solid {{i.lb}}; background: {{i.bg}}; display: grid; grid-template-columns: 24px minmax(0, 1fr) auto; gap: 10px; transition: background .15s ease;">
                   <span style="width: 22px; height: 22px; border-radius: 99px; background: #0B1F4B; color: #FFFFFF; font-size: 11px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center;">{{i.no}}</span>
-                  <div style="display: flex; flex-direction: column; gap: 4px;">
+                  <div style="display: flex; flex-direction: column; gap: 4px; min-width: 0;">
                     <b style="font-size: 12.5px; line-height: 18px;">{{i.j}}</b>
                     <span style="font-size: 12px; line-height: 18px; color: #334155;">{{i.r}}</span>
-                    <span style="font-size: 11.5px; color: #64748B;">{{i.tg}} · <a href="{{i.u}}" target="_blank" rel="noopener" style="font-weight: 600; text-decoration: none;">{{i.o}} ↗</a> · <span style="padding: 1px 6px; border-radius: 4px; background: #EFF6FF; color: #1E40AF; font-weight: 600;">{{i.kat}}</span></span>
+                    <span style="font-size: 11.5px; color: #64748B; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 6px;">{{i.tg}} ·
+                      <sc-if value="{{i.link}}" hint-placeholder-val="{{true}}"><a href="{{i.u}}" target="_blank" rel="noopener" style="font-weight: 600; text-decoration: none;">{{i.o}} ↗</a></sc-if>
+                      <sc-if value="{{i.sim}}" hint-placeholder-val="{{false}}"><span>{{i.o}}</span><span style="padding: 1px 6px; border-radius: 4px; background: #F1F5F9; border: 1px dashed #CBD5E1; color: #64748B; font-weight: 600;">Data simulasi</span></sc-if>
+                      · <span style="padding: 1px 6px; border-radius: 4px; background: #EFF6FF; color: #1E40AF; font-weight: 600;">{{i.kat}}</span>
+                      <button type="button" sc-camel-on-click="{{i.pick}}" style="margin-left: auto; display: inline-flex; align-items: center; gap: 4px; height: 22px; padding: 0 8px; border-radius: 6px; border: 1px solid #BFDBFE; background: #FFFFFF; color: #1D4ED8; font-family: inherit; font-size: 11px; font-weight: 600; cursor: pointer;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11Z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>{{i.mapT}}</button>
+                    </span>
                   </div>
                   <span>
                     <sc-if value="{{i.ews}}" hint-placeholder-val="{{false}}"><span class="tip" tabindex="0" style="display: inline-flex; align-items: center; height: 24px; padding: 0 9px; border-radius: 6px; background: #DC2626; color: #FFFFFF; font-size: 11px; font-weight: 700; cursor: help;">● EWS<span class="pop"><b style="color: #FFFFFF;">Alasan:</b> {{i.ewsA}}<br><b style="color: #FFFFFF;">Sumber:</b> {{i.ewsS}}<br><b style="color: #FFFFFF;">Waktu:</b> {{i.ewsW}}<br><span style="color: #FCA5A5;">Penanda tetap merah sampai ditindaklanjuti.</span></span></span></sc-if>
@@ -906,30 +960,90 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
                   </span>
                 </div>
               </sc-for>
-              <div style="padding: 12px 18px; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px;">
-                <div style="padding: 10px 12px; border-radius: 9px; border: 1px solid #E3E8F0;"><div style="font-size: 11px; color: #64748B;">Lingkungan · Indeks Kualitas Lingkungan Hidup</div><div style="font-size: 18px; font-weight: 700; color: {{env.iklhC}};">{{env.iklh}}</div><div style="font-size: 10.5px; color: #64748B;">{{env.iklhSub}}</div></div>
-                <div style="padding: 10px 12px; border-radius: 9px; border: 1px solid #E3E8F0;"><div style="font-size: 11px; color: #64748B;">Risiko bencana · Indeks Risiko Bencana Indonesia</div><div style="display: flex; align-items: baseline; gap: 8px;"><span style="font-size: 18px; font-weight: 700; color: {{env.irbiC}};">{{env.irbi}}</span><span style="padding: 1px 7px; border-radius: 5px; background: #EFF6FF; color: #1E40AF; font-size: 11px; font-weight: 600;">{{env.irbiK}}</span></div><div style="font-size: 10.5px; color: #64748B;">{{env.irbiSub}}</div></div>
+              <div style="padding: 12px 18px 14px; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 10px; flex: 1;">
+                <!-- IKLH + insight -->
+                <div style="padding: 12px 14px; border-radius: 10px; border: 1px solid #E3E8F0; display: flex; flex-direction: column; gap: 10px;">
+                  <div>
+                    <div style="font-size: 11px; color: #64748B;">Lingkungan · Indeks Kualitas Lingkungan Hidup</div>
+                    <div style="font-size: 20px; font-weight: 700; color: {{env.iklhC}};">{{env.iklh}}</div>
+                    <div style="font-size: 10.5px; color: #64748B;">{{env.iklhSub}}</div>
+                    <div title="IKLH provinsi {{env.iklh}} · nasional 73,53" style="position: relative; height: 8px; margin-top: 8px; border-radius: 4px; background: #EEF2F7;">
+                      <span style="position: absolute; left: 0; top: 0; bottom: 0; width: {{iklhIns.gW}}; border-radius: 4px; background: {{iklhIns.gC}};"></span>
+                      <span style="position: absolute; left: {{iklhIns.natL}}; top: -3px; width: 2px; height: 14px; background: #0F172A;"></span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-top: 3px; font-size: 10px; color: #94A3B8;"><span>0</span><span>▲ nasional 73,53</span><span>100</span></div>
+                  </div>
+                  <div style="display: flex; flex-direction: column; gap: 5px;">
+                    <sc-for list="{{iklhIns.comp}}" as="c" hint-placeholder-count="4">
+                      <div style="display: grid; grid-template-columns: 112px minmax(0, 1fr) 34px; gap: 8px; align-items: center; font-size: 11.5px; color: #334155;">
+                        <span style="font-weight: {{c.fw}};">{{c.l}}</span>
+                        <span style="height: 6px; border-radius: 3px; background: #EEF2F7;"><span style="display: block; width: {{c.w}}; height: 6px; border-radius: 3px; background: {{c.c}};"></span></span>
+                        <b style="text-align: right; color: {{c.c}};">{{c.v}}</b>
+                      </div>
+                    </sc-for>
+                  </div>
+                  <div style="padding: 10px 12px; border-radius: 8px; background: #F0FDFA; border: 1px solid #CCFBF1;">
+                    <div style="font-size: 10.5px; font-weight: 700; letter-spacing: .04em; color: #0F766E;">✦ INSIGHT</div>
+                    <div style="margin-top: 4px; font-size: 11.5px; line-height: 17px; color: #1F2937;">{{iklhIns.txt}}</div>
+                    <div style="margin-top: 8px; font-size: 10.5px; color: #64748B;">IKLH terendah · klik untuk lihat di peta</div>
+                    <div style="margin-top: 4px; display: flex; flex-wrap: wrap; gap: 5px;"><sc-for list="{{iklhIns.low}}" as="k" hint-placeholder-count="3"><button type="button" sc-camel-on-click="{{k.pick}}" style="height: 24px; padding: 0 8px; border-radius: 6px; border: 1px solid #99F6E4; background: {{k.bg}}; color: {{k.fg}}; font-family: inherit; font-size: 11px; cursor: pointer;">{{k.n}} · <b>{{k.v}}</b></button></sc-for></div>
+                  </div>
+                </div>
+                <!-- IRBI + insight -->
+                <div style="padding: 12px 14px; border-radius: 10px; border: 1px solid #E3E8F0; display: flex; flex-direction: column; gap: 10px;">
+                  <div>
+                    <div style="font-size: 11px; color: #64748B;">Risiko bencana · Indeks Risiko Bencana Indonesia</div>
+                    <div style="display: flex; align-items: baseline; gap: 8px;"><span style="font-size: 20px; font-weight: 700; color: {{env.irbiC}};">{{env.irbi}}</span><span style="padding: 1px 7px; border-radius: 5px; background: #FFF7ED; color: #9A3412; font-size: 11px; font-weight: 600;">{{env.irbiK}}</span></div>
+                    <div style="font-size: 10.5px; color: #64748B;">{{env.irbiSub}}</div>
+                  </div>
+                  <div>
+                    <div style="font-size: 10.5px; color: #64748B;">Komposisi kejadian menurut jenis bahaya</div>
+                    <div style="display: flex; height: 10px; margin-top: 5px; border-radius: 5px; overflow: hidden; background: #EEF2F7;"><sc-for list="{{irbiIns.seg}}" as="g" hint-placeholder-count="4"><span title="{{g.l}}: {{g.v}}" style="width: {{g.w}}; background: {{g.c}};"></span></sc-for></div>
+                    <div style="margin-top: 6px; display: flex; flex-wrap: wrap; gap: 3px 10px; font-size: 11px; color: #334155;"><sc-for list="{{irbiIns.seg}}" as="g" hint-placeholder-count="4"><span style="display: inline-flex; align-items: center; gap: 4px;"><span style="width: 8px; height: 8px; border-radius: 2px; background: {{g.c}};"></span>{{g.l}} <b>{{g.v}}</b></span></sc-for></div>
+                  </div>
+                  <div style="padding: 10px 12px; border-radius: 8px; background: #FFF7ED; border: 1px solid #FED7AA;">
+                    <div style="font-size: 10.5px; font-weight: 700; letter-spacing: .04em; color: #9A3412;">✦ INSIGHT</div>
+                    <div style="margin-top: 4px; font-size: 11.5px; line-height: 17px; color: #1F2937;">{{irbiIns.txt}}</div>
+                    <div style="margin-top: 8px; font-size: 10.5px; color: #64748B;">Skor IRBI tertinggi · klik untuk lihat di peta</div>
+                    <div style="margin-top: 4px; display: flex; flex-wrap: wrap; gap: 5px;"><sc-for list="{{irbiIns.top}}" as="k" hint-placeholder-count="3"><button type="button" sc-camel-on-click="{{k.pick}}" style="height: 24px; padding: 0 8px; border-radius: 6px; border: 1px solid #FDBA74; background: {{k.bg}}; color: {{k.fg}}; font-family: inherit; font-size: 11px; cursor: pointer;">{{k.n}} · <b>{{k.v}}</b></button></sc-for></div>
+                  </div>
+                </div>
               </div>
             </div>
             <div style="flex: 2 1 380px; min-width: 0; border-left: 1px solid #EEF2F7; padding: 12px 18px; display: flex; flex-direction: column; gap: 8px; background: #FBFCFE;">
-              <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 6px;"><b style="font-size: 12.5px;">Peta lapisan provinsi</b><div style="display: flex; gap: 4px;"><sc-for list="{{lyrBtns}}" as="b" hint-placeholder-count="2"><button type="button" sc-camel-on-click="{{b.pick}}" style="height: 26px; padding: 0 9px; border-radius: 7px; border: 1px solid {{b.bd}}; background: {{b.bg}}; color: {{b.fg}}; font-family: inherit; font-size: 11px; font-weight: 600; cursor: pointer;">{{b.l}}</button></sc-for></div></div>
-              <div style="border-radius: 10px; border: 1px solid #EEF2F7; background: #FFFFFF; padding: 6px;">
-                <svg sc-camel-view-box="{{hm.vb}}" role="img" aria-label="Peta provinsi: risiko bencana dan lokasi isu" style="width: 100%; height: auto; display: block;">
-                  <path d="{{hm.d}}" fill="{{hm.fillNow}}" stroke="#1E40AF" stroke-width="{{hm.sw}}" stroke-linejoin="round"></path>
-                  <circle cx="{{hm.isu.i0.cx}}" cy="{{hm.isu.i0.cy}}" r="{{hm.isu.i0.r}}" fill="{{hm.isu.i0.c}}" stroke="#FFFFFF" stroke-width="{{hm.swd}}"></circle>
-                  <circle cx="{{hm.isu.i1.cx}}" cy="{{hm.isu.i1.cy}}" r="{{hm.isu.i1.r}}" fill="{{hm.isu.i1.c}}" stroke="#FFFFFF" stroke-width="{{hm.swd}}"></circle>
+              <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 6px;"><div><b style="font-size: 12.5px;">Peta lapisan provinsi</b><div style="font-size: 11px; color: #64748B;">{{dh.n}} · {{hm.kab.length}} kab/kota</div></div><div style="display: flex; flex-wrap: wrap; gap: 4px;"><sc-for list="{{lyrBtns}}" as="b" hint-placeholder-count="3"><button type="button" sc-camel-on-click="{{b.pick}}" style="height: 26px; padding: 0 9px; border-radius: 7px; border: 1px solid {{b.bd}}; background: {{b.bg}}; color: {{b.fg}}; font-family: inherit; font-size: 11px; font-weight: 600; cursor: pointer;">{{b.l}}</button></sc-for></div></div>
+              <div style="border-radius: 10px; border: 1px solid #E3E8F0; background: #EAF2FB; overflow: hidden;">
+                <div style="position: relative;">
+                <svg sc-camel-view-box="{{hm.vb}}" role="img" aria-label="Peta kab/kota {{dh.n}}: lapisan risiko bencana, kualitas lingkungan, lokasi isu dan proyek" style="width: 100%; height: auto; display: block;">
+                  <sc-for list="{{hm.nb}}" as="n" hint-placeholder-count="2"><path d="{{n.d}}" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="{{hm.nbSw}}" stroke-linejoin="round"></path></sc-for>
+                  <sc-for list="{{hm.kab}}" as="k" hint-placeholder-count="6"><path d="{{k.d}}" fill="{{k.fill}}" fill-opacity="{{k.op}}" stroke="{{hm.kSt}}" stroke-width="{{hm.kSw}}" stroke-linejoin="round" style="cursor: pointer;" sc-camel-onMouseEnter="{{k.hov}}" sc-camel-onMouseLeave="{{k.out}}" sc-camel-on-click="{{k.pick}}"><title>{{k.t}}</title></path></sc-for>
+                  <path d="{{hm.hovD}}" fill="none" stroke="#334155" stroke-width="{{hm.hovSw}}" stroke-linejoin="round" pointer-events="none"></path>
+                  <path d="{{hm.selD}}" fill="none" stroke="#0F172A" stroke-width="{{hm.selSw}}" stroke-linejoin="round" pointer-events="none"></path>
+                  <sc-if value="{{hm.prjOn}}" hint-placeholder-val="{{false}}"><sc-for list="{{hm.prjPts}}" as="p" hint-placeholder-count="3"><path d="{{p.d}}" fill="#2563EB" stroke="#FFFFFF" stroke-width="{{p.sw}}"><title>Proyek siap investasi: {{p.t}}</title></path></sc-for></sc-if>
+                  <circle cx="{{hm.cap.x}}" cy="{{hm.cap.y}}" r="{{hm.cap.r}}" fill="#FFFFFF" stroke="#0F172A" stroke-width="{{hm.cap.sw}}" pointer-events="none"></circle><circle cx="{{hm.cap.x}}" cy="{{hm.cap.y}}" r="{{hm.cap.ri}}" fill="#0F172A" pointer-events="none"></circle>
+                  <sc-for list="{{hm.isuPts}}" as="p" hint-placeholder-count="2"><g style="cursor: pointer;" sc-camel-on-click="{{p.pick}}"><circle cx="{{p.cx}}" cy="{{p.cy}}" r="{{p.rh}}" fill="{{p.c}}" fill-opacity="0.18"></circle><circle cx="{{p.cx}}" cy="{{p.cy}}" r="{{p.r}}" fill="{{p.c}}" stroke="#FFFFFF" stroke-width="{{p.sw}}"></circle><title>{{p.t}}</title></g></sc-for>
                 </svg>
+                <span style="position: absolute; left: {{hm.capL}}; top: {{hm.capT}}; transform: translate(9px, -50%); font-size: 11px; font-weight: 700; color: #0F172A; text-shadow: 0 0 3px #FFFFFF, 0 0 3px #FFFFFF, 0 0 3px #FFFFFF; pointer-events: none; white-space: nowrap;">{{hm.cap.n}}</span>
+                <sc-for list="{{hm.isuPts}}" as="p" hint-placeholder-count="2"><span style="position: absolute; left: {{p.lx}}; top: {{p.ly}}; transform: translate(-50%, -50%); font-size: {{p.lfs}}; font-weight: 700; color: #FFFFFF; pointer-events: none; line-height: 1;">{{p.no}}</span></sc-for>
+                </div>
+                <div style="padding: 8px 10px; border-top: 1px solid #E3E8F0; background: #FFFFFF; font-size: 11.5px; color: #334155; min-height: 34px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center;">
+                  <sc-if value="{{mapInfo.none}}" hint-placeholder-val="{{true}}"><span style="color: #64748B;">{{mapInfo.hint}}</span></sc-if>
+                  <sc-if value="{{mapInfo.isK}}" hint-placeholder-val="{{false}}"><div style="display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px;"><b style="font-size: 12.5px; color: #0F172A;">{{mapInfo.n}}</b><span style="display: inline-flex; align-items: center; gap: 4px;"><span style="width: 9px; height: 9px; border-radius: 2px; background: {{mapInfo.irC}};"></span>IRBI <b>{{mapInfo.ir}}</b> ({{mapInfo.irK}}) · {{mapInfo.hz}}</span><span style="display: inline-flex; align-items: center; gap: 4px;"><span style="width: 9px; height: 9px; border-radius: 2px; background: {{mapInfo.ikC}};"></span>IKLH <b>{{mapInfo.ik}}</b> · {{mapInfo.ikVs}}</span><button type="button" sc-camel-on-click="{{mapInfo.clear}}" aria-label="Hapus pilihan" style="margin-left: auto; padding: 0 4px; border: 0; background: transparent; color: #94A3B8; font-family: inherit; font-size: 14px; cursor: pointer;">×</button></div></sc-if>
+                  <sc-if value="{{mapInfo.isI}}" hint-placeholder-val="{{false}}"><div style="display: flex; align-items: center; gap: 8px;"><div style="min-width: 0;"><b style="color: #0F172A;">{{mapInfo.ij}}</b><div style="font-size: 11px; color: #64748B;">{{mapInfo.ik2}}</div></div><button type="button" sc-camel-on-click="{{mapInfo.clear}}" aria-label="Hapus pilihan" style="margin-left: auto; padding: 0 4px; border: 0; background: transparent; color: #94A3B8; font-family: inherit; font-size: 14px; cursor: pointer;">×</button></div></sc-if>
+                </div>
               </div>
-              <div style="display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 11px; color: #334155;">
-                <sc-for list="{{irbiLeg}}" as="g" hint-placeholder-count="3"><span style="display: inline-flex; align-items: center; gap: 5px; font-weight: {{g.fw}};"><span style="width: 10px; height: 10px; border-radius: 2px; background: {{g.c}};"></span>IRBI {{g.l}} ({{g.r}})</span></sc-for>
-                <span style="display: inline-flex; align-items: center; gap: 5px;"><span style="width: 10px; height: 10px; border-radius: 2px; background: #E3E8F0;"></span>Kelas belum tersedia</span>
+              <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; font-size: 11px; color: #334155;">
+                <sc-if value="{{mapLeg.irbi}}" hint-placeholder-val="{{true}}"><span style="font-weight: 600;">Skor IRBI kab/kota</span><sc-for list="{{mapLeg.ir}}" as="g" hint-placeholder-count="5"><span style="display: inline-flex; align-items: center; gap: 4px;"><span style="width: 10px; height: 10px; border-radius: 2px; background: {{g.c}};"></span>{{g.l}}</span></sc-for><span style="color: #64748B;">(&gt; 176 = kelas tinggi)</span></sc-if>
+                <sc-if value="{{mapLeg.iklh}}" hint-placeholder-val="{{false}}"><span style="font-weight: 600;">IKLH kab/kota</span><sc-for list="{{mapLeg.ik}}" as="g" hint-placeholder-count="5"><span style="display: inline-flex; align-items: center; gap: 4px;"><span style="width: 10px; height: 10px; border-radius: 2px; background: {{g.c}};"></span>{{g.l}}</span></sc-for></sc-if>
+                <sc-if value="{{mapLeg.isu}}" hint-placeholder-val="{{false}}"><span style="display: inline-flex; align-items: center; gap: 5px;"><span style="width: 8px; height: 8px; background: #2563EB; transform: rotate(45deg);"></span>Proyek siap investasi</span></sc-if>
                 <span style="display: inline-flex; align-items: center; gap: 5px;"><span style="width: 10px; height: 10px; border-radius: 99px; background: #0B1F4B;"></span>Lokasi isu</span>
-                <span style="display: inline-flex; align-items: center; gap: 5px;"><span style="width: 10px; height: 10px; border-radius: 99px; background: #DC2626;"></span>Isu ber-EWS</span>
+                <span style="display: inline-flex; align-items: center; gap: 5px;"><span style="width: 10px; height: 10px; border-radius: 99px; background-color: #DC2626;"></span>Isu ber-EWS</span>
+                <span style="display: inline-flex; align-items: center; gap: 5px;"><span style="width: 8px; height: 8px; border-radius: 99px; background: #FFFFFF; border: 2px solid #0F172A;"></span>Ibu kota provinsi</span>
               </div>
-              <div style="font-size: 10.5px; line-height: 15px; color: #64748B;">{{env.irbiNote}} Titik isu bersifat indikatif (tingkat kabupaten/kota).</div>
+              <div style="font-size: 10.5px; line-height: 15px; color: #64748B;">{{env.irbiNote}} Batas kab/kota: GADM; skor kab/kota, komponen IKLH, dan komposisi bahaya adalah <b>data simulasi</b> untuk prototipe. Titik isu bersifat indikatif.</div>
             </div>
           </div>
-          <div style="padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;"><span><b style="color: #475569;">Periode:</b> berita 2025–2026; IKLH 2024; IRBI 2024</span><span><b style="color: #475569;">Diperbarui:</b> 12 Okt 2026 (mingguan)</span><span><b style="color: #475569;">Sumber:</b> berita daring, KLH/BPS, BNPB</span><span style="padding: 0 6px; border-radius: 4px; background: #EFF6FF; color: #1D4ED8; font-weight: 600;">Diverifikasi analis</span></div>
+          <div style="padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;"><span><b style="color: #475569;">Periode:</b> berita 2025–2026; IKLH 2024; IRBI 2024</span><span><b style="color: #475569;">Batas wilayah:</b> GADM (kab/kota), BIG (provinsi)</span><span><b style="color: #475569;">Diperbarui:</b> 12 Okt 2026 (mingguan)</span><span><b style="color: #475569;">Sumber:</b> berita daring, KLH/BPS, BNPB</span><span style="padding: 0 6px; border-radius: 4px; background: #EFF6FF; color: #1D4ED8; font-weight: 600;">Diverifikasi analis</span></div>
         </section>
 
         <!-- 4. Indikator kesiapan wilayah -->
@@ -1460,7 +1574,7 @@ const HIST = [[2020, 826.3, 413.5, 412.8], [2021, 901.02, 447, 454], [2022, 1207
           ['Banjir dan longsor akhir Nov 2025 di ±19 kab/kota menekan pertanian dan manufaktur; pertumbuhan Tw IV 2025 melambat ke 4,23%.', 'BI, LPP Sumatera Utara Februari 2026', 'https://www.bi.go.id/id/publikasi/laporan/lpp/Pages/Laporan-Perekonomian-Provinsi-Sumatera-Utara-Februari-2026.aspx'],
           ['Pergub Sumut 9/2026 mengatur tata cara insentif pajak dan retribusi daerah; Perda khusus penanaman modal tidak ditemukan.', 'JDIH Sumut', 'https://jdih.sumutprov.go.id/assets/reg/1775116365662_PERGUB_NOMOR_9_TAHUN_2026.pdf']
         ],
-        lim: 'Realisasi Tw II 2026年数 Sumatera Utara belum ada dalam rilis resmi yang dihimpun; angka Tw II pada halaman ini adalah estimasi alokasi, bukan angka BKPM.',
+        lim: 'Realisasi Tw II 2026 Sumatera Utara belum ada dalam rilis resmi yang dihimpun; angka Tw II pada halaman ini adalah estimasi alokasi, bukan angka BKPM.',
         ews: null,
         sekP: [['Pertanian & perkebunan', '24,18% PDRB, terbesar (DJPb KFR Tw I 2026)'], ['Manufaktur & logistik', 'Prakiraan BI: kawasan industri dan KEK Sei Mangkei'], ['Rekonstruksi pascabencana', 'Pemulihan 2026 diprakirakan 4,9–5,7% (BI)']],
         dasar: [['Prakiraan 2026 4,9–5,7% didorong rekonstruksi, investasi kawasan industri, KEK Sei Mangkei dan infrastruktur; QRIS merchant +21,6%.', 'BI, LPP Sumatera Utara Februari 2026', 'https://www.bi.go.id/id/publikasi/laporan/lpp/Pages/Laporan-Perekonomian-Provinsi-Sumatera-Utara-Februari-2026.aspx'], ['Tiga proyek PIR siap ditawarkan (pusat pasar Karo, RS tipe C, pabrik jagung).', 'Peta Peluang Investasi (D-8 Indonesia/PIR BKPM)', 'https://d8indonesia.kemlu.go.id/investment-map']],
@@ -1491,7 +1605,7 @@ const HIST = [[2020, 826.3, 413.5, 412.8], [2021, 901.02, 447, 454], [2022, 1207
       sumut: [['27 Des 2025', 'Ketika pemerintah evaluasi PT TPL, masyarakat minta tutup permanen', 'Mongabay Indonesia', 'https://mongabay.co.id/2025/12/27/ketika-pemerintah-evaluasi-pt-tpl-masyarakat-minta-tutup-permanen/', 'Konflik masyarakat adat dengan PT Toba Pulp Lestari; setelah banjir-longsor Nov 2025, Kemenhut (8 Des) dan DLHK Sumut (10 Des 2025) menghentikan sementara operasi.', [99.1, 2.35], 'Konflik lahan']]
     };
     // proyek: [nama, lokasi, sektor, nilai, irr, npv, bc, payback, status, tk, url, lonlat]
-    const PRJ = {"dki":[["Lebak Bulus Park & Ride","Jakarta Selatan","Transportasi","Rp37,3 miliar","14%","Rp15,5 miliar",null,null,"PID-Available (PIR)",null,"https://d8indonesia.kemlu.go.id/investment-map",[106.775,-6.29]],["Transit Hub Mega Kuningan","Jakarta Selatan","Transportasi","Rp27,2 miliar","14%","Rp15,2 miliar",null,null,"PID-Available (PIR)",null,"https://d8indonesia.kemlu.go.id/investment-map",[106.83,-6.23]],["Ancol Ecopark","Jakarta Utara","Pariwisata","Rp42,2 miliar","11%","Rp9 miliar",null,null,"PID-Available (PIR)",null,"https://d8indonesia.kemlu.go.id/investment-map",[106.83,-6.12]]],"jabar":[["Kertajati Aircraft Maintenance Center (KAM-C)","Kab. Majalengka (BIJB Kertajati)","Infrastruktur / MRO pesawat","Rp2,55 triliun","19,79%","US$112,5 juta",null,"8,3 tahun","IPRO-Available",null,"https://dpmptsp.jabarprov.go.id/investasi-jabar/src/assets/invest/file/KERTAJATI%20AIRCRAFT%20MAINTENANCE%20CENTER.pdf",[108.17,-6.65]],["Sumedang Industrialpolis","Kab. Sumedang (Rebana)","Kawasan industri","Rp4,3 triliun","32%","880 miliar",null,"3 tahun 3 bulan","Mencari investor",null,"https://investasi.jabarprov.go.id/investment-opportunities/sumedang-industrialpolis",[107.92,-6.86]],["Bungko Lor: Salt Farm & Manufacturing","Kab. Cirebon","Hilirisasi garam","Rp250 miliar","24,5%","143 miliar",null,"6 tahun","Mencari investor",null,"https://investasi.jabarprov.go.id/investment-opportunities/bungko-lor-for-all-seasons-salt-farm-manufacturing",[108.55,-6.6]]],"jateng":[["Semarang Logistics Hub / UCC Terboyo","Kec. Genuk, Kota Semarang","Infrastruktur / logistik","Rp118,39 miliar","15,5%","50,6 miliar","1,43","< 10 tahun","Proyek Siap Ditawarkan (CJIP)",null,"https://cjip.jatengprov.go.id/detail-proyek-investasi/semarang-logistics-huburban-consolidation-center-ucc-terboyo",[110.46,-6.95]],["Pengolahan Limbah Pertanian Menjadi Biomasa","Kab. Grobogan","Energi terbarukan","Rp273,86 miliar","19,46%","Rp543,63 miliar",null,"5,64 tahun","Proyek Siap Ditawarkan (CJIP)",null,"https://cjip.jatengprov.go.id/detail-proyek-investasi/pengolahan-limbah-pertanian-menjadi-biomasa",[110.92,-7.08]],["Pengolahan Sampah Menjadi RDF","TPA Sukoharjo, Kab. Pati","Pengelolaan sampah / energi","Rp71,45 miliar","15%","Rp17,65 miliar","1,25","7 tahun 2 bulan","Proyek Siap Ditawarkan (CJIP)",null,"https://cjip.jatengprov.go.id/detail-proyek-investasi/pengolahan-sampah-menjadi-refuse-derived-fuel-rdf",[111.04,-6.75]],["Pergudangan dan Pengolahan Garam Industri","Desa Bulakamba, Kab. Brebes","Manufaktur (garam industri)","Rp50,55 miliar","50%","Rp46,88 miliar","1,39","2 tahun 8 bulan","Proyek Siap Ditawarkan (CJIP)",null,"https://cjip.jatengprov.go.id/detail-proyek-investasi/pergudangan-dan-pengolahan-garam-industri-di-kabupaten-brebes",[108.95,-6.88]],["Transformasi TKL Ecopark","Kota Magelang, Jawa Tengah","Pariwisata","Rp 180,6M (estimasi)","13,76%","Rp 54,5M",null,"12 tahun","Profil BKPM; kesiapan, PMA/PMDN, tenaga kerja tidak dicantumkan.",null,"https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/199",null,2023,"Peluang investasi (PIRBKPM)",null]],"jatim":[["Banyuwangi Eco Industrial Park","Kab. Banyuwangi","Kawasan industri & real estat","Rp5,4 triliun","16,35%","Rp2,9 triliun",null,null,"IPRO-Available",null,"https://d8indonesia.kemlu.go.id/investment-map",[114.3,-8.25]],["Cassava with Integrated Processing Facility",null,"Agro-hilirisasi","Rp434,3 miliar","30,99%","Rp516,4 miliar",null,null,"IPRO-Available",null,"https://d8indonesia.kemlu.go.id/investment-map",null],["Cattle Farm",null,"Agroindustri (peternakan sapi)","Rp137,4 miliar","24%","Rp41,2 miliar",null,null,"PID-Available (PIR)",null,"https://d8indonesia.kemlu.go.id/investment-map",null]],"sumut":[["Market Center Development in Karo District","Kab. Karo","Infrastruktur (pusat pasar)","Rp466,9 miliar","14%","Rp168 miliar",null,null,"PID-Available (PIR)",null,"https://d8indonesia.kemlu.go.id/investment-map",[98.5,3.1]],["Regional Hospital Development Type C",null,"Infrastruktur (RS tipe C)","Rp209,3 miliar","18,31%","Rp37,8 miliar",null,null,"PID-Available (PIR)",null,"https://d8indonesia.kemlu.go.id/investment-map",null],["Corn Factory",null,"Agroindustri (jagung)","Rp14,4 miliar","62,88%","Rp41,9 miliar",null,null,"PID-Available (PIR)",null,"https://d8indonesia.kemlu.go.id/investment-map",null],["Pembangunan Objek Wisata Seribu Gua Desa Banuarea","Desa Banuarea, Kec. Pakkat, Kab. Humbang Hasundutan","Konstruksi (objek wisata)","Rp 33,8M (estimasi)","117%","Rp 17,2M",null,"0 tahun (sumber; perlu validasi)","Profil BKPM; payback 0 tahun tampak anomali; validasi sebelum penawaran.",null,"https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/289",null,2024,"Peluang investasi (PIRBKPM)",null]]};
+    const PRJ = {"dki":[["Lebak Bulus Park & Ride","Jakarta Selatan","Transportasi","Rp37,3 miliar","14%","Rp15,5 miliar",null,null,"PID-Available (PIR)",null,"https://d8indonesia.kemlu.go.id/investment-map",[106.775,-6.29]],["Transit Hub Mega Kuningan","Jakarta Selatan","Transportasi","Rp27,2 miliar","14%","Rp15,2 miliar",null,null,"PID-Available (PIR)",null,"https://d8indonesia.kemlu.go.id/investment-map",[106.83,-6.23]],["Ancol Ecopark","Jakarta Utara","Pariwisata","Rp42,2 miliar","11%","Rp9 miliar",null,null,"PID-Available (PIR)",null,"https://d8indonesia.kemlu.go.id/investment-map",[106.83,-6.12]]],"jabar":[["Kertajati Aircraft Maintenance Center (KAM-C)","Kab. Majalengka (BIJB Kertajati)","Infrastruktur / MRO pesawat","Rp2,55 triliun","19,79%","US$112,5 juta",null,"8,3 tahun","IPRO-Available",null,"https://dpmptsp.jabarprov.go.id/investasi-jabar/src/assets/invest/file/KERTAJATI%20AIRCRAFT%20MAINTENANCE%20CENTER.pdf",[108.17,-6.65]],["Sumedang Industrialpolis","Kab. Sumedang (Rebana)","Kawasan industri","Rp4,3 triliun","32%","880 miliar",null,"3 tahun 3 bulan","Mencari investor",null,"https://investasi.jabarprov.go.id/investment-opportunities/sumedang-industrialpolis",[107.92,-6.86]],["Bungko Lor: Salt Farm & Manufacturing","Kab. Cirebon","Hilirisasi garam","Rp250 miliar","24,5%","143 miliar",null,"6 tahun","Mencari investor",null,"https://investasi.jabarprov.go.id/investment-opportunities/bungko-lor-for-all-seasons-salt-farm-manufacturing",[108.55,-6.6]]],"jateng":[["Semarang Logistics Hub / UCC Terboyo","Kec. Genuk, Kota Semarang","Infrastruktur / logistik","Rp118,39 miliar","15,5%","50,6 miliar","1,43","< 10 tahun","Proyek Siap Ditawarkan (CJIP)",null,"https://cjip.jatengprov.go.id/detail-proyek-investasi/semarang-logistics-huburban-consolidation-center-ucc-terboyo",[110.46,-6.95]],["Pengolahan Limbah Pertanian Menjadi Biomasa","Kab. Grobogan","Energi terbarukan","Rp273,86 miliar","19,46%","Rp543,63 miliar",null,"5,64 tahun","Proyek Siap Ditawarkan (CJIP)",null,"https://cjip.jatengprov.go.id/detail-proyek-investasi/pengolahan-limbah-pertanian-menjadi-biomasa",[110.92,-7.08]],["Pengolahan Sampah Menjadi RDF","TPA Sukoharjo, Kab. Pati","Pengelolaan sampah / energi","Rp71,45 miliar","15%","Rp17,65 miliar","1,25","7 tahun 2 bulan","Proyek Siap Ditawarkan (CJIP)",null,"https://cjip.jatengprov.go.id/detail-proyek-investasi/pengolahan-sampah-menjadi-refuse-derived-fuel-rdf",[111.04,-6.75]],["Pergudangan dan Pengolahan Garam Industri","Desa Bulakamba, Kab. Brebes","Manufaktur (garam industri)","Rp50,55 miliar","50%","Rp46,88 miliar","1,39","2 tahun 8 bulan","Proyek Siap Ditawarkan (CJIP)",null,"https://cjip.jatengprov.go.id/detail-proyek-investasi/pergudangan-dan-pengolahan-garam-industri-di-kabupaten-brebes",[108.95,-6.88]],["Transformasi TKL Ecopark","Kota Magelang, Jawa Tengah","Pariwisata","Rp 180,6M (estimasi)","13,76%","Rp 54,5M",null,"12 tahun","Profil BKPM; kesiapan, PMA/PMDN, tenaga kerja tidak dicantumkan.",null,"https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/199",[110.217,-7.479],2023,"Peluang investasi (PIRBKPM)",null]],"jatim":[["Banyuwangi Eco Industrial Park","Kab. Banyuwangi","Kawasan industri & real estat","Rp5,4 triliun","16,35%","Rp2,9 triliun",null,null,"IPRO-Available",null,"https://d8indonesia.kemlu.go.id/investment-map",[114.3,-8.25]],["Cassava with Integrated Processing Facility","Kab. Ponorogo (lokasi indikatif)","Agro-hilirisasi","Rp434,3 miliar","30,99%","Rp516,4 miliar",null,null,"IPRO-Available",null,"https://d8indonesia.kemlu.go.id/investment-map",[111.46,-7.87]],["Cattle Farm","Kab. Sumenep (lokasi indikatif)","Agroindustri (peternakan sapi)","Rp137,4 miliar","24%","Rp41,2 miliar",null,null,"PID-Available (PIR)",null,"https://d8indonesia.kemlu.go.id/investment-map",[113.86,-7.0]]],"sumut":[["Market Center Development in Karo District","Kab. Karo","Infrastruktur (pusat pasar)","Rp466,9 miliar","14%","Rp168 miliar",null,null,"PID-Available (PIR)",null,"https://d8indonesia.kemlu.go.id/investment-map",[98.5,3.1]],["Regional Hospital Development Type C","Kab. Labuhanbatu (lokasi indikatif)","Infrastruktur (RS tipe C)","Rp209,3 miliar","18,31%","Rp37,8 miliar",null,null,"PID-Available (PIR)",null,"https://d8indonesia.kemlu.go.id/investment-map",[100.1,2.1]],["Corn Factory","Kab. Dairi (lokasi indikatif)","Agroindustri (jagung)","Rp14,4 miliar","62,88%","Rp41,9 miliar",null,null,"PID-Available (PIR)",null,"https://d8indonesia.kemlu.go.id/investment-map",[98.27,2.75]],["Pembangunan Objek Wisata Seribu Gua Desa Banuarea","Desa Banuarea, Kec. Pakkat, Kab. Humbang Hasundutan","Konstruksi (objek wisata)","Rp 33,8M (estimasi)","117%","Rp 17,2M",null,"0 tahun (sumber; perlu validasi)","Profil BKPM; payback 0 tahun tampak anomali; validasi sebelum penawaran.",null,"https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/289",[98.33,2.17],2024,"Peluang investasi (PIRBKPM)",null]]};
     const REG = {
       dki: [R('UU', '2/2024', 'Provinsi Daerah Khusus Jakarta (diubah UU 151/2024)', 'https://peraturan.bpk.go.id/Details/283616/uu-no-2-tahun-2024', 'Kekhususan daerah, kewenangan', 'Aktif · dengan perubahan'), R('Perda', '7/2024', 'Rencana Tata Ruang Wilayah (mencabut Perda 1/2012 RTRW 2030)', 'https://peraturan.bpk.go.id/Details/313265/perda-prov-dki-jakarta-no-7-tahun-2024', 'Tata ruang (KKPR)'), R('Perda', '1/2024', 'Pajak Daerah dan Retribusi Daerah', 'https://peraturan.bpk.go.id/Details/279709/perda-prov-dki-jakarta-no-1-tahun-2024', 'Pajak & retribusi daerah'), R('Pergub', '31/2022', 'Rencana Detail Tata Ruang Wilayah Perencanaan Provinsi DKI Jakarta', 'https://peraturan.bpk.go.id/Details/228166/pergub-prov-dki-jakarta-no-31-tahun-2022', 'Tata ruang (RDTR)')],
       jabar: [R('Perda', '9/2022', 'Rencana Tata Ruang Wilayah Provinsi Jawa Barat Tahun 2022–2042', 'https://peraturan.bpk.go.id/Details/255691/perda-prov-jawa-barat-no-9-tahun-2022', 'Tata ruang (KKPR)'), R('Perda', '9/2023', 'Pajak Daerah dan Retribusi Daerah', 'https://peraturan.bpk.go.id/Details/323457/perda-prov-jawa-barat-no-9-tahun-2023', 'Pajak & retribusi daerah'), R('Perda', '21/2011', 'Penanaman Modal', 'https://peraturan.bpk.go.id/Details/212901/perda-prov-jawa-barat-no-21-tahun-2011', 'Penanaman modal'), R('Pergub', '22/2023', 'Perubahan atas Pergub 80/2013 tentang Rencana Umum Penanaman Modal Provinsi Jawa Barat', 'https://peraturan.bpk.go.id/Details/258345/pergub-prov-jawa-barat-no-22-tahun-2023', 'Rencana umum penanaman modal')],
@@ -1578,31 +1692,156 @@ const HIST = [[2020, 826.3, 413.5, 412.8], [2021, 901.02, 447, 454], [2022, 1207
     const sekP = dD.sekP.map((x) => ({ l: x[0], d: x[1] }));
     const dasar = dD.dasar.map((x) => ({ t: x[0], s: x[1], u: x[2] }));
     const opsi = dD.opsi.map((x, i) => ({ n: 'Opsi ' + (i + 1), t: x }));
-    // 3. hambatan eksternal + mini map
-    const BB = D.BB[dp];
+    // interaksi kartu pelaksanaan & peluang: indeks aktif disimpan per provinsi
+    const pickOf = (key, def) => (st[key] && st[key].dp === dp ? st[key].i : def);
+    const setPick = (key, i) => () => this.setState({ [key]: { dp, i } });
+    const accRows = (list, key) => { const o = pickOf(key, 0); return list.map((x, i) => ({ ...x, no: i + 1, open: o === i, closed: o !== i, chev: o === i ? 'rotate(180deg)' : 'none', ws: o === i ? 'normal' : 'nowrap', bg: o === i ? '#F8FAFC' : '#FFFFFF', bd: o === i ? '#CBD5E1' : '#E3E8F0', toggle: setPick(key, o === i ? -1 : i) })); };
+    const evA = accRows(ev, 'evO');
+    const dasarA = accRows(dasar, 'dsO');
+    const spI = Math.min(pickOf('spO', 0), sekP.length - 1);
+    const sekTabs = sekP.map((x, i) => ({ ...x, on: i === spI, bg: i === spI ? '#1E40AF' : '#FFFFFF', fg: i === spI ? '#FFFFFF' : '#1E3A8A', bd: i === spI ? '#1E40AF' : '#BFDBFE', pick: setPick('spO', i) }));
+    const sekCur = sekP[spI] || { l: '', d: '' };
+    const opI = Math.min(pickOf('opO', 0), opsi.length - 1);
+    const opCur = opsi[opI] || { n: '', t: '' };
+    const opNav = {
+      steps: opsi.map((x, i) => ({ n: i + 1, bg: i === opI ? '#1D4ED8' : '#FFFFFF', fg: i === opI ? '#FFFFFF' : '#1D4ED8', pick: setPick('opO', i) })),
+      cur: opCur, pos: (opI + 1) + ' dari ' + opsi.length,
+      prev: setPick('opO', (opI + opsi.length - 1) % opsi.length), next: setPick('opO', (opI + 1) % opsi.length)
+    };
+    // grafik proyeksi: skala bersama realisasi 2025, capaian Semester I, rentang perkiraan, target
+    const fcv = f ? (() => {
+      const a = f.s1 * 2, b = f.tw2 * 4, lo = Math.min(a, b), hi = Math.max(a, b);
+      const mx = Math.max(hi, f.fy, f.tg || 0) * 1.08, pct = (v) => (v / mx) * 100 + '%';
+      return {
+        s1W: pct(f.s1), loL: pct(lo), rgW: ((hi - lo) / mx) * 100 + '%', fyL: pct(f.fy), tgL: f.tg ? pct(f.tg) : '0%', hasTg: !!f.tg,
+        s1: 'Rp' + nf(f.s1, 1) + ' T', fy: 'Rp' + nf(f.fy, 1) + ' T', tg: f.tg ? 'Rp' + nf(f.tg, 2) + ' T' : '',
+        prog: nf((f.s1 / f.fy) * 100, 0) + '%',
+        open: !!st.fcM, chev: st.fcM ? 'rotate(180deg)' : 'none', toggle: () => this.setState({ fcM: !st.fcM })
+      };
+    })() : { s1W: '0%', loL: '0%', rgW: '0%', fyL: '0%', tgL: '0%', hasTg: false, s1: '', fy: '', tg: '', prog: '', open: false, chev: 'none', toggle: () => {} };
+    // 3. hambatan eksternal + peta lapisan kab/kota
+    // Batas kab/kota dari assets/peluang-geo.js; skor kab/kota, komponen IKLH, porsi bahaya,
+    // dan isu bertanda sim adalah data simulasi (dummy) untuk melengkapi prototipe.
+    const G = window.PELUANG_GEO || { k: 400, prov: {} };
+    const GP = G.prov[dp] || { bb: [0, 0, 100, 100], kab: [], nb: [], cap: ['', 0, 0] };
+    const gp = (ll) => [(ll[0] - 95) * G.k, (6 - ll[1]) * G.k];
     const proj = (ll) => [5 + (ll[0] - 95.1935) * 12.94, 9 + (5.9071 - ll[1]) * 12.71];
     const prjL = PRJ[dp].filter((x) => /bkpm\.go\.id/i.test(x[10] || ''));
-    const isuL = ISU[dp];
-    const pts = prjL.filter((x) => x[11]).map((x) => proj(x[11])).concat(isuL.map((x) => proj(x[5])));
-    let x0 = BB[0], y0 = BB[1], x1 = BB[2], y1 = BB[3];
-    pts.forEach(([x, y]) => { x0 = Math.min(x0, x); y0 = Math.min(y0, y); x1 = Math.max(x1, x); y1 = Math.max(y1, y); });
-    const sz = Math.max(x1 - x0, (y1 - y0) * 1.6, 3);
-    const cx = (x0 + x1) / 2, cy = (y0 + y1) / 2, pad = sz * 0.12;
-    const vw = sz + 2 * pad, vh = vw / 1.6;
-    const vb = (cx - vw / 2).toFixed(2) + ' ' + (cy - vh / 2).toFixed(2) + ' ' + vw.toFixed(2) + ' ' + vh.toFixed(2);
-    const rr = vw * 0.022;
-    const IRC = { Rendah: '#E7F1E9', Sedang: '#D4A72C', Tinggi: '#1E40AF' };
+    const hh = (s) => { let h = 2166136261; for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); } return ((h >>> 0) % 10000) / 10000; };
+    const ISU_SIM = {
+      dki: [['18 Sep 2026', 'Banjir rob berulang di pesisir Jakarta Utara ganggu akses kawasan industri Marunda', 'Genangan rob 30–50 cm selama empat hari di Marunda dan Cilincing; pengiriman logistik kawasan industri tertunda.', [106.94, -6.1], 'Risiko bencana'], ['3 Agu 2026', 'Keluhan kualitas udara di sekitar kawasan industri Pulogadung', 'Warga sekitar mengeluhkan debu dan bau; Dinas LH menjadwalkan uji emisi cerobong seluruh tenant.', [106.91, -6.19], 'Lingkungan']],
+      jabar: [['21 Agu 2026', 'Longsor tutup akses jalur Puncak, rencana investasi resor tertunda', 'Longsor di ruas Puncak–Cianjur menutup jalan dua hari; investor meminta kajian kerentanan lereng sebelum konstruksi.', [107.0, -6.7], 'Risiko bencana'], ['9 Jul 2026', 'Penolakan alih fungsi sawah untuk kawasan industri di Subang', 'Kelompok tani menolak konversi ±600 ha sawah produktif di koridor Rebana; DPRD meminta kajian LP2B.', [107.76, -6.45], 'Konflik lahan']],
+      jateng: [['14 Sep 2026', 'Rob dan penurunan muka tanah ancam kawasan industri Semarang–Demak', 'Tanggul laut belum rampung; genangan rob mengganggu operasional pabrik di Sayung dan akses Tol Semarang–Demak.', [110.5, -6.92], 'Risiko bencana']],
+      jatim: [['28 Agu 2026', 'Kekeringan ganggu pasokan air baku kawasan industri Pasuruan', 'Debit sumber air turun; PDAM menggilir pasokan ke kawasan industri PIER selama musim kemarau.', [112.87, -7.62], 'Risiko bencana'], ['2 Jul 2026', 'Warga Gresik keluhkan pencemaran sungai di dekat kawasan smelter', 'Uji sampel Kali Lamong menunjukkan TSS di atas baku mutu; DLH memanggil pengelola kawasan.', [112.6, -7.12], 'Lingkungan']],
+      sumut: [['5 Sep 2026', 'Banjir bandang susulan di Tapanuli Selatan hambat proyek energi', 'Akses ke lokasi proyek PLTA terputus; pemerintah daerah meminta evaluasi ulang kajian risiko DAS Batang Toru.', [99.18, 1.55], 'Risiko bencana'], ['17 Jul 2026', 'Sengketa lahan eks-HGU dengan masyarakat di Deli Serdang', 'Warga menuntut pengembalian lahan eks-HGU di sekitar kawasan industri; mediasi difasilitasi Kantor Pertanahan.', [98.83, 3.5], 'Konflik lahan']]
+    };
+    const isuAll = ISU[dp].map((x) => ({ tg: x[0], j: x[1], o: x[2], u: x[3], r: x[4], ll: x[5], kat: x[6], sim: false }))
+      .concat((ISU_SIM[dp] || []).map((x) => ({ tg: x[0], j: x[1], o: 'Pemantauan analis', u: '', r: x[2], ll: x[3], kat: x[4], sim: true })));
+    // skor dummy per kab/kota (deterministik), dijangkar ke angka provinsi
     const irb = dK.irbi;
-    const hm = { vb, d: D.PD[dp], fill: irb[1] ? IRC[irb[1]] : NA, sw: (vw * 0.004).toFixed(3), isu: Object.fromEntries([0, 1].map((i) => { const x = isuL[i]; if (!x) return ['i' + i, { cx: 0, cy: 0, r: 0, c: 'none' }]; const q = proj(x[5]); return ['i' + i, { cx: q[0].toFixed(2), cy: q[1].toFixed(2), r: (rr * 1.15).toFixed(3), c: EWS[dp] ? '#DC2626' : '#0B1F4B' }]; })), swd: (rr * 0.35).toFixed(3) };
+    const HZ = {
+      dki: [['Banjir & rob', 46], ['Cuaca ekstrem', 24], ['Gempa bumi', 16], ['Kebakaran permukiman', 14]],
+      jabar: [['Tanah longsor', 34], ['Banjir', 29], ['Gempa bumi', 21], ['Cuaca ekstrem', 16]],
+      jateng: [['Banjir & rob', 35], ['Tanah longsor', 27], ['Cuaca ekstrem', 22], ['Kekeringan', 16]],
+      jatim: [['Banjir', 31], ['Kekeringan', 25], ['Cuaca ekstrem', 24], ['Gempa & erupsi', 20]],
+      sumut: [['Banjir bandang', 38], ['Tanah longsor', 30], ['Gempa bumi', 18], ['Cuaca ekstrem', 14]]
+    }[dp] || [];
+    const KNOWN = { 'Kab. Mandailing Natal': 214.8, 'Kab. Simalungun': 80.07 };
+    const kabs = GP.kab.map((k, i) => {
+      const kota = !/^Kab\./.test(k[0]), a = hh(k[0] + dp), b = hh(dp + k[0] + 'iklh'), c = hh(k[0] + 'hz');
+      const ir = KNOWN[k[0]] != null ? KNOWN[k[0]] : Math.round(irb[0] * (0.55 + a * 1.25) * (kota ? 0.82 : 1) * 100) / 100;
+      const ik = Math.round(Math.min(92, Math.max(35, (dK.iklh || 65) + (b - 0.5) * 22 - (kota ? 6 : 0))) * 100) / 100;
+      const hz = HZ.length ? HZ[Math.min(HZ.length - 1, Math.floor(c * c * HZ.length))][0] : '';
+      return { i, n: k[0], d: k[1], cx: k[2], cy: k[3], ir, ik, hz, kota };
+    });
+    const irCls = (v) => (v > 176 ? 'Tinggi' : v >= 14.67 ? 'Sedang' : 'Rendah');
+    const IRB = [[0, '#FEF3C7'], [60, '#FCD34D'], [100, '#F59E0B'], [140, '#D97706'], [176, '#9A3412']];
+    const IKB = [[0, '#FEE2E2'], [55, '#FDE68A'], [65, '#D9F99D'], [75, '#86EFAC'], [85, '#16A34A']];
+    const binC = (bins, v) => { let c = bins[0][1]; bins.forEach(([t, col]) => { if (v >= t) c = col; }); return c; };
     const lyr = st.lyr || 'irbi';
-    hm.fillNow = lyr === 'irbi' ? hm.fill : '#EFF6FF';
-    hm.irbiOn = lyr === 'irbi';
-    const lyrBtns = [['irbi', 'Risiko bencana (IRBI)'], ['isu', 'Lokasi isu']].map(([k, l]) => ({ l, pick: set({ lyr: k }), bg: k === lyr ? '#1E40AF' : '#FFFFFF', fg: k === lyr ? '#FFFFFF' : '#334155', bd: k === lyr ? '#1E40AF' : '#E3E8F0' }));
-    const isu = isuL.map((x, i) => ({ no: i + 1, tg: x[0], j: x[1], o: x[2], u: x[3], r: x[4], kat: x[6], ews: !!EWS[dp], noEws: !EWS[dp], lb: EWS[dp] ? '#DC2626' : '#B8E3DF', bg: EWS[dp] ? '#FEF7F7' : '#FFFFFF', ewsA: EWS[dp] ? EWS[dp].a : '', ewsS: EWS[dp] ? EWS[dp].s : '', ewsW: EWS[dp] ? EWS[dp].w : '' }));
-    const irbiLeg = [['Rendah', '< 14,67'], ['Sedang', '14,67–176'], ['Tinggi', '> 176']].map(([k, r]) => ({ l: k, r, c: IRC[k], fw: irb[1] === k ? '700' : '400' }));
+    const kSel = st.kSel && st.kSel.dp === dp ? st.kSel.i : -1;
+    const kHov = st.kHov && st.kHov.dp === dp ? st.kHov.i : -1;
+    const iSel = st.iSel && st.iSel.dp === dp ? st.iSel.i : -1;
+    // viewBox dari bingkai daratan provinsi; rasio mengikuti bentuk provinsi (1,3–2,2 : 1)
+    const bw = GP.bb[2] - GP.bb[0], bh = GP.bb[3] - GP.bb[1];
+    const ar = Math.min(2.2, Math.max(1.3, bw / (bh || 1)));
+    const vw0 = Math.max(bw, bh * ar) * 1.1, vh0 = vw0 / ar;
+    const vcx = (GP.bb[0] + GP.bb[2]) / 2, vcy = (GP.bb[1] + GP.bb[3]) / 2;
+    const vb = (vcx - vw0 / 2).toFixed(1) + ' ' + (vcy - vh0 / 2).toFixed(1) + ' ' + vw0.toFixed(1) + ' ' + vh0.toFixed(1);
+    const u = vw0 / 600; // 1 piksel layar ~ u unit peta (lebar peta ±600 px)
+    const pctX = (x) => ((x - (vcx - vw0 / 2)) / vw0) * 100 + '%', pctY = (y) => ((y - (vcy - vh0 / 2)) / vh0) * 100 + '%';
+    const fmt2 = (v) => nf(v, 2);
+    const pickK = (i) => () => this.setState({ kSel: { dp, i: kSel === i ? -1 : i } });
+    const hm = {
+      vb, sea: (vcx - vw0).toFixed(1) + ' ' + (vcy - vh0).toFixed(1),
+      seaW: (vw0 * 2).toFixed(1), seaH: (vh0 * 2).toFixed(1),
+      nb: GP.nb.map((d) => ({ d })), nbSw: (u * 0.8).toFixed(2),
+      kab: kabs.map((k) => ({
+        d: k.d,
+        fill: lyr === 'irbi' ? binC(IRB, k.ir) : lyr === 'iklh' ? binC(IKB, k.ik) : (k.i === kHov ? '#E2E8F0' : '#F1F5F9'),
+        op: kHov === k.i ? 0.82 : 1,
+        t: k.n + ' · IRBI ' + fmt2(k.ir) + ' (' + irCls(k.ir) + ') · IKLH ' + fmt2(k.ik),
+        hov: () => this.setState({ kHov: { dp, i: k.i } }), out: () => this.setState({ kHov: null }), pick: pickK(k.i)
+      })),
+      kSw: (u * 0.9).toFixed(2), kSt: lyr === 'isu' ? '#CBD5E1' : '#FFFFFF',
+      selD: kSel >= 0 ? kabs[kSel].d : 'M0 0', hovD: kHov >= 0 && kHov !== kSel ? kabs[kHov].d : 'M0 0', selSw: (u * 2.6).toFixed(2), hovSw: (u * 1.8).toFixed(2),
+      capL: pctX(GP.cap[1]), capT: pctY(GP.cap[2]), cap: { x: (GP.cap[1]).toFixed(1), y: (GP.cap[2]).toFixed(1), r: (u * 4.5).toFixed(2), ri: (u * 1.8).toFixed(2), sw: (u * 1.4).toFixed(2), n: GP.cap[0], tx: (GP.cap[1] + u * 8).toFixed(1), ty: (GP.cap[2] + u * 4).toFixed(1), fs: (u * 11).toFixed(2), hs: (u * 3).toFixed(2) },
+      isuPts: isuAll.map((x, i) => { const q = gp(x.ll), on = iSel === i, ew = !x.sim && !!EWS[dp]; return { cx: q[0].toFixed(1), cy: q[1].toFixed(1), r: (u * (on ? 12 : 9)).toFixed(2), rh: (u * (on ? 20 : 0)).toFixed(2), c: ew ? '#DC2626' : '#0B1F4B', sw: (u * 1.8).toFixed(2), no: i + 1, lx: pctX(q[0]), ly: pctY(q[1]), lfs: on ? '11px' : '9px', fs: (u * 8).toFixed(2), ty: (q[1] + u * 2.8).toFixed(1), t: (i + 1) + '. ' + x.j, pick: () => this.setState({ iSel: { dp, i: on ? -1 : i } }) }; }),
+      prjOn: lyr === 'isu',
+      prjPts: PRJ[dp].filter((x) => x[11]).map((x) => { const q = gp(x[11]), s = u * 5.5; return { d: 'M' + q[0].toFixed(1) + ' ' + (q[1] - s).toFixed(1) + 'l' + s.toFixed(1) + ' ' + s.toFixed(1) + 'l-' + s.toFixed(1) + ' ' + s.toFixed(1) + 'l-' + s.toFixed(1) + '-' + s.toFixed(1) + 'Z', sw: (u * 1.4).toFixed(2), t: x[0] + ' · ' + x[1] + ' · ' + x[3] }; })
+    };
+    const lyrBtns = [['irbi', 'Risiko bencana'], ['iklh', 'Kualitas lingkungan'], ['isu', 'Isu & proyek']].map(([k, l]) => ({ l, pick: set({ lyr: k }), bg: k === lyr ? '#1E40AF' : '#FFFFFF', fg: k === lyr ? '#FFFFFF' : '#334155', bd: k === lyr ? '#1E40AF' : '#E3E8F0' }));
+    const legOf = (bins, lbl) => bins.map(([t, c], i) => ({ c, l: i === 0 ? '< ' + bins[1][0] : i === bins.length - 1 ? '≥ ' + t : t + '–' + bins[i + 1][0], tl: lbl }));
+    const mapLeg = {
+      irbi: lyr === 'irbi', iklh: lyr === 'iklh', isu: lyr === 'isu',
+      ir: legOf(IRB), ik: legOf(IKB)
+    };
+    // panel info kab/kota (hover > klik), atau isu terpilih
+    const kInfoI = kHov >= 0 ? kHov : kSel;
+    const kI = kInfoI >= 0 ? kabs[kInfoI] : null;
+    const iI = iSel >= 0 ? isuAll[iSel] : null;
+    const mapInfo = {
+      has: !!(kI || iI), none: !(kI || iI),
+      isK: !!kI, isI: !kI && !!iI,
+      n: kI ? kI.n : '', ir: kI ? fmt2(kI.ir) : '', irK: kI ? irCls(kI.ir) : '', irC: kI ? binC(IRB, kI.ir) : '', hz: kI ? kI.hz : '', ik: kI ? fmt2(kI.ik) : '', ikC: kI ? binC(IKB, kI.ik) : '',
+      ikVs: kI ? (kI.ik >= (dK.iklh || 0) ? 'di atas' : 'di bawah') + ' rata-rata provinsi' : '',
+      ij: iI ? (iSel + 1) + '. ' + iI.j : '', ik2: iI ? iI.kat + ' · ' + iI.tg : '',
+      hint: lyr === 'isu' ? 'Klik titik isu atau arahkan kursor ke kab/kota.' : 'Arahkan kursor atau klik kab/kota untuk melihat skor.',
+      clear: () => this.setState({ kSel: null, iSel: null })
+    };
+    const isu = isuAll.map((x, i) => {
+      const ew = !x.sim && !!EWS[dp], on = iSel === i;
+      return {
+        no: i + 1, tg: x.tg, j: x.j, o: x.o, u: x.u, r: x.r, kat: x.kat, link: !x.sim, sim: x.sim,
+        ews: ew, noEws: !ew, lb: ew ? '#DC2626' : on ? '#1E40AF' : '#B8E3DF', bg: on ? '#EFF6FF' : ew ? '#FEF7F7' : '#FFFFFF',
+        ewsA: ew ? EWS[dp].a : '', ewsS: ew ? EWS[dp].s : '', ewsW: ew ? EWS[dp].w : '',
+        pick: () => this.setState({ iSel: { dp, i: on ? -1 : i } }), mapT: on ? 'Ditandai di peta' : 'Tandai di peta'
+      };
+    });
+    // insight IKLH & IRBI
+    const IKC = { dki: [48.2, 52.6, 31.4, 62.0], jabar: [52.1, 82.4, 45.6, 71.3], jateng: [55.0, 84.9, 49.8, 73.1], jatim: [57.6, 85.3, 54.2, 74.5], sumut: [60.3, 87.1, 63.8, 76.4] }[dp] || [0, 0, 0, 0];
+    const IKN = ['Kualitas air', 'Kualitas udara', 'Tutupan lahan', 'Kualitas air laut'];
+    const ikLow = IKC.indexOf(Math.min(...IKC));
+    const byIk = kabs.slice().sort((a, b) => a.ik - b.ik), byIr = kabs.slice().sort((a, b) => b.ir - a.ir);
+    const nBelowNat = kabs.filter((k) => k.ik < 73.53).length;
+    const chipK = (k, lay, v) => ({ n: k.n.replace(/^Kab\. /, ''), v, on: kSel === k.i && lyr === lay, bg: kSel === k.i && lyr === lay ? '#0F172A' : '#FFFFFF', fg: kSel === k.i && lyr === lay ? '#FFFFFF' : '#0F172A', pick: () => this.setState({ lyr: lay, kSel: { dp, i: k.i } }) });
+    const iklhIns = {
+      gW: Math.min(100, dK.iklh || 0) + '%', natL: '73.53%', gC: (dK.iklh || 0) < 73.53 ? '#D97706' : '#16A34A',
+      comp: IKC.map((v, i) => ({ l: IKN[i], v: nf(v, 1), w: v + '%', c: i === ikLow ? '#D97706' : '#0F766E', fw: i === ikLow ? 700 : 500 })),
+      txt: IKN[ikLow] + ' menjadi komponen terlemah (' + nf(IKC[ikLow], 1) + '); ' + nBelowNat + ' dari ' + kabs.length + ' kab/kota berada di bawah IKLH nasional. Syaratkan pengelolaan limbah dan pemantauan ' + IKN[ikLow].toLowerCase() + ' pada proyek baru.',
+      low: byIk.slice(0, 3).map((k) => chipK(k, 'iklh', nf(k.ik, 1)))
+    };
+    const hzTot = HZ.reduce((a, b) => a + b[1], 0) || 1;
+    const HZC = ['#9A3412', '#D97706', '#FBBF24', '#FDE68A'];
+    const nTinggi = kabs.filter((k) => k.ir > 176).length;
+    const irbiIns = {
+      seg: HZ.map(([l, v], i) => ({ l, v: nf((v / hzTot) * 100, 0) + '%', w: (v / hzTot) * 100 + '%', c: HZC[i] })),
+      txt: (HZ[0] ? HZ[0][0] + ' mendominasi (' + nf((HZ[0][1] / hzTot) * 100, 0) + '% kejadian 2021–2025). ' : '') + (nTinggi ? nTinggi + ' kab/kota masuk kelas tinggi' : 'Belum ada kab/kota kelas tinggi') + '; wajibkan kajian risiko bencana dan rencana kontinjensi untuk proyek di wilayah berskor tertinggi.',
+      top: byIr.slice(0, 3).map((k) => chipK(k, 'irbi', nf(k.ir, 1)))
+    };
     const env = {
       iklh: dK.iklh != null ? nf(dK.iklh, 2) : BT, iklhC: dK.iklh != null ? '#0F172A' : '#64748B', iklhSub: dK.iklh != null ? 'IKLH 2024 · nasional 73,53' + (dK.iklh < 73.53 ? ' (di bawah nasional)' : '') : (dK.iklhNote || 'IKLH 2024'),
-      irbi: irb[0] != null ? nf(irb[0], 2) : BT, irbiC: irb[0] != null ? '#0F172A' : '#64748B', irbiK: irb[1] || 'Kelas ' + BT, irbiSub: 'IRBI ' + irb[2] + (irb[3] ? ' · bahaya dominan: ' + irb[3] : ''), irbiNote: dK.irbiNote || 'Skor dikutip dari sumber sekunder yang merujuk BNPB; belum diverifikasi ke dokumen IRBI.'
+      irbi: irb[0] != null ? nf(irb[0], 2) : BT, irbiC: irb[0] != null ? '#0F172A' : '#64748B', irbiK: irb[1] || 'Kelas ' + BT, irbiSub: 'IRBI ' + irb[2] + (irb[3] ? ' · bahaya dominan: ' + irb[3] : ''), irbiNote: dK.irbiNote || 'Skor provinsi dikutip dari sumber sekunder yang merujuk BNPB.'
     };
     // 4. kesiapan
     const tile = (l, v, sub, src, nat) => ({ l, v: v == null ? BT : v, vc: v == null ? '#64748B' : '#0F172A', bg: v == null ? '#F8FAFC' : '#FFFFFF', bd: v == null ? '1px dashed #CBD5E1' : '1px solid #E3E8F0', sub, src, nat: nat || '' });
@@ -1616,7 +1855,7 @@ const HIST = [[2020, 826.3, 413.5, 412.8], [2021, 901.02, 447, 454], [2022, 1207
       tile('Kawasan industri', dK.ki != null ? dK.ki + ' kawasan' : null, dK.kiNote || 'per 7 Okt 2025', 'BKPM', 'Nasional 173 kawasan'),
       tile('KEK', dK.kek.length ? dK.kek.map((k) => k[0].replace('KEK ', '')).join(', ') : 'Tidak ada KEK', dK.kek.length ? dK.kek.map((k) => k[1]).join('; ') : 'per daftar 25 KEK (Apr 2026)', 'Dewan Nasional KEK', ''),
       tile('Lahan siap bangun', nf(dK.lan) + ' ha', 'di kawasan industri', 'Kemenperin', 'Nasional 27.180 ha'),
-      tile('Isu sosial aktif', isuL.length + ' isu', EWS[dp] ? 'termasuk penanda EWS aktif' : 'dipantau, tanpa EWS aktif', 'Berita daring', '')
+      tile('Isu sosial aktif', isuAll.length + ' isu', EWS[dp] ? 'termasuk penanda EWS aktif' : 'dipantau, tanpa EWS aktif', 'Berita daring', '')
     ];
     kes[1].vc = '#0F172A'; kes[1].bg = '#FFFFFF'; kes[1].bd = '1px solid #E3E8F0';
     kes[7].vc = '#0F172A'; kes[7].bg = '#FFFFFF'; kes[7].bd = '1px solid #E3E8F0';
@@ -1886,6 +2125,17 @@ const ewsClose = () => this.setState({ ews: null });
         'Lengkapi data proyek yang masih kosong sebelum diusulkan ke forum bisnis.',
         'Tetapkan tenggat penlokalan agar proyek tidak menganggur.'
       ],
+      // insight dinamis halaman rinci provinsi
+      prov: [
+        dh.n + ' menyumbang ' + nf(dP.share, 2) + '% PDRB nasional (peringkat ' + dP.rank + ')' + (allKnown ? '; tiga sektor teratas mencakup ' + nf(known, 2) + '% PDRB, sisanya ' + dh.rest + ' tersebar di sektor lain.' : '.'),
+        dK.tpt != null ? 'Pengangguran terbuka ' + nf(dK.tpt, 2) + '% (' + (dK.tpt > 4.68 ? 'di atas' : 'di bawah') + ' nasional 4,68%)' + (dK.tpt > 4.68 ? '; dorong investasi padat karya untuk menyerap angkatan kerja.' : '; tenaga kerja relatif terserap, tonjolkan produktivitas dan keterampilan.') : 'Data pengangguran terbuka belum tersedia.',
+        'Arahkan promosi investasi ke sektor unggulan (' + dh.sek + ') beserta rantai pasok pendukungnya.'
+      ],
+      lak: fc.has ? [
+        'Semester I 2026 sudah mencapai ' + fcv.prog + ' dari realisasi 2025; perkiraan setahun ' + fc.range + ' berada ' + fc.dir + ' realisasi 2025.',
+        fcv.hasTg ? fc.tg : 'Belum ada target provinsi 2026 yang dipublikasikan; gunakan realisasi 2025 sebagai pembanding.',
+        ev.length + ' hambatan regulasi terdokumentasi; masukkan ke agenda koordinasi pusat–daerah sebelum rilis Tw III 2026.'
+      ] : ['Perkiraan belum dapat disusun karena data realisasi belum lengkap.', ev.length + ' hambatan regulasi terdokumentasi; masukkan ke agenda koordinasi pusat–daerah.'],
       aturan: [
         'Periksa kesesuaian peraturan daerah dengan regulasi nasional.',
         'Tandai peraturan yang menghambat investasi untuk ditinjau ulang.',
@@ -1907,7 +2157,7 @@ const ewsClose = () => this.setState({ ews: null });
       lp, lpEmpty, lpHas: !lpEmpty, lpNas, lpNote, lperL: lper === 'tw2' ? 'Triwulan II 2026' : 'Semester I 2026', lsHas, lsNo: !lsHas, ls, lsNote, lk, lkNote, lh, lhProv, hasLhProv, lNoteHist,
       resetL: set({ lpv: '', lsk: '', lper: 'tw2' }), hasLF: !!(lpv || lsk || lper !== 'tw2'),
       // detail
-      dSearch, dOpen: dShowBox, dOpts, dOptsOff, dNoHit, onDSearch: (e) => this.setState({ dSearch: e && e.target ? e.target.value : '', dOpen: true }), onDOpen: () => this.setState({ dOpen: true }), skm, toMap, dh, fc, ev, facts, lim: dD.lim, sekP, dasar, opsi, hm, lyrBtns, isu, irbiLeg, env, kes, prj, prjDots, prjNote, pq, prjEmpty: prj.length === 0, onPq: (e) => this.setState({ pq: e && e.target ? e.target.value : '' }), regChips, regs, regCount, regJen, regNote, hasRegNote: !!regNote, dr,
+      dSearch, dOpen: dShowBox, dOpts, dOptsOff, dNoHit, onDSearch: (e) => this.setState({ dSearch: e && e.target ? e.target.value : '', dOpen: true }), onDOpen: () => this.setState({ dOpen: true }), skm, toMap, dh, fc, ev, facts, lim: dD.lim, sekP, dasar, opsi, evA, dasarA, sekTabs, sekCur, opNav, fcv, hm, lyrBtns, isu, mapLeg, mapInfo, iklhIns, irbiIns, env, kes, prj, prjDots, prjNote, pq, prjEmpty: prj.length === 0, onPq: (e) => this.setState({ pq: e && e.target ? e.target.value : '' }), regChips, regs, regCount, regJen, regNote, hasRegNote: !!regNote, dr,
       dEws: !!EWS[dp], dNoEws: !EWS[dp]
     };
   }
@@ -1991,4 +2241,5 @@ const ewsClose = () => this.setState({ ews: null });
   if (window.MutationObserver && document.body) new MutationObserver(focusEwsModal).observe(document.body, { childList: true, subtree: true });
 })();
 </script>t>
+<script data-ews-viewport>(function(){var root=document.documentElement,open=false;function apply(top,h){root.style.setProperty("--ews-vp-top",Math.max(0,top)+"px");root.style.setProperty("--ews-vp-h",h+"px");}window.addEventListener("message",function(e){var d=e.data;if(d&&d.type==="harmonisasi:viewport")apply(Number(d.top)||0,Number(d.height)||window.innerHeight);});function check(){var now=!!document.querySelector("[data-ews-modal]");if(now===open)return;open=now;if(window.parent!==window)window.parent.postMessage({type:"harmonisasi:modal",open:open},"*");}if(window.MutationObserver)new MutationObserver(check).observe(root,{childList:true,subtree:true});})();</script>
 </body></html>
