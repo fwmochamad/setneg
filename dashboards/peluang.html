@@ -1061,7 +1061,7 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
           <div style="padding: 12px 18px; border-bottom: 1px solid #EEF2F7; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px;"><div><h2 style="margin: 0; font-size: 14.5px; font-weight: 600;">Proyek siap investasi</h2><div style="font-size: 11.5px; color: #64748B;">Profil peluang PIRBKPM berisi estimasi kelayakan, bukan realisasi investasi.</div></div><span style="font-size: 11.5px; color: #64748B;">{{prjNote}}</span></div>
           <div style="padding: 14px 18px; display: flex; flex-direction: column; gap: 12px;">
               <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap;">
-              <div style="font-size: 11.5px; color: #64748B;">Geser kartu untuk melihat seluruh peluang. Klik nama proyek untuk membuka sumber data.</div>
+              <div style="font-size: 11.5px; color: #64748B;">Geser kartu untuk melihat seluruh peluang di {{dh.n}}.</div>
               <div style="display: flex; align-items: center; gap: 6px;">
               <button type="button" sc-camel-on-click="{{prjScrollN}}" aria-label="Geser ke kiri" title="Sebelumnya" style="width: 30px; height: 30px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid #E3E8F0; border-radius: 8px; background: #FFFFFF; color: #475569; cursor: pointer;">&#8249;</button>
               <button type="button" sc-camel-on-click="{{prjScrollP}}" aria-label="Geser ke kanan" title="Berikutnya" style="width: 30px; height: 30px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid #E3E8F0; border-radius: 8px; background: #FFFFFF; color: #475569; cursor: pointer;">&#8250;</button>
@@ -1074,7 +1074,7 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
               <div style="display: grid; grid-template-columns: 26px minmax(0,1fr); gap: 9px; align-items: start;">
               <span style="width: 24px; height: 24px; border-radius: 99px; background: {{c.c}}; color: #FFFFFF; font-size: 11px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center;">{{c.no}}</span>
               <div style="min-width: 0;">
-              <a href="{{c.p.u}}" target="_blank" rel="noopener" style="font-size: 13.5px; font-weight: 700; line-height: 18px; color: #0F172A; text-decoration: none;">{{c.p.n}} &#8594;</a>
+              <b style="font-size: 13.5px; line-height: 18px; color: #0F172A;">{{c.p.n}}</b>
               <div style="font-size: 11.5px; line-height: 16px; color: #64748B; margin-top: 2px;">{{c.p.lok}}, {{c.p.wil}}</div>
               </div>
               </div>
@@ -1094,12 +1094,12 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
               <ul style="margin: 0; padding-left: 16px; list-style: disc; display: flex; flex-direction: column; gap: 3px;">
               <sc-for list="{{c.p.pts}}" as="t" hint-placeholder-count="3"><li style="font-size: 11.5px; line-height: 17px; color: #475569;">{{t}}</li></sc-for>
               </ul>
-                            <div class="mzi"><span class="mzi-b">Insight AI</span><ul class="mzi-l"><sc-for list="{{mini.proyek}}" as="i" hint-placeholder-count="3"><li>{{i}}</li></sc-for></ul><span class="mzi-s">Terverifikasi analis</span></div>
               <div style="margin-top: auto; padding-top: 7px; border-top: 1px solid #EEF2F7; font-size: 10.5px; color: #94A3B8;">Sumber data: {{c.p.src}}</div>
               </article>
               </sc-for>
               </div>
               </div>
+              <div class="mzi"><span class="mzi-b">Insight AI</span><ul class="mzi-l"><sc-for list="{{mini.proyek}}" as="i" hint-placeholder-count="3"><li>{{i}}</li></sc-for></ul><span class="mzi-s">Terverifikasi analis</span></div>
 </section>
 
         <!-- 6. Peraturan relevan provinsi -->
@@ -2069,32 +2069,43 @@ const ewsClose = () => this.setState({ ews: null });
     ] : [];
 
 // ================= PROYEK SIAP INVESTASI (carousel deskriptif, data contoh) =================
-    const PRJD = [
-      { n: 'Kawasan Industri Terpadu Hijau', lok: 'Kec. Genuk, Kota Semarang', wil: 'Jawa Tengah', sek: 'Kawasan industri', nilai: 'Rp2,4 triliun', dana: 'Rp620 miliar', durasi: '4 tahun', kerja: '12.500 orang', tahap: 'Fase I, 45 ha', sts: 'Mencari investor', src: 'DPMPTSP Jawa Tengah',
-        ringkasan: 'Kawasan industri dengan utilitas bersama dan energi terbarukan. Fase I menyiapkan 45 ha lahan siap bangun untuk manufaktur, elektronik, dan logistik. Pencemaran air diminimalkan lewat instalasi pengolahan bersama.',
-        pts: ['Lahan 45 ha fase I sudah dibebaskan', 'Utilitas terhubung ke Tol dan rel', 'Air buangan diolah di dalam kawasan'], tone: '#1E3A8A' },
-      { n: 'Pusat Logistik Intermoda', lok: 'Kec. Rongkong, Kab. Deli Serdang', wil: 'Sumatera Utara', sek: 'Logistik dan transportasi', nilai: 'Rp1,8 triliun', dana: 'Rp450 miliar', durasi: '3 tahun', kerja: '6.200 orang', tahap: 'Fase I, 30 ha', sts: 'Proyek siap ditawarkan', src: 'BKPM Investment Map',
-        ringkasan: 'Pusat logistik inland yang menghubungkan pelabuhan, rel, dan Tol Trans Sumatra. Dirancang untuk memangkas biaya handling kargo ekspor. Distribusi ke Nusantara menjadi lebih cepat dan murah.',
-        pts: ['Dekat Tol Trans Sumatra dan rel', 'Koneksi langsung ke pelabuhan Belawan'], tone: '#1E40AF' },
-      { n: 'Kawasan Teknologi dan Inovasi', lok: 'Kab. Bekasi', wil: 'Jawa Barat', sek: 'Industri teknologi', nilai: 'Rp4,6 triliun', dana: 'Rp1,1 triliun', durasi: '5 tahun', kerja: '18.400 orang', tahap: 'Fase I, 60 ha', sts: 'Mencari investor', src: 'DPMPTSP Jawa Barat',
-        ringkasan: 'Kawasan khusus untuk industri teknologi tinggi dan elektronik. Menyediakan daya listrik besar, air bersih, dan akses tenaga kerja teknik. Insentif fiskal tersedia bagi tenant yang memenuhi komitmen serapan kerja.',
-        pts: ['Daya listrik 400 MW tersedia di dalam kawasan', 'Akses udara ke bandara internasional'], tone: '#2563EB' },
-      { n: 'Pengolahan Limbah Pertanian Menjadi Biomassa', lok: 'Kab. Grobogan', wil: 'Jawa Tengah', sek: 'Energi terbarukan', nilai: 'Rp273,86 miliar', dana: 'Rp543,63 miliar', durasi: '5,6 tahun', kerja: '980 orang', tahap: 'Fase konstruksi', sts: 'Proyek siap ditawarkan', src: 'CJIP Jawa Tengah',
-        ringkasan: 'Fasilitas pengolahan sisa pertanian menjadi biogas dan listrik. Bahan bakunya berupa jerami dan dunglivestock dari sekitar wilayah. Hasilnya memasok listrik dan panas untuk kawasan industri.',
-        pts: ['Bahan baku dari sawah dan peternakan sekitar', 'Listrik dan panas untuk kawasan industri'], tone: '#3B82F6' },
-      { n: 'Pusat Sains dan Inovasi', lok: 'Kota Bandung', wil: 'Jawa Barat', sek: 'Jasa profesional dan teknologi', nilai: 'Rp650 miliar', dana: 'Rp190 miliar', durasi: '3 tahun', kerja: '8.700 orang', tahap: 'Fase I, 12 ha', sts: 'Mencari investor', src: 'BKPM Investment Map',
-        ringkasan: 'Kawasan riset yang memadukan laboratorium, inkubator, dan ruang kerja startup. Dirancang untuk UMK bidang teknologi agar mendapat akses riset. Pendanan tahap berikutnya tersedia lewat inkubator.',
-        pts: ['Laboratorium bersama dengan kampus lokal', 'Inkubator dan akselerator bersama'], tone: '#60A5FA' },
-      { n: 'Kawasan Perkebunan Terpadu', lok: 'Kab. Sanggau', wil: 'Kalimantan Barat', sek: 'Pertanian dan kehutanan', nilai: 'Rp1,1 triliun', dana: 'Rp310 miliar', durasi: '6 tahun', kerja: '9.300 orang', tahap: 'Fase I, 2.400 ha', sts: 'Mencari investor', src: 'BKPM Investment Map',
-        ringkasan: 'Klaster sawit dan turunan yang memadukan areal dengan unit pengolahan di lokasi. Perizinan berlangsung satu pintu.',
-        pts: ['Standar karbon rendah untuk tenant', 'Listrik tenaga surya atap'], tone: '#047857' },
-      { n: 'Kawasan Seafood dan Cold Chain', lok: 'Kota Bitung', wil: 'Sulawesi Utara', sek: 'Perikanan dan pangan', nilai: 'Rp540 miliar', dana: 'Rp148 miliar', durasi: '4 tahun', kerja: '4.100 orang', tahap: 'Fase I, 15 ha', sts: 'Mencari investor', src: 'BKPM Investment Map',
-        ringkasan: 'Kawasan pengolahan dan cold chain untuk tangkapan ikan lokal agar sesuai standar ekspor. Cold room dan unit processing tersambung ke pelabuhan. Jalur ekspor ke Asia Timur tersedia.',
-        pts: ['Bahan baku tangkapan laut lokal', 'Cold storage terhubung ke pelabuhan ekspor'], tone: '#B45309' },
-      { n: 'Fasilitas Pengolahan Kelapa Sawit Terpadu', lok: 'Kab. Kotawaringin Barat', wil: 'Kalimantan Tengah', sek: 'Hulu dan hilir', nilai: 'Rp2,1 triliun', dana: 'Rp780 miliar', durasi: '6 tahun', kerja: '14.200 orang', tahap: 'Fase I, 5.000 ha', sts: 'Mencari investor', src: 'BKPM Investment Map',
-        ringkasan: 'Pabrik, kernel, dan refinery dalam satu tapak agar nilai tambah ada di tempat. Zero waste dan jalur ESG terverifikasi untuk akses pasar global.',
-        pts: ['Pabrik, kernel, dan refinery satu tapak', 'Sertifikasi ESG untuk pasar global'], tone: '#334155' }
-    ];
+    // Proyek siap investasi: data simulasi per provinsi (hanya 5 provinsi PDRB terbesar yang dapat dibuka).
+    // nv = nilai investasi (Rp triliun), dn = kebutuhan dana (Rp miliar), kj = tenaga kerja (orang).
+    const PJ = (n, lok, sek, nv, dn, th, kj, tahap, sts, ringkasan, pts) => ({ n, lok, sek, nv, dn, kj, sts, ringkasan, pts,
+      nilai: nv < 1 ? 'Rp' + nf(nv * 1000) + ' miliar' : 'Rp' + nf(nv, nv % 1 ? 1 : 0) + ' triliun', dana: dn >= 1000 ? 'Rp' + nf(dn / 1000, 1) + ' triliun' : 'Rp' + nf(dn) + ' miliar', durasi: th + ' tahun', kerja: nf(kj) + ' orang', tahap });
+    const PRJP = {
+      dki: [
+        PJ('Kawasan TOD Dukuh Atas Terpadu', 'Kec. Menteng dan Tanah Abang, Jakarta Pusat', 'Properti dan transportasi', 9.6, 2100, 6, 4800, 'Fase I, 6,5 ha', 'Mencari investor', 'Kawasan berorientasi transit di simpul MRT, LRT, KRL, dan Transjakarta. Fase I membangun hunian vertikal, perkantoran, dan ruang publik di atas lahan milik BUMD.', ['Integrasi empat moda angkutan massal', 'Skema KPBU dengan hak pengelolaan kawasan']),
+        PJ('Pusat Data Hijau Cakung', 'Kec. Cakung, Jakarta Timur', 'Infrastruktur digital', 5.2, 1400, 3, 1200, 'Fase I, 40 MW', 'Proyek siap ditawarkan', 'Kampus pusat data berdaya 40 MW pada fase I dengan pendingin hemat air dan pasokan listrik energi terbarukan untuk penyewa hyperscale dan colocation.', ['Gardu induk 150 kV di dalam kawasan', 'Sertifikat energi terbarukan untuk penyewa']),
+        PJ('Fasilitas Pengolahan Sampah Terpadu Sunter', 'Kec. Tanjung Priok, Jakarta Utara', 'Pengelolaan sampah dan energi', 4.1, 1200, 4, 900, 'Desain rinci', 'Mencari investor', 'Fasilitas pengolahan sampah menjadi energi listrik untuk mengurangi beban TPST Bantargebang. Pemprov menjamin pasokan sampah dan biaya layanan pengolahan.', ['Kapasitas 2.200 ton sampah per hari', 'Biaya layanan pengolahan dijamin Pemprov']),
+        PJ('Revitalisasi Kawasan Kota Tua dan Sunda Kelapa', 'Jakarta Barat dan Jakarta Utara', 'Pariwisata dan ekonomi kreatif', 1.6, 400, 3, 3500, 'Fase I, 12 ha', 'Proyek siap ditawarkan', 'Pemanfaatan kembali bangunan cagar budaya untuk hotel butik, ruang kreatif, dan wisata bahari di kawasan pelabuhan lama.', ['Bangunan cagar budaya siap dimanfaatkan kembali', 'Terhubung stasiun MRT Fase 2A Kota'])
+      ],
+      jabar: [
+        PJ('Kawasan Teknologi dan Inovasi', 'Kab. Bekasi', 'Industri teknologi', 4.6, 1100, 5, 18400, 'Fase I, 60 ha', 'Mencari investor', 'Kawasan khusus untuk industri teknologi tinggi dan elektronik. Menyediakan daya listrik besar, air bersih, dan akses tenaga teknik. Insentif fiskal tersedia bagi tenant yang memenuhi syarat serapan kerja.', ['Daya listrik 400 MW tersedia di dalam kawasan', 'Akses udara ke bandara internasional']),
+        PJ('Kawasan Industri Koridor Rebana', 'Kab. Majalengka', 'Kawasan industri', 3.8, 900, 5, 15000, 'Fase I, 120 ha', 'Mencari investor', 'Kawasan industri baru di koridor Cirebon–Patimban–Kertajati untuk manufaktur padat karya dan komponen otomotif.', ['Dekat Bandara Kertajati dan Pelabuhan Patimban', 'Insentif daerah untuk industri padat karya']),
+        PJ('Pusat Sains dan Inovasi', 'Kota Bandung', 'Jasa profesional dan teknologi', 1.1, 300, 3, 2600, 'Fase I, 8 ha', 'Proyek siap ditawarkan', 'Klaster riset bersama kampus untuk laboratorium, inkubator, dan kantor R&D perusahaan teknologi.', ['Laboratorium bersama dengan kampus lokal', 'Inkubator dan akselerator bersama']),
+        PJ('Agroindustri dan Agrowisata Kopi Priangan', 'Kab. Garut', 'Agroindustri', 0.65, 180, 3, 2400, 'Fase I, 25 ha', 'Proyek siap ditawarkan', 'Pengolahan kopi spesialti terintegrasi dengan agrowisata dan pelatihan petani untuk pasar ekspor.', ['Bahan baku dari ±12.000 ha kebun rakyat', 'Pasar ekspor kopi spesialti'])
+      ],
+      jateng: [
+        PJ('Kawasan Industri Terpadu Hijau', 'Kec. Genuk, Kota Semarang', 'Kawasan industri', 2.4, 620, 4, 12500, 'Fase I, 45 ha', 'Mencari investor', 'Kawasan industri dengan utilitas bersama dan energi terbarukan. Fase I menyiapkan 45 ha lahan siap bangun untuk manufaktur, elektronik, dan logistik. Pencemaran air diminimalkan lewat instalasi pengolahan bersama.', ['Lahan 45 ha fase I sudah dibebaskan', 'Utilitas terhubung ke tol dan rel', 'Air buangan diolah di dalam kawasan']),
+        PJ('Perluasan Kawasan Industri Batang', 'Kab. Batang', 'Kawasan industri', 5.5, 1300, 5, 20000, 'Fase III, 200 ha', 'Mencari investor', 'Perluasan kawasan berstatus KEK untuk industri kaca, baterai, dan komponen elektronik dengan pelabuhan khusus yang direncanakan.', ['Status KEK dengan insentif fiskal', 'Akses Tol Trans Jawa']),
+        PJ('Pengolahan Limbah Pertanian Menjadi Biomassa', 'Kab. Grobogan', 'Energi terbarukan', 0.85, 240, 2, 1600, 'Fase I, 10 ha', 'Proyek siap ditawarkan', 'Pengolahan tongkol jagung dan sekam padi menjadi pelet biomassa untuk co-firing PLTU dan kebutuhan panas industri.', ['Bahan baku dari sawah dan ladang jagung sekitar', 'Pembeli siaga dari pembangkit dan industri']),
+        PJ('Industri Furnitur Berorientasi Ekspor', 'Kab. Jepara', 'Industri pengolahan kayu', 0.42, 120, 2, 3100, 'Fase I, 15 ha', 'Proyek siap ditawarkan', 'Sentra produksi furnitur bersama dengan fasilitas pengeringan kayu, finishing, dan gudang ekspor bagi UMKM perajin.', ['Bahan baku kayu bersertifikat legalitas', 'Akses Pelabuhan Tanjung Emas'])
+      ],
+      jatim: [
+        PJ('Ekspansi Kawasan Industri Hilir Logam Gresik', 'Kab. Gresik', 'Industri logam dan kimia', 7.8, 2000, 5, 9000, 'Fase II, 150 ha', 'Mencari investor', 'Ekspansi kawasan berstatus KEK untuk industri turunan tembaga, kimia dasar, dan bahan baku baterai di sekitar smelter.', ['Pelabuhan laut dalam di dalam kawasan', 'Status KEK dengan insentif fiskal']),
+        PJ('Banyuwangi Eco Industrial Park', 'Kab. Banyuwangi', 'Kawasan industri', 1.9, 500, 4, 7000, 'Fase I, 60 ha', 'Proyek siap ditawarkan', 'Kawasan industri ramah lingkungan untuk pengolahan hasil laut dan agro dengan konsep nol limbah.', ['Dekat Pelabuhan Ketapang dan Bandara Banyuwangi', 'Konsep nol limbah untuk agro dan perikanan']),
+        PJ('Pusat Logistik Pangan Madura', 'Kab. Bangkalan', 'Logistik pangan', 0.85, 230, 3, 2600, 'Fase I, 35 ha', 'Mencari investor', 'Pusat distribusi dan penyimpanan dingin untuk garam, hasil laut, dan ternak dari Pulau Madura.', ['Terhubung Jembatan Suramadu', 'Gudang berpendingin untuk hasil laut']),
+        PJ('Peternakan Sapi Terpadu', 'Kab. Sumenep', 'Peternakan', 0.32, 90, 3, 1500, 'Fase I, 80 ha', 'Proyek siap ditawarkan', 'Peternakan sapi potong terintegrasi dengan pakan, rumah potong, dan pengolahan daging untuk pasar Jawa.', ['Bibit sapi Madura unggul', 'Pasar daging Jawa Timur dan Jakarta'])
+      ],
+      sumut: [
+        PJ('Pusat Logistik Intermoda', 'Kab. Deli Serdang', 'Logistik dan transportasi', 1.8, 450, 3, 6200, 'Fase I, 30 ha', 'Proyek siap ditawarkan', 'Pusat logistik inland yang menghubungkan pelabuhan, rel, dan Tol Trans Sumatra. Dirancang untuk memangkas biaya penanganan kargo ekspor.', ['Dekat Tol Trans Sumatra dan rel', 'Koneksi langsung ke Pelabuhan Belawan']),
+        PJ('Hilirisasi Sawit Sei Mangkei', 'Kab. Simalungun', 'Industri oleokimia', 4.4, 1100, 4, 8500, 'Fase II, 100 ha', 'Mencari investor', 'Perluasan klaster oleokimia di KEK Sei Mangkei untuk produk turunan minyak sawit bernilai tambah tinggi.', ['Status KEK dengan insentif fiskal', 'Pasokan CPO dari kebun sekitar']),
+        PJ('Resor Wisata Danau Toba', 'Kab. Toba', 'Pariwisata', 1.2, 320, 3, 2900, 'Fase I, 30 ha', 'Proyek siap ditawarkan', 'Resor terpadu di tepi Danau Toba dengan fasilitas MICE dan wisata budaya Batak.', ['Destinasi Pariwisata Super Prioritas', 'Akses Bandara Silangit']),
+        PJ('Pabrik Pakan Berbasis Jagung', 'Kab. Dairi', 'Agroindustri', 0.38, 110, 2, 1100, 'Fase I, 12 ha', 'Mencari investor', 'Pabrik pakan ternak yang menyerap jagung petani Dairi dan Karo untuk pasar peternakan Sumatra Utara.', ['Bahan baku jagung dari Dairi dan Karo', 'Pasar pakan ternak Sumatra Utara'])
+      ]
+    };
+    const PRJD = (PRJP[dp] || []).map((x) => ({ ...x, wil: dh.n, src: 'Data simulasi · format profil peluang investasi daerah' }));
     const PJ_KEYS = [['n', 'Nama proyek'], ['lok', 'Lokasi'], ['wil', 'Provinsi'], ['sek', 'Sektor'], ['nilai', 'Nilai investasi'], ['dana', 'Kebutuhan dana'], ['durasi', 'Durasi proyek'], ['kerja', 'Tenaga kerja'], ['tahap', 'Tahap saat ini'], ['sts', 'Status'], ['src', 'Sumber data']];
     const PJC = ['#1E3A8A', '#1E40AF', '#2563EB', '#3B82F6', '#0EA5E9', '#047857', '#B45309', '#6D28D9', '#334155'];
     const prjCards = PRJD.map((p, i) => ({ no: i + 1, c: PJC[i % PJC.length], p: Object.assign({}, p, { kv: [['Nilai investasi', p.nilai], ['Kebutuhan dana', p.dana], ['Durasi proyek', p.durasi], ['Tenaga kerja', p.kerja], ['Tahap', p.tahap], ['Status', p.sts]].map((x) => ({ l: x[0], v: x[1] })) }) }));
@@ -2120,11 +2131,11 @@ const ewsClose = () => this.setState({ ews: null });
         'Tetapkan tenggat dan penanggung jawab untuk setiap indikator.',
         'Bandingkan capaian antarprovinsi setiap triwulan.'
       ],
-      proyek: [
-        'Prioritaskan proyek yang masukannya jelas dan lahannya tersedia.',
-        'Lengkapi data proyek yang masih kosong sebelum diusulkan ke forum bisnis.',
-        'Tetapkan tenggat penlokalan agar proyek tidak menganggur.'
-      ],
+      proyek: PRJD.length ? [
+        PRJD.length + ' proyek di ' + dh.n + ' bernilai total Rp' + nf(PRJD.reduce((a, x) => a + x.nv, 0), 1) + ' triliun dan berpotensi menyerap ' + nf(PRJD.reduce((a, x) => a + x.kj, 0)) + ' tenaga kerja.',
+        PRJD.filter((x) => x.sts === 'Proyek siap ditawarkan').length + ' proyek siap ditawarkan; ' + PRJD.filter((x) => x.sts === 'Mencari investor').length + ' masih mencari investor dan perlu dipromosikan di forum bisnis.',
+        'Proyek terbesar: ' + PRJD.slice().sort((a, b) => b.nv - a.nv)[0].n + ' (' + PRJD.slice().sort((a, b) => b.nv - a.nv)[0].nilai + '); pastikan kesiapan lahan dan perizinan sebelum ditawarkan.'
+      ] : ['Belum ada profil proyek untuk provinsi ini.'],
       // insight dinamis halaman rinci provinsi
       prov: [
         dh.n + ' menyumbang ' + nf(dP.share, 2) + '% PDRB nasional (peringkat ' + dP.rank + ')' + (allKnown ? '; tiga sektor teratas mencakup ' + nf(known, 2) + '% PDRB, sisanya ' + dh.rest + ' tersebar di sektor lain.' : '.'),
@@ -2150,14 +2161,14 @@ const ewsClose = () => this.setState({ ews: null });
       // main
       ewsO, ewsN: ek.length, indTabs, I: { l: I.l, u: I.u, per: I.per, src: I.src, freq: I.freq }, leg, naN, hasNA: naN > 0, m, selD, mk, popOpen, pp, ewsList, t5, quick,
       clearSel: set({ sel: null, pop: false }), hasSel: !!sel,
-      prjCards, prjNote: prjNote, prjScrollP: () => { const el = document.querySelector('[data-prj-track]'); if (el) el.scrollBy({ left: 660, behavior: 'smooth' }); },
+      prjCards, prjNote: PRJD.length ? 'Data simulasi untuk prototipe · ' + PRJD.length + ' profil proyek di ' + dh.n + '; angka merupakan estimasi, bukan realisasi.' : 'Belum ada profil proyek untuk provinsi ini.', prjScrollP: () => { const el = document.querySelector('[data-prj-track]'); if (el) el.scrollBy({ left: 660, behavior: 'smooth' }); },
       prjScrollN: () => { const el = document.querySelector('[data-prj-track]'); if (el) el.scrollBy({ left: -660, behavior: 'smooth' }); }, pSearch, pOpen: pShowBox, pOpts, pNoHit, pVal, pClear, pCur: !!pCur, pStats, pMeta, pCurN, onPSearch: (e) => this.setState({ pSearch: e && e.target ? e.target.value : "", pOpen: true }), onPOpen: () => this.setState({ pOpen: true }), d1, d2, l1, l2, d1Info: st.donutDetail && st.donutDetail.group === 'PMDN' ? st.donutDetail : null, d2Info: st.donutDetail && st.donutDetail.group === 'PMA' ? st.donutDetail : null, closeDonut: () => this.setState({ donutDetail: null }), pmaUsd, openL1: openL(), openL2: openL(), openLs: openL({ lt: 'sek' }), openLh: openL({ lt: 'hist' }),
       // lampiran
       lm, closeL: set({ lm: false }), lTabs, isLp: lt === 'prov', isLs: lt === 'sek', isLk: lt === 'skala', isLh: lt === 'hist', lperBtns, lpOpts, lpv, onLp, lsOpts, lsk, onLs,
       lp, lpEmpty, lpHas: !lpEmpty, lpNas, lpNote, lperL: lper === 'tw2' ? 'Triwulan II 2026' : 'Semester I 2026', lsHas, lsNo: !lsHas, ls, lsNote, lk, lkNote, lh, lhProv, hasLhProv, lNoteHist,
       resetL: set({ lpv: '', lsk: '', lper: 'tw2' }), hasLF: !!(lpv || lsk || lper !== 'tw2'),
       // detail
-      dSearch, dOpen: dShowBox, dOpts, dOptsOff, dNoHit, onDSearch: (e) => this.setState({ dSearch: e && e.target ? e.target.value : '', dOpen: true }), onDOpen: () => this.setState({ dOpen: true }), skm, toMap, dh, fc, ev, facts, lim: dD.lim, sekP, dasar, opsi, evA, dasarA, sekTabs, sekCur, opNav, fcv, hm, lyrBtns, isu, mapLeg, mapInfo, iklhIns, irbiIns, env, kes, prj, prjDots, prjNote, pq, prjEmpty: prj.length === 0, onPq: (e) => this.setState({ pq: e && e.target ? e.target.value : '' }), regChips, regs, regCount, regJen, regNote, hasRegNote: !!regNote, dr,
+      dSearch, dOpen: dShowBox, dOpts, dOptsOff, dNoHit, onDSearch: (e) => this.setState({ dSearch: e && e.target ? e.target.value : '', dOpen: true }), onDOpen: () => this.setState({ dOpen: true }), skm, toMap, dh, fc, ev, facts, lim: dD.lim, sekP, dasar, opsi, evA, dasarA, sekTabs, sekCur, opNav, fcv, hm, lyrBtns, isu, mapLeg, mapInfo, iklhIns, irbiIns, env, kes, prj, prjDots, pq, prjEmpty: PRJD.length === 0, onPq: (e) => this.setState({ pq: e && e.target ? e.target.value : '' }), regChips, regs, regCount, regJen, regNote, hasRegNote: !!regNote, dr,
       dEws: !!EWS[dp], dNoEws: !EWS[dp]
     };
   }
@@ -2240,6 +2251,6 @@ const ewsClose = () => this.setState({ ews: null });
   focusEwsModal();
   if (window.MutationObserver && document.body) new MutationObserver(focusEwsModal).observe(document.body, { childList: true, subtree: true });
 })();
-</script>t>
+</script>
 <script data-ews-viewport>(function(){var root=document.documentElement,open=false;function apply(top,h){root.style.setProperty("--ews-vp-top",Math.max(0,top)+"px");root.style.setProperty("--ews-vp-h",h+"px");}window.addEventListener("message",function(e){var d=e.data;if(d&&d.type==="harmonisasi:viewport")apply(Number(d.top)||0,Number(d.height)||window.innerHeight);});function check(){var now=!!document.querySelector("[data-ews-modal],[data-vp-overlay]");if(now===open)return;open=now;if(window.parent!==window)window.parent.postMessage({type:"harmonisasi:modal",open:open},"*");}if(window.MutationObserver)new MutationObserver(check).observe(root,{childList:true,subtree:true});})();</script>
 </body></html>
