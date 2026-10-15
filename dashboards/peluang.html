@@ -908,7 +908,8 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
               <button type="button" sc-camel-on-click="{{prjScrollP}}" aria-label="Geser ke kanan" title="Berikutnya" style="width: 30px; height: 30px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid #E3E8F0; border-radius: 8px; background: #FFFFFF; color: #475569; cursor: pointer;">&#8250;</button>
               </div>
               </div>
-              <div data-prj-track class="prj-track" style="display: flex; gap: 12px; overflow-x: auto; padding: 2px 2px 12px; scroll-snap-type: x mandatory; scrollbar-width: thin;">
+<div data-prj-track class="prj-track" style="display: flex; gap: 12px; overflow-x: auto; padding: 2px 2px 12px; scroll-snap-type: x mandatory; scrollbar-width: thin;">
+              <sc-if value="{{prjEmpty}}" hint-placeholder-val="{{false}}"><div style="padding: 26px 14px; text-align: center; font-size: 12px; color: #94A3B8; border: 1px dashed #CBD5E1; border-radius: 10px;">Belum ada data proyek siap investasi untuk wilayah ini.</div></sc-if>
               <sc-for list="{{prjCards}}" as="c" hint-placeholder-count="3">
               <article class="prj-card" style="flex: 0 0 calc((100% - 24px)/3); min-width: 320px; scroll-snap-align: start; display: flex; flex-direction: column; gap: 10px; padding: 14px; border: 1px solid #E3E8F0; border-left: 4px solid {{c.c}}; border-radius: 12px; background: #FFFFFF;">
               <div style="display: grid; grid-template-columns: 26px minmax(0,1fr); gap: 9px; align-items: start;">
@@ -939,7 +940,29 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
               </sc-for>
               </div>
               </div>
-                            <div style="padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;"><span><b style="color: #475569;">Periode:</b> s.d. 12 Okt 2026</span><span><b style="color: #475569;">Diperbarui:</b> 12 Okt 2026 (tahunan)</span><span><b style="color: #475569;">Sumber:</b> JDIH provinsi, peraturan.bpk.go.id</span><span style="padding: 0 6px; border-radius: 4px; background: #EFF6FF; color: #1D4ED8; font-weight: 600;">Relevansi diverifikasi analis</span></div>
+</section>
+
+        <!-- 6. Peraturan relevan provinsi -->
+        <section style="background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; box-shadow: 0 1px 2px rgba(15,23,42,.05);">
+          <div style="padding: 12px 18px; border-bottom: 1px solid #EEF2F7; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px;"><h2 style="margin: 0; font-size: 14.5px; font-weight: 600;">Peraturan relevan provinsi</h2><span style="font-size: 11.5px; color: #64748B;">Klik peraturan untuk membuka detail</span></div>
+          <div style="display: flex; flex-wrap: wrap;">
+            <div style="flex: 1 1 260px; min-width: 0; padding: 14px 18px; border-right: 1px solid #EEF2F7; display: flex; flex-direction: column; gap: 10px;">
+              <div style="padding: 12px 14px; border-radius: 10px; border: 1px solid #E7F1E9; background: #EFF6FF;"><div style="font-size: 12px; color: #475569;">Peraturan relevan ┬╖ {{dh.n}}</div><div style="display: flex; align-items: baseline; gap: 6px;"><b style="font-size: 32px; letter-spacing: -0.5px; color: #1E40AF;">{{regCount}}</b><span style="font-size: 12.5px; color: #475569;">peraturan</span></div><div style="font-size: 11.5px; color: #334155;">{{regJen}}</div></div>
+              <div style="display: flex; flex-wrap: wrap; gap: 6px;"><sc-for list="{{regChips}}" as="c" hint-placeholder-count="3"><button type="button" sc-camel-on-click="{{c.pick}}" style="height: 28px; padding: 0 10px; border-radius: 99px; border: 1px solid #B8E3DF; background: {{c.bg}}; color: {{c.fg}}; font-family: inherit; font-size: 11.5px; font-weight: 600; cursor: pointer;">{{c.l}} ┬╖ {{c.n}}</button></sc-for></div>
+              <sc-if value="{{hasRegNote}}" hint-placeholder-val="{{false}}"><div style="font-size: 11px; line-height: 16px; color: #64748B;">{{regNote}}</div></sc-if>
+              <div style="font-size: 11px; line-height: 16px; color: #64748B;">Regulasi nasional lintas sektor (mis. PP 28/2025) dikelola di <a href="Payung.dc.html" style="font-weight: 600; text-decoration: none;">Payung Kebijakan ΓåÆ</a></div>
+            </div>
+            <div style="flex: 3 1 620px; min-width: 0; display: flex; flex-direction: column;">
+              <sc-for list="{{regs}}" as="r" hint-placeholder-count="4">
+                <div sc-camel-on-click="{{r.open}}" class="rw" style="display: grid; grid-template-columns: 64px minmax(0, 1fr) auto; gap: 12px; align-items: center; padding: 11px 18px; border-bottom: 1px solid #EEF2F7;">
+                  <span style="justify-self: start; padding: 2px 7px; border-radius: 5px; background: {{r.jbg}}; color: #FFFFFF; font-size: 10.5px; font-weight: 700;">{{r.j}}</span>
+                  <div><b style="font-size: 12.5px;">{{r.nomor}}</b> <span style="font-size: 12.5px; color: #1D4ED8;">{{r.judul}}</span><div style="font-size: 11px; color: #64748B;">{{r.rel}}</div></div>
+                  <span style="display: flex; flex-direction: column; align-items: flex-end; gap: 3px;"><span style="padding: 2px 8px; border-radius: 5px; background: {{r.stbg}}; color: {{r.stc}}; font-size: 11px; font-weight: 600; white-space: nowrap;">{{r.st}}</span><sc-if value="{{r.uv}}" hint-placeholder-val="{{false}}"><span style="padding: 2px 8px; border-radius: 5px; background: #F1F5F9; color: #475569; font-size: 10.5px; font-weight: 600; white-space: nowrap;">belum terverifikasi</span></sc-if></span>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+          <div style="padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;"><span><b style="color: #475569;">Periode:</b> s.d. 12 Okt 2026</span><span><b style="color: #475569;">Diperbarui:</b> 12 Okt 2026 (tahunan)</span><span><b style="color: #475569;">Sumber:</b> JDIH provinsi, peraturan.bpk.go.id</span><span style="padding: 0 6px; border-radius: 4px; background: #EFF6FF; color: #1D4ED8; font-weight: 600;">Relevansi diverifikasi analis</span></div>
         </section>
       </div>
     </sc-if>
