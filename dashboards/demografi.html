@@ -399,99 +399,8 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
 <style>body{margin:0} a{color:#1D4ED8} a:hover{color:#1E40AF} .ck{cursor:pointer;transition:box-shadow .12s,border-color .12s,background .12s} .ck:hover{box-shadow:0 2px 10px rgba(15,23,42,.08);border-color:#82B394 !important} .rw{cursor:pointer} .rw:hover{background:#EFF6FF !important} .tip{position:relative;outline:none} .tip .pop{display:none;position:absolute;z-index:95;right:0;top:calc(100% + 6px);width:300px;padding:10px 12px;border-radius:10px;background:#0B1F3A;color:#E2E8F0;font-size:11.5px;line-height:17px;font-weight:400;letter-spacing:0;text-align:left;white-space:normal;box-shadow:0 12px 32px rgba(15,23,42,.3)} .tip:hover .pop,.tip:focus .pop{display:block} .tip .pop.pl{left:0;right:auto} .bar:hover{filter:brightness(1.08)} .pv{cursor:pointer;transition:opacity .12s} .pv:hover{opacity:.72} .pt{transition:transform .12s} .pt:hover{transform:scale(1.35)}</style>
 </helmet>
 <div style="min-height: 100vh; background: #F4F7FB; font-family: Inter, system-ui, sans-serif; color: #0F172A;">
-  <header class="setneg-global-header" aria-label="Header Dashboard Presiden RI"><div class="setneg-header-inner"><a class="setneg-brand" href="#top" aria-label="Dashboard Presiden RI"><img alt="Logo Setneg RI" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Logo_Setneg_RI.svg/330px-Logo_Setneg_RI.svg.png"><span class="setneg-brand-copy"><strong>DASHBOARD PRESIDEN RI</strong><span>Badan Teknologi, Data dan Informasi</span><span>Kementerian Sekretariat Negara Republik Indonesia</span></span></a><nav class="setneg-global-nav" aria-label="Navigasi utama"><button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.5"/></svg><span>Eksekutif</span></button><button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"/><path d="m9 12 2 2 4-4"/></svg><span>Pertahanan &amp; Keamanan</span></button><button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 3v18h18"/><path d="m7 14 4-4 4 3 6-7"/></svg><span>Ekonomi</span></button><button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 11h16v2a8 8 0 0 1-16 0v-2Z"/><path d="M8 7c0-1 1-1 1-2M12 7c0-1 1-1 1-2M16 7c0-1 1-1 1-2"/></svg><span>MBG</span></button><button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 3h10l4 4v14H5z"/><path d="M15 3v5h4M8 12h8M8 16h8"/></svg><span>Kebijakan</span></button><button type="button" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="6" cy="6" r="2"/><circle cx="18" cy="6" r="2"/><circle cx="12" cy="18" r="2"/><path d="M8 7.5 10.8 16M16 7.5 13.2 16M8 6h8"/></svg><span>Harmonisasi</span></button></nav><div class="setneg-header-tools"><button class="setneg-theme-button" type="button" aria-label="Ganti tema"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.5 14.4A8.5 8.5 0 0 1 9.6 3.5 8.7 8.7 0 1 0 20.5 14.4Z"/></svg></button><div class="setneg-user"><span class="setneg-avatar">PS</span><span class="setneg-user-copy"><strong>Prabowo Subianto</strong><span>Presiden</span></span><svg class="setneg-user-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div></div></div></header><nav class="harmonisasi-page-tabs" aria-label="Navigasi tab Harmonisasi Investasi"><a href="#harmonisasi-page-0" data-harmonisasi-tab="0">Payung Kebijakan Investasi</a><a href="#harmonisasi-page-1" data-harmonisasi-tab="1">Peluang Investasi Daerah</a><a href="#harmonisasi-page-2" aria-current="page" data-harmonisasi-tab="2">Demografi &amp; Mobilitas Penduduk</a><a href="#harmonisasi-page-3" data-harmonisasi-tab="3">Kemudahan Berusaha &amp; Pelayanan Perizinan</a></nav><section class="harmonisasi-highlights" aria-label="Highlight Demografi dan Mobilitas Penduduk"><div class="harmonisasi-highlights-head"><h2><svg class="harmonisasi-warning-symbol" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3 2.8 19h18.4L12 3Z"></path><path d="M12 9v4m0 3h.01"></path></svg> Highlight Demografi &amp; Mobilitas Penduduk</h2><span>{{ewsCount}} Alerts Aktif</span></div><div class="harmonisasi-alert-track" role="list"><sc-for list="{{highlights}}" as="h" hint-placeholder-count="3"><article class="harmonisasi-alert-card" role="listitem" tabindex="0" aria-haspopup="dialog" title="Klik untuk melihat detail Early Warning" sc-camel-on-click="{{h.open}}" sc-camel-onKeyDown="{{h.key}}"><div class="harmonisasi-alert-heading"><span class="harmonisasi-alert-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m4 16 5-5 4 4 7-7"></path><path d="M14 8h6v6"></path></svg></span><div class="harmonisasi-alert-title"><strong>{{h.short}}</strong><span>Level: {{h.level}}</span></div><div class="harmonisasi-alert-meta"><span>{{h.tgl}}</span><span>Alert aktif</span><span style="padding: 1px 7px; border-radius: 5px; background: {{h.verif.bg}}; border: 1px solid {{h.verif.bd}}; color: {{h.verif.c}}; font-weight: 700;">{{h.verif.t}}</span></div></div><div class="harmonisasi-alert-details"><div><b>Masalah</b><p>{{h.m}}</p></div><div><b>Dampak</b><p>{{h.d}}</p></div><div><b>Rekomendasi</b><p>{{h.r}}</p></div></div></article></sc-for></div></section>
-  <sc-if value="{{ewsOpen}}">
-      <div class="ews-modal-backdrop" sc-camel-on-click="{{closeEws}}">
-        <div class="ews-modal-panel" data-ews-modal="1" role="dialog" aria-modal="true" tabindex="0" sc-camel-on-click="{{stop}}" sc-camel-onKeyDown="{{onEwsKey}}">
-          <div style="padding: 16px 24px; border-bottom: 1px solid #E5E7EB; display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; flex: none;">
-            <div style="display: flex; align-items: center; gap: 12px; min-width: 0;">
-              <span style="padding: 8px; border-radius: 8px; background: rgba(239,68,68,.1); border: 1px solid rgba(239,68,68,.3); color: #DC2626; display: inline-flex; flex: none;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2.8 19h18.4L12 3Z"></path><path d="M12 9v4m0 3h.01"></path></svg></span>
-              <div style="min-width: 0;">
-                <h2 style="margin: 0; font-size: 18px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: #111827; line-height: 1.3;">{{ews.title}}</h2>
-                <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin-top: 4px;">
-                  <span style="font-size: 12px; color: #6B7280; font-family: ui-monospace, SFMono-Regular, Menlo, monospace;">ID: {{ews.id}}</span>
-                  <span style="display: inline-flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 600; text-transform: uppercase; color: #2563EB;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"></path><path d="M7 14l4-4 4 3 6-7"></path></svg>{{ews.kat}}</span>
-                  <span style="padding: 2px 9px; border-radius: 5px; border: 1px solid; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: {{ews.sevFg}}; border-color: {{ews.sevBd}}; background: {{ews.sevBg}};">{{ews.level}}</span><span style="padding: 2px 9px; border-radius: 5px; border: 1px solid; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: {{ews.verif.c}}; border-color: {{ews.verif.bd}}; background: {{ews.verif.bg}};">{{ews.verif.t}}</span>
-                </div>
-              </div>
-            </div>
-            <div style="display: flex; align-items: center; gap: 12px; flex: none;">
-              <div class="ews-stamp"><span class="ews-stamp-k">Acuan EWS</span><span class="ews-stamp-v">{{ews.tgl}}</span><span class="ews-stamp-t">{{ewsStamp}}</span></div>
-              <button type="button" sc-camel-on-click="{{closeEws}}" aria-label="Tutup detail" title="Tutup (Esc)" style="padding: 8px; border: 0; border-radius: 8px; background: transparent; color: #9CA3AF; cursor: pointer;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"></path></svg></button>
-            </div>
-          </div>
+  <header class="setneg-global-header" aria-label="Header Dashboard Presiden RI"><div class="setneg-header-inner"><a class="setneg-brand" href="#top" aria-label="Dashboard Presiden RI"><img alt="Logo Setneg RI" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Logo_Setneg_RI.svg/330px-Logo_Setneg_RI.svg.png"><span class="setneg-brand-copy"><strong>DASHBOARD PRESIDEN RI</strong><span>Badan Teknologi, Data dan Informasi</span><span>Kementerian Sekretariat Negara Republik Indonesia</span></span></a><nav class="setneg-global-nav" aria-label="Navigasi utama"><button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.5"/></svg><span>Eksekutif</span></button><button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"/><path d="m9 12 2 2 4-4"/></svg><span>Pertahanan &amp; Keamanan</span></button><button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 3v18h18"/><path d="m7 14 4-4 4 3 6-7"/></svg><span>Ekonomi</span></button><button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 11h16v2a8 8 0 0 1-16 0v-2Z"/><path d="M8 7c0-1 1-1 1-2M12 7c0-1 1-1 1-2M16 7c0-1 1-1 1-2"/></svg><span>MBG</span></button><button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 3h10l4 4v14H5z"/><path d="M15 3v5h4M8 12h8M8 16h8"/></svg><span>Kebijakan</span></button><button type="button" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="6" cy="6" r="2"/><circle cx="18" cy="6" r="2"/><circle cx="12" cy="18" r="2"/><path d="M8 7.5 10.8 16M16 7.5 13.2 16M8 6h8"/></svg><span>Harmonisasi</span></button></nav><div class="setneg-header-tools"><button class="setneg-theme-button" type="button" aria-label="Ganti tema"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.5 14.4A8.5 8.5 0 0 1 9.6 3.5 8.7 8.7 0 1 0 20.5 14.4Z"/></svg></button><div class="setneg-user"><span class="setneg-avatar">PS</span><span class="setneg-user-copy"><strong>Prabowo Subianto</strong><span>Presiden</span></span><svg class="setneg-user-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div></div></div></header><nav class="harmonisasi-page-tabs" aria-label="Navigasi tab Harmonisasi Investasi"><a href="#harmonisasi-page-0" data-harmonisasi-tab="0">Payung Kebijakan Investasi</a><a href="#harmonisasi-page-1" data-harmonisasi-tab="1">Peluang Investasi Daerah</a><a href="#harmonisasi-page-2" aria-current="page" data-harmonisasi-tab="2">Demografi &amp; Mobilitas Penduduk</a><a href="#harmonisasi-page-3" data-harmonisasi-tab="3">Kemudahan Berusaha &amp; Pelayanan Perizinan</a></nav>
 
-          <div class="ews-modal-body">
-            <div class="ews-modal-main">
-              <div class="ews-sec ews-s1">
-                <h3 class="ews-modal-h4"><span class="ews-h4-ico"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.12 2.12 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.12 2.12 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.12 2.12 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.12 2.12 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.12 2.12 0 0 0 1.597-1.16z"></path></svg></span>Ringkasan</h3>
-                <p>{{ews.fakta}}</p>
-              </div>
-              <div class="ews-sec ews-s2">
-                <h3 class="ews-modal-h4"><span class="ews-h4-ico"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"></path><path d="M12 9v4"></path><path d="M12 17h.01"></path></svg></span>Dampak</h3>
-                <p>{{ews.perk}}</p>
-              </div>
-              <div class="ews-sec ews-s3">
-                <h3 class="ews-modal-h4"><span class="ews-h4-ico"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"></path></svg></span>Saran Untuk Presiden</h3>
-                <p>{{ews.opsi}}</p>
-              </div>
-            </div>
-
-            <div class="ews-modal-side">
-              <div>
-                <h3 class="ews-modal-h4"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"></path></svg>Sumber</h3>
-                <div style="display: flex; flex-direction: column; gap: 10px;">
-                  <sc-for list="{{ews.src}}" as="s" hint-placeholder-count="2">
-                    <a href="{{s.u}}" target="_blank" rel="noopener noreferrer" style="display: block; padding: 10px; border-radius: 6px; border: 1px solid #E5E7EB; background: #FFFFFF; text-decoration: none; color: inherit;">
-                      <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; margin-bottom: 6px;">
-                        <span style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: #16A34A;">WEB</span>
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #9CA3AF; flex: none;"><path d="M15 3h6v6"></path><path d="M10 14 21 3"></path><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path></svg>
-                      </div>
-                      <div style="font-size: 13.5px; font-weight: 500; color: #111827; line-height: 1.35;">{{s.l}}</div>
-                    </a>
-                  </sc-for>
-                </div>
-              </div>
-              <div>
-                <h3 class="ews-modal-h4">Poin Penting</h3>
-                <div style="display: flex; flex-direction: column; gap: 8px;">
-                  <sc-for list="{{ews.kv}}" as="v" hint-placeholder-count="6">
-                    <div style="padding: 9px 10px; border-radius: 6px; border: 1px solid #E5E7EB; background: #FFFFFF;">
-                      <div style="font-size: 10px; text-transform: uppercase; letter-spacing: .05em; color: #6B7280; margin-bottom: 3px;">{{v.l}}:</div>
-                      <div style="font-size: 13.5px; font-weight: 600; color: #111827;">{{v.v}}</div>
-                    </div>
-                  </sc-for>
-                </div>
-              </div>
-              <div>
-                <h3 class="ews-modal-h4"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>Timeline</h3>
-                <div class="ews-tl">
-                  <sc-for list="{{ews.timeline}}" as="t" hint-placeholder-count="3">
-                    <div class="ews-tl-item"><div class="ews-tl-d">{{t.d}}</div><div class="ews-tl-t">{{t.t}}</div></div>
-                  </sc-for>
-                </div>
-              </div>
-              <div>
-                <h3 class="ews-modal-h4"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path></svg>Stakeholders</h3>
-                <div style="display: flex; flex-direction: column; gap: 8px;">
-                  <sc-for list="{{ews.sh}}" as="s" hint-placeholder-count="4">
-                    <div class="ews-sh"><div style="flex:1;min-width:0;"><div class="ews-sh-r">{{s.n}}</div><div class="ews-sh-n">{{s.r}}</div></div></div>
-                  </sc-for>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div style="padding: 12px 24px; background: #F9FAFB; border-top: 1px solid #E5E7EB; display: flex; align-items: center; flex-wrap: wrap; gap: 8px; flex: none; font-size: 11px; color: #6B7280;">
-            <span style="display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 999px; background: #FEF3C7; border: 1px solid #FCD34D; color: #92400E; font-weight: 700;">RAHASIA</span>
-            <span>Klasifikasi: <b style="color: #475569;">Internal · EWSPayung</b></span>
-            <span style="margin-left: auto;">Acuan {{ews.tgl}} · JDIH Setneg &amp; media terkait</span>
-          </div>
-        </div>
-      </div>
-    </sc-if>
-
-    
 <main style="max-width: 1376px; margin: 0 auto; padding: 16px 32px 48px; display: flex; flex-direction: column; gap: 16px;">
 
     <!-- Toolbar -->
@@ -1374,123 +1283,6 @@ class Component extends DCLogic {
     ];
 
     const nav = [['#sec-peta', 'Peta'], ['#sec-rank', 'Ranking'], ['#sec-tren', 'Tren'], ['#sec-insight', 'Insight']].map(([h, l]) => ({ h, l }));
-const DEMOGRAFI_SRC = [
-  ['BPS - Penduduk dan kependudukan', 'https://www.bps.go.id'],
-  ['BPS - SP 2020 Long Form tabel 170 dan 171', 'https://www.bps.go.id'],
-  ['BPS - Statistik Transportasi', 'https://www.bps.go.id'],
-  ['Kementerian Kemendagri - Dukcapil', 'https://www.kemendagri.go.id']
-];
-const DEMOGRAFI_ALERTS = [
-  {
-    k: 'migrasijt',
-    s: 'Migrasi masuk Jawa Tengah melonjak',
-    kat: 'Mobilitas penduduk',
-    l: 'Migrasi masuk peringkat 1',
-    n: '778.524',
-    tgl: '12 Okt 2026',
-    m: 'Jawa Tengah mencatat 778.524 migrasi masuk, naik 28,7% dari 605.678 pada periode sebelumnya.',
-    d: 'Provinsi dengan PDRB per kapita terendah di lima besar, Rp1.943,19 T, menerima lonjakan penduduk.',
-    r: 'Tambah kapasitas ketenagakerjaan dan perumahan di provinsi dengan migrasi masuk tertinggi.',
-    ringkasan: 'Jawa Tengah mencatat 778.524 migrasi masuk dan menjadi peringkat satu nasional. Angka itu naik 28,7% dari 605.678 pada periode sebelumnya dan jauh di atas 502,5 ribu hasil SP 2020. PDRB per kapita Jawa Tengah hanya Rp1.943,19 T atau 8,22%, terendah di antara lima provinsi terbesar.',
-    dampak: 'Lonjakan penduduk tanpa imbang pertumbuhan ekonomi dapat memicu kekurangan tenaga kerja terampil, tekanan pada perumahan, dan layanan dasar.',
-    saran: 'Tambah kapasitas ketenagakerjaan dan perumahan di provinsi dengan migrasi masuk tertinggi.',
-    timeline: [
-      ['Feb 2020', 'SP 2020 mencatat migrasi masuk Jawa Tengah 502,5 ribu.'],
-      ['Sep 2020', 'Data SP 2020 tersedia sebagai tabel 170 dan 171.'],
-      ['Okt 2026', 'Migrasi masuk Jawa Tengah mencapai 778.524 dan naik 28,7%.'],
-      ['12 Okt 2026', 'Lonjakan migrasi masuk ditetapkan sebagai EWS aktif.']
-    ],
-    sh: [
-      ['Badan Pusat Statistik', 'Sumber data migrasi dan kependudukan'],
-      ['Pemerintah Provinsi Jawa Tengah', 'Penyedia lapangan kerja dan perumahan'],
-
-      ['Pengusaha dan investor', 'Pengguna tenaga kerja migran']
-    ],
-    reg: 'SP 2020 - PP 5/2021'
-  },
-  {
-    k: 'migrasipapua',
-    s: 'Papua kehilangan 1,07 juta penduduk',
-    kat: 'Mobilitas penduduk',
-    l: 'Migrasi keluar peringkat 1',
-    n: '1.073.600',
-    tgl: '12 Okt 2026',
-    m: 'Papua mencatat 1.073.600 migrasi keluar atau 32 orang per kilometer persegi, peringkat pertama nasional.',
-    d: 'Kehilangan penduduk usia kerja dapat mengurangi basis pajak dan produktivitas wilayah dengan PDRB terendah.',
-    r: 'Prioritaskan insentif kerja di Papua agar basis pekerja bertahan.',
-    ringkasan: 'Papua mencatat 1.073.600 migrasi keluar dan menjadi peringkat satu nasional dengan rasio 32 orang per kilometer persegi. Disusul Jakarta 797.468, Jawa Barat 506.569, Jawa Tengah 411.888, dan Jawa Timur 280.954.',
-    dampak: 'Kehilangan kelompok usia kerja dapat mengurangi basis pajak, produktivitas, dan daya saing wilayah yang PDRB per kapita-nya paling rendah.',
-    saran: 'Prioritaskan insentif kerja di Papua agar basis pekerja dapat dipertahankan.',
-    timeline: [
-      ['Feb 2020', 'SP 2020 mencatat Papua sebagai provinsi teratas migrasi keluar.'],
-      ['Sep 2020', 'Rasio migrasi keluar mencapai 32 orang per kilometer persegi.'],
-      ['Okt 2026', 'Papua tetap berada di posisi pertama migrasi keluar nasional.'],
-      ['12 Okt 2026', 'Penyusutan basis penduduk ditetapkan sebagai EWS aktif.']
-    ],
-    sh: [
-      ['Badan Pusat Statistik', 'Sumber data migrasi dan kependudukan'],
-      ['Pemerintah Provinsi Papua', 'Penyedia lapangan kerja dan permukiman'],
-      ['Kementerian Dalam Negeri', 'Koordinator penataan wilayah'],
-      ['Pengusaha dan investor', 'Pengguna tenaga kerja lokal']
-    ],
-    reg: 'SP 2020 - UU 2/2021'
-  },
-  {
-    k: 'wh',
-    s: 'Lonjakan mobilitas Whoosh dan KRL',
-    kat: 'Mobilitas harian',
-    l: 'Penumpang Jul 2026',
-    n: '32,46 juta',
-    tgl: 'Jul 2026',
-    m: 'KRL Commuter Line 32,46 juta penumpang naik 6,5% bulan ke bulan. Whoosh 578,6 ribu penumpang naik 10,6%.',
-    d: 'Penumpang tumbuh lebih cepat dari kapasitas last mile dan perumahan di koridor yang sama.',
-    r: 'Tambahkan kapasitas gerbong dan integrasi last mile di koridor Whoosh dan KRL.',
-    ringkasan: 'KRL Commuter Line mencatat 32,46 juta penumpang pada Juli 2026 dan naik 6,5% dari bulan sebelumnya. Kereta Cepat Whoosh mencatat 578,6 ribu penumpang dan naik 10,6%. Keduanya menghubungkan Bandung, Jabodetabek, dan KRL Jakarta-Bandung.',
-    dampak: 'Pertumbuhan penumpang yang melampaui kapasitas last mile dan perumahan dapat menimbulkan penumpukan di koridor Jakarta-Bandung.',
-    saran: 'Tambahkan kapasitas gerbong dan integrasi last mile di koridor Whoosh dan KRL Jakarta-Bandung.',
-    timeline: [
-      ['Mei 2026', 'KRL dan Whoosh melaporkan data penumpang bulanan.'],
-      ['Jun 2026', 'KRL 29,1 juta dan Whoosh 523 ribu penumpang tercatat.'],
-      ['Jul 2026', 'KRL naik menjadi 32,46 juta dan Whoosh 578,6 ribu penumpang.'],
-      ['12 Okt 2026', 'Lonjakan mobilitas ditetapkan sebagai EWS aktif.']
-    ],
-    sh: [
-      ['PT Kereta Api Indonesia', 'Operator KRL Commuter Line'],
-      ['PT Kereta Cepat Whoosh', 'Operator kereta cepat Jakarta-Bandung'],
-      ['Badan Keselamatan Transportasi', 'Regulator keselamatan dan kapasitas'],
-      ['Pemerintah daerah', 'Perencana lingkungan dan perumahan']
-    ],
-    reg: 'Perpres 49/2021 - UU 2/2021'
-  }
-];
-// ---------- highlight EWS + pop-up detail ----------
-    const ewsKey = st.ews || null;
-    const ewsOpen = (k) => { try { window.scrollTo(0, 0); } catch (e) {} this.setState({ ews: k }); };
-        // Cap waktu (timestamp) untuk header detail EWS: tanggal acuan EWS + waktu buka.
-    const ewsStamp = (() => { const d = new Date(), p = (x) => String(x).padStart(2, '0'), BUL = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des']; return p(d.getHours()) + ':' + p(d.getMinutes()) + ' WIB ' + d.getDate() + ' ' + BUL[d.getMonth()] + ' ' + d.getFullYear(); })();
-const ewsClose = () => this.setState({ ews: null });
-    const ewsStop = (e) => { if (e && e.stopPropagation) e.stopPropagation(); };
-    const ewsOnKey = (e) => { if (e && (e.key === 'Escape' || e.key === 'Esc')) { if (e.stopPropagation) e.stopPropagation(); ewsClose(); } };
-    const ewsOnKeyOpen = (k) => (e) => { if (e && (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar')) { if (e.preventDefault) e.preventDefault(); ewsOpen(k); } };
-    const ewsSev = (lvl) => lvl === 'CRITICAL' || lvl === 'HIGH' ? { sevFg: '#DC2626', sevBd: '#DC2626', sevBg: '#FEF2F2' } : { sevFg: '#D97706', sevBd: '#D97706', sevBg: '#FFFBEB' };
-    const highlights = DEMOGRAFI_ALERTS.map((a) => Object.assign({}, a, { level: 'WARNING', short: a.s, open: () => ewsOpen(a.k), key: ewsOnKeyOpen(a.k) }));
-    // Status verifikasi analis untuk setiap alert EWS/highlight.
-    // Alert yang sudah ditelaah ditampilkan sebagai "Terverifikasi Analis";
-    // alert yang masih menunggu telaah ditandai "Draf AI" dan diberi warna amber.
-    const EWS_VERIF = {};
-    const vstat = (k) => EWS_VERIF[k]
-      ? { t: 'Draf AI', c: '#B45309', bg: '#FFFBEB', bd: '#FDE68A' }
-      : { t: 'Terverifikasi Analis', c: '#047857', bg: '#ECFDF5', bd: '#A7F3D0' };
-    highlights.forEach((h) => { h.verif = vstat(h.k); });
-    const ewsPick = highlights.filter((h) => h.k === ewsKey)[0];
-    const ews = ewsPick ? Object.assign({}, ewsPick, ewsSev(ewsPick.level), {
-      title: ewsPick.s, id: 'EWS-' + ewsPick.k.toUpperCase() + '-2026',
-      fakta: ewsPick.ringkasan, perk: ewsPick.dampak, opsi: ewsPick.saran,
-      timeline: ewsPick.timeline.map((t) => ({ d: t[0], t: t[1] })),
-      sh: ewsPick.sh.map((s) => ({ n: s[0], r: s[1] })),
-      src: DEMOGRAFI_SRC.map((s) => ({ l: s[0], u: s[1] })),
-      kv: [['Indikator', ewsPick.l], ['Nilai', ewsPick.n], ['Periode', ewsPick.tgl], ['Regulasi acuan', ewsPick.reg]].map((x) => ({ l: x[0], v: x[1] }))
-    }) : null;
 
     // ============ Insight AI ringkas per card (preskriptif) ============
     // Dua sampai tiga arahan singkat per card, diturunkan dari data card
@@ -1511,7 +1303,6 @@ const ewsClose = () => this.setState({ ews: null });
 
     return {
       mini,
-      highlights, ewsCount: highlights.length, ewsOpen: !!ews, ews, ewsStamp: ewsStamp, closeEws: ewsClose, stop: ewsStop, onEwsKey: ewsOnKey,
       nav, m, selD, mk, leg, clsOn: cls !== null, clsReset: () => this.setState({ cls: null }), provOpts, selV: sel || '',
       // ============ Search & dropdown provinsi (38 provinsi) ============
       dSearch: dSearch,
@@ -1641,24 +1432,6 @@ const ewsClose = () => this.setState({ ews: null });
       attributes: true, attributeFilter: ['style'], childList: true, subtree: true
     });
   }
-  var lastEwsModal = null;
-  function focusEwsModal() {
-    var m = document.querySelector('[data-ews-modal]');
-    if (m && m !== lastEwsModal) {
-      lastEwsModal = m;
-      try { m.focus({ preventScroll: true }); } catch (e) { try { m.focus(); } catch (e2) {} }
-    }
-    if (!m) lastEwsModal = null;
-  }
-  if (!window.__ewsKeysBound && document.addEventListener) {
-    window.__ewsKeysBound = true;
-    document.addEventListener('keydown', function (e) {
-      var m = document.querySelector('[data-ews-modal]');
-      if (m && (e.key === 'Escape' || e.key === 'Esc')) m.dispatchEvent(new KeyboardEvent('keydown', { key: e.key, bubbles: true }));
-    });
-  }
-  focusEwsModal();
-  if (window.MutationObserver && document.body) new MutationObserver(focusEwsModal).observe(document.body, { childList: true, subtree: true });
 })();
 </script>t>
 </body></html>
