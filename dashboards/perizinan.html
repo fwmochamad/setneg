@@ -135,7 +135,7 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
 
 @media(max-width:680px){.sc-host{display:block!important;width:100%!important;max-width:100%!important;min-width:0!important}.sc-host>div{box-sizing:border-box!important;width:100%!important;max-width:100%!important;min-width:0!important}.setneg-global-header{box-sizing:border-box!important;width:100%!important;max-width:100%!important;min-width:0!important;overflow:hidden!important}.setneg-global-nav{box-sizing:border-box!important;min-width:0!important}.setneg-brand{max-width:calc(100% - 100px)!important}.harmonisasi-page-tabs{box-sizing:border-box!important;min-width:0!important}}
 @media(max-width:520px){.harmonisasi-page-tabs{width:calc(100% - 20px)!important;max-width:calc(100% - 20px)!important;display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;white-space:normal!important;overflow:visible!important;justify-content:stretch!important}.harmonisasi-page-tabs a{min-width:0!important;min-height:40px!important;padding:5px 7px!important;justify-content:center!important;white-space:normal!important;text-align:center!important;line-height:1.25!important}}
-</style><style id="harmonisasi-vp-overlay">[data-vp-overlay]{top:var(--ews-vp-top,0px)!important;bottom:auto!important;height:var(--ews-vp-h,100vh)!important;box-sizing:border-box}.mzl-backdrop[data-vp-overlay]{align-items:center;overflow:hidden}.mzl-panel{max-height:100%}.mzl-body{min-height:0}@media(max-width:640px){.mzl-backdrop[data-vp-overlay]{align-items:stretch}.mzl-panel{max-height:none}}</style></head>
+</style><style id="harmonisasi-vp-overlay">[data-vp-overlay]{top:var(--ews-vp-top,0px)!important;bottom:auto!important;height:var(--ews-vp-h,100vh)!important;box-sizing:border-box}.mzl-backdrop[data-vp-overlay]{align-items:center;overflow:hidden}.mzl-panel{max-height:100%}.mzl-body{min-height:0}@media(max-width:640px){.mzl-backdrop[data-vp-overlay]{align-items:stretch}.mzl-panel{max-height:none}}</style><style id="harmonisasi-recap-strip">.rc-strip{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:1px;background:#E3E8F0;border:1px solid #E3E8F0;border-radius:12px;overflow:hidden}.rc-item{display:flex;flex-direction:column;align-items:flex-start;gap:6px;min-width:0;padding:11px 12px 12px;border:0;background:#FFFFFF;font-family:inherit;text-align:left;cursor:pointer;transition:background .12s}.rc-item:hover,.rc-item:focus-visible{background:#F8FAFC}.rc-l{font-size:10.5px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;line-height:13px}.rc-v{font-size:20px;line-height:24px;font-weight:700;color:#1E293B;letter-spacing:-.02em}.rc-s{font-size:11px;line-height:15px;color:#64748B;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:30px}.rc-i{margin-top:auto;width:100%;box-sizing:border-box;padding:6px 8px;border-radius:7px;background:#F5F7FF;border:1px solid #E0E7FF;font-size:10.5px;line-height:14px;color:#3730A3}.rc-i b{color:#4F46E5}@media(max-width:1200px){.rc-strip{grid-template-columns:repeat(4,minmax(0,1fr))}.rc-item:last-child{grid-column:span 2}}@media(max-width:700px){.rc-strip{grid-template-columns:repeat(2,minmax(0,1fr))}.rc-item:last-child{grid-column:span 2}}</style></head>
 <body>
 <x-dc>
 <helmet>
@@ -504,23 +504,19 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
         <div style="display: flex; align-items: center; gap: 9px;"><span style="flex: none; width: 26px; height: 26px; border-radius: 8px; background: #0B1F4B; display: inline-flex; align-items: center; justify-content: center;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"></path><path d="M7 16l4-5 4 3 5-7"></path></svg></span><div><h2 style="margin: 0; font-size: 14.5px; font-weight: 600;">Ringkasan Izin</h2><div style="font-size: 11.5px; color: #64748B;">Rekap seluruh indikator perizinan di halaman ini · klik kartu untuk menuju rinciannya</div></div></div>
         <span style="font-size: 11.5px; color: #64748B;">Periode: <b style="color: #0F172A;">September 2026</b><sc-if value="{{rcHasFilt}}" hint-placeholder-val="{{false}}"> · <b style="color: #1D4ED8;">filter aktif</b></sc-if></span>
       </div>
-      <div style="padding: 12px 18px 16px; display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px;">
-        <sc-for list="{{recap}}" as="r" hint-placeholder-count="3">
-        <button type="button" sc-camel-on-click="{{r.open}}" title="{{r.tt}}" style="display: flex; align-items: center; gap: 12px; padding: 13px 14px; border: 1px solid {{r.bd}}; border-left: 3px solid {{r.c}}; border-radius: 12px; background: {{r.bg}}; font-family: inherit; text-align: left; cursor: pointer; transition: transform .12s, box-shadow .12s;">
-          <span aria-hidden="true" style="flex: none; width: 38px; height: 38px; border-radius: 11px; background-color: {{r.ib}}; background-image: url({{r.ico}}); background-size: 20px 20px; background-position: center; background-repeat: no-repeat;"></span>
-          <span style="min-width: 0;"><span style="display: block; font-size: 10.5px; font-weight: 700; letter-spacing: .03em; text-transform: uppercase; color: {{r.c}};">{{r.l}}</span><b style="display: block; font-size: 22px; line-height: 28px; font-weight: 700; color: #1E293B; letter-spacing: -0.02em;">{{r.v}}</b><span style="display: block; font-size: 11px; line-height: 15px; color: #64748B;">{{r.s}}</span></span>
-        </button>
-        </sc-for>
+      <div style="padding: 12px 18px 4px;">
+        <div class="rc-strip" role="list" aria-label="Ringkasan indikator perizinan">
+          <sc-for list="{{recapAll}}" as="r" hint-placeholder-count="7">
+          <button type="button" role="listitem" class="rc-item" sc-camel-on-click="{{r.open}}" title="{{r.tt}}" style="border-top: 3px solid {{r.c}};">
+            <span style="display: flex; align-items: center; gap: 7px; min-width: 0; min-height: 26px;"><span aria-hidden="true" style="flex: none; width: 22px; height: 22px; border-radius: 6px; background-color: {{r.ib}}; background-image: url({{r.ico}}); background-size: 13px 13px; background-position: center; background-repeat: no-repeat;"></span><span class="rc-l" style="color: {{r.c}};">{{r.l}}</span></span>
+            <b class="rc-v">{{r.v}}</b>
+            <span class="rc-s">{{r.s}}</span>
+            <span class="rc-i"><b>✦</b> {{r.ins}}</span>
+          </button>
+          </sc-for>
+        </div>
       </div>
-      <div style="padding: 0 18px 16px; display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px;">
-        <sc-for list="{{recap2}}" as="r" hint-placeholder-count="4">
-        <button type="button" sc-camel-on-click="{{r.open}}" title="{{r.tt}}" style="display: flex; align-items: center; gap: 11px; padding: 11px 13px; border: 1px solid {{r.bd}}; border-left: 3px solid {{r.c}}; border-radius: 12px; background: {{r.bg}}; font-family: inherit; text-align: left; cursor: pointer; transition: transform .12s, box-shadow .12s;">
-          <span aria-hidden="true" style="flex: none; width: 34px; height: 34px; border-radius: 10px; background-color: {{r.ib}}; background-image: url({{r.ico}}); background-size: 18px 18px; background-position: center; background-repeat: no-repeat;"></span>
-          <span style="min-width: 0;"><span style="display: block; font-size: 10.5px; font-weight: 700; letter-spacing: .03em; text-transform: uppercase; color: {{r.c}};">{{r.l}}</span><b style="display: block; font-size: 19px; line-height: 24px; font-weight: 700; color: #1E293B; letter-spacing: -0.02em;">{{r.v}}</b><span style="display: block; font-size: 11px; line-height: 15px; color: #64748B;">{{r.s}}</span></span>
-        </button>
-        </sc-for>
-      </div>
-        <div class="mzi"><span class="mzi-b">Insight AI</span><ul class="mzi-l"><sc-for list="{{mini.recap}}" as="i" hint-placeholder-count="3"><li>{{i}}</li></sc-for></ul><span class="mzi-s">Terverifikasi analis</span></div>
+        <div style="padding: 6px 18px 14px; font-size: 11px; color: #64748B;"><span style="color: #4F46E5; font-weight: 700;">✦ Insight AI per indikator</span> · dihitung dari data kartu terkait · terverifikasi analis</div>
     </section>
 
 <!-- 1. Jumlah izin diterbitkan & status -->
@@ -1031,13 +1027,13 @@ class Component extends DCLogic {
     const dTer = tot - terS[4];
     const recap = [
       {
-        l: 'Total permintaan izin', v: fN(masS[5]),
+        l: 'Permintaan izin', v: fN(masS[5]),
         s: 'izin masuk sepanjang September 2026, seluruh Indonesia',
         c: '#3B5B92', bg: '#F7F9FC', bd: '#E3E9F2', ib: '#E6EDF7', ico: I_DOC, tt: 'Lihat daftar pembentuk permintaan izin',
         open: () => openM('terbit', { ...filt1, tab: 'all' })
       },
       {
-        l: 'Sudah diterbitkan', v: fN(tot),
+        l: 'Sudah terbit', v: fN(tot),
         s: (dTer >= 0 ? '+' : '') + fN(Math.abs(dTer)) + ' dari Agustus - ' + pc(tot, masS[5]) + ' dari permintaan',
         c: '#3F7D6E', bg: '#F6FAF8', bd: '#E1EDE8', ib: '#E3F0EC', ico: I_OK, tt: 'Lihat daftar izin yang sudah terbit',
         open: () => openM('terbit', { ...filt1, tab: '0' })
@@ -1300,9 +1296,9 @@ class Component extends DCLogic {
     const I_TG = svgIco('<circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle>', '#3F7A75');
     const I_LK = svgIco('<path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>', '#9A4F5C');
     const recap2 = [
-      { l: 'Rata-rata waktu selesai', v: slaAll + ' HK', s: ewsJ.length + ' dari ' + JEN.length + ' jenis izin melewati SLA > ' + THR + '%', c: '#5B5B9A', bg: '#F8F8FC', bd: '#E5E5F1', ib: '#E8E8F4', ico: I_CLK, tt: 'Ke kartu waktu penyelesaian vs SLA', open: goSec('sec-sla') },
+      { l: 'Waktu selesai', v: slaAll + ' HK', s: ewsJ.length + ' dari ' + JEN.length + ' jenis izin melewati SLA > ' + THR + '%', c: '#5B5B9A', bg: '#F8F8FC', bd: '#E5E5F1', ib: '#E8E8F4', ico: I_CLK, tt: 'Ke kartu waktu penyelesaian vs SLA', open: goSec('sec-sla') },
       { l: 'Permohonan tertahan', v: fN(nat4), s: pc(nat4, 11874) + ' dari 11.874 permohonan dalam proses', c: '#3D7A8C', bg: '#F6FAFB', bd: '#DFEBEF', ib: '#E1EFF3', ico: I_HG, tt: 'Ke kartu permohonan tertahan', open: goSec('sec-tertahan') },
-      { l: 'Kepatuhan SLA · Tw III', v: f1(natTw3) + '%', s: sg(natTw3 - TGW.all[1]) + ' poin vs target ' + TGW.all[1] + '%', c: '#3F7A75', bg: '#F6FAFA', bd: '#DDEBEA', ib: '#E0EFEE', ico: I_TG, tt: 'Ke kartu tren kemudahan berusaha', open: goSec('sec-tren') },
+      { l: 'Kepatuhan SLA', v: f1(natTw3) + '%', s: sg(natTw3 - TGW.all[1]) + ' poin vs target ' + TGW.all[1] + '%', c: '#3F7A75', bg: '#F6FAFA', bd: '#DDEBEA', ib: '#E0EFEE', ico: I_TG, tt: 'Ke kartu tren kemudahan berusaha', open: goSec('sec-tren') },
       { l: 'Hambatan regulasi', v: HB.filter((h) => h.ews).length + ' EWS', s: nStat('Menunggu verifikasi') + ' menunggu verifikasi · ' + regTop[0] + ' paling terkait', c: '#9A4F5C', bg: '#FCF8F8', bd: '#EFE0E3', ib: '#F3E3E6', ico: I_LK, tt: 'Ke kartu keterkaitan hambatan izin & regulasi', open: goSec('sec-hambatan') }
     ];
     const c6dd = [dd('c6w', 'Wilayah', c6wL, c6w !== 'all', [opt('Nasional', f1(natV) + '%', c6w === 'all', () => set({ c6w: 'all' })), ...rankSrc.map((r) => opt(r.n, f1(r.v) + '%', c6w === r.id, () => set({ c6w: r.id })))]),
@@ -1578,6 +1574,21 @@ const pzClose = () => this.setState({ ews: null });
 
     return {
       mini, kaitIns, recap2,
+      recapAll: (() => {
+        const jLam = JEN.slice().sort((a, b) => devOf(b.avg, b.sla) - devOf(a.avg, a.sla))[0];
+        const thN = TH.map((l, i) => sumT(i, 'all')), thI = thN.indexOf(Math.max(...thN));
+        const wLow = rankSrc[rankSrc.length - 1];
+        const ins = [
+          'Rasio terbit ' + pc(tot, masS[5]) + '; jaga di atas 70%.',
+          'Naik ' + fN(Math.abs(tot - terS[4])) + ' dari Agustus; pertahankan laju penerbitan.',
+          'Prioritaskan izin yang melewati SLA sebelum menumpuk.',
+          'Terlama: ' + jLam.l.split(' (')[0] + ' ' + f1(jLam.avg) + ' vs SLA ' + jLam.sla + ' HK.',
+          'Menumpuk di tahap ' + TH[thI].toLowerCase() + '.',
+          'Terendah ' + wLow.n + ' ' + f1(wLow.v) + '%; dorong wilayah tertinggal.',
+          'Harmonisasikan ' + regTop[0] + ' lebih dulu.'
+        ];
+        return recap.concat(recap2).map((r, i) => ({ ...r, ins: ins[i] || '' }));
+      })(),
       ewsTop, ewsN: ewsTop.length, highlights, ewsCount: highlights.length, ewsOpen: !!ews, ews, ewsStamp: ewsStamp, closeEws: pzClose, stop: pzStop, onEwsKey: pzKey,
       fl1, has1, recap, rcHasFilt: has1, reset1: () => set({ fSek: 'all', fWil: 'all', fJen: 'all' }), f1Note, has1Data: tot > 0, no1Data: tot === 0, k1, s1, c1,
       sla, slaAll, slaEwsNote,
