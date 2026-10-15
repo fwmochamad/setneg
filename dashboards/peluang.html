@@ -489,7 +489,20 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
         <section id="sec-peta" style="background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; box-shadow: 0 1px 2px rgba(15,23,42,.05);">
           <div style="padding: 12px 18px; border-bottom: 1px solid #EEF2F7; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px;">
             <div><h2 style="margin: 0; font-size: 14.5px; font-weight: 600;">Peta peluang investasi daerah</h2><div style="font-size: 11.5px; color: #64748B;">Peta diwarnai menurut PDRB ADHB 2025; arahkan kursor untuk melihat profil dan klik untuk membuka halaman rinci.</div></div>
-            
+            <div style="display: flex; align-items: center; gap: 8px; flex: 1 1 280px; min-width: 240px; max-width: 400px;">
+              <div style="position: relative; flex: 1 1 auto; min-width: 0;">
+                <span style="position: absolute; left: 9px; top: 50%; transform: translateY(-50%); color: #94A3B8; font-size: 12px; pointer-events: none;">⌕</span>
+                <input type="search" aria-label="Cari provinsi di peta" value="{{pSearch}}" sc-camel-on-change="{{onPSearch}}" sc-camel-on-focus="{{onPOpen}}" placeholder="Cari provinsi untuk melihat rinciannya…" style="width: 100%; height: 32px; padding: 0 10px 0 27px; box-sizing: border-box; border: 1px solid #E3E8F0; border-radius: 8px; background: #FFFFFF; font-family: inherit; font-size: 12.5px; color: #0F172A; outline: 0;" />
+                <sc-if value="{{pOpen}}" hint-placeholder-val="{{true}}">
+                <div style="position: absolute; z-index: 45; left: 0; right: 0; top: 38px; max-height: 300px; overflow-y: auto; padding: 5px; border-radius: 9px; background: #FFFFFF; border: 1px solid #E3E8F0; box-shadow: 0 12px 28px rgba(15,23,42,.16); display: flex; flex-direction: column; gap: 2px;">
+                <sc-for list="{{pOpts}}" as="o" hint-placeholder-count="8"><button type="button" sc-camel-on-click="{{o.pick}}" style="padding: 6px 8px; border: 0; border-radius: 6px; background: {{o.bg}}; text-align: left; font-family: inherit; cursor: pointer;"><span style="display: block; font-size: 12px; font-weight: {{o.fw}}; color: #0F172A;">{{o.l}}<sc-if value="{{o.cur}}" hint-placeholder-val="{{false}}"> <span style="font-size: 10px; font-weight: 600; color: #1D4ED8;">(disorot di peta)</span></sc-if></span><span style="display: block; font-size: 10.5px; color: #64748B;">{{o.sub}}</span></button></sc-for>
+                <sc-if value="{{pNoHit}}" hint-placeholder-val="{{true}}"><div style="padding: 10px 8px; font-size: 11.5px; color: #94A3B8;">Provinsi tidak ditemukan.</div></sc-if>
+                <sc-if value="{{pNoHit}}" hint-placeholder-val="{{false}}"><div style="padding: 8px; font-size: 10.5px; line-height: 15px; color: #94A3B8;">Ketik minimal satu huruf untuk mencari dari 38 provinsi.</div></sc-if>
+                </div>
+                </sc-if>
+              </div>
+              <sc-if value="{{pCur}}" hint-placeholder-val="{{true}}"><button type="button" sc-camel-on-click="{{pClear}}" title="Kembali ke Top 5" style="flex: none; display: inline-flex; align-items: center; gap: 5px; height: 32px; padding: 0 9px; border: 1px solid #82B394; border-radius: 7px; background: #EFF6FF; color: #1D4ED8; font-family: inherit; font-size: 11px; font-weight: 600; cursor: pointer;">Kembali ke Top 5</button></sc-if>
+            </div>
           </div>
           <div style="display: flex; flex-wrap: wrap;">
             <div style="flex: 2 1 720px; min-width: 0; padding: 14px 18px 16px; display: flex; flex-direction: column; gap: 10px;">
@@ -582,21 +595,7 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
               <div style="padding: 14px 18px 12px; display: flex; flex-direction: column; gap: 10px; flex: 1;">
                 <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px;">
                 <div><h3 style="margin: 0; font-size: 13.5px; font-weight: 600;">Top 5 PDRB provinsi</h3><div style="font-size: 11.5px; color: #64748B;">PDRB ADHB 2025 (Rp triliun) dan porsi terhadap 38 provinsi</div></div>
-                <sc-if value="{{pCur}}" hint-placeholder-val="{{true}}"><button type="button" sc-camel-on-click="{{pClear}}" title="Kembali ke Top 5" style="display: inline-flex; align-items: center; gap: 5px; padding: 4px 9px; border: 1px solid #82B394; border-radius: 7px; background: #EFF6FF; color: #1D4ED8; font-family: inherit; font-size: 11px; font-weight: 600; cursor: pointer;">Kembali ke Top 5</button></sc-if>
-                </div>
-                <div style="position: relative;">
-                <div style="position: relative;">
-                <span style="position: absolute; left: 9px; top: 50%; transform: translateY(-50%); color: #94A3B8; font-size: 12px; pointer-events: none;">⌕</span>
-                <input type="search" value="{{pSearch}}" sc-camel-on-change="{{onPSearch}}" sc-camel-on-focus="{{onPOpen}}" placeholder="Cari provinsi untuk melihat rinciannya…" style="width: 100%; height: 34px; padding: 0 10px 0 27px; box-sizing: border-box; border: 1px solid #E3E8F0; border-radius: 8px; background: #FFFFFF; font-family: inherit; font-size: 12.5px; color: #0F172A; outline: 0;" />
-                </div>
-                <sc-if value="{{pOpen}}" hint-placeholder-val="{{true}}">
-                <div style="position: absolute; z-index: 30; left: 0; right: 0; top: 38px; max-height: 260px; overflow-y: auto; padding: 5px; border-radius: 9px; background: #FFFFFF; border: 1px solid #E3E8F0; box-shadow: 0 12px 28px rgba(15,23,42,.16); display: flex; flex-direction: column; gap: 2px;">
-                <sc-for list="{{pOpts}}" as="o" hint-placeholder-count="8"><button type="button" sc-camel-on-click="{{o.pick}}" style="padding: 6px 8px; border: 0; border-radius: 6px; background: {{o.bg}}; text-align: left; font-family: inherit; cursor: pointer;"><span style="display: block; font-size: 12px; font-weight: {{o.fw}}; color: #0F172A;">{{o.l}}</span><span style="display: block; font-size: 10.5px; color: #64748B;">{{o.sub}}</span></button></sc-for>
-                <sc-if value="{{pNoHit}}" hint-placeholder-val="{{true}}"><div style="padding: 10px 8px; font-size: 11.5px; color: #94A3B8;">Provinsi tidak ditemukan.</div></sc-if>
-                <sc-if value="{{pNoHit}}" hint-placeholder-val="{{false}}"><div style="padding: 8px; font-size: 10.5px; line-height: 15px; color: #94A3B8;">Ketik minimal satu huruf untuk mencari dari 38 provinsi.</div></sc-if>
-                </div>
-                </sc-if>
-                </div>
+</div>
                 <sc-if value="{{pCur}}" hint-placeholder-val="{{true}}">
                 <div style="margin-top: 4px; padding: 10px 12px; border: 1px solid #82B394; border-radius: 9px; background: #FFFFFF;">
                 <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 8px;"><b style="font-size: 13px; color: #0F172A;">{{pCurN}}</b><span style="font-size: 11px; color: #64748B;">disorot di peta</span></div>
@@ -1757,8 +1756,8 @@ const PELUANG_ALERTS = [
     const pQ = pSearch.trim().toLowerCase();
     const pList = pQ ? provAll.filter((id) => P[id].n.toLowerCase().indexOf(pQ) > -1) : [];
     const pShowBox = pOpen || !!pQ;
-    const pOpts = pList.slice(0, 60).map((id) => ({ v: id, l: P[id].n, sub: 'PDRB ' + 'Rp' + nf(P[id].pdrb, 2) + ' T - rank ' + P[id].rank, bg: pVal === id ? '#EFF6FF' : 'transparent', fw: pVal === id ? 700 : 500, pick: () => this.setState({ pSel: id, pSearch: P[id].n, pOpen: false, sel: id }) }));
-    const pClear = () => this.setState({ pSel: null, pSearch: '', pOpen: false });
+    const pOpts = pList.slice(0, 60).map((id) => ({ v: id, l: P[id].n, cur: pVal === id, sub: 'PDRB ' + 'Rp' + nf(P[id].pdrb, 2) + ' T - rank ' + P[id].rank, bg: pVal === id ? '#EFF6FF' : 'transparent', fw: pVal === id ? 700 : 500, pick: () => this.setState({ pSel: id, pSearch: P[id].n, pOpen: false, sel: id, pop: true }) }));
+    const pClear = () => this.setState({ pSel: null, pSearch: '', pOpen: false, sel: null, pop: false });
     const pNoHit = pShowBox && pList.length === 0;
     const pCur = pVal ? P[pVal] : null;
     const pCurN = pCur ? pCur.n : '';
