@@ -705,8 +705,8 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
             </div>
           </sc-if>
           <sc-if value="{{isMig}}" hint-placeholder-val="{{false}}"><span style="height: 30px; padding: 0 10px; border-radius: 8px; background: #EFF6FF; border: 1px solid #B8E3DF; display: inline-flex; align-items: center; font-size: 12px; font-weight: 600; color: #1D4ED8;">Periode: SP2020 Long Form vs SUPAS 2025</span></sc-if>
-          <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #475569;">Wilayah
-            <sc-raw-select value="{{wil.v}}" sc-camel-on-change="{{wil.on}}" aria-label="Pilih wilayah" style="height: 32px; min-width: 240px; padding: 0 10px; border: 1px solid #E3E8F0; border-radius: 8px; background: #FFFFFF; font-family: inherit; font-size: 12.5px; color: #0F172A; cursor: pointer;">
+          <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #475569;">{{wil.lab}}
+            <sc-raw-select value="{{wil.v}}" sc-camel-on-change="{{wil.on}}" aria-label="Pilih {{wil.lab}}" style="height: 32px; min-width: 240px; padding: 0 10px; border: 1px solid #E3E8F0; border-radius: 8px; background: #FFFFFF; font-family: inherit; font-size: 12.5px; color: #0F172A; cursor: pointer;">
               <sc-for list="{{wil.opts}}" as="w" hint-placeholder-count="3"><option value="{{w.v}}">{{w.l}}</option></sc-for>
             </sc-raw-select>
           </label>
@@ -723,9 +723,9 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
                     <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 4px 16px;"><sc-for list="{{ch.legend}}" as="lg" hint-placeholder-count="1"><span style="display: inline-flex; align-items: center; gap: 7px;"><span style="width: 14px; height: 3px; border-radius: 2px; background: {{lg.c}};"></span><b style="font-size: 12.5px;">{{lg.n}}</b><span style="font-size: 11px; color: #64748B;">{{lg.w}}</span></span></sc-for></div>
                     <span style="font-size: 11.5px; color: #475569;">{{ch.last}}</span>
                   </div>
-                  <div style="display: flex; justify-content: space-between; gap: 8px; font-size: 10.5px; font-weight: 600;"><span style="color: {{ch.uLc}};">{{ch.uL}}</span><span style="color: {{ch.uRc}};">{{ch.uR}}</span></div>
+                  <div style="font-size: 10.5px; font-weight: 600; color: #64748B;">{{ch.uL}}</div>
                   <div style="display: flex; gap: 8px;">
-                    <div style="flex: none; width: 44px; height: 180px; display: flex; flex-direction: column; justify-content: space-between; text-align: right; font-size: 10.5px; color: {{ch.ytC}};"><sc-for list="{{ch.yt}}" as="y" hint-placeholder-count="4"><span style="line-height: 1;">{{y}}</span></sc-for></div>
+                    <div style="flex: none; width: 44px; height: 180px; display: flex; flex-direction: column; justify-content: space-between; text-align: right; font-size: 10.5px; color: #64748B;"><sc-for list="{{ch.yt}}" as="y" hint-placeholder-count="4"><span style="line-height: 1;">{{y}}</span></sc-for></div>
                     <div style="position: relative; flex: 1; min-width: 0; height: 180px;">
                       <svg sc-camel-view-box="0 0 600 180" sc-camel-preserve-aspect-ratio="none" aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; overflow: visible;">
                         <path d="M0 0.5H600M0 60H600M0 120H600" stroke="#EEF2F7" fill="none" vector-effect="non-scaling-stroke"></path>
@@ -737,9 +737,8 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
                         <span class="tip" tabindex="0" sc-camel-on-click="{{p.pick}}" style="position: absolute; left: {{p.l}}; top: {{p.t}}; width: 18px; height: 18px; margin-left: -9px; margin-top: -9px; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: {{p.z}};"><span class="pt" style="display: block; width: {{p.s}}; height: {{p.s}}; border-radius: 99px; background: {{p.bg}}; border: 2px solid {{p.c}}; box-sizing: border-box;"></span><span class="pop {{p.pc}}" style="width: 210px;">{{p.tip}}</span></span>
                       </sc-for>
                     </div>
-                    <sc-if value="{{ch.dual}}" hint-placeholder-val="{{false}}"><div style="flex: none; width: 44px; height: 180px; display: flex; flex-direction: column; justify-content: space-between; text-align: left; font-size: 10.5px; color: {{ch.uRc}};"><sc-for list="{{ch.ytR}}" as="y" hint-placeholder-count="4"><span style="line-height: 1;">{{y}}</span></sc-for></div></sc-if>
                   </div>
-                  <div style="position: relative; height: 16px; margin-left: 52px; margin-right: {{ch.mr}};">
+                  <div style="position: relative; height: 16px; margin-left: 52px;">
                     <sc-for list="{{ch.xs}}" as="x" hint-placeholder-count="12"><span style="position: absolute; left: {{x.x}}; transform: translateX(-50%); font-size: 10.5px; color: {{x.c}}; font-weight: {{x.fw}}; white-space: nowrap;">{{x.l}}</span></sc-for>
                   </div>
                   <div style="font-size: 11px; color: #94A3B8; display: flex; align-items: center;">Catatan data<span class="tip info-i" tabindex="0" aria-label="Catatan data">i<span class="pop">{{ch.note}}</span></span></div>
@@ -1193,13 +1192,13 @@ class Component extends DCLogic {
     const trTabs = Object.entries(TT).map(([k, l]) => ({ l, bg: k === trT ? '#FFFFFF' : 'transparent', fg: k === trT ? '#1E40AF' : '#475569', pick: () => this.setState({ trT: k }) }));
     const per = st.per ?? 12;
     const perOpts = [[6, '6 bulan'], [12, '12 bulan'], [0, 'Semua']].map(([v, l]) => ({ l, bg: per === v ? '#FFFFFF' : 'transparent', fg: per === v ? '#1E40AF' : '#475569', pick: () => this.setState({ per: v }) }));
-    const WK = { all: ['Semua koridor tersedia', ['krl', 'whoosh']], krl: ['Jabodetabek · KRL Commuter Line', ['krl']], whoosh: ['Jakarta–Bandung · Whoosh', ['whoosh']] };
-    const wilK = WK[st.wilK] ? st.wilK : 'all';
+    const WK = { krl: ['KRL Commuter Line · Jabodetabek', ['krl']], whoosh: ['Kereta Cepat Whoosh · Jakarta–Bandung', ['whoosh']] };
+    const wilK = WK[st.wilK] ? st.wilK : 'krl';
     const wilM = LFX.some((r) => r[0] === st.wilM) ? st.wilM : 'DKI Jakarta';
     let wil, keys = [];
     if (trT === 'kerja') {
       keys = WK[wilK][1];
-      wil = { v: wilK, opts: Object.entries(WK).map(([v, x]) => ({ v, l: x[0] })), note: 'Data komuter bulanan tersedia per koridor, belum per provinsi.', on: (e) => { if (e && e.target) this.setState({ wilK: e.target.value }); } };
+      wil = { lab: 'Kereta', v: wilK, opts: Object.entries(WK).map(([v, x]) => ({ v, l: x[0] })), note: 'Pilih kereta untuk melihat tren penumpang bulanannya; data tersedia per koridor, belum per provinsi.', on: (e) => { if (e && e.target) this.setState({ wilK: e.target.value }); } };
     } else if (trT === 'wisata') {
       keys = ['wis', 'udr'];
       // Seri provinsi diturunkan dari agregat nasional memakai bobot penduduk,
@@ -1212,9 +1211,9 @@ class Component extends DCLogic {
       const tPick = st.wilM && tSh[st.wilM] != null ? st.wilM : 'nas';
       SER.wis = Object.assign({}, SER.wis, { data: scaleSer(D.WIS, wTour(tPick)), der: {} });
       SER.udr = Object.assign({}, SER.udr, { data: scaleSer(D.UDR, wTour(tPick)), der: {} });
-      wil = { v: tPick, opts: [{ v: 'nas', l: 'Nasional' }].concat(TOPW.map((n) => ({ v: n, l: n }))), note: tPick === 'nas' ? 'Agregat nasional; 10 provinsi dengan bobot penduduk terbesar dapat dipilih.' : 'Estimasi: agregat nasional dikalikan bobot penduduk ' + nf(tSh[tPick] * 100, 1) + '%.', on: (e) => { if (e && e.target) this.setState({ wilM: e.target.value }); } };
+      wil = { lab: 'Wilayah', v: tPick, opts: [{ v: 'nas', l: 'Nasional' }].concat(TOPW.map((n) => ({ v: n, l: n }))), note: tPick === 'nas' ? 'Agregat nasional; 10 provinsi dengan bobot penduduk terbesar dapat dipilih.' : 'Estimasi: agregat nasional dikalikan bobot penduduk ' + nf(tSh[tPick] * 100, 1) + '%.', on: (e) => { if (e && e.target) this.setState({ wilM: e.target.value }); } };
     } else {
-      wil = { v: wilM, opts: LFX.map((r) => ({ v: r[0], l: r[0] })), note: 'Seluruh 38 provinsi.', on: (e) => { if (e && e.target) this.setState({ wilM: e.target.value }); } };
+      wil = { lab: 'Wilayah', v: wilM, opts: LFX.map((r) => ({ v: r[0], l: r[0] })), note: 'Seluruh 38 provinsi.', on: (e) => { if (e && e.target) this.setState({ wilM: e.target.value }); } };
     }
     let axis = [...new Set(keys.flatMap((k) => SER[k].data.map((r) => r[0])))].sort();
     if (per) axis = axis.slice(-per);
@@ -1258,24 +1257,11 @@ class Component extends DCLogic {
       selD: ix >= 0 ? 'M' + (xp(ix) * 600).toFixed(1) + ' 0V180' : 'M0 0',
       xs: axis.map((mth, i) => ({ x: (xp(i) * 100).toFixed(2) + '%', l: n > 12 && (n - 1 - i) % 2 ? '' : ml(mth), c: mth === pt ? '#1E40AF' : '#64748B', fw: mth === pt ? 700 : 400 }))
     });
-    // Komuter: KRL dan Whoosh dalam satu grafik garis dengan dua sumbu (kiri KRL juta, kanan Whoosh ribu)
-    const combo = trT === 'kerja' && keys.length === 2;
-    const charts = combo ? (() => {
-      const g1 = serGeo(keys[0], '#1D4ED8'), g2 = serGeo(keys[1], '#D97706');
-      return [Object.assign(chartBase(), {
-        legend: [g1, g2].map((g) => ({ c: g.c, n: g.S.n, w: g.S.wil, dash: '' })),
-        lines: [g1, g2].map((g) => ({ d: g.d, c: g.c })),
-        pts: g1.pts.concat(g2.pts),
-        uL: g1.S.u + ' per bulan (sumbu kiri)', uR: g2.S.u + ' per bulan (sumbu kanan)', uLc: g1.c, uRc: g2.c,
-        yt: g1.yt, ytR: g2.yt, dual: true, mr: '52px', ytC: g1.c,
-        last: (() => { const lv = (g) => { const i = axis.map((m) => valAt(g.S === SER[keys[0]] ? keys[0] : keys[1], m)).map((v, j) => (v != null ? j : -1)).filter((j) => j >= 0).pop(); return i == null ? null : [axis[i], g]; }; const a1 = lv(g1), a2 = lv(g2); const one = (x, short) => (x ? (short ? '' : ml(x[0], true) + ' ') + (x[1].S.n.indexOf('KRL') > -1 ? 'KRL ' : 'Whoosh ') + nf(valAt(x[1].S === SER[keys[0]] ? keys[0] : keys[1], x[0]), x[1].S.dec) + ' ' + x[1].S.u.replace(' penumpang', '') : ''); return a1 && a2 && a1[0] === a2[0] ? 'Terakhir ' + ml(a1[0], true) + ': ' + one(a1, true) + ' · ' + one(a2, true) + ' penumpang' : 'Terakhir: ' + one(a1) + ' · ' + one(a2); })(),
-        note: ['Dua seri memakai sumbu berbeda karena satuannya berbeda (juta vs ribu penumpang); tinggi garis tidak dapat dibandingkan langsung dan kedua seri tidak dijumlahkan.'].concat(g1.notes.map((x) => 'KRL: ' + x), g2.notes.map((x) => 'Whoosh: ' + x)).join(' ')
-      })];
-    })() : keys.map((k) => {
+    const charts = keys.map((k) => {
       const g = serGeo(k);
       return Object.assign(chartBase(), {
         legend: [{ c: g.c, n: g.S.n, w: g.S.wil, dash: '' }], lines: [{ d: g.d, c: g.c }], pts: g.pts,
-        uL: g.S.u + ' per bulan', uR: '', uLc: '#64748B', uRc: '#64748B', yt: g.yt, ytR: [], dual: false, mr: '0px', ytC: '#64748B',
+        uL: g.S.u + ' per bulan', yt: g.yt,
         last: g.last, note: g.notes.join(' ') || 'Seri lengkap untuk periode terpilih.'
       });
     });
@@ -1292,7 +1278,7 @@ class Component extends DCLogic {
       migrasi: { units: 'persen penduduk · ribu jiwa (mutasi)', per: 'SP2020 Long Form (2015–2020), SUPAS 2025, DKB Semester II 2025', src: 'BPS · Long Form SP2020 dan SUPAS 2025; Dukcapil Kemendagri', cav: '' }
     };
     const tr = TR[trT];
-    if (trT === 'kerja' && wilK !== 'all') tr.units = wilK === 'krl' ? 'juta penumpang' : 'ribu penumpang';
+    if (trT === 'kerja') tr.units = wilK === 'krl' ? 'juta penumpang' : 'ribu penumpang';
 
     // migrasi (SP2020 LF vs SUPAS 2025)
     const lf = lfOf(wilM);
