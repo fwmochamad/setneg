@@ -483,7 +483,23 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
       
     </div>
 
-    <!-- 1. Jumlah izin diterbitkan & status -->
+    <!-- 0. Ringkasan singkat (ringkas & menonjol) -->
+    <section id="sec-recap" style="background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 14px; box-shadow: 0 1px 3px rgba(15,23,42,.06); scroll-margin-top: 16px;">
+      <div style="padding: 14px 18px 4px; display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px;">
+        <div style="display: flex; align-items: center; gap: 9px;"><span style="flex: none; width: 30px; height: 30px; border-radius: 9px; background: #0B1F4B; display: inline-flex; align-items: center; justify-content: center;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"></path><path d="M7 16l4-5 4 3 5-7"></path></svg></span><div><h2 style="margin: 0; font-size: 16px; font-weight: 800; color: #0B1F4B; letter-spacing: -0.01em;">Ringkasan Izin</h2><div style="font-size: 12px; color: #64748B; font-weight: 600;">Tiga angka yang perlu Anda ketahui</div></div></div>
+        <span style="font-size: 11.5px; color: #64748B;">Periode: <b style="color: #0F172A;">September 2026</b><sc-if value="{{rcHasFilt}}" hint-placeholder-val="{{false}}"> · <b style="color: #1D4ED8;">filter aktif</b></sc-if></span>
+      </div>
+      <div style="padding: 12px 18px 16px; display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px;">
+        <sc-for list="{{recap}}" as="r" hint-placeholder-count="3">
+        <button type="button" sc-camel-on-click="{{r.open}}" title="{{r.tt}}" style="display: flex; align-items: center; gap: 13px; padding: 16px 15px; border: 1px solid {{r.bd}}; border-left: 6px solid {{r.c}}; border-radius: 12px; background: {{r.bg}}; font-family: inherit; text-align: left; cursor: pointer; transition: transform .12s, box-shadow .12s;">
+          <span aria-hidden="true" style="flex: none; width: 46px; height: 46px; border-radius: 13px; background-color: {{r.c}}; background-image: url({{r.ico}}); background-size: 25px 25px; background-position: center; background-repeat: no-repeat;"></span>
+          <span style="min-width: 0;"><span style="display: block; font-size: 11.5px; font-weight: 700; letter-spacing: .02em; text-transform: uppercase; color: {{r.c}};">{{r.l}}</span><b style="display: block; font-size: 30px; line-height: 34px; font-weight: 800; color: #0B1F4B; letter-spacing: -0.02em;">{{r.v}}</b><span style="display: block; font-size: 11.5px; line-height: 16px; font-weight: 600; color: #475569;">{{r.s}}</span></span>
+        </button>
+        </sc-for>
+      </div>
+    </section>
+
+<!-- 1. Jumlah izin diterbitkan & status -->
     <section id="sec-terbit" style="background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; box-shadow: 0 1px 2px rgba(15,23,42,.05); display: flex; flex-direction: column; scroll-margin-top: 16px;">
       <div style="padding: 12px 18px; border-bottom: 1px solid #EEF2F7; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px;">
         <div><h2 style="margin: 0; font-size: 14.5px; font-weight: 600;">Jumlah izin diterbitkan &amp; status</h2><div style="font-size: 11.5px; color: #64748B;">Hanya izin yang sudah diterbitkan · NIB tidak dihitung sebagai izin tuntas</div></div>
@@ -979,7 +995,35 @@ class Component extends DCLogic {
     const f1Note = has1 ? 'Filter aktif: ' + [fS !== 'all' ? sekL : '', fW !== 'all' ? wilL : '', fJ !== 'all' ? jenL : ''].filter(Boolean).join(' · ') : 'Nasional · seluruh sektor · seluruh jenis izin';
     const filt1 = { j: fJ, s: fS, w: fW };
     const dAug = tot - terS[4];
-    const k1 = { v: fN(tot), d: (dAug >= 0 ? '▲ ' : '▼ ') + fN(Math.abs(dAug)) + ' dari Agustus', s: 'Permohonan masuk pada bulan yang sama: ' + fN(masS[5]) + ' (rasio terbit/masuk ' + pc(tot, masS[5]) + ').', open: () => openM('terbit', filt1) };
+// ---------- 0. Ringkasan singkat ----------
+    // Tiga angka utama untuk pembaca cepat: total permintaan izin, izin yang
+    // sudah terbit, dan izin yang perlu perhatian karena melewati SLA.
+    const svgIco = (inner) => ('data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">' + inner + '</svg>').replace(/'/g, '%27'));
+    const I_DOC = svgIco('<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"></path><path d="M14 2v6h6"></path><path d="M9 15h6"></path><path d="M9 11h3"></path>');
+    const I_OK = svgIco('<path d="M22 11.1V12a10 10 0 1 1-5.9-9.1"></path><path d="M22 4 12 14l-3-3"></path>');
+    const I_AL = svgIco('<path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"></path><path d="M12 9v4"></path><path d="M12 17h.01"></path>');
+    const dTer = tot - terS[4];
+    const recap = [
+      {
+        l: 'Total permintaan izin', v: fN(masS[5]),
+        s: 'izin masuk sepanjang September 2026, seluruh Indonesia',
+        c: '#1D4ED8', bg: '#EFF6FF', bd: '#BFDBFE', ico: I_DOC, tt: 'Lihat daftar pembentuk permintaan izin',
+        open: () => openM('terbit', { ...filt1, tab: 'all' })
+      },
+      {
+        l: 'Sudah diterbitkan', v: fN(tot),
+        s: (dTer >= 0 ? '+' : '') + fN(Math.abs(dTer)) + ' dari Agustus - ' + pc(tot, masS[5]) + ' dari permintaan',
+        c: '#047857', bg: '#ECFDF3', bd: '#A7F3D0', ico: I_OK, tt: 'Lihat daftar izin yang sudah terbit',
+        open: () => openM('terbit', { ...filt1, tab: '0' })
+      },
+      {
+        l: 'Perlu perhatian', v: fN(stC[1]),
+        s: pc(stC[1], tot) + ' dari izin terbit - melewati batas SLA',
+        c: '#B45309', bg: '#FFFBEB', bd: '#FDE68A', ico: I_AL, tt: 'Lihat daftar izin yang melewati SLA',
+        open: () => openM('terbit', { ...filt1, tab: '1' })
+      }
+    ];
+        const k1 = { v: fN(tot), d: (dAug >= 0 ? '▲ ' : '▼ ') + fN(Math.abs(dAug)) + ' dari Agustus', s: 'Permohonan masuk pada bulan yang sama: ' + fN(masS[5]) + ' (rasio terbit/masuk ' + pc(tot, masS[5]) + ').', open: () => openM('terbit', filt1) };
     const s1 = [0, 1, 2].map((k) => ({ l: ST3[k], sub: k === 0 ? 'Durasi tidak melebihi SLA PP 28/2025' : k === 1 ? 'Durasi melebihi SLA; tetap diproses instansi' : 'PP 28/2025 Pasal 22 ayat (3), 225 ayat (1), 230', n: fN(stC[k]), p: pc(stC[k], tot), w: tot ? (stC[k] / tot) * 100 + '%' : '0%', c: STC[k], open: () => openM('terbit', { ...filt1, tab: String(k) }) }));
     // grafik bulanan
     const ymax1 = (() => { const m = Math.max(...masS, 1) * 1.08; const p = Math.pow(10, Math.floor(Math.log10(m))); const s = [1, 2, 2.5, 5, 10].find((x) => x * p * 4 >= m) * p; return s * 4; })();
@@ -1409,7 +1453,7 @@ const PZ_LONG = {
 
     return {
       ewsTop, ewsN: ewsTop.length, highlights, ewsCount: highlights.length, ewsOpen: !!ews, ews, closeEws: pzClose, stop: pzStop, onEwsKey: pzKey,
-      fl1, has1, reset1: () => set({ fSek: 'all', fWil: 'all', fJen: 'all' }), f1Note, has1Data: tot > 0, no1Data: tot === 0, k1, s1, c1,
+      fl1, has1, recap, rcHasFilt: has1, reset1: () => set({ fSek: 'all', fWil: 'all', fJen: 'all' }), f1Note, has1Data: tot > 0, no1Data: tot === 0, k1, s1, c1,
       sla, slaAll, slaEwsNote,
       c3tabs, c3sorts, c3dd, c3rows, c3h1, c3h2, c3h3, c3note, c3has: !!c3sel, c3d,
       c4dd, has4, reset4: () => set({ c4t: 'all', c4w: 'all' }), k4, c4tahap, c4ag, c4agL,
