@@ -837,7 +837,7 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
         <sc-if value="{{d.hasJejak}}" hint-placeholder-val="{{true}}">
         <section aria-label="Jejak historis regulasi" style="background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px;">
           <div style="padding: 12px 18px; border-bottom: 1px solid #EEF2F7; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px;"><h3 style="margin: 0; font-size: 14.5px; font-weight: 600;">Jejak historis regulasi<span class="tip info-i" tabindex="0" aria-label="Keterangan">i<span class="pop">Urutan peraturan pendahulu hingga versi yang berlaku saat ini, termasuk pergantian dasar hukum dan putusan pengadilan yang memengaruhinya. Diurutkan dari yang paling lama.</span></span></h3><span style="font-size: 11.5px; color: #64748B;">{{d.jejakSum}}</span></div>
-          <div style="padding: 10px 18px 0; display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 11px; color: #475569;"><span><span style="display: inline-block; width: 9px; height: 9px; border-radius: 2px; background: #1D4ED8; margin-right: 5px;"></span>Peraturan pelaksana (PP)</span><span><span style="display: inline-block; width: 9px; height: 9px; border-radius: 2px; background: #0B1F4B; margin-right: 5px;"></span>Dasar hukum (UU/Perppu)</span><span><span style="display: inline-block; width: 9px; height: 9px; border-radius: 2px; background: #B45309; margin-right: 5px;"></span>Putusan pengadilan</span></div>
+          <div style="padding: 10px 18px 0; display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 11px; color: #475569;"><sc-for list="{{d.jejakLeg}}" as="g" hint-placeholder-count="3"><span><span style="display: inline-block; width: 9px; height: 9px; border-radius: 2px; background: {{g.c}}; margin-right: 5px;"></span>{{g.l}}</span></sc-for></div>
           <ol style="list-style: none; margin: 0; padding: 12px 18px 16px; display: flex; flex-direction: column;">
             <sc-for list="{{d.jejak}}" as="h" hint-placeholder-count="5">
             <li style="display: grid; grid-template-columns: 84px 18px minmax(0, 1fr); gap: 0 10px;">
@@ -854,7 +854,7 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
             </li>
             </sc-for>
           </ol>
-          <div style="padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; border-radius: 0 0 12px 12px;"><b style="color: #475569;">Sumber:</b> jdih.setneg.go.id · peraturan.bpk.go.id · mkri.id (putusan MK) · contoh jejak historis pada prototipe; regulasi lain menyusul</div>
+          <div style="padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; border-radius: 0 0 12px 12px;"><b style="color: #475569;">Sumber:</b> jdih.setneg.go.id · peraturan.bpk.go.id · mkri.id (putusan MK) · {{d.jejakSrc}}</div>
         </section>
         </sc-if>
 
@@ -958,14 +958,35 @@ class Component extends DCLogic {
     // ---------- detail lengkap (8 regulasi) ----------
     const DET = {
       uu25: { ring: [['Objek', 'Asas, tujuan, bentuk badan usaha, perlakuan, fasilitas dan pelayanan penanaman modal dalam negeri maupun asing.', ['Pasal 2', 'Pasal 3', 'Pasal 5']], ['Subjek', 'Penanam modal dalam negeri dan penanam modal asing, serta pemerintah pusat dan daerah yang menyelenggarakan urusan penanaman modal.', ['Pasal 1', 'Pasal 30']], ['Kewajiban', 'Menerapkan tata kelola perusahaan yang baik, melaksanakan tanggung jawab sosial, membuat laporan kegiatan penanaman modal, menghormati tradisi budaya setempat dan mematuhi peraturan.', ['Pasal 15']], ['Konsekuensi', 'Sanksi administratif berupa peringatan tertulis, pembatasan, pembekuan, hingga pencabutan kegiatan usaha atau fasilitas penanaman modal.', ['Pasal 34']]],
+        jejakSum: '4 UU pendahulu dicabut · 2 putusan MK · diubah sebagian lewat UU Cipta Kerja',
+        jejak: [
+          ['UU No. 1 Tahun 1967', '', 'Penanaman Modal Asing', '10 Jan 1967', 'pend', 'Diundangkan', 'cabut', 'Dasar pertama pengaturan penanaman modal asing.'],
+          ['UU No. 6 Tahun 1968', '', 'Penanaman Modal Dalam Negeri', '3 Jul 1968', 'pend', 'Diundangkan', 'cabut', 'Dasar pengaturan penanaman modal dalam negeri; berjalan terpisah dari PMA.'],
+          ['UU No. 11 Tahun 1970', '', 'Perubahan dan Tambahan UU 1/1967', '1970', 'pend', 'Mengubah UU 1/1967', 'cabut', 'Menyesuaikan ketentuan penanaman modal asing.'],
+          ['UU No. 12 Tahun 1970', '', 'Perubahan dan Tambahan UU 6/1968', '1970', 'pend', 'Mengubah UU 6/1968', 'cabut', 'Menyesuaikan ketentuan penanaman modal dalam negeri.'],
+          ['UU No. 25 Tahun 2007', 'uu25', 'Penanaman Modal (naskah asli)', '26 Apr 2007', 'reg', 'Diundangkan · mencabut UU 1/1967 dan UU 6/1968 beserta perubahannya', 'diubah', 'Menyatukan pengaturan PMA dan PMDN dalam satu undang-undang.'],
+          ['Putusan MK No. 21-22/PUU-V/2007', '', 'Uji materi UU Penanaman Modal', '25 Mar 2008', 'mk', 'Pasal 22 dinyatakan bertentangan sebagian', 'putusan', 'Pemberian dan perpanjangan hak atas tanah (HGU, HGB, hak pakai) sekaligus di muka dibatalkan.'],
+          ['UU No. 11 Tahun 2020', '', 'Cipta Kerja', '2 Nov 2020', 'ubah', 'Mengubah sebagian UU 25/2007', 'cabut', 'Ketentuan bidang usaha dan perizinan penanaman modal diubah.'],
+          ['Putusan MK No. 91/PUU-XVIII/2020', '', 'Uji formil UU Cipta Kerja', '25 Nov 2021', 'mk', 'UU 11/2020 dinyatakan inkonstitusional bersyarat', 'putusan', 'Pembentuk UU wajib memperbaiki dalam 2 tahun.'],
+          ['Perppu No. 2 Tahun 2022', '', 'Cipta Kerja', '30 Des 2022', 'ubah', 'Ditetapkan · mencabut UU 11/2020', 'ganti', 'Memuat kembali perubahan atas UU 25/2007; kemudian ditetapkan menjadi undang-undang.'],
+          ['UU No. 6 Tahun 2023', 'uu6', 'Penetapan Perppu 2/2022 menjadi Undang-Undang', '31 Mar 2023', 'ubah', 'Diundangkan', 'aktif', 'Perubahan atas UU 25/2007 berlaku melalui undang-undang ini.'],
+          ['UU No. 25 Tahun 2007', 'uu25', 'Penanaman Modal (versi konsolidasi)', '31 Mar 2023', 'reg', 'Konsolidasi pasca UU 6/2023', 'kini', 'Naskah asli ditambah perubahan UU 6/2023; dipakai sebagai acuan saat ini.']
+        ],
         log: [['Diundangkan', '26 April 2007', 'Menggantikan UU 1/1967 dan UU 6/1968'], ['Diubah sebagian', '31 Maret 2023', 'Ketentuan bidang usaha dan perizinan diubah oleh UU 6/2023'], ['Status', '12 Okt 2026', 'Aktif; versi konsolidasi dipakai sebagai acuan']],
         versi: [['Naskah asli', '26 Apr 2007'], ['Konsolidasi pasca UU 6/2023', '31 Mar 2023']],
         rel: [['Induk', [['UUD 1945 Pasal 33', '', 'Dasar konstitusional', 'perekonomian disusun berdasarkan asas kekeluargaan']]], ['Turunan', [['pp28', 'pp28', 'Peraturan pelaksana', 'perizinan berusaha berbasis risiko'], ['perpres10', 'perpres10', 'Peraturan pelaksana', 'bidang usaha penanaman modal']]], ['Setingkat & perubahan', [['uu6', 'uu6', 'Mengubah sebagian', 'ketentuan bidang usaha dan perizinan'], ['UU No. 23 Tahun 2014', '', 'Pembagian urusan', 'urusan penanaman modal pusat dan daerah']]]] },
       uu6: { ring: [['Objek', 'Penyederhanaan perizinan berusaha berbasis risiko dan perubahan ketentuan dalam berbagai undang-undang sektoral.', ['Pasal 1', 'Pasal 2']], ['Subjek', 'Pelaku usaha, kementerian/lembaga dan pemerintah daerah.', ['Pasal 1', 'Pasal 2']], ['Kewajiban', 'Pelaku usaha mengurus perizinan sesuai tingkat risiko kegiatan usahanya.', ['Pasal 1', 'Pasal 2']], ['Konsekuensi', 'Peraturan pelaksana di pusat dan daerah wajib menyesuaikan.', ['Pasal 1', 'Pasal 2']]],
+        jejak: [
+          ['UU No. 11 Tahun 2020', '', 'Cipta Kerja', '2 Nov 2020', 'uu', 'Diundangkan', 'cabut', 'Mengubah berbagai undang-undang sektoral sekaligus (omnibus).'],
+          ['Putusan MK No. 91/PUU-XVIII/2020', '', 'Uji formil UU Cipta Kerja', '25 Nov 2021', 'mk', 'UU 11/2020 dinyatakan inkonstitusional bersyarat', 'putusan', 'Pembentuk UU wajib memperbaiki dalam 2 tahun.'],
+          ['Perppu No. 2 Tahun 2022', '', 'Cipta Kerja', '30 Des 2022', 'uu', 'Ditetapkan · mencabut UU 11/2020', 'ganti', 'Menindaklanjuti putusan MK.'],
+          ['UU No. 6 Tahun 2023', 'uu6', 'Penetapan Perppu 2/2022 menjadi Undang-Undang', '31 Mar 2023', 'reg', 'Diundangkan', 'kini', 'Menetapkan Perppu 2/2022 menjadi undang-undang; berlaku saat ini.']
+        ],
         log: [['Diundangkan', '31 Maret 2023', 'Menetapkan Perppu 2/2022 menjadi undang-undang'], ['Status', '12 Okt 2026', 'Aktif']], versi: [['Naskah asli', '31 Mar 2023']],
         rel: [['Induk', [['UUD 1945', '', 'Dasar konstitusional', 'Naskah dasar negara']]], ['Turunan', [['pp28', 'pp28', 'Peraturan pelaksana', 'perizinan berusaha berbasis risiko'], ['atr13', 'atr13', 'Peraturan pelaksana', 'kesesuaian kegiatan pemanfaatan ruang']]], ['Setingkat & perubahan', [['uu25', 'uu25', 'Diubah sebagian', 'ketentuan penanaman modal']]]] },
       pp28: { ring: [['Objek', 'Standar dan tata cara perizinan berusaha berbasis risiko, termasuk perizinan dasar (KKPR, persetujuan lingkungan, PBG) dan standar waktu setiap layanan.', []], ['Subjek', 'Pelaku usaha, kementerian/lembaga, dan pemerintah daerah penyelenggara perizinan melalui OSS.', []], ['Kewajiban', 'Memproses perizinan melalui OSS sesuai standar waktu; persetujuan KKPR melalui penilaian dalam batas waktu yang ditetapkan.', ['Pasal 22', 'Pasal 68–75']], ['Konsekuensi', 'Perizinan dianggap disetujui (fiktif positif) bila batas waktu terlewati; pelaku usaha yang tidak memenuhi standar dikenai sanksi administratif.', ['Pasal 22 ayat (3)', 'Pasal 225 ayat (1)', 'Pasal 230']]],
         // Jejak historis: [nomor, id (bila ada di daftar), judul, tanggal, jalur, peristiwa, status, catatan]
+        jejakSum: '3 generasi peraturan pelaksana · 2 kali pergantian dasar hukum · 4 naskah tidak berlaku lagi',
         jejak: [
           ['PP No. 24 Tahun 2018', '', 'Pelayanan Perizinan Berusaha Terintegrasi Secara Elektronik', '21 Jun 2018', 'pp', 'Ditetapkan', 'cabut', 'Memperkenalkan OSS dan NIB; izin terbit berbasis komitmen pemenuhan syarat.'],
           ['UU No. 11 Tahun 2020', '', 'Cipta Kerja', '2 Nov 2020', 'uu', 'Diundangkan', 'cabut', 'Mengganti rezim izin menjadi perizinan berusaha berbasis risiko.'],
@@ -978,18 +999,46 @@ class Component extends DCLogic {
         log: [['Ditetapkan', '2025', 'Mencabut PP 5/2021 tentang perizinan berbasis risiko'], ['Fiktif positif berlaku', '2 Juni 2025', 'Tahap I: kajian teknis pertanahan PKKPR dan 6 sektor'], ['Status', '12 Okt 2026', 'Aktif']], versi: [['Naskah asli', '2025']],
         rel: [['Induk', [['uu6', 'uu6', 'Melaksanakan', 'amanat perizinan berbasis risiko'], ['uu25', 'uu25', 'Merujuk', 'pelayanan penanaman modal']]], ['Turunan', [['pm5', 'pm5', 'Pedoman pelaksanaan', 'tata cara layanan melalui OSS'], ['atr13', 'atr13', 'Pelaksanaan KKPR', 'kesesuaian kegiatan pemanfaatan ruang']]], ['Setingkat', [['pp35', 'pp35', 'Retribusi PBG', 'ketentuan umum retribusi daerah'], ['PP No. 22 Tahun 2021', '', 'Persetujuan lingkungan', 'tata cara persetujuan lingkungan']]]] },
       pp35: { ring: [['Objek', 'Ketentuan umum pemungutan pajak daerah dan retribusi daerah sebagai pelaksanaan UU 1/2022.', ['Pasal 1', 'Pasal 2']], ['Subjek', 'Pemerintah daerah dan wajib pajak/retribusi daerah.', ['Pasal 1', 'Pasal 2']], ['Kewajiban', 'Pemerintah daerah menyesuaikan Perda pajak dan retribusi daerah.', ['Pasal 1', 'Pasal 2']], ['Konsekuensi', 'Perda yang tidak sesuai dievaluasi dan dapat diminta untuk diubah.', ['Pasal 1', 'Pasal 2']]],
+        jejak: [
+          ['UU No. 28 Tahun 2009', '', 'Pajak Daerah dan Retribusi Daerah', '2009', 'uu', 'Diundangkan', 'cabut', 'Dasar pemungutan pajak dan retribusi daerah sebelumnya.'],
+          ['UU No. 1 Tahun 2022', '', 'Hubungan Keuangan antara Pemerintah Pusat dan Pemerintahan Daerah', '2022', 'uu', 'Diundangkan · mencabut UU 28/2009', 'aktif', 'Menata ulang pajak dan retribusi daerah; mengamanatkan peraturan pelaksana.'],
+          ['PP No. 35 Tahun 2023', 'pp35', 'Ketentuan Umum Pajak Daerah dan Retribusi Daerah', '2023', 'pp', 'Ditetapkan · melaksanakan UU 1/2022', 'kini', 'Daerah wajib menyesuaikan Perda pajak dan retribusi daerah.']
+        ],
         log: [['Ditetapkan', '2023', 'Melaksanakan UU 1/2022 (HKPD)'], ['Status', '12 Okt 2026', 'Aktif']], versi: [['Naskah asli', '2023']],
         rel: [['Induk', [['UU No. 1 Tahun 2022', '', 'Melaksanakan', 'hubungan keuangan pusat dan daerah']]], ['Turunan', [['Perda PDRD kabupaten/kota', '', 'Peraturan daerah', 'pajak dan retribusi daerah']]], ['Setingkat', [['pp28', 'pp28', 'Terkait', 'standar waktu PBG']]]] },
       perpres10: { ring: [['Objek', 'Bidang usaha prioritas, bidang usaha yang dialokasikan atau bermitra dengan UMKM, dan bidang usaha dengan persyaratan tertentu.', ['Pasal 1', 'Pasal 2']], ['Subjek', 'Penanam modal dalam negeri dan asing.', ['Pasal 1', 'Pasal 2']], ['Kewajiban', 'Penanam modal memenuhi persyaratan bidang usaha yang dipilih.', ['Pasal 1', 'Pasal 2']], ['Konsekuensi', 'Perizinan tidak dapat diterbitkan untuk bidang usaha yang tertutup bagi penanaman modal.', ['Pasal 1', 'Pasal 2']]],
+        jejak: [
+          ['Perpres No. 44 Tahun 2016', '', 'Daftar Bidang Usaha Tertutup dan Terbuka dengan Persyaratan', '2016', 'pend', 'Ditetapkan', 'cabut', 'Pendekatan daftar negatif investasi (DNI).'],
+          ['UU No. 11 Tahun 2020', '', 'Cipta Kerja', '2 Nov 2020', 'uu', 'Diundangkan', 'cabut', 'Mengubah ketentuan bidang usaha dalam UU 25/2007.'],
+          ['Perpres No. 10 Tahun 2021', 'perpres10', 'Bidang Usaha Penanaman Modal (naskah asli)', '2021', 'reg', 'Ditetapkan · mencabut Perpres 44/2016', 'diubah', 'Beralih ke daftar prioritas investasi (DPI).'],
+          ['Perpres No. 49 Tahun 2021', '', 'Perubahan atas Perpres 10/2021', '2021', 'ubah', 'Ditetapkan', 'aktif', 'Menyesuaikan sebagian bidang usaha.'],
+          ['Perpres No. 10 Tahun 2021 jo. 49/2021', 'perpres10', 'Bidang Usaha Penanaman Modal (versi konsolidasi)', '2021', 'reg', 'Konsolidasi', 'kini', 'Naskah asli ditambah perubahan; dipakai sebagai acuan saat ini.']
+        ],
         log: [['Ditetapkan', '2021', 'Bidang usaha penanaman modal'], ['Diubah', '2021', 'Diubah dengan Perpres 49/2021'], ['Status', '12 Okt 2026', 'Aktif']], versi: [['Naskah asli', '2021'], ['Perubahan Perpres 49/2021', '2021']],
         rel: [['Induk', [['uu25', 'uu25', 'Melaksanakan', ''], ['uu6', 'uu6', 'Melaksanakan', '']]], ['Turunan', [['pm5', 'pm5', 'Dirujuk pedoman', 'persyaratan bidang usaha di OSS']]]] },
       pm5: { ring: [['Objek', 'Pedoman dan tata cara layanan perizinan berusaha berbasis risiko serta fasilitas penanaman modal melalui OSS.', ['Pasal 1', 'Pasal 2']], ['Subjek', 'Pelaku usaha, DPMPTSP provinsi dan kabupaten/kota, serta kementerian/lembaga.', ['Pasal 1', 'Pasal 2']], ['Kewajiban', 'Mengajukan perizinan sesuai tingkat risiko usaha melalui OSS, dari NIB hingga izin.', ['Pasal 1', 'Pasal 2']], ['Konsekuensi', 'Sanksi administratif bertahap bagi pelaku usaha, serta sanksi pengawasan bagi instansi yang tidak memproses perizinan melalui OSS.', ['Pasal 1', 'Pasal 2']]],
+        jejak: [
+          ['Peraturan BKPM No. 3, 4 dan 5 Tahun 2021', '', 'Sistem OSS, pedoman perizinan berbasis risiko, dan pengawasan', '2021', 'pend', 'Ditetapkan', 'cabut', 'Pedoman teknis OSS berbasis risiko sebelumnya.'],
+          ['PP No. 28 Tahun 2025', 'pp28', 'Penyelenggaraan Perizinan Berusaha Berbasis Risiko', '2025', 'uu', 'Ditetapkan', 'aktif', 'Dasar hukum yang dilaksanakan pedoman ini.'],
+          ['Permen Investasi dan Hilirisasi/BKPM No. 5 Tahun 2025', 'pm5', 'Pedoman dan tata cara PBBR serta fasilitas penanaman modal melalui OSS', '2 Okt 2025', 'reg', 'Mulai berlaku · mencabut Peraturan BKPM 3, 4 dan 5/2021', 'kini', 'Berlaku sebagai pedoman layanan OSS saat ini.']
+        ],
         log: [['Mencabut', '2025', 'Perka BKPM No. 3, 4 dan 5 Tahun 2021'], ['Mulai berlaku', '2 Oktober 2025', ''], ['Status', '12 Okt 2026', 'Aktif']], versi: [['Naskah asli', '2025']],
         rel: [['Induk', [['pp28', 'pp28', 'Melaksanakan', 'standar dan tata cara PBBR'], ['perpres10', 'perpres10', 'Merujuk', 'persyaratan bidang usaha']]], ['Setingkat', [['atr13', 'atr13', 'Terkait', 'PKKPR otomatis membutuhkan RDTR digital']]]] },
       atr13: { ring: [['Objek', 'Tata cara penerbitan KKPR dan sinkronisasi program pemanfaatan ruang.', ['Pasal 1', 'Pasal 2']], ['Subjek', 'Pelaku usaha dan pemerintah daerah penyusun RDTR.', ['Pasal 1', 'Pasal 2']], ['Kewajiban', 'Pelaku usaha memperoleh KKPR sebelum kegiatan pemanfaatan ruang.', ['Pasal 1', 'Pasal 2']], ['Konsekuensi', 'Tanpa RDTR digital, KKPR diterbitkan melalui penilaian (PKKPR).', ['Pasal 1', 'Pasal 2']]],
+        jejak: [
+          ['Pengaturan izin lokasi', '', 'Rezim izin pemanfaatan ruang sebelum KKPR', 'sebelum 2021', 'pend', 'Berlaku', 'cabut', 'Digantikan konsep kesesuaian kegiatan pemanfaatan ruang (KKPR).'],
+          ['PP No. 21 Tahun 2021', '', 'Penyelenggaraan Penataan Ruang', '2021', 'uu', 'Ditetapkan', 'aktif', 'Dasar hukum KKPR yang dilaksanakan peraturan ini.'],
+          ['Permen ATR/BPN No. 13 Tahun 2021', 'atr13', 'Pelaksanaan KKPR dan Sinkronisasi Program Pemanfaatan Ruang', '2021', 'reg', 'Ditetapkan', 'kini', 'Berlaku sebagai acuan penerbitan KKPR saat ini.']
+        ],
         log: [['Ditetapkan', '2021', 'Pelaksanaan KKPR'], ['Status', '12 Okt 2026', 'Aktif']], versi: [['Naskah asli', '2021']],
         rel: [['Induk', [['PP No. 21 Tahun 2021', '', 'Melaksanakan', 'penyelenggaraan penataan ruang'], ['uu6', 'uu6', 'Merujuk', '']]], ['Turunan', [['Perkada RDTR kabupaten/kota', '', 'Prasyarat KKPR otomatis', 'Perkada daerah tata ruang']]]] },
       jabar9: { ring: [['Objek', 'Rencana struktur dan pola ruang Provinsi Jawa Barat 2022–2042, termasuk kawasan industri dan kawasan strategis.', ['Pasal 1', 'Pasal 2']], ['Subjek', 'Pemerintah daerah, pelaku usaha dan masyarakat di Jawa Barat.', ['Pasal 1', 'Pasal 2']], ['Kewajiban', 'Pemanfaatan ruang mengikuti arahan zonasi RTRW.', ['Pasal 1', 'Pasal 2']], ['Konsekuensi', 'Sanksi administratif atas pemanfaatan ruang yang tidak sesuai.', ['Pasal 1', 'Pasal 2']]],
+        jejak: [
+          ['UU No. 26 Tahun 2007', '', 'Penataan Ruang', '2007', 'uu', 'Diundangkan', 'aktif', 'Dasar penyusunan RTRW provinsi.'],
+          ['Perda RTRW Jawa Barat periode sebelumnya', '', 'Rencana Tata Ruang Wilayah Provinsi Jawa Barat', 'sebelum 2022', 'pend', 'Ditetapkan', 'cabut', 'Dicabut dan digantikan RTRW 2022–2042.'],
+          ['PP No. 21 Tahun 2021', '', 'Penyelenggaraan Penataan Ruang', '2021', 'uu', 'Ditetapkan', 'aktif', 'Penyesuaian substansi RTRW pasca UU Cipta Kerja.'],
+          ['Perda Prov. Jawa Barat No. 9 Tahun 2022', 'jabar9', 'RTRW Provinsi Jawa Barat 2022–2042', '2022', 'reg', 'Ditetapkan', 'kini', 'Berlaku sebagai acuan pemanfaatan ruang di Jawa Barat.']
+        ],
         log: [['Ditetapkan', '2022', 'RTRW 2022–2042'], ['Status', '12 Okt 2026', 'Aktif']], versi: [['Naskah asli', '2022']],
         rel: [['Induk', [['UU No. 26 Tahun 2007', '', 'Melaksanakan', 'penataan ruang'], ['PP No. 21 Tahun 2021', '', 'Merujuk', 'penataan ruang daerah']]], ['Turunan', [['RDTR kabupaten kawasan Rebana', '', 'Rencana rinci', 'Rencana detail tata ruang']]]] }
     };
@@ -1250,6 +1299,24 @@ class Component extends DCLogic {
     const go = (dlt) => () => { const n2 = nav[(pos + dlt + nav.length) % nav.length]; this.setState({ sel: keyOf(n2) }); };
     const D = r.id ? DET[r.id] : null;
     const naskah = r.j === 'Perda' || r.j === 'Permen' || r.j === 'Kepmen' ? 'https://peraturan.bpk.go.id' : 'https://jdih.setneg.go.id';
+    // Jejak dummy: dibentuk dari nomor, judul, jenis, dan tahun pada daftar regulasi (bukan data resmi).
+    const jejakAuto = (r) => {
+      const h = Array.from(r.nomor).reduce((a, ch) => a + ch.charCodeAt(0), 0);
+      const m = r.judul.match(/^Perubahan (?:Kedua |Ketiga )?atas (.+?) tentang (.+)$/);
+      if (m) {
+        const y = (m[1].match(/Tahun (\d{4})/) || [])[1] || 'sebelumnya';
+        return [[m[1], '', m[2], y, 'pend', 'Ditetapkan', 'diubah', 'Naskah induk; sebagian ketentuannya diubah oleh ' + r.nomor + '.'],
+          [r.nomor, keyOf(r), r.judul, String(r.tahun), 'reg', 'Ditetapkan · mengubah ' + m[1], 'kini', 'Berlaku bersama naskah induknya sebagai satu kesatuan.']];
+      }
+      const jf = JF[r.j] || r.j, amend = r.tahun <= 2021 && h % 3 === 0, y2 = Math.min(2025, r.tahun + 2 + (h % 3));
+      const out = [[jf + ' terdahulu', '', 'Pengaturan sebelumnya tentang ' + r.judul.charAt(0).toLowerCase() + r.judul.slice(1), String(r.tahun - 4 - (h % 7)), 'pend', 'Ditetapkan', 'cabut', 'Dicabut dan digantikan oleh ' + r.nomor + '.'],
+        [r.nomor, keyOf(r), r.judul + (amend ? ' (naskah asli)' : ''), String(r.tahun), 'reg', 'Ditetapkan · mencabut ' + jf.toLowerCase() + ' terdahulu', amend ? 'diubah' : 'kini', amend ? 'Naskah awal; sebagian ketentuan kemudian disesuaikan.' : 'Berlaku sebagai acuan saat ini.']];
+      if (amend) out.push(['Perubahan atas ' + r.nomor, '', 'Penyesuaian sebagian ketentuan', String(y2), 'ubah', 'Ditetapkan', 'aktif', 'Menyesuaikan ketentuan dengan perizinan berusaha berbasis risiko.'],
+        [r.nomor, keyOf(r), r.judul + ' (versi konsolidasi)', String(y2), 'reg', 'Konsolidasi', 'kini', 'Naskah asli ditambah perubahannya; dipakai sebagai acuan saat ini.']);
+      return out;
+    };
+    const JJ = D && D.jejak ? D.jejak : jejakAuto(r), jjAuto = !(D && D.jejak);
+    const JEJAK_JL = { pp: ['Peraturan pelaksana (PP)', '#1D4ED8'], uu: ['Dasar hukum (UU/Perppu)', '#0B1F4B'], mk: ['Putusan pengadilan', '#B45309'], pend: ['Regulasi pendahulu', '#64748B'], reg: ['Regulasi ini', '#1D4ED8'], ubah: ['Regulasi pengubah', '#0B1F4B'] };
     const d = { pos: (pos + 1) + ' dari ' + nav.length, jf: JF[r.j], jbg: JC[r.j], nomor: r.nomor, judul: r.judul, pen: r.pen, tahun: r.tahun, wil: r.wil, sek: sekText(r.sek), naskah, naskahL: naskah.replace('https://', ''),
       hasRing: !!D, noRing: !D, aiLabel: D ? '✦ Ringkasan AI · diverifikasi analis' : '✦ Ringkasan AI · menunggu review', verif: D ? 'diverifikasi 30 Sep 2026' : 'belum diverifikasi',
       ringSummary: D ? RING_SUMMARY[r.id] : '',
@@ -1258,14 +1325,16 @@ class Component extends DCLogic {
       log: D ? D.log.map(([a, b, c]) => ({ a, b, c })) : [{ a: 'Diundangkan', b: String(r.tahun), c: '' }, { a: 'Status', b: '12 Okt 2026', c: 'Aktif' }],
       versi: D ? D.versi.map(([l, t]) => ({ l, t })) : [{ l: 'Naskah asli', t: String(r.tahun) }],
       hasRel: !!D, noRel: !D,
-      hasJejak: !!(D && D.jejak),
-      jejak: D && D.jejak ? D.jejak.map(([no, id, judul, tgl, jl, ev, stt, note], i, a) => {
-        const S = { cabut: ['Dicabut', '#F1F5F9', '#64748B', '#CBD5E1'], putusan: ['Putusan MK', '#FEF3C7', '#B45309', '#F59E0B'], ganti: ['Ditetapkan menjadi UU', '#F1F5F9', '#64748B', '#CBD5E1'], aktif: ['Berlaku', '#DCFCE7', '#15803D', '#16A34A'], kini: ['Berlaku · versi saat ini', '#DBEAFE', '#1D4ED8', '#1D4ED8'] }[stt];
-        const JL = { pp: ['Peraturan pelaksana (PP)', '#1D4ED8'], uu: ['Dasar hukum (UU/Perppu)', '#0B1F4B'], mk: ['Putusan pengadilan', '#B45309'] }[jl];
-        const tgt = id && id !== r.id ? byId[id] : null;
-        return { no, judul, tgl, ev, note, stL: S[0], stBg: S[1], stC: S[2], dot: S[3], jlL: JL[0], jlC: JL[1], cur: stt === 'kini', bg: stt === 'kini' ? '#F5F9FF' : '#FFFFFF', bd: stt === 'kini' ? '#93C5FD' : '#E3E8F0', op: stt === 'cabut' || stt === 'ganti' ? '.85' : '1', line: i < a.length - 1, link: !!tgt, noLink: !tgt, open: tgt ? openReg(id) : null };
-      }) : [],
-      jejakSum: D && D.jejak ? D.jejak.filter((x) => x[4] === 'pp').length + ' generasi peraturan pelaksana · ' + (D.jejak.filter((x) => x[4] === 'uu').length - 1) + ' kali pergantian dasar hukum · ' + D.jejak.filter((x) => x[6] === 'cabut' || x[6] === 'ganti').length + ' naskah tidak berlaku lagi' : '',
+      hasJejak: JJ.length > 0,
+      jejak: JJ.map(([no, id, judul, tgl, jl, ev, stt, note], i, a) => {
+        const S = { cabut: ['Dicabut', '#F1F5F9', '#64748B', '#CBD5E1'], putusan: ['Putusan MK', '#FEF3C7', '#B45309', '#F59E0B'], ganti: ['Ditetapkan menjadi UU', '#F1F5F9', '#64748B', '#CBD5E1'], aktif: ['Berlaku', '#DCFCE7', '#15803D', '#16A34A'], diubah: ['Berlaku · diubah sebagian', '#E0F2FE', '#0369A1', '#0EA5E9'], kini: ['Berlaku · versi saat ini', '#DBEAFE', '#1D4ED8', '#1D4ED8'] }[stt];
+        const JL = JEJAK_JL[jl];
+        const k = id || (ALL.find((x) => x.nomor === no) ? keyOf(ALL.find((x) => x.nomor === no)) : ''), tgt = k && k !== keyOf(r) ? (byId[k] || ALL.find((x) => keyOf(x) === k)) : null;
+        return { no, judul, tgl, ev, note, stL: S[0], stBg: S[1], stC: S[2], dot: S[3], jlL: JL[0], jlC: JL[1], cur: stt === 'kini', bg: stt === 'kini' ? '#F5F9FF' : '#FFFFFF', bd: stt === 'kini' ? '#93C5FD' : '#E3E8F0', op: stt === 'cabut' || stt === 'ganti' ? '.85' : '1', line: i < a.length - 1, link: !!tgt, noLink: !tgt, open: tgt ? openReg(k) : null };
+      }),
+      jejakLeg: Array.from(new Set(JJ.map((x) => x[4]))).map((k) => ({ l: JEJAK_JL[k][0], c: JEJAK_JL[k][1] })),
+      jejakSrc: jjAuto ? 'jejak disusun otomatis dari data daftar regulasi (data dummy untuk prototipe)' : 'contoh jejak historis pada prototipe',
+      jejakSum: D && D.jejakSum ? D.jejakSum : JJ.length + ' naskah dalam jejak' + (JJ.some((x) => x[6] === 'cabut' || x[6] === 'ganti') ? ' · ' + JJ.filter((x) => x[6] === 'cabut' || x[6] === 'ganti').length + ' tidak berlaku lagi' : '') + (JJ.some((x) => x[4] === 'ubah') ? ' · ' + JJ.filter((x) => x[4] === 'ubah').length + ' perubahan' : '') + (JJ.some((x) => x[4] === 'mk') ? ' · ' + JJ.filter((x) => x[4] === 'mk').length + ' putusan MK' : ''),
       rel: D ? D.rel.map(([t, items]) => ({ t: t.toUpperCase(), items: items.map(([ref, id, rel, note]) => { const tgt = id && byId[id];
         return { ref: tgt ? tgt.nomor : ref, rel, note: note || (tgt ? tgt.judul : '—'), c: tgt ? '#1D4ED8' : '#0F172A', cls: tgt ? 'rw' : '', open: tgt ? openReg(id) : null }; }) })) : [] };
     // insight rinci: dampak substansi bagi investasi + dampak perubahan terhadap regulasi terkait
