@@ -88,11 +88,11 @@ button:focus-visible,a:focus-visible{outline:2px solid #0f827d!important;outline
 .harmonisasi-alert-details p{margin:0;color:#334155;font-size:9px;line-height:1.4;overflow-wrap:anywhere}
 .harmonisasi-alert-empty{padding:12px 14px;border:1px dashed #cbd5e1;border-radius:11px;background:#f8fafc;color:#64748b;font-size:11px}
 @media(max-width:760px){.harmonisasi-page-tabs,.harmonisasi-highlights{width:calc(100% - 24px)}.harmonisasi-alert-card{flex-basis:86%;min-width:270px}.harmonisasi-highlights{padding:12px}.harmonisasi-alert-details{gap:5px}.harmonisasi-alert-details>div{padding:6px}}
-.ews-modal-backdrop{position:fixed;inset:0;z-index:2000;display:flex;align-items:flex-start;justify-content:center;overflow-y:auto;padding:24px 16px 32px;background:rgba(0,0,0,.6);backdrop-filter:blur(2px)}
-.ews-modal-panel{background:#fff;border-radius:8px;box-shadow:0 25px 50px -12px rgba(0,0,0,.35);max-width:1024px;width:100%;max-height:none;display:flex;flex-direction:column;overflow:hidden;border:1px solid #E5E7EB;outline:none}
-.ews-modal-body{display:grid;grid-template-columns:minmax(0,1.75fr) minmax(0,1fr);flex:1;min-height:0;overflow:hidden}
-.ews-modal-main{padding:24px;overflow-y:auto;display:flex;flex-direction:column;gap:22px}
-.ews-modal-side{padding:24px;background:#F9FAFB;border-left:1px solid #E5E7EB;overflow-y-auto;display:flex;flex-direction:column;gap:22px}
+.ews-modal-backdrop{position:fixed;inset:0;z-index:2000;display:flex;align-items:flex-start;justify-content:center;overflow-y:auto;padding:24px 16px 32px;background:rgba(0,0,0,.6);backdrop-filter:blur(2px);overscroll-behavior:contain}
+.ews-modal-panel{background:#fff;border-radius:8px;box-shadow:0 25px 50px -12px rgba(0,0,0,.35);max-width:1024px;width:100%;display:flex;flex-direction:column;overflow:hidden;border:1px solid #E5E7EB;outline:none}
+.ews-modal-body{display:grid;grid-template-columns:minmax(0,1.75fr) minmax(0,1fr);flex:1;min-height:0;overflow:hidden;overscroll-behavior:contain}
+.ews-modal-main{padding:26px 28px;overflow-y:auto;display:flex;flex-direction:column;gap:30px;overscroll-behavior:contain}
+.ews-modal-side{padding:26px 24px;background:#F9FAFB;border-left:1px solid #E5E7EB;overflow-y:auto;display:flex;flex-direction:column;gap:24px;overscroll-behavior:contain}
 .ews-modal-h4{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#6B7280;margin:0 0 10px;display:flex;align-items:center;gap:6px}
 .ews-modal-body p{margin:0;font-size:14px;line-height:1.6;color:#111827}
 .ews-tl{position:relative;padding-left:18px;display:flex;flex-direction:column;gap:12px}
@@ -104,6 +104,23 @@ button:focus-visible,a:focus-visible{outline:2px solid #0f827d!important;outline
 .ews-sh{display:flex;align-items:flex-start;gap:10px;padding:9px 10px;border-radius:6px;border:1px solid #E5E7EB;background:#fff}
 .ews-sh-r{font-size:13px;font-weight:600;color:#111827}
 .ews-sh-n{font-size:11.5px;color:#6B7280;margin-top:1px}
+.ews-stamp{display:flex;flex-direction:column;align-items:flex-end;gap:1px;text-align:right;line-height:1.35;padding-right:2px}
+.ews-stamp-k{font-size:9.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#9CA3AF}
+.ews-stamp-v{font-size:13.5px;font-weight:700;color:#111827;white-space:nowrap}
+.ews-stamp-t{font-size:11px;color:#6B7280;white-space:nowrap;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ews-sec{padding-left:15px;border-left:3px solid #E5E7EB}
+.ews-sec+.ews-sec{margin-top:4px;padding-top:28px;border-top:1px dashed #E2E8F0}
+.ews-sec .ews-modal-h4{margin:0 0 12px}
+.ews-sec p{margin:0;padding:13px 15px;border-radius:9px;border:1px solid #EEF2F7;background:#F9FAFB;font-size:14px;line-height:1.65;color:#111827}
+.ews-h4-ico{flex:none;width:26px;height:26px;border-radius:8px;display:inline-flex;align-items:center;justify-content:center}
+.ews-s1{border-left-color:#2563EB}
+.ews-s1 .ews-h4-ico{background:#EFF6FF;color:#2563EB}
+.ews-s2{border-left-color:#C2410C}
+.ews-s2 .ews-h4-ico{background:#FFF7ED;color:#C2410C}
+.ews-s3{border-left-color:#047857}
+.ews-s3 .ews-h4-ico{background:#ECFDF5;color:#047857}
+@media(max-width:640px){.ews-stamp{display:none}}
+
 .harmonisasi-alert-card{cursor:pointer;transition:border-color .15s ease,box-shadow .15s ease,transform .15s ease}
 .harmonisasi-alert-card:hover,.harmonisasi-alert-card:focus-visible{border-color:#f59e0b!important;box-shadow:0 6px 18px rgba(180,83,9,.16)!important;transform:translateY(-1px);outline:none}
 .harmonisasi-alert-card:focus-visible{box-shadow:0 0 0 3px rgba(245,158,11,.35)!important}
@@ -398,23 +415,24 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
                 </div>
               </div>
             </div>
-            <div style="display: flex; align-items: center; gap: 8px; flex: none;">
+            <div style="display: flex; align-items: center; gap: 12px; flex: none;">
+              <div class="ews-stamp"><span class="ews-stamp-k">Acuan EWS</span><span class="ews-stamp-v">{{ews.tgl}}</span><span class="ews-stamp-t">{{ewsStamp}}</span></div>
               <button type="button" sc-camel-on-click="{{closeEws}}" aria-label="Tutup detail" title="Tutup (Esc)" style="padding: 8px; border: 0; border-radius: 8px; background: transparent; color: #9CA3AF; cursor: pointer;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"></path></svg></button>
             </div>
           </div>
 
           <div class="ews-modal-body">
             <div class="ews-modal-main">
-              <div>
-                <h3 class="ews-modal-h4"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.12 2.12 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.12 2.12 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.12 2.12 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.12 2.12 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.12 2.12 0 0 0 1.597-1.16z"></path></svg>Ringkasan</h3>
+              <div class="ews-sec ews-s1">
+                <h3 class="ews-modal-h4"><span class="ews-h4-ico"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.12 2.12 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.12 2.12 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.12 2.12 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.12 2.12 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.12 2.12 0 0 0 1.597-1.16z"></path></svg></span>Ringkasan</h3>
                 <p>{{ews.fakta}}</p>
               </div>
-              <div>
-                <h3 class="ews-modal-h4"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"></path><path d="M12 9v4"></path><path d="M12 17h.01"></path></svg>Dampak</h3>
+              <div class="ews-sec ews-s2">
+                <h3 class="ews-modal-h4"><span class="ews-h4-ico"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"></path><path d="M12 9v4"></path><path d="M12 17h.01"></path></svg></span>Dampak</h3>
                 <p>{{ews.perk}}</p>
               </div>
-              <div>
-                <h3 class="ews-modal-h4"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"></path></svg>Saran Untuk Presiden</h3>
+              <div class="ews-sec ews-s3">
+                <h3 class="ews-modal-h4"><span class="ews-h4-ico"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"></path></svg></span>Saran Untuk Presiden</h3>
                 <p>{{ews.opsi}}</p>
               </div>
             </div>
@@ -1710,7 +1728,9 @@ const PELUANG_ALERTS = [
 // ---------- highlight EWS + pop-up detail ----------
     const ewsKey = st.ews || null;
     const ewsOpen = (k) => { try { window.scrollTo(0, 0); } catch (e) {} this.setState({ ews: k }); };
-    const ewsClose = () => this.setState({ ews: null });
+        // Cap waktu (timestamp) untuk header detail EWS: tanggal acuan EWS + waktu buka.
+    const ewsStamp = (() => { const d = new Date(), p = (x) => String(x).padStart(2, '0'), BUL = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des']; return p(d.getHours()) + ':' + p(d.getMinutes()) + ' WIB ' + d.getDate() + ' ' + BUL[d.getMonth()] + ' ' + d.getFullYear(); })();
+const ewsClose = () => this.setState({ ews: null });
     const ewsStop = (e) => { if (e && e.stopPropagation) e.stopPropagation(); };
     const ewsOnKey = (e) => { if (e && (e.key === 'Escape' || e.key === 'Esc')) { if (e.stopPropagation) e.stopPropagation(); ewsClose(); } };
     const ewsOnKeyOpen = (k) => (e) => { if (e && (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar')) { if (e.preventDefault) e.preventDefault(); ewsOpen(k); } };
@@ -1829,7 +1849,7 @@ const PELUANG_ALERTS = [
     
 
     return {
-      highlights, ewsCount: highlights.length, ewsOpen: !!ews, ews, closeEws: ewsClose, stop: ewsStop, onEwsKey: ewsOnKey,
+      highlights, ewsCount: highlights.length, ewsOpen: !!ews, ews, ewsStamp: ewsStamp, closeEws: ewsClose, stop: ewsStop, onEwsKey: ewsOnKey,
       isMain: view === 'main', isDetail: view === 'detail',
       // main
       ewsO, ewsN: ek.length, indTabs, I: { l: I.l, u: I.u, per: I.per, src: I.src, freq: I.freq }, leg, naN, hasNA: naN > 0, m, selD, mk, popOpen, pp, ewsList, t5, quick,
