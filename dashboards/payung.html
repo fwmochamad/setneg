@@ -834,6 +834,30 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
           </section>
         </div>
 
+        <sc-if value="{{d.hasJejak}}" hint-placeholder-val="{{true}}">
+        <section aria-label="Jejak historis regulasi" style="background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px;">
+          <div style="padding: 12px 18px; border-bottom: 1px solid #EEF2F7; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px;"><h3 style="margin: 0; font-size: 14.5px; font-weight: 600;">Jejak historis regulasi<span class="tip info-i" tabindex="0" aria-label="Keterangan">i<span class="pop">Urutan peraturan pendahulu hingga versi yang berlaku saat ini, termasuk pergantian dasar hukum dan putusan pengadilan yang memengaruhinya. Diurutkan dari yang paling lama.</span></span></h3><span style="font-size: 11.5px; color: #64748B;">{{d.jejakSum}}</span></div>
+          <div style="padding: 10px 18px 0; display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 11px; color: #475569;"><span><span style="display: inline-block; width: 9px; height: 9px; border-radius: 2px; background: #1D4ED8; margin-right: 5px;"></span>Peraturan pelaksana (PP)</span><span><span style="display: inline-block; width: 9px; height: 9px; border-radius: 2px; background: #0B1F4B; margin-right: 5px;"></span>Dasar hukum (UU/Perppu)</span><span><span style="display: inline-block; width: 9px; height: 9px; border-radius: 2px; background: #B45309; margin-right: 5px;"></span>Putusan pengadilan</span></div>
+          <ol style="list-style: none; margin: 0; padding: 12px 18px 16px; display: flex; flex-direction: column;">
+            <sc-for list="{{d.jejak}}" as="h" hint-placeholder-count="5">
+            <li style="display: grid; grid-template-columns: 84px 18px minmax(0, 1fr); gap: 0 10px;">
+              <div style="padding-top: 10px; text-align: right; font-size: 11.5px; font-weight: 600; color: #475569;">{{h.tgl}}</div>
+              <div style="position: relative; display: flex; justify-content: center;"><span style="position: relative; z-index: 1; margin-top: 12px; width: 12px; height: 12px; border-radius: 99px; background: #FFFFFF; border: 3px solid {{h.dot}}; box-sizing: border-box;"></span><sc-if value="{{h.line}}" hint-placeholder-val="{{true}}"><span style="position: absolute; top: 24px; bottom: -12px; left: 50%; width: 2px; margin-left: -1px; background: #E2E8F0;"></span></sc-if></div>
+              <div style="margin-bottom: 8px; padding: 9px 12px; border-radius: 10px; border: 1px solid {{h.bd}}; background: {{h.bg}}; opacity: {{h.op}}; display: flex; flex-direction: column; gap: 3px; min-width: 0;">
+                <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px;">
+                  <span style="font-size: 10px; font-weight: 700; letter-spacing: .3px; color: {{h.jlC}}; text-transform: uppercase;">{{h.jlL}}</span>
+                  <span style="height: 18px; padding: 0 7px; border-radius: 99px; background: {{h.stBg}}; color: {{h.stC}}; display: inline-flex; align-items: center; font-size: 10.5px; font-weight: 700;">{{h.stL}}</span>
+                </div>
+                <div style="font-size: 12.5px; color: #0F172A;"><sc-if value="{{h.link}}" hint-placeholder-val="{{false}}"><button type="button" sc-camel-on-click="{{h.open}}" title="Buka detail regulasi" style="padding: 0; border: 0; background: transparent; font-family: inherit; font-size: 12.5px; font-weight: 700; color: #1D4ED8; cursor: pointer; text-decoration: underline; text-underline-offset: 2px;">{{h.no}}</button></sc-if><sc-if value="{{h.noLink}}" hint-placeholder-val="{{true}}"><b>{{h.no}}</b></sc-if> · {{h.judul}}</div>
+                <div style="font-size: 11.5px; color: #334155;"><b style="font-weight: 600;">{{h.ev}}</b> — {{h.note}}</div>
+              </div>
+            </li>
+            </sc-for>
+          </ol>
+          <div style="padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; border-radius: 0 0 12px 12px;"><b style="color: #475569;">Sumber:</b> jdih.setneg.go.id · peraturan.bpk.go.id · mkri.id (putusan MK) · contoh jejak historis pada prototipe; regulasi lain menyusul</div>
+        </section>
+        </sc-if>
+
         <section style="background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px;">
           <div style="padding: 12px 18px; border-bottom: 1px solid #EEF2F7; display: flex; justify-content: space-between; align-items: center; gap: 8px;"><h3 style="margin: 0; font-size: 14.5px; font-weight: 600;">Relasi induk &amp; turunan</h3><span style="font-size: 11.5px; color: #64748B;">Klik regulasi untuk membuka detailnya</span></div>
           <sc-if value="{{d.hasRel}}" hint-placeholder-val="{{true}}">
@@ -941,6 +965,16 @@ class Component extends DCLogic {
         log: [['Diundangkan', '31 Maret 2023', 'Menetapkan Perppu 2/2022 menjadi undang-undang'], ['Status', '12 Okt 2026', 'Aktif']], versi: [['Naskah asli', '31 Mar 2023']],
         rel: [['Induk', [['UUD 1945', '', 'Dasar konstitusional', 'Naskah dasar negara']]], ['Turunan', [['pp28', 'pp28', 'Peraturan pelaksana', 'perizinan berusaha berbasis risiko'], ['atr13', 'atr13', 'Peraturan pelaksana', 'kesesuaian kegiatan pemanfaatan ruang']]], ['Setingkat & perubahan', [['uu25', 'uu25', 'Diubah sebagian', 'ketentuan penanaman modal']]]] },
       pp28: { ring: [['Objek', 'Standar dan tata cara perizinan berusaha berbasis risiko, termasuk perizinan dasar (KKPR, persetujuan lingkungan, PBG) dan standar waktu setiap layanan.', []], ['Subjek', 'Pelaku usaha, kementerian/lembaga, dan pemerintah daerah penyelenggara perizinan melalui OSS.', []], ['Kewajiban', 'Memproses perizinan melalui OSS sesuai standar waktu; persetujuan KKPR melalui penilaian dalam batas waktu yang ditetapkan.', ['Pasal 22', 'Pasal 68–75']], ['Konsekuensi', 'Perizinan dianggap disetujui (fiktif positif) bila batas waktu terlewati; pelaku usaha yang tidak memenuhi standar dikenai sanksi administratif.', ['Pasal 22 ayat (3)', 'Pasal 225 ayat (1)', 'Pasal 230']]],
+        // Jejak historis: [nomor, id (bila ada di daftar), judul, tanggal, jalur, peristiwa, status, catatan]
+        jejak: [
+          ['PP No. 24 Tahun 2018', '', 'Pelayanan Perizinan Berusaha Terintegrasi Secara Elektronik', '21 Jun 2018', 'pp', 'Ditetapkan', 'cabut', 'Memperkenalkan OSS dan NIB; izin terbit berbasis komitmen pemenuhan syarat.'],
+          ['UU No. 11 Tahun 2020', '', 'Cipta Kerja', '2 Nov 2020', 'uu', 'Diundangkan', 'cabut', 'Mengganti rezim izin menjadi perizinan berusaha berbasis risiko.'],
+          ['PP No. 5 Tahun 2021', '', 'Penyelenggaraan Perizinan Berusaha Berbasis Risiko', '2 Feb 2021', 'pp', 'Ditetapkan · mencabut PP 24/2018', 'cabut', 'Melaksanakan UU 11/2020; OSS berbasis risiko (OSS RBA) mulai dipakai.'],
+          ['Putusan MK No. 91/PUU-XVIII/2020', '', 'Uji formil UU Cipta Kerja', '25 Nov 2021', 'mk', 'UU 11/2020 dinyatakan inkonstitusional bersyarat', 'putusan', 'Pembentuk UU wajib memperbaiki dalam 2 tahun; penerbitan peraturan pelaksana baru yang strategis ditangguhkan.'],
+          ['Perppu No. 2 Tahun 2022', '', 'Cipta Kerja', '30 Des 2022', 'uu', 'Ditetapkan · mencabut UU 11/2020', 'ganti', 'Menindaklanjuti putusan MK; kemudian ditetapkan menjadi undang-undang.'],
+          ['UU No. 6 Tahun 2023', 'uu6', 'Penetapan Perppu 2/2022 menjadi Undang-Undang', '31 Mar 2023', 'uu', 'Diundangkan', 'aktif', 'Dasar hukum perizinan berbasis risiko yang berlaku saat ini.'],
+          ['PP No. 28 Tahun 2025', 'pp28', 'Penyelenggaraan Perizinan Berusaha Berbasis Risiko', '2025', 'pp', 'Ditetapkan · mencabut PP 5/2021', 'kini', 'Menambah standar waktu layanan dan fiktif positif; berlaku sebagai acuan perizinan saat ini.']
+        ],
         log: [['Ditetapkan', '2025', 'Mencabut PP 5/2021 tentang perizinan berbasis risiko'], ['Fiktif positif berlaku', '2 Juni 2025', 'Tahap I: kajian teknis pertanahan PKKPR dan 6 sektor'], ['Status', '12 Okt 2026', 'Aktif']], versi: [['Naskah asli', '2025']],
         rel: [['Induk', [['uu6', 'uu6', 'Melaksanakan', 'amanat perizinan berbasis risiko'], ['uu25', 'uu25', 'Merujuk', 'pelayanan penanaman modal']]], ['Turunan', [['pm5', 'pm5', 'Pedoman pelaksanaan', 'tata cara layanan melalui OSS'], ['atr13', 'atr13', 'Pelaksanaan KKPR', 'kesesuaian kegiatan pemanfaatan ruang']]], ['Setingkat', [['pp35', 'pp35', 'Retribusi PBG', 'ketentuan umum retribusi daerah'], ['PP No. 22 Tahun 2021', '', 'Persetujuan lingkungan', 'tata cara persetujuan lingkungan']]]] },
       pp35: { ring: [['Objek', 'Ketentuan umum pemungutan pajak daerah dan retribusi daerah sebagai pelaksanaan UU 1/2022.', ['Pasal 1', 'Pasal 2']], ['Subjek', 'Pemerintah daerah dan wajib pajak/retribusi daerah.', ['Pasal 1', 'Pasal 2']], ['Kewajiban', 'Pemerintah daerah menyesuaikan Perda pajak dan retribusi daerah.', ['Pasal 1', 'Pasal 2']], ['Konsekuensi', 'Perda yang tidak sesuai dievaluasi dan dapat diminta untuk diubah.', ['Pasal 1', 'Pasal 2']]],
@@ -1224,6 +1258,14 @@ class Component extends DCLogic {
       log: D ? D.log.map(([a, b, c]) => ({ a, b, c })) : [{ a: 'Diundangkan', b: String(r.tahun), c: '' }, { a: 'Status', b: '12 Okt 2026', c: 'Aktif' }],
       versi: D ? D.versi.map(([l, t]) => ({ l, t })) : [{ l: 'Naskah asli', t: String(r.tahun) }],
       hasRel: !!D, noRel: !D,
+      hasJejak: !!(D && D.jejak),
+      jejak: D && D.jejak ? D.jejak.map(([no, id, judul, tgl, jl, ev, stt, note], i, a) => {
+        const S = { cabut: ['Dicabut', '#F1F5F9', '#64748B', '#CBD5E1'], putusan: ['Putusan MK', '#FEF3C7', '#B45309', '#F59E0B'], ganti: ['Ditetapkan menjadi UU', '#F1F5F9', '#64748B', '#CBD5E1'], aktif: ['Berlaku', '#DCFCE7', '#15803D', '#16A34A'], kini: ['Berlaku · versi saat ini', '#DBEAFE', '#1D4ED8', '#1D4ED8'] }[stt];
+        const JL = { pp: ['Peraturan pelaksana (PP)', '#1D4ED8'], uu: ['Dasar hukum (UU/Perppu)', '#0B1F4B'], mk: ['Putusan pengadilan', '#B45309'] }[jl];
+        const tgt = id && id !== r.id ? byId[id] : null;
+        return { no, judul, tgl, ev, note, stL: S[0], stBg: S[1], stC: S[2], dot: S[3], jlL: JL[0], jlC: JL[1], cur: stt === 'kini', bg: stt === 'kini' ? '#F5F9FF' : '#FFFFFF', bd: stt === 'kini' ? '#93C5FD' : '#E3E8F0', op: stt === 'cabut' || stt === 'ganti' ? '.85' : '1', line: i < a.length - 1, link: !!tgt, noLink: !tgt, open: tgt ? openReg(id) : null };
+      }) : [],
+      jejakSum: D && D.jejak ? D.jejak.filter((x) => x[4] === 'pp').length + ' generasi peraturan pelaksana · ' + (D.jejak.filter((x) => x[4] === 'uu').length - 1) + ' kali pergantian dasar hukum · ' + D.jejak.filter((x) => x[6] === 'cabut' || x[6] === 'ganti').length + ' naskah tidak berlaku lagi' : '',
       rel: D ? D.rel.map(([t, items]) => ({ t: t.toUpperCase(), items: items.map(([ref, id, rel, note]) => { const tgt = id && byId[id];
         return { ref: tgt ? tgt.nomor : ref, rel, note: note || (tgt ? tgt.judul : '—'), c: tgt ? '#1D4ED8' : '#0F172A', cls: tgt ? 'rw' : '', open: tgt ? openReg(id) : null }; }) })) : [] };
     // insight rinci: dampak substansi bagi investasi + dampak perubahan terhadap regulasi terkait
