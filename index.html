@@ -78,9 +78,14 @@
     <iframe src="./dashboards/perizinan.html" title="4 · Kemudahan Berusaha &amp; Pelayanan Perizinan" width="100%" loading="lazy"></iframe>
   </section>
 
+  <!-- Section 4: Analisis Keselarasan Regulasi dan Tindak Lanjut -->
+  <section class="board" id="harmonisasi-page-4" data-harmonisasi-app-page="4" aria-hidden="true">
+    <iframe src="./dashboards/keselarasan.html" title="5 · Keselarasan Regulasi &amp; Tindak Lanjut" width="100%" loading="lazy"></iframe>
+  </section>
+
   <script>
     (function() {
-      var tabNames = ["payung", "peluang", "demografi", "perizinan"];
+      var tabNames = ["payung", "peluang", "demografi", "perizinan", "keselarasan"];
       var boards = Array.from(document.querySelectorAll("section.board[data-harmonisasi-app-page]"));
 
       function setActive(index, updateHash) {
@@ -110,10 +115,36 @@
       }
 
       function syncFromHash() {
-        var hash = (location.hash || "").replace(/^#/, "").toLowerCase();
-        var idx = tabNames.indexOf(hash);
+        var raw = (location.hash || "").replace(/^#/, "");
+        var parts = raw.split("/");
+        var idx = tabNames.indexOf(parts[0].toLowerCase());
+        // Deep link detail temuan: #keselarasan/T-007
+        if (idx === 4 && parts[1]) {
+          var frame = boards[4] && boards[4].querySelector("iframe");
+          var want = "./dashboards/keselarasan.html?temuan=" + encodeURIComponent(parts[1].toUpperCase());
+          if (frame && frame.getAttribute("src") !== want) frame.setAttribute("src", want);
+        }
         setActive(idx < 0 ? 0 : idx, false);
       }
+
+      // Iframe setinggi konten, jadi position:fixed di dalamnya tidak mengikuti layar.
+      // Kirim posisi viewport (dalam koordinat iframe) agar pop-up bisa diletakkan di area terlihat.
+      function sendViewport(frame) {
+        if (!frame || !frame.contentWindow) return;
+        try {
+          frame.contentWindow.postMessage({
+            type: "harmonisasi:viewport",
+            top: Math.max(0, -frame.getBoundingClientRect().top),
+            height: window.innerHeight
+          }, "*");
+        } catch(e) {}
+      }
+      function sendViewportActive() {
+        var active = boards.find(function(b) { return b.classList.contains("is-active"); });
+        if (active) sendViewport(active.querySelector("iframe"));
+      }
+      window.addEventListener("scroll", sendViewportActive, { passive: true });
+      window.addEventListener("resize", sendViewportActive);
 
       window.addEventListener("message", function(event) {
         var data = event.data;
@@ -131,6 +162,14 @@
             var frame = board.querySelector("iframe");
             if (frame) frame.style.height = height + "px";
           }
+          return;
+        }
+
+        if (data.type === "harmonisasi:modal") {
+          // Pop-up di dalam iframe: kunci scroll halaman dan kirim area layar yang terlihat
+          document.documentElement.style.overflow = data.open ? "hidden" : "";
+          document.body.style.overflow = data.open ? "hidden" : "";
+          if (board) sendViewport(board.querySelector("iframe"));
           return;
         }
 
@@ -153,6 +192,7 @@
               try {
                 f.contentWindow.postMessage({ type: "harmonisasi:resize-request" }, "*");
               } catch(e) {}
+              sendViewport(f);
             });
           }
         });

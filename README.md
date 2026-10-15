@@ -12,13 +12,18 @@ harmonisasi-investasi-vercel/
 ├── assets/
 │   ├── dc-runtime.js               # Runtime logic & reactive binder
 │   ├── inter.css                   # Definisi tipografi resmi Inter
+│   ├── keselarasan-data.js         # Data contoh (mock) Modul 5, siap diganti respons API
+│   ├── peluang-geo.js              # Batas kab/kota Top 5 PDRB untuk peta lapisan Modul 2
 │   ├── react.production.min.js     # React 18.3.1 UMD
 │   └── react-dom.production.min.js # ReactDOM 18.3.1 UMD
 ├── dashboards/
 │   ├── payung.html                 # Modul 1: Payung Kebijakan Investasi
 │   ├── peluang.html                # Modul 2: Peluang Investasi Daerah
 │   ├── demografi.html              # Modul 3: Demografi & Mobilitas Penduduk
-│   └── perizinan.html              # Modul 4: Kemudahan Berusaha & OSS RBA
+│   ├── perizinan.html              # Modul 4: Kemudahan Berusaha & OSS RBA
+│   └── keselarasan.html            # Modul 5: Keselarasan Regulasi & Tindak Lanjut
+├── scripts/
+│   └── build_peluang_geo.py        # Generator assets/peluang-geo.js dari GeoJSON
 ├── index.html                      # Shell eksekutif responsif (~6.7 KB)
 ├── index.monolith.backup.html      # Backup bundel monolitik awal (~3.09 MB)
 ├── vercel.json                     # Konfigurasi caching, security headers & routing
@@ -45,6 +50,7 @@ harmonisasi-investasi-vercel/
      - `/#peluang` : Peluang Investasi Daerah
      - `/#demografi` : Demografi & Mobilitas Penduduk
      - `/#perizinan` : Kemudahan Berusaha & Pelayanan Perizinan
+     - `/#keselarasan` : Keselarasan Regulasi & Tindak Lanjut (detail temuan: `/#keselarasan/T-007`)
    - Tinggi iframe otomatis menyesuaikan tinggi konten (`postMessage harmonisasi:resize`) tanpa scrollbar ganda.
 
 ---

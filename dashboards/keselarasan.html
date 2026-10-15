@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta charset="utf-8">
+<title>Analisis Keselarasan Regulasi dan Tindak Lanjut</title>
+<link rel="stylesheet" href="../assets/inter.css">
+<script src="../assets/react.production.min.js"></script>
+<script src="../assets/react-dom.production.min.js"></script>
+<script src="../assets/dc-runtime.js"></script>
+<script src="../assets/keselarasan-data.js"></script>
+<style id="setneg-theme-overrides">
+:root{font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#1f2937;background:#f7f9fc;color-scheme:light}
+html,body{min-height:100%;background:#f7f9fc!important;color:#1f2937!important;font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif!important}
+body *,button,input,select,textarea{font-family:inherit}
+body{margin:0!important}
+main{background:#f7f9fc!important;color:#1f2937!important}
+header{background:#fff!important;border-bottom:1px solid #e5e7eb!important;box-shadow:0 1px 3px rgba(15,23,42,.08)!important}
+nav[aria-label="Menu utama"]{background:#f3f4f6!important;border-color:#e5e7eb!important}
+nav[aria-label="Menu utama"] button:hover{background:#e5e7eb!important}
+section,.ck{background:#fff!important;border:1px solid #e5e7eb!important;border-radius:14px!important;box-shadow:0 1px 3px rgba(15,23,42,.08)!important}
+section>div[style*="border-bottom"],section>div[style*="border-top"]{border-color:#eef0f3!important}
+section [style*="border-top: 1px solid"],section [style*="border-bottom: 1px solid"]{border-color:#eef0f3!important}
+h1,h2,h3,h4{font-family:inherit!important;color:#1f2937!important;letter-spacing:-.015em}
+h2,h3{font-weight:700!important}
+button{transition:background-color .15s ease,border-color .15s ease,box-shadow .15s ease}
+button:focus-visible,a:focus-visible{outline:2px solid #0f827d!important;outline-offset:2px}
+.ews-highlight{margin-left:auto;display:flex;flex-wrap:wrap;align-items:center;gap:6px;padding:8px 10px;border:1px solid #fde68a;border-radius:12px;background:#fffbeb}
+.ews-highlight>span{font-weight:700!important;color:#92400e!important}
+.ews-highlight a{height:auto!important;min-height:28px;padding:5px 10px!important;border-radius:8px!important;background:#fef3c7!important;border:1px solid #fcd34d!important;color:#92400e!important;font-weight:700!important}
+.ews-highlight a:hover{background:#fde68a!important}
+[style*="background: #DC2626"],[style*="background:#DC2626"],[style*="background: #B91C1C"],[style*="background:#B91C1C"]{background-color:#fef3c7!important;border-color:#fcd34d!important;color:#92400e!important}
+[style*="background: #FFF8F8"],[style*="background:#FFF8F8"]{background-color:#fffbeb!important}
+[style*="border-left: 4px solid #DC2626"],[style*="border-left:4px solid #DC2626"]{border-left-color:#d97706!important}
+@media(max-width:900px){main[style*="max-width"]{padding-left:16px!important;padding-right:16px!important}header{padding-left:16px!important;padding-right:16px!important}}
+@media(max-width:680px){.ews-highlight{width:100%;margin-left:0}section{border-radius:12px!important}main[style*="max-width"]{gap:12px!important}}
+
+[style*="background: rgb(220, 38, 38)"]{background-color:#fef3c7!important;border-color:#fcd34d!important;color:#92400e!important}
+[style*="background: rgb(255, 248, 248)"]{background-color:#fffbeb!important}
+[style*="border-left: 4px solid rgb(220, 38, 38)"]{border-left-color:#d97706!important}
+
+.setneg-global-header{position:relative!important;z-index:50;background:#fff!important;border-bottom:1px solid #e5e7eb!important;box-shadow:0 1px 3px rgba(15,23,42,.08)!important;padding:0 32px!important;min-height:64px!important;display:flex!important;flex-wrap:wrap!important;align-items:center!important;justify-content:space-between!important}
+.setneg-global-header:before{content:"";position:absolute;inset:0 0 auto;height:64px;background:linear-gradient(180deg,rgba(254,243,199,.48),transparent);pointer-events:none}
+.setneg-header-inner{position:relative;min-height:64px;max-width:1600px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.setneg-brand{flex:0 0 auto;display:flex;align-items:center;gap:12px;min-width:260px;text-decoration:none;color:#1a3a6e}
+.setneg-brand img{display:block;width:40px;height:40px;object-fit:contain}
+.setneg-brand-copy{display:flex;flex-direction:column;gap:1px}
+.setneg-brand-copy strong{font-size:16px;line-height:20px;font-weight:750;letter-spacing:.01em;color:#1a3a6e}
+.setneg-brand-copy span{font-size:11px;line-height:14px;color:#6b7280}
+.setneg-global-nav{display:flex;align-items:center;justify-content:center;gap:2px;padding:4px;background:#f3f4f6;border:1px solid #e5e7eb;border-radius:999px;white-space:nowrap}
+.setneg-global-nav button{display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 10px;border:0;border-radius:999px;background:transparent;color:#4b5563;font:500 11px/1 ui-sans-serif,system-ui,sans-serif;cursor:pointer;white-space:nowrap}
+.setneg-global-nav button svg{width:15px;height:15px;flex:none}
+.setneg-global-nav button:hover{background:#e5e7eb;color:#1f2937}
+.setneg-global-nav button[aria-current="page"]{background:#0d1a33;color:#fff;box-shadow:0 2px 5px rgba(15,23,42,.18)}
+.setneg-header-tools{flex:0 0 auto;display:flex;align-items:center;gap:12px}
+.setneg-theme-button{width:36px;height:36px;border:1px solid #e5e7eb;border-radius:999px;background:#f3f4f6;color:#334155;display:grid;place-items:center}
+.setneg-theme-button svg{width:17px;height:17px}
+.setneg-user{display:flex;align-items:center;gap:9px;color:#1f2937}
+.setneg-avatar{width:30px;height:30px;display:grid;place-items:center;border-radius:50%;background:#db2777;color:#fff;font-size:11px;font-weight:700}
+.setneg-user-copy{display:flex;flex-direction:column;line-height:1.2}
+.setneg-user-copy strong{font-size:11.5px;font-weight:650}
+.setneg-user-copy span{font-size:10px;color:#6b7280}
+.setneg-user-chevron{width:13px;height:13px;color:#64748b}
+@media(max-width:1100px){.setneg-brand{min-width:225px}.setneg-global-nav button{padding:0 7px}.setneg-global-nav button span{font-size:10px}}
+@media(max-width:850px){.setneg-global-header{padding:8px 16px!important}.setneg-header-inner{flex-wrap:wrap;gap:10px}.setneg-global-nav{order:3;width:100%;overflow-x:auto;justify-content:flex-start}.setneg-global-nav button{flex:none}.setneg-brand{min-width:0}.setneg-brand-copy span:last-child{display:none}}
+@media(max-width:480px){.setneg-brand img{width:34px;height:34px}.setneg-brand-copy strong{font-size:13px}.setneg-brand-copy span{font-size:9px}.setneg-user-copy,.setneg-user-chevron{display:none}.setneg-header-tools{margin-left:auto}}
+
+.harmonisasi-page-tabs{box-sizing:border-box;width:calc(100% - 64px);max-width:1376px;margin:10px auto 0;padding:4px;display:flex;gap:4px;overflow-x:auto;white-space:nowrap;background:#fff;border:1px solid #e2e8f0;border-radius:10px;scrollbar-width:thin}
+.harmonisasi-page-tabs a{flex:0 0 auto;display:inline-flex;align-items:center;min-height:32px;padding:0 12px;border-radius:7px;color:#334155;font-size:11px;font-weight:500;text-decoration:none;transition:background .15s,color .15s}
+.harmonisasi-page-tabs a:hover{background:#eff6ff;color:#1d4ed8}
+.harmonisasi-page-tabs a[aria-current="page"]{background:#0b1426;color:#fff;font-weight:650}
+.harmonisasi-page-tabs a:focus-visible{outline:2px solid #2563eb;outline-offset:2px}
+.harmonisasi-highlights{box-sizing:border-box;width:calc(100% - 64px);max-width:1376px;margin:12px auto 0;padding:14px 16px 10px;background:#fff;border:1px solid #e5e7eb;border-radius:16px;box-shadow:0 1px 3px rgba(15,23,42,.10)}
+.harmonisasi-highlights-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
+.harmonisasi-highlights-head h2{margin:0;display:flex;align-items:center;gap:8px;color:#0f172a;font-size:14px;font-weight:700;white-space:nowrap}
+.harmonisasi-warning-symbol{width:16px;height:16px;fill:none;stroke:#ef4444;stroke-linecap:round;stroke-linejoin:round;stroke-width:2}.harmonisasi-alert-icon svg{width:17px;height:17px;fill:none;stroke:#1d4ed8;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.8}
+.harmonisasi-highlights-head>span{flex:0 0 auto;color:#64748b;font-size:10px}
+.harmonisasi-alert-track{display:flex;gap:12px;overflow-x:auto;padding:2px 0 10px;scroll-snap-type:x mandatory;scrollbar-color:#cbd5e1 transparent;scrollbar-width:thin}
+.harmonisasi-alert-card{box-sizing:border-box;flex:0 0 calc((100% - 24px)/3);min-width:300px;padding:10px 11px;background:#fffbeb;border:1px solid #facc15;border-radius:17px;scroll-snap-align:start}
+.harmonisasi-alert-heading{display:flex;align-items:center;gap:9px;min-height:40px;margin-bottom:8px}
+.harmonisasi-alert-icon{flex:0 0 34px;width:34px;height:34px;display:grid;place-items:center;border-radius:50%;background:#fff;color:#0f172a;font-size:16px;font-weight:700}
+.harmonisasi-alert-title{min-width:0;flex:1;display:flex;flex-direction:column;gap:3px}
+.harmonisasi-alert-title strong{color:#0f172a;font-size:11px;line-height:1.25}
+.harmonisasi-alert-title>span{color:#64748b;font-size:9px}
+.harmonisasi-alert-meta{flex:0 0 auto;display:flex;flex-direction:column;align-items:flex-end;gap:3px;color:#64748b;font-size:9px;text-align:right}
+.harmonisasi-alert-details{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}
+.harmonisasi-alert-details>div{min-width:0;min-height:65px;padding:7px;border-radius:10px;background:rgba(255,255,255,.82)}
+.harmonisasi-alert-details b{display:block;margin-bottom:4px;color:#ef4444;font-size:9px;font-weight:600}
+.harmonisasi-alert-details>div:nth-child(2) b{color:#f97316}
+.harmonisasi-alert-details>div:nth-child(3) b{color:#059669}
+.harmonisasi-alert-details p{margin:0;color:#334155;font-size:9px;line-height:1.4;overflow-wrap:anywhere}
+.harmonisasi-alert-empty{padding:12px 14px;border:1px dashed #cbd5e1;border-radius:11px;background:#f8fafc;color:#64748b;font-size:11px}
+@media(max-width:760px){.harmonisasi-page-tabs,.harmonisasi-highlights{width:calc(100% - 24px)}.harmonisasi-alert-card{flex-basis:86%;min-width:270px}.harmonisasi-highlights{padding:12px}.harmonisasi-alert-details{gap:5px}.harmonisasi-alert-details>div{padding:6px}}
+.mzl-backdrop{position:fixed;inset:0;z-index:150;background:rgba(15,23,42,.45);display:flex;align-items:flex-start;justify-content:center;overflow-y:auto;overscroll-behavior:contain;padding:24px 16px 32px}.mzl-panel{width:1040px;max-width:100%;display:flex;flex-direction:column;background:#FFFFFF;border-radius:14px;box-shadow:0 24px 64px rgba(15,23,42,.3);overflow:hidden}.mzl-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding:14px 18px;border-bottom:1px solid #EEF2F7}.mzl-head-aside{display:flex;align-items:center;gap:8px;flex:none;flex-wrap:wrap}.mzl-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;padding:10px 18px;border-bottom:1px solid #EEF2F7}.mzl-tabs{display:flex;flex-wrap:wrap;gap:6px;padding:10px 18px;border-bottom:1px solid #EEF2F7}.mzl-body{flex:1;overflow:auto;overscroll-behavior:contain}.mzl-table{min-width:940px}
+.mzl-hint{display:none;padding:8px 18px;background:#FFFBEB;border-bottom:1px solid #FDE68A;font-size:11px;color:#92400E;font-weight:600}.mzl-cols{display:grid;grid-template-columns:inherit;gap:10px;padding:8px 18px;background:#F8FAFC;font-size:10.5px;font-weight:700;letter-spacing:.4px;color:#64748B;position:sticky;top:0}.mzl-foot{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px;padding:10px 18px;border-top:1px solid #EEF2F7;background:#FAFBFD}@media(max-width:900px){.mzl-head{flex-direction:column;align-items:stretch}.mzl-head-aside{align-self:flex-start}.mzl-stats,.mzl-tabs,.mzl-foot,.mzl-hint{padding-left:14px;padding-right:14px}.mzl-hint{display:block}.mzl-body{-webkit-overflow-scrolling:touch}}@media(max-width:640px){.mzl-backdrop{padding:0}.mzl-panel{width:100%;max-width:100%;height:100%;border-radius:0;box-shadow:none}.mzl-stats{grid-template-columns:repeat(auto-fit,minmax(112px,1fr))}}.mzi{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;margin:12px 16px 14px;padding:10px 13px;border:1px solid #E0E7FF;border-radius:10px;background:#F8F9FF}.mzi-b{flex:none;padding:2px 8px;border-radius:5px;background:#3730A3;color:#FFFFFF;font-size:10.5px;font-weight:700;letter-spacing:.02em}.mzi-l{flex:1 1 340px;min-width:0;display:flex;flex-wrap:wrap;gap:3px 20px;margin:0;padding:0;list-style:none;font-size:12px;line-height:17px;color:#334155}.mzi-l li{position:relative;padding-left:13px}.mzi-l li:before{content:"";position:absolute;left:0;top:7px;width:5px;height:5px;border-radius:99px;background:#6366F1}.mzi-s{flex:none;font-size:10.5px;font-weight:600;color:#6366F1}@media(max-width:680px){.mzi{margin:10px 12px 12px}.mzi-l{flex:1 1 100%}}.ews-modal-backdrop{position:fixed;left:0;right:0;top:var(--ews-vp-top,0px);height:var(--ews-vp-h,100vh);z-index:2000;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:24px 16px;box-sizing:border-box;background:rgba(15,23,42,.55);backdrop-filter:blur(2px);overscroll-behavior:contain}
+.ews-modal-panel{background:#fff;border-radius:10px;box-shadow:0 25px 50px -12px rgba(0,0,0,.35);max-width:1024px;width:100%;max-height:100%;display:flex;flex-direction:column;overflow:hidden;border:1px solid #E5E7EB;outline:none}
+.ews-modal-body{display:grid;grid-template-columns:minmax(0,1.75fr) minmax(0,1fr);flex:1;min-height:0;overflow:hidden;overscroll-behavior:contain}
+.ews-modal-main{padding:28px 32px;overflow-y:auto;display:flex;flex-direction:column;gap:0;overscroll-behavior:contain}
+.ews-modal-side{padding:26px 24px;background:#F9FAFB;border-left:1px solid #E5E7EB;overflow-y:auto;display:flex;flex-direction:column;gap:24px;overscroll-behavior:contain}
+.ews-modal-h4{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#6B7280;margin:0 0 10px;display:flex;align-items:center;gap:6px}
+.ews-modal-body p{margin:0;font-size:14px;line-height:1.6;color:#111827}
+.ews-tl{position:relative;padding-left:18px;display:flex;flex-direction:column;gap:12px}
+.ews-tl:before{content:"";position:absolute;left:4px;top:5px;bottom:5px;width:2px;background:#E5E7EB}
+.ews-tl-item{position:relative}
+.ews-tl-item:before{content:"";position:absolute;left:-18px;top:4px;width:10px;height:10px;border-radius:50%;background:#fff;border:2px solid #2563EB}
+.ews-tl-d{font-size:11px;font-weight:700;color:#2563EB;letter-spacing:.02em}
+.ews-tl-t{font-size:12.5px;line-height:1.5;color:#374151;margin-top:2px}
+.ews-sh{display:flex;align-items:flex-start;gap:10px;padding:9px 10px;border-radius:6px;border:1px solid #E5E7EB;background:#fff}
+.ews-sh-r{font-size:13px;font-weight:600;color:#111827}
+.ews-sh-n{font-size:11.5px;color:#6B7280;margin-top:1px}
+.ews-stamp{display:flex;flex-direction:column;align-items:flex-end;gap:1px;text-align:right;line-height:1.35;padding-right:2px}
+.ews-stamp-k{font-size:9.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#9CA3AF}
+.ews-stamp-v{font-size:13.5px;font-weight:700;color:#111827;white-space:nowrap}
+.ews-stamp-t{font-size:11px;color:#6B7280;white-space:nowrap;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ews-sec{padding:0}
+.ews-sec+.ews-sec{margin-top:22px;padding-top:22px;border-top:1px solid #EEF0F3}
+.ews-sec .ews-modal-h4{margin:0 0 8px;font-size:11px;font-weight:600;letter-spacing:.08em;color:#64748B}
+.ews-sec p{margin:0;padding:0;border:0;background:none;font-size:15px;line-height:1.7;color:#1F2937}
+.ews-s3{margin-top:26px!important;padding:18px 20px!important;border:0!important;border-left:2px solid #1a3a6e!important;border-radius:0 8px 8px 0;background:#F8FAFC}
+.ews-s3 .ews-modal-h4{color:#1a3a6e}
+.ews-s3 p{color:#0F172A}
+@media(max-width:640px){.ews-stamp{display:none}}
+
+.harmonisasi-alert-card{cursor:pointer;transition:border-color .15s ease,box-shadow .15s ease,transform .15s ease}
+.harmonisasi-alert-card:hover,.harmonisasi-alert-card:focus-visible{border-color:#f59e0b!important;box-shadow:0 6px 18px rgba(180,83,9,.16)!important;transform:translateY(-1px);outline:none}
+.harmonisasi-alert-card:focus-visible{box-shadow:0 0 0 3px rgba(245,158,11,.35)!important}
+@media(max-width:860px){.ews-modal-backdrop{padding:0;align-items:stretch}.ews-modal-panel{max-width:100%;border-radius:0;max-height:none;height:100%}.ews-modal-body{grid-template-columns:1fr;overflow-y:auto}.ews-modal-main,.ews-modal-side{overflow:visible;border-left:0;border-top:1px solid #E5E7EB}.ews-modal-main{padding:20px 16px}.ews-modal-side{padding:16px}}
+</style>
+<style id="harmonisasi-centered-tabs">
+.harmonisasi-page-tabs{box-sizing:border-box!important;width:fit-content!important;max-width:calc(100% - 32px)!important;margin:16px auto 0!important;padding:4px 8px!important;display:flex!important;flex-wrap:nowrap!important;justify-content:center!important;gap:4px!important;overflow-x:auto!important;background:#F1F3F7!important;border:1px solid #E7EAF0!important;border-radius:12px!important;scrollbar-width:none!important}
+.harmonisasi-page-tabs::-webkit-scrollbar{display:none}
+@media(max-width:760px){.harmonisasi-page-tabs{max-width:calc(100% - 24px)!important;justify-content:flex-start!important}}
+</style><style id="harmonisasi-vercel-responsive">
+html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-height:0!important}main[style*="max-width"]{box-sizing:border-box;width:100%!important;max-width:1376px!important;margin-inline:auto!important}main[style*="max-width"]>*{min-width:0;max-width:100%}.harmonisasi-page-tabs{width:fit-content!important;max-width:calc(100% - 24px)!important}
+@media(max-width:900px){.setneg-global-header{padding-left:16px!important;padding-right:16px!important;gap:8px 12px!important}.setneg-global-nav{gap:2px!important}.setneg-global-nav button{padding:7px 8px!important}main[style*="max-width"]{padding-left:16px!important;padding-right:16px!important}}
+@media(max-width:680px){.setneg-global-header{padding:10px 12px!important;min-height:0!important;gap:8px!important;justify-content:flex-start!important}.setneg-global-header:before{height:100%!important}.setneg-brand{min-width:0!important;flex:1 1 calc(100% - 100px)!important;gap:8px!important}.setneg-brand img{width:34px!important;height:34px!important;object-fit:contain!important}.setneg-brand-copy{min-width:0!important;display:flex!important}.setneg-brand-copy strong{font-size:11px!important;white-space:nowrap!important}.setneg-brand-copy span{display:none!important}.setneg-header-tools{margin-left:auto!important;gap:8px!important}.setneg-user-copy,.setneg-user-chevron{display:none!important}.setneg-global-nav{order:3!important;flex:1 1 100%!important;width:100%!important;max-width:100%!important;overflow-x:auto!important;flex-wrap:nowrap!important;justify-content:flex-start!important;scrollbar-width:none!important}.setneg-global-nav::-webkit-scrollbar{display:none}.setneg-global-nav button{flex:0 0 auto!important;white-space:nowrap!important;font-size:10px!important;padding:7px 9px!important}.harmonisasi-page-tabs{max-width:calc(100% - 20px)!important;justify-content:flex-start!important;margin-top:10px!important}.harmonisasi-highlights{width:calc(100% - 20px)!important;padding:12px!important;margin-top:10px!important}main[style*="max-width"]{padding:12px 12px 28px!important;gap:12px!important}main section,main article{min-width:0!important}main [style*="grid-template-columns"]{min-width:0!important}}
+@media(max-width:480px){.setneg-global-header{padding:8px 10px!important}.setneg-theme-button{width:30px!important;height:30px!important}.setneg-avatar{width:30px!important;height:30px!important}.harmonisasi-alert-card{flex-basis:88%!important;min-width:260px!important}.harmonisasi-alert-details{gap:5px!important}.harmonisasi-alert-details>div{padding:6px!important}main[style*="max-width"]{padding-left:10px!important;padding-right:10px!important}}
+
+@media(max-width:680px){.sc-host{display:block!important;width:100%!important;max-width:100%!important;min-width:0!important}.sc-host>div{box-sizing:border-box!important;width:100%!important;max-width:100%!important;min-width:0!important}.setneg-global-header{box-sizing:border-box!important;width:100%!important;max-width:100%!important;min-width:0!important;overflow:hidden!important}.setneg-global-nav{box-sizing:border-box!important;min-width:0!important}.setneg-brand{max-width:calc(100% - 100px)!important}.harmonisasi-page-tabs{box-sizing:border-box!important;min-width:0!important}}
+@media(max-width:520px){.harmonisasi-page-tabs{width:calc(100% - 20px)!important;max-width:calc(100% - 20px)!important;display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;white-space:normal!important;overflow:visible!important;justify-content:stretch!important}.harmonisasi-page-tabs a{min-width:0!important;min-height:40px!important;padding:5px 7px!important;justify-content:center!important;white-space:normal!important;text-align:center!important;line-height:1.25!important}}
+</style></head>
+<body>
+<x-dc>
+<helmet>
+<style>/* cyrillic-ext */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2JL7SUc.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa0ZL7SUc.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek-ext */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2ZL7SUc.woff2) format('woff2');
+  unicode-range: U+1F00-1FFF;
+}
+/* greek */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1pL7SUc.woff2) format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2pL7SUc.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa25L7SUc.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7SUc.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2JL7SUc.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa0ZL7SUc.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek-ext */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2ZL7SUc.woff2) format('woff2');
+  unicode-range: U+1F00-1FFF;
+}
+/* greek */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1pL7SUc.woff2) format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2pL7SUc.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa25L7SUc.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7SUc.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2JL7SUc.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa0ZL7SUc.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek-ext */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2ZL7SUc.woff2) format('woff2');
+  unicode-range: U+1F00-1FFF;
+}
+/* greek */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1pL7SUc.woff2) format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2pL7SUc.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa25L7SUc.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7SUc.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2JL7SUc.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa0ZL7SUc.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek-ext */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2ZL7SUc.woff2) format('woff2');
+  unicode-range: U+1F00-1FFF;
+}
+/* greek */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1pL7SUc.woff2) format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2pL7SUc.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa25L7SUc.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7SUc.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+</style>
+<style>body{margin:0} a{color:#1D4ED8} a:hover{color:#1E40AF} .ck{cursor:pointer;transition:box-shadow .12s,border-color .12s,background .12s} .ck:hover{box-shadow:0 2px 10px rgba(15,23,42,.08);border-color:#82B394 !important} .rw{cursor:pointer} .rw:hover{background:#EFF6FF !important} .tip{position:relative;outline:none} .tip .pop{display:none;position:absolute;z-index:95;right:0;top:calc(100% + 6px);width:300px;padding:10px 12px;border-radius:10px;background:#0B1F3A;color:#E2E8F0;font-size:11.5px;line-height:17px;font-weight:400;letter-spacing:0;text-align:left;white-space:normal;box-shadow:0 12px 32px rgba(15,23,42,.3)} .tip .pop.l{left:0;right:auto} .tip:hover .pop,.tip:focus .pop{display:block} .bar{cursor:pointer} .bar:hover{filter:brightness(1.06)} .pt:hover{transform:scale(1.25)}</style>
+</helmet>
+<div style="min-height: 100vh; background: #F4F7FB; font-family: Inter, system-ui, sans-serif; color: #0F172A;">
+  <header class="setneg-global-header" aria-label="Header Dashboard Presiden RI"><div class="setneg-header-inner"><a class="setneg-brand" href="#top" aria-label="Dashboard Presiden RI"><img alt="Logo Setneg RI" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Logo_Setneg_RI.svg/330px-Logo_Setneg_RI.svg.png"><span class="setneg-brand-copy"><strong>DASHBOARD PRESIDEN RI</strong><span>Badan Teknologi, Data dan Informasi</span><span>Kementerian Sekretariat Negara Republik Indonesia</span></span></a><nav class="setneg-global-nav" aria-label="Navigasi utama"><button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.5"/></svg><span>Eksekutif</span></button><button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"/><path d="m9 12 2 2 4-4"/></svg><span>Pertahanan &amp; Keamanan</span></button><button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 3v18h18"/><path d="m7 14 4-4 4 3 6-7"/></svg><span>Ekonomi</span></button><button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 11h16v2a8 8 0 0 1-16 0v-2Z"/><path d="M8 7c0-1 1-1 1-2M12 7c0-1 1-1 1-2M16 7c0-1 1-1 1-2"/></svg><span>MBG</span></button><button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 3h10l4 4v14H5z"/><path d="M15 3v5h4M8 12h8M8 16h8"/></svg><span>Kebijakan</span></button><button type="button" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="6" cy="6" r="2"/><circle cx="18" cy="6" r="2"/><circle cx="12" cy="18" r="2"/><path d="M8 7.5 10.8 16M16 7.5 13.2 16M8 6h8"/></svg><span>Harmonisasi</span></button></nav><div class="setneg-header-tools"><button class="setneg-theme-button" type="button" aria-label="Ganti tema"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.5 14.4A8.5 8.5 0 0 1 9.6 3.5 8.7 8.7 0 1 0 20.5 14.4Z"/></svg></button><div class="setneg-user"><span class="setneg-avatar">PS</span><span class="setneg-user-copy"><strong>Prabowo Subianto</strong><span>Presiden</span></span><svg class="setneg-user-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div></div></div></header><nav class="harmonisasi-page-tabs" aria-label="Navigasi tab Harmonisasi Investasi"><a href="#harmonisasi-page-0" data-harmonisasi-tab="0">Payung Kebijakan Investasi</a><a href="#harmonisasi-page-1" data-harmonisasi-tab="1">Peluang Investasi Daerah</a><a href="#harmonisasi-page-2" data-harmonisasi-tab="2">Demografi &amp; Mobilitas Penduduk</a><a href="#harmonisasi-page-3" data-harmonisasi-tab="3">Kemudahan Berusaha &amp; Pelayanan Perizinan</a><a href="#harmonisasi-page-4" aria-current="page" data-harmonisasi-tab="4">Keselarasan Regulasi &amp; Tindak Lanjut</a></nav>
+<main style="max-width: 1376px; margin: 0 auto; padding: 16px 32px 48px; display: flex; flex-direction: column; gap: 16px;">
+  <!-- ======================= A. RINGKASAN & DAFTAR TEMUAN ======================= -->
+  <sc-if value="{{isList}}" hint-placeholder-val="{{true}}">
+  <div style="display: flex; flex-direction: column; gap: 16px;">
+    <!-- 2.1 Bar filter -->
+    <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px;">
+      <span style="height: 36px; padding: 0 12px; border-radius: 8px; background: #FFFFFF; border: 1px solid #E3E8F0; font-size: 12px; color: #475569; display: inline-flex; align-items: center; gap: 4px; box-sizing: border-box;">Tanggal acuan: <b style="color: #0F172A;">{{acuan}}</b></span>
+      <sc-for list="{{fl}}" as="f" hint-placeholder-count="4">
+        <div style="position: relative;">
+          <button type="button" sc-camel-on-click="{{f.toggle}}" aria-haspopup="listbox" aria-expanded="{{f.open}}" style="height: 36px; padding: 0 12px; border-radius: 8px; background: {{f.bg}}; border: 1px solid {{f.bd}}; font-family: inherit; font-size: 12px; color: #475569; cursor: pointer;">{{f.l}}: <b style="color: #0F172A;">{{f.v}}</b> ▾</button>
+          <sc-if value="{{f.open}}" hint-placeholder-val="{{false}}">
+            <div role="listbox" style="position: absolute; z-index: 60; top: 40px; left: 0; min-width: 300px; max-height: 360px; overflow-y: auto; padding: 6px; border-radius: 10px; background: #FFFFFF; border: 1px solid #E3E8F0; box-shadow: 0 12px 32px rgba(15,23,42,.16); display: flex; flex-direction: column; gap: 2px;">
+              <sc-for list="{{f.opts}}" as="o" hint-placeholder-count="5"><button type="button" role="option" sc-camel-on-click="{{o.pick}}" class="rw" style="padding: 8px 10px; border: 0; border-radius: 6px; background: {{o.bg}}; font-family: inherit; font-size: 12.5px; color: {{o.dim}}; font-weight: {{o.w}}; text-align: left; display: flex; justify-content: space-between; gap: 12px; cursor: pointer;"><span>{{o.l}}</span><span style="color: #94A3B8;">{{o.n}}</span></button></sc-for>
+            </div>
+          </sc-if>
+        </div>
+      </sc-for>
+      <sc-if value="{{hasF}}" hint-placeholder-val="{{false}}"><button type="button" sc-camel-on-click="{{resetF}}" style="height: 36px; padding: 0 10px; border: 0; background: transparent; font-family: inherit; font-size: 12px; font-weight: 600; color: #1D4ED8; cursor: pointer;">Reset filter</button><button type="button" sc-camel-on-click="{{toList}}" style="margin-left: auto; padding: 0; border: 0; background: transparent; font-family: inherit; font-size: 12px; font-weight: 600; color: #1D4ED8; cursor: pointer;">{{nF}} temuan sesuai filter ↓</button></sc-if>
+    </div>
+
+    <!-- 2.2 Kartu indikator -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px;">
+      <sc-for list="{{kpi}}" as="k" hint-placeholder-count="4">
+        <button type="button" sc-camel-on-click="{{k.act}}" style="display: flex; flex-direction: column; gap: 4px; padding: 14px 16px; border-radius: 12px; border: 1px solid {{k.bd}}; border-top: 4px solid {{k.c}}; background: {{k.bg}}; font-family: inherit; text-align: left; cursor: pointer; box-shadow: 0 1px 2px rgba(15,23,42,.05);" class="ck">
+          <span style="font-size: 12px; font-weight: 600; color: #475569;">{{k.l}}</span>
+          <span style="display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap;"><b style="font-size: 28px; letter-spacing: -0.5px; color: {{k.c}};">{{k.v}}</b><span style="font-size: 12.5px; color: #475569;">{{k.u}}</span></span>
+          <span style="font-size: 11.5px; line-height: 16px; color: #475569;">{{k.s}}</span>
+          <span style="margin-top: 4px; font-size: 11.5px; font-weight: 600; color: #1D4ED8;">{{k.a}}</span>
+        </button>
+      </sc-for>
+    </div>
+
+    <!-- 2.3 Tiga panel grafik -->
+    <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: stretch;">
+      <section style="flex: 1 1 380px; min-width: 0; background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; display: flex; flex-direction: column;">
+        <div style="padding: 12px 18px; border-bottom: 1px solid #EEF2F7;"><h2 style="margin: 0; font-size: 14.5px; font-weight: 600;">Alur penilaian keselarasan</h2><div style="font-size: 11.5px; color: #64748B;">Lebar batang = jumlah ÷ 290 regulasi berlaku</div></div>
+        <div role="list" aria-label="Alur penilaian keselarasan regulasi" style="padding: 14px 18px; display: flex; flex-direction: column; gap: 8px; flex: 1;">
+          <sc-for list="{{alur}}" as="a" hint-placeholder-count="5"><button type="button" role="listitem" sc-camel-on-click="{{a.act}}" title="{{a.t}}" aria-label="{{a.t}}" class="rw" style="display: grid; grid-template-columns: minmax(0, 1fr); gap: 4px; padding: 4px 6px; margin: 0 -6px; border: 0; border-radius: 6px; background: transparent; font-family: inherit; text-align: left; cursor: pointer;"><span style="display: flex; justify-content: space-between; gap: 8px; font-size: 12px; color: #334155;"><span>{{a.l}}</span><b style="color: #0F172A;">{{a.n}}</b></span><span style="display: block; height: 10px; border-radius: 5px; background: #EEF2F7;"><span style="display: block; width: {{a.w}}; height: 10px; border-radius: 5px; background: {{a.c}};"></span></span></button></sc-for>
+          <div style="margin-top: 4px; padding: 9px 11px; border-radius: 8px; background: #F8FAFC; border: 1px solid #E3E8F0; font-size: 11.5px; line-height: 17px; color: #334155;"><b>Rumus.</b> {{alurF}}</div>
+          <div style="padding: 9px 11px; border-radius: 8px; background: #EEF2FF; border: 1px solid #C7D2FE; font-size: 11.5px; line-height: 17px; color: #1E293B;"><div style="font-size: 10.5px; font-weight: 700; color: #3730A3;">✦ ANALISIS AI · DIVERIFIKASI ANALIS</div>{{alurA}}</div>
+        </div>
+        <div style="padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;"><span><b style="color: #475569;">Periode:</b> s.d. {{acuan}}</span><span><b style="color: #475569;">Diperbarui:</b> {{meta.diperbarui}}</span><span><b style="color: #475569;">Sumber:</b> JDIH Setneg, JDIH K/L, JDIH pemda</span><span style="padding: 0 6px; border-radius: 4px; background: #DBEAFE; color: #1E40AF; font-weight: 600;">Data resmi</span></div>
+      </section>
+
+      <section style="flex: 1 1 380px; min-width: 0; background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; display: flex; flex-direction: column;">
+        <div style="padding: 12px 18px; border-bottom: 1px solid #EEF2F7;"><h2 style="margin: 0; font-size: 14.5px; font-weight: 600;">Jenis indikasi ketidakselarasan</h2><div style="font-size: 11.5px; color: #64748B;">Klik batang untuk memfilter daftar temuan</div></div>
+        <div role="group" aria-label="Jenis indikasi ketidakselarasan" style="padding: 14px 18px; display: flex; flex-direction: column; gap: 8px; flex: 1;">
+          <sc-for list="{{jenBars}}" as="j" hint-placeholder-count="4"><button type="button" sc-camel-on-click="{{j.pick}}" aria-pressed="{{j.pressed}}" title="{{j.t}}" aria-label="{{j.t}}" class="rw" style="display: grid; grid-template-columns: minmax(0, 1fr); gap: 4px; padding: 5px 6px; margin: 0 -6px; border: 0; border-radius: 6px; background: {{j.bg}}; opacity: {{j.op}}; font-family: inherit; text-align: left; cursor: pointer; transition: opacity .15s;"><span style="display: flex; justify-content: space-between; gap: 8px; font-size: 12px; color: #334155; font-weight: {{j.fw}};"><span>{{j.l}}</span><b style="color: #0F172A;">{{j.n}}</b></span><span style="display: block; height: 12px; border-radius: 6px; background: #EEF2F7;"><span style="display: block; width: {{j.w}}; height: 12px; border-radius: 6px; background: {{j.c}};"></span></span></button></sc-for>
+          <div style="margin-top: auto; font-size: 11.5px; line-height: 17px; color: #64748B;">{{jenNote}}</div>
+        </div>
+        <div style="padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;"><span><b style="color: #475569;">Periode:</b> temuan s.d. {{acuan}}</span><span><b style="color: #475569;">Diperbarui:</b> {{meta.diperbarui}}</span><span><b style="color: #475569;">Sumber:</b> penilaian analis</span><span style="padding: 0 6px; border-radius: 4px; background: #DBEAFE; color: #1E40AF; font-weight: 600;">Diverifikasi analis</span></div>
+      </section>
+
+      <section style="flex: 1 1 380px; min-width: 0; background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; display: flex; flex-direction: column;">
+        <div style="padding: 12px 18px; border-bottom: 1px solid #EEF2F7;"><h2 style="margin: 0; font-size: 14.5px; font-weight: 600;">Status tindak lanjut</h2><div style="font-size: 11.5px; color: #64748B;">13 regulasi berpotensi tidak selaras · klik segmen atau legenda</div></div>
+        <div style="padding: 14px 18px; display: flex; flex-direction: column; gap: 10px; flex: 1;">
+          <div role="group" aria-label="Komposisi status tindak lanjut" style="display: flex; height: 26px; border-radius: 6px; overflow: hidden; background: #EEF2F7;"><sc-for list="{{staSeg}}" as="s" hint-placeholder-count="4"><button type="button" sc-camel-on-click="{{s.pick}}" aria-pressed="{{s.pressed}}" title="{{s.t}}" aria-label="{{s.t}}" style="width: {{s.w}}; padding: 0; border: 0; border-right: 1px solid #FFFFFF; background: {{s.c}}; opacity: {{s.op}}; color: #0B1F4B; font-family: inherit; font-size: 11.5px; font-weight: 700; cursor: pointer; transition: opacity .15s;">{{s.n}}</button></sc-for></div>
+          <div style="display: flex; flex-direction: column; gap: 4px;"><sc-for list="{{staSeg}}" as="s" hint-placeholder-count="4"><button type="button" sc-camel-on-click="{{s.pick}}" aria-pressed="{{s.pressed}}" class="rw" style="display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 4px 6px; margin: 0 -6px; border: 1px solid {{s.bd}}; border-radius: 6px; background: transparent; opacity: {{s.op}}; font-family: inherit; font-size: 12px; color: #334155; font-weight: {{s.fw}}; cursor: pointer;"><span style="display: inline-flex; align-items: center; gap: 7px;"><span style="width: 10px; height: 10px; border-radius: 3px; background: {{s.c}};"></span>{{s.l}}</span><b style="color: #0F172A;">{{s.n}}</b></button></sc-for></div>
+          <div style="font-size: 11.5px; line-height: 17px; color: #475569;">{{staTxt}}</div>
+          <div style="margin-top: auto; padding: 9px 11px; border-radius: 8px; background: #EEF2FF; border: 1px solid #C7D2FE; font-size: 11.5px; line-height: 17px; color: #1E293B;"><div style="font-size: 10.5px; font-weight: 700; color: #3730A3;">✦ ANALISIS AI · DIVERIFIKASI ANALIS</div>{{staA}}</div>
+        </div>
+        <div style="padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;"><span><b style="color: #475569;">Periode:</b> s.d. {{acuan}}</span><span><b style="color: #475569;">Diperbarui:</b> {{meta.diperbarui}}</span><span><b style="color: #475569;">Sumber:</b> laporan tindak lanjut instansi</span><span style="padding: 0 6px; border-radius: 4px; background: #DBEAFE; color: #1E40AF; font-weight: 600;">Diverifikasi analis</span></div>
+      </section>
+    </div>
+
+    <!-- 2.4 Temuan menurut sektor -->
+    <section style="background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; display: flex; flex-direction: column;">
+      <div style="padding: 12px 18px; border-bottom: 1px solid #EEF2F7;"><h2 style="margin: 0; font-size: 14.5px; font-weight: 600;">Temuan menurut sektor</h2><div style="font-size: 11.5px; color: #64748B;">Kategori KBLI 2025 · klik batang untuk memfilter daftar temuan</div></div>
+      <div style="padding: 14px 18px; display: flex; flex-wrap: wrap; gap: 20px;">
+        <div role="group" aria-label="Temuan menurut sektor KBLI 2025" style="flex: 3 1 480px; min-width: 0; display: flex; flex-direction: column; gap: 6px;">
+          <sc-for list="{{sekBars}}" as="b" hint-placeholder-count="7"><button type="button" sc-camel-on-click="{{b.pick}}" aria-pressed="{{b.pressed}}" title="{{b.t}}" aria-label="{{b.t}}" class="rw" style="display: grid; grid-template-columns: minmax(0, 240px) minmax(0, 1fr) 28px; gap: 10px; align-items: center; padding: 5px 6px; border: 0; border-radius: 6px; background: {{b.bg}}; opacity: {{b.op}}; font-family: inherit; font-size: 12px; color: #334155; text-align: left; font-weight: {{b.fw}}; cursor: pointer; transition: opacity .15s;"><span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{b.l}}</span><span style="display: block; height: 14px; border-radius: 4px; background: #EEF2F7;"><span style="display: block; width: {{b.w}}; height: 14px; border-radius: 4px; background: #1E40AF;"></span></span><b style="text-align: right; color: #0F172A;">{{b.n}}</b></button></sc-for>
+          <div style="font-size: 11px; color: #64748B;">Satu temuan dapat terkait lebih dari satu sektor.</div>
+        </div>
+        <div style="flex: 2 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 10px;">
+          <div style="padding: 10px 12px; border-radius: 8px; background: #F8FAFC; border: 1px solid #E3E8F0;"><div style="font-size: 10.5px; font-weight: 700; letter-spacing: .04em; color: #64748B;">{{sekRef.h}}</div><div style="margin-top: 3px; font-size: 11.5px; line-height: 17px; color: #334155;">{{sekRef.t}}</div></div>
+          <div style="padding: 10px 12px; border-radius: 8px; background: #EEF2FF; border: 1px solid #C7D2FE; font-size: 11.5px; line-height: 17px; color: #1E293B;"><div style="font-size: 10.5px; font-weight: 700; color: #3730A3;">✦ ANALISIS AI · DIVERIFIKASI ANALIS</div>{{sekA}}</div>
+          <button type="button" sc-camel-on-click="{{toPayung}}" style="align-self: flex-start; padding: 0; border: 0; background: transparent; font-family: inherit; font-size: 12px; font-weight: 600; color: #1D4ED8; cursor: pointer;">Lihat matriks prioritas sektor di Payung Kebijakan →</button>
+        </div>
+      </div>
+      <div style="padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;"><span><b style="color: #475569;">Periode:</b> temuan s.d. {{acuan}}</span><span><b style="color: #475569;">Diperbarui:</b> {{meta.diperbarui}}</span><span><b style="color: #475569;">Sumber:</b> penilaian analis · KBLI 2025 (Peraturan BPS No. 7/2025)</span><span style="padding: 0 6px; border-radius: 4px; background: #DBEAFE; color: #1E40AF; font-weight: 600;">Diverifikasi analis</span></div>
+    </section>
+
+    <!-- 2.5 Daftar temuan & tindak lanjut -->
+    <section id="sec-temuan" style="background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; display: flex; flex-direction: column; scroll-margin-top: 16px;">
+      <div style="padding: 12px 18px; border-bottom: 1px solid #EEF2F7; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px;">
+        <div><h2 style="margin: 0; font-size: 14.5px; font-weight: 600;">Daftar temuan &amp; tindak lanjut</h2><div style="font-size: 11.5px; color: #64748B;">Indikasi ketidakselarasan adalah hasil penilaian analis, bukan putusan hukum</div></div>
+        <div role="group" aria-label="Filter status tindak lanjut" style="display: flex; flex-wrap: wrap; gap: 6px;"><sc-for list="{{staChips}}" as="c" hint-placeholder-count="5"><button type="button" sc-camel-on-click="{{c.pick}}" style="height: 28px; padding: 0 10px; border-radius: 99px; border: 1px solid {{c.bd}}; background: {{c.bg}}; color: {{c.fg}}; font-family: inherit; font-size: 11.5px; font-weight: 600; cursor: pointer;">{{c.l}} · {{c.n}}</button></sc-for></div>
+      </div>
+      <div style="overflow-x: auto;">
+        <div style="min-width: 1060px;">
+          <div style="display: grid; grid-template-columns: minmax(0, 2.2fr) 150px minmax(0, 2fr) 150px 160px 72px 76px; gap: 12px; align-items: center; padding: 8px 18px; background: #F8FAFC; font-size: 10.5px; font-weight: 700; letter-spacing: .04em; color: #64748B;">
+            <span>REGULASI</span><span>JENIS INDIKASI</span><span>KETENTUAN YANG DIBANDINGKAN</span><span>PENANGGUNG JAWAB</span><span>STATUS</span>
+            <button type="button" sc-camel-on-click="{{list.sort}}" title="{{list.sortT}}" aria-label="{{list.sortT}}" style="justify-self: end; padding: 2px 6px; border: 0; border-radius: 5px; background: {{list.sortBg}}; font-family: inherit; font-size: 10.5px; font-weight: 700; letter-spacing: .04em; color: #1E40AF; cursor: pointer;">LAMA {{list.sortL}}</button>
+            <span></span>
+          </div>
+          <sc-for list="{{list.rows}}" as="r" hint-placeholder-count="5">
+            <div role="button" tabindex="0" sc-camel-on-click="{{r.open}}" sc-camel-onKeyDown="{{r.key}}" aria-label="Buka detail temuan {{r.id}}" class="rw" style="display: grid; grid-template-columns: minmax(0, 2.2fr) 150px minmax(0, 2fr) 150px 160px 72px 76px; gap: 12px; align-items: center; padding: 10px 18px; border-top: 1px solid #EEF2F7; font-size: 12px; color: #0F172A; cursor: pointer;">
+              <span style="min-width: 0;"><b style="display: block; font-size: 12.5px;">{{r.reg}}</b><span style="display: block; font-size: 11px; color: #64748B;">{{r.id}} · {{r.judul}}</span></span>
+              <span><span style="display: inline-block; padding: 2px 8px; border-radius: 99px; background: #EFF6FF; border: 1px solid #BFDBFE; color: #1E40AF; font-size: 11px; font-weight: 600; line-height: 16px;">{{r.jenis}}</span></span>
+              <span style="font-size: 11.5px; line-height: 16px; color: #334155;">{{r.kA}} <b style="color: #1D4ED8;">↔</b> {{r.kB}}</span>
+              <span style="font-size: 11.5px; color: #334155;">{{r.pj}}</span>
+              <span><span style="display: inline-block; padding: 2px 8px; border-radius: 6px; background: {{r.st.bg}}; color: {{r.st.c}}; font-size: 11px; font-weight: 700;">{{r.st.l}}</span></span>
+              <span style="text-align: right; font-weight: {{r.lw}}; color: {{r.lc}};">{{r.lama}} hari</span>
+              <span style="text-align: right; font-size: 12px; font-weight: 600; color: #1D4ED8;">Detail →</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      <sc-if value="{{list.empty}}" hint-placeholder-val="{{false}}"><div style="padding: 28px 18px; border-top: 1px solid #EEF2F7; text-align: center; font-size: 12.5px; color: #475569;">Tidak ada temuan yang sesuai filter. <button type="button" sc-camel-on-click="{{resetF}}" style="padding: 0; border: 0; background: transparent; font-family: inherit; font-size: 12.5px; font-weight: 600; color: #1D4ED8; cursor: pointer;">Reset filter</button></div></sc-if>
+      <sc-if value="{{list.has}}" hint-placeholder-val="{{true}}">
+        <div style="padding: 10px 18px; border-top: 1px solid #EEF2F7; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px;">
+          <span style="font-size: 12px; color: #475569;">{{list.note}}</span>
+          <div style="display: flex; align-items: center; gap: 6px;">
+            <button type="button" sc-camel-on-click="{{list.prev}}" aria-label="Halaman sebelumnya" style="height: 30px; padding: 0 10px; border-radius: 7px; border: 1px solid #E3E8F0; background: #FFFFFF; color: {{list.pc}}; font-family: inherit; font-size: 12px; cursor: pointer;">‹ Sebelumnya</button>
+            <sc-for list="{{list.pages}}" as="p" hint-placeholder-count="1"><button type="button" sc-camel-on-click="{{p.pick}}" aria-label="Halaman {{p.n}}" style="min-width: 30px; height: 30px; border-radius: 7px; border: 1px solid {{p.bd}}; background: {{p.bg}}; color: {{p.fg}}; font-family: inherit; font-size: 12px; font-weight: 600; cursor: pointer;">{{p.n}}</button></sc-for>
+            <button type="button" sc-camel-on-click="{{list.next}}" aria-label="Halaman berikutnya" style="height: 30px; padding: 0 10px; border-radius: 7px; border: 1px solid #E3E8F0; background: #FFFFFF; color: {{list.nc}}; font-family: inherit; font-size: 12px; cursor: pointer;">Berikutnya ›</button>
+          </div>
+        </div>
+      </sc-if>
+      <div style="padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;"><span><b style="color: #475569;">Periode:</b> temuan s.d. {{acuan}}</span><span><b style="color: #475569;">Diperbarui:</b> {{meta.diperbarui}}</span><span><b style="color: #475569;">Sumber:</b> penilaian analis · laporan tindak lanjut instansi</span><span>Menampilkan temuan yang datanya sudah tersedia</span><span style="padding: 0 6px; border-radius: 4px; background: #DBEAFE; color: #1E40AF; font-weight: 600;">Diverifikasi analis</span></div>
+    </section>
+  </div>
+  </sc-if>
+
+  <!-- ======================= B. DETAIL TEMUAN ======================= -->
+  <sc-if value="{{isDetail}}" hint-placeholder-val="{{false}}">
+  <div style="display: flex; flex-direction: column; gap: 16px;">
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px;">
+      <button type="button" sc-camel-on-click="{{d.back}}" style="padding: 0; border: 0; background: transparent; font-family: inherit; font-size: 13px; font-weight: 600; color: #1D4ED8; cursor: pointer;">← Kembali ke daftar temuan</button>
+      <div style="display: flex; align-items: center; gap: 6px;">
+        <button type="button" sc-camel-on-click="{{d.prev}}" style="height: 32px; padding: 0 10px; border-radius: 7px; border: 1px solid #E3E8F0; background: #FFFFFF; font-family: inherit; font-size: 12.5px; font-weight: 600; color: #0F172A; cursor: pointer;">‹ Sebelumnya</button>
+        <span style="font-size: 12px; color: #64748B;">{{d.pos}}</span>
+        <button type="button" sc-camel-on-click="{{d.next}}" style="height: 32px; padding: 0 10px; border-radius: 7px; border: 1px solid #E3E8F0; background: #FFFFFF; font-family: inherit; font-size: 12.5px; font-weight: 600; color: #0F172A; cursor: pointer;">Berikutnya ›</button>
+      </div>
+    </div>
+
+    <section style="padding: 18px 20px; background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; display: flex; flex-direction: column; gap: 10px;">
+      <div style="font-size: 12px; color: #64748B;">Temuan <b style="color: #0F172A;">{{d.id}}</b> · {{d.regFull}}</div>
+      <h2 style="margin: 0; font-size: 20px; font-weight: 700; line-height: 1.3;">{{d.judul}}</h2>
+      <div style="display: flex; flex-wrap: wrap; gap: 6px; align-items: center;">
+        <sc-for list="{{d.sek}}" as="s" hint-placeholder-count="1"><button type="button" sc-camel-on-click="{{s.pick}}" title="Kembali ke daftar dengan filter sektor ini" style="height: 26px; padding: 0 10px; border-radius: 99px; border: 1px solid #93C5FD; background: #EFF6FF; color: #1E40AF; font-family: inherit; font-size: 11.5px; font-weight: 600; cursor: pointer;">Sektor {{s.l}}</button></sc-for>
+        <span style="height: 26px; padding: 0 10px; border-radius: 99px; background: #F1F5F9; color: #334155; font-size: 11.5px; font-weight: 600; display: inline-flex; align-items: center;">{{d.wil}}</span>
+        <span style="height: 26px; padding: 0 10px; border-radius: 99px; background: #EFF6FF; border: 1px solid #BFDBFE; color: #1E40AF; font-size: 11.5px; font-weight: 600; display: inline-flex; align-items: center;">{{d.jenis}}</span>
+        <span style="height: 26px; padding: 0 10px; border-radius: 6px; background: {{d.st.bg}}; color: {{d.st.c}}; font-size: 11.5px; font-weight: 700; display: inline-flex; align-items: center;">{{d.st.l}}</span>
+        <span style="height: 26px; padding: 0 10px; border-radius: 6px; background: {{d.verif.bg}}; color: {{d.verif.c}}; font-size: 11.5px; font-weight: 700; display: inline-flex; align-items: center;">{{d.verif.l}}</span>
+      </div>
+      <div style="font-size: 11.5px; color: #64748B;">Indikasi ketidakselarasan adalah hasil penilaian analis, bukan putusan hukum.</div>
+    </section>
+
+    <section style="background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; display: flex; flex-direction: column;">
+      <div style="padding: 12px 18px; border-bottom: 1px solid #EEF2F7;"><h3 style="margin: 0; font-size: 14.5px; font-weight: 600;">Dasar penilaian &amp; ketentuan yang dibandingkan</h3></div>
+      <div style="padding: 14px 18px; display: flex; flex-direction: column; gap: 12px;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px;">
+          <div style="padding: 12px 14px; border-radius: 10px; border: 1px solid #BFDBFE; background: #EFF6FF;"><div style="font-size: 10.5px; font-weight: 700; letter-spacing: .04em; color: #1E40AF;">{{d.reg}} · KETENTUAN YANG DINILAI</div><div style="margin-top: 2px; font-size: 11.5px; color: #475569;">{{d.kA}}</div><p style="margin: 6px 0 0; font-size: 13px; line-height: 20px; color: #0F172A;">{{d.dinilai}}</p></div>
+          <div style="padding: 12px 14px; border-radius: 10px; border: 1px solid #E3E8F0; background: #F8FAFC;"><div style="font-size: 10.5px; font-weight: 700; letter-spacing: .04em; color: #334155;">{{d.pembReg}} · KETENTUAN PEMBANDING</div><div style="margin-top: 2px; font-size: 11.5px; color: #475569;">{{d.kB}}</div><p style="margin: 6px 0 0; font-size: 13px; line-height: 20px; color: #0F172A;">{{d.pembTeks}}</p></div>
+        </div>
+        <div style="padding: 12px 14px; border-radius: 10px; border-left: 3px solid #1E40AF; background: #F8FAFC;"><div style="font-size: 10.5px; font-weight: 700; letter-spacing: .04em; color: #1E40AF;">PERTIMBANGAN ANALIS</div><p style="margin: 4px 0 0; font-size: 13px; line-height: 20px; color: #0F172A;">{{d.pert}}</p></div>
+        <div style="font-size: 11.5px; color: #64748B;">{{d.jejak}}</div>
+      </div>
+      <div style="padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;"><span><b style="color: #475569;">Periode:</b> s.d. {{acuan}}</span><span><b style="color: #475569;">Diperbarui:</b> {{meta.diperbarui}}</span><span><b style="color: #475569;">Sumber:</b> naskah resmi (JDIH) · penilaian analis</span><span style="padding: 0 6px; border-radius: 4px; background: {{d.verif.bg}}; color: {{d.verif.c}}; font-weight: 600;">{{d.verif.l}}</span></div>
+    </section>
+
+    <section style="background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; display: flex; flex-direction: column;">
+      <div style="padding: 12px 18px; border-bottom: 1px solid #EEF2F7; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px;"><h3 style="margin: 0; font-size: 14.5px; font-weight: 600;">Titik blocker pada regulasi ini</h3><div role="group" aria-label="Filter kategori blocker" style="display: flex; flex-wrap: wrap; gap: 6px;"><sc-for list="{{d.bkChips}}" as="c" hint-placeholder-count="4"><button type="button" sc-camel-on-click="{{c.pick}}" style="height: 28px; padding: 0 10px; border-radius: 99px; border: 1px solid {{c.bd}}; background: {{c.bg}}; color: {{c.fg}}; font-family: inherit; font-size: 11.5px; font-weight: 600; cursor: pointer;">{{c.l}} · {{c.n}}</button></sc-for></div></div>
+      <div style="padding: 6px 18px 12px; display: flex; flex-direction: column;">
+        <sc-for list="{{d.bkRows}}" as="b" hint-placeholder-count="2">
+          <div style="display: grid; grid-template-columns: 120px minmax(0, 1.4fr) minmax(0, 1.2fr) minmax(0, 1fr) 150px; gap: 12px; align-items: start; padding: 10px 0; border-bottom: 1px solid #EEF2F7; font-size: 12px; color: #0F172A;">
+            <span><span style="display: inline-block; padding: 2px 8px; border-radius: 99px; background: #EFF6FF; color: #1E40AF; font-size: 11px; font-weight: 700;">{{b.kat}}</span></span>
+            <span style="line-height: 17px;">{{b.uraian}}</span>
+            <span style="line-height: 17px; color: #475569;"><b style="color: #334155;">Dampak:</b> {{b.dampak}}</span>
+            <span style="line-height: 17px; color: #475569;">{{b.unit}}</span>
+            <span><span style="display: inline-block; padding: 2px 8px; border-radius: 6px; background: {{b.st.bg}}; color: {{b.st.c}}; font-size: 11px; font-weight: 700;">{{b.st.l}}</span></span>
+          </div>
+        </sc-for>
+        <sc-if value="{{d.bkEmpty}}" hint-placeholder-val="{{false}}"><div style="padding: 16px 0; font-size: 12px; color: #64748B;">Tidak ada blocker pada kategori ini.</div></sc-if>
+        <div style="padding-top: 10px; display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: 11px; color: #64748B;"><span><b style="color: #334155;">Internal</b> = di dalam regulasi itu sendiri</span><span><b style="color: #334155;">Eksternal</b> = pelaksanaan/kelembagaan</span><span><b style="color: #334155;">Antarperaturan</b> = dengan peraturan lain</span></div>
+      </div>
+      <div style="padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;"><span><b style="color: #475569;">Periode:</b> s.d. {{acuan}}</span><span><b style="color: #475569;">Diperbarui:</b> {{meta.diperbarui}}</span><span><b style="color: #475569;">Sumber:</b> penilaian analis · laporan instansi</span><span style="padding: 0 6px; border-radius: 4px; background: {{d.verif.bg}}; color: {{d.verif.c}}; font-weight: 600;">{{d.verif.l}}</span></div>
+    </section>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: stretch;">
+      <section style="flex: 1 1 380px; min-width: 0; background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; display: flex; flex-direction: column;">
+        <div style="padding: 12px 18px; border-bottom: 1px solid #EEF2F7; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px;"><h3 style="margin: 0; font-size: 14.5px; font-weight: 600;">Perkiraan dampak terhadap realisasi investasi</h3><span style="height: 22px; padding: 0 8px; border-radius: 6px; background: #EEF2FF; border: 1px solid #C7D2FE; color: #3730A3; font-size: 11px; font-weight: 600; display: inline-flex; align-items: center;">✦ Perkiraan · Analisis AI · diverifikasi analis</span></div>
+        <div style="padding: 14px 18px; flex: 1; display: flex; flex-direction: column; gap: 8px;"><p style="margin: 0; font-size: 13px; line-height: 20px; color: #0F172A;">{{d.dampak}}</p><div style="font-size: 11.5px; color: #92400E;">Perkiraan kualitatif; dampak dalam rupiah belum dihitung.</div></div>
+        <div style="padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;"><span><b style="color: #475569;">Periode:</b> s.d. {{acuan}}</span><span><b style="color: #475569;">Diperbarui:</b> {{meta.diperbarui}}</span><span><b style="color: #475569;">Sumber:</b> estimasi analis (bukan hubungan sebab-akibat)</span><span style="padding: 0 6px; border-radius: 4px; background: #F1F5F9; color: #475569; font-weight: 600;">Belum terverifikasi</span></div>
+      </section>
+      <section style="flex: 2 1 560px; min-width: 0; background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; display: flex; flex-direction: column;">
+        <div style="padding: 12px 18px; border-bottom: 1px solid #EEF2F7; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px;"><h3 style="margin: 0; font-size: 14.5px; font-weight: 600;">Rekomendasi &amp; penanggung jawab</h3><span style="height: 22px; padding: 0 8px; border-radius: 6px; background: {{d.rekStBg}}; color: {{d.rekStC}}; font-size: 11px; font-weight: 700; display: inline-flex; align-items: center;">{{d.rekSt}}</span></div>
+        <div style="padding: 14px 18px; display: flex; flex-direction: column; gap: 12px; flex: 1;">
+          <div style="padding: 12px 14px; border-radius: 10px; background: #EEF2FF; border: 1px solid #C7D2FE;"><div style="font-size: 10.5px; font-weight: 700; color: #3730A3;">✦ ANALISIS AI · DIVERIFIKASI ANALIS</div><p style="margin: 4px 0 0; font-size: 13px; line-height: 20px; color: #0F172A;">{{d.rek}}</p></div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px; font-size: 12px;"><div><div style="font-size: 10.5px; font-weight: 700; color: #64748B;">PENANGGUNG JAWAB</div><b>{{d.rekPj}}</b></div><div><div style="font-size: 10.5px; font-weight: 700; color: #64748B;">PEMBINA</div><b>{{d.rekPb}}</b></div></div>
+          <div style="border: 1px solid #E3E8F0; border-radius: 10px; overflow: hidden;">
+            <div style="padding: 7px 12px; background: #F8FAFC; font-size: 10.5px; font-weight: 700; letter-spacing: .04em; color: #64748B;">UNIT KERJA TERKAIT</div>
+            <sc-for list="{{d.unit}}" as="u" hint-placeholder-count="3"><div style="display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr) 170px; gap: 10px; align-items: center; padding: 8px 12px; border-top: 1px solid #EEF2F7; font-size: 12px;"><span><b>{{u.nama}}</b><span style="display: block; font-size: 11px; color: #64748B;">{{u.instansi}}</span></span><span style="color: #475569;">{{u.peran}}</span><span style="justify-self: end;"><span style="display: inline-block; padding: 2px 8px; border-radius: 99px; background: {{u.cb}}; color: {{u.cc}}; font-size: 11px; font-weight: 700;">{{u.chip}}</span></span></div></sc-for>
+          </div>
+        </div>
+        <div style="padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;"><span><b style="color: #475569;">Periode:</b> s.d. {{acuan}}</span><span><b style="color: #475569;">Diperbarui:</b> {{meta.diperbarui}}</span><span><b style="color: #475569;">Sumber:</b> rekomendasi analis · struktur organisasi instansi</span><span style="padding: 0 6px; border-radius: 4px; background: {{d.verif.bg}}; color: {{d.verif.c}}; font-weight: 600;">{{d.verif.l}}</span></div>
+      </section>
+    </div>
+
+    <section style="background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; display: flex; flex-direction: column;">
+      <div style="padding: 12px 18px; border-bottom: 1px solid #EEF2F7; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px;"><h3 style="margin: 0; font-size: 14.5px; font-weight: 600;">Riwayat tindak lanjut</h3><button type="button" sc-camel-on-click="{{d.toPayung}}" style="padding: 0; border: 0; background: transparent; font-family: inherit; font-size: 12px; font-weight: 600; color: #1D4ED8; cursor: pointer;">Lihat regulasi di Payung Kebijakan →</button></div>
+      <div style="padding: 16px 18px; display: flex; flex-direction: column; gap: 12px;">
+        <ol aria-label="Riwayat tindak lanjut" style="list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 0;">
+          <sc-for list="{{d.tl}}" as="t" hint-placeholder-count="4">
+            <li style="position: relative; padding: 0 12px 0 0;">
+              <div style="display: flex; align-items: center;"><span style="flex: none; width: 14px; height: 14px; border-radius: 99px; background: {{t.bg}}; border: 3px solid {{t.dot}};"></span><span style="flex: 1; height: 0; border-top: 2px {{t.line}} {{t.dot}}; margin-left: 4px;"></span></div>
+              <div style="margin-top: 8px; font-size: 11px; font-weight: 700; color: {{t.c}};">{{t.tgl}}</div>
+              <div style="font-size: 12.5px; line-height: 17px; color: #0F172A; font-weight: {{t.fw}};">{{t.l}}</div>
+            </li>
+          </sc-for>
+        </ol>
+        <div style="font-size: 12px; color: #334155;">{{d.lamaTxt}}</div>
+        <div style="display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 11px; color: #64748B;"><span style="display: inline-flex; align-items: center; gap: 5px;"><span style="width: 10px; height: 10px; border-radius: 99px; border: 3px solid #94A3B8; box-sizing: border-box;"></span>Selesai</span><span style="display: inline-flex; align-items: center; gap: 5px;"><span style="width: 10px; height: 10px; border-radius: 99px; border: 3px solid #D97706; box-sizing: border-box;"></span>Sedang berjalan</span><span style="display: inline-flex; align-items: center; gap: 5px;"><span style="width: 16px; border-top: 2px dashed #CBD5E1;"></span>Langkah berikutnya</span></div>
+      </div>
+      <div style="padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;"><span><b style="color: #475569;">Periode:</b> s.d. {{acuan}}</span><span><b style="color: #475569;">Diperbarui:</b> {{meta.diperbarui}}</span><span><b style="color: #475569;">Sumber:</b> laporan tindak lanjut instansi</span><span style="padding: 0 6px; border-radius: 4px; background: #DBEAFE; color: #1E40AF; font-weight: 600;">Diverifikasi analis</span></div>
+    </section>
+  </div>
+  </sc-if>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script="" data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:2800}}">
+class Component extends DCLogic {
+  componentDidUpdate(pp, ps) {
+    // gulir ke atas saat berpindah tampilan atau temuan (iframe ikut menggulir halaman induk)
+    if (ps && (ps.view !== this.state.view || ps.sel !== this.state.sel)) { try { document.body.scrollIntoView({ block: 'start' }); } catch (e) {} }
+  }
+  renderVals() {
+    const st = this.state || {};
+    const K = window.KESELARASAN_DATA;
+    const A = K.agregat;
+    const BT = 'belum tersedia';
+    const set = (o) => this.setState({ menu: null, ...o });
+    const nf = (n, d) => Number(n).toLocaleString('id-ID', { minimumFractionDigits: d || 0, maximumFractionDigits: d || 0 });
+    const scrollTo = (id) => () => { setTimeout(() => { const el = document.getElementById(id); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 30); };
+    const toTab = (i) => () => { try { window.parent.postMessage({ type: 'harmonisasi:tab', index: i }, '*'); } catch (e) {} };
+    const MON = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
+    const pd = (s) => { const [y, m, d] = s.split('-').map(Number); return Date.UTC(y, m - 1, d); };
+    const fd = (s) => { const [y, m, d] = s.split('-').map(Number); return d + ' ' + MON[m - 1] + ' ' + y; };
+    const ACUAN = fd(K.acuan);
+
+    // ---------- kamus ----------
+    const JN = Object.fromEntries(K.jenis), SN = Object.fromEntries(K.status);
+    const SEK = Object.fromEntries(K.sektor.map(([c, n, g]) => [c, { n, g }]));
+    const sekL = (c) => (c === 'LS' ? 'Lintas sektor' : c + ' · ' + SEK[c].n);
+    const SC = { belum: ['#F1F5F9', '#475569', '#CBD5E1'], proses: ['#DBEAFE', '#1E40AF', '#60A5FA'], tunggu: ['#FEF3C7', '#92400E', '#F59E0B'], selesai: ['#E0E7FF', '#1E3A8A', '#1E40AF'] };
+    const JC = { hambatan: '#1D4ED8', kewenangan: '#2563EB', norma: '#3B82F6', sasaran: '#60A5FA' };
+
+    // ---------- data temuan + lama penanganan (dihitung dari tanggal) ----------
+    const T = K.temuan.map((t, i) => ({ ...t, ord: i, lama: Math.round(((t.selesai ? pd(t.selesai) : pd(K.acuan)) - pd(t.mulai)) / 86400000) }));
+
+    // ---------- filter ----------
+    const F = { sek: st.fSek || 'all', wil: st.fWil || 'all', jen: st.fJen || 'all', sta: st.fSta || 'all' };
+    const pass = (t, skip) => (skip === 'sek' || F.sek === 'all' || t.sektor.indexOf(F.sek) >= 0)
+      && (skip === 'wil' || F.wil === 'all' || t.wilayah === F.wil)
+      && (skip === 'jen' || F.jen === 'all' || t.jenis === F.jen)
+      && (skip === 'sta' || F.sta === 'all' || t.status === F.sta);
+    const hasF = F.sek !== 'all' || F.wil !== 'all' || F.jen !== 'all' || F.sta !== 'all';
+    const resetF = () => set({ fSek: 'all', fWil: 'all', fJen: 'all', fSta: 'all', page: 0 });
+    const cnt = (skip, fn) => T.filter((t) => pass(t, skip) && fn(t)).length;
+    const opt = (l, n, on, pick) => ({ l, n: String(n), bg: on ? '#EFF6FF' : 'transparent', w: on ? 700 : 500, dim: n === 0 && !on ? '#94A3B8' : '#0F172A', pick });
+    const dd = (key, l, v, active, opts) => ({ l, v, open: st.menu === key, bg: active ? '#EFF6FF' : '#FFFFFF', bd: active ? '#93C5FD' : '#E3E8F0', toggle: () => this.setState({ menu: st.menu === key ? null : key }), opts });
+    const wilList = ['Nasional'].concat(Array.from(new Set(T.map((t) => t.wilayah).filter((w) => w !== 'Nasional'))).sort());
+    const fl = [
+      dd('sek', 'Sektor', F.sek === 'all' ? 'Semua sektor' : sekL(F.sek), F.sek !== 'all', [opt('Semua sektor', cnt('sek', () => true), F.sek === 'all', () => set({ fSek: 'all', page: 0 }))].concat(K.sektor.map(([c]) => opt(sekL(c), cnt('sek', (t) => t.sektor.indexOf(c) >= 0), F.sek === c, () => set({ fSek: c, page: 0 }))))),
+      dd('wil', 'Wilayah', F.wil === 'all' ? 'Semua' : F.wil, F.wil !== 'all', [opt('Semua', cnt('wil', () => true), F.wil === 'all', () => set({ fWil: 'all', page: 0 }))].concat(wilList.map((w) => opt(w, cnt('wil', (t) => t.wilayah === w), F.wil === w, () => set({ fWil: w, page: 0 }))))),
+      dd('jen', 'Jenis indikasi', F.jen === 'all' ? 'Semua jenis' : JN[F.jen], F.jen !== 'all', [opt('Semua jenis', cnt('jen', () => true), F.jen === 'all', () => set({ fJen: 'all', page: 0 }))].concat(K.jenis.map(([k, l]) => opt(l, cnt('jen', (t) => t.jenis === k), F.jen === k, () => set({ fJen: k, page: 0 }))))),
+      dd('sta', 'Status tindak lanjut', F.sta === 'all' ? 'Semua status' : SN[F.sta], F.sta !== 'all', [opt('Semua status', cnt('sta', () => true), F.sta === 'all', () => set({ fSta: 'all', page: 0 }))].concat(K.status.map(([k, l]) => opt(l, cnt('sta', (t) => t.status === k), F.sta === k, () => set({ fSta: k, page: 0 })))))
+    ];
+
+    // ---------- urutan & daftar ----------
+    const sort = st.sort || 'none';
+    const rowsAll = T.filter((t) => pass(t)).sort((a, b) => (sort === 'desc' ? b.lama - a.lama : sort === 'asc' ? a.lama - b.lama : a.ord - b.ord));
+    const nF = rowsAll.length;
+    const PG = 5, nPage = Math.max(1, Math.ceil(nF / PG)), page = Math.min(st.page || 0, nPage - 1);
+    const openT = (id) => () => set({ view: 'detail', sel: id, bk: 'all' });
+    const chip = (k) => ({ l: SN[k], bg: SC[k][0], c: SC[k][1] });
+    const rows = rowsAll.slice(page * PG, page * PG + PG).map((t) => ({
+      id: t.id, reg: t.reg, judul: t.judul, jenis: JN[t.jenis], kA: t.ketentuan[0], kB: t.ketentuan[1], pj: t.pj,
+      st: chip(t.status), lama: nf(t.lama), lw: t.lama > 30 && t.status !== 'selesai' ? 800 : 500, lc: t.lama > 30 && t.status !== 'selesai' ? '#0B1F4B' : '#475569',
+      open: openT(t.id), key: (e) => { if (e && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); openT(t.id)(); } }
+    }));
+    const sortNext = { none: 'desc', desc: 'asc', asc: 'none' }[sort];
+    const sortL = { none: '↕', desc: '↓', asc: '↑' }[sort];
+    const pages = Array.from({ length: nPage }, (_, i) => ({ n: i + 1, bg: i === page ? '#1E40AF' : '#FFFFFF', fg: i === page ? '#FFFFFF' : '#334155', bd: i === page ? '#1E40AF' : '#E3E8F0', pick: () => set({ page: i }) }));
+    const list = {
+      rows, has: nF > 0, empty: nF === 0, pages, multi: nPage > 1,
+      note: nF ? 'Menampilkan ' + (page * PG + 1) + '–' + Math.min(nF, page * PG + PG) + ' dari ' + nF + ' temuan' : '',
+      prev: () => set({ page: Math.max(0, page - 1) }), next: () => set({ page: Math.min(nPage - 1, page + 1) }),
+      pc: page === 0 ? '#CBD5E1' : '#334155', nc: page >= nPage - 1 ? '#CBD5E1' : '#334155',
+      sortL, sortT: sort === 'none' ? 'Urutkan menurut lama (terlama dulu)' : sort === 'desc' ? 'Terlama dulu · klik untuk tercepat dulu' : 'Tercepat dulu · klik untuk tanpa urutan',
+      sort: () => set({ sort: sortNext, page: 0 }), sortBg: sort === 'none' ? 'transparent' : '#DBEAFE'
+    };
+    const staChips = [['all', 'Semua']].concat(K.status).map(([k, l]) => ({ l, n: cnt('sta', (t) => k === 'all' || t.status === k), bg: F.sta === k ? '#1E40AF' : '#FFFFFF', fg: F.sta === k ? '#FFFFFF' : '#334155', bd: F.sta === k ? '#1E40AF' : '#E3E8F0', pick: () => set({ fSta: k, page: 0 }) }));
+
+    // ---------- kartu indikator (angka populasi penuh) ----------
+    const pctSel = (A.selaras / A.dinilai) * 100;
+    const kpi = [
+      { l: 'Tingkat keselarasan', v: nf(pctSel, 2) + '%', u: 'selaras', s: nf(A.selaras) + ' selaras dari ' + nf(A.dinilai) + ' regulasi yang sudah dinilai dan diverifikasi', c: '#1E40AF', bg: '#EFF6FF', bd: '#BFDBFE', a: 'Buka Payung Kebijakan →', act: toTab(0) },
+      { l: 'Berpotensi tidak selaras', v: nf(A.tidakSelaras), u: 'regulasi', s: 'Indikasi yang telah diverifikasi analis; bukan putusan hukum', c: '#1D4ED8', bg: '#F8FAFC', bd: '#E3E8F0', a: 'Lihat daftar temuan ↓', act: () => { resetF(); scrollTo('sec-temuan')(); } },
+      { l: 'Tindak lanjut dalam penanganan', v: nf(A.status.proses) + ' dari ' + nf(A.tidakSelaras), u: '', s: A.status.selesai + ' selesai · ' + A.status.tunggu + ' menunggu keputusan · ' + A.status.belum + ' belum ditindaklanjuti', c: '#2563EB', bg: '#F8FAFC', bd: '#E3E8F0', a: 'Filter dalam penanganan ↓', act: () => { set({ fSta: 'proses', page: 0 }); scrollTo('sec-temuan')(); } },
+      { l: 'Rata-rata lama penanganan', v: nf(A.rataLama), u: 'hari kalender', s: 'Kasus berjalan dihitung sampai tanggal acuan (' + ACUAN + ')', c: '#0B1F4B', bg: '#F8FAFC', bd: '#E3E8F0', a: 'Urutkan terlama dulu ↓', act: () => { set({ sort: 'desc', page: 0 }); scrollTo('sec-temuan')(); } }
+    ];
+
+    // ---------- panel 1: alur penilaian ----------
+    const alur = [
+      ['Regulasi investasi berlaku', A.berlaku, '#0B1F4B', toTab(0), 'Buka Payung Kebijakan'],
+      ['Sudah dinilai & diverifikasi', A.dinilai, '#1E40AF', toTab(0), 'Buka Payung Kebijakan'],
+      ['Selaras', A.selaras, '#3B82F6', toTab(0), 'Buka Payung Kebijakan'],
+      ['Berpotensi tidak selaras', A.tidakSelaras, '#1D4ED8', () => { resetF(); scrollTo('sec-temuan')(); }, 'Lihat daftar temuan'],
+      ['Belum dinilai', A.belumDinilai, '#94A3B8', toTab(0), 'Buka Payung Kebijakan']
+    ].map(([l, n, c, act, t]) => ({ l, n: nf(n), w: Math.max((n / A.berlaku) * 100, 1.5) + '%', c, act, t: l + ': ' + nf(n) + ' regulasi · ' + t }));
+    const alurF = 'Tingkat keselarasan = ' + nf(A.selaras) + ' ÷ ' + nf(A.dinilai) + ' × 100% = ' + nf(pctSel, 2) + '%. Regulasi yang belum dinilai tidak dihitung sebagai selaras.';
+    const alurA = 'Cakupan penilaian ' + nf((A.dinilai / A.berlaku) * 100, 1) + '% dari regulasi berlaku. Enam regulasi yang belum dinilai seluruhnya Perda baru hasil sinkronisasi JDIH pemda dan dijadwalkan dinilai pada siklus berikutnya.';
+
+    // ---------- panel 2: jenis indikasi ----------
+    const jMax = Math.max(...Object.values(A.jenis));
+    const jenBars = K.jenis.map(([k, l]) => { const n = A.jenis[k], on = F.jen === k, dim = F.jen !== 'all' && !on; return { l, n: nf(n), w: (n / jMax) * 100 + '%', c: JC[k], op: dim ? 0.35 : 1, fw: on ? 700 : 500, bg: on ? '#EFF6FF' : 'transparent', pressed: on ? 'true' : 'false', pick: () => set({ fJen: on ? 'all' : k, page: 0 }), t: l + ': ' + n + ' temuan · klik untuk ' + (on ? 'hapus filter' : 'filter daftar') }; });
+    const jenNote = nf(A.temuan) + ' temuan dari ' + nf(A.tidakSelaras) + ' regulasi; satu regulasi dapat memiliki lebih dari satu temuan.';
+
+    // ---------- panel 3: status tindak lanjut ----------
+    const sTot = Object.values(A.status).reduce((a, b) => a + b, 0);
+    const staSeg = K.status.map(([k, l]) => { const n = A.status[k], on = F.sta === k, dim = F.sta !== 'all' && !on; return { l, n: nf(n), w: (n / sTot) * 100 + '%', c: SC[k][2], op: dim ? 0.3 : 1, fw: on ? 700 : 500, bd: on ? '#0B1F4B' : 'transparent', pressed: on ? 'true' : 'false', pick: () => set({ fSta: on ? 'all' : k, page: 0 }), t: l + ': ' + n + ' regulasi (' + nf((n / sTot) * 100, 0) + '%)' }; });
+    const staTxt = 'Rata-rata lama penanganan ' + nf(A.rataLama) + ' hari kalender, dihitung dari tanggal temuan diteruskan ke instansi sampai selesai atau sampai tanggal acuan.';
+    const staA = 'Dua tindak lanjut menunggu keputusan lintas kementerian; dua lainnya sudah melewati target waktu 30 hari dan perlu didorong melalui rapat koordinasi.';
+
+    // ---------- 2.4 sektor ----------
+    const sMax = Math.max(...A.sektor.map((x) => x[1]));
+    const sekBars = A.sektor.map(([c, n]) => { const on = F.sek === c, dim = F.sek !== 'all' && !on; return { c, l: c + ' · ' + SEK[c].n, n: nf(n), w: (n / sMax) * 100 + '%', op: dim ? 0.35 : 1, fw: on ? 700 : 500, bg: on ? '#EFF6FF' : 'transparent', pressed: on ? 'true' : 'false', pick: () => set({ fSek: on ? 'all' : c, page: 0 }), t: c + ' · ' + SEK[c].n + ': ' + n + ' temuan' }; });
+    const sekCur = F.sek !== 'all' && F.sek !== 'LS' ? F.sek : null;
+    const sekRef = sekCur
+      ? { h: 'Kategori ' + sekCur + ' · ' + SEK[sekCur].n, t: 'Golongan pokok ' + SEK[sekCur].g + ' menurut KBLI 2025 (Peraturan BPS No. 7 Tahun 2025).' }
+      : { h: 'Acuan sektor: KBLI 2025', t: 'Peraturan BPS No. 7 Tahun 2025. Golongan pokok: ' + A.sektor.map(([c]) => c + ' ' + SEK[c].g).join(' · ') + '.' };
+    const sekA = 'Industri pengolahan (C) paling sering terkait temuan, umumnya melalui persyaratan teknis dan standar produk. Pertambangan (B) dan pertanian (A) menyusul, terutama terkait kewenangan perizinan pusat–daerah.';
+
+    // ---------- tampilan B: detail ----------
+    const qId = (() => { try { return new URLSearchParams(window.location.search).get('temuan'); } catch (e) { return null; } })();
+    const view = st.view || (qId ? 'detail' : 'list');
+    const selId = st.sel || qId || 'T-007';
+    const nav = rowsAll.length && rowsAll.some((t) => t.id === selId) ? rowsAll : T;
+    const cur = T.find((t) => t.id === selId) || T.find((t) => t.id === 'T-007') || T[0];
+    const pos = Math.max(0, nav.findIndex((t) => t.id === cur.id));
+    const goD = (d) => () => set({ sel: nav[(pos + d + nav.length) % nav.length].id, bk: 'all' });
+    const bk = st.bk || 'all';
+    const BK = ['Internal', 'Eksternal', 'Antarperaturan'];
+    const bkChips = [['all', 'Semua']].concat(BK.map((k) => [k, k])).map(([k, l]) => ({ l, n: k === 'all' ? cur.blocker.length : cur.blocker.filter((b) => b.kat === k).length, bg: bk === k ? '#1E40AF' : '#FFFFFF', fg: bk === k ? '#FFFFFF' : '#334155', bd: bk === k ? '#1E40AF' : '#E3E8F0', pick: () => set({ bk: k }) }));
+    const bkRows = cur.blocker.filter((b) => bk === 'all' || b.kat === bk).map((b) => ({ ...b, st: chip(b.status) }));
+    const ROLEC = { 'Penanggung jawab utama': ['#1E40AF', '#FFFFFF'], Pelaksana: ['#DBEAFE', '#1E40AF'], Pembina: ['#E0E7FF', '#3730A3'], Terkait: ['#F1F5F9', '#475569'] };
+    const TLC = { done: ['#94A3B8', '#F1F5F9', 'solid', '#475569'], now: ['#D97706', '#FEF3C7', 'solid', '#92400E'], next: ['#CBD5E1', '#FFFFFF', 'dashed', '#64748B'] };
+    const d = {
+      id: cur.id, reg: cur.reg, regFull: cur.regFull, judul: cur.judul, pos: (pos + 1) + ' dari ' + nav.length,
+      prev: goD(-1), next: goD(1), back: () => set({ view: 'list' }),
+      sek: cur.sektor.map((c) => ({ l: sekL(c), pick: () => set({ view: 'list', fSek: c, page: 0 }) })),
+      wil: cur.wilayah, jenis: JN[cur.jenis], st: chip(cur.status),
+      verif: cur.verif ? { l: 'Terverifikasi analis', bg: '#DBEAFE', c: '#1E40AF' } : { l: 'Dalam verifikasi analis', bg: '#FEF3C7', c: '#92400E' },
+      kA: cur.ketentuan[0], kB: cur.ketentuan[1], dinilai: cur.dinilai || BT, pembReg: cur.pembanding.reg, pembTeks: cur.pembanding.teks || BT,
+      pert: cur.pertimbangan || BT, jejak: cur.jejak || BT,
+      bkChips, bkRows, bkEmpty: bkRows.length === 0, bkHas: bkRows.length > 0,
+      dampak: cur.dampak || BT,
+      rek: cur.rekomendasi.teks || BT, rekPj: cur.rekomendasi.pj || BT, rekPb: cur.rekomendasi.pembina || BT, rekSt: cur.rekomendasi.status || BT,
+      rekStBg: /^Draf AI/.test(cur.rekomendasi.status) ? '#FEF3C7' : /Selesai/.test(cur.rekomendasi.status) ? '#E0E7FF' : '#DBEAFE',
+      rekStC: /^Draf AI/.test(cur.rekomendasi.status) ? '#92400E' : '#1E40AF',
+      unit: cur.unit.map((u) => ({ ...u, cb: ROLEC[u.chip][0], cc: ROLEC[u.chip][1] })),
+      tl: cur.riwayat.map((r, i) => ({ ...r, dot: TLC[r.st][0], bg: TLC[r.st][1], line: TLC[r.st][2], c: TLC[r.st][3], fw: r.st === 'now' ? 700 : 500, last: i === cur.riwayat.length - 1 })),
+      lamaTxt: 'Lama penanganan: ' + nf(cur.lama) + ' hari kalender (' + fd(cur.mulai) + ' – ' + (cur.selesai ? fd(cur.selesai) + ', selesai' : ACUAN + ', tanggal acuan') + ')',
+      toPayung: toTab(0)
+    };
+
+    return {
+      acuan: ACUAN, fl, hasF, resetF, nF, toList: scrollTo('sec-temuan'),
+      kpi, alur, alurF, alurA, jenBars, jenNote, staSeg, staTxt, staA, sekBars, sekRef, sekA, toPayung: toTab(0),
+      list, staChips, d,
+      isList: view !== 'detail', isDetail: view === 'detail',
+      meta: K.meta
+    };
+  }
+}
+</script>
+
+
+<script data-harmonisasi-tab-listener>document.addEventListener("click",function(event){var link=event.target.closest&&event.target.closest("[data-harmonisasi-tab]");if(!link)return;event.preventDefault();var index=Number(link.getAttribute("data-harmonisasi-tab"));if(Number.isInteger(index))window.parent.postMessage({type:"harmonisasi:tab",index:index},"*");},true);</script><script data-harmonisasi-vercel-runtime>(function(){function contentHeight(){var host=document.getElementById("dc-root"),sc=host&&host.firstElementChild;var wrap=sc&&sc.children&&sc.children.length===1?sc.firstElementChild:sc;var kids=wrap?wrap.children:null,h=0;if(kids)for(var i=0;i<kids.length;i++){var r=kids[i].getBoundingClientRect();if(r.height>0)h=Math.max(h,r.bottom+(window.scrollY||0));}if(!h){var de=document.documentElement;h=Math.max(de?de.scrollHeight:0,document.body?document.body.scrollHeight:0);}return Math.ceil(h);}function sendSize(){window.parent.postMessage({type:"harmonisasi:resize",height:contentHeight()},"*");}function connect(){sendSize();if(window.ResizeObserver){var ro=new ResizeObserver(sendSize);if(document.documentElement)ro.observe(document.documentElement);if(document.body)ro.observe(document.body);}if(window.MutationObserver&&document.body)new MutationObserver(sendSize).observe(document.body,{childList:true,subtree:true,attributes:true,characterData:true});window.addEventListener("load",sendSize);window.addEventListener("resize",sendSize);setTimeout(sendSize,100);setTimeout(sendSize,600);}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",connect,{once:true});else connect();window.addEventListener("message",function(e){if(e.data&&e.data.type==="harmonisasi:resize-request")sendSize();});})();</script>
+</body></html>
