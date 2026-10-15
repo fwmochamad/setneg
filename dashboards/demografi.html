@@ -720,25 +720,26 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
               <sc-for list="{{charts}}" as="ch" hint-placeholder-count="2">
                 <div style="flex: 1 1 540px; min-width: 0; padding: 12px 14px 10px; border-radius: 10px; border: 1px solid #E3E8F0; display: flex; flex-direction: column; gap: 8px;">
                   <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 6px;">
-                    <div style="display: flex; align-items: center; gap: 7px;"><span style="width: 14px; height: 3px; border-radius: 2px; background: {{ch.c}};"></span><b style="font-size: 12.5px;">{{ch.n}}</b><span style="font-size: 11px; color: #64748B;">{{ch.wil}}</span></div>
+                    <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 4px 16px;"><sc-for list="{{ch.legend}}" as="lg" hint-placeholder-count="1"><span style="display: inline-flex; align-items: center; gap: 7px;"><span style="width: 14px; height: 3px; border-radius: 2px; background: {{lg.c}};"></span><b style="font-size: 12.5px;">{{lg.n}}</b><span style="font-size: 11px; color: #64748B;">{{lg.w}}</span></span></sc-for></div>
                     <span style="font-size: 11.5px; color: #475569;">{{ch.last}}</span>
                   </div>
-                  <div style="font-size: 10.5px; font-weight: 600; color: #64748B;">{{ch.u}} per bulan</div>
+                  <div style="display: flex; justify-content: space-between; gap: 8px; font-size: 10.5px; font-weight: 600;"><span style="color: {{ch.uLc}};">{{ch.uL}}</span><span style="color: {{ch.uRc}};">{{ch.uR}}</span></div>
                   <div style="display: flex; gap: 8px;">
-                    <div style="flex: none; width: 44px; height: 180px; display: flex; flex-direction: column; justify-content: space-between; text-align: right; font-size: 10.5px; color: #64748B;"><sc-for list="{{ch.yt}}" as="y" hint-placeholder-count="4"><span style="line-height: 1;">{{y}}</span></sc-for></div>
+                    <div style="flex: none; width: 44px; height: 180px; display: flex; flex-direction: column; justify-content: space-between; text-align: right; font-size: 10.5px; color: {{ch.ytC}};"><sc-for list="{{ch.yt}}" as="y" hint-placeholder-count="4"><span style="line-height: 1;">{{y}}</span></sc-for></div>
                     <div style="position: relative; flex: 1; min-width: 0; height: 180px;">
                       <svg sc-camel-view-box="0 0 600 180" sc-camel-preserve-aspect-ratio="none" aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; overflow: visible;">
                         <path d="M0 0.5H600M0 60H600M0 120H600" stroke="#EEF2F7" fill="none" vector-effect="non-scaling-stroke"></path>
                         <path d="M0 179.5H600" stroke="#CBD5E1" fill="none" vector-effect="non-scaling-stroke"></path>
                         <path d="{{ch.selD}}" stroke="#94A3B8" stroke-dasharray="3 3" fill="none" vector-effect="non-scaling-stroke"></path>
-                        <path d="{{ch.d}}" fill="none" stroke="{{ch.c}}" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke"></path>
+                        <sc-for list="{{ch.lines}}" as="ln" hint-placeholder-count="1"><path d="{{ln.d}}" fill="none" stroke="{{ln.c}}" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke"></path></sc-for>
                       </svg>
                       <sc-for list="{{ch.pts}}" as="p" hint-placeholder-count="12">
                         <span class="tip" tabindex="0" sc-camel-on-click="{{p.pick}}" style="position: absolute; left: {{p.l}}; top: {{p.t}}; width: 18px; height: 18px; margin-left: -9px; margin-top: -9px; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: {{p.z}};"><span class="pt" style="display: block; width: {{p.s}}; height: {{p.s}}; border-radius: 99px; background: {{p.bg}}; border: 2px solid {{p.c}}; box-sizing: border-box;"></span><span class="pop {{p.pc}}" style="width: 210px;">{{p.tip}}</span></span>
                       </sc-for>
                     </div>
+                    <sc-if value="{{ch.dual}}" hint-placeholder-val="{{false}}"><div style="flex: none; width: 44px; height: 180px; display: flex; flex-direction: column; justify-content: space-between; text-align: left; font-size: 10.5px; color: {{ch.uRc}};"><sc-for list="{{ch.ytR}}" as="y" hint-placeholder-count="4"><span style="line-height: 1;">{{y}}</span></sc-for></div></sc-if>
                   </div>
-                  <div style="position: relative; height: 16px; margin-left: 52px;">
+                  <div style="position: relative; height: 16px; margin-left: 52px; margin-right: {{ch.mr}};">
                     <sc-for list="{{ch.xs}}" as="x" hint-placeholder-count="12"><span style="position: absolute; left: {{x.x}}; transform: translateX(-50%); font-size: 10.5px; color: {{x.c}}; font-weight: {{x.fw}}; white-space: nowrap;">{{x.l}}</span></sc-for>
                   </div>
                   <div style="font-size: 11px; color: #94A3B8; display: flex; align-items: center;">Catatan data<span class="tip info-i" tabindex="0" aria-label="Catatan data">i<span class="pop">{{ch.note}}</span></span></div>
@@ -1223,8 +1224,9 @@ class Component extends DCLogic {
     const pt = axis.includes(st.pt) ? st.pt : lastAny;
     const n = axis.length;
     const xp = (i) => (n > 1 ? i / (n - 1) : 0.5);
-    const charts = keys.map((k) => {
-      const S = SER[k];
+    // Geometri satu seri pada sumbu y-nya sendiri (warna bisa ditimpa untuk grafik gabungan)
+    const serGeo = (k, c) => {
+      const S = SER[k], col = c || S.c;
       const vals = axis.map((mth) => valAt(k, mth));
       const nn = vals.filter((v) => v != null);
       const mx = Math.max(...nn), mn = Math.min(...nn);
@@ -1237,7 +1239,7 @@ class Component extends DCLogic {
       vals.forEach((v, i) => {
         if (v == null) return;
         const mth = axis[i], on = mth === pt, dv = S.der[mth];
-        pts.push({ l: (xp(i) * 100).toFixed(2) + '%', t: (yp(v) * 100).toFixed(2) + '%', s: on ? '12px' : '9px', bg: on ? S.c : dv ? '#FFFFFF' : '#E7F1E9', c: S.c, z: on ? 3 : 2, pc: xp(i) < 0.5 ? 'pl' : '', tip: ml(mth, true) + ' · ' + nf(v, S.dec) + ' ' + S.u + (dv ? ' (' + dv + ')' : ''), pick: () => this.setState({ pt: mth }) });
+        pts.push({ l: (xp(i) * 100).toFixed(2) + '%', t: (yp(v) * 100).toFixed(2) + '%', s: on ? '12px' : '9px', bg: on ? col : dv ? '#FFFFFF' : '#E7F1E9', c: col, z: on ? 3 : 2, pc: xp(i) < 0.5 ? 'pl' : '', tip: S.n + ' · ' + ml(mth, true) + ' · ' + nf(v, S.dec) + ' ' + S.u + (dv ? ' (' + dv + ')' : ''), pick: () => this.setState({ pt: mth }) });
       });
       const gaps = axis.filter((mth, i) => vals[i] == null && mth >= (S.data.find((r) => r[1] != null) || [''])[0]);
       const lastI = vals.map((v, i) => (v != null ? i : -1)).filter((i) => i >= 0).pop();
@@ -1247,15 +1249,35 @@ class Component extends DCLogic {
       if (gaps.length) notes.push('Belum tersedia: ' + gaps.map((g) => ml(g, true)).join(', ') + '.');
       if (pre.length) notes.push('Seri dimulai ' + ml(axis[pre.length], true) + '.');
       if (derN.length) notes.push('Titik putih = angka turunan dari persentase perubahan yang dirilis (' + derN.map((g) => ml(g, true)).join(', ') + ').');
-      const ix = axis.indexOf(pt);
-      return {
-        n: S.n, wil: S.wil, u: S.u, c: S.c, d: d || 'M0 0',
+      return { S, c: col, d: d || 'M0 0', pts, notes,
         last: lastI == null ? BT : 'Terakhir ' + ml(axis[lastI], true) + ': ' + nf(vals[lastI], S.dec) + ' ' + S.u,
-        yt: [hi, lo + ((hi - lo) * 2) / 3, lo + (hi - lo) / 3, lo].map((v) => nf(v, S.dec > 1 ? 1 : 0)),
-        selD: ix >= 0 ? 'M' + (xp(ix) * 600).toFixed(1) + ' 0V180' : 'M0 0',
-        pts, xs: axis.map((mth, i) => ({ x: (xp(i) * 100).toFixed(2) + '%', l: n > 12 && (n - 1 - i) % 2 ? '' : ml(mth), c: mth === pt ? '#1E40AF' : '#64748B', fw: mth === pt ? 700 : 400 })),
-        note: notes.join(' ') || 'Seri lengkap untuk periode terpilih.'
-      };
+        yt: [hi, lo + ((hi - lo) * 2) / 3, lo + (hi - lo) / 3, lo].map((v) => nf(v, S.dec > 1 ? 1 : 0)) };
+    };
+    const ix = axis.indexOf(pt);
+    const chartBase = () => ({
+      selD: ix >= 0 ? 'M' + (xp(ix) * 600).toFixed(1) + ' 0V180' : 'M0 0',
+      xs: axis.map((mth, i) => ({ x: (xp(i) * 100).toFixed(2) + '%', l: n > 12 && (n - 1 - i) % 2 ? '' : ml(mth), c: mth === pt ? '#1E40AF' : '#64748B', fw: mth === pt ? 700 : 400 }))
+    });
+    // Komuter: KRL dan Whoosh dalam satu grafik garis dengan dua sumbu (kiri KRL juta, kanan Whoosh ribu)
+    const combo = trT === 'kerja' && keys.length === 2;
+    const charts = combo ? (() => {
+      const g1 = serGeo(keys[0], '#1D4ED8'), g2 = serGeo(keys[1], '#D97706');
+      return [Object.assign(chartBase(), {
+        legend: [g1, g2].map((g) => ({ c: g.c, n: g.S.n, w: g.S.wil, dash: '' })),
+        lines: [g1, g2].map((g) => ({ d: g.d, c: g.c })),
+        pts: g1.pts.concat(g2.pts),
+        uL: g1.S.u + ' per bulan (sumbu kiri)', uR: g2.S.u + ' per bulan (sumbu kanan)', uLc: g1.c, uRc: g2.c,
+        yt: g1.yt, ytR: g2.yt, dual: true, mr: '52px', ytC: g1.c,
+        last: (() => { const lv = (g) => { const i = axis.map((m) => valAt(g.S === SER[keys[0]] ? keys[0] : keys[1], m)).map((v, j) => (v != null ? j : -1)).filter((j) => j >= 0).pop(); return i == null ? null : [axis[i], g]; }; const a1 = lv(g1), a2 = lv(g2); const one = (x, short) => (x ? (short ? '' : ml(x[0], true) + ' ') + (x[1].S.n.indexOf('KRL') > -1 ? 'KRL ' : 'Whoosh ') + nf(valAt(x[1].S === SER[keys[0]] ? keys[0] : keys[1], x[0]), x[1].S.dec) + ' ' + x[1].S.u.replace(' penumpang', '') : ''); return a1 && a2 && a1[0] === a2[0] ? 'Terakhir ' + ml(a1[0], true) + ': ' + one(a1, true) + ' · ' + one(a2, true) + ' penumpang' : 'Terakhir: ' + one(a1) + ' · ' + one(a2); })(),
+        note: ['Dua seri memakai sumbu berbeda karena satuannya berbeda (juta vs ribu penumpang); tinggi garis tidak dapat dibandingkan langsung dan kedua seri tidak dijumlahkan.'].concat(g1.notes.map((x) => 'KRL: ' + x), g2.notes.map((x) => 'Whoosh: ' + x)).join(' ')
+      })];
+    })() : keys.map((k) => {
+      const g = serGeo(k);
+      return Object.assign(chartBase(), {
+        legend: [{ c: g.c, n: g.S.n, w: g.S.wil, dash: '' }], lines: [{ d: g.d, c: g.c }], pts: g.pts,
+        uL: g.S.u + ' per bulan', uR: '', uLc: '#64748B', uRc: '#64748B', yt: g.yt, ytR: [], dual: false, mr: '0px', ytC: '#64748B',
+        last: g.last, note: g.notes.join(' ') || 'Seri lengkap untuk periode terpilih.'
+      });
     });
     const rd = {
       l: pt ? ml(pt, true) : (lastAny ? ml(lastAny, true) : 'agregasi'),
