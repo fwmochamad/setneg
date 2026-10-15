@@ -500,28 +500,10 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
           <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px; font-size: 11.5px; color: #64748B;">
             <span>Arahkan kursor ke provinsi untuk melihat nilai; klik untuk membuka profil. Batas 38 provinsi (termasuk pemekaran Papua 2022).</span>
             <button type="button" sc-camel-on-click="{{toggleTbl}}" style="height: 28px; padding: 0 10px; border-radius: 7px; border: 1px solid #B8E3DF; background: #FFFFFF; font-family: inherit; font-size: 12px; font-weight: 600; color: #1D4ED8; cursor: pointer;">{{tblLabel}}</button>
-<div style="flex: 1 1 100%; display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px;">
-              <div style="padding: 10px 12px; border-radius: 10px; border: 1px solid #E3E8F0; display: flex; flex-direction: column; gap: 8px; min-width: 0;">
-                <span style="font-size: 11px; font-weight: 700; color: #475569; display: flex; align-items: center;">Sebaran penduduk<span class="tip info-i" tabindex="0" aria-label="Keterangan">i<span class="pop">{{pola.tip}}</span></span></span>
-                <div style="display: flex; align-items: center; gap: 10px;"><span style="flex: none; position: relative; width: 64px; height: 64px; border-radius: 50%; background: {{pola.dn}};"><span style="position: absolute; inset: 14px; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; color: #1E40AF;">{{pola.top5}}</span></span><span style="font-size: 11px; line-height: 15px; color: #334155;"><b>5 provinsi</b> menampung {{pola.top5}} penduduk nasional</span></div>
-                <div style="margin-top: auto; padding-top: 6px; border-top: 1px dashed #E2E8F0; font-size: 10.5px; line-height: 14px; color: #64748B;">{{pola.selLine}}</div>
-              </div>
-              <div style="padding: 10px 12px; border-radius: 10px; border: 1px solid #E3E8F0; display: flex; flex-direction: column; gap: 8px; min-width: 0;">
-                <span style="font-size: 11px; font-weight: 700; color: #475569;">{{pola.ageT}}</span>
-                <div style="display: flex; height: 14px; border-radius: 4px; overflow: hidden;"><sc-for list="{{pola.age}}" as="g" hint-placeholder-count="3"><span title="{{g.l}}: {{g.v}}" style="display: block; width: {{g.w}}; background: {{g.c}};"></span></sc-for></div>
-                <sc-for list="{{pola.age}}" as="g" hint-placeholder-count="3"><div style="display: flex; justify-content: space-between; gap: 6px; font-size: 10.5px; color: #475569;"><span><span style="display: inline-block; width: 8px; height: 8px; border-radius: 2px; margin-right: 4px; background: {{g.c}};"></span>{{g.l}}</span><b style="color: #0F172A;">{{g.v}}</b></div></sc-for>
-                <div style="margin-top: auto; padding-top: 6px; border-top: 1px dashed #E2E8F0; font-size: 10.5px; line-height: 14px; color: #64748B;">{{pola.bridge}} <span style="color: #94A3B8;">Sumber: {{pola.ageSrc}}</span></div>
-              </div>
-              <div style="padding: 10px 12px; border-radius: 10px; border: 1px solid #E3E8F0; display: flex; flex-direction: column; gap: 8px; min-width: 0;">
-                <span style="font-size: 11px; font-weight: 700; color: #475569; display: flex; justify-content: space-between; gap: 6px;"><span>{{pola.tkT}}</span><sc-if value="{{pn.tkSim}}" hint-placeholder-val="{{false}}"><span title="Sakernas resmi baru dimuat untuk lima provinsi PDRB terbesar" style="font-size: 9.5px; font-weight: 600; color: #94A3B8;">simulasi</span></sc-if></span>
-                <div style="display: flex; justify-content: space-between; gap: 6px; font-size: 10.5px; color: #475569;"><span>Tingkat penyerapan</span><b style="color: {{pn.tkC}};">{{pn.tkAbs}}</b></div>
-                <div role="img" aria-label="Tingkat penyerapan {{pn.tkAbs}}, nasional 95,32%" style="position: relative; height: 10px; border-radius: 5px; background: #EEF2F7;"><span style="display: block; width: {{pn.tkW}}; height: 10px; border-radius: 5px; background: {{pn.tkC}};"></span><span title="Nasional 95,32%" style="position: absolute; top: -3px; bottom: -3px; left: 53.2%; width: 2px; border-radius: 1px; background: #0F172A;"></span></div>
-                <div style="display: flex; justify-content: space-between; margin-top: -4px; font-size: 9.5px; color: #94A3B8;"><span>90%</span><span>garis = nasional 95,32%</span><span>100%</span></div>
-                <div style="display: flex; justify-content: space-between; gap: 6px; font-size: 10.5px; color: #475569;"><span><span style="display: inline-block; width: 8px; height: 8px; border-radius: 2px; margin-right: 4px; background: #94A3B8;"></span>Angkatan kerja</span><b style="color: #0F172A;">{{pn.tkAk}}</b></div>
-                <div style="display: flex; justify-content: space-between; gap: 6px; font-size: 10.5px; color: #475569;"><span><span style="display: inline-block; width: 8px; height: 8px; border-radius: 2px; margin-right: 4px; background: #15803D;"></span>Bekerja (terserap)</span><b style="color: #0F172A;">{{pn.tkBk}}</b></div>
-                <div style="display: flex; justify-content: space-between; gap: 6px; font-size: 10.5px; color: #475569;"><span><span style="display: inline-block; width: 8px; height: 8px; border-radius: 2px; margin-right: 4px; background: #D97706;"></span>Pengangguran · TPT {{pn.tkTpt}}</span><b style="color: #0F172A;">{{pn.tkUn}}</b></div>
-                <div style="margin-top: auto; padding-top: 6px; border-top: 1px dashed #E2E8F0; font-size: 10.5px; line-height: 14px; color: #64748B;">{{pn.tkCmp}} <span style="color: #94A3B8;">Sumber: {{pn.tkSrc}}</span></div>
-              </div>
+<div style="flex: 1 1 100%; padding: 10px 14px; border-radius: 10px; border: 1px solid #E3E8F0; background: #FFFFFF; display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px; min-width: 0;">
+              <span style="flex: 1 1 100%; font-size: 11px; font-weight: 700; color: #475569; display: flex; align-items: center;">Sebaran penduduk<span class="tip info-i" tabindex="0" aria-label="Keterangan">i<span class="pop">{{pola.tip}}</span></span></span>
+              <div style="flex: 0 1 auto; display: flex; align-items: center; gap: 10px;"><span style="flex: none; position: relative; width: 56px; height: 56px; border-radius: 50%; background: {{pola.dn}};"><span style="position: absolute; inset: 12px; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 10.5px; font-weight: 700; color: #1E40AF;">{{pola.top5}}</span></span><span style="font-size: 11.5px; line-height: 16px; color: #334155;"><b>5 provinsi</b> menampung {{pola.top5}}<br />penduduk nasional</span></div>
+              <div style="flex: 1 1 240px; min-width: 0; padding-left: 14px; border-left: 1px dashed #E2E8F0; font-size: 11px; line-height: 16px; color: #64748B;">{{pola.selLine}}</div>
             </div>
           </div>
         </div>
@@ -534,6 +516,24 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
             <div style="padding: 10px; border-radius: 9px; background: #FFFFFF; border: 1px solid #E3E8F0;"><div style="font-size: 11px; color: #64748B;">Populasi</div><div style="font-size: 15px; font-weight: 700; color: #0F172A;">{{pn.pop}}</div><div style="font-size: 10.5px; color: #64748B;">{{pn.popSub}}</div></div>
             <div style="padding: 10px; border-radius: 9px; background: #EFF6FF; border: 1px solid #B8E3DF;"><div style="font-size: 11px; color: #1E40AF;">Kepadatan</div><div style="font-size: 15px; font-weight: 700; color: #1E40AF;">{{pn.dens}}</div><div style="font-size: 10.5px; color: #1D4ED8;">{{pn.densSub}}</div></div>
             <div style="padding: 10px; border-radius: 9px; background: #FFFFFF; border: 1px solid #E3E8F0;"><div style="font-size: 11px; color: #64748B;">Luas wilayah</div><div style="font-size: 15px; font-weight: 700; color: #0F172A;">{{pn.luas}}</div><div style="font-size: 10.5px; color: #64748B;">{{pn.luasSub}}</div></div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 6px;">
+            <div style="display: flex; justify-content: space-between; gap: 8px; align-items: baseline;"><b style="font-size: 12px;">Komposisi usia</b><span style="font-size: 10.5px; color: #64748B; text-align: right;">{{pola.ageSrc}}</span></div>
+            <div style="display: flex; height: 14px; border-radius: 4px; overflow: hidden;"><sc-for list="{{pola.age}}" as="g" hint-placeholder-count="3"><span title="{{g.l}}: {{g.v}}" style="display: block; width: {{g.w}}; background: {{g.c}};"></span></sc-for></div>
+            <div style="display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 11.5px; color: #475569;"><sc-for list="{{pola.age}}" as="g" hint-placeholder-count="3"><span><span style="display: inline-block; width: 9px; height: 9px; border-radius: 2px; background: {{g.c}}; margin-right: 5px;"></span>{{g.l}} <b style="color: #0F172A;">{{g.v}}</b></span></sc-for></div>
+            <div style="font-size: 11px; line-height: 15px; color: #64748B;">{{pola.bridge}}</div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 6px;">
+            <div style="display: flex; justify-content: space-between; gap: 8px; align-items: baseline;"><b style="font-size: 12px;">Tenaga kerja &amp; penyerapan<sc-if value="{{pn.tkSim}}" hint-placeholder-val="{{false}}"> <span title="Sakernas resmi baru dimuat untuk lima provinsi PDRB terbesar" style="font-size: 10px; font-weight: 600; color: #94A3B8;">simulasi</span></sc-if></b><span style="font-size: 10.5px; color: #64748B; text-align: right;">{{pn.tkSrc}}</span></div>
+            <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px;">
+              <div style="padding: 8px 10px; border-radius: 9px; background: #FFFFFF; border: 1px solid #E3E8F0;"><div style="font-size: 10.5px; color: #64748B;">Angkatan kerja</div><div style="font-size: 14px; font-weight: 700; color: #0F172A;">{{pn.tkAk}}</div></div>
+              <div style="padding: 8px 10px; border-radius: 9px; background: #F0FDF4; border: 1px solid #BBF7D0;"><div style="font-size: 10.5px; color: #15803D;">Bekerja (terserap)</div><div style="font-size: 14px; font-weight: 700; color: #15803D;">{{pn.tkBk}}</div></div>
+              <div style="padding: 8px 10px; border-radius: 9px; background: #FFFFFF; border: 1px solid #E3E8F0;"><div style="font-size: 10.5px; color: #64748B;">Pengangguran</div><div style="font-size: 14px; font-weight: 700; color: #B45309;">{{pn.tkUn}}</div><div style="font-size: 10px; color: #64748B;">TPT {{pn.tkTpt}}</div></div>
+            </div>
+            <div style="display: flex; justify-content: space-between; gap: 8px; font-size: 11px; color: #475569;"><span>Tingkat penyerapan (bekerja ÷ angkatan kerja)</span><b style="color: {{pn.tkC}};">{{pn.tkAbs}}</b></div>
+            <div role="img" aria-label="Tingkat penyerapan {{pn.tkAbs}}, nasional 95,32%" style="position: relative; height: 10px; border-radius: 5px; background: #EEF2F7;"><span style="display: block; width: {{pn.tkW}}; height: 10px; border-radius: 5px; background: {{pn.tkC}};"></span><span title="Nasional 95,32%" style="position: absolute; top: -3px; bottom: -3px; left: 53.2%; width: 2px; border-radius: 1px; background: #0F172A;"></span></div>
+            <div style="display: flex; justify-content: space-between; font-size: 10px; color: #94A3B8;"><span>90%</span><span>garis = nasional 95,32%</span><span>100%</span></div>
+            <div style="font-size: 11px; line-height: 15px; color: #334155;">{{pn.tkCmp}}</div>
           </div>
           <div style="display: flex; flex-direction: column; gap: 6px;">
             <div style="display: flex; justify-content: space-between; gap: 8px; align-items: baseline;"><b style="font-size: 12px;">Jenis kelamin</b><span style="font-size: 10.5px; color: #64748B; text-align: right;">{{pn.sexSrc}}</span></div>
@@ -1373,11 +1373,9 @@ class Component extends DCLogic {
       return {
         top5: nf(top5, 1) + '%', dn: 'conic-gradient(#1E40AF 0 ' + top5 + '%, #CBD5E1 ' + top5 + '% 100%)',
         selLine: sp ? sp.n + ' menampung ' + nf(sp.pop / tot * 100, 1) + '% penduduk nasional (peringkat ' + (popRank.indexOf(sp.id) + 1) + ' dari 38).' : 'Klik provinsi di peta untuk melihat porsinya terhadap penduduk nasional.',
-        ageT: 'Komposisi usia ' + (sp ? '· ' + sp.n : 'nasional'),
         age: [['Belum produktif (0–14 th)', '#82B394'], ['Usia produktif (15–64 th)', '#0EA5E9'], ['Lanjut usia (65+ th)', '#0B1F4B']].map(([l, c], i) => ({ l, c, v: nf(a3[i], sp ? 1 : 2) + '%', w: a3[i] + '%' })),
         ageSrc: sp ? 'BPS · SP2020 Long Form' : 'Dukcapil · DKB Semester I 2026',
         bridge: '±' + nf((sp ? sp.pop : tot) * a3[1] / 100 / 1e6, sp && sp.pop < 1e7 ? 2 : 1) + ' juta penduduk usia produktif menjadi basis utama angkatan kerja ' + pn.tkAk + '.',
-        tkT: 'Tenaga kerja ' + (sp ? '· ' + sp.n : 'nasional'),
         tip: mapIns.map((x) => x.t).join(' · ')
       };
     })();
