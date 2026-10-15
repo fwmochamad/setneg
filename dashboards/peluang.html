@@ -927,23 +927,27 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
         <section style="background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; box-shadow: 0 1px 2px rgba(15,23,42,.05);">
           <div style="padding: 12px 18px; border-bottom: 1px solid #EEF2F7; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px;"><div><h2 style="margin: 0; font-size: 14.5px; font-weight: 600;">Proyek siap investasi<span class="tip info-i" tabindex="0" aria-label="Keterangan">i<span class="pop">Profil peluang PIRBKPM berisi estimasi kelayakan, bukan realisasi investasi.</span></span></h2></div><span style="font-size: 11.5px; color: #64748B;">{{prjNote}}</span></div>
           <div style="padding: 14px 18px; display: flex; flex-direction: column; gap: 12px;">
-              <div style="display: flex; justify-content: space-between; gap: 8px; font-size: 11px; color: #64748B;"><b style="color: #0F172A;">Nilai investasi per proyek</b><span style="display: inline-flex; gap: 10px;"><span><span style="display: inline-block; width: 9px; height: 9px; border-radius: 2px; background: #1E40AF; margin-right: 4px;"></span>Siap ditawarkan</span><span><span style="display: inline-block; width: 9px; height: 9px; border-radius: 2px; background: #D4A72C; margin-right: 4px;"></span>Mencari investor</span></span></div>
-              <sc-for list="{{prjCards}}" as="c" hint-placeholder-count="4">
-              <div style="display: flex; flex-direction: column; border-radius: 8px; background: {{c.rbg}};">
-                <button type="button" sc-camel-on-click="{{c.tg}}" class="rw" title="Klik untuk rincian proyek" style="display: grid; grid-template-columns: minmax(0, 260px) minmax(0, 1fr) 96px 90px; gap: 10px; align-items: center; padding: 6px 8px; border: 0; border-radius: 8px; background: transparent; font-family: inherit; text-align: left; cursor: pointer;">
-                  <span style="min-width: 0;"><b style="display: block; font-size: 12.5px; color: #0F172A; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{c.p.n}}</b><span style="display: block; font-size: 10.5px; color: #64748B; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{c.p.lok}} · {{c.p.sek}}</span></span>
-                  <span style="display: block; height: 14px; border-radius: 4px; background: #EEF2F7;"><span style="display: block; width: {{c.bw}}; height: 14px; border-radius: 4px; background: {{c.bc}};"></span></span>
-                  <b style="text-align: right; font-size: 12.5px; color: #0F172A;">{{c.p.nilai}}</b>
-                  <span style="text-align: right; font-size: 11px; color: #64748B;">{{c.p.kerja}}</span>
+              <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 10px; font-size: 11px; color: #64748B;"><b style="color: #0F172A;">Profil proyek <span style="font-weight: 400; color: #64748B;">· klik kartu untuk rincian</span></b><span style="display: inline-flex; gap: 10px;"><span><span style="display: inline-block; width: 9px; height: 9px; border-radius: 2px; background: #1E40AF; margin-right: 4px;"></span>Siap ditawarkan</span><span><span style="display: inline-block; width: 9px; height: 9px; border-radius: 2px; background: #D4A72C; margin-right: 4px;"></span>Mencari investor</span></span></div>
+              <div role="list" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px;">
+                <sc-for list="{{prjCards}}" as="c" hint-placeholder-count="4">
+                <button type="button" role="listitem" sc-camel-on-click="{{c.tg}}" aria-expanded="{{c.ax}}" title="Klik untuk rincian proyek" style="display: flex; flex-direction: column; gap: 6px; min-width: 0; padding: 10px 12px; border-radius: 10px; border: 1px solid {{c.cbd}}; background: {{c.cbg}}; box-shadow: inset 0 3px 0 {{c.bc}}; font-family: inherit; text-align: left; cursor: pointer;">
+                  <span style="align-self: flex-start; height: 18px; padding: 0 7px; border-radius: 99px; background: {{c.sbg}}; color: {{c.stc}}; display: inline-flex; align-items: center; font-size: 10.5px; font-weight: 700;">{{c.p.sts}}</span>
+                  <b style="font-size: 12.5px; line-height: 16px; color: #0F172A; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; min-height: 32px;">{{c.p.n}}</b>
+                  <span style="font-size: 10.5px; color: #64748B; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{c.p.lok}} · {{c.p.sek}}</span>
+                  <span style="margin-top: auto; display: flex; justify-content: space-between; align-items: baseline; gap: 6px;"><b style="font-size: 15px; color: #0F172A;">{{c.p.nilai}}</b><span style="font-size: 10.5px; color: #64748B;">{{c.p.kerja}}</span></span>
+                  <span style="display: block; width: 100%; height: 6px; border-radius: 3px; background: #EEF2F7;"><span style="display: block; width: {{c.bw}}; height: 6px; border-radius: 3px; background: {{c.bc}};"></span></span>
                 </button>
-                <sc-if value="{{c.open}}" hint-placeholder-val="{{false}}">
-                  <div style="padding: 2px 12px 10px; display: flex; flex-direction: column; gap: 6px; font-size: 12px; color: #334155;">
-                    <span>{{c.p.ringkasan}}</span>
-                    <span style="font-size: 11.5px; color: #475569;">Kebutuhan dana <b style="color: #0F172A;">{{c.p.dana}}</b> · durasi <b style="color: #0F172A;">{{c.p.durasi}}</b> · tahap <b style="color: #0F172A;">{{c.p.tahap}}</b> · <b style="color: {{c.bc}};">{{c.p.sts}}</b></span>
-                    <span style="font-size: 11.5px; color: #475569;"><sc-for list="{{c.p.pts}}" as="t" hint-placeholder-count="2"><span style="margin-right: 12px;">• {{t}}</span></sc-for></span>
-                  </div>
-                </sc-if>
+                </sc-for>
               </div>
+              <sc-for list="{{prjCards}}" as="c" hint-placeholder-count="0">
+              <sc-if value="{{c.open}}" hint-placeholder-val="{{false}}">
+                <div style="padding: 10px 14px; border-radius: 10px; background: #F8FAFC; border: 1px solid #E3E8F0; display: flex; flex-direction: column; gap: 6px; font-size: 12px; color: #334155;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px;"><b style="font-size: 12.5px; color: #0F172A;">{{c.p.n}}</b><button type="button" sc-camel-on-click="{{c.tg}}" style="padding: 0; border: 0; background: transparent; font-family: inherit; font-size: 11px; font-weight: 600; color: #1D4ED8; cursor: pointer;">Tutup rincian ▴</button></div>
+                  <span>{{c.p.ringkasan}}</span>
+                  <span style="font-size: 11.5px; color: #475569;">Kebutuhan dana <b style="color: #0F172A;">{{c.p.dana}}</b> · durasi <b style="color: #0F172A;">{{c.p.durasi}}</b> · tahap <b style="color: #0F172A;">{{c.p.tahap}}</b> · <b style="color: {{c.bc}};">{{c.p.sts}}</b></span>
+                  <span style="font-size: 11.5px; color: #475569;"><sc-for list="{{c.p.pts}}" as="t" hint-placeholder-count="2"><span style="margin-right: 12px;">• {{t}}</span></sc-for></span>
+                </div>
+              </sc-if>
               </sc-for>
               <sc-if value="{{prjEmpty}}" hint-placeholder-val="{{false}}"><div style="padding: 20px; text-align: center; font-size: 12px; color: #94A3B8; border: 1px dashed #CBD5E1; border-radius: 10px;">Belum ada data proyek siap investasi untuk wilayah ini.</div></sc-if>
           </div>
@@ -2187,7 +2191,7 @@ const ewsClose = () => this.setState({ ews: null });
     const PRJD = (PRJP[dp] || []).map((x) => ({ ...x, wil: dh.n, src: 'Data simulasi · format profil peluang investasi daerah' }));
     const PJ_KEYS = [['n', 'Nama proyek'], ['lok', 'Lokasi'], ['wil', 'Provinsi'], ['sek', 'Sektor'], ['nilai', 'Nilai investasi'], ['dana', 'Kebutuhan dana'], ['durasi', 'Durasi proyek'], ['kerja', 'Tenaga kerja'], ['tahap', 'Tahap saat ini'], ['sts', 'Status'], ['src', 'Sumber data']];
     const PJC = ['#1E3A8A', '#1E40AF', '#2563EB', '#3B82F6', '#0EA5E9', '#047857', '#B45309', '#6D28D9', '#334155'];
-    const prjCards = PRJD.map((p, i) => ({ no: i + 1, c: PJC[i % PJC.length], bw: (p.nv / Math.max(...PRJD.map((x) => x.nv), 1)) * 100 + '%', bc: p.sts === 'Mencari investor' ? '#D4A72C' : '#1E40AF', rbg: st.pjO === i ? '#F8FAFC' : 'transparent', open: st.pjO === i, tg: () => this.setState({ pjO: st.pjO === i ? null : i }), tl: st.pjO === i ? 'Tutup rincian ▴' : 'Lihat rincian ▾', p: Object.assign({}, p, { kv: [['Nilai investasi', p.nilai], ['Tenaga kerja', p.kerja], ['Tahap', p.tahap]].map((x) => ({ l: x[0], v: x[1] })), kv2: [['Kebutuhan dana', p.dana], ['Durasi proyek', p.durasi]].map((x) => ({ l: x[0], v: x[1] })) }) }));
+    const prjCards = PRJD.map((p, i) => ({ no: i + 1, c: PJC[i % PJC.length], bw: (p.nv / Math.max(...PRJD.map((x) => x.nv), 1)) * 100 + '%', bc: p.sts === 'Mencari investor' ? '#D4A72C' : '#1E40AF', rbg: st.pjO === i ? '#F8FAFC' : 'transparent', open: st.pjO === i, ax: st.pjO === i ? 'true' : 'false', cbg: st.pjO === i ? '#F5F9FF' : '#FFFFFF', cbd: st.pjO === i ? '#93C5FD' : '#E3E8F0', sbg: p.sts === 'Mencari investor' ? '#FEF3C7' : '#DBEAFE', stc: p.sts === 'Mencari investor' ? '#B45309' : '#1D4ED8', tg: () => this.setState({ pjO: st.pjO === i ? null : i }), tl: st.pjO === i ? 'Tutup rincian ▴' : 'Lihat rincian ▾', p: Object.assign({}, p, { kv: [['Nilai investasi', p.nilai], ['Tenaga kerja', p.kerja], ['Tahap', p.tahap]].map((x) => ({ l: x[0], v: x[1] })), kv2: [['Kebutuhan dana', p.dana], ['Durasi proyek', p.durasi]].map((x) => ({ l: x[0], v: x[1] })) }) }));
     
 
     // ============ Insight AI ringkas per card (preskriptif) ============
