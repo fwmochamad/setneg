@@ -102,10 +102,10 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
 @media(max-width:680px){.sc-host{display:block!important;width:100%!important;max-width:100%!important;min-width:0!important}.sc-host>div{box-sizing:border-box!important;width:100%!important;max-width:100%!important;min-width:0!important}.setneg-global-header{box-sizing:border-box!important;width:100%!important;max-width:100%!important;min-width:0!important;overflow:hidden!important}.setneg-global-nav{box-sizing:border-box!important;min-width:0!important}.setneg-brand{max-width:calc(100% - 100px)!important}.harmonisasi-page-tabs{box-sizing:border-box!important;min-width:0!important}}
 @media(max-width:520px){.harmonisasi-page-tabs{width:calc(100% - 20px)!important;max-width:calc(100% - 20px)!important;display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;white-space:normal!important;overflow:visible!important;justify-content:stretch!important}.harmonisasi-page-tabs a{min-width:0!important;min-height:40px!important;padding:5px 7px!important;justify-content:center!important;white-space:normal!important;text-align:center!important;line-height:1.25!important}}
 @media(max-width:520px){.harmonisasi-page-tabs{width:calc(100% - 20px)!important;max-width:calc(100% - 20px)!important;display:grid!important;grid-template-columns:1fr!important}}
-.mzi{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;margin:12px 16px 14px;padding:10px 13px;border:1px solid #E0E7FF;border-radius:10px;background:#F8F9FF}.mzi-b{flex:none;padding:2px 8px;border-radius:5px;background:#3730A3;color:#FFFFFF;font-size:10.5px;font-weight:700;letter-spacing:.02em}.mzi-l{flex:1 1 340px;min-width:0;display:flex;flex-wrap:wrap;gap:3px 20px;margin:0;padding:0;list-style:none;font-size:12px;line-height:17px;color:#334155}.mzi-l li{position:relative;padding-left:13px}.mzi-l li:before{content:"";position:absolute;left:0;top:7px;width:5px;height:5px;border-radius:99px;background:#6366F1}.mzi-s{flex:none;font-size:10.5px;font-weight:600;color:#6366F1}@media(max-width:680px){.mzi{margin:10px 12px 12px}.mzi-l{flex:1 1 100%}}.ews-modal-backdrop{position:fixed;inset:0;z-index:2000;display:flex;align-items:flex-start;justify-content:center;overflow-y:auto;padding:24px 16px 32px;background:rgba(0,0,0,.6);backdrop-filter:blur(2px);overscroll-behavior:contain}
-.ews-modal-panel{background:#fff;border-radius:8px;box-shadow:0 25px 50px -12px rgba(0,0,0,.35);max-width:1024px;width:100%;display:flex;flex-direction:column;overflow:hidden;border:1px solid #E5E7EB;outline:none}
+.mzi{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;margin:12px 16px 14px;padding:10px 13px;border:1px solid #E0E7FF;border-radius:10px;background:#F8F9FF}.mzi-b{flex:none;padding:2px 8px;border-radius:5px;background:#3730A3;color:#FFFFFF;font-size:10.5px;font-weight:700;letter-spacing:.02em}.mzi-l{flex:1 1 340px;min-width:0;display:flex;flex-wrap:wrap;gap:3px 20px;margin:0;padding:0;list-style:none;font-size:12px;line-height:17px;color:#334155}.mzi-l li{position:relative;padding-left:13px}.mzi-l li:before{content:"";position:absolute;left:0;top:7px;width:5px;height:5px;border-radius:99px;background:#6366F1}.mzi-s{flex:none;font-size:10.5px;font-weight:600;color:#6366F1}@media(max-width:680px){.mzi{margin:10px 12px 12px}.mzi-l{flex:1 1 100%}}.ews-modal-backdrop{position:fixed;left:0;right:0;top:var(--ews-vp-top,0px);height:var(--ews-vp-h,100vh);z-index:2000;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:24px 16px;box-sizing:border-box;background:rgba(15,23,42,.55);backdrop-filter:blur(2px);overscroll-behavior:contain}
+.ews-modal-panel{background:#fff;border-radius:10px;box-shadow:0 25px 50px -12px rgba(0,0,0,.35);max-width:1024px;width:100%;max-height:100%;display:flex;flex-direction:column;overflow:hidden;border:1px solid #E5E7EB;outline:none}
 .ews-modal-body{display:grid;grid-template-columns:minmax(0,1.75fr) minmax(0,1fr);flex:1;min-height:0;overflow:hidden;overscroll-behavior:contain}
-.ews-modal-main{padding:26px 28px;overflow-y:auto;display:flex;flex-direction:column;gap:30px;overscroll-behavior:contain}
+.ews-modal-main{padding:28px 32px;overflow-y:auto;display:flex;flex-direction:column;gap:0;overscroll-behavior:contain}
 .ews-modal-side{padding:26px 24px;background:#F9FAFB;border-left:1px solid #E5E7EB;overflow-y:auto;display:flex;flex-direction:column;gap:24px;overscroll-behavior:contain}
 .ews-modal-h4{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#6B7280;margin:0 0 10px;display:flex;align-items:center;gap:6px}
 .ews-modal-body p{margin:0;font-size:14px;line-height:1.6;color:#111827}
@@ -122,23 +122,19 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
 .ews-stamp-k{font-size:9.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#9CA3AF}
 .ews-stamp-v{font-size:13.5px;font-weight:700;color:#111827;white-space:nowrap}
 .ews-stamp-t{font-size:11px;color:#6B7280;white-space:nowrap;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
-.ews-sec{padding-left:15px;border-left:3px solid #E5E7EB}
-.ews-sec+.ews-sec{margin-top:4px;padding-top:28px;border-top:1px dashed #E2E8F0}
-.ews-sec .ews-modal-h4{margin:0 0 12px}
-.ews-sec p{margin:0;padding:13px 15px;border-radius:9px;border:1px solid #EEF2F7;background:#F9FAFB;font-size:14px;line-height:1.65;color:#111827}
-.ews-h4-ico{flex:none;width:26px;height:26px;border-radius:8px;display:inline-flex;align-items:center;justify-content:center}
-.ews-s1{border-left-color:#2563EB}
-.ews-s1 .ews-h4-ico{background:#EFF6FF;color:#2563EB}
-.ews-s2{border-left-color:#C2410C}
-.ews-s2 .ews-h4-ico{background:#FFF7ED;color:#C2410C}
-.ews-s3{border-left-color:#047857}
-.ews-s3 .ews-h4-ico{background:#ECFDF5;color:#047857}
+.ews-sec{padding:0}
+.ews-sec+.ews-sec{margin-top:22px;padding-top:22px;border-top:1px solid #EEF0F3}
+.ews-sec .ews-modal-h4{margin:0 0 8px;font-size:11px;font-weight:600;letter-spacing:.08em;color:#64748B}
+.ews-sec p{margin:0;padding:0;border:0;background:none;font-size:15px;line-height:1.7;color:#1F2937}
+.ews-s3{margin-top:26px!important;padding:18px 20px!important;border:0!important;border-left:2px solid #1a3a6e!important;border-radius:0 8px 8px 0;background:#F8FAFC}
+.ews-s3 .ews-modal-h4{color:#1a3a6e}
+.ews-s3 p{color:#0F172A}
 @media(max-width:640px){.ews-stamp{display:none}}
 
 .harmonisasi-alert-card{cursor:pointer;transition:border-color .15s ease,box-shadow .15s ease,transform .15s ease}
 .harmonisasi-alert-card:hover,.harmonisasi-alert-card:focus-visible{border-color:#f59e0b!important;box-shadow:0 6px 18px rgba(180,83,9,.16)!important;transform:translateY(-1px);outline:none}
 .harmonisasi-alert-card:focus-visible{box-shadow:0 0 0 3px rgba(245,158,11,.35)!important}
-@media(max-width:860px){.ews-modal-backdrop{padding:0;align-items:flex-start}.ews-modal-panel{max-width:100%;border-radius:0}.ews-modal-body{grid-template-columns:1fr;overflow-y:auto}.ews-modal-main,.ews-modal-side{overflow:visible;border-left:0;border-top:1px solid #E5E7EB}.ews-modal-main{padding:16px}.ews-modal-side{padding:16px}}
+@media(max-width:860px){.ews-modal-backdrop{padding:0;align-items:stretch}.ews-modal-panel{max-width:100%;border-radius:0;max-height:none;height:100%}.ews-modal-body{grid-template-columns:1fr;overflow-y:auto}.ews-modal-main,.ews-modal-side{overflow:visible;border-left:0;border-top:1px solid #E5E7EB}.ews-modal-main{padding:20px 16px}.ews-modal-side{padding:16px}}
 </style></head>
 <body>
 <x-dc>
@@ -399,7 +395,7 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
 <style>body{margin:0} a{color:#1D4ED8} a:hover{color:#1E40AF} .ck{cursor:pointer;transition:box-shadow .12s,border-color .12s,background .12s} .ck:hover{box-shadow:0 2px 10px rgba(15,23,42,.08);border-color:#82B394 !important} .rw{cursor:pointer} .rw:hover{background:#EFF6FF !important} .tip{position:relative;outline:none} .tip .pop{display:none;position:absolute;z-index:95;right:0;top:calc(100% + 6px);width:300px;padding:10px 12px;border-radius:10px;background:#0B1F3A;color:#E2E8F0;font-size:11.5px;line-height:17px;font-weight:400;letter-spacing:0;text-align:left;white-space:normal;box-shadow:0 12px 32px rgba(15,23,42,.3)} .tip:hover .pop,.tip:focus .pop{display:block} .bar:hover{filter:brightness(1.08)}</style>
 </helmet>
 <div style="min-height: 100vh; background: #F4F7FB; font-family: Inter, system-ui, sans-serif; color: #0F172A;">
-  <header class="setneg-global-header" aria-label="Header Dashboard Presiden RI"><div class="setneg-header-inner"><a class="setneg-brand" href="#top" aria-label="Dashboard Presiden RI"><img alt="Logo Setneg RI" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Logo_Setneg_RI.svg/330px-Logo_Setneg_RI.svg.png"><span class="setneg-brand-copy"><strong>DASHBOARD PRESIDEN RI</strong><span>Badan Teknologi, Data dan Informasi</span><span>Kementerian Sekretariat Negara Republik Indonesia</span></span></a><nav class="setneg-global-nav" aria-label="Navigasi utama"><button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.5"/></svg><span>Eksekutif</span></button><button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"/><path d="m9 12 2 2 4-4"/></svg><span>Pertahanan &amp; Keamanan</span></button><button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 3v18h18"/><path d="m7 14 4-4 4 3 6-7"/></svg><span>Ekonomi</span></button><button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 11h16v2a8 8 0 0 1-16 0v-2Z"/><path d="M8 7c0-1 1-1 1-2M12 7c0-1 1-1 1-2M16 7c0-1 1-1 1-2"/></svg><span>MBG</span></button><button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 3h10l4 4v14H5z"/><path d="M15 3v5h4M8 12h8M8 16h8"/></svg><span>Kebijakan</span></button><button type="button" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="6" cy="6" r="2"/><circle cx="18" cy="6" r="2"/><circle cx="12" cy="18" r="2"/><path d="M8 7.5 10.8 16M16 7.5 13.2 16M8 6h8"/></svg><span>Harmonisasi</span></button></nav><div class="setneg-header-tools"><button class="setneg-theme-button" type="button" aria-label="Ganti tema"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.5 14.4A8.5 8.5 0 0 1 9.6 3.5 8.7 8.7 0 1 0 20.5 14.4Z"/></svg></button><div class="setneg-user"><span class="setneg-avatar">PS</span><span class="setneg-user-copy"><strong>Prabowo Subianto</strong><span>Presiden</span></span><svg class="setneg-user-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div></div></div></header><nav class="harmonisasi-page-tabs" aria-label="Navigasi tab Harmonisasi Investasi"><a href="#harmonisasi-page-0" aria-current="page" data-harmonisasi-tab="0">Payung Kebijakan Investasi</a><a href="#harmonisasi-page-1" data-harmonisasi-tab="1">Peluang Investasi Daerah</a><a href="#harmonisasi-page-2" data-harmonisasi-tab="2">Demografi &amp; Mobilitas Penduduk</a><a href="#harmonisasi-page-3" data-harmonisasi-tab="3">Kemudahan Berusaha &amp; Pelayanan Perizinan</a></nav><section class="harmonisasi-highlights" aria-label="Highlight Payung Kebijakan Investasi"><div class="harmonisasi-highlights-head"><h2><svg class="harmonisasi-warning-symbol" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3 2.8 19h18.4L12 3Z"></path><path d="M12 9v4m0 3h.01"></path></svg> Highlight Payung Kebijakan Investasi</h2><span>{{ewsCount}} Alerts Aktif</span></div><div class="harmonisasi-alert-track" role="list"><sc-for list="{{highlights}}" as="h" hint-placeholder-count="3"><article class="harmonisasi-alert-card" role="listitem" tabindex="0" aria-haspopup="dialog" title="Klik untuk melihat detail Early Warning" sc-camel-on-click="{{h.open}}" sc-camel-onKeyDown="{{h.key}}"><div class="harmonisasi-alert-heading"><span class="harmonisasi-alert-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m4 16 5-5 4 4 7-7"></path><path d="M14 8h6v6"></path></svg></span><div class="harmonisasi-alert-title"><strong>{{h.short}}</strong><span>Level: {{h.level}}</span></div><div class="harmonisasi-alert-meta"><span>{{h.tgl}}</span><span>Alert aktif</span><span style="padding: 1px 7px; border-radius: 5px; background: {{h.verif.bg}}; border: 1px solid {{h.verif.bd}}; color: {{h.verif.c}}; font-weight: 700;">{{h.verif.t}}</span></div></div><div class="harmonisasi-alert-details"><div><b>Masalah</b><p>{{h.m}}</p></div><div><b>Dampak</b><p>{{h.d}}</p></div><div><b>Rekomendasi</b><p>{{h.r}}</p></div></div></article></sc-for></div></section>
+  <header class="setneg-global-header" aria-label="Header Dashboard Presiden RI"><div class="setneg-header-inner"><a class="setneg-brand" href="#top" aria-label="Dashboard Presiden RI"><img alt="Logo Setneg RI" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Logo_Setneg_RI.svg/330px-Logo_Setneg_RI.svg.png"><span class="setneg-brand-copy"><strong>DASHBOARD PRESIDEN RI</strong><span>Badan Teknologi, Data dan Informasi</span><span>Kementerian Sekretariat Negara Republik Indonesia</span></span></a><nav class="setneg-global-nav" aria-label="Navigasi utama"><button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.5"/></svg><span>Eksekutif</span></button><button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"/><path d="m9 12 2 2 4-4"/></svg><span>Pertahanan &amp; Keamanan</span></button><button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 3v18h18"/><path d="m7 14 4-4 4 3 6-7"/></svg><span>Ekonomi</span></button><button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 11h16v2a8 8 0 0 1-16 0v-2Z"/><path d="M8 7c0-1 1-1 1-2M12 7c0-1 1-1 1-2M16 7c0-1 1-1 1-2"/></svg><span>MBG</span></button><button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 3h10l4 4v14H5z"/><path d="M15 3v5h4M8 12h8M8 16h8"/></svg><span>Kebijakan</span></button><button type="button" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="6" cy="6" r="2"/><circle cx="18" cy="6" r="2"/><circle cx="12" cy="18" r="2"/><path d="M8 7.5 10.8 16M16 7.5 13.2 16M8 6h8"/></svg><span>Harmonisasi</span></button></nav><div class="setneg-header-tools"><button class="setneg-theme-button" type="button" aria-label="Ganti tema"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.5 14.4A8.5 8.5 0 0 1 9.6 3.5 8.7 8.7 0 1 0 20.5 14.4Z"/></svg></button><div class="setneg-user"><span class="setneg-avatar">PS</span><span class="setneg-user-copy"><strong>Prabowo Subianto</strong><span>Presiden</span></span><svg class="setneg-user-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div></div></div></header><nav class="harmonisasi-page-tabs" aria-label="Navigasi tab Harmonisasi Investasi"><a href="#harmonisasi-page-0" aria-current="page" data-harmonisasi-tab="0">Payung Kebijakan Investasi</a><a href="#harmonisasi-page-1" data-harmonisasi-tab="1">Peluang Investasi Daerah</a><a href="#harmonisasi-page-2" data-harmonisasi-tab="2">Demografi &amp; Mobilitas Penduduk</a><a href="#harmonisasi-page-3" data-harmonisasi-tab="3">Kemudahan Berusaha &amp; Pelayanan Perizinan</a><a href="#harmonisasi-page-4" data-harmonisasi-tab="4">Keselarasan Regulasi &amp; Tindak Lanjut</a></nav><section class="harmonisasi-highlights" aria-label="Highlight Payung Kebijakan Investasi"><div class="harmonisasi-highlights-head"><h2><svg class="harmonisasi-warning-symbol" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3 2.8 19h18.4L12 3Z"></path><path d="M12 9v4m0 3h.01"></path></svg> Highlight Payung Kebijakan Investasi</h2><span>{{ewsCount}} Alerts Aktif</span></div><div class="harmonisasi-alert-track" role="list"><sc-for list="{{highlights}}" as="h" hint-placeholder-count="3"><article class="harmonisasi-alert-card" role="listitem" tabindex="0" aria-haspopup="dialog" title="Klik untuk melihat detail Early Warning" sc-camel-on-click="{{h.open}}" sc-camel-onKeyDown="{{h.key}}"><div class="harmonisasi-alert-heading"><span class="harmonisasi-alert-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m4 16 5-5 4 4 7-7"></path><path d="M14 8h6v6"></path></svg></span><div class="harmonisasi-alert-title"><strong>{{h.short}}</strong><span>Level: {{h.level}}</span></div><div class="harmonisasi-alert-meta"><span>{{h.tgl}}</span><span>Alert aktif</span><span style="padding: 1px 7px; border-radius: 5px; background: {{h.verif.bg}}; border: 1px solid {{h.verif.bd}}; color: {{h.verif.c}}; font-weight: 700;">{{h.verif.t}}</span></div></div><div class="harmonisasi-alert-details"><div><b>Masalah</b><p>{{h.m}}</p></div><div><b>Dampak</b><p>{{h.d}}</p></div><div><b>Rekomendasi</b><p>{{h.r}}</p></div></div></article></sc-for></div></section>
   <main style="max-width: 1376px; margin: 0 auto; padding: 16px 32px 48px; display: flex; flex-direction: column; gap: 16px;">
 
     <sc-if value="{{ewsOpen}}">
@@ -426,15 +422,15 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
           <div class="ews-modal-body">
             <div class="ews-modal-main">
               <div class="ews-sec ews-s1">
-                <h3 class="ews-modal-h4"><span class="ews-h4-ico"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.12 2.12 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.12 2.12 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.12 2.12 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.12 2.12 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.12 2.12 0 0 0 1.597-1.16z"></path></svg></span>Ringkasan</h3>
+                <h3 class="ews-modal-h4">Ringkasan</h3>
                 <p>{{ews.fakta}}</p>
               </div>
               <div class="ews-sec ews-s2">
-                <h3 class="ews-modal-h4"><span class="ews-h4-ico"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"></path><path d="M12 9v4"></path><path d="M12 17h.01"></path></svg></span>Dampak</h3>
+                <h3 class="ews-modal-h4">Dampak</h3>
                 <p>{{ews.perk}}</p>
               </div>
               <div class="ews-sec ews-s3">
-                <h3 class="ews-modal-h4"><span class="ews-h4-ico"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"></path></svg></span>Saran Untuk Presiden</h3>
+                <h3 class="ews-modal-h4">Saran Untuk Presiden</h3>
                 <p>{{ews.opsi}}</p>
               </div>
             </div>
@@ -734,7 +730,6 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
             </div>
 
             <!-- FOOTER RESMI (BERSIH 2026 SAJA) -->
-                        <div class="mzi"><span class="mzi-b">Insight AI</span><ul class="mzi-l"><sc-for list="{{mini.regtop}}" as="i" hint-placeholder-count="3"><li>{{i}}</li></sc-for></ul><span class="mzi-s">Terverifikasi analis</span></div>
             <div style="padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;">
               <span><b style="color: #475569;">Periode data:</b> tahun 2026 hingga 12 Okt</span>
               <span><b style="color: #475569;">Diperbarui:</b> 12 Okt 2026</span>
@@ -784,33 +779,33 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
         <!-- 3. Daftar regulasi -->
         <section id="sec-daftar" style="background: #FFFFFF; border: 1px solid #EAECF0; border-radius: 12px; display: flex; flex-direction: column; scroll-margin-top: 16px;">
           <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px; padding: 8px 12px; border-bottom: 1px solid #EAECF0;">
-            <span style="font-size: 16px; font-weight: 500; color: #344054;">Daftar Regulasi Investasi</span>
+            <h2 style="margin: 0; font-size: 14.5px; font-weight: 600;">Daftar Regulasi Investasi</h2>
             <div style="display: flex; align-items: center; gap: 12px;">
               <sc-if value="{{hasLvlFilter}}">
                 <sc-for list="{{chips}}" as="c" hint-placeholder-count="2">
-                  <span style="display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 4px 0 12px; box-sizing: border-box; border-radius: 8px; background: #F0F9FF; border: 1px solid #7CD4FD; font-size: 12px; color: #344054;"><b>Filter: {{c.l}}</b><span style="color: #667085;">{{c.n}}</span><button type="button" sc-camel-on-click="{{c.clear}}" title="Hapus filter {{c.l}}" style="width: 22px; height: 22px; border: 0; border-radius: 5px; background: #FFFFFF; color: #0284C7; font-family: inherit; font-size: 13px; line-height: 1; cursor: pointer;">×</button></span>
+                  <span style="display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 4px 0 12px; box-sizing: border-box; border-radius: 8px; background: #F0F9FF; border: 1px solid #7CD4FD; font-size: 12px; color: #475569;"><b style="color: #0F172A;">Filter: {{c.l}}</b><span style="color: #64748B;">{{c.n}}</span><button type="button" sc-camel-on-click="{{c.clear}}" title="Hapus filter {{c.l}}" style="width: 22px; height: 22px; border: 0; border-radius: 5px; background: #FFFFFF; color: #0284C7; font-family: inherit; font-size: 13px; line-height: 1; cursor: pointer;">×</button></span>
                 </sc-for>
               </sc-if>
               <div style="position: relative; width: 288px; max-width: 100%;">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #94A3B8; pointer-events: none;"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
-                <input type="search" value="{{q}}" sc-camel-on-change="{{onSearch}}" placeholder="Cari regulasi..." style="width: 100%; height: 36px; padding: 0 12px 0 36px; box-sizing: border-box; border-radius: 8px; border: 1px solid #E2E8F0; background: #FFFFFF; font-family: inherit; font-size: 14px; color: #0F172A; outline: 0;" />
+                <input type="search" value="{{q}}" sc-camel-on-change="{{onSearch}}" placeholder="Cari regulasi..." style="width: 100%; height: 36px; padding: 0 12px 0 36px; box-sizing: border-box; border-radius: 8px; border: 1px solid #E2E8F0; background: #FFFFFF; font-family: inherit; font-size: 12.5px; color: #0F172A; outline: 0;" />
               </div>
             </div>
           </div>
 
           <div style="padding: 12px; display: flex; flex-direction: column; gap: 16px; flex: 1;">
             <sc-if value="{{noRows}}" hint-placeholder-val="{{false}}">
-              <div style="padding: 32px 0; text-align: center; font-size: 14px; color: #94A3B8;">No data found · <button type="button" sc-camel-on-click="{{resetF}}" style="padding: 0; border: 0; background: transparent; font-family: inherit; font-size: 14px; font-weight: 600; color: #2563EB; cursor: pointer;">Reset filter</button></div>
+              <div style="padding: 32px 0; text-align: center; font-size: 12.5px; color: #64748B;">No data found · <button type="button" sc-camel-on-click="{{resetF}}" style="padding: 0; border: 0; background: transparent; font-family: inherit; font-size: 12.5px; font-weight: 600; color: #1D4ED8; cursor: pointer;">Reset filter</button></div>
             </sc-if>
 
             <sc-for list="{{rows}}" as="r" hint-placeholder-count="5">
               <article sc-camel-on-click="{{r.open}}" style="border-radius: 16px; border: 1px solid #E5E7EB; background: #FFFFFF; overflow: hidden; cursor: pointer; transition: border-color .15s ease, box-shadow .15s ease;">
                 <div style="padding: 12px 16px; display: flex; align-items: center; gap: 12px;">
                   <div style="display: flex; align-items: center; gap: 8px; min-width: 0; flex: 1;">
-                    <span style="display: inline-flex; align-items: center; justify-content: center; border-radius: 999px; background: #0BA5EC; color: #FFFAFA; font-size: 12px; font-weight: 600; padding: 4px 12px; flex: none;">{{r.jenis}}</span>
-                    <p title="{{r.nomorJudul}}" style="margin: 0; font-size: 14px; font-weight: 500; color: #0F172A; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0;">{{r.nomorJudul}}</p>
+                    <span style="display: inline-flex; align-items: center; justify-content: center; border-radius: 999px; background: #0BA5EC; color: #FFFFFF; font-size: 11px; font-weight: 600; padding: 3px 10px; flex: none;">{{r.jenis}}</span>
+                    <p title="{{r.nomorJudul}}" style="margin: 0; font-size: 13px; font-weight: 600; color: #0F172A; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0;">{{r.nomorJudul}}</p>
                   </div>
-                  <span style="display: inline-flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 600; color: #2563EB; flex: none;">Detail →</span>
+                  <span style="display: inline-flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 600; color: #1D4ED8; flex: none;">Detail →</span>
                 </div>
 
                 <div style="background: #F9FAFB; border-top: 1px solid #EAECF0; padding: 12px 16px;">
@@ -819,8 +814,8 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
                       <div style="display: flex; align-items: flex-start; gap: 12px;">
                         <div style="flex: none; height: 28px; width: 28px; border-radius: 8px; display: flex; align-items: center; justify-content: center; background: #E0F2FE; color: #2563EB;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path><path d="M14 2v4a2 2 0 0 0 2 2h4"></path><path d="M10 9H8"></path><path d="M16 13H8"></path><path d="M16 17H8"></path></svg></div>
                         <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px;">
-                          <p style="margin: 0; font-size: 14px; font-weight: 600; color: #0F172A;">Summary Peraturan</p>
-                          <p title="{{r.summary}}" style="margin: 0; font-size: 13px; line-height: 1.6; color: #334155; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">{{r.summary}}</p>
+                          <p style="margin: 0; font-size: 12.5px; font-weight: 600; color: #0F172A;">Summary Peraturan</p>
+                          <p title="{{r.summary}}" style="margin: 0; font-size: 12px; line-height: 18px; color: #334155; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">{{r.summary}}</p>
                         </div>
                       </div>
                     </div>
@@ -829,11 +824,11 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
                       <div style="display: flex; align-items: flex-start; gap: 12px;">
                         <div style="flex: none; height: 28px; width: 28px; border-radius: 8px; display: flex; align-items: center; justify-content: center; background: #FEF3C7; color: #D97706;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="6" x2="6" y1="3" y2="15"></line><circle cx="18" cy="6" r="3"></circle><circle cx="6" cy="18" r="3"></circle><path d="M18 9a9 9 0 0 1-9 9"></path></svg></div>
                         <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px;">
-                          <p style="margin: 0; font-size: 14px; font-weight: 600; color: #0F172A;">Regulasi Turunan</p>
+                          <p style="margin: 0; font-size: 12.5px; font-weight: 600; color: #0F172A;">Regulasi Turunan</p>
                           <ul style="display: {{r.turD}}; margin: 0; padding-left: 16px; list-style: disc; flex-direction: column; gap: 4px;">
-                            <sc-for list="{{r.turunan}}" as="t" hint-placeholder-count="2"><li style="font-size: 13px; line-height: 1.6; color: #334155;">{{t}}</li></sc-for>
+                            <sc-for list="{{r.turunan}}" as="t" hint-placeholder-count="2"><li style="font-size: 12px; line-height: 18px; color: #334155;">{{t}}</li></sc-for>
                           </ul>
-                          <p style="display: {{r.dashD}}; margin: 0; font-size: 13px; line-height: 1.6; color: #334155;">-</p>
+                          <p style="display: {{r.dashD}}; margin: 0; font-size: 12px; line-height: 18px; color: #334155;">-</p>
                         </div>
                       </div>
                     </div>
@@ -842,8 +837,8 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
                       <div style="display: flex; align-items: flex-start; gap: 12px;">
                         <div style="flex: none; height: 28px; width: 28px; border-radius: 8px; display: flex; align-items: center; justify-content: center; background: #D1FADF; color: #059669;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9.94 15.5A2 2 0 0 0 8.5 14.06l-6.14-1.58a.5.5 0 0 1 0-.96L8.5 9.94A2 2 0 0 0 9.94 8.5l1.58-6.14a.5.5 0 0 1 .96 0l1.58 6.14A2 2 0 0 0 15.5 9.94l6.14 1.58a.5.5 0 0 1 0 .96l-6.14 1.58a2 2 0 0 0-1.44 1.44l-1.58 6.14a.5.5 0 0 1-.96 0Z"></path></svg></div>
                         <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px;">
-                          <p style="margin: 0; font-size: 14px; font-weight: 600; color: #0F172A;">Insight - Impact</p>
-                          <p title="{{r.insight}}" style="margin: 0; font-size: 13px; line-height: 1.6; color: #334155; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">{{r.insight}}</p>
+                          <p style="margin: 0; font-size: 12.5px; font-weight: 600; color: #0F172A;">Insight - Impact</p>
+                          <p title="{{r.insight}}" style="margin: 0; font-size: 12px; line-height: 18px; color: #334155; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">{{r.insight}}</p>
                         </div>
                       </div>
                     </div>
@@ -860,19 +855,19 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
                   <div style="display: flex; align-items: center; gap: 12px;">
                     <sc-for list="{{pg.pages}}" as="p" hint-placeholder-count="5">
                       <span style="display: {{p.gapD}}; align-items: center; justify-content: center; color: #737373;" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg></span>
-                      <button type="button" sc-camel-on-click="{{p.pick}}" aria-label="Page {{p.aria}}" style="display: {{p.btnD}}; align-items: center; justify-content: center; padding: 0 16px; height: 40px; min-width: 40px; font-family: inherit; font-size: 14px; font-weight: 500; border: 0; border-radius: 6px; background: {{p.bg}}; color: {{p.fg}}; cursor: pointer;">{{p.n}}</button>
+                      <button type="button" sc-camel-on-click="{{p.pick}}" aria-label="Page {{p.aria}}" style="display: {{p.btnD}}; align-items: center; justify-content: center; padding: 0 16px; height: 40px; min-width: 40px; font-family: inherit; font-size: 12.5px; font-weight: 600; border: 0; border-radius: 6px; background: {{p.bg}}; color: {{p.fg}}; cursor: pointer;">{{p.n}}</button>
                     </sc-for>
                   </div>
                   <button type="button" sc-camel-on-click="{{pg.next}}" aria-label="Next page" title="Halaman berikutnya" style="display: inline-flex; align-items: center; justify-content: center; padding: 8px; border: 0; border-radius: 6px; background: {{pg.nb}}; color: {{pg.nc}}; cursor: pointer;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg></button>
                   <button type="button" sc-camel-on-click="{{pg.last}}" aria-label="Last page" title="Halaman terakhir" style="display: inline-flex; align-items: center; justify-content: center; padding: 8px; border: 0; border-radius: 6px; background: {{pg.nb}}; color: {{pg.nc}}; cursor: pointer;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 17 5-5-5-5"></path><path d="m13 17 5-5-5-5"></path></svg></button>
                 </div>
-                <div style="font-size: 14px; color: #374151;">{{pageNote}}</div>
+                <div style="font-size: 12px; color: #64748B;">{{pageNote}}</div>
               </div>
             </sc-if>
 
-            <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; width: 100%; font-size: 10px; color: #98A2B3;">
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; width: 100%; font-size: 11px; color: #64748B;">
               <span>Diurutkan menurut tingkatan peraturan: UU, PP, Perpres, Permen, Kepmen, Perda · {{restNote}}</span>
-              <span style="display: inline-flex; align-items: center;"><span style="margin-right: 8px;">Sumber :</span><b style="font-weight: 500;">JDIH Setneg, JDIH K/L, JDIH pemda</b><span style="margin: 0 12px; height: 16px; width: 1px; background: #EAECF0;" aria-hidden="true"></span><span style="font-weight: 500;">12 Okt 2026, 06.00 WIB</span></span>
+              <span style="display: inline-flex; align-items: center;"><span style="margin-right: 8px;">Sumber :</span><b style="color: #475569;">JDIH Setneg, JDIH K/L, JDIH pemda</b><span style="margin: 0 12px; height: 16px; width: 1px; background: #EAECF0;" aria-hidden="true"></span><span style="font-weight: 500;">12 Okt 2026, 06.00 WIB</span></span>
             </div>
           </div>
                 <div class="mzi"><span class="mzi-b">Insight AI</span><ul class="mzi-l"><sc-for list="{{mini.daftar}}" as="i" hint-placeholder-count="3"><li>{{i}}</li></sc-for></ul><span class="mzi-s">Terverifikasi analis</span></div>
@@ -914,6 +909,7 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
                 <p style="margin: 0; font-size: 13px; line-height: 20px; color: #334155;">{{d.ringSummary}}<sc-if value="{{d.hasPasal}}" hint-placeholder-val="{{false}}"> <span style="font-weight: 600;">Rujukan:</span> <sc-for list="{{d.pasal}}" as="ps" hint-placeholder-count="1"><a href="{{d.naskah}}" target="_blank" rel="noopener" style="margin-right: 6px; font-size: 12px; font-weight: 600; text-decoration: none; white-space: nowrap;">{{ps}} ↗</a></sc-for></sc-if></p>
               </div>
             </sc-if>
+            <div class="mzi"><span class="mzi-b">Insight AI</span><ul class="mzi-l"><sc-for list="{{d.ins}}" as="i" hint-placeholder-count="2"><li>{{i}}</li></sc-for></ul><span class="mzi-s">Terverifikasi analis</span></div>
             <sc-if value="{{d.noRing}}" hint-placeholder-val="{{false}}"><div style="margin: 16px 18px; padding: 24px 16px; border-radius: 10px; border: 1px dashed #CBD5E1; background: #F8FAFC; text-align: center; font-size: 12.5px; color: #475569;">Ringkasan substansi belum tersedia. Ringkasan AI sedang menunggu review analis di Back Office.</div></sc-if>
             <div style="padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; border-radius: 0 0 12px 12px;"><b style="color: #475569;">Sumber:</b> naskah resmi (JDIH) · ringkasan disusun AI dan diverifikasi analis · {{d.verif}}</div>
           </section>
@@ -940,6 +936,7 @@ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}body{min-heigh
                 </div>
               </sc-for>
             </div>
+            <div class="mzi"><span class="mzi-b">Insight AI</span><ul class="mzi-l"><sc-for list="{{d.relIns}}" as="i" hint-placeholder-count="3"><li>{{i}}</li></sc-for></ul><span class="mzi-s">Terverifikasi analis</span></div>
           </sc-if>
           <sc-if value="{{d.noRel}}" hint-placeholder-val="{{false}}"><div style="margin: 16px 18px; padding: 18px 16px; border-radius: 10px; border: 1px dashed #CBD5E1; background: #F8FAFC; font-size: 12.5px; color: #475569;">Relasi induk–turunan belum diverifikasi analis; relasi yang belum terverifikasi tidak ditampilkan sebagai tidak ada.</div></sc-if>
           <div style="padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; border-radius: 0 0 12px 12px;"><b style="color: #475569;">Sumber:</b> konsiderans dan pasal amanat pada naskah resmi · divalidasi analis</div>
@@ -1255,11 +1252,6 @@ class Component extends DCLogic {
     // sendiri, supaya pembaca tahu tindakan berikutnya tanpa harus membaca
     // seluruh grafik dan tabel.
     const mini = {
-      regtop: [
-        'Fokuskan revisi pada jenis regulasi dengan porsi terbesar.',
-        'Bandingkan porsi tiap jenis regulasi dengan rata-rata nasional.',
-        'Tetapkan indikator kepatuhan untuk setiap jenis regulasi.'
-      ],
       daftar: [
         'Verifikasi nomor dan tanggal setiap regulasi sebelum dipakai sebagai acuan.',
         'Tandai regulasi yang akan dicabut agar tidak dipakai kembali sebagai dasar.',
@@ -1280,7 +1272,7 @@ class Component extends DCLogic {
       const grp = dr.rel.find((x) => x[0] === 'Turunan' || x[0] === 'SEKTOR');
       return grp ? grp[1].map(([ref, id2]) => (id2 && byId[id2] ? byId[id2].nomor : ref)) : [];
     };
-    const insightOf = (r) => 'Menjadi rujukan kepastian berusaha bagi sektor ' + sekText(r.sek) + ' di ' + (r.wil === N ? 'seluruh Indonesia' : r.wil) + '. Diterbitkan ' + r.pen + ' (' + r.tahun + ') dan berstatus aktif per 12 Okt 2026.';
+    const insightOf = (r) => 'Menjadi rujukan kepastian berusaha bagi ' + (/^lintas/i.test(sekText(r.sek)) ? 'lintas sektor' : 'sektor ' + sekText(r.sek)) + ' di ' + (r.wil === N ? 'seluruh Indonesia' : r.wil) + '. Diterbitkan ' + r.pen + ' (' + r.tahun + ') dan berstatus aktif per 12 Okt 2026.';
     const rows = ids.slice(page * PG, page * PG + PG).map((r) => {
       const turunan = turunanOf(r);
       return { jenis: r.j === 'UU' ? 'UU' : r.j.toUpperCase(), nomorJudul: r.nomor + ' - ' + r.judul, summary: ringOf(r), turunan, hasTurunan: turunan.length > 0, turD: turunan.length > 0 ? 'flex' : 'none', dashD: turunan.length > 0 ? 'none' : 'block', insight: insightOf(r), open: () => this.setState({ view: 'detail', sel: keyOf(r), menu: null }) };
@@ -1322,6 +1314,22 @@ class Component extends DCLogic {
       hasRel: !!D, noRel: !D,
       rel: D ? D.rel.map(([t, items]) => ({ t: t.toUpperCase(), items: items.map(([ref, id, rel, note]) => { const tgt = id && byId[id];
         return { ref: tgt ? tgt.nomor : ref, rel, note: note || (tgt ? tgt.judul : '—'), c: tgt ? '#1D4ED8' : '#0F172A', cls: tgt ? 'rw' : '', open: tgt ? openReg(id) : null }; }) })) : [] };
+    // insight rinci: dampak substansi bagi investasi + dampak perubahan terhadap regulasi terkait
+    const grpOf = (name) => (D ? D.rel.filter(([t]) => t.toLowerCase().indexOf(name.toLowerCase()) === 0).reduce((a, [, it]) => a.concat(it), []) : []);
+    const relTur = grpOf('Turunan'), relInd = grpOf('Induk'), relSet = grpOf('Setingkat');
+    const refName = ([ref, id]) => (id && byId[id] ? byId[id].nomor : ref);
+    const unmapped = relTur.filter(([, id]) => !(id && byId[id])).length;
+    d.ins = [
+      insightOf(r),
+      r.j === 'Perda' ? 'Selaraskan pelaksanaannya dengan regulasi nasional terkait agar tidak menambah syarat perizinan di daerah.'
+        : r.j === 'UU' || r.j === 'PP' ? 'Pantau kesiapan peraturan pelaksana dan sistem OSS agar substansinya benar-benar dirasakan pelaku usaha.'
+        : 'Pastikan pedoman teknis ini tersosialisasi ke DPMPTSP dan K/L penerbit izin sebelum menjadi dasar penolakan permohonan.'
+    ];
+    d.relIns = [
+      'Terhubung dengan ' + relInd.length + ' regulasi induk, ' + relTur.length + ' turunan, dan ' + relSet.length + ' regulasi setingkat.',
+      relTur.length ? 'Setiap perubahan perlu diikuti penyesuaian ' + relTur.length + ' regulasi turunan: ' + relTur.slice(0, 3).map(refName).join(', ') + (relTur.length > 3 ? ', dan lainnya' : '') + '.' : 'Belum ada regulasi turunan; substansi dapat langsung dilaksanakan tanpa menunggu aturan pelaksana.',
+      unmapped ? unmapped + ' regulasi terkait belum ada di basis data harmonisasi; tambahkan agar dampak perubahan dapat dilacak.' : 'Seluruh regulasi turunan sudah terpetakan di basis data harmonisasi.'
+    ];
 
     // ---------- highlight EWS + pop-up detail ----------
     const HL_KEYS = ['dc', 'tpl', 'swl'];
@@ -1515,4 +1523,5 @@ var lastEwsModal = null;
   }
 })();
 </script>
+<script data-ews-viewport>(function(){var root=document.documentElement,open=false;function apply(top,h){root.style.setProperty("--ews-vp-top",Math.max(0,top)+"px");root.style.setProperty("--ews-vp-h",h+"px");}window.addEventListener("message",function(e){var d=e.data;if(d&&d.type==="harmonisasi:viewport")apply(Number(d.top)||0,Number(d.height)||window.innerHeight);});function check(){var now=!!document.querySelector("[data-ews-modal]");if(now===open)return;open=now;if(window.parent!==window)window.parent.postMessage({type:"harmonisasi:modal",open:open},"*");}if(window.MutationObserver)new MutationObserver(check).observe(root,{childList:true,subtree:true});})();</script>
 </body></html>
