@@ -549,7 +549,7 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
             <button type="button" role="listitem" class="ri-item" sc-camel-on-click="{{r.go}}" title="Klik untuk melihat rincian" style="box-shadow: inset 0 3px 0 {{r.cc}};">
               <span class="ri-l">{{r.l}}</span>
               <b class="ri-v">{{r.v}}</b>
-              <span class="ri-s" style="justify-self: stretch; align-self: start;">{{r.s}}<sc-if value="{{r.tg}}" hint-placeholder-val="{{false}}"><span title="{{r.tg.tt}}" style="display: flex; flex-direction: column; gap: 3px; margin-top: 5px;"><span style="display: flex; justify-content: space-between; gap: 6px;"><span>Target tahunan <b style="color: #0F172A;">{{r.tg.t}}</b></span><b style="color: #1E40AF;">{{r.tg.p}}</b></span><span style="display: block; height: 6px; border-radius: 3px; background: #E2E8F0; overflow: hidden;"><span style="display: flex; height: 6px; width: {{r.tg.w2}};"><span style="width: {{r.tg.w1r}}; background: #94A3B8;"></span><span style="flex: 1; background: #1E40AF;"></span></span></span><span style="font-size: 10.5px;">Tw II {{r.tg.q}} · s.d. Tw II {{r.tg.cum}}</span></span></sc-if></span>
+              <span class="ri-s" style="justify-self: stretch; align-self: start;">{{r.s}}<sc-if value="{{r.viz}}" hint-placeholder-val="{{false}}"><span title="{{r.viz.tt}}" style="display: flex; flex-direction: column; gap: 4px; margin-top: 6px;"><span style="display: flex; justify-content: space-between; align-items: baseline; gap: 6px;"><span>{{r.viz.hl}} <b style="color: #0F172A;">{{r.viz.hb}}</b></span><b style="color: {{r.viz.hc}};">{{r.viz.hr}}</b></span><span style="display: flex; gap: 2px; height: 8px; border-radius: 4px; background: #E2E8F0; overflow: hidden;"><sc-for list="{{r.viz.segs}}" as="g" hint-placeholder-count="2"><span title="{{g.tt}}" style="flex: 0 0 {{g.w}}; background: {{g.c}};"></span></sc-for></span><span style="display: flex; flex-wrap: wrap; gap: 2px 10px; font-size: 10.5px;"><sc-for list="{{r.viz.keys}}" as="k" hint-placeholder-count="2"><span style="display: inline-flex; align-items: center; gap: 4px;"><span style="width: 7px; height: 7px; border-radius: 2px; background: {{k.c}};"></span>{{k.l}}</span></sc-for></span></span></sc-if></span>
               <span class="ri-c" style="background: {{r.cb}}; color: {{r.cc}};">{{r.stL}}</span>
               <span class="ri-i"><b>✦</b> {{r.a}}</span>
             </button>
@@ -2370,15 +2370,36 @@ const ewsClose = () => this.setState({ ews: null });
     const riMake = (per, items) => ({ per, items: items.map((x) => ({ ...x, stL: riSt[x.st][0], cb: riSt[x.st][1], cc: riSt[x.st][2] })),
       nWarn: items.filter((x) => x.st === 'warn').length, nWatch: items.filter((x) => x.st === 'watch').length, nOk: items.filter((x) => x.st === 'ok').length });
     const riPrj = TOP5.reduce((a, id) => a.concat(PRJP[id] || []), []);
+    // Visual mini per indikator: kepala (label + nilai pembanding), batang bersegmen, keterangan berwarna
+    const vSeg = (w, c, tt) => ({ w: w + '%', c, tt });
+    const vKey = (c, l) => ({ c, l });
+    const riPrjV = riPrj.reduce((a, x) => a + x.nv, 0) || 1;
+    const PRJC = ['#1E3A8A', '#1E40AF', '#2563EB', '#3B82F6', '#93C5FD'];
+    const prjBy = TOP5.map((id, i) => { const v = (PRJP[id] || []).reduce((a, x) => a + x.nv, 0); return { n: P[id].n, v, c: PRJC[i] }; });
+    const pdrbTop = TOP5.map((id, i) => ({ n: P[id].n, sh: P[id].share, c: PRJC[i] }));
+    const pdrbTopSum = pdrbTop.reduce((a, x) => a + x.sh, 0);
     const ri = riMake('Triwulan II 2026 · PDRB 2025', [
       { l: 'Realisasi investasi Tw II 2026', v: 'Rp511,8 T', s: 'naik 7,1% yoy dari Rp477,7 T', st: 'ok', a: 'Jaga momentum; data Tw III 2026 belum dirilis BKPM.', go: riGo('sec-nasional'),
-        // perbandingan dengan target nasional tahunan: batang = kumulatif s.d. Tw II (abu = Tw I, biru = Tw II)
-        tg: { t: 'Rp' + nf(TG26, 1) + ' T', p: nf(NV.y26.t / TG26 * 100, 1) + '%', q: nf(NV.tw2.t / TG26 * 100, 1) + '%', cum: nf(NV.y26.t / TG26 * 100, 1) + '%', w2: (NV.y26.t / TG26) * 100 + '%', w1r: (NV.tw1.t / NV.y26.t) * 100 + '%',
-          tt: 'Tw II Rp511,8 T = ' + nf(NV.tw2.t / TG26 * 100, 1) + '% target tahunan; kumulatif s.d. Tw II Rp' + nf(NV.y26.t, 1) + ' T = ' + nf(NV.y26.t / TG26 * 100, 1) + '% dari target Rp' + nf(TG26, 1) + ' T' } },
-      { l: 'Porsi PMA', v: '50,4%', s: 'US$14,41 miliar ≈ Rp257,7 T', st: 'watch', a: 'Hong Kong & Singapura 59,4% PMA; perluas negara asal investor.', go: riGo('sec-nasional') },
-      { l: 'Konsentrasi PDRB', v: '57,32%', s: 'disumbang 5 provinsi terbesar', st: 'warn', a: 'Arahkan insentif ke provinsi di luar lima besar.', go: riGo('sec-peta') },
-      { l: 'Sebaran PMDN', v: '66,6%', s: 'terkumpul di 4 wilayah', st: 'warn', a: 'Kalimantan, Sulawesi, Bali–Nusra hanya 21,5% PMDN.', go: riGo('sec-nasional') },
-      { l: 'Proyek siap investasi (Top 5)', v: riPrj.length + ' proyek', s: 'Rp' + nf(riPrj.reduce((a, x) => a + x.nv, 0), 1) + ' T · data simulasi', st: 'watch', a: 'Promosikan profil proyek Top 5 di forum bisnis dan misi investasi.', go: () => this.setState({ view: 'detail', dp: 'dki', pop: false }) }
+        viz: { hl: 'Target tahunan', hb: 'Rp' + nf(TG26, 1) + ' T', hr: nf(NV.y26.t / TG26 * 100, 1) + '%', hc: '#1E40AF',
+          segs: [vSeg(NV.tw1.t / TG26 * 100, '#94A3B8', 'Tw I ' + nf(NV.tw1.t / TG26 * 100, 1) + '% target'), vSeg(NV.tw2.t / TG26 * 100, '#1E40AF', 'Tw II ' + nf(NV.tw2.t / TG26 * 100, 1) + '% target')],
+          keys: [vKey('#94A3B8', 'Tw I ' + nf(NV.tw1.t / TG26 * 100, 1) + '%'), vKey('#1E40AF', 'Tw II ' + nf(NV.tw2.t / TG26 * 100, 1) + '%')],
+          tt: 'Kumulatif s.d. Tw II Rp' + nf(NV.y26.t, 1) + ' T = ' + nf(NV.y26.t / TG26 * 100, 1) + '% dari target nasional Rp' + nf(TG26, 1) + ' T' } },
+      { l: 'Porsi PMA', v: '50,4%', s: 'US$14,41 miliar ≈ Rp257,7 T', st: 'watch', a: 'Hong Kong & Singapura 59,4% PMA; perluas negara asal investor.', go: riGo('sec-nasional'),
+        viz: { hl: 'Komposisi', hb: 'Rp511,8 T', hr: 'PMA unggul tipis', hc: '#A16207',
+          segs: [vSeg(49.6, '#1E40AF', 'PMDN Rp254,1 T · 49,6%'), vSeg(50.4, '#D4A72C', 'PMA Rp257,7 T · 50,4%')],
+          keys: [vKey('#1E40AF', 'PMDN 49,6%'), vKey('#D4A72C', 'PMA 50,4%')], tt: 'Tw II 2026: PMDN Rp254,1 T, PMA Rp257,7 T' } },
+      { l: 'Konsentrasi PDRB', v: '57,32%', s: 'disumbang 5 provinsi terbesar', st: 'warn', a: 'Arahkan insentif ke provinsi di luar lima besar.', go: riGo('sec-peta'),
+        viz: { hl: 'Terbesar', hb: pdrbTop[0].n, hr: nf(pdrbTop[0].sh, 2) + '%', hc: '#1E3A8A',
+          segs: pdrbTop.map((x) => vSeg(x.sh, x.c, x.n + ' ' + nf(x.sh, 2) + '% PDRB')).concat([vSeg(100 - pdrbTopSum, '#CBD5E1', '33 provinsi lain ' + nf(100 - pdrbTopSum, 2) + '%')]),
+          keys: [vKey('#2563EB', '5 provinsi ' + nf(pdrbTopSum, 2) + '%'), vKey('#CBD5E1', '33 lainnya ' + nf(100 - pdrbTopSum, 2) + '%')], tt: pdrbTop.map((x) => x.n + ' ' + nf(x.sh, 2) + '%').join(' · ') } },
+      { l: 'Sebaran PMDN', v: '66,6%', s: 'terkumpul di 4 wilayah', st: 'warn', a: 'Kalimantan, Sulawesi, Bali–Nusra hanya 21,5% PMDN.', go: riGo('sec-nasional'),
+        viz: { hl: 'Kal–Sul–Bali–Nusra', hb: '', hr: '21,5%', hc: '#B45309',
+          segs: [vSeg(66.6, '#1E40AF', '4 wilayah teratas 66,6%'), vSeg(21.5, '#F59E0B', 'Kalimantan, Sulawesi, Bali–Nusra 21,5%'), vSeg(11.9, '#CBD5E1', 'Wilayah lain 11,9%')],
+          keys: [vKey('#1E40AF', '4 wilayah 66,6%'), vKey('#CBD5E1', 'lainnya 11,9%')], tt: 'Porsi PMDN Tw II 2026 menurut wilayah' } },
+      { l: 'Proyek siap investasi (Top 5)', v: riPrj.length + ' proyek', s: 'Rp' + nf(riPrjV, 1) + ' T · data simulasi', st: 'watch', a: 'Promosikan profil proyek Top 5 di forum bisnis dan misi investasi.', go: () => this.setState({ view: 'detail', dp: 'dki', pop: false }),
+        viz: { hl: 'Terbesar', hb: prjBy[0].n, hr: nf(prjBy[0].v / riPrjV * 100, 1) + '%', hc: '#1E40AF',
+          segs: prjBy.map((x) => vSeg(x.v / riPrjV * 100, x.c, x.n + ' Rp' + nf(x.v, 1) + ' T')),
+          keys: [vKey(prjBy[0].c, 'Rp' + nf(prjBy[0].v, 1) + ' T'), vKey('#93C5FD', '4 provinsi lain Rp' + nf(riPrjV - prjBy[0].v, 1) + ' T')], tt: prjBy.map((x) => x.n + ' Rp' + nf(x.v, 1) + ' T').join(' · ') } }
     ]);
     return {
       mini,
