@@ -567,85 +567,69 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
         <!-- 0. Investasi nasional: realisasi vs target, hilirisasi, rincian PMDN & PMA -->
         <section id="sec-nasional" class="ri-card" style="scroll-margin-top: 16px;">
           <div style="padding: 12px 18px; border-bottom: 1px solid #EEF2F7; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px;">
-            <h2 style="margin: 0; font-size: 14.5px; font-weight: 600;">Investasi nasional<span class="tip info-i" tabindex="0" aria-label="Keterangan">i<span class="pop">Realisasi PMDN dan PMA dari Kementerian Investasi dan Hilirisasi/BKPM. Tw I dihitung dari Semester I dikurangi Tw II. Target tahunan 2026 Rp2.175,3 T dan 2025 Rp1.905,6 T; target per triwulan serta pembagian PMDN/PMA adalah simulasi (target tahunan dibagi rata). Nilai hilirisasi dan rinciannya adalah data simulasi mengikuti format laporan BKPM.</span></span></h2>
-            <div role="tablist" aria-label="Periode" style="display: flex; flex-wrap: wrap; gap: 2px; padding: 3px; background: #EEF2F7; border-radius: 8px;"><sc-for list="{{nas.tabs}}" as="t" hint-placeholder-count="8"><button type="button" role="tab" aria-selected="{{t.on}}" sc-camel-on-click="{{t.pick}}" title="{{t.tt}}" style="height: 28px; padding: 0 10px; border: 0; border-radius: 6px; background: {{t.bg}}; color: {{t.fg}}; box-shadow: {{t.sh}}; font-family: inherit; font-size: 12px; font-weight: 600; cursor: pointer;">{{t.l}}</button></sc-for></div>
+            <h2 style="margin: 0; font-size: 14.5px; font-weight: 600;">Investasi nasional<span class="tip info-i" tabindex="0" aria-label="Keterangan">i<span class="pop">Realisasi PMDN dan PMA dari Kementerian Investasi dan Hilirisasi/BKPM; Tw I dihitung dari Semester I dikurangi Tw II. Semua periode dibandingkan dengan target nasional 2026 Rp2.175,3 T; YoY dibandingkan dengan periode yang sama 2025. Nilai hilirisasi dan rinciannya adalah data simulasi mengikuti format laporan BKPM.</span></span></h2>
+            <span style="display: inline-flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; font-size: 12px; color: #475569;">Target nasional 2026 <b style="color: #0F172A;">{{nas.tg}}</b><span style="padding: 2px 8px; border-radius: 99px; background: #EFF6FF; color: #1E40AF; font-weight: 700;">{{nas.head}}</span></span>
           </div>
 
-          <div style="padding: 14px 18px 4px;">
+          <!-- Realisasi per periode vs target tahunan nasional -->
+          <style>.nas-trk{container-type:inline-size}.nas-sub{display:none}@container (max-width: 560px){.nas-seg-t{display:none}.nas-sub{display:block}}</style>
+          <div style="padding: 14px 18px 4px; display: flex; flex-direction: column; gap: 10px;">
             <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 6px 14px; font-size: 11.5px; color: #64748B;">
-              <span><b style="font-size: 12.5px; color: #0F172A;">{{nas.title}}</b> · {{nas.sub}}</span>
+              <span><b style="font-size: 12.5px; color: #0F172A;">Realisasi 2026 dibanding target tahunan</b> · panjang penuh batang = target Rp2.175,3 T</span>
               <span style="display: inline-flex; flex-wrap: wrap; gap: 4px 12px;">
-                <sc-if value="{{nas.isAll}}" hint-placeholder-val="{{true}}"><span style="display: inline-flex; align-items: center; gap: 5px;"><span style="width: 9px; height: 9px; border-radius: 2px; background: #1E40AF;"></span>PMDN</span><span style="display: inline-flex; align-items: center; gap: 5px;"><span style="width: 9px; height: 9px; border-radius: 2px; background: #D4A72C;"></span>PMA</span></sc-if>
-                <sc-if value="{{nas.isOne}}" hint-placeholder-val="{{false}}"><span style="display: inline-flex; align-items: center; gap: 5px;"><span style="width: 9px; height: 9px; border-radius: 2px; background: #334155;"></span>Realisasi</span></sc-if>
-                <span style="display: inline-flex; align-items: center; gap: 5px;"><span style="width: 14px; border-top: 2px dashed #0F172A;"></span>Target</span>
+                <span style="display: inline-flex; align-items: center; gap: 5px;"><span style="width: 9px; height: 9px; border-radius: 2px; background: #1E40AF;"></span>PMDN</span>
+                <span style="display: inline-flex; align-items: center; gap: 5px;"><span style="width: 9px; height: 9px; border-radius: 2px; background: #D4A72C;"></span>PMA</span>
+                <span style="display: inline-flex; align-items: center; gap: 5px;"><span style="width: 2px; height: 12px; background: #0F172A;"></span>Laju ideal</span>
+                <span style="display: inline-flex; align-items: center; gap: 5px;"><span style="width: 9px; height: 9px; box-sizing: border-box; border: 1.5px dashed #94A3B8; border-radius: 2px; background: repeating-linear-gradient(135deg, #F8FAFC 0 3px, #EEF2F7 3px 6px);"></span>Belum rilis</span>
               </span>
             </div>
-
-            <!-- Semua: kolom bertumpuk per triwulan + garis target -->
-            <sc-if value="{{nas.isAll}}" hint-placeholder-val="{{true}}">
-              <div role="img" aria-label="{{nas.aria}}" style="margin-top: 12px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; height: 210px; border-bottom: 1px solid #CBD5E1;">
-                <sc-for list="{{nas.cols}}" as="c" hint-placeholder-count="4">
-                  <button type="button" sc-camel-on-click="{{c.pick}}" title="{{c.tt}}" style="position: relative; height: 100%; padding: 0; border: 0; background: transparent; font-family: inherit; cursor: pointer;">
-                    <sc-if value="{{c.has}}" hint-placeholder-val="{{true}}">
-                      <span style="position: absolute; left: 0; right: 0; bottom: 0; height: {{c.h}}; display: flex; flex-direction: column; gap: 2px;">
-                        <span title="PMA {{c.l}}: {{c.aV}} ({{c.aP}})" style="flex: {{c.aF}} 1 0; min-height: 0; border-radius: 4px 4px 0 0; background: #D4A72C; color: #1F2937; display: flex; flex-direction: column; align-items: center; justify-content: center; line-height: 15px;"><b style="font-size: 12px;">{{c.aV}}</b><span style="font-size: 11px;">{{c.aP}}</span></span>
-                        <span title="PMDN {{c.l}}: {{c.pV}} ({{c.pP}})" style="flex: {{c.pF}} 1 0; min-height: 0; background: #1E40AF; color: #FFFFFF; display: flex; flex-direction: column; align-items: center; justify-content: center; line-height: 15px;"><b style="font-size: 12px;">{{c.pV}}</b><span style="font-size: 11px; color: #DBEAFE;">{{c.pP}}</span></span>
+            <div role="list" aria-label="Realisasi investasi per periode 2026" style="display: flex; flex-direction: column; gap: 6px;">
+              <sc-for list="{{nas.rows}}" as="r" hint-placeholder-count="6">
+                <div role="listitem" title="{{r.tt}}" style="display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; padding: 7px 10px; border-radius: 8px; background: {{r.bg}};">
+                  <span style="flex: 0 0 112px; display: flex; flex-direction: column; line-height: 15px;"><b style="font-size: 12.5px; color: #0F172A;">{{r.l}}</b><span style="font-size: 10.5px; color: #64748B;">{{r.s}}</span></span>
+                  <span class="nas-trk" style="flex: 1 1 280px; min-width: 0; display: flex; flex-direction: column; gap: 3px;"><span style="position: relative; height: 30px; box-sizing: border-box; border-radius: 6px; background: #F1F5F9; border-right: 2px dashed #0F172A;">
+                    <sc-if value="{{r.has}}" hint-placeholder-val="{{true}}">
+                      <span style="position: absolute; left: 0; top: 0; bottom: 0; width: {{r.w}}; display: flex; gap: 2px;">
+                        <span title="PMDN {{r.l}}: {{r.pV}} ({{r.pP}})" style="flex: {{r.pF}} 1 0; min-width: 0; border-radius: 6px 0 0 6px; background: #1E40AF; color: #FFFFFF; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0 4px; line-height: 12px; white-space: nowrap; overflow: hidden;"><b class="nas-seg-t" style="font-size: 11px;">{{r.pV}}</b><span class="nas-seg-t" style="font-size: 10px; color: #DBEAFE;">{{r.pP}}</span></span>
+                        <span title="PMA {{r.l}}: {{r.aV}} ({{r.aP}})" style="flex: {{r.aF}} 1 0; min-width: 0; background: #D4A72C; color: #1F2937; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0 4px; line-height: 12px; white-space: nowrap; overflow: hidden;"><b class="nas-seg-t" style="font-size: 11px;">{{r.aV}}</b><span class="nas-seg-t" style="font-size: 10px;">{{r.aP}}</span></span>
                       </span>
                     </sc-if>
-                    <sc-if value="{{c.none}}" hint-placeholder-val="{{false}}">
-                      <span style="position: absolute; left: 0; right: 0; bottom: 0; height: 45%; box-sizing: border-box; border: 1.5px dashed #CBD5E1; border-bottom: 0; border-radius: 4px 4px 0 0; background: repeating-linear-gradient(135deg, #F8FAFC 0 6px, #F1F5F9 6px 12px); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; color: #94A3B8;">belum rilis</span>
+                    <sc-if value="{{r.none}}" hint-placeholder-val="{{false}}">
+                      <span style="position: absolute; inset: 0; border-radius: 6px; background: repeating-linear-gradient(135deg, #F8FAFC 0 6px, #EEF2F7 6px 12px); display: flex; align-items: center; padding: 0 10px; font-size: 11px; color: #64748B; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{r.why}}</span>
                     </sc-if>
-                    <span aria-hidden="true" style="position: absolute; left: -4px; right: -4px; bottom: {{c.tgB}}; border-top: 2px dashed #0F172A;"></span>
-                  </button>
-                </sc-for>
-              </div>
-              <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; margin-top: 6px; text-align: center;">
-                <sc-for list="{{nas.cols}}" as="c" hint-placeholder-count="4"><div style="display: flex; flex-direction: column; gap: 1px;"><span style="font-size: 12px; font-weight: 700; color: #0F172A;">{{c.l}} · {{c.t}}</span><span style="font-size: 11px; font-weight: 600; color: {{c.capC}};">{{c.cap}}</span></div></sc-for>
-              </div>
-            </sc-if>
-
-            <!-- Satu periode: batang berdampingan realisasi vs target -->
-            <sc-if value="{{nas.isOne}}" hint-placeholder-val="{{false}}">
-              <div role="img" aria-label="{{nas.aria}}" style="margin-top: 12px; display: grid; grid-template-columns: repeat({{nas.gN}}, minmax(0, 1fr)); gap: 24px; height: 210px; border-bottom: 1px solid #CBD5E1;">
-                <sc-for list="{{nas.groups}}" as="g" hint-placeholder-count="3">
-                  <div style="height: 100%; display: flex; justify-content: center; align-items: flex-end; gap: 6px;">
-                    <span style="flex: 0 1 96px; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; align-items: stretch; gap: 4px;">
-                      <span style="font-size: 12px; font-weight: 700; color: #0F172A; text-align: center; white-space: nowrap;">{{g.v}}</span>
-                      <span title="Realisasi {{g.l}}: {{g.v}}" style="display: block; height: {{g.rH}}; border-radius: 4px 4px 0 0; background: {{g.c}};"></span>
-                    </span>
-                    <span style="flex: 0 1 96px; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; align-items: stretch; gap: 4px;">
-                      <span style="font-size: 12px; font-weight: 600; color: #475569; text-align: center; white-space: nowrap;">{{g.tv}}</span>
-                      <span title="Target {{g.l}}: {{g.tv}}" style="display: block; height: {{g.tH}}; box-sizing: border-box; border: 2px dashed #0F172A; border-bottom: 0; border-radius: 4px 4px 0 0; background: repeating-linear-gradient(135deg, #F8FAFC 0 6px, #E2E8F0 6px 12px);"></span>
-                    </span>
-                  </div>
-                </sc-for>
-              </div>
-              <div style="display: grid; grid-template-columns: repeat({{nas.gN}}, minmax(0, 1fr)); gap: 24px; margin-top: 6px; text-align: center;">
-                <sc-for list="{{nas.groups}}" as="g" hint-placeholder-count="3"><div style="display: flex; flex-direction: column; align-items: center; gap: 3px;"><span style="font-size: 12px; font-weight: 700; color: #0F172A;">{{g.l}} <span style="font-weight: 500; color: #64748B;">· {{g.sh}}</span></span><span style="padding: 1px 8px; border-radius: 99px; background: {{g.capBg}}; color: {{g.capC}}; font-size: 11px; font-weight: 700;">{{g.cap}}</span></div></sc-for>
-              </div>
-              <div style="margin-top: 8px; font-size: 11px; color: #64748B;">{{nas.oneNote}}</div>
-            </sc-if>
-
-            <!-- Periode belum rilis -->
-            <sc-if value="{{nas.none}}" hint-placeholder-val="{{false}}">
-              <div style="margin-top: 12px; padding: 18px 16px; border-radius: 10px; border: 1px dashed #CBD5E1; background: #F8FAFC; display: flex; align-items: center; gap: 12px;">
-                <span style="flex: none; width: 30px; height: 30px; border-radius: 99px; background: #E2E8F0; color: #64748B; display: inline-flex; align-items: center; justify-content: center; font-weight: 700;">…</span>
-                <div><b style="font-size: 13px; color: #334155;">Realisasi {{nas.lbl}} belum tersedia · target {{nas.noneTg}}</b><div style="font-size: 12px; color: #64748B;">{{nas.why}}</div></div>
-              </div>
-            </sc-if>
+                    <span aria-hidden="true" title="Laju ideal {{r.idealT}}" style="position: absolute; top: -4px; bottom: -4px; left: {{r.ideal}}; width: 2px; margin-left: -1px; background: #0F172A;"></span>
+                  </span><sc-if value="{{r.has}}" hint-placeholder-val="{{true}}"><span class="nas-sub" style="font-size: 10.5px; color: #475569;"><b style="color: #1E40AF;">PMDN</b> {{r.pV}} ({{r.pP}}) · <b style="color: #A16207;">PMA</b> {{r.aV}} ({{r.aP}})</span></sc-if></span>
+                  <span style="flex: 0 0 auto; display: inline-flex; align-items: center; gap: 10px; font-size: 12px;">
+                    <b style="min-width: 76px; text-align: right; color: {{r.vc}};">{{r.v}}</b>
+                    <span style="min-width: 76px; text-align: right; color: #334155;"><b>{{r.pct}}</b> <span style="font-size: 10.5px; color: #64748B;">{{r.tsuf}}</span></span>
+                    <span title="{{r.yoyT}}" style="min-width: 84px; text-align: center; padding: 2px 8px; border-radius: 99px; background: {{r.yBg}}; color: {{r.yC}}; font-size: 11px; font-weight: 700;">{{r.yoy}}</span>
+                  </span>
+                </div>
+              </sc-for>
+            </div>
+            <div style="font-size: 11px; color: #64748B;">Laju ideal = porsi target yang semestinya tercapai pada periode itu (triwulan 25%, semester 50%, tahun berjalan s.d. Juni 50%). YoY dibanding periode yang sama 2025.</div>
           </div>
 
-          <!-- Hilirisasi -->
-          <sc-if value="{{nas.hasH}}" hint-placeholder-val="{{true}}">
-            <div style="margin: 14px 18px 0; padding: 12px 14px; border-radius: 10px; background: #F0FDFA; border: 1px solid #CCFBF1; display: flex; flex-direction: column; gap: 8px;">
-              <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 4px 12px;">
-                <span style="display: inline-flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px;"><b style="font-size: 12.5px; color: #0F172A;">Hilirisasi</b><b style="font-size: 18px; color: #0F766E;">{{nas.hV}}</b><span style="font-size: 11.5px; color: #475569;">{{nas.hS}}</span></span>
-                <span style="padding: 0 6px; border-radius: 4px; background: #CCFBF1; color: #115E59; font-size: 11px; font-weight: 600;">{{nas.per}} · data simulasi</span>
-              </div>
-              <div style="display: flex; gap: 2px; height: 22px; border-radius: 6px; overflow: hidden;"><sc-for list="{{nas.hs}}" as="h" hint-placeholder-count="4"><span title="{{h.l}}: {{h.v}} ({{h.p}})" style="width: {{h.w}}; background: {{h.c}}; color: {{h.fg}}; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; white-space: nowrap; overflow: hidden;">{{h.p}}</span></sc-for></div>
-              <div style="display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: 11.5px; color: #334155;"><sc-for list="{{nas.hs}}" as="h" hint-placeholder-count="4"><span style="display: inline-flex; align-items: center; gap: 5px;"><span style="width: 9px; height: 9px; border-radius: 2px; background: {{h.c}};"></span>{{h.l}} <b>{{h.v}}</b></span></sc-for></div>
+          <!-- Hilirisasi per periode -->
+          <div style="margin: 14px 18px 0; padding: 12px 14px; border-radius: 10px; background: #F0FDFA; border: 1px solid #CCFBF1; display: flex; flex-direction: column; gap: 8px;">
+            <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 4px 12px;">
+              <span><b style="font-size: 12.5px; color: #0F172A;">Hilirisasi per periode 2026</b> <span style="font-size: 11.5px; color: #475569;">· nilai dan porsi dari realisasi investasi</span></span>
+              <span style="padding: 0 6px; border-radius: 4px; background: #CCFBF1; color: #115E59; font-size: 11px; font-weight: 600;">data simulasi</span>
             </div>
-          </sc-if>
+            <div style="display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 11.5px; color: #334155;"><sc-for list="{{nas.hLeg}}" as="h" hint-placeholder-count="4"><span style="display: inline-flex; align-items: center; gap: 5px;"><span style="width: 9px; height: 9px; border-radius: 2px; background: {{h.c}};"></span>{{h.l}} <span style="color: #64748B;">{{h.p}}</span></span></sc-for></div>
+            <div style="display: flex; flex-direction: column; gap: 5px;">
+              <sc-for list="{{nas.hRows}}" as="r" hint-placeholder-count="6">
+                <div title="{{r.tt}}" style="display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px;">
+                  <b style="flex: 0 0 112px; font-size: 12px; color: #0F172A;">{{r.l}}</b>
+                  <span style="flex: 1 1 280px; min-width: 0; height: 18px; border-radius: 5px; background: #FFFFFF; border: 1px solid #CCFBF1; overflow: hidden; display: flex;">
+                    <sc-if value="{{r.has}}" hint-placeholder-val="{{true}}"><span style="width: {{r.w}}; display: flex; gap: 1px;"><sc-for list="{{r.segs}}" as="g" hint-placeholder-count="4"><span title="{{g.l}}: {{g.v}}" style="flex: {{g.f}} 1 0; min-width: 0; background: {{g.c}};"></span></sc-for></span></sc-if>
+                    <sc-if value="{{r.none}}" hint-placeholder-val="{{false}}"><span style="flex: 1; background: repeating-linear-gradient(135deg, #F8FAFC 0 6px, #EEF2F7 6px 12px); font-size: 10.5px; color: #64748B; padding: 0 8px; display: flex; align-items: center;">belum rilis</span></sc-if>
+                  </span>
+                  <span style="flex: 0 0 auto; display: inline-flex; gap: 10px; font-size: 12px;"><b style="min-width: 76px; text-align: right; color: {{r.vc}};">{{r.v}}</b><span style="min-width: 110px; text-align: right; color: #475569;">{{r.sh}}</span></span>
+                </div>
+              </sc-for>
+            </div>
+          </div>
 
           <!-- Rincian PMDN & PMA (dipindah dari kartu Realisasi investasi PMDN & PMA) -->
           <div id="sec-realisasi" style="margin-top: 14px; padding: 14px 18px 4px; border-top: 1px solid #EEF2F7; display: flex; flex-direction: column; gap: 12px; scroll-margin-top: 16px;">
@@ -653,9 +637,6 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
               <span style="display: inline-flex; align-items: center; gap: 6px;"><b style="font-size: 13px; color: #0F172A;">Rincian PMDN &amp; PMA</b><span style="padding: 1px 7px; border-radius: 5px; background: #EFF6FF; color: #1D4ED8; font-size: 11px; font-weight: 600;">Tw II 2026</span><span class="tip info-i" tabindex="0" aria-label="Keterangan">i<span class="pop">Rincian wilayah dan negara asal baru tersedia untuk Triwulan II 2026 (April–Juni), rilis terakhir BKPM. Klik segmen donat untuk melihat nilai, porsi, dan komposisi sektornya.</span></span></span>
               <button type="button" sc-camel-on-click="{{openL1}}" style="height: 32px; padding: 0 12px; border-radius: 8px; border: 1px solid #B8E3DF; background: #FFFFFF; font-family: inherit; font-size: 12px; font-weight: 600; color: #1D4ED8; cursor: pointer;">Lihat data pembentuk &rarr;</button>
             </div>
-            <sc-if value="{{nas.rinciNote}}" hint-placeholder-val="{{false}}">
-              <div style="padding: 8px 12px; border-radius: 8px; background: #FFFBEB; border: 1px solid #FDE68A; font-size: 11.5px; color: #92400E; display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px;">{{nas.rinciNote}}<button type="button" sc-camel-on-click="{{nas.toTw2}}" style="padding: 0; border: 0; background: transparent; font-family: inherit; font-size: 11.5px; font-weight: 700; color: #1D4ED8; cursor: pointer;">Tampilkan periode Tw II &rarr;</button></div>
-            </sc-if>
             <div style="display: flex; flex-wrap: wrap; gap: 16px;">
               <div style="flex: 1 1 520px; min-width: 0; padding: 14px; border: 1px solid #E3E8F0; border-radius: 10px; display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start; align-content: flex-start; position: relative;">
                 <div role="group" aria-label="Donat PMDN" style="flex: none; align-self: center; width: 200px; height: 200px; padding: 0; border: 0; outline: none; background: transparent; position: relative;">
@@ -741,7 +722,7 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
             </div>
           </div>
           <div class="mzi"><span class="mzi-b">Insight AI</span><ul class="mzi-l"><sc-for list="{{mini.inv}}" as="i" hint-placeholder-count="3"><li>{{i}}</li></sc-for></ul><span class="mzi-s">Terverifikasi analis</span></div>
-          <div class="cf" style="padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;"><span><b style="color: #475569;">Diperbarui:</b> 16 Jul 2026 (rilis Tw II) · Tw III 2026 belum dirilis</span><span><b style="color: #475569;">Sumber:</b> Kementerian Investasi dan Hilirisasi/BKPM (LKPM); kurs: Bank Indonesia (JISDOR)</span><span class="chip" style="padding: 0 6px; border-radius: 4px; background: #EFF6FF; color: #1D4ED8; font-weight: 600;">Data resmi · target triwulan &amp; hilirisasi simulasi</span></div>
+          <div class="cf" style="padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;"><span><b style="color: #475569;">Diperbarui:</b> 16 Jul 2026 (rilis Tw II) · Tw III 2026 belum dirilis</span><span><b style="color: #475569;">Sumber:</b> Kementerian Investasi dan Hilirisasi/BKPM (LKPM); kurs: Bank Indonesia (JISDOR)</span><span class="chip" style="padding: 0 6px; border-radius: 4px; background: #EFF6FF; color: #1D4ED8; font-weight: 600;">Data resmi · hilirisasi simulasi</span></div>
         </section>
 
         <!-- 1 + 2. Peta & Top 5 PDRB -->
@@ -2329,43 +2310,41 @@ const ewsClose = () => this.setState({ ews: null });
       ]
     };
 
-    // ---- Investasi nasional: realisasi vs target per periode (+ hilirisasi simulasi) ----
-    // Target tahunan 2026 Rp2.175,3 T dan 2025 Rp1.905,6 T; target triwulan & porsi PMDN/PMA = simulasi (dibagi rata).
-    const NV = { tw1: { t: 498.8, p: 248.8, a: 249.9, h: 135.2, s: 'Jan–Mar 2026' }, tw2: { t: 511.8, p: 254.1, a: 257.7, h: 148.6, s: 'Apr–Jun 2026 · naik 7,1% yoy' }, s1: { t: 1010.6, p: 502.9, a: 507.6, h: 283.8, s: 'Jan–Jun 2026' }, y26: { t: 1010.6, p: 502.9, a: 507.6, h: 283.8, s: 'berjalan s.d. Tw II (Jan–Jun 2026)' }, y25: { t: 1931.2, p: null, a: null, h: 561.0, s: 'Jan–Des 2025' } };
-    const TG26 = 2175.3, TGQ = TG26 / 4;
-    const NTG = { tw1: TGQ, tw2: TGQ, tw3: TGQ, tw4: TGQ, s1: TGQ * 2, y26: TG26, y25: 1905.6 };
-    const NWHY = { tw3: 'Data Tw III 2026 dirilis Kementerian Investasi/BKPM pada akhir Oktober 2026.', tw4: 'Periode Tw IV 2026 belum berakhir.' };
-    const NPER = [['all', 'Semua'], ['tw1', 'Tw I'], ['tw2', 'Tw II'], ['tw3', 'Tw III'], ['tw4', 'Tw IV'], ['s1', 'Semester I'], ['y26', 'Tahun 2026'], ['y25', 'Tahun 2025']];
-    const nPer = st.nPer || 'all', isAll = nPer === 'all', nv = isAll ? NV.s1 : NV[nPer];
-    const nLbl = (NPER.find(([k]) => k === nPer) || ['', ''])[1] + (nPer === 'y25' || nPer === 'y26' || isAll ? '' : ' 2026');
-    const HSUB = [['Mineral & logam', 0.52, '#134E4A', '#FFFFFF'], ['Perkebunan & kehutanan', 0.28, '#0F766E', '#FFFFFF'], ['Minyak & gas', 0.12, '#2DD4BF', '#134E4A'], ['Perikanan & kelautan', 0.08, '#99F6E4', '#134E4A']];
-    const tT = (v) => (v == null ? 'belum tersedia' : 'Rp' + nf(v, 1) + ' T');
+    // ---- Investasi nasional: realisasi per periode vs target tahunan nasional (+ hilirisasi simulasi) ----
+    // Target tahunan 2026 Rp2.175,3 T. Pembanding YoY = periode sama 2025 (BKPM: Tw I 465,2; Tw II 477,7; Tw III 491,4; setahun 1.931,2 T).
+    const NV = { tw1: { t: 498.8, p: 248.8, a: 249.9, h: 135.2 }, tw2: { t: 511.8, p: 254.1, a: 257.7, h: 148.6 }, s1: { t: 1010.6, p: 502.9, a: 507.6, h: 283.8 }, y26: { t: 1010.6, p: 502.9, a: 507.6, h: 283.8 } };
+    const N25 = { tw1: 465.2, tw2: 477.7, tw3: 491.4, tw4: 496.9, s1: 942.9, y26: 942.9 };
+    const TG26 = 2175.3;
+    const NROW = [
+      ['tw1', 'Tw I', 'Jan–Mar', 0.25, 'triwulan = 25% target'],
+      ['tw2', 'Tw II', 'Apr–Jun', 0.25, 'triwulan = 25% target'],
+      ['s1', 'Semester I', 'Jan–Jun', 0.5, 'semester = 50% target'],
+      ['tw3', 'Tw III', 'Jul–Sep', 0.25, 'triwulan = 25% target'],
+      ['tw4', 'Tw IV', 'Okt–Des', 0.25, 'triwulan = 25% target'],
+      ['y26', 'Tahun 2026', 'berjalan s.d. Tw II', 0.5, 's.d. Juni = 50% target']
+    ];
+    const NWHY = { tw3: 'Belum rilis · dirilis BKPM akhir Okt 2026 · Tw III 2025: Rp491,4 T', tw4: 'Belum rilis · periode belum berakhir · Tw IV 2025: Rp496,9 T' };
+    const HSUB = [['Mineral & logam', 0.52, '#134E4A'], ['Perkebunan & kehutanan', 0.28, '#0F766E'], ['Minyak & gas', 0.12, '#2DD4BF'], ['Perikanan & kelautan', 0.08, '#99F6E4']];
+    const tT = (v) => 'Rp' + nf(v, 1) + ' T';
     const pc = (v, d) => nf(v * 100, d == null ? 1 : d) + '%';
-    const capSt = (r) => (r >= 1 ? ['#DCFCE7', '#15803D'] : r >= 0.9 ? ['#E0F2FE', '#0369A1'] : ['#FEF3C7', '#B45309']);
-    const NH = 600; // skala sumbu kolom triwulan (Rp T)
-    const nGroups = !isAll && nv ? [['Total', nv.t, NTG[nPer], '#334155', 'PMDN + PMA'], ['PMDN', nv.p, NTG[nPer] / 2, '#1E40AF', nv.p != null ? pc(nv.p / nv.t) + ' dari total' : ''], ['PMA', nv.a, NTG[nPer] / 2, '#D4A72C', nv.a != null ? pc(nv.a / nv.t) + ' dari total' : '']].filter((g) => g[1] != null) : [];
-    const gMax = Math.max(1, ...nGroups.map((g) => Math.max(g[1], g[2]))) * 1.12;
+    const hMax = Math.max(...Object.values(NV).map((v) => v.h));
     const nas = {
-      tabs: NPER.map(([k, l]) => { const on = k === nPer, ok = k === 'all' || !!NV[k];
-        return { l, on: on ? 'true' : 'false', tt: ok ? l : l + ' · realisasi belum tersedia', bg: on ? '#FFFFFF' : 'transparent', sh: on ? '0 1px 2px rgba(15,23,42,.12)' : 'none', fg: on ? '#1E40AF' : (ok ? '#475569' : '#94A3B8'), pick: () => this.setState({ nPer: k }) }; }),
-      isAll, isOne: !isAll && !!nv, none: !isAll && !nv, lbl: nLbl, why: NWHY[nPer] || '', per: isAll ? 'Semester I 2026' : nLbl,
-      noneTg: 'Rp' + nf(NTG[nPer] || 0, 1) + ' T',
-      title: isAll ? 'Realisasi vs target per triwulan 2026' : 'Realisasi vs target · ' + nLbl,
-      sub: isAll ? 'target Rp' + nf(TGQ, 1) + ' T per triwulan · s.d. Tw II ' + pc(NV.s1.t / TG26) + ' dari target tahunan Rp' + nf(TG26, 1) + ' T' : nv ? nv.s : 'menunggu rilis BKPM',
-      aria: isAll ? 'Realisasi PMDN dan PMA per triwulan 2026 dibandingkan target triwulan' : 'Realisasi dibandingkan target ' + nLbl,
-      cols: ['tw1', 'tw2', 'tw3', 'tw4'].map((k, i) => { const v = NV[k], l = 'Tw ' + ['I', 'II', 'III', 'IV'][i], r = v ? v.t / NTG[k] : 0;
-        return { l, has: !!v, none: !v, h: v ? (v.t / NH) * 100 + '%' : '0%', pF: v ? v.p : 0, aF: v ? v.a : 0,
-          pV: v ? 'Rp' + nf(v.p, 1) + ' T' : '', aV: v ? 'Rp' + nf(v.a, 1) + ' T' : '', pP: v ? pc(v.p / v.t) : '', aP: v ? pc(v.a / v.t) : '',
-          t: v ? 'Rp' + nf(v.t, 1) + ' T' : 'belum rilis', cap: v ? pc(r) + ' dari target' : 'target Rp' + nf(NTG[k], 1) + ' T', capC: v ? capSt(r)[1] : '#94A3B8',
-          tgB: (NTG[k] / NH) * 100 + '%', tt: v ? l + ' 2026: Rp' + nf(v.t, 1) + ' T · ' + pc(r) + ' dari target Rp' + nf(NTG[k], 1) + ' T' : l + ' 2026: belum rilis · target Rp' + nf(NTG[k], 1) + ' T', pick: () => this.setState({ nPer: k }) }; }),
-      gN: nGroups.length || 1,
-      groups: nGroups.map(([l, v, tg, c, sh]) => { const r = v / tg, cs = capSt(r);
-        return { l, sh, c, v: tT(v), tv: tT(tg), rH: (v / gMax) * 100 + '%', tH: (tg / gMax) * 100 + '%', cap: 'Capaian ' + pc(r), capBg: cs[0], capC: cs[1] }; }),
-      oneNote: nPer === 'y25' ? 'Rincian PMDN/PMA tahun 2025 belum dihimpun; target 2025 Rp1.905,6 T.' : nPer === 'y26' ? 'Realisasi berjalan Jan–Jun 2026 dibandingkan target setahun penuh; target PMDN/PMA = separuh target (simulasi).' : 'Target PMDN/PMA = separuh target periode (simulasi).',
-      hasH: !!nv, hV: nv ? tT(nv.h) : '', hS: nv ? pc(nv.h / nv.t) + ' dari realisasi ' + (isAll ? 'Semester I 2026' : nLbl) : '',
-      hs: nv ? HSUB.map(([l, w, c, fg]) => ({ l, w: w * 100 + '%', c, fg, p: pc(w, 0), v: 'Rp' + nf(nv.h * w, 1) + ' T' })) : [],
-      rinciNote: isAll || nPer === 'tw2' ? '' : 'Rincian wilayah dan negara asal di bawah ini adalah data Tw II 2026, bukan ' + nLbl + '.',
-      toTw2: () => this.setState({ nPer: 'tw2' })
+      tg: tT(TG26), head: pc(NV.y26.t / TG26) + ' tercapai s.d. Tw II · ' + (NV.y26.t >= N25.y26 ? '+' : '−') + nf(Math.abs(NV.y26.t / N25.y26 - 1) * 100, 1) + '% YoY',
+      rows: NROW.map(([k, l, s, ideal, idealT]) => { const v = NV[k], b = N25[k], agg = k === 's1' || k === 'y26';
+        const y = v && b ? v.t / b - 1 : null;
+        return { l, s, has: !!v, none: !v, why: NWHY[k] || '', bg: agg ? '#F8FAFC' : 'transparent',
+          w: v ? (v.t / TG26) * 100 + '%' : '0%', pF: v ? v.p : 0, aF: v ? v.a : 0,
+          pV: v ? tT(v.p) : '', aV: v ? tT(v.a) : '', pP: v ? pc(v.p / v.t) : '', aP: v ? pc(v.a / v.t) : '',
+          ideal: ideal * 100 + '%', idealT: idealT,
+          tsuf: v ? 'target' : '', v: v ? tT(v.t) : '—', vc: v ? '#0F172A' : '#94A3B8', pct: v ? pc(v.t / TG26) : '—',
+          yoy: y == null ? 'YoY —' : (y >= 0 ? '▲ ' : '▼ ') + nf(Math.abs(y) * 100, 1) + '% YoY', yBg: y == null ? '#F1F5F9' : y >= 0 ? '#DCFCE7' : '#FEF3C7', yC: y == null ? '#94A3B8' : y >= 0 ? '#15803D' : '#B45309',
+          yoyT: b ? 'Periode sama 2025: ' + tT(b) : '',
+          tt: v ? l + ' 2026: ' + tT(v.t) + ' = ' + pc(v.t / TG26) + ' dari target tahunan ' + tT(TG26) + ' (laju ideal ' + idealT + ')' : l + ' 2026: belum rilis' };
+      }),
+      hLeg: HSUB.map(([l, w, c]) => ({ l, c, p: pc(w, 0) })),
+      hRows: NROW.map(([k, l]) => { const v = NV[k];
+        return { l, has: !!v, none: !v, w: v ? (v.h / hMax) * 100 + '%' : '0%', v: v ? tT(v.h) : '—', vc: v ? '#0F766E' : '#94A3B8', sh: v ? pc(v.h / v.t) + ' dari realisasi' : '',
+          segs: v ? HSUB.map(([sl, sw, sc]) => ({ l: sl, f: sw, c: sc, v: tT(v.h * sw) })) : [], tt: v ? 'Hilirisasi ' + l + ': ' + tT(v.h) + ' (' + HSUB.map(([sl, sw]) => sl + ' ' + tT(v.h * sw)).join(', ') + ')' : '' }; })
     };
     // ---- Proyek siap investasi per provinsi (Top 5) ----
     const prjSum = (() => {
