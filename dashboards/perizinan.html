@@ -641,38 +641,6 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
       <div style="margin-top: auto; padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;" class="cf"><span><b style="color: #475569;">Diperbarui:</b> 12 Okt 2026, 06.00 WIB</span><span><b style="color: #475569;">Sumber:</b> OSS (PIC data BKPM) · izin terbit menurut jenis izin, KBLI 2025 dan provinsi</span><span class="chip" style="padding: 0 6px; border-radius: 4px; background: #EFF6FF; color: #1D4ED8; font-weight: 600;">Divalidasi analis</span><span class="tip info-i" tabindex="0" aria-label="Keterangan">i<span class="pop">Periode: April–September 2026 (bulanan)</span></span></div>
     </section>
 
-    <!-- 2. Waktu penyelesaian vs SLA -->
-    <section id="sec-sla" style="background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; box-shadow: 0 1px 2px rgba(15,23,42,.05); display: flex; flex-direction: column; scroll-margin-top: 16px;">
-      <div style="padding: 12px 18px; border-bottom: 1px solid #EEF2F7; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px;">
-        <div><h2 style="margin: 0; font-size: 14.5px; font-weight: 600;">Rata-rata waktu penyelesaian vs standar SLA<span class="tip info-i" tabindex="0" aria-label="Keterangan">i<span class="pop">Hari kerja dari permohonan lengkap hingga terbit · izin terbit September 2026 · nasional, seluruh sektor</span></span></h2></div>
-        <span style="font-size: 11.5px; color: #64748B;">Klik jenis izin untuk melihat daftar kasus</span>
-      </div>
-      <div style="padding: 9px 18px; display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 11px; color: #475569; border-bottom: 1px solid #EEF2F7;">
-        <span style="display: inline-flex; align-items: center; gap: 6px;"><span style="width: 18px; height: 8px; border-radius: 2px; background: #1D4ED8;"></span>Rata-rata waktu penyelesaian</span>
-        <span style="display: inline-flex; align-items: center; gap: 6px;"><span style="width: 2px; height: 14px; background: #0F172A;"></span>Standar waktu (SLA)</span>
-        <span style="color: #64748B;">Batang menunjukkan rata-rata sebagai porsi dari SLA.</span>
-      </div>
-      <div style="display: grid; grid-template-columns: minmax(230px, 1.5fr) minmax(220px, 2fr) 110px 110px; gap: 10px; padding: 10px 18px 6px; background: #F8FAFC; font-size: 10.5px; font-weight: 700; letter-spacing: 0.4px; color: #64748B; align-items: end;">
-        <span>JENIS IZIN</span>
-        <span style="position: relative; display: block; height: 14px;"><span style="position: absolute; left: 0;">0</span><span style="position: absolute; left: 25%; transform: translateX(-50%);">50%</span><span style="position: absolute; left: 50%; transform: translateX(-50%); color: #0F172A;">100% SLA</span><span style="position: absolute; left: 75%; transform: translateX(-50%);">150%</span><span style="position: absolute; right: 0;">200%</span></span>
-        <span style="text-align: right;">RATA-RATA</span><span style="text-align: right;">STANDAR SLA</span>
-      </div>
-      <sc-for list="{{sla}}" as="r" hint-placeholder-count="7">
-        <div sc-camel-on-click="{{r.open}}" class="rw" style="display: grid; grid-template-columns: minmax(230px, 1.5fr) minmax(220px, 2fr) 110px 110px; gap: 10px; align-items: center; padding: 10px 18px 10px 14px; border-top: 1px solid #EEF2F7; background: #FFFFFF; font-size: 12.5px;">
-          <div style="min-width: 0;"><b>{{r.l}}</b><div style="margin-top: 2px; font-size: 11px; line-height: 15px; font-weight: 400; color: #64748B;">{{r.sub}}</div></div>
-          <span title="{{r.t}}" style="position: relative; display: block; height: 22px;">
-            <span style="position: absolute; left: 0; top: 3px; width: 50%; height: 16px; background: #EFF6FF; border-radius: 3px 0 0 3px;"></span>
-            <span style="position: absolute; left: 0; top: 7px; width: {{r.w}}; height: 8px; border-radius: 0 3px 3px 0; background: #1D4ED8;"></span>
-            <span style="position: absolute; left: 50%; top: 0; width: 2px; height: 22px; background: #0F172A;"></span>
-          </span>
-          <b style="text-align: right;">{{r.avg}}</b>
-          <span style="text-align: right; color: #334155;">{{r.sla}}</span>
-        </div>
-      </sc-for>
-            <div class="mzi"><span class="mzi-b">Insight AI</span><ul class="mzi-l"><sc-for list="{{mini.sla}}" as="i" hint-placeholder-count="3"><li>{{i}}</li></sc-for></ul><span class="mzi-s">Terverifikasi analis</span></div>
-      <div style="margin-top: auto; padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;" class="cf"><span><b style="color: #475569;">Diperbarui:</b> 12 Okt 2026, 06.00 WIB</span><span><b style="color: #475569;">Sumber:</b> OSS · log durasi per tahap; SLA dari PP 28/2025 dan materi sosialisasinya, dipetakan per jenis izin</span><span class="chip" style="padding: 0 6px; border-radius: 4px; background: #EFF6FF; color: #1D4ED8; font-weight: 600;">Pemetaan SLA divalidasi analis</span><span class="tip info-i" tabindex="0" aria-label="Keterangan">i<span class="pop">Periode: September 2026 (checkpoint bulanan)</span></span></div>
-    </section>
-
     <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: stretch;">
       <!-- 3. Jenis izin & wilayah dengan waktu terlama -->
       <section id="sec-terlama" style="flex: 1 1 660px; min-width: 0; background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; box-shadow: 0 1px 2px rgba(15,23,42,.05); display: flex; flex-direction: column; scroll-margin-top: 16px;">
@@ -1121,8 +1089,6 @@ class Component extends DCLogic {
     };
 
     // ===================== 2. Waktu penyelesaian vs SLA =====================
-    const sla = JEN.map((j, ji) => { const r200 = (v) => Math.min(v / j.sla / 2, 1) * 100;
-      return { l: j.l, sub: j.sub, avg: f1(j.avg) + ' hari kerja', sla: j.sla + ' hari kerja', w: r200(j.avg) + '%', t: j.l + ': rata-rata ' + f1(j.avg) + ' hari kerja; standar SLA ' + j.sla + ' hari kerja', open: () => openM('kasus', { ji }) }; });
     const nAll = JEN.reduce((a, j) => a + j.n, 0);
     const slaAll = f1(JEN.reduce((a, j) => a + j.n * j.avg, 0) / nAll);
     const ewsJ = JEN.filter((j) => devOf(j.avg, j.sla) > THR);
@@ -1220,13 +1186,13 @@ class Component extends DCLogic {
       { id: 'h1', t: 'PKKPR melalui penilaian melampaui SLA', meta: 'PKKPR melalui penilaian · tahap penilaian dokumen · nasional', status: 'Diverifikasi analis', ews: true, tgl: '30 Sep 2026',
         d: 'Kabupaten/kota yang belum memiliki RDTR digital terintegrasi OSS tidak dapat memakai konfirmasi KKPR otomatis, sehingga permohonan diproses melalui penilaian dan antreannya memanjang.',
         regs: [['Permen ATR/BPN 13/2021', 'Pelaksanaan KKPR dan sinkronisasi program pemanfaatan ruang', DR], ['PP 28/2025 Pasal 22', 'SLA penilaian PKKPR; fiktif positif pada ayat (3)', DR]],
-        bukti: [['OSS · durasi PKKPR', 'rata-rata 23,1 HK vs SLA 20 HK; 1.846 izin terbit September 2026', '#sec-sla', () => openM('kasus', { ji: 0 })], ['Materi sosialisasi KKPR Darat PP 28/2025', 'SLA penilaian dan mekanisme fiktif positif', 'https://dpb.unpad.ac.id/wp-content/uploads/2026/06/Sosialisasi-PP-28-Tahun-2025-Ketentuan-KKPR-Darat-Berdasarkan-PP-Nomor-28-Tahun-2025-dan-Permeninveshil-BKPM-Nomor-5-Tahun-2025.pdf', null]],
+        bukti: [['OSS · durasi PKKPR', 'rata-rata 23,1 HK vs SLA 20 HK; 1.846 izin terbit September 2026', '#sec-terlama', () => openM('kasus', { ji: 0 })], ['Materi sosialisasi KKPR Darat PP 28/2025', 'SLA penilaian dan mekanisme fiktif positif', 'https://dpb.unpad.ac.id/wp-content/uploads/2026/06/Sosialisasi-PP-28-Tahun-2025-Ketentuan-KKPR-Darat-Berdasarkan-PP-Nomor-28-Tahun-2025-dan-Permeninveshil-BKPM-Nomor-5-Tahun-2025.pdf', null]],
         ewsA: 'Deviasi durasi 15,5% di atas SLA (ambang 5%).', ewsS: 'OSS · PP 28/2025', ai: '✦ Analisis AI · diverifikasi analis',
         an: 'Durasi PKKPR berkorelasi dengan ketersediaan RDTR digital: lokasi tanpa RDTR wajib melalui penilaian dan Pertimbangan Teknis Pertanahan. Percepatan penyusunan RDTR akan memindahkan permohonan ke jalur konfirmasi otomatis.', pj: 'Kementerian ATR/BPN (Ditjen Tata Ruang) · pemerintah kabupaten/kota (penyusunan RDTR)' },
       { id: 'h2', t: 'PBG melampaui SLA di daerah yang belum menyesuaikan retribusi', meta: 'Persetujuan Bangunan Gedung · tahap pembayaran retribusi · kabupaten/kota', status: 'Dalam review analis', ews: true, tgl: '30 Sep 2026',
         d: 'Retribusi PBG ditetapkan dalam Perda; daerah yang belum menyesuaikan Perda pajak dan retribusi daerah menahan penerbitan PBG pada tahap pembayaran.',
         regs: [['PP 16/2021', 'Peraturan pelaksanaan UU Bangunan Gedung: PBG dan SLF melalui SIMBG', PY], ['PP 35/2023', 'Ketentuan umum pajak daerah dan retribusi daerah, termasuk retribusi PBG', DR]],
-        bukti: [['OSS/SIMBG · durasi PBG', 'rata-rata 36,9 HK vs SLA 32 HK; 3.912 izin terbit September 2026', '#sec-sla', () => openM('kasus', { ji: 2 })], ['Materi sosialisasi PBG/SLF PP 28/2025', 'alur PBG dan SLF', 'https://dpb.unpad.ac.id/wp-content/uploads/2026/06/Sosialisasi-PP-28-Tahun-2025-Penyelenggaraan-Bangunan-Gedung-PBG-SLF-sesuai-PP-16-2021-PP-28-2025.pdf', null]],
+        bukti: [['OSS/SIMBG · durasi PBG', 'rata-rata 36,9 HK vs SLA 32 HK; 3.912 izin terbit September 2026', '#sec-terlama', () => openM('kasus', { ji: 2 })], ['Materi sosialisasi PBG/SLF PP 28/2025', 'alur PBG dan SLF', 'https://dpb.unpad.ac.id/wp-content/uploads/2026/06/Sosialisasi-PP-28-Tahun-2025-Penyelenggaraan-Bangunan-Gedung-PBG-SLF-sesuai-PP-16-2021-PP-28-2025.pdf', null]],
         ewsA: 'Deviasi durasi 15,3% di atas SLA (ambang 5%).', ewsS: 'OSS/SIMBG · PP 28/2025', ai: '✦ Analisis AI · dalam review analis',
         an: 'Permohonan PBG yang tertahan di tahap pembayaran terkonsentrasi di kabupaten/kota yang Perda retribusinya belum diselaraskan. Relasi ini masih ditinjau analis sebelum dijadikan dasar rekomendasi.', pj: 'Kementerian Dalam Negeri · Kementerian Keuangan (DJPK) · Kementerian PU · pemerintah kabupaten/kota' },
       { id: 'h3', t: 'Data center AI Jatiluhur dihentikan sementara', meta: 'Persetujuan lingkungan dan PBG · Kab. Purwakarta, Jawa Barat', status: 'Menunggu verifikasi', ews: true, tgl: '2 Okt 2026',
@@ -1238,7 +1204,7 @@ class Component extends DCLogic {
       { id: 'h4', t: 'Fiktif positif KKPRL belum berjalan di OSS', meta: 'KKPR Laut · tahap penilaian · nasional', status: 'Menunggu verifikasi', ews: true, tgl: '30 Sep 2026',
         d: 'Layar verifikator KKPRL sudah menampilkan SLA, tetapi persetujuan otomatis belum diterapkan; rata-rata durasi 35,2 HK melampaui SLA 33 HK.',
         regs: [['PP 28/2025 Pasal 75', 'Fiktif positif KKPRL', DR], ['PP 28/2025 Pasal 68–73', 'Tahapan dan SLA KKPRL', DR]],
-        bukti: [['OSS · durasi KKPRL', 'rata-rata 35,2 HK vs SLA 33 HK; 214 izin terbit September 2026', '#sec-sla', () => openM('kasus', { ji: 1 })], ['Materi sosialisasi KKPRL PP 28/2025', 'catatan implementasi layar verifikator', 'https://dpb.unpad.ac.id/wp-content/uploads/2026/06/Sosialisasi-PP-28-Tahun-2025-Implementasi-Permeninveshil-BKPM-Nomor-5-Tahun-2025-terhadap-Bisnis-Proses-Pengajuan-KKPRL.pdf', null]],
+        bukti: [['OSS · durasi KKPRL', 'rata-rata 35,2 HK vs SLA 33 HK; 214 izin terbit September 2026', '#sec-terlama', () => openM('kasus', { ji: 1 })], ['Materi sosialisasi KKPRL PP 28/2025', 'catatan implementasi layar verifikator', 'https://dpb.unpad.ac.id/wp-content/uploads/2026/06/Sosialisasi-PP-28-Tahun-2025-Implementasi-Permeninveshil-BKPM-Nomor-5-Tahun-2025-terhadap-Bisnis-Proses-Pengajuan-KKPRL.pdf', null]],
         ewsA: 'Deviasi durasi 6,7% di atas SLA (ambang 5%).', ewsS: 'OSS · PP 28/2025', ai: '✦ Analisis AI · menunggu verifikasi',
         an: 'Tanpa persetujuan otomatis, permohonan KKPRL yang melewati SLA tetap menunggu keputusan verifikator. Relasi dengan Pasal 75 diusulkan AI dan perlu dikonfirmasi ke pengelola OSS.', pj: 'Kementerian Kelautan dan Perikanan · Kementerian Investasi dan Hilirisasi/BKPM (pengelola OSS)' }
     ];
@@ -1403,7 +1369,7 @@ class Component extends DCLogic {
           'Sebagai pembanding: Sertifikat Standar & Izin ' + f1((JEN[6].st[0] / JEN[6].n) * 100) + '% dan Sertifikat Laik Fungsi ' + f1((JEN[3].st[0] / JEN[3].n) * 100) + '% — keduanya di atas standar SLA'
         ],
         impl: 'Kedua jenis izin ini punya deviasi durasi tertinggi dan diproses instansi yang berbeda (' + dA.j.inst.split(' · ')[0] + ' dan ' + dB.j.inst.split(' · ')[0] + '), sehingga intervensinya harus spesifik per proses, bukan kebijakan umum. Persetujuan otomatis belum menutup kesenjangan: hanya ' + fN(dA.j.st[2]) + ' izin PKKPR yang terbit lewat mekanisme itu, sedangkan KKPRL belum menjalankannya sama sekali.',
-        links: [{ l: 'Rincian PBG ↑', h: '#sec-terbit', pick: () => set({ fJen: 'pbg' }) }, { l: 'Bandingkan durasi vs SLA ↓', h: '#sec-sla', pick: () => set({}) }]
+        links: [{ l: 'Rincian PBG ↑', h: '#sec-terbit', pick: () => set({ fJen: 'pbg' }) }, { l: 'Bandingkan durasi vs SLA ↓', h: '#sec-terlama', pick: () => set({}) }]
       },
       {
         no: 3, t: 'Lima wilayah teratas menyerap ' + f1(top5v / volAll * 100) + '% izin, dengan rentang kepatuhan ' + f1(rBest.v - rWorst.v) + ' poin antarwilayah',
@@ -1418,7 +1384,7 @@ class Component extends DCLogic {
     ];
 
     // ===================== EWS ringkas =====================
-    const ewsTop = [...ewsJ.map((j) => ({ l: j.l.split(' (')[0] + ' ' + sg(devOf(j.avg, j.sla)) + '%', t: j.l + ': rata-rata ' + f1(j.avg) + ' HK vs SLA ' + j.sla + ' HK', href: '#sec-sla', act: () => set({}) })), { l: 'Data center Jatiluhur', t: 'Pembangunan dihentikan sementara; persetujuan lingkungan dan PBG belum terbit', href: '#sec-hambatan', act: () => set({ c5: 'all', c5o: 'h3' }) }];
+    const ewsTop = [...ewsJ.map((j) => ({ l: j.l.split(' (')[0] + ' ' + sg(devOf(j.avg, j.sla)) + '%', t: j.l + ': rata-rata ' + f1(j.avg) + ' HK vs SLA ' + j.sla + ' HK', href: '#sec-terlama', act: () => set({}) })), { l: 'Data center Jatiluhur', t: 'Pembangunan dihentikan sementara; persetujuan lingkungan dan PBG belum terbit', href: '#sec-hambatan', act: () => set({ c5: 'all', c5o: 'h3' }) }];
 
 const PZ_SRC = [
   ['BKPM - Sosialisasi PP 28/2025 (KKPR Darat)', 'https://dpb.unpad.ac.id/wp-content/uploads/2026/06/Sosialisasi-PP-28-Tahun-2025-Ketentuan-KKPR-Darat-Berdasarkan-PP-Nomor-28-Tahun-2025-dan-Permeninveshil-BKPM-Nomor-5-Tahun-2025.pdf'],
@@ -1598,11 +1564,6 @@ const pzClose = () => this.setState({ ews: null });
         'Optimalkan persetujuan otomatis PP 28/2025 untuk izin berisiko rendah.',
         'Pantau pertumbuhan izin terbit bulanan terhadap permintaan.'
       ],
-      sla: [
-        'Prioritaskan jenis izin yang rata-ratanya paling jauh dari standar SLA.',
-        'Samakan durasi proses dengan standar layanan sebelum mengganti sistem.',
-        'Publikasikan standar SLA yang dapat dicapai kepada pemohon.'
-      ],
       lama: [
         'Tinjau ulang jenis izin dan wilayah dengan waktu penyelesaian terlama.',
         'Tetapkan batas waktu penyelesaian di tingkat instansi.',
@@ -1667,7 +1628,7 @@ const pzClose = () => this.setState({ ews: null });
       })(),
       ewsTop, ewsN: ewsTop.length, highlights, ewsCount: highlights.length, ewsOpen: !!ews, ews, ewsStamp: ewsStamp, closeEws: pzClose, stop: pzStop, onEwsKey: pzKey,
       fl1, has1, recap, rcHasFilt: has1, reset1: () => set({ fSek: 'all', fWil: 'all', fJen: 'all' }), f1Note, has1Data: tot > 0, no1Data: tot === 0, k1, s1, c1,
-      sla, slaAll, slaEwsNote,
+      slaAll, slaEwsNote,
       c3tabs, c3sorts, c3dd, c3rows, c3h1, c3h2, c3h3, c3note, c3has: !!c3sel, c3d,
       c4dd, has4, reset4: () => set({ c4t: 'all', c4w: 'all' }), k4, c4tahap, c4ag, c4agL,
       c5f, hb, c5empty: hb.length === 0, c5HasPages: hbAll.length > 3, c5PageLabel: (c5pageCurrent + 1) + ' / ' + c5pages, c5Count: hbAll.length, c5CanPrev, c5CanNext, c5NoPrev: !c5CanPrev, c5NoNext: !c5CanNext, c5Prev, c5Next,
