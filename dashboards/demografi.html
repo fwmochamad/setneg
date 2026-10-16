@@ -1254,7 +1254,7 @@ class Component extends DCLogic {
     };
     const WK = { krl: ['KRL Commuter Line · Jabodetabek', ['krl']], whoosh: ['Kereta Cepat Whoosh · Jakarta–Bandung', ['whoosh']], gab: ['Gabungan KRL & Whoosh (dua sumbu)', ['krl', 'whoosh']] };
     const wilK = WK[st.wilK] ? st.wilK : 'krl';
-    const wilM = LFX.some((r) => r[0] === st.wilM) ? st.wilM : 'DKI Jakarta';
+    const wilM = LFX.some((r) => r[0] === st.wilM) ? st.wilM : 'Nasional';
     const TR = {
       kerja: { units: 'juta penumpang (KRL) · ribu penumpang (Whoosh)', per: 'bulanan, Mei 2025–Agt 2026', src: 'BPS · BRS Perkembangan Transportasi (KAI Commuter, KCIC)', cav: 'Satuan adalah perjalanan penumpang, bukan orang unik. KRL dan Whoosh memakai satuan berbeda sehingga digambar pada grafik terpisah dan tidak dijumlahkan. Data jalan tol (Jasa Marga) tidak dipakai pada kartu ini.' },
       wisata: { units: 'juta perjalanan (wisnus) · juta penumpang (udara)', per: 'bulanan, Jun 2025–Agt 2026', src: 'BPS · BRS Pariwisata dan BRS Perkembangan Transportasi', cav: 'Perjalanan wisatawan nusantara dan penumpang udara domestik adalah ukuran berbeda (satu perjalanan wisata dapat memakai pesawat), sehingga tidak dijumlahkan. Data per bandara (InJourney) tidak dipakai pada kartu ini.' }
@@ -1361,7 +1361,7 @@ class Component extends DCLogic {
       return { perOpts, wil, charts, rd, tr };
     };
     const lk = lineCard('kerja'), lw = lineCard('wisata');
-    const wm = { lab: 'Wilayah', v: wilM, opts: LFX.map((r) => ({ v: r[0], l: r[0] })), note: 'Seluruh 38 provinsi.', on: (e) => { if (e && e.target) this.setState({ wilM: e.target.value }); } };
+    const wm = { lab: 'Wilayah', v: wilM, opts: [{ v: 'Nasional', l: 'Nasional' }].concat(LFX.map((r) => ({ v: r[0], l: r[0] }))), note: wilM === 'Nasional' ? 'Agregat nasional; pilih provinsi untuk melihat pindah masuk dan keluar.' : 'Seluruh 38 provinsi.', on: (e) => { if (e && e.target) this.setState({ wilM: e.target.value }); } };
 
     // migrasi (SP2020 LF vs SUPAS 2025)
     const lf = lfOf(wilM);
@@ -1377,9 +1377,16 @@ class Component extends DCLogic {
     // SUPAS 2025 hanya merilis neto (DKI Jakarta); neto provinsi lain diestimasi (lihat SUP).
     // Pindah masuk/keluar 2025 diestimasi dengan asumsi total perpindahan (masuk + keluar) sama dengan SP2020.
     const migCh = (() => {
+      const nas = wilM === 'Nasional', nm = nas ? 'Nasional' : lf[0];
       const sup = SUP[lf[0]], G = lf[1] + lf[2], supRilis = lf[0] === 'DKI Jakarta';
       const PER = ['SP2020 Long Form · 2015–2020', 'SUPAS 2025 · 2020–2025'];
-      const S = [
+      // Nasional: setiap perpindahan antarprovinsi tercatat sekali sebagai masuk dan sekali sebagai keluar,
+      // sehingga neto nasional = 0. Yang ditampilkan adalah porsi migran risen antarprovinsi terhadap penduduk:
+      // SP2020 LF = jumlah pindah masuk 38 provinsi / 270,2 juta; SUPAS 2025 = ± 4 juta migran risen / 284,4 juta.
+      const S = nas ? [
+        { n: 'Migran risen antarprovinsi', w: 'pindah provinsi dalam 5 tahun terakhir', c: '#0EA5E9', v: [(migL('mi').reduce((a, r) => a + r.v, 0) / 270203917) * 100, (4e6 / 284.4e6) * 100], est: [false, false], f: (v) => nf(v, 2) + '%' },
+        { n: 'Neto', w: 'masuk − keluar · selalu nol secara nasional', c: '#1E3A8A', v: [0, 0], est: [false, false], f: (v) => nf(v, 2) + '%' }
+      ] : [
         { n: 'Pindah masuk', w: 'pendatang dari provinsi lain', c: '#0EA5E9', v: [lf[1], (G + sup) / 2], est: [false, true], f: (v) => nf(v, 2) + '%' },
         { n: 'Pindah keluar', w: 'penduduk yang pindah ke provinsi lain', c: '#D97706', v: [lf[2], (G - sup) / 2], est: [false, true], f: (v) => nf(v, 2) + '%' },
         { n: 'Neto', w: 'masuk − keluar', c: '#1E3A8A', v: [lf[3], sup], est: [false, !supRilis], f: (v) => sgn(v, 2) + '%' }
@@ -1393,21 +1400,21 @@ class Component extends DCLogic {
         pts: S.flatMap((x) => x.v.map((v, i) => ({
           l: X[i] * 100 + '%', t: (yp(v) * 100).toFixed(2) + '%', c: x.c, bg: x.est[i] ? '#FFFFFF' : x.c, pc: i ? '' : 'pl',
           v: x.f(v), lx: i ? 'translate(12px, -50%)' : 'translate(calc(-100% - 12px), -50%)',
-          tip: x.n + ' · ' + lf[0] + ' · ' + PER[i] + ': ' + x.f(v) + ' penduduk' + (x.est[i] ? ' (estimasi)' : '')
+          tip: x.n + ' · ' + nm + ' · ' + PER[i] + ': ' + x.f(v) + ' penduduk' + (x.est[i] ? ' (estimasi)' : '')
         }))),
         grid: [0, 0.25, 0.5, 0.75, 1].map((f) => 'M0 ' + Math.max(0.5, Math.min(199.5, f * 200)).toFixed(1) + 'H600').join(''),
         zero: 'M0 ' + (yp(0) * 200).toFixed(1) + 'H600', zeroT: (yp(0) * 100).toFixed(2) + '%',
         yt: [0, 1, 2, 3, 4].map((i) => nf(hi - ((hi - lo) * i) / 4, 1) + '%'),
         xs: PER.map((l, i) => ({ x: X[i] * 100 + '%', l })),
-        note: 'Titik berisi = angka rilis; titik putih = estimasi. ' + (supRilis
+        note: nas ? 'Secara nasional setiap perpindahan antarprovinsi tercatat sebagai masuk di provinsi tujuan dan keluar di provinsi asal, sehingga neto nasional selalu nol. SP2020 Long Form: jumlah pindah masuk 38 provinsi dibagi penduduk 2020 (270,2 juta). SUPAS 2025: ± 4 juta migran risen dibagi penduduk 2025 (284,4 juta); angka dibulatkan.'
+          : 'Titik berisi = angka rilis; titik putih = estimasi. ' + (supRilis
           ? 'SUPAS 2025 hanya merilis neto migrasi risen; pindah masuk dan keluar 2025 dihitung dengan asumsi total perpindahan sama dengan SP2020 Long Form.'
           : 'Neto SUPAS 2025 provinsi ini diestimasi dari neto SP2020 Long Form (rilis resmi baru tersedia untuk DKI Jakarta); pindah masuk dan keluar 2025 dihitung dengan asumsi total perpindahan sama dengan SP2020 Long Form.')
       };
     })();
     const mg = {
-      name: lf[0],
-      ch: migCh,
-      pick: go(idOf[lf[0]])
+      name: wilM === 'Nasional' ? 'Nasional' : lf[0],
+      ch: migCh
     };
 
     // ---------------- 4. Insight ----------------
