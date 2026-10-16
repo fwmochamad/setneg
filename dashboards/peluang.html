@@ -608,12 +608,12 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
           </div>
 
           <!-- Hilirisasi per periode -->
-          <div style="margin: 14px 18px 0; padding: 12px 14px; border-radius: 10px; background: #F0FDFA; border: 1px solid #CCFBF1; display: flex; flex-direction: column; gap: 10px;">
+          <div style="position: relative; margin: 14px 18px 0; padding: 12px 14px; border-radius: 10px; background: #F0FDFA; border: 1px solid #CCFBF1; display: flex; flex-direction: column; gap: 10px;">
             <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 4px 12px;">
-              <span><b style="font-size: 12.5px; color: #0F172A;">Hilirisasi per periode 2026</b> <span style="font-size: 11.5px; color: #475569;">· Rp triliun, menurut subsektor</span></span>
-              <span style="padding: 0 6px; border-radius: 4px; background: #CCFBF1; color: #115E59; font-size: 11px; font-weight: 600;">data simulasi</span>
+              <span><b style="font-size: 12.5px; color: #0F172A;">Hilirisasi per periode 2026</b> <span style="font-size: 11.5px; color: #475569;">· Rp triliun, menurut subsektor · klik segmen untuk rincian komoditas</span></span>
+              <span style="padding: 0 6px; border-radius: 4px; background: #CCFBF1; color: #115E59; font-size: 11px; font-weight: 600;">Tw II resmi BKPM · lainnya estimasi</span>
             </div>
-            <div style="display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 11.5px; color: #334155;"><sc-for list="{{nas.hLeg}}" as="h" hint-placeholder-count="4"><span style="display: inline-flex; align-items: center; gap: 5px;"><span style="width: 10px; height: 10px; border-radius: 2px; background: {{h.c}};"></span>{{h.l}} <span style="color: #64748B;">{{h.p}}</span></span></sc-for></div>
+            <div style="display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 11.5px; color: #334155;"><sc-for list="{{nas.hLeg}}" as="h" hint-placeholder-count="4"><span style="display: inline-flex; align-items: center; gap: 5px;"><span style="width: 10px; height: 10px; border-radius: 2px; background: {{h.c}};"></span>{{h.l}} </span></sc-for></div>
             <div class="hil-plot" role="img" aria-label="Nilai hilirisasi per periode 2026 menurut subsektor" style="overflow-x: auto; scrollbar-width: thin;"><div style="min-width: 560px;">
               <div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: clamp(6px, 2vw, 18px); height: 230px; border-bottom: 1px solid #99F6E4;">
                 <sc-for list="{{nas.hCols}}" as="c" hint-placeholder-count="6">
@@ -621,7 +621,7 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
                     <span style="font-size: clamp(10px, 2.6vw, 12px); font-weight: 700; color: {{c.vc}}; text-align: center; white-space: nowrap;">{{c.v}}</span>
                     <sc-if value="{{c.has}}" hint-placeholder-val="{{true}}">
                       <span style="height: {{c.h}}; display: flex; flex-direction: column; gap: 2px;">
-                        <sc-for list="{{c.segs}}" as="g" hint-placeholder-count="4"><span title="{{g.l}}: {{g.v}}" style="flex: {{g.f}} 1 0; min-height: 15px; border-radius: {{g.r}}; background: {{g.c}}; color: {{g.fg}}; display: flex; align-items: center; justify-content: center; overflow: hidden;"><span class="hil-seg-t" style="font-size: 10.5px; line-height: 12px; font-weight: 700;">{{g.n}}</span></span></sc-for>
+                        <sc-for list="{{c.segs}}" as="g" hint-placeholder-count="4"><span role="button" tabindex="0" aria-label="Rincian komoditas {{g.l}} {{c.l}}" sc-camel-on-click="{{g.pick}}" title="{{g.l}}: {{g.v}} · klik untuk rincian komoditas" style="flex: {{g.f}} 1 0; min-height: 15px; border-radius: {{g.r}}; background: {{g.c}}; color: {{g.fg}}; display: flex; align-items: center; justify-content: center; overflow: hidden; cursor: pointer; outline: {{g.ol}}; outline-offset: -2px;"><span class="hil-seg-t" style="font-size: 10.5px; line-height: 12px; font-weight: 700;">{{g.n}}</span></span></sc-for>
                       </span>
                     </sc-if>
                     <sc-if value="{{c.none}}" hint-placeholder-val="{{false}}">
@@ -634,6 +634,19 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
                 <sc-for list="{{nas.hCols}}" as="c" hint-placeholder-count="6"><div style="display: flex; flex-direction: column; gap: 1px; line-height: 14px;"><b style="font-size: 12px; color: #0F172A;">{{c.l}}</b><span style="font-size: 10.5px; color: #475569;">{{c.sh}}</span></div></sc-for>
               </div>
             </div></div>
+            <sc-if value="{{nas.hp}}" hint-placeholder-val="{{false}}">
+              <style>@media (max-width: 640px){.hil-pop{left:8px!important;right:8px!important;width:auto!important}}</style>
+              <div class="hil-pop" role="dialog" aria-label="Rincian komoditas hilirisasi" style="position: absolute; z-index: 40; top: 64px; left: {{nas.hp.left}}; right: {{nas.hp.right}}; width: 300px; box-sizing: border-box; padding: 26px 12px 10px; border-radius: 10px; background: #FFFFFF; border: 1px solid #99F6E4; box-shadow: 0 10px 28px rgba(15,23,42,.18); display: flex; flex-direction: column; gap: 8px;">
+                <span style="position: absolute; left: 12px; top: 8px; font-size: 9.5px; font-weight: 700; letter-spacing: .4px; color: #0F766E;">{{nas.hp.kick}}</span>
+                <button type="button" aria-label="Tutup rincian" sc-camel-on-click="{{nas.hp.close}}" style="position: absolute; right: 8px; top: 6px; width: 20px; height: 20px; padding: 0; border: 0; border-radius: 6px; background: #F1F5F9; color: #334155; font-family: inherit; font-size: 14px; line-height: 1; cursor: pointer;">×</button>
+                <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 8px;"><span style="display: inline-flex; align-items: center; gap: 6px;"><span style="width: 10px; height: 10px; border-radius: 2px; background: {{nas.hp.c}};"></span><b style="font-size: 13px; color: #0F172A;">{{nas.hp.l}}</b></span><b style="font-size: 15px; color: #0F766E;">{{nas.hp.v}}</b></div>
+                <span style="font-size: 11px; color: #475569;">{{nas.hp.sh}}</span>
+                <div style="display: flex; flex-direction: column; gap: 5px;">
+                  <sc-for list="{{nas.hp.items}}" as="x" hint-placeholder-count="5"><div title="{{x.tt}}" style="display: grid; grid-template-columns: minmax(0, 1fr) 62px 40px; gap: 6px; align-items: center; font-size: 11.5px;"><span style="min-width: 0;"><span style="display: flex; align-items: center; gap: 4px; color: #0F172A;"><span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{x.n}}</span><sc-if value="{{x.est}}" hint-placeholder-val="{{false}}"><span style="flex: none; padding: 0 4px; border-radius: 3px; background: #F1F5F9; color: #64748B; font-size: 9.5px;">est.</span></sc-if></span><span style="display: block; height: 4px; margin-top: 2px; border-radius: 2px; background: #E2E8F0;"><span style="display: block; width: {{x.w}}; height: 4px; border-radius: 2px; background: {{nas.hp.c}};"></span></span></span><b style="text-align: right; color: #0F172A;">{{x.v}}</b><span style="text-align: right; color: #64748B;">{{x.p}}</span></div></sc-for>
+                </div>
+                <span style="font-size: 10px; line-height: 14px; color: #94A3B8;">{{nas.hp.src}}</span>
+              </div>
+            </sc-if>
           </div>
 
           <!-- Rincian PMDN & PMA (dipindah dari kartu Realisasi investasi PMDN & PMA) -->
@@ -2318,7 +2331,7 @@ const ewsClose = () => this.setState({ ews: null });
 
     // ---- Investasi nasional: realisasi per periode vs target tahunan nasional (+ hilirisasi simulasi) ----
     // Target tahunan 2026 Rp2.175,3 T. Pembanding YoY = periode sama 2025 (BKPM: Tw I 465,2; Tw II 477,7; Tw III 491,4; setahun 1.931,2 T).
-    const NV = { tw1: { t: 498.8, p: 248.8, a: 249.9, h: 135.2 }, tw2: { t: 511.8, p: 254.1, a: 257.7, h: 148.6 }, s1: { t: 1010.6, p: 502.9, a: 507.6, h: 283.8 }, y26: { t: 1010.6, p: 502.9, a: 507.6, h: 283.8 } };
+    const NV = { tw1: { t: 498.8, p: 248.8, a: 249.9, h: 135.2 }, tw2: { t: 511.8, p: 254.1, a: 257.7, h: 152.7 }, s1: { t: 1010.6, p: 502.9, a: 507.6, h: 287.9 }, y26: { t: 1010.6, p: 502.9, a: 507.6, h: 287.9 } };
     const N25 = { tw1: 465.2, tw2: 477.7, tw3: 491.4, tw4: 496.9, s1: 942.9, y26: 942.9 };
     const TG26 = 2175.3;
     const NROW = [
@@ -2330,7 +2343,30 @@ const ewsClose = () => this.setState({ ews: null });
       ['y26', 'Tahun 2026', 'berjalan s.d. Tw II', 0.5, 's.d. Juni = 50% target']
     ];
     const NWHY = { tw3: 'Belum rilis · dirilis BKPM akhir Okt 2026 · Tw III 2025: Rp491,4 T', tw4: 'Belum rilis · periode belum berakhir · Tw IV 2025: Rp496,9 T' };
-    const HSUB = [['Mineral & logam', 0.52, '#134E4A', '#FFFFFF'], ['Perkebunan & kehutanan', 0.28, '#0F766E', '#FFFFFF'], ['Minyak & gas', 0.12, '#2DD4BF', '#134E4A'], ['Perikanan & kelautan', 0.08, '#99F6E4', '#134E4A']];
+    const HSUB = [['Mineral & logam', 0, '#134E4A', '#FFFFFF'], ['Perkebunan & kehutanan', 0, '#0F766E', '#FFFFFF'], ['Minyak & gas', 0, '#2DD4BF', '#134E4A'], ['Perikanan & kelautan', 0, '#99F6E4', '#134E4A']];
+    // Rincian komoditas hilirisasi [komoditas, Rp T, resmi?]. Tw II 2026 mineral = rilis BKPM 20 Jul 2026 (Rp108,2 T:
+    // bauksit 40,1 · nikel 29,4 · tembaga 16,7 · besi baja 13,2 · pasir silika 4,0 · lainnya 4,7) dan total hilirisasi Rp152,7 T.
+    // Tw I 2026 hanya bauksit Rp13,7 T yang dirilis. Sisanya estimasi memakai komposisi resmi Semester I 2025
+    // (perkebunan & kehutanan 67,4: sawit 31,6 · kayu log 24,9 · karet 8,2; migas 17,3; perikanan & kelautan 2,3).
+    const HCOM = {
+      tw1: [
+        [['Nikel', 38.0], ['Tembaga', 17.5], ['Bauksit', 13.7, 1], ['Besi baja', 12.8], ['Pasir silika', 4.6], ['Lainnya (timah, emas, kobalt, mangan, dll.)', 5.3]],
+        [['Kelapa sawit', 15.8], ['Kayu log', 12.4], ['Karet', 4.1], ['Lainnya', 1.3]],
+        [['Minyak & gas bumi', 8.5]],
+        [['Udang, tuna-cakalang-tongkol, rumput laut, garam, dll.', 1.2]]
+      ],
+      tw2: [
+        [['Bauksit', 40.1, 1], ['Nikel', 29.4, 1], ['Tembaga', 16.7, 1], ['Besi baja', 13.2, 1], ['Pasir silika', 4.0, 1], ['Lainnya (timah, emas, perak, kobalt, mangan, batu bara, aspal Buton, logam tanah jarang)', 4.7, 1]],
+        [['Kelapa sawit', 16.2], ['Kayu log', 12.7], ['Karet', 4.2], ['Lainnya', 1.5]],
+        [['Minyak & gas bumi', 8.8]],
+        [['Udang, tuna-cakalang-tongkol, rumput laut, garam, dll.', 1.2]]
+      ]
+    };
+    const hSum = (arr) => arr.reduce((a, x) => a + x[1], 0);
+    // Semester I & tahun berjalan = Tw I + Tw II per komoditas
+    HCOM.s1 = HCOM.tw1.map((sec, si) => { const m = {}; sec.concat(HCOM.tw2[si]).forEach(([n, v, r]) => { const k = n.startsWith('Lainnya') ? 'Lainnya' + (si === 0 ? ' (timah, emas, kobalt, mangan, dll.)' : '') : n; m[k] = m[k] || [k, 0, 1]; m[k][1] = Math.round((m[k][1] + v) * 10) / 10; if (!r) m[k][2] = 0; }); return Object.values(m).sort((a, b) => b[1] - a[1]); });
+    HCOM.y26 = HCOM.s1;
+    const hilSel = st.hil || null;
     const tT = (v) => 'Rp' + nf(v, 1) + ' T';
     const pc = (v, d) => nf(v * 100, d == null ? 1 : d) + '%';
     const hMax = Math.max(...Object.values(NV).map((v) => v.h));
@@ -2346,12 +2382,21 @@ const ewsClose = () => this.setState({ ews: null });
           yoyT: b ? 'Periode sama 2025: ' + tT(b) : '',
           tt: v ? l + ' 2026: ' + tT(v.t) + ' = ' + pc(v.t / TG26) + ' dari target tahunan ' + tT(TG26) : l + ' 2026: belum rilis' };
       }),
-      hLeg: HSUB.map(([l, w, c]) => ({ l, c, p: pc(w, 0) })),
+      hLeg: HSUB.map(([l, w, c]) => ({ l, c })),
       // Kolom bertumpuk: Mineral (terbesar) di dasar; tiap segmen min. 15 px agar angkanya tetap terbaca
-      hCols: NROW.map(([k, l]) => { const v = NV[k], top = [...HSUB].reverse();
+      hCols: NROW.map(([k, l], ci) => { const v = NV[k], C = HCOM[k];
+        const segs = C ? HSUB.map(([sl, , sc, fg], si) => { const val = hSum(C[si]), on = hilSel && hilSel.k === k && hilSel.s === si;
+          return { si, l: sl, f: val, c: sc, fg, v: tT(val), n: nf(val, 1), ol: on ? '2px solid #F59E0B' : 'none', pick: () => this.setState({ hil: on ? null : { k, s: si, ci } }) }; }).reverse().map((g, i) => ({ ...g, r: i === 0 ? '4px 4px 0 0' : '0' })) : [];
         return { l, has: !!v, none: !v, h: v ? (v.h / hMax) * 88 + '%' : '0%', v: v ? tT(v.h) : 'belum rilis', vc: v ? '#0F766E' : '#94A3B8', sh: v ? pc(v.h / v.t) + ' dari realisasi' : 'belum rilis',
-          segs: v ? top.map(([sl, sw, sc, fg], i) => ({ l: sl, f: sw, c: sc, fg, v: tT(v.h * sw), n: nf(v.h * sw, 1), r: i === 0 ? '4px 4px 0 0' : '0' })) : [],
-          tt: v ? 'Hilirisasi ' + l + ': ' + tT(v.h) + ' (' + HSUB.map(([sl, sw]) => sl + ' ' + tT(v.h * sw)).join(', ') + ')' : l + ': belum rilis' }; })
+          segs, tt: v ? 'Hilirisasi ' + l + ': ' + tT(v.h) : l + ': belum rilis' }; }),
+      hp: (() => { if (!hilSel || !HCOM[hilSel.k]) return null;
+        const C = HCOM[hilSel.k][hilSel.s], tot = hSum(C), mx = Math.max(...C.map((x) => x[1])), per = (NROW.find((r) => r[0] === hilSel.k) || ['', ''])[1], hv = NV[hilSel.k].h;
+        const right = hilSel.ci >= 3;
+        return { kick: (/2026/.test(per) ? per : per + ' 2026').toUpperCase(), l: HSUB[hilSel.s][0], c: HSUB[hilSel.s][2], v: tT(tot), sh: pc(tot / hv) + ' dari hilirisasi ' + (/2026/.test(per) ? per : per + ' 2026') + ' (' + tT(hv) + ')',
+          left: right ? 'auto' : 'calc(' + ((hilSel.ci + 1) / 6) * 100 + '% + 4px)', right: right ? 'calc(' + ((6 - hilSel.ci) / 6) * 100 + '% + 4px)' : 'auto',
+          items: C.slice().sort((a, b) => b[1] - a[1]).map(([n, v, r]) => ({ n, v: nf(v, 1), p: pc(v / tot, 0), w: (v / mx) * 100 + '%', est: !r, tt: n + ': ' + tT(v) + (r ? ' (rilis BKPM)' : ' (estimasi)') })),
+          src: C.every((x) => x[2]) ? 'Sumber: Kementerian Investasi dan Hilirisasi/BKPM, rilis 20 Jul 2026' + (hilSel.k === 'tw2' && hilSel.s === 0 ? '; total sektor dirilis Rp108,2 T (selisih pembulatan).' : '.') : 'Angka bertanda est. = estimasi dari komposisi resmi Semester I 2025 (BKPM); angka lain rilis BKPM 2026.',
+          close: () => this.setState({ hil: null }) }; })()
     };
     // ---- Proyek siap investasi per provinsi (Top 5) ----
     const prjSum = (() => {
