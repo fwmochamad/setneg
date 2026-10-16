@@ -687,37 +687,66 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
       <div style="padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;" class="cf"><span><b style="color: #475569;">Diperbarui:</b> 12 Okt 2026</span><span><b style="color: #475569;">Sumber:</b> {{rk.src}}</span><span class="chip" style="padding: 0 6px; border-radius: 4px; background: #EFF6FF; color: #1D4ED8; font-weight: 600;">Definisi divalidasi analis</span><span class="tip info-i" tabindex="0" aria-label="Keterangan">i<span class="pop">Periode: {{rk.per}}</span></span></div>
     </section>
 
-    <!-- 3. Tren pergerakan penduduk -->
+    <!-- 3. Tren migrasi masuk & keluar -->
     <section id="sec-tren" style="background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; box-shadow: 0 1px 2px rgba(15,23,42,.05); scroll-margin-top: 16px;">
       <div style="padding: 12px 18px; border-bottom: 1px solid #EEF2F7; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px;">
-        <div><h2 style="margin: 0; font-size: 14.5px; font-weight: 600;">Tren pergerakan penduduk<span class="tip info-i" tabindex="0" aria-label="Keterangan">i<span class="pop">Migrasi risen = tinggal di provinsi berbeda dibanding 5 tahun sebelumnya (satuan orang/persen penduduk). Mutasi Dukcapil = pencatatan pindah–datang administratif. Keduanya tidak dijumlahkan. {{tr.cav}} Satu tab per jenis pergerakan; setiap seri memakai satuannya sendiri</span></span></h2></div>
-        <div role="tablist" aria-label="Jenis pergerakan" style="display: flex; gap: 2px; padding: 3px; background: #EEF2F7; border-radius: 8px;">
-          <sc-for list="{{trTabs}}" as="t" hint-placeholder-count="3"><button type="button" role="tab" sc-camel-on-click="{{t.pick}}" style="height: 28px; padding: 0 12px; border: 0; border-radius: 6px; background: {{t.bg}}; color: {{t.fg}}; font-family: inherit; font-size: 12px; font-weight: 600; cursor: pointer;">{{t.l}}</button></sc-for>
-        </div>
+        <div><h2 style="margin: 0; font-size: 14.5px; font-weight: 600;">Tren migrasi masuk &amp; keluar<span class="tip info-i" tabindex="0" aria-label="Keterangan">i<span class="pop">Migrasi risen = tinggal di provinsi berbeda dibanding 5 tahun sebelumnya. Masuk dan keluar dari SP2020 Long Form (2015–2020); neto dibandingkan dengan SUPAS 2025. Neto negatif = lebih banyak penduduk yang keluar.</span></span></h2></div>
       </div>
       <div style="padding: 14px 18px 16px; display: flex; flex-direction: column; gap: 14px;">
         <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px;">
-          <sc-if value="{{isLine}}" hint-placeholder-val="{{true}}">
-            <div style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #475569;">Periode
-              <div style="display: flex; gap: 2px; padding: 3px; background: #EEF2F7; border-radius: 8px;">
-                <sc-for list="{{perOpts}}" as="p" hint-placeholder-count="3"><button type="button" sc-camel-on-click="{{p.pick}}" style="height: 26px; padding: 0 10px; border: 0; border-radius: 6px; background: {{p.bg}}; color: {{p.fg}}; font-family: inherit; font-size: 12px; font-weight: 600; cursor: pointer;">{{p.l}}</button></sc-for>
-              </div>
-            </div>
-          </sc-if>
-          <sc-if value="{{isMig}}" hint-placeholder-val="{{false}}"><span style="height: 30px; padding: 0 10px; border-radius: 8px; background: #EFF6FF; border: 1px solid #B8E3DF; display: inline-flex; align-items: center; font-size: 12px; font-weight: 600; color: #1D4ED8;">Periode: SP2020 Long Form vs SUPAS 2025</span></sc-if>
-          <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #475569;">{{wil.lab}}
-            <sc-raw-select value="{{wil.v}}" sc-camel-on-change="{{wil.on}}" aria-label="Pilih {{wil.lab}}" style="height: 32px; min-width: 240px; padding: 0 10px; border: 1px solid #E3E8F0; border-radius: 8px; background: #FFFFFF; font-family: inherit; font-size: 12.5px; color: #0F172A; cursor: pointer;">
-              <sc-for list="{{wil.opts}}" as="w" hint-placeholder-count="3"><option value="{{w.v}}">{{w.l}}</option></sc-for>
+          <span style="height: 30px; padding: 0 10px; border-radius: 8px; background: #EFF6FF; border: 1px solid #B8E3DF; display: inline-flex; align-items: center; font-size: 12px; font-weight: 600; color: #1D4ED8;">Periode: SP2020 Long Form vs SUPAS 2025</span>
+          <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #475569;">{{wm.lab}}
+            <sc-raw-select value="{{wm.v}}" sc-camel-on-change="{{wm.on}}" aria-label="Pilih {{wm.lab}}" style="height: 32px; min-width: 240px; padding: 0 10px; border: 1px solid #E3E8F0; border-radius: 8px; background: #FFFFFF; font-family: inherit; font-size: 12.5px; color: #0F172A; cursor: pointer;">
+              <sc-for list="{{wm.opts}}" as="w" hint-placeholder-count="3"><option value="{{w.v}}">{{w.l}}</option></sc-for>
             </sc-raw-select>
           </label>
-          <span style="font-size: 11.5px; color: #64748B;">{{wil.note}}</span>
-          <span style="margin-left: auto; height: 26px; padding: 0 9px; border-radius: 6px; background: #EFF6FF; color: #1E40AF; font-size: 11.5px; font-weight: 600; display: inline-flex; align-items: center;">Satuan: {{tr.units}}</span>
+          <span style="font-size: 11.5px; color: #64748B;">{{wm.note}}</span>
+          <span style="margin-left: auto; height: 26px; padding: 0 9px; border-radius: 6px; background: #EFF6FF; color: #1E40AF; font-size: 11.5px; font-weight: 600; display: inline-flex; align-items: center;">Satuan:&nbsp;persen penduduk</span>
         </div>
 
-        <sc-if value="{{isLine}}" hint-placeholder-val="{{true}}">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 14px 28px;">
+              <div style="display: flex; flex-direction: column; gap: 6px;">
+                <div style="display: flex; justify-content: space-between; gap: 8px; align-items: baseline;"><b style="font-size: 12.5px;">Pindah masuk vs keluar · {{mg.name}}</b><span style="font-size: 11px; color: #64748B;">% penduduk · SP2020 Long Form</span></div>
+                <sc-for list="{{mg.a}}" as="r" hint-placeholder-count="2">
+                  <div style="display: grid; grid-template-columns: 150px minmax(0, 1fr) 84px; gap: 10px; align-items: center; font-size: 12px;"><span>{{r.l}}</span><span style="display: block; height: 14px; border-radius: 4px; background: #EEF2F7;"><span style="display: block; width: {{r.w}}; height: 14px; border-radius: 4px; background: {{r.c}};"></span></span><b style="text-align: right;">{{r.v}}</b></div>
+                </sc-for>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 6px;">
+                <div style="display: flex; justify-content: space-between; gap: 8px; align-items: baseline;"><b style="font-size: 12.5px;">Neto migrasi risen · SP2020 Long Form vs SUPAS 2025</b><span style="font-size: 11px; color: #64748B;">% penduduk · kiri = keluar lebih banyak</span></div>
+                <sc-for list="{{mg.b}}" as="r" hint-placeholder-count="2">
+                  <div style="display: grid; grid-template-columns: 150px minmax(0, 1fr) 84px; gap: 10px; align-items: center; font-size: 12px;"><span>{{r.l}}</span><span style="position: relative; display: block; height: 14px; border-radius: 4px; background: #EEF2F7;"><span style="position: absolute; left: 50%; top: -2px; bottom: -2px; width: 1px; background: #94A3B8;"></span><span style="position: absolute; top: 0; left: {{r.left}}; width: {{r.w}}; height: 14px; border-radius: 3px; background: {{r.c}};"></span></span><b style="text-align: right; color: {{r.fc}};">{{r.v}}</b></div>
+                </sc-for>
+              </div>
+        </div>
+      </div>
+            <div class="mzi"><span class="mzi-b">Insight AI</span><ul class="mzi-l"><sc-for list="{{mini.mig}}" as="i" hint-placeholder-count="3"><li>{{i}}</li></sc-for></ul><span class="mzi-s">Terverifikasi analis</span></div>
+      <div style="padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;" class="cf"><span><b style="color: #475569;">Diperbarui:</b> 12 Okt 2026</span><span><b style="color: #475569;">Sumber:</b> BPS · Long Form SP2020 dan SUPAS 2025</span><span class="chip" style="padding: 0 6px; border-radius: 4px; background: #EFF6FF; color: #1D4ED8; font-weight: 600;">Divalidasi analis</span><span class="tip info-i" tabindex="0" aria-label="Keterangan">i<span class="pop">Periode: SP2020 Long Form (2015–2020) dan SUPAS 2025</span></span></div>
+    </section>
+
+    <!-- 4. Mobilitas kerja (komuter) -->
+    <section id="sec-kerja" style="background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; box-shadow: 0 1px 2px rgba(15,23,42,.05); scroll-margin-top: 16px;">
+      <div style="padding: 12px 18px; border-bottom: 1px solid #EEF2F7; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px;">
+        <div><h2 style="margin: 0; font-size: 14.5px; font-weight: 600;">Mobilitas kerja (komuter)<span class="tip info-i" tabindex="0" aria-label="Keterangan">i<span class="pop">{{lk.tr.cav}} Setiap seri memakai satuannya sendiri.</span></span></h2></div>
+      </div>
+      <div style="padding: 14px 18px 16px; display: flex; flex-direction: column; gap: 14px;">
+        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px;">
+            <div style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #475569;">Periode
+              <div style="display: flex; gap: 2px; padding: 3px; background: #EEF2F7; border-radius: 8px;">
+                <sc-for list="{{lk.perOpts}}" as="p" hint-placeholder-count="3"><button type="button" sc-camel-on-click="{{p.pick}}" style="height: 26px; padding: 0 10px; border: 0; border-radius: 6px; background: {{p.bg}}; color: {{p.fg}}; font-family: inherit; font-size: 12px; font-weight: 600; cursor: pointer;">{{p.l}}</button></sc-for>
+              </div>
+            </div>
+          <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #475569;">{{lk.wil.lab}}
+            <sc-raw-select value="{{lk.wil.v}}" sc-camel-on-change="{{lk.wil.on}}" aria-label="Pilih {{lk.wil.lab}}" style="height: 32px; min-width: 240px; padding: 0 10px; border: 1px solid #E3E8F0; border-radius: 8px; background: #FFFFFF; font-family: inherit; font-size: 12.5px; color: #0F172A; cursor: pointer;">
+              <sc-for list="{{lk.wil.opts}}" as="w" hint-placeholder-count="3"><option value="{{w.v}}">{{w.l}}</option></sc-for>
+            </sc-raw-select>
+          </label>
+          <span style="font-size: 11.5px; color: #64748B;">{{lk.wil.note}}</span>
+          <span style="margin-left: auto; height: 26px; padding: 0 9px; border-radius: 6px; background: #EFF6FF; color: #1E40AF; font-size: 11.5px; font-weight: 600; display: inline-flex; align-items: center;">Satuan:&nbsp;{{lk.tr.units}}</span>
+        </div>
+
           <div style="display: flex; flex-direction: column; gap: 14px;">
             <div style="display: flex; flex-wrap: wrap; gap: 16px;">
-              <sc-for list="{{charts}}" as="ch" hint-placeholder-count="2">
+              <sc-for list="{{lk.charts}}" as="ch" hint-placeholder-count="2">
                 <div style="flex: 1 1 540px; min-width: 0; padding: 12px 14px 10px; border-radius: 10px; border: 1px solid #E3E8F0; display: flex; flex-direction: column; gap: 8px;">
                   <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 6px;">
                     <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 4px 16px;"><sc-for list="{{ch.legend}}" as="lg" hint-placeholder-count="1"><span style="display: inline-flex; align-items: center; gap: 7px;"><span style="width: 14px; height: 3px; border-radius: 2px; background: {{lg.c}};"></span><b style="font-size: 12.5px;">{{lg.n}}</b><span style="font-size: 11px; color: #64748B;">{{lg.w}}</span></span></sc-for></div>
@@ -747,64 +776,86 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
               </sc-for>
             </div>
             <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 18px; padding: 10px 14px; border-radius: 10px; background: #EFF6FF; border: 1px solid #E7F1E9; font-size: 12px; color: #334155;">
-              <b style="color: #1E40AF;">{{rd.l}}</b>
-              <sc-for list="{{rd.items}}" as="it" hint-placeholder-count="2"><span>{{it.n}}: <b style="color: #0F172A;">{{it.v}}</b> {{it.u}} <span style="color: #1D4ED8; font-weight: 600;">{{it.d}}</span> <span style="color: #64748B;">{{it.dn}}</span></span></sc-for>
+              <b style="color: #1E40AF;">{{lk.rd.l}}</b>
+              <sc-for list="{{lk.rd.items}}" as="it" hint-placeholder-count="2"><span>{{it.n}}: <b style="color: #0F172A;">{{it.v}}</b> {{it.u}} <span style="color: #1D4ED8; font-weight: 600;">{{it.d}}</span> <span style="color: #64748B;">{{it.dn}}</span></span></sc-for>
               <span style="margin-left: auto; font-size: 11px; color: #64748B;">Klik titik pada grafik untuk membaca nilai bulan lain</span>
             </div>
             
           </div>
-        </sc-if>
-
-        <sc-if value="{{isMig}}" hint-placeholder-val="{{false}}">
-          <div style="display: flex; flex-wrap: wrap; gap: 16px;">
-            <div style="flex: 1 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 14px;">
-              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 8px;"><sc-for list="{{mg.sum}}" as="x" hint-placeholder-count="3"><div style="padding: 9px 11px; border-radius: 9px; border: 1px solid #E3E8F0; background: #F8FAFC;"><div style="font-size: 10.5px; color: #64748B;">{{x.l}}</div><b style="font-size: 16px; color: {{x.c}};">{{x.v}}</b><div style="font-size: 10.5px; color: #94A3B8;">{{x.s}}</div></div></sc-for></div>
-              <div style="display: flex; flex-direction: column; gap: 6px;">
-                <div style="display: flex; justify-content: space-between; gap: 8px; align-items: baseline;"><b style="font-size: 12.5px;">Migran risen · {{mg.name}}</b><span style="font-size: 11px; color: #64748B;">% penduduk · SP2020 Long Form</span></div>
-                <sc-for list="{{mg.a}}" as="r" hint-placeholder-count="2">
-                  <div style="display: grid; grid-template-columns: 150px minmax(0, 1fr) 84px; gap: 10px; align-items: center; font-size: 12px;"><span>{{r.l}}</span><span style="display: block; height: 14px; border-radius: 4px; background: #EEF2F7;"><span style="display: block; width: {{r.w}}; height: 14px; border-radius: 4px; background: {{r.c}};"></span></span><b style="text-align: right;">{{r.v}}</b></div>
-                </sc-for>
-              </div>
-              <div style="display: flex; flex-direction: column; gap: 6px;">
-                <div style="display: flex; justify-content: space-between; gap: 8px; align-items: baseline;"><b style="font-size: 12.5px;">Neto migrasi risen · SP2020 Long Form vs SUPAS 2025</b><span style="font-size: 11px; color: #64748B;">% penduduk · kiri = keluar lebih banyak</span></div>
-                <sc-for list="{{mg.b}}" as="r" hint-placeholder-count="2">
-                  <div style="display: grid; grid-template-columns: 150px minmax(0, 1fr) 84px; gap: 10px; align-items: center; font-size: 12px;"><span>{{r.l}}</span><span style="position: relative; display: block; height: 14px; border-radius: 4px; background: #EEF2F7;"><span style="position: absolute; left: 50%; top: -2px; bottom: -2px; width: 1px; background: #94A3B8;"></span><span style="position: absolute; top: 0; left: {{r.left}}; width: {{r.w}}; height: 14px; border-radius: 3px; background: {{r.c}};"></span></span><b style="text-align: right; color: {{r.fc}};">{{r.v}}</b></div>
-                </sc-for>
-              </div>
-              <sc-if value="{{mg.isDki}}" hint-placeholder-val="{{true}}">
-                <div style="display: flex; flex-direction: column; gap: 6px;">
-                  <div style="display: flex; justify-content: space-between; gap: 8px; align-items: baseline;"><b style="font-size: 12.5px;">Neto migrasi risen per kota · DKI Jakarta</b><span style="font-size: 11px; color: #64748B;">% penduduk · SUPAS 2025</span></div>
-                  <sc-for list="{{mg.kota}}" as="r" hint-placeholder-count="5">
-                    <div style="display: grid; grid-template-columns: 150px minmax(0, 1fr) 84px; gap: 10px; align-items: center; font-size: 12px;"><span>{{r.l}}</span><span style="position: relative; display: block; height: 12px; border-radius: 4px; background: #EEF2F7;"><span style="position: absolute; left: 50%; top: -2px; bottom: -2px; width: 1px; background: #94A3B8;"></span><span style="position: absolute; top: 0; left: {{r.left}}; width: {{r.w}}; height: 12px; border-radius: 3px; background: {{r.c}};"></span></span><b style="text-align: right; color: {{r.fc}};">{{r.v}}</b></div>
-                  </sc-for>
-                </div>
-              </sc-if>
-              <a href="#sec-peta" sc-camel-on-click="{{mg.pick}}" style="align-self: flex-start; font-size: 12px; font-weight: 600; text-decoration: none;">Sorot {{mg.name}} di peta ↑</a>
-            </div>
-            <div style="flex: 1 1 360px; min-width: 0; display: flex; flex-direction: column; gap: 12px;">
-              <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px;">
-                <sc-for list="{{supas}}" as="s" hint-placeholder-count="3"><div style="padding: 10px; border-radius: 9px; background: #FFFFFF; border: 1px solid #E3E8F0;"><div style="font-size: 11px; color: #64748B;">{{s.l}}</div><div style="font-size: 16px; font-weight: 700; color: #0F172A;">{{s.v}}</div><div style="font-size: 10.5px; color: #64748B;">{{s.s}}</div></div></sc-for>
-              </div>
-              <div style="display: flex; flex-direction: column; gap: 4px;">
-                <div style="display: flex; justify-content: space-between; gap: 8px; align-items: baseline;"><b style="font-size: 12.5px;">Mutasi penduduk terbesar per kab/kota</b><span style="font-size: 11px; color: #64748B;">ribu jiwa · Dukcapil DKB Sem II 2025</span></div>
-                <sc-for list="{{mut}}" as="r" hint-placeholder-count="5">
-                  <a href="#sec-peta" sc-camel-on-click="{{r.pick}}" class="bar" title="Sorot {{r.p}} di peta" style="display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) 60px; gap: 10px; align-items: center; padding: 4px 6px; margin: 0 -6px; border-radius: 6px; font-size: 12px; color: #0F172A; text-decoration: none;"><span>{{r.n}} <span style="font-size: 11px; color: #64748B;">{{r.p}}</span></span><span style="display: block; height: 12px; border-radius: 3px; background: #EEF2F7;"><span style="display: block; width: {{r.w}}; height: 12px; border-radius: 3px; background: #0EA5E9;"></span></span><b style="text-align: right;">{{r.v}}</b></a>
-                </sc-for>
-              </div>
-              
-            </div>
-          </div>
-        </sc-if>
       </div>
-            <div class="mzi"><span class="mzi-b">Insight AI</span><ul class="mzi-l"><sc-for list="{{mini.tren}}" as="i" hint-placeholder-count="3"><li>{{i}}</li></sc-for></ul><span class="mzi-s">Terverifikasi analis</span></div>
-      <div style="padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;" class="cf"><span><b style="color: #475569;">Diperbarui:</b> 12 Okt 2026</span><span><b style="color: #475569;">Sumber:</b> {{tr.src}}</span><span class="chip" style="padding: 0 6px; border-radius: 4px; background: #EFF6FF; color: #1D4ED8; font-weight: 600;">Divalidasi analis</span><span class="tip info-i" tabindex="0" aria-label="Keterangan">i<span class="pop">Periode: {{tr.per}}</span></span></div>
+            <div class="mzi"><span class="mzi-b">Insight AI</span><ul class="mzi-l"><sc-for list="{{mini.kerja}}" as="i" hint-placeholder-count="3"><li>{{i}}</li></sc-for></ul><span class="mzi-s">Terverifikasi analis</span></div>
+      <div style="padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;" class="cf"><span><b style="color: #475569;">Diperbarui:</b> 12 Okt 2026</span><span><b style="color: #475569;">Sumber:</b> {{lk.tr.src}}</span><span class="chip" style="padding: 0 6px; border-radius: 4px; background: #EFF6FF; color: #1D4ED8; font-weight: 600;">Divalidasi analis</span><span class="tip info-i" tabindex="0" aria-label="Keterangan">i<span class="pop">Periode: {{lk.tr.per}}</span></span></div>
     </section>
 
-    <!-- 4. Insight mobilitas -->
+    <!-- 5. Wisata & penerbangan -->
+    <section id="sec-wisata" style="background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; box-shadow: 0 1px 2px rgba(15,23,42,.05); scroll-margin-top: 16px;">
+      <div style="padding: 12px 18px; border-bottom: 1px solid #EEF2F7; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px;">
+        <div><h2 style="margin: 0; font-size: 14.5px; font-weight: 600;">Wisata &amp; penerbangan<span class="tip info-i" tabindex="0" aria-label="Keterangan">i<span class="pop">{{lw.tr.cav}} Setiap seri memakai satuannya sendiri.</span></span></h2></div>
+      </div>
+      <div style="padding: 14px 18px 16px; display: flex; flex-direction: column; gap: 14px;">
+        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px;">
+            <div style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #475569;">Periode
+              <div style="display: flex; gap: 2px; padding: 3px; background: #EEF2F7; border-radius: 8px;">
+                <sc-for list="{{lw.perOpts}}" as="p" hint-placeholder-count="3"><button type="button" sc-camel-on-click="{{p.pick}}" style="height: 26px; padding: 0 10px; border: 0; border-radius: 6px; background: {{p.bg}}; color: {{p.fg}}; font-family: inherit; font-size: 12px; font-weight: 600; cursor: pointer;">{{p.l}}</button></sc-for>
+              </div>
+            </div>
+          <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #475569;">{{lw.wil.lab}}
+            <sc-raw-select value="{{lw.wil.v}}" sc-camel-on-change="{{lw.wil.on}}" aria-label="Pilih {{lw.wil.lab}}" style="height: 32px; min-width: 240px; padding: 0 10px; border: 1px solid #E3E8F0; border-radius: 8px; background: #FFFFFF; font-family: inherit; font-size: 12.5px; color: #0F172A; cursor: pointer;">
+              <sc-for list="{{lw.wil.opts}}" as="w" hint-placeholder-count="3"><option value="{{w.v}}">{{w.l}}</option></sc-for>
+            </sc-raw-select>
+          </label>
+          <span style="font-size: 11.5px; color: #64748B;">{{lw.wil.note}}</span>
+          <span style="margin-left: auto; height: 26px; padding: 0 9px; border-radius: 6px; background: #EFF6FF; color: #1E40AF; font-size: 11.5px; font-weight: 600; display: inline-flex; align-items: center;">Satuan:&nbsp;{{lw.tr.units}}</span>
+        </div>
+
+          <div style="display: flex; flex-direction: column; gap: 14px;">
+            <div style="display: flex; flex-wrap: wrap; gap: 16px;">
+              <sc-for list="{{lw.charts}}" as="ch" hint-placeholder-count="2">
+                <div style="flex: 1 1 540px; min-width: 0; padding: 12px 14px 10px; border-radius: 10px; border: 1px solid #E3E8F0; display: flex; flex-direction: column; gap: 8px;">
+                  <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 6px;">
+                    <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 4px 16px;"><sc-for list="{{ch.legend}}" as="lg" hint-placeholder-count="1"><span style="display: inline-flex; align-items: center; gap: 7px;"><span style="width: 14px; height: 3px; border-radius: 2px; background: {{lg.c}};"></span><b style="font-size: 12.5px;">{{lg.n}}</b><span style="font-size: 11px; color: #64748B;">{{lg.w}}</span></span></sc-for></div>
+                    <span style="font-size: 11.5px; color: #475569;">{{ch.last}}</span>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; gap: 8px; font-size: 10.5px; font-weight: 600;"><span style="color: {{ch.uLc}};">{{ch.uL}}</span><span style="color: {{ch.uRc}};">{{ch.uR}}</span></div>
+                  <div style="display: flex; gap: 8px;">
+                    <div style="flex: none; width: 44px; height: 180px; display: flex; flex-direction: column; justify-content: space-between; text-align: right; font-size: 10.5px; color: {{ch.uLc}};"><sc-for list="{{ch.yt}}" as="y" hint-placeholder-count="4"><span style="line-height: 1;">{{y}}</span></sc-for></div>
+                    <div style="position: relative; flex: 1; min-width: 0; height: 180px;">
+                      <svg sc-camel-view-box="0 0 600 180" sc-camel-preserve-aspect-ratio="none" aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; overflow: visible;">
+                        <path d="M0 0.5H600M0 60H600M0 120H600" stroke="#EEF2F7" fill="none" vector-effect="non-scaling-stroke"></path>
+                        <path d="M0 179.5H600" stroke="#CBD5E1" fill="none" vector-effect="non-scaling-stroke"></path>
+                        <path d="{{ch.selD}}" stroke="#94A3B8" stroke-dasharray="3 3" fill="none" vector-effect="non-scaling-stroke"></path>
+                        <sc-for list="{{ch.lines}}" as="ln" hint-placeholder-count="1"><path d="{{ln.d}}" fill="none" stroke="{{ln.c}}" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke"></path></sc-for>
+                      </svg>
+                      <sc-for list="{{ch.pts}}" as="p" hint-placeholder-count="12">
+                        <span class="tip" tabindex="0" sc-camel-on-click="{{p.pick}}" style="position: absolute; left: {{p.l}}; top: {{p.t}}; width: 18px; height: 18px; margin-left: -9px; margin-top: -9px; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: {{p.z}};"><span class="pt" style="display: block; width: {{p.s}}; height: {{p.s}}; border-radius: 99px; background: {{p.bg}}; border: 2px solid {{p.c}}; box-sizing: border-box;"></span><span class="pop {{p.pc}}" style="width: 210px;">{{p.tip}}</span></span>
+                      </sc-for>
+                    </div>
+                    <sc-if value="{{ch.dual}}" hint-placeholder-val="{{false}}"><div style="flex: none; width: 44px; height: 180px; display: flex; flex-direction: column; justify-content: space-between; text-align: left; font-size: 10.5px; color: {{ch.uRc}};"><sc-for list="{{ch.ytR}}" as="y" hint-placeholder-count="4"><span style="line-height: 1;">{{y}}</span></sc-for></div></sc-if>
+                  </div>
+                  <div style="position: relative; height: 16px; margin-left: 52px; margin-right: {{ch.mr}};">
+                    <sc-for list="{{ch.xs}}" as="x" hint-placeholder-count="12"><span style="position: absolute; left: {{x.x}}; transform: translateX(-50%); font-size: 10.5px; color: {{x.c}}; font-weight: {{x.fw}}; white-space: nowrap;">{{x.l}}</span></sc-for>
+                  </div>
+                  <div style="font-size: 11px; color: #94A3B8; display: flex; align-items: center;">Catatan data<span class="tip info-i" tabindex="0" aria-label="Catatan data">i<span class="pop">{{ch.note}}</span></span></div>
+                </div>
+              </sc-for>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 18px; padding: 10px 14px; border-radius: 10px; background: #EFF6FF; border: 1px solid #E7F1E9; font-size: 12px; color: #334155;">
+              <b style="color: #1E40AF;">{{lw.rd.l}}</b>
+              <sc-for list="{{lw.rd.items}}" as="it" hint-placeholder-count="2"><span>{{it.n}}: <b style="color: #0F172A;">{{it.v}}</b> {{it.u}} <span style="color: #1D4ED8; font-weight: 600;">{{it.d}}</span> <span style="color: #64748B;">{{it.dn}}</span></span></sc-for>
+              <span style="margin-left: auto; font-size: 11px; color: #64748B;">Klik titik pada grafik untuk membaca nilai bulan lain</span>
+            </div>
+            
+          </div>
+      </div>
+            <div class="mzi"><span class="mzi-b">Insight AI</span><ul class="mzi-l"><sc-for list="{{mini.wis}}" as="i" hint-placeholder-count="3"><li>{{i}}</li></sc-for></ul><span class="mzi-s">Terverifikasi analis</span></div>
+      <div style="padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;" class="cf"><span><b style="color: #475569;">Diperbarui:</b> 12 Okt 2026</span><span><b style="color: #475569;">Sumber:</b> {{lw.tr.src}}</span><span class="chip" style="padding: 0 6px; border-radius: 4px; background: #EFF6FF; color: #1D4ED8; font-weight: 600;">Divalidasi analis</span><span class="tip info-i" tabindex="0" aria-label="Keterangan">i<span class="pop">Periode: {{lw.tr.per}}</span></span></div>
+    </section>
+
+    <!-- 6. Insight mobilitas -->
     <section id="sec-insight" style="background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; box-shadow: 0 1px 2px rgba(15,23,42,.05); scroll-margin-top: 16px;">
       <div style="padding: 12px 18px; border-bottom: 1px solid #EEF2F7; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px;">
         <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;"><h2 style="margin: 0; font-size: 14.5px; font-weight: 600;">Insight mobilitas untuk investasi</h2></div>
-        <span style="font-size: 11.5px; color: #64748B;">Disusun AI dari data kartu 1–3; angka berasal dari sumber resmi yang ditampilkan</span>
+        <span style="font-size: 11.5px; color: #64748B;">Disusun AI dari data kartu 1–5; angka berasal dari sumber resmi yang ditampilkan</span>
       </div>
       <div style="padding: 14px 18px 16px; display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 12px;">
         <sc-for list="{{ins}}" as="i" hint-placeholder-count="3">
@@ -1189,121 +1240,119 @@ class Component extends DCLogic {
       wis: { n: 'Perjalanan wisatawan nusantara', wil: 'Nasional', u: 'juta perjalanan', dec: 2, c: '#0EA5E9', data: D.WIS, der: {} },
       udr: { n: 'Penumpang angkutan udara domestik', wil: 'Nasional', u: 'juta penumpang', dec: 2, c: '#1E40AF', data: D.UDR, der: { '2025-08': 'angka turunan dari perubahan −5,13% (mtm) Sep 2025', '2026-03': 'angka turunan dari perubahan −18,72% (mtm) Apr 2026', '2026-07': 'dilaporkan ±5,0 juta; angka turunan dari +6,91% (mtm)', '2026-08': 'dilaporkan ±4,8 juta; angka turunan dari −3,43% (mtm)' } }
     };
-    const TT = { migrasi: 'Migrasi', kerja: 'Mobilitas kerja (komuter)', wisata: 'Wisata & penerbangan' };
-    const trT = TT[st.trT] ? st.trT : 'kerja';
-    const isLine = trT !== 'migrasi', isMig = trT === 'migrasi';
-    const trTabs = Object.entries(TT).map(([k, l]) => ({ l, bg: k === trT ? '#FFFFFF' : 'transparent', fg: k === trT ? '#1E40AF' : '#475569', pick: () => this.setState({ trT: k }) }));
-    const per = st.per ?? 12;
-    const perOpts = [[6, '6 bulan'], [12, '12 bulan'], [0, 'Semua']].map(([v, l]) => ({ l, bg: per === v ? '#FFFFFF' : 'transparent', fg: per === v ? '#1E40AF' : '#475569', pick: () => this.setState({ per: v }) }));
     const WK = { krl: ['KRL Commuter Line · Jabodetabek', ['krl']], whoosh: ['Kereta Cepat Whoosh · Jakarta–Bandung', ['whoosh']], gab: ['Gabungan KRL & Whoosh (dua sumbu)', ['krl', 'whoosh']] };
     const wilK = WK[st.wilK] ? st.wilK : 'krl';
     const wilM = LFX.some((r) => r[0] === st.wilM) ? st.wilM : 'DKI Jakarta';
-    let wil, keys = [];
-    if (trT === 'kerja') {
-      keys = WK[wilK][1];
-      wil = { lab: 'Kereta', v: wilK, opts: Object.entries(WK).map(([v, x]) => ({ v, l: x[0] })), note: 'Pilih kereta untuk melihat tren penumpang bulanannya; data tersedia per koridor, belum per provinsi.', on: (e) => { if (e && e.target) this.setState({ wilK: e.target.value }); } };
-    } else if (trT === 'wisata') {
-      keys = ['wis', 'udr'];
-      // Seri provinsi diturunkan dari agregat nasional memakai bobot penduduk,
-      // sehingga pola musiman tetap sama tetapi skalanya berbeda.
-      const POPT = D.PV.reduce((a, r) => a + r[3], 0);
-      const tSh = {};
-      D.PV.forEach((r) => { tSh[r[1]] = r[3] / POPT; });
-      const wTour = (v) => (v === 'nas' ? null : tSh[v] || 0);
-      const TOPW = D.PV.map((r) => ({ n: r[1], sh: r[3] / POPT })).sort((a, b) => b.sh - a.sh).slice(0, 10).map((r) => r.n);
-      const tPick = st.wilM && tSh[st.wilM] != null ? st.wilM : 'nas';
-      SER.wis = Object.assign({}, SER.wis, { data: scaleSer(D.WIS, wTour(tPick)), der: {} });
-      SER.udr = Object.assign({}, SER.udr, { data: scaleSer(D.UDR, wTour(tPick)), der: {} });
-      wil = { lab: 'Wilayah', v: tPick, opts: [{ v: 'nas', l: 'Nasional' }].concat(TOPW.map((n) => ({ v: n, l: n }))), note: tPick === 'nas' ? 'Agregat nasional; 10 provinsi dengan bobot penduduk terbesar dapat dipilih.' : 'Estimasi: agregat nasional dikalikan bobot penduduk ' + nf(tSh[tPick] * 100, 1) + '%.', on: (e) => { if (e && e.target) this.setState({ wilM: e.target.value }); } };
-    } else {
-      wil = { lab: 'Wilayah', v: wilM, opts: LFX.map((r) => ({ v: r[0], l: r[0] })), note: 'Seluruh 38 provinsi.', on: (e) => { if (e && e.target) this.setState({ wilM: e.target.value }); } };
-    }
-    let axis = [...new Set(keys.flatMap((k) => SER[k].data.map((r) => r[0])))].sort();
-    if (per) axis = axis.slice(-per);
-    const valAt = (k, mth) => { const r = SER[k].data.find((x) => x[0] === mth); return r ? r[1] : null; };
-    const prevM = (mth) => { const [y, mo] = mth.split('-').map(Number); return mo === 1 ? (y - 1) + '-12' : y + '-' + String(mo - 1).padStart(2, '0'); };
-    const lastAny = [...axis].reverse().find((mth) => keys.some((k) => valAt(k, mth) != null)) || axis[axis.length - 1];
-    const pt = axis.includes(st.pt) ? st.pt : lastAny;
-    const n = axis.length;
-    const xp = (i) => (n > 1 ? i / (n - 1) : 0.5);
-    // Geometri satu seri pada sumbu y-nya sendiri (warna bisa ditimpa untuk grafik gabungan)
-    const serGeo = (k, c) => {
-      const S = SER[k], col = c || S.c;
-      const vals = axis.map((mth) => valAt(k, mth));
-      const nn = vals.filter((v) => v != null);
-      const mx = Math.max(...nn), mn = Math.min(...nn);
-      const pad = (mx - mn) * 0.18 || mx * 0.05 || 1;
-      const lo = mn - pad, hi = mx + pad;
-      const yp = (v) => 1 - (v - lo) / (hi - lo);
-      let d = '', pen = false;
-      vals.forEach((v, i) => { if (v == null) { pen = false; return; } d += (pen ? 'L' : 'M') + (xp(i) * 600).toFixed(1) + ' ' + (yp(v) * 180).toFixed(1); pen = true; });
-      const pts = [];
-      vals.forEach((v, i) => {
-        if (v == null) return;
-        const mth = axis[i], on = mth === pt, dv = S.der[mth];
-        pts.push({ l: (xp(i) * 100).toFixed(2) + '%', t: (yp(v) * 100).toFixed(2) + '%', s: on ? '12px' : '9px', bg: on ? col : dv ? '#FFFFFF' : '#E7F1E9', c: col, z: on ? 3 : 2, pc: xp(i) < 0.5 ? 'pl' : '', tip: S.n + ' · ' + ml(mth, true) + ' · ' + nf(v, S.dec) + ' ' + S.u + (dv ? ' (' + dv + ')' : ''), pick: () => this.setState({ pt: mth }) });
-      });
-      const gaps = axis.filter((mth, i) => vals[i] == null && mth >= (S.data.find((r) => r[1] != null) || [''])[0]);
-      const lastI = vals.map((v, i) => (v != null ? i : -1)).filter((i) => i >= 0).pop();
-      const derN = Object.keys(S.der).filter((mth) => axis.includes(mth));
-      const pre = axis.filter((mth, i) => vals[i] == null && !gaps.includes(mth));
-      const notes = [];
-      if (gaps.length) notes.push('Belum tersedia: ' + gaps.map((g) => ml(g, true)).join(', ') + '.');
-      if (pre.length) notes.push('Seri dimulai ' + ml(axis[pre.length], true) + '.');
-      if (derN.length) notes.push('Titik putih = angka turunan dari persentase perubahan yang dirilis (' + derN.map((g) => ml(g, true)).join(', ') + ').');
-      return { S, c: col, d: d || 'M0 0', pts, notes,
-        last: lastI == null ? BT : 'Terakhir ' + ml(axis[lastI], true) + ': ' + nf(vals[lastI], S.dec) + ' ' + S.u,
-        yt: [hi, lo + ((hi - lo) * 2) / 3, lo + (hi - lo) / 3, lo].map((v) => nf(v, S.dec > 1 ? 1 : 0)) };
-    };
-    const ix = axis.indexOf(pt);
-    const chartBase = () => ({
-      selD: ix >= 0 ? 'M' + (xp(ix) * 600).toFixed(1) + ' 0V180' : 'M0 0',
-      xs: axis.map((mth, i) => ({ x: (xp(i) * 100).toFixed(2) + '%', l: n > 12 && (n - 1 - i) % 2 ? '' : ml(mth), c: mth === pt ? '#1E40AF' : '#64748B', fw: mth === pt ? 700 : 400 }))
-    });
-    const single = { uR: '', ytR: [], dual: false, mr: '0px', uLc: '#64748B', uRc: '#64748B' };
-    const charts = trT === 'kerja' && wilK === 'gab' ? (() => {
-      // Gabungan: satu grafik, dua seri, masing-masing pada sumbunya sendiri (satuan berbeda, tidak dijumlahkan)
-      const g1 = serGeo(keys[0], '#1D4ED8'), g2 = serGeo(keys[1], '#D97706');
-      const lastOf = (k) => { const i = axis.map((m) => valAt(k, m)).map((v, j) => (v != null ? j : -1)).filter((j) => j >= 0).pop(); return i == null ? null : axis[i]; };
-      const m1 = lastOf(keys[0]), m2 = lastOf(keys[1]);
-      const vTxt = (k, m, nm) => nm + ' ' + nf(valAt(k, m), SER[k].dec) + ' ' + SER[k].u.replace(' penumpang', '');
-      return [Object.assign(chartBase(), {
-        legend: [g1, g2].map((g) => ({ c: g.c, n: g.S.n, w: g.S.wil, dash: '' })),
-        lines: [g1, g2].map((g) => ({ d: g.d, c: g.c })),
-        pts: g1.pts.concat(g2.pts),
-        uL: g1.S.u + ' per bulan (sumbu kiri)', uR: g2.S.u + ' per bulan (sumbu kanan)', uLc: g1.c, uRc: g2.c,
-        yt: g1.yt, ytR: g2.yt, dual: true, mr: '52px',
-        last: m1 && m2 && m1 === m2 ? 'Terakhir ' + ml(m1, true) + ': ' + vTxt(keys[0], m1, 'KRL') + ' · ' + vTxt(keys[1], m2, 'Whoosh') + ' penumpang' : 'Terakhir: ' + (m1 ? ml(m1, true) + ' ' + vTxt(keys[0], m1, 'KRL') : '') + ' · ' + (m2 ? ml(m2, true) + ' ' + vTxt(keys[1], m2, 'Whoosh') : ''),
-        note: ['Dua seri memakai sumbu berbeda karena satuannya berbeda (juta vs ribu penumpang); tinggi garis tidak dapat dibandingkan langsung dan kedua seri tidak dijumlahkan.'].concat(g1.notes.map((x) => 'KRL: ' + x), g2.notes.map((x) => 'Whoosh: ' + x)).join(' ')
-      })];
-    })() : keys.map((k) => {
-      const g = serGeo(k);
-      return Object.assign(chartBase(), single, {
-        legend: [{ c: g.c, n: g.S.n, w: g.S.wil, dash: '' }], lines: [{ d: g.d, c: g.c }], pts: g.pts,
-        uL: g.S.u + ' per bulan', yt: g.yt,
-        last: g.last, note: g.notes.join(' ') || 'Seri lengkap untuk periode terpilih.'
-      });
-    });
-    const rd = {
-      l: pt ? ml(pt, true) : (lastAny ? ml(lastAny, true) : 'agregasi'),
-      items: keys.map((k) => {
-        const S = SER[k], v = pt ? valAt(k, pt) : null, pv = pt ? valAt(k, prevM(pt)) : null;
-        return { n: S.n, v: v == null ? BT : nf(v, S.dec), u: v == null ? '' : S.u, d: v != null && pv != null ? sgn(((v - pv) / pv) * 100, 1) + '% mtm' : '', dn: v != null && S.der[pt] ? '(' + S.der[pt] + ')' : '' };
-      })
-    };
     const TR = {
       kerja: { units: 'juta penumpang (KRL) · ribu penumpang (Whoosh)', per: 'bulanan, Mei 2025–Agt 2026', src: 'BPS · BRS Perkembangan Transportasi (KAI Commuter, KCIC)', cav: 'Satuan adalah perjalanan penumpang, bukan orang unik. KRL dan Whoosh memakai satuan berbeda sehingga digambar pada grafik terpisah dan tidak dijumlahkan. Data jalan tol (Jasa Marga) tidak dipakai pada kartu ini.' },
-      wisata: { units: 'juta perjalanan (wisnus) · juta penumpang (udara)', per: 'bulanan, Jun 2025–Agt 2026', src: 'BPS · BRS Pariwisata dan BRS Perkembangan Transportasi', cav: 'Perjalanan wisatawan nusantara dan penumpang udara domestik adalah ukuran berbeda (satu perjalanan wisata dapat memakai pesawat), sehingga tidak dijumlahkan. Data per bandara (InJourney) tidak dipakai pada kartu ini.' },
-      migrasi: { units: 'persen penduduk · ribu jiwa (mutasi)', per: 'SP2020 Long Form (2015–2020), SUPAS 2025, DKB Semester II 2025', src: 'BPS · Long Form SP2020 dan SUPAS 2025; Dukcapil Kemendagri', cav: '' }
+      wisata: { units: 'juta perjalanan (wisnus) · juta penumpang (udara)', per: 'bulanan, Jun 2025–Agt 2026', src: 'BPS · BRS Pariwisata dan BRS Perkembangan Transportasi', cav: 'Perjalanan wisatawan nusantara dan penumpang udara domestik adalah ukuran berbeda (satu perjalanan wisata dapat memakai pesawat), sehingga tidak dijumlahkan. Data per bandara (InJourney) tidak dipakai pada kartu ini.' }
     };
-    const tr = TR[trT];
-    if (trT === 'kerja') tr.units = { krl: 'juta penumpang', whoosh: 'ribu penumpang', gab: 'juta penumpang (KRL) · ribu penumpang (Whoosh)' }[wilK];
+    // Satu kartu per jenis pergerakan; tiap kartu menyimpan periode, titik terpilih, dan pilihan wilayahnya sendiri.
+    const lineCard = (kind) => {
+      const SER2 = Object.assign({}, SER);
+      const perKey = kind === 'kerja' ? 'perK' : 'perW', ptKey = kind === 'kerja' ? 'ptK' : 'ptW';
+      const per = st[perKey] ?? 12;
+      const perOpts = [[6, '6 bulan'], [12, '12 bulan'], [0, 'Semua']].map(([v, l]) => ({ l, bg: per === v ? '#FFFFFF' : 'transparent', fg: per === v ? '#1E40AF' : '#475569', pick: () => this.setState({ [perKey]: v }) }));
+      let wil, keys = [];
+      if (kind === 'kerja') {
+        keys = WK[wilK][1];
+        wil = { lab: 'Kereta', v: wilK, opts: Object.entries(WK).map(([v, x]) => ({ v, l: x[0] })), note: 'Pilih kereta untuk melihat tren penumpang bulanannya; data tersedia per koridor, belum per provinsi.', on: (e) => { if (e && e.target) this.setState({ wilK: e.target.value }); } };
+      } else if (kind === 'wisata') {
+        keys = ['wis', 'udr'];
+        // Seri provinsi diturunkan dari agregat nasional memakai bobot penduduk,
+        // sehingga pola musiman tetap sama tetapi skalanya berbeda.
+        const POPT = D.PV.reduce((a, r) => a + r[3], 0);
+        const tSh = {};
+        D.PV.forEach((r) => { tSh[r[1]] = r[3] / POPT; });
+        const wTour = (v) => (v === 'nas' ? null : tSh[v] || 0);
+        const TOPW = D.PV.map((r) => ({ n: r[1], sh: r[3] / POPT })).sort((a, b) => b.sh - a.sh).slice(0, 10).map((r) => r.n);
+        const tPick = st.wilT && tSh[st.wilT] != null ? st.wilT : 'nas';
+        SER2.wis = Object.assign({}, SER2.wis, { data: scaleSer(D.WIS, wTour(tPick)), der: {} });
+        SER2.udr = Object.assign({}, SER2.udr, { data: scaleSer(D.UDR, wTour(tPick)), der: {} });
+        wil = { lab: 'Wilayah', v: tPick, opts: [{ v: 'nas', l: 'Nasional' }].concat(TOPW.map((n) => ({ v: n, l: n }))), note: tPick === 'nas' ? 'Agregat nasional; 10 provinsi dengan bobot penduduk terbesar dapat dipilih.' : 'Estimasi: agregat nasional dikalikan bobot penduduk ' + nf(tSh[tPick] * 100, 1) + '%.', on: (e) => { if (e && e.target) this.setState({ wilT: e.target.value }); } };
+      }
+      let axis = [...new Set(keys.flatMap((k) => SER2[k].data.map((r) => r[0])))].sort();
+      if (per) axis = axis.slice(-per);
+      const valAt = (k, mth) => { const r = SER2[k].data.find((x) => x[0] === mth); return r ? r[1] : null; };
+      const prevM = (mth) => { const [y, mo] = mth.split('-').map(Number); return mo === 1 ? (y - 1) + '-12' : y + '-' + String(mo - 1).padStart(2, '0'); };
+      const lastAny = [...axis].reverse().find((mth) => keys.some((k) => valAt(k, mth) != null)) || axis[axis.length - 1];
+      const pt = axis.includes(st[ptKey]) ? st[ptKey] : lastAny;
+      const n = axis.length;
+      const xp = (i) => (n > 1 ? i / (n - 1) : 0.5);
+      // Geometri satu seri pada sumbu y-nya sendiri (warna bisa ditimpa untuk grafik gabungan)
+      const serGeo = (k, c) => {
+        const S = SER2[k], col = c || S.c;
+        const vals = axis.map((mth) => valAt(k, mth));
+        const nn = vals.filter((v) => v != null);
+        const mx = Math.max(...nn), mn = Math.min(...nn);
+        const pad = (mx - mn) * 0.18 || mx * 0.05 || 1;
+        const lo = mn - pad, hi = mx + pad;
+        const yp = (v) => 1 - (v - lo) / (hi - lo);
+        let d = '', pen = false;
+        vals.forEach((v, i) => { if (v == null) { pen = false; return; } d += (pen ? 'L' : 'M') + (xp(i) * 600).toFixed(1) + ' ' + (yp(v) * 180).toFixed(1); pen = true; });
+        const pts = [];
+        vals.forEach((v, i) => {
+          if (v == null) return;
+          const mth = axis[i], on = mth === pt, dv = S.der[mth];
+          pts.push({ l: (xp(i) * 100).toFixed(2) + '%', t: (yp(v) * 100).toFixed(2) + '%', s: on ? '12px' : '9px', bg: on ? col : dv ? '#FFFFFF' : '#E7F1E9', c: col, z: on ? 3 : 2, pc: xp(i) < 0.5 ? 'pl' : '', tip: S.n + ' · ' + ml(mth, true) + ' · ' + nf(v, S.dec) + ' ' + S.u + (dv ? ' (' + dv + ')' : ''), pick: () => this.setState({ [ptKey]: mth }) });
+        });
+        const gaps = axis.filter((mth, i) => vals[i] == null && mth >= (S.data.find((r) => r[1] != null) || [''])[0]);
+        const lastI = vals.map((v, i) => (v != null ? i : -1)).filter((i) => i >= 0).pop();
+        const derN = Object.keys(S.der).filter((mth) => axis.includes(mth));
+        const pre = axis.filter((mth, i) => vals[i] == null && !gaps.includes(mth));
+        const notes = [];
+        if (gaps.length) notes.push('Belum tersedia: ' + gaps.map((g) => ml(g, true)).join(', ') + '.');
+        if (pre.length) notes.push('Seri dimulai ' + ml(axis[pre.length], true) + '.');
+        if (derN.length) notes.push('Titik putih = angka turunan dari persentase perubahan yang dirilis (' + derN.map((g) => ml(g, true)).join(', ') + ').');
+        return { S, c: col, d: d || 'M0 0', pts, notes,
+          last: lastI == null ? BT : 'Terakhir ' + ml(axis[lastI], true) + ': ' + nf(vals[lastI], S.dec) + ' ' + S.u,
+          yt: [hi, lo + ((hi - lo) * 2) / 3, lo + (hi - lo) / 3, lo].map((v) => nf(v, S.dec > 1 ? 1 : 0)) };
+      };
+      const ix = axis.indexOf(pt);
+      const chartBase = () => ({
+        selD: ix >= 0 ? 'M' + (xp(ix) * 600).toFixed(1) + ' 0V180' : 'M0 0',
+        xs: axis.map((mth, i) => ({ x: (xp(i) * 100).toFixed(2) + '%', l: n > 12 && (n - 1 - i) % 2 ? '' : ml(mth), c: mth === pt ? '#1E40AF' : '#64748B', fw: mth === pt ? 700 : 400 }))
+      });
+      const single = { uR: '', ytR: [], dual: false, mr: '0px', uLc: '#64748B', uRc: '#64748B' };
+      const charts = kind === 'kerja' && wilK === 'gab' ? (() => {
+        // Gabungan: satu grafik, dua seri, masing-masing pada sumbunya sendiri (satuan berbeda, tidak dijumlahkan)
+        const g1 = serGeo(keys[0], '#1D4ED8'), g2 = serGeo(keys[1], '#D97706');
+        const lastOf = (k) => { const i = axis.map((m) => valAt(k, m)).map((v, j) => (v != null ? j : -1)).filter((j) => j >= 0).pop(); return i == null ? null : axis[i]; };
+        const m1 = lastOf(keys[0]), m2 = lastOf(keys[1]);
+        const vTxt = (k, m, nm) => nm + ' ' + nf(valAt(k, m), SER2[k].dec) + ' ' + SER2[k].u.replace(' penumpang', '');
+        return [Object.assign(chartBase(), {
+          legend: [g1, g2].map((g) => ({ c: g.c, n: g.S.n, w: g.S.wil, dash: '' })),
+          lines: [g1, g2].map((g) => ({ d: g.d, c: g.c })),
+          pts: g1.pts.concat(g2.pts),
+          uL: g1.S.u + ' per bulan (sumbu kiri)', uR: g2.S.u + ' per bulan (sumbu kanan)', uLc: g1.c, uRc: g2.c,
+          yt: g1.yt, ytR: g2.yt, dual: true, mr: '52px',
+          last: m1 && m2 && m1 === m2 ? 'Terakhir ' + ml(m1, true) + ': ' + vTxt(keys[0], m1, 'KRL') + ' · ' + vTxt(keys[1], m2, 'Whoosh') + ' penumpang' : 'Terakhir: ' + (m1 ? ml(m1, true) + ' ' + vTxt(keys[0], m1, 'KRL') : '') + ' · ' + (m2 ? ml(m2, true) + ' ' + vTxt(keys[1], m2, 'Whoosh') : ''),
+          note: ['Dua seri memakai sumbu berbeda karena satuannya berbeda (juta vs ribu penumpang); tinggi garis tidak dapat dibandingkan langsung dan kedua seri tidak dijumlahkan.'].concat(g1.notes.map((x) => 'KRL: ' + x), g2.notes.map((x) => 'Whoosh: ' + x)).join(' ')
+        })];
+      })() : keys.map((k) => {
+        const g = serGeo(k);
+        return Object.assign(chartBase(), single, {
+          legend: [{ c: g.c, n: g.S.n, w: g.S.wil, dash: '' }], lines: [{ d: g.d, c: g.c }], pts: g.pts,
+          uL: g.S.u + ' per bulan', yt: g.yt,
+          last: g.last, note: g.notes.join(' ') || 'Seri lengkap untuk periode terpilih.'
+        });
+      });
+      const rd = {
+        l: pt ? ml(pt, true) : (lastAny ? ml(lastAny, true) : 'agregasi'),
+        items: keys.map((k) => {
+          const S = SER2[k], v = pt ? valAt(k, pt) : null, pv = pt ? valAt(k, prevM(pt)) : null;
+          return { n: S.n, v: v == null ? BT : nf(v, S.dec), u: v == null ? '' : S.u, d: v != null && pv != null ? sgn(((v - pv) / pv) * 100, 1) + '% mtm' : '', dn: v != null && S.der[pt] ? '(' + S.der[pt] + ')' : '' };
+        })
+      };
+      const tr = Object.assign({}, TR[kind]);
+      if (kind === 'kerja') tr.units = { krl: 'juta penumpang', whoosh: 'ribu penumpang', gab: 'juta penumpang (KRL) · ribu penumpang (Whoosh)' }[wilK];
+      return { perOpts, wil, charts, rd, tr };
+    };
+    const lk = lineCard('kerja'), lw = lineCard('wisata');
+    const wm = { lab: 'Wilayah', v: wilM, opts: LFX.map((r) => ({ v: r[0], l: r[0] })), note: 'Seluruh 38 provinsi.', on: (e) => { if (e && e.target) this.setState({ wilM: e.target.value }); } };
 
     // migrasi (SP2020 LF vs SUPAS 2025)
     const lf = lfOf(wilM);
-    const MIG_SUM = { mi: 0, mo: 0, neg: 0 };
-    PV.forEach((p) => { MIG_SUM.mi += p.mi != null ? p.mi : (MIG_P[p.id] ? MIG_P[p.id][0] : 0); MIG_SUM.mo += p.mo != null ? p.mo : (MIG_P[p.id] ? MIG_P[p.id][1] : 0); });
-    LFX.forEach((r) => { if (r[3] < 0) MIG_SUM.neg++; });
         // Neto migrasi risen SUPAS 2025. Hanya DKI Jakarta yang dirils; provinsi lain
     // diestimasi memakai aturan yang sama: 0,85 x neto SP2020 + penyesuaian wilayah.
     const REGADJ = (n) => (/^(DKI|Jawa|Banten|Yogyakarta)/.test(n) ? 1.2 : /^(Sumatera|Aceh)/.test(n) ? -0.8 : /^Kalimantan/.test(n) ? 0.5 : /^Sulawesi/.test(n) ? 0.3 : /^(Bali|Nusa)/.test(n) ? -0.4 : 0.6);
@@ -1313,20 +1362,11 @@ class Component extends DCLogic {
       ? { l, v: BT, left: '50%', w: '0%', c: 'transparent', fc: '#94A3B8' }
       : { l, v: sgn(v, 2) + '%', left: v < 0 ? (50 - (Math.abs(v) / 10) * 50).toFixed(2) + '%' : '50%', w: ((Math.abs(v) / 10) * 50).toFixed(2) + '%', c: v < 0 ? '#64748B' : '#0EA5E9', fc: v < 0 ? '#475569' : '#1D4ED8' });
     const mg = {
-      name: lf[0], isDki: lf[0] === 'DKI Jakarta',
+      name: lf[0],
       a: [{ l: 'Masuk', v: nf(lf[1], 2) + '%', w: (lf[1] / 8) * 100 + '%', c: '#0EA5E9' }, { l: 'Keluar', v: nf(lf[2], 2) + '%', w: (lf[2] / 8) * 100 + '%', c: '#64748B' }],
       b: [div('SP2020 Long Form', lf[3]), div('SUPAS 2025', SUP[lf[0]] != null ? SUP[lf[0]] : null)],
-      sum: [
-      { l: 'Pindah masuk (SP2020 LF)', v: nf(MIG_SUM.mi / 1000, 0) + ' ribu', s: 'akumulasi 38 provinsi', c: '#1E40AF' },
-      { l: 'Pindah keluar (SP2020 LF)', v: nf(MIG_SUM.mo / 1000, 0) + ' ribu', s: 'akumulasi 38 provinsi', c: '#0F172A' },
-      { l: 'Provinsi neto negatif', v: MIG_SUM.neg + ' dari 38', s: 'pendatang < rejoangan', c: MIG_SUM.neg > 19 ? '#B45309' : '#1D4ED8' }
-    ],
-      kota: [['Jakarta Pusat', -9.57], ['Jakarta Barat', -6.21], ['Jakarta Timur', -5.08], ['Jakarta Selatan', -4.66], ['Jakarta Utara', -3.44]].map(([l, v]) => div(l, v)),
       pick: go(idOf[lf[0]])
     };
-    const supas = [{ l: 'Migran risen', v: '± 4 juta', s: 'SUPAS 2025 · nasional' }, { l: 'Migran seumur hidup', v: '25,8 juta', s: 'SUPAS 2025 · nasional' }, { l: 'Komuter', v: '11 juta', s: 'SUPAS 2025 · nasional' }];
-    const MUT = [['Kab. Bogor', 133, 'jabar'], ['Kab. Bekasi', 104, 'jabar'], ['Kab. Bandung', 96, 'jabar'], ['Kab. Tangerang', 87, 'banten'], ['Kota Batam', 80, 'kepri']];
-    const mut = MUT.map(([nm, v, id]) => ({ n: nm, p: byId[id].n, v: v + ' rb', w: (v / 133) * 100 + '%', pick: go(id) }));
 
     // ---------------- 4. Insight ----------------
     const w26 = D.WHO.filter((r) => r[0] >= '2026-01' && r[1] != null).map((r) => r[1]);
@@ -1356,7 +1396,7 @@ class Component extends DCLogic {
           { s: 'Industri kreatif', t: 'Studio animasi, fesyen, dan kuliner berorientasi pasar Jakarta dengan biaya operasional lebih rendah' }
         ],
         dukung: 'Perizinan berusaha berbasis risiko melalui OSS; insentif fiskal (tax allowance/tax holiday) bagi bidang usaha yang memenuhi syarat sesuai ketentuan; kawasan Tegalluar terhubung langsung stasiun kereta cepat.',
-        links: [{ l: 'Lihat tren Whoosh ↓', h: '#sec-tren', pick: () => this.setState({ trT: 'kerja', wilK: 'whoosh' }) }, { l: 'Sorot Jawa Barat di peta ↑', h: '#sec-peta', pick: go('jabar') }]
+        links: [{ l: 'Lihat tren Whoosh ↓', h: '#sec-kerja', pick: () => this.setState({ wilK: 'whoosh' }) }, { l: 'Sorot Jawa Barat di peta ↑', h: '#sec-peta', pick: go('jabar') }]
       },
       {
         no: 2, t: 'Bekasi dan Bogor adalah kantong tenaga kerja yang sudah terhubung KRL',
@@ -1374,7 +1414,7 @@ class Component extends DCLogic {
           { s: 'Properti', t: 'Hunian pekerja dan kawasan berorientasi transit di sekitar stasiun KRL' }
         ],
         dukung: 'Puluhan kawasan industri siap bangun di Jawa Barat; perizinan melalui OSS; tersedia skema kerja sama pemerintah–badan usaha untuk pengembangan kawasan transit.',
-        links: [{ l: 'Lihat ranking komuter ↑', h: '#sec-rank', pick: () => this.setState({ rkJ: 'kerja' }) }, { l: 'Lihat tren KRL ↓', h: '#sec-tren', pick: () => this.setState({ trT: 'kerja', wilK: 'krl' }) }]
+        links: [{ l: 'Lihat ranking komuter ↑', h: '#sec-rank', pick: () => this.setState({ rkJ: 'kerja' }) }, { l: 'Lihat tren KRL ↓', h: '#sec-kerja', pick: () => this.setState({ wilK: 'krl' }) }]
       },
       {
         no: 3, t: 'Arus keluar dari DKI Jakarta memperbesar pasar di provinsi penerima migran',
@@ -1392,7 +1432,7 @@ class Component extends DCLogic {
           { s: 'Layanan sosial', t: 'Rumah sakit, klinik, dan sekolah swasta untuk keluarga muda pendatang' }
         ],
         dukung: 'Program perumahan nasional dan pembiayaan rumah bersubsidi menopang permintaan; perizinan melalui OSS; pemda penerima menyediakan pendampingan investasi melalui DPMPTSP.',
-        links: [{ l: 'Lihat ranking migrasi ↑', h: '#sec-rank', pick: () => this.setState({ rkJ: 'migrasi' }) }, { l: 'Bandingkan SP2020 vs SUPAS ↓', h: '#sec-tren', pick: () => this.setState({ trT: 'migrasi', wilM: 'DKI Jakarta' }) }]
+        links: [{ l: 'Lihat ranking migrasi ↑', h: '#sec-rank', pick: () => this.setState({ rkJ: 'migrasi' }) }, { l: 'Bandingkan SP2020 vs SUPAS ↓', h: '#sec-tren', pick: () => this.setState({ wilM: 'DKI Jakarta' }) }]
       }
     ];
 
@@ -1408,10 +1448,17 @@ class Component extends DCLogic {
         'Siapkan lowongan kerja di wilayah tujuan migrasi.',
         'Kaji wilayah asal migrasi sebagai kandidat perluasan pasar.'
       ],
-      tren: [
-        'Gunakan tren ini sebagai dasar proyeksi kebutuhan fasilitas tahun depan.',
-        'Sesuaikan rencana pembangunan dengan arah tren yang terlihat.',
-        'Pantau titik balik tren setiap bulan.'
+      mig: [
+        'Provinsi dengan arus keluar lebih besar perlu penciptaan lapangan kerja lokal.',
+        'Provinsi tujuan migrasi perlu tambahan perumahan dan layanan publik.'
+      ],
+      kerja: [
+        'Pertahankan kapasitas angkutan komuter di koridor Jabodetabek dan Bandung Raya.',
+        'Arahkan kawasan usaha baru mendekati simpul transportasi massal.'
+      ],
+      wis: [
+        'Siapkan akomodasi dan penerbangan tambahan menjelang musim libur.',
+        'Dorong destinasi baru di luar provinsi dengan kunjungan tertinggi.'
       ]
     };
 
@@ -1467,7 +1514,7 @@ class Component extends DCLogic {
     const lastYoy = (a) => { const x = a.filter((r) => r[1] != null).pop(), [y, m] = x[0].split('-'), p = a.find((r) => r[0] === (y - 1) + '-' + m); return { v: x[1], per: RIBLN[m - 1] + ' ' + y, yoy: p && p[1] != null ? (x[1] / p[1] - 1) * 100 : null }; };
     const sgnPc = (v) => (v < 0 ? '−' : '+') + nf(Math.abs(v), 1) + '%';
     const riKrl = lastYoy(D.KRL), riWho = lastYoy(D.WHO), riWis = lastYoy(D.WIS);
-    const riTab = (trT) => () => { this.setState({ trT }); riGo('sec-tren')(); };
+    const riTab = (k) => riGo({ migrasi: 'sec-tren', kerja: 'sec-kerja', wisata: 'sec-wisata' }[k]);
     const ri = riMake('penduduk 2025 · tenaga kerja Feb 2026 · mobilitas s.d. ' + riWis.per, [
       { l: 'Jumlah penduduk', v: '284,4 juta', s: 'lima provinsi menampung 56,0%', st: 'watch', a: 'Pasar dan tenaga kerja terpusat di Jawa; siapkan infrastruktur luar Jawa.', go: riGo('sec-peta') },
       { l: 'Usia produktif (15–64 th)', v: '69,30%', s: 'rasio ketergantungan 44,3', st: 'ok', a: 'Bonus demografi perlu diimbangi lapangan kerja formal.', go: riGo('sec-peta') },
@@ -1493,7 +1540,7 @@ class Component extends DCLogic {
       pn, hasMapPop: !!sel && !!st.mapPop, mp: Object.assign({}, pn, { popLeft: st.mapPopLeft || '12px', popTop: st.mapPopTop || '72px' }), closeMapPop: () => this.setState({ mapPop: false }), clearSel: () => this.setState({ sel: null, mapPop: false }),
       showTbl, tblLabel: showTbl ? 'Tutup tabel ▴' : 'Lihat data 38 provinsi ▾', toggleTbl: () => this.setState({ showTbl: !showTbl }), tbl, sortBtns,
       rk, rkTabs, topOpts, rkBars, rkCol, rkHead,
-      trTabs, isLine, isMig, perOpts, wil, tr, charts, rd, mg, supas, mut,
+      lk, lw, wm, mg,
       ri, pola, ins, cta, dbOpen: !!st.dbOpen, dbToggle: () => this.setState({ dbOpen: !st.dbOpen }), dbLbl: st.dbOpen ? 'Sembunyikan dasar data ▴' : 'Lihat dasar data ▾'
     };
   }
