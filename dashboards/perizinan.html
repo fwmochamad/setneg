@@ -651,11 +651,6 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
         <span style="display: inline-flex; align-items: center; gap: 6px;"><span style="width: 2px; height: 14px; background: #0F172A;"></span>Standar waktu (SLA)</span>
         <span style="color: #64748B;">Batang menunjukkan rata-rata sebagai porsi dari SLA.</span>
       </div>
-      <div style="padding: 12px 18px 4px;">
-        <div class="kp-strip" role="list" style="grid-template-columns: repeat(4, minmax(0, 1fr));">
-          <sc-for list="{{grpPD}}" as="g" hint-placeholder-count="4"><div role="listitem"><span style="font-size: 10px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: #94A3B8;">{{g.g}}</span><b style="font-size: 13px; color: #0F172A;">{{g.l}}</b><span style="font-size: 18px; font-weight: 700; color: {{g.c}};">{{g.avg}} <span style="font-size: 11px; font-weight: 500; color: #64748B;">vs SLA {{g.sla}}</span></span><span style="font-size: 11px; color: #64748B;">{{g.n}} izin · {{g.ok}} sesuai SLA</span></div></sc-for>
-        </div>
-      </div>
       <div style="display: grid; grid-template-columns: minmax(230px, 1.5fr) minmax(220px, 2fr) 110px 110px; gap: 10px; padding: 10px 18px 6px; background: #F8FAFC; font-size: 10.5px; font-weight: 700; letter-spacing: 0.4px; color: #64748B; align-items: end;">
         <span>JENIS IZIN</span>
         <span style="position: relative; display: block; height: 14px;"><span style="position: absolute; left: 0;">0</span><span style="position: absolute; left: 25%; transform: translateX(-50%);">50%</span><span style="position: absolute; left: 50%; transform: translateX(-50%); color: #0F172A;">100% SLA</span><span style="position: absolute; left: 75%; transform: translateX(-50%);">150%</span><span style="position: absolute; right: 0;">200%</span></span>
@@ -663,7 +658,7 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
       </div>
       <sc-for list="{{sla}}" as="r" hint-placeholder-count="7">
         <div sc-camel-on-click="{{r.open}}" class="rw" style="display: grid; grid-template-columns: minmax(230px, 1.5fr) minmax(220px, 2fr) 110px 110px; gap: 10px; align-items: center; padding: 10px 18px 10px 14px; border-top: 1px solid #EEF2F7; background: #FFFFFF; font-size: 12.5px;">
-          <div style="min-width: 0;" title="{{r.sub}}"><b>{{r.l}}</b></div>
+          <div style="min-width: 0;"><b>{{r.l}}</b><div style="margin-top: 2px; font-size: 11px; line-height: 15px; font-weight: 400; color: #64748B;">{{r.sub}}</div></div>
           <span title="{{r.t}}" style="position: relative; display: block; height: 22px;">
             <span style="position: absolute; left: 0; top: 3px; width: 50%; height: 16px; background: #EFF6FF; border-radius: 3px 0 0 3px;"></span>
             <span style="position: absolute; left: 0; top: 7px; width: {{r.w}}; height: 8px; border-radius: 0 3px 3px 0; background: #1D4ED8;"></span>
@@ -672,16 +667,6 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
           <b style="text-align: right;">{{r.avg}}</b>
           <span style="text-align: right; color: #334155;">{{r.sla}}</span>
         </div>
-        <sc-if value="{{r.hasSub}}" hint-placeholder-val="{{false}}">
-          <sc-for list="{{r.subs}}" as="u" hint-placeholder-count="3">
-          <div title="{{u.by}}" style="display: grid; grid-template-columns: minmax(230px, 1.5fr) minmax(220px, 2fr) 110px 110px; gap: 10px; align-items: center; padding: 6px 18px 6px 34px; border-top: 1px dashed #EEF2F7; background: #FAFBFD; font-size: 12px;">
-            <div style="min-width: 0;">↳ {{u.l}} <span style="font-size: 10.5px; color: #94A3B8;">{{u.n}} · simulasi</span></div>
-            <span style="position: relative; display: block; height: 14px;"><span style="position: absolute; left: 0; top: 3px; width: {{u.w}}; height: 8px; border-radius: 0 3px 3px 0; background: {{u.c}};"></span><span style="position: absolute; left: 50%; top: 0; width: 2px; height: 14px; background: #0F172A;"></span></span>
-            <b style="text-align: right; color: {{u.c}};">{{u.avg}}</b>
-            <span style="text-align: right; color: #334155;">{{u.sla}}</span>
-          </div>
-          </sc-for>
-        </sc-if>
       </sc-for>
             <div class="mzi"><span class="mzi-b">Insight AI</span><ul class="mzi-l"><sc-for list="{{mini.sla}}" as="i" hint-placeholder-count="3"><li>{{i}}</li></sc-for></ul><span class="mzi-s">Terverifikasi analis</span></div>
       <div style="margin-top: auto; padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;" class="cf"><span><b style="color: #475569;">Diperbarui:</b> 12 Okt 2026, 06.00 WIB</span><span><b style="color: #475569;">Sumber:</b> OSS · log durasi per tahap; SLA dari PP 28/2025 dan materi sosialisasinya, dipetakan per jenis izin</span><span class="chip" style="padding: 0 6px; border-radius: 4px; background: #EFF6FF; color: #1D4ED8; font-weight: 600;">Pemetaan SLA divalidasi analis</span><span class="tip info-i" tabindex="0" aria-label="Keterangan">i<span class="pop">Periode: September 2026 (checkpoint bulanan)</span></span></div>
@@ -1030,7 +1015,7 @@ class Component extends DCLogic {
         fik: 'PP 28/2025 Pasal 75. Permohonan KKPRL yang tidak ditindaklanjuti dalam SLA dianggap disetujui. Persetujuan otomatis belum berjalan di OSS, sehingga belum ada izin fiktif positif pada periode ini.' },
       { id: 'pbg', l: 'Persetujuan Bangunan Gedung (PBG)', sub: 'Melalui SIMBG · PP 16/2021 jo. PP 28/2025', sla: 32, avg: 36.9, med: 31.5, p90: 55.2, n: 3912, st: [2034, 1878, 0], inst: 'DPMPTSP kab/kota (SIMBG)', fik: '' },
       { id: 'slf', l: 'Sertifikat Laik Fungsi (SLF)', sub: 'Melalui SIMBG · PP 16/2021 jo. PP 28/2025', sla: 33, avg: 29.4, med: 27.0, p90: 38.6, n: 1488, st: [1205, 283, 0], inst: 'DPMPTSP kab/kota (SIMBG)', fik: '' },
-      { id: 'pertek', l: 'Persetujuan Teknis', sub: 'Air limbah dan emisi · melalui kajian teknis', sla: 33, avg: 34.1, med: 32.0, p90: 44.5, n: 642, st: [443, 199, 0], inst: 'Kementerian Lingkungan Hidup', fik: '' },
+      { id: 'pertek', l: 'Persetujuan Teknis', sub: 'Baku mutu air limbah · baku mutu emisi · Andalalin (lalu lintas)', sla: 33, avg: 34.1, med: 32.0, p90: 44.5, n: 642, st: [443, 199, 0], inst: 'Kementerian Lingkungan Hidup', fik: '' },
       { id: 'ukl', l: 'UKL-UPL (PKPLH)', sub: 'Standar spesifik · KBLI risiko menengah tinggi dan tinggi', sla: 8, avg: 7.6, med: 7.0, p90: 10.2, n: 1574, st: [1322, 252, 0], inst: 'Dinas Lingkungan Hidup daerah', fik: '' },
       { id: 'ss', l: 'Sertifikat Standar & Izin', sub: 'Risiko menengah tinggi dan tinggi · SLA sektor, acuan izin usaha hotel', sla: 14, avg: 14.5, med: 13.0, p90: 15.2, n: 24310, st: [20663, 2674, 973], inst: 'K/L sektor · DPMPTSP',
         fik: 'PP 28/2025 Pasal 225 ayat (1) untuk risiko menengah tinggi dan Pasal 230 untuk risiko tinggi. Verifikasi yang melewati SLA sektor menghasilkan persetujuan otomatis. Tahap I mencakup 258 KBLI, berlaku sejak 2 Jun 2025.' }
@@ -1135,17 +1120,8 @@ class Component extends DCLogic {
     };
 
     // ===================== 2. Waktu penyelesaian vs SLA =====================
-    // Rincian Persetujuan Teknis (data simulasi): baku mutu air limbah & emisi (PP 22/2021) serta Andalalin (Kemenhub)
-    const PTSUB = [['Baku mutu air limbah', 412, 35.8, 33, 'Kementerian LH'], ['Baku mutu emisi', 230, 31.2, 33, 'Kementerian LH'], ['Andalalin (lalu lintas)', 318, 24.6, 30, 'Kementerian Perhubungan · terintegrasi persetujuan lingkungan']]
-      .map(([l, n, avg, sl, by]) => ({ l, n: fN(n) + ' izin', avg: f1(avg) + ' HK', sla: sl + ' HK', by, c: avg > sl ? '#B45309' : '#15803D', w: Math.min(avg / sl / 2, 1) * 100 + '%' }));
-    // Kelompok PP 28/2025: persyaratan dasar (KKPR, persetujuan lingkungan, PBG/SLF) vs perizinan berusaha
-    const grpOf = (ids) => { const js = JEN.filter((j) => ids.indexOf(j.id) >= 0), n = js.reduce((a, j) => a + j.n, 0);
-      const avg = js.reduce((a, j) => a + j.avg * j.n, 0) / n, sl = js.reduce((a, j) => a + j.sla * j.n, 0) / n, ok = js.reduce((a, j) => a + j.st[0], 0) / js.reduce((a, j) => a + j.st[0] + j.st[1] + j.st[2], 0);
-      return { n: fN(n), avg: f1(avg) + ' HK', sla: f1(sl) + ' HK', ok: f1(ok * 100) + '%', c: avg > sl ? '#B45309' : '#15803D' }; };
-    const grpPD = [['KKPR', ['pkkpr', 'kkprl'], 'Persyaratan dasar'], ['Persetujuan lingkungan', ['ukl', 'pertek'], 'Persyaratan dasar'], ['PBG & SLF', ['pbg', 'slf'], 'Persyaratan dasar'], ['Sertifikat standar & izin', ['ss'], 'Perizinan berusaha']]
-      .map(([l, ids, g]) => ({ l, g, ...grpOf(ids) }));
     const sla = JEN.map((j, ji) => { const r200 = (v) => Math.min(v / j.sla / 2, 1) * 100;
-      return { l: j.l, sub: j.sub, avg: f1(j.avg) + ' hari kerja', sla: j.sla + ' hari kerja', w: r200(j.avg) + '%', t: j.l + ': rata-rata ' + f1(j.avg) + ' hari kerja; standar SLA ' + j.sla + ' hari kerja', open: () => openM('kasus', { ji }), hasSub: j.id === 'pertek', subs: j.id === 'pertek' ? PTSUB : [] }; });
+      return { l: j.l, sub: j.sub, avg: f1(j.avg) + ' hari kerja', sla: j.sla + ' hari kerja', w: r200(j.avg) + '%', t: j.l + ': rata-rata ' + f1(j.avg) + ' hari kerja; standar SLA ' + j.sla + ' hari kerja', open: () => openM('kasus', { ji }) }; });
     const nAll = JEN.reduce((a, j) => a + j.n, 0);
     const slaAll = f1(JEN.reduce((a, j) => a + j.n * j.avg, 0) / nAll);
     const ewsJ = JEN.filter((j) => devOf(j.avg, j.sla) > THR);
@@ -1672,7 +1648,7 @@ const pzClose = () => this.setState({ ews: null });
     })();
     return {
       insB: !!st.insB, insBToggle: () => this.setState({ insB: !st.insB }), insBLabel: st.insB ? 'Sembunyikan dasar data ▴' : 'Lihat dasar data ▾',
-      ri, grpPD, regBars, mini, kaitIns, recap2,
+      ri, regBars, mini, kaitIns, recap2,
       recapAll: (() => {
         const jLam = JEN.slice().sort((a, b) => devOf(b.avg, b.sla) - devOf(a.avg, a.sla))[0];
         const thN = TH.map((l, i) => sumT(i, 'all')), thI = thN.indexOf(Math.max(...thN));
