@@ -584,6 +584,34 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
         <sc-if value="{{has1}}" hint-placeholder-val="{{false}}"><button type="button" sc-camel-on-click="{{reset1}}" style="height: 34px; padding: 0 10px; border: 0; background: transparent; font-family: inherit; font-size: 12px; font-weight: 600; color: #1D4ED8; cursor: pointer;">Reset filter</button></sc-if>
         <span style="margin-left: auto; font-size: 11.5px; color: #475569;">{{f1Note}}</span>
       </div>
+      <!-- Alur perizinan OSS: Persyaratan Dasar → Perizinan Berusaha → PB UMKU -->
+      <style>@media (max-width: 640px){.wf-arr{display:none}}</style>
+      <div style="padding: 14px 18px 0; display: flex; flex-direction: column; gap: 8px;">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 4px 12px;">
+          <b style="font-size: 12.5px; color: #0F172A; display: inline-flex; align-items: center;">Alur perizinan OSS<span class="tip info-i" tabindex="0" aria-label="Keterangan">i<span class="pop">Tahapan perizinan berusaha berbasis risiko di OSS (PP 28/2025): pelaku usaha memenuhi persyaratan dasar (lokasi, lingkungan, bangunan), lalu memperoleh perizinan berusaha sesuai tingkat risiko, dan bila perlu perizinan penunjang (PB UMKU). NIB tidak dihitung sebagai izin terbit.</span></span></b>
+          <span style="font-size: 11.5px; color: #64748B;">Izin terbit {{wfPer}} per tahap · klik jenis izin untuk menyaring kartu</span>
+        </div>
+        <div role="list" style="display: flex; flex-wrap: wrap; align-items: stretch; gap: 8px;">
+          <sc-for list="{{wf}}" as="w" hint-placeholder-count="3">
+            <div role="listitem" style="flex: 1 1 260px; min-width: 0; display: flex; align-items: stretch; gap: 8px;">
+              <div style="flex: 1; min-width: 0; padding: 10px 12px; border-radius: 10px; border: {{w.bd}}; background: {{w.bg}}; display: flex; flex-direction: column; gap: 6px;">
+                <div style="display: flex; align-items: center; gap: 8px;"><span style="flex: none; width: 22px; height: 22px; border-radius: 99px; background: {{w.nc}}; color: #FFFFFF; font-size: 11px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center;">{{w.no}}</span><span style="min-width: 0; line-height: 15px;"><b style="display: block; font-size: 12.5px; color: #0F172A;">{{w.l}}</b><span style="font-size: 10.5px; color: #64748B;">{{w.d}}</span></span></div>
+                <sc-if value="{{w.has}}" hint-placeholder-val="{{true}}">
+                  <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 6px;"><b style="font-size: 18px; color: #0F172A;">{{w.v}} <span style="font-size: 11px; font-weight: 500; color: #64748B;">izin</span></b><span style="font-size: 11.5px; font-weight: 700; color: #1E40AF;">{{w.sh}}</span></div>
+                  <span title="{{w.tt}}" style="display: flex; gap: 2px; height: 8px; border-radius: 4px; overflow: hidden; background: #E2E8F0;"><sc-for list="{{w.segs}}" as="g" hint-placeholder-count="3"><span style="flex: 0 0 {{g.w}}; background: {{g.c}};"></span></sc-for></span>
+                  <span style="font-size: 10.5px; color: #475569;">{{w.slaT}}</span>
+                  <div style="display: flex; flex-wrap: wrap; gap: 4px;"><sc-for list="{{w.chips}}" as="c" hint-placeholder-count="3"><button type="button" sc-camel-on-click="{{c.pick}}" title="{{c.tt}}" style="height: 22px; padding: 0 8px; border-radius: 99px; border: 1px solid {{c.bd}}; background: {{c.bg}}; color: {{c.fg}}; font-family: inherit; font-size: 10.5px; font-weight: 600; cursor: pointer;">{{c.l}} · {{c.n}}</button></sc-for></div>
+                </sc-if>
+                <sc-if value="{{w.none}}" hint-placeholder-val="{{false}}">
+                  <span style="font-size: 11.5px; line-height: 16px; color: #475569;">{{w.why}}</span>
+                  <div style="display: flex; flex-wrap: wrap; gap: 4px;"><sc-for list="{{w.ex}}" as="x" hint-placeholder-count="3"><span style="height: 22px; padding: 0 8px; border-radius: 99px; border: 1px dashed #CBD5E1; color: #64748B; font-size: 10.5px; display: inline-flex; align-items: center;">{{x}}</span></sc-for></div>
+                </sc-if>
+              </div>
+              <sc-if value="{{w.arrow}}" hint-placeholder-val="{{true}}"><span class="wf-arr" aria-hidden="true" style="flex: none; align-self: center; color: #94A3B8; font-size: 18px; font-weight: 700;">→</span></sc-if>
+            </div>
+          </sc-for>
+        </div>
+      </div>
       <div style="padding: 16px 18px; display: flex; flex-wrap: wrap; gap: 24px;">
         <div style="flex: 1 1 360px; min-width: 0; display: flex; flex-direction: column; gap: 14px;">
           <sc-if value="{{has1Data}}" hint-placeholder-val="{{true}}">
@@ -981,6 +1009,30 @@ class Component extends DCLogic {
       dd('wil', 'Wilayah', wilL, fW !== 'all', [opt('Nasional (38 provinsi)', fN(sumC(fJ, fS, 'all')), fW === 'all', () => set({ fWil: 'all', s1p: null })), ...WIL.map(([id, n]) => opt(n, fN(sumC(fJ, fS, id)), fW === id, () => set({ fWil: id, s1p: null })))]),
       dd('jen', 'Jenis izin', jenL, fJ !== 'all', [opt('Semua jenis izin', fN(sumC('all', fS, fW)), fJ === 'all', () => set({ fJen: 'all', s1p: null })), ...JEN.map((j) => opt(j.l, fN(sumC(j.id, fS, fW)), fJ === j.id, () => set({ fJen: j.id, s1p: null })))])
     ];
+    // ---- Alur perizinan OSS (rujukan PP 28/2025): jenis izin dikelompokkan per tahap ----
+    const WFS = [
+      { l: 'Persyaratan Dasar', d: 'Lokasi · lingkungan · bangunan', ids: ['pkkpr', 'kkprl', 'pertek', 'ukl', 'pbg', 'slf'] },
+      { l: 'Perizinan Berusaha', d: 'Sertifikat standar & izin sesuai risiko', ids: ['ss'] },
+      { l: 'PB UMKU', d: 'Perizinan penunjang kegiatan usaha', ids: [] }
+    ];
+    const WSH = { pkkpr: 'PKKPR', kkprl: 'KKPRL', pertek: 'Pertek', ukl: 'UKL-UPL', pbg: 'PBG', slf: 'SLF', ss: 'Sertifikat Standar & Izin' };
+    const WSC = ['#1E40AF', '#94A3B8', '#D4A72C'];
+    const wfAll = sumC('all', fS, fW);
+    const wf = WFS.map((g, gi) => {
+      const st3 = [0, 1, 2].map((k) => g.ids.reduce((a, id) => a + sumC(id, fS, fW, k), 0));
+      const n = st3[0] + st3[1] + st3[2], has = g.ids.length > 0;
+      const on = g.ids.includes(fJ);
+      return { no: gi + 1, l: g.l, d: g.d, has, none: !has, arrow: gi < WFS.length - 1,
+        bd: has ? (on ? '1.5px solid #1E40AF' : '1px solid #E3E8F0') : '1.5px dashed #CBD5E1', bg: has ? (on ? '#F5F9FF' : '#FFFFFF') : '#F8FAFC', nc: has ? '#1E40AF' : '#94A3B8',
+        v: fN(n), sh: wfAll ? pc(n, wfAll) + ' dari total' : '',
+        segs: st3.map((v, k) => ({ w: (n ? (v / n) * 100 : 0) + '%', c: WSC[k] })),
+        slaT: n ? pc(st3[0], n) + ' sesuai SLA · ' + pc(st3[1], n) + ' melewati SLA' + (st3[2] ? ' · ' + pc(st3[2], n) + ' fiktif positif' : '') : '',
+        tt: 'Sesuai SLA ' + fN(st3[0]) + ' · melewati SLA ' + fN(st3[1]) + ' · persetujuan otomatis ' + fN(st3[2]),
+        chips: g.ids.map((id) => { const j = JEN[JI[id]], act = fJ === id;
+          return { l: WSH[id], n: fN(sumC(id, fS, fW)), tt: j.l + ' · ' + j.sub, bg: act ? '#1E40AF' : '#FFFFFF', fg: act ? '#FFFFFF' : '#1E40AF', bd: act ? '#1E40AF' : '#BFDBFE', pick: () => set({ fJen: act ? 'all' : id, s1p: null }) }; }),
+        why: 'Data izin terbit PB UMKU belum dihimpun dari OSS; tahap ini akan terisi setelah data tersedia.',
+        ex: ['Izin edar', 'Sertifikat halal', 'SNI', 'Izin impor'] };
+    });
     const has1 = fS !== 'all' || fW !== 'all' || fJ !== 'all';
     const f1Note = has1 ? 'Filter aktif: ' + [fS !== 'all' ? sekL : '', fW !== 'all' ? wilL : '', fJ !== 'all' ? jenL : ''].filter(Boolean).join(' · ') : 'Nasional · seluruh sektor · seluruh jenis izin';
     const filt1 = { j: fJ, s: fS, w: fW };
@@ -1576,7 +1628,7 @@ const pzClose = () => this.setState({ ews: null });
     }
     return {
       insB: !!st.insB, insBToggle: () => this.setState({ insB: !st.insB }), insBLabel: st.insB ? 'Sembunyikan dasar data ▴' : 'Lihat dasar data ▾',
-      ri, regBars, mini, kaitIns, recap2,
+      ri, regBars, mini, kaitIns, recap2, wf, wfPer: ML[5] + ' 2026',
       recapAll: (() => {
         const jLam = JEN.slice().sort((a, b) => devOf(b.avg, b.sla) - devOf(a.avg, a.sla))[0];
         const thN = TH.map((l, i) => sumT(i, 'all')), thI = thN.indexOf(Math.max(...thN));
