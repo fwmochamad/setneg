@@ -1036,18 +1036,37 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
             </div>
             <div style="padding: 14px 18px; display: flex; flex-direction: column; gap: 12px; flex: 1;">
               <sc-if value="{{fc.has}}" hint-placeholder-val="{{true}}">
-              <div role="img" aria-label="Realisasi 2025, Semester I 2026 dan perkiraan 2026">
-                <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px; font-size: 11px; color: #64748B;"><b style="color: #0F172A; display: inline-flex; align-items: center;">Realisasi &amp; perkiraan<span class="tip info-i" tabindex="0" aria-label="Metode">i<span class="pop"><b>Perkiraan 2026 (AI):</b> dua proyeksi laju berjalan — {{fc.m1}}; {{fc.m2}}. Rentang = nilai terendah–tertinggi; bukan angka resmi. {{lim}}</span></span></b><span>Semester I = <b style="color: #1E40AF;">{{fcv.prog}}</b> dari realisasi 2025</span></div>
-                <div style="margin-top: 8px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; align-items: end; height: 150px; border-bottom: 1px solid #CBD5E1;">
-                  <sc-for list="{{fcv.cols}}" as="c" hint-placeholder-count="3">
-                  <div title="{{c.t}}" style="height: 100%; display: flex; flex-direction: column; justify-content: flex-end; gap: 3px; padding: 0 10px;">
-                    <span style="font-size: 11.5px; font-weight: 700; color: {{c.tc}}; text-align: center; white-space: nowrap;">{{c.v}}</span>
-                    <span style="display: block; height: {{c.h2}}; border-radius: 4px 4px 0 0; background: {{c.c2}};"></span>
-                    <span style="display: block; height: {{c.h1}}; background: {{c.c1}}; border-radius: {{c.r1}};"></span>
+              <div role="img" aria-label="Realisasi dibandingkan target RKPD 2025, Semester I 2026 dan perkiraan 2026">
+                <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 4px 8px; font-size: 11px; color: #64748B;"><b style="color: #0F172A; display: inline-flex; align-items: center;">Realisasi vs target<span class="tip info-i" tabindex="0" aria-label="Metode">i<span class="pop"><b>Target:</b> {{tgv.src}}<br><b>Perkiraan 2026 (AI):</b> dua proyeksi laju berjalan — {{fc.m1}}; {{fc.m2}}. Rentang = nilai terendah–tertinggi; bukan angka resmi. {{lim}}</span></span></b><span>Semester I = <b style="color: #1E40AF;">{{fcv.prog}}</b> dari realisasi 2025</span></div>
+                <div style="margin-top: 8px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(8px, 2vw, 16px); height: 170px; border-bottom: 1px solid #CBD5E1;">
+                  <sc-for list="{{tgv.groups}}" as="g" hint-placeholder-count="3">
+                  <div style="height: 100%; display: flex; justify-content: center; align-items: flex-end; gap: 5px;">
+                    <span title="{{g.rt}}" style="flex: 0 1 64px; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; gap: 3px;">
+                      <span style="font-size: clamp(9.5px, 2.6vw, 11px); line-height: 13px; font-weight: 700; color: {{g.rc}}; text-align: center; overflow-wrap: anywhere;">{{g.rv}}</span>
+                      <span style="display: block; height: {{g.h2}}; border-radius: 4px 4px 0 0; background: {{g.c2}};"></span>
+                      <span style="display: block; height: {{g.h1}}; background: {{g.c1}}; border-radius: {{g.r1}};"></span>
+                    </span>
+                    <span title="{{g.tt}}" style="flex: 0 1 64px; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; gap: 3px;">
+                      <span style="font-size: clamp(9.5px, 2.6vw, 11px); line-height: 13px; font-weight: 600; color: #475569; text-align: center; overflow-wrap: anywhere;">{{g.tv}}</span>
+                      <span style="display: block; height: {{g.th}}; box-sizing: border-box; border: 2px dashed #0F172A; border-bottom: 0; border-radius: 4px 4px 0 0; background: repeating-linear-gradient(135deg, #F8FAFC 0 5px, #E2E8F0 5px 10px);"></span>
+                    </span>
                   </div>
                   </sc-for>
                 </div>
-                <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-top: 4px; font-size: 11.5px; color: #475569; text-align: center;"><sc-for list="{{fcv.cols}}" as="c" hint-placeholder-count="3"><span><b style="color: #0F172A;">{{c.l}}</b><br><span style="font-size: 10.5px; color: #64748B;">{{c.s}}</span></span></sc-for></div>
+                <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 5px; text-align: center;"><sc-for list="{{tgv.groups}}" as="g" hint-placeholder-count="3"><div style="display: flex; flex-direction: column; align-items: center; gap: 3px;"><b style="font-size: 11.5px; color: #0F172A;">{{g.l}}</b><span style="padding: 1px 7px; border-radius: 99px; background: {{g.capBg}}; color: {{g.capC}}; font-size: 10.5px; font-weight: 700;">{{g.cap}}</span></div></sc-for></div>
+                <div aria-label="Legenda grafik" style="margin-top: 10px; padding: 8px 10px; border-radius: 8px; background: #F8FAFC; border: 1px solid #EEF2F7; display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 11px; color: #475569;">
+                  <span style="display: inline-flex; align-items: center; gap: 5px;"><span style="width: 10px; height: 10px; border-radius: 2px; background: #334155;"></span>Realisasi 2025 (resmi)</span>
+                  <span style="display: inline-flex; align-items: center; gap: 5px;"><span style="width: 10px; height: 10px; border-radius: 2px; background: #1E40AF;"></span>Tw I 2026</span>
+                  <span style="display: inline-flex; align-items: center; gap: 5px;"><span style="width: 10px; height: 10px; border-radius: 2px; background: #60A5FA;"></span>Tw II 2026</span>
+                  <span style="display: inline-flex; align-items: center; gap: 5px;"><span style="width: 10px; height: 10px; border-radius: 2px; background: #A5B4FC;"></span>Perkiraan AI (batas bawah)</span>
+                  <span style="display: inline-flex; align-items: center; gap: 5px;"><span style="width: 10px; height: 10px; border-radius: 2px; background: repeating-linear-gradient(135deg, #A5B4FC 0 3px, #E0E7FF 3px 6px);"></span>Rentang perkiraan</span>
+                  <span style="display: inline-flex; align-items: center; gap: 5px;"><span style="width: 10px; height: 10px; box-sizing: border-box; border: 1.5px dashed #0F172A; border-radius: 2px; background: repeating-linear-gradient(135deg, #F8FAFC 0 3px, #E2E8F0 3px 6px);"></span>Target RKPD</span>
+                </div>
+                <div style="margin-top: 8px; display: flex; flex-direction: column; gap: 5px; font-size: 11.5px; color: #334155;">
+                  <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 8px;"><span><b style="color: #0F172A;">Target RPJMD 2025–2029</b> · kumulatif {{tgv.rpj}}</span><span>tercapai s.d. Sem I 2026 <b style="color: #1E40AF;">{{tgv.rpjP}}</b></span></div>
+                  <span style="display: block; position: relative; height: 8px; border-radius: 4px; background: #EEF2F7;"><span style="display: block; width: {{tgv.rpjW}}; height: 8px; border-radius: 4px; background: #1E40AF;"></span><span title="Batas ideal s.d. Sem I 2026 (1,5 dari 5 tahun)" style="position: absolute; top: -3px; left: {{tgv.idealL}}; width: 2px; height: 14px; background: #0F172A;"></span></span>
+                  <span style="font-size: 10.5px; color: #64748B;">Garis hitam = capaian ideal s.d. Sem I 2026 (1,5 dari 5 tahun = 30%). {{tgv.note}}</span>
+                </div>
               </div>
               </sc-if>
               <sc-if value="{{fc.none}}" hint-placeholder-val="{{false}}"><div style="padding: 14px 12px; border-radius: 10px; background: #F8FAFC; border: 1px dashed #CBD5E1; font-size: 12px; line-height: 18px; color: #475569;"><b>Perkiraan belum disusun.</b> {{lim}} AI tidak mengisi angka yang belum tersedia.</div></sc-if>
@@ -1074,46 +1093,26 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
           <!-- 2. Peluang & rekomendasi -->
           <section style="flex: 1 1 520px; min-width: 0; background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; box-shadow: 0 1px 2px rgba(15,23,42,.05); display: flex; flex-direction: column;">
             <div style="padding: 12px 18px; border-bottom: 1px solid #EEF2F7; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px;">
-              <h2 style="margin: 0; font-size: 14.5px; font-weight: 600;">Peluang &amp; rekomendasi arah kebijakan</h2>
+              <div><h2 style="margin: 0; font-size: 14.5px; font-weight: 600;">Peluang sektor &amp; rekomendasi kebijakan</h2><div style="margin-top: 2px; font-size: 11.5px; color: #64748B;">Sektor yang paling berpeluang menarik investasi di {{dh.n}}, dan langkah yang dapat dipertimbangkan pemerintah.</div></div>
             </div>
-            <div style="padding: 14px 18px; display: flex; flex-direction: column; gap: 12px; flex: 1;">
+            <div style="padding: 14px 18px; display: flex; flex-direction: column; gap: 16px; flex: 1;">
               <div>
-                <div style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.4px; color: #1E40AF;">SEKTOR PELUANG</div>
-                <div role="tablist" style="margin-top: 6px; display: flex; flex-wrap: wrap; gap: 6px;">
-                  <sc-for list="{{sekTabs}}" as="x" hint-placeholder-count="3"><button type="button" role="tab" aria-selected="{{x.on}}" sc-camel-on-click="{{x.pick}}" style="height: 30px; padding: 0 12px; border-radius: 99px; border: 1px solid {{x.bd}}; background: {{x.bg}}; color: {{x.fg}}; font-family: inherit; font-size: 12px; font-weight: 600; cursor: pointer; transition: background .15s ease, color .15s ease;">{{x.l}}</button></sc-for>
-                </div>
-                <div style="margin-top: 8px; padding: 10px 12px; border-radius: 8px; background: #EFF6FF; border-left: 3px solid #1E40AF; font-size: 12px; line-height: 18px; color: #1E293B;"><b style="color: #1E40AF;">{{sekCur.l}}</b> — {{sekCur.d}}</div>
+                <div style="font-size: 12.5px; font-weight: 700; color: #0F172A;">Sektor berpeluang</div>
+                <ol style="margin: 8px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px;">
+                  <sc-for list="{{sekL}}" as="x" hint-placeholder-count="3"><li style="display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 10px; align-items: start; padding: 9px 12px; border-radius: 8px; background: #F8FAFC; border: 1px solid #EEF2F7;"><span style="width: 22px; height: 22px; border-radius: 99px; background: #1E40AF; color: #FFFFFF; font-size: 11px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center;">{{x.no}}</span><span style="min-width: 0;"><b style="display: block; font-size: 12.5px; line-height: 18px; color: #0F172A;">{{x.l}}</b><span style="font-size: 11.5px; line-height: 17px; color: #475569;">{{x.d}}</span></span></li></sc-for>
+                </ol>
               </div>
               <div>
-                <button type="button" sc-camel-on-click="{{dsToggle}}" style="padding: 0; border: 0; background: transparent; font-family: inherit; font-size: 10.5px; font-weight: 700; letter-spacing: 0.4px; color: #475569; cursor: pointer;">DASAR PELUANG ({{dasarA.length}}) {{dsIc}}</button>
-                <sc-if value="{{dsOpen}}" hint-placeholder-val="{{false}}">
-                <div style="margin-top: 6px; display: flex; flex-direction: column; gap: 6px;">
-                  <sc-for list="{{dasarA}}" as="x" hint-placeholder-count="3">
-                    <div style="border: 1px solid {{x.bd}}; border-radius: 8px; background: {{x.bg}}; transition: background .15s ease, border-color .15s ease;">
-                      <button type="button" sc-camel-on-click="{{x.toggle}}" aria-expanded="{{x.open}}" style="width: 100%; display: grid; grid-template-columns: minmax(0, 1fr) 14px; gap: 10px; align-items: center; padding: 8px 10px; border: 0; background: transparent; font-family: inherit; text-align: left; cursor: pointer;">
-                        <span style="font-size: 12.5px; line-height: 18px; color: #1E293B; overflow: hidden; text-overflow: ellipsis; white-space: {{x.ws}};">{{x.t}}</span>
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex: none; color: #64748B; transition: transform .15s ease; transform: {{x.chev}};"><path d="m6 9 6 6 6-6"></path></svg>
-                      </button>
-                      <sc-if value="{{x.open}}" hint-placeholder-val="{{false}}"><div style="padding: 0 12px 10px 12px; font-size: 12px; line-height: 18px; color: #334155;"><div><a href="{{x.u}}" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 6px; background: #EFF6FF; font-size: 11px; font-weight: 600; text-decoration: none;">Sumber: {{x.s}} ↗</a></div></div></sc-if>
-                    </div>
-                  </sc-for>
-                  </sc-if>
+                <div style="font-size: 12.5px; font-weight: 700; color: #0F172A; display: flex; align-items: center;">Rekomendasi kebijakan<span class="tip info-i" tabindex="0" aria-label="Keterangan">i<span class="pop">Opsi disajikan secara netral sebagai bahan pertimbangan, bukan keputusan; tindak lanjut ditentukan pemangku kepentingan berwenang.</span></span></div>
+                <ul style="margin: 8px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px;">
+                  <sc-for list="{{opsiL}}" as="x" hint-placeholder-count="3"><li style="display: grid; grid-template-columns: 18px minmax(0, 1fr); gap: 8px; align-items: start; font-size: 12.5px; line-height: 19px; color: #1E293B;"><span aria-hidden="true" style="margin-top: 2px; width: 16px; height: 16px; border-radius: 4px; background: #DCFCE7; color: #15803D; font-size: 11px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center;">✓</span><span>{{x.t}}</span></li></sc-for>
+                </ul>
               </div>
-              </div>
-              <div style="padding: 12px; border-radius: 10px; background: #F8FAFC; border: 1px solid #E3E8F0;">
-                <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px;">
-                  <div style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.4px; color: #1D4ED8; display: flex; align-items: center;">OPSI ARAH KEBIJAKAN<span class="tip info-i" tabindex="0" aria-label="Keterangan">i<span class="pop">Opsi disajikan secara netral sebagai bahan pertimbangan, bukan keputusan; tindak lanjut ditentukan pemangku kepentingan berwenang.</span></span></div>
-                  <div style="display: flex; align-items: center; gap: 4px;">
-                    <button type="button" sc-camel-on-click="{{opNav.prev}}" aria-label="Opsi sebelumnya" style="width: 26px; height: 26px; border-radius: 6px; border: 1px solid #E3E8F0; background: #FFFFFF; color: #475569; font-family: inherit; cursor: pointer;">‹</button>
-                    <sc-for list="{{opNav.steps}}" as="x" hint-placeholder-count="3"><button type="button" sc-camel-on-click="{{x.pick}}" aria-label="Opsi {{x.n}}" style="width: 26px; height: 26px; border-radius: 6px; border: 1px solid #BFDBFE; background: {{x.bg}}; color: {{x.fg}}; font-family: inherit; font-size: 11.5px; font-weight: 700; cursor: pointer;">{{x.n}}</button></sc-for>
-                    <button type="button" sc-camel-on-click="{{opNav.next}}" aria-label="Opsi berikutnya" style="width: 26px; height: 26px; border-radius: 6px; border: 1px solid #E3E8F0; background: #FFFFFF; color: #475569; font-family: inherit; cursor: pointer;">›</button>
-                  </div>
-                </div>
-                <div style="margin-top: 10px; padding: 12px 14px; border-radius: 8px; background: #FFFFFF; border: 1px solid #E3E8F0; border-left: 3px solid #1D4ED8;">
-                  <div style="font-size: 11px; font-weight: 600; color: #64748B;">{{opNav.cur.n}} · {{opNav.pos}}</div>
-                  <div style="margin-top: 3px; font-size: 13px; line-height: 19px; color: #0F172A;">{{opNav.cur.t}}</div>
-                </div>
-                
+              <div style="margin-top: auto; padding-top: 10px; border-top: 1px dashed #E3E8F0;">
+                <div style="font-size: 11px; font-weight: 700; color: #475569;">Dasar data</div>
+                <ul style="margin: 6px 0 0; padding-left: 16px; display: flex; flex-direction: column; gap: 4px; font-size: 11.5px; line-height: 17px; color: #475569;">
+                  <sc-for list="{{dasar}}" as="x" hint-placeholder-count="2"><li>{{x.t}} <a href="{{x.u}}" target="_blank" rel="noopener" style="font-weight: 600; text-decoration: none; white-space: nowrap;">{{x.s}} ↗</a></li></sc-for>
+                </ul>
               </div>
             </div>
             <div style="padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;" class="cf"><span><b style="color: #475569;">Diperbarui:</b> 12 Okt 2026</span><span><b style="color: #475569;">Sumber:</b> Bank Indonesia (LPP), regionalinvestment BKPM, berita daring</span><span class="chip" style="padding: 0 6px; border-radius: 4px; background: #EEF2FF; color: #3730A3; font-weight: 600;">Disahkan pimpinan</span><span class="tip info-i" tabindex="0" aria-label="Keterangan">i<span class="pop">Periode: pemantauan mingguan s.d. 12 Okt 2026</span></span></div>
@@ -1843,6 +1842,33 @@ const HIST = [[2020, 826.3, 413.5, 412.8], [2021, 901.02, 447, 454], [2022, 1207
       cur: opCur, pos: (opI + 1) + ' dari ' + opsi.length,
       prev: setPick('opO', (opI + opsi.length - 1) % opsi.length), next: setPick('opO', (opI + 1) % opsi.length)
     };
+    // Target investasi provinsi dari RKPD (tahunan) dan RPJMD 2025–2029 (kumulatif).
+    // Data simulasi berformat dokumen perencanaan daerah, kecuali target 2026 Jawa Tengah (Rp99,09 T);
+    // ganti dengan angka RKPD/RPJMD resmi bila sudah dihimpun.
+    const TGP = { dki: [262.0, 330.0], jabar: [285.0, 312.0], jateng: [96.5, 99.09], jatim: [140.0, 156.0] };
+    const tgv = f ? (() => {
+      const a = f.s1 * 2, b = f.tw2 * 4, lo = Math.min(a, b), hi = Math.max(a, b);
+      const T = TGP[dp] || [Math.round(f.fy * 0.97 * 10) / 10, Math.round(f.fy * 1.06 * 10) / 10];
+      const t25 = T[0], t26 = f.tg || T[1], tS1 = t26 / 2, rpj = Math.round((t25 + t26) / 2 * 5.4);
+      const M = Math.max(f.fy, t25, hi, t26) * 1.1, h = (v) => (v / M) * 100 + '%', R = (v) => 'Rp' + nf(v, 1) + ' T';
+      const cs = (r) => (r >= 1 ? ['#DCFCE7', '#15803D'] : r >= 0.9 ? ['#E0F2FE', '#0369A1'] : ['#FEF3C7', '#B45309']);
+      const pc = (r) => nf(r * 100, 0) + '%';
+      const g = (l, rv, rc, c1, h1, c2, h2, r1, rt, tg, cap, r) => ({ l, rv, rc, c1, h1, c2, h2, r1, rt, tv: R(tg), th: h(tg), tt: 'Target ' + l + ': ' + R(tg), cap, capBg: cs(r)[0], capC: cs(r)[1] });
+      const cum = f.fy + f.s1;
+      return {
+        src: 'RKPD 2025, RKPD 2026, dan RPJMD 2025–2029 provinsi (data simulasi berformat dokumen perencanaan' + (f.tg ? '; target 2026 Rp' + nf(f.tg, 2) + ' T dari rilis Pemprov' : '') + '). Target Semester I = separuh target tahunan.',
+        groups: [
+          g('2025', R(f.fy), '#0F172A', '#334155', h(f.fy), 'transparent', '0%', '4px 4px 0 0', 'Realisasi 2025 ' + R(f.fy), t25, 'Capaian ' + pc(f.fy / t25), f.fy / t25),
+          g('Semester I 2026', R(f.s1), '#1E40AF', '#1E40AF', h(f.s1 - f.tw2), '#60A5FA', h(f.tw2), '0', 'Semester I 2026 ' + R(f.s1) + ' (Tw II ' + R(f.tw2) + ')', tS1, 'Capaian ' + pc(f.s1 / tS1), f.s1 / tS1),
+          g('Perkiraan 2026', 'Rp' + nf(lo, 1) + '– ' + nf(hi, 1) + ' T', '#3730A3', '#A5B4FC', h(lo), 'repeating-linear-gradient(135deg, #A5B4FC 0 4px, #E0E7FF 4px 8px)', h(hi - lo), '0', 'Perkiraan 2026 Rp' + nf(lo, 1) + '–' + nf(hi, 1) + ' T', t26, pc(lo / t26) + '–' + pc(hi / t26) + ' target', lo / t26)
+        ],
+        rpj: R(rpj), rpjP: pc(cum / rpj), rpjW: Math.min(100, (cum / rpj) * 100) + '%', idealL: '30%',
+        note: cum / rpj >= 0.3 ? 'Capaian kumulatif sudah melewati batas ideal.' : 'Capaian kumulatif masih di bawah batas ideal.',
+        t26, lo, hi
+      };
+    })() : { src: '', groups: [], rpj: '', rpjP: '', rpjW: '0%', idealL: '30%', note: '', t26: 0, lo: 0, hi: 0 };
+    const sekL = sekP.map((x, i) => ({ ...x, no: i + 1 }));
+    const opsiL = opsi;
     // grafik proyeksi: skala bersama realisasi 2025, capaian Semester I, rentang perkiraan, target
     const fcv = f ? (() => {
       const a = f.s1 * 2, b = f.tw2 * 4, lo = Math.min(a, b), hi = Math.max(a, b);
@@ -2013,7 +2039,8 @@ const HIST = [[2020, 826.3, 413.5, 412.8], [2021, 901.02, 447, 454], [2022, 1207
     kes.forEach((k) => { if (!k.hasB) { k.hasB = false; k.bl = k.nat; k.bw = '0%'; k.mk = '0%'; k.mkOn = false; k.bc = '#1E40AF'; } k.noB = !k.hasB; k.tip = k.sub + ' · Sumber: ' + k.src; });
     // 5. proyek
     const pq = st.pq || '';
-    const prj = prjL.map((x, i) => ({ no: i + 1, n: x[0], lok: x[1] || 'Kabupaten/kota ' + (i + 1), lokC: x[1] ? '#475569' : '#94A3B8', sek: x[2], f: [['Tahun profil', x[12] || 2026], ['Jenis data', x[13] || 'Peluang investasi (PIR BKPM)'], ['PMA/PMDN', x[14] || 'PMA'], ['Estimasi investasi', x[3]], ['NPV', x[5]], ['IRR', x[4]], ['Payback', x[7] || 'tidak dihitung'], ['Catatan kesiapan sumber', x[8]], ['Tenaga kerja', x[9] || nf(120 + i * 60) + ' orang']].map(([l, v]) => ({ l, v: v == null ? BT : v, c: v == null ? '#94A3B8' : '#0F172A' })), st: x[8], u: x[10], host: x[10].split('/')[2], dot: !!x[11], noDot: !x[11] })).filter((p) => !pq || (p.n + ' ' + p.lok + ' ' + p.sek).toLowerCase().includes(pq.toLowerCase()));
+    const prj = prjL.map((x, i) => ({ no: i + 1, n: x[0], lok: x[1] || 'Kabupaten/kota ' + (i + 1), lokC: x[1] ? '#475569' : '#94A3B8', sek: x[2], f: [['Tahun profil', x[12] || 2026], ['Jenis data', x[13] || 'Peluang investasi (PIR BKPM)'], ['PMA/PMDN', x[14] || 'PMA'], ['Estimasi investasi', x[3]], ['NPV', x[5]], ['IRR', x[4]], ['Payback', x[7] || 'tidak dihitung'], ['Catatan kesiapan sumber', x[8]]].map(([l, v]) => ({ l, v: v == null ? BT : v, c: v == null ? '#94A3B8' : '#0F172A' })), st: x[8], u: x[10], host: x[10].split('/')[2], dot: !!x[11], noDot: !x[11] })).filter((p) => !pq || (p.n + ' ' + p.lok + ' ' + p.sek).toLowerCase().includes(pq.toLowerCase()));
+    const rr = 0.8; // radius dasar penanda proyek (satuan koordinat peta)
     const prjDots = Object.fromEntries([0, 1, 2, 3].map((i) => { const x = prjL[i]; if (!x || !x[11]) return ['p' + i, { cx: 0, cy: 0, r: 0, tx: 0, ty: 0, t: '', fs: 0 }]; const q = proj(x[11]); return ['p' + i, { cx: q[0].toFixed(2), cy: q[1].toFixed(2), r: (rr * 1.3).toFixed(3), tx: q[0].toFixed(2), ty: (q[1] + rr * 0.5).toFixed(2), t: String(i + 1), fs: (rr * 1.5).toFixed(3) }]; }));
     const noCoords = prjL.filter((x) => !x[11]).length;
     const prjNote = prjL.length ? (noCoords ? noCoords + ' profil belum memiliki koordinat tapak terverifikasi; lokasi pada kartu tetap ditampilkan.' : 'Profil langsung PIRBKPM; angka investasi merupakan estimasi, bukan realisasi.') : 'Belum ditemukan profil BKPM/PIRBKPM langsung untuk provinsi ini; sumber non-BKPM tidak digunakan.';
@@ -2295,7 +2322,7 @@ const ewsClose = () => this.setState({ ews: null });
       ],
       lak: fc.has ? [
         'Semester I 2026 sudah mencapai ' + fcv.prog + ' dari realisasi 2025; perkiraan setahun ' + fc.range + ' berada ' + fc.dir + ' realisasi 2025.',
-        fcv.hasTg ? fc.tg : 'Belum ada target provinsi 2026 yang dipublikasikan; gunakan realisasi 2025 sebagai pembanding.',
+        'Perkiraan 2026 setara ' + nf(tgv.lo / tgv.t26 * 100, 0) + '–' + nf(tgv.hi / tgv.t26 * 100, 0) + '% target RKPD 2026 (Rp' + nf(tgv.t26, 1) + ' T); ' + (tgv.hi < tgv.t26 ? 'perlu percepatan pada Semester II.' : 'target berpeluang tercapai.'),
         ev.length + ' hambatan regulasi terdokumentasi; masukkan ke agenda koordinasi pusat–daerah sebelum rilis Tw III 2026.'
       ] : ['Perkiraan belum dapat disusun karena data realisasi belum lengkap.', ev.length + ' hambatan regulasi terdokumentasi; masukkan ke agenda koordinasi pusat–daerah.'],
       aturan: [
@@ -2382,7 +2409,7 @@ const ewsClose = () => this.setState({ ews: null });
       lp, lpEmpty, lpHas: !lpEmpty, lpNas, lpNote, lperL: lper === 'tw2' ? 'Triwulan II 2026' : 'Semester I 2026', lsHas, lsNo: !lsHas, ls, lsNote, lk, lkNote, lh, lhProv, hasLhProv, lNoteHist,
       resetL: set({ lpv: '', lsk: '', lper: 'tw2' }), hasLF: !!(lpv || lsk || lper !== 'tw2'),
       // detail
-      dSearch, dOpen: dShowBox, dOpts, dOptsOff, dNoHit, onDSearch: (e) => this.setState({ dSearch: e && e.target ? e.target.value : '', dOpen: true }), onDOpen: () => this.setState({ dOpen: true }), skm, toMap, dh, fc, ev, facts, lim: dD.lim, sekP, dasar, opsi, evA, dasarA, sekTabs, sekCur, opNav, fcv, hm, lyrBtns, isu, mapLeg, mapInfo, iklhIns, irbiIns, env, kes, prj, prjDots, pq, prjEmpty: PRJD.length === 0, onPq: (e) => this.setState({ pq: e && e.target ? e.target.value : '' }), regChips, regs, regCount, regJen, regNote, hasRegNote: !!regNote, dr,
+      dSearch, dOpen: dShowBox, dOpts, dOptsOff, dNoHit, onDSearch: (e) => this.setState({ dSearch: e && e.target ? e.target.value : '', dOpen: true }), onDOpen: () => this.setState({ dOpen: true }), skm, toMap, dh, fc, ev, facts, lim: dD.lim, sekP, dasar, opsi, evA, dasarA, sekTabs, sekCur, opNav, fcv, tgv, sekL, opsiL, hm, lyrBtns, isu, mapLeg, mapInfo, iklhIns, irbiIns, env, kes, prj, prjDots, pq, prjEmpty: PRJD.length === 0, onPq: (e) => this.setState({ pq: e && e.target ? e.target.value : '' }), regChips, regs, regCount, regJen, regNote, hasRegNote: !!regNote, dr,
       dEws: !!EWS[dp], dNoEws: !EWS[dp]
     };
   }
