@@ -547,7 +547,7 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
             <button type="button" role="listitem" class="ri-item" sc-camel-on-click="{{r.go}}" title="Klik untuk melihat rincian" style="box-shadow: inset 0 3px 0 {{r.cc}};">
               <span class="ri-l">{{r.l}}</span>
               <b class="ri-v">{{r.v}}</b>
-              <span class="ri-s">{{r.s}}</span>
+              <span class="ri-s" style="justify-self: stretch; align-self: start;">{{r.s}}<sc-if value="{{r.viz}}" hint-placeholder-val="{{false}}"><span title="{{r.viz.tt}}" style="display: flex; flex-direction: column; gap: 4px; margin-top: 6px;"><span style="display: flex; justify-content: space-between; align-items: baseline; gap: 6px;"><span>{{r.viz.hl}} <b style="color: #0F172A;">{{r.viz.hb}}</b></span><b style="color: {{r.viz.hc}}; white-space: nowrap;">{{r.viz.hr}}</b></span><span style="display: flex; gap: 2px; height: 8px; border-radius: 4px; background: #E2E8F0; overflow: hidden;"><sc-for list="{{r.viz.segs}}" as="g" hint-placeholder-count="2"><span title="{{g.tt}}" style="flex: 0 0 {{g.w}}; background: {{g.c}};"></span></sc-for></span><span style="display: flex; flex-wrap: wrap; gap: 2px 10px; font-size: 10.5px;"><sc-for list="{{r.viz.keys}}" as="k" hint-placeholder-count="2"><span style="display: inline-flex; align-items: center; gap: 4px;"><span style="width: 7px; height: 7px; border-radius: 2px; background: {{k.c}};"></span>{{k.l}}</span></sc-for></span></span></sc-if></span>
               <span class="ri-c" style="background: {{r.cb}}; color: {{r.cc}};">{{r.stL}}</span>
               <span class="ri-i"><b>✦</b> {{r.a}}</span>
             </button>
@@ -935,6 +935,24 @@ class Component extends DCLogic {
       { l: 'Tindak lanjut dalam penanganan', v: nf(A.status.proses) + ' dari ' + nf(A.tidakSelaras), s: nf(A.status.selesai) + ' selesai · ' + nf(A.status.belum) + ' belum ditindaklanjuti', st: 'watch', a: 'Teruskan ' + nf(A.status.belum) + ' temuan yang belum ditindaklanjuti ke instansi.', go: () => { set({ fSta: 'proses', page: 0 }); scrollTo('sec-temuan')(); } },
       { l: 'Rata-rata lama penanganan', v: nf(A.rataLama) + ' hari', s: 'target 30 hari kalender', st: A.rataLama > 30 ? 'warn' : 'ok', a: 'Melewati target; percepat kasus yang sudah lebih dari 30 hari.', go: () => { set({ sort: 'desc', page: 0 }); scrollTo('sec-temuan')(); } }
     ]);
+    // Visual mini per indikator Ringkasan Informasi: kepala pembanding, batang bersegmen, keterangan berwarna
+    const vSeg = (w, c, tt) => ({ w: Math.max(0, w) + '%', c, tt });
+    const vKey = (c, l) => ({ c, l });
+    {
+      const tot = A.dinilai + A.belumDinilai, S = A.status, T = A.tidakSelaras || 1;
+      const JC = { hambatan: '#C2410C', kewenangan: '#F59E0B', norma: '#3B82F6', sasaran: '#94A3B8' };
+      const JN = { hambatan: 'Hambatan', kewenangan: 'Kewenangan', norma: 'Norma', sasaran: 'Sasaran' };
+      const jT = Object.values(A.jenis).reduce((a, b) => a + b, 0) || 1;
+      const LM = Math.max(A.rataLama, 30) * 1.15;
+      const V = [
+        { hl: 'Dari', hb: nf(tot) + ' regulasi', hr: nf(A.belumDinilai) + ' belum dinilai', hc: '#64748B', segs: [vSeg(A.selaras / tot * 100, '#15803D', 'Selaras ' + A.selaras), vSeg(A.tidakSelaras / tot * 100, '#F59E0B', 'Berpotensi tidak selaras ' + A.tidakSelaras), vSeg(A.belumDinilai / tot * 100, '#94A3B8', 'Belum dinilai ' + A.belumDinilai)], keys: [vKey('#15803D', 'Selaras ' + A.selaras), vKey('#F59E0B', 'Tidak ' + A.tidakSelaras), vKey('#94A3B8', 'Belum ' + A.belumDinilai)], tt: 'Status penilaian keselarasan ' + nf(tot) + ' regulasi berlaku' },
+        { hl: 'Terbanyak', hb: 'Hambatan berusaha', hr: A.jenis.hambatan + ' temuan', hc: '#C2410C', segs: Object.entries(A.jenis).map(([k, v]) => vSeg(v / jT * 100, JC[k], JN[k] + ' ' + v + ' temuan')), keys: Object.entries(A.jenis).map(([k, v]) => vKey(JC[k], JN[k] + ' ' + v)), tt: A.temuan + ' temuan menurut jenis ketidakselarasan' },
+        { hl: 'Porsi dari', hb: nf(T) + ' regulasi', hr: nf(S.tunggu / T * 100, 0) + '%', hc: '#B45309', segs: [vSeg(S.tunggu / T * 100, '#F59E0B', 'Menunggu keputusan ' + S.tunggu), vSeg(100 - S.tunggu / T * 100, '#CBD5E1', 'Status lain ' + (T - S.tunggu))], keys: [vKey('#F59E0B', 'Menunggu ' + S.tunggu), vKey('#CBD5E1', 'status lain ' + (T - S.tunggu))], tt: S.tunggu + ' dari ' + T + ' regulasi menunggu keputusan lintas kementerian' },
+        { hl: 'Selesai', hb: nf(S.selesai), hr: nf((S.selesai + S.proses) / T * 100, 0) + '% tertangani', hc: '#1E40AF', segs: [vSeg(S.selesai / T * 100, '#15803D', 'Selesai ' + S.selesai), vSeg(S.proses / T * 100, '#3B82F6', 'Dalam proses ' + S.proses), vSeg(S.tunggu / T * 100, '#F59E0B', 'Menunggu keputusan ' + S.tunggu), vSeg(S.belum / T * 100, '#C2410C', 'Belum ditindaklanjuti ' + S.belum)], keys: [vKey('#15803D', 'Selesai'), vKey('#3B82F6', 'Proses'), vKey('#F59E0B', 'Tunggu'), vKey('#C2410C', 'Belum')], tt: 'Status tindak lanjut ' + T + ' regulasi berpotensi tidak selaras' },
+        { hl: 'Target', hb: '30 hari', hr: (A.rataLama > 30 ? '+' : '') + nf(A.rataLama - 30) + ' hari', hc: A.rataLama > 30 ? '#C2410C' : '#15803D', segs: [vSeg(Math.min(A.rataLama, 30) / LM * 100, '#3B82F6', 'Dalam target ' + Math.min(A.rataLama, 30) + ' hari'), vSeg(Math.max(0, A.rataLama - 30) / LM * 100, '#C2410C', 'Melewati target ' + Math.max(0, A.rataLama - 30) + ' hari')], keys: [vKey('#3B82F6', 's.d. 30 hari'), vKey('#C2410C', 'lewat target')], tt: 'Rata-rata ' + A.rataLama + ' hari vs target 30 hari kalender' }
+      ];
+      ri.items.forEach((x, i) => { x.viz = V[i]; });
+    }
 
     // ---------- Highlight / EWS: temuan aktif yang perlu atensi ----------
     // Temuan masuk highlight bila belum ditindaklanjuti, menunggu keputusan,

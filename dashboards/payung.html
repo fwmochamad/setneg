@@ -548,7 +548,7 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
             <button type="button" role="listitem" class="ri-item" sc-camel-on-click="{{r.go}}" title="Klik untuk melihat rincian" style="box-shadow: inset 0 3px 0 {{r.cc}};">
               <span class="ri-l">{{r.l}}</span>
               <b class="ri-v">{{r.v}}</b>
-              <span class="ri-s">{{r.s}}</span>
+              <span class="ri-s" style="justify-self: stretch; align-self: start;">{{r.s}}<sc-if value="{{r.viz}}" hint-placeholder-val="{{false}}"><span title="{{r.viz.tt}}" style="display: flex; flex-direction: column; gap: 4px; margin-top: 6px;"><span style="display: flex; justify-content: space-between; align-items: baseline; gap: 6px;"><span>{{r.viz.hl}} <b style="color: #0F172A;">{{r.viz.hb}}</b></span><b style="color: {{r.viz.hc}}; white-space: nowrap;">{{r.viz.hr}}</b></span><span style="display: flex; gap: 2px; height: 8px; border-radius: 4px; background: #E2E8F0; overflow: hidden;"><sc-for list="{{r.viz.segs}}" as="g" hint-placeholder-count="2"><span title="{{g.tt}}" style="flex: 0 0 {{g.w}}; background: {{g.c}};"></span></sc-for></span><span style="display: flex; flex-wrap: wrap; gap: 2px 10px; font-size: 10.5px;"><sc-for list="{{r.viz.keys}}" as="k" hint-placeholder-count="2"><span style="display: inline-flex; align-items: center; gap: 4px;"><span style="width: 7px; height: 7px; border-radius: 2px; background: {{k.c}};"></span>{{k.l}}</span></sc-for></span></span></sc-if></span>
               <span class="ri-c" style="background: {{r.cb}}; color: {{r.cc}};">{{r.stL}}</span>
               <span class="ri-i"><b>✦</b> {{r.a}}</span>
             </button>
@@ -1527,6 +1527,21 @@ const closeEws = () => this.setState({ ews: null });
       { l: 'Dominasi aturan teknis', v: regulatoryInsight.topPct, s: 'regulasi berbentuk ' + regulatoryInsight.topLabel, st: 'watch', a: 'Pastikan aturan teknis K/L tidak menambah syarat di luar PP 28/2025.', go: riGo('sec-sebaran') },
       { l: 'Peringatan dini aktif', v: highlights.length + ' isu', s: highlights.length ? highlights[0].short : 'tidak ada isu aktif', st: highlights.length ? 'warn' : 'ok', a: 'Selesaikan kajian lingkungan & konflik lahan sebelum proyek berjalan.', go: () => { try { document.body.scrollIntoView({ behavior: 'smooth' }); } catch (e) {} } }
     ]);
+    // Visual mini per indikator Ringkasan Informasi: kepala pembanding, batang bersegmen, keterangan berwarna
+    const vSeg = (w, c, tt) => ({ w: Math.max(0, w) + '%', c, tt });
+    const vKey = (c, l) => ({ c, l });
+    {
+      const isuN = ISU.length, hlN = highlights.length;
+      const jTop = jenisBar.slice().sort((a, b) => b.n - a.n)[0];
+      const V = [
+        { hl: 'Pusat', hb: '251', hr: 'Daerah 39', hc: '#B45309', segs: [vSeg(86.6, '#1E40AF', 'Pusat 251 · 86,6%'), vSeg(13.4, '#D4A72C', 'Daerah 39 · 13,4%')], keys: [vKey('#1E40AF', 'Pusat 86,6%'), vKey('#D4A72C', 'Daerah 13,4%')], tt: 'Regulasi berlaku menurut tingkat: pusat 251, daerah 39' },
+        { hl: 'Dari', hb: '290 regulasi', hr: '6 belum dinilai', hc: '#64748B', segs: [vSeg(271 / 290 * 100, '#15803D', 'Selaras 271'), vSeg(13 / 290 * 100, '#F59E0B', 'Tidak selaras 13'), vSeg(6 / 290 * 100, '#94A3B8', 'Belum dinilai 6')], keys: [vKey('#15803D', 'Selaras 271'), vKey('#F59E0B', 'Tidak 13'), vKey('#94A3B8', 'Belum 6')], tt: 'Selaras 271 · tidak selaras 13 · belum dinilai 6 (Perda baru)' },
+        { hl: 'Belum ditindaklanjuti', hb: '', hr: '3 dari 13', hc: '#C2410C', segs: [vSeg(3 / 13 * 100, '#C2410C', 'Belum ditindaklanjuti 3'), vSeg(2 / 13 * 100, '#F59E0B', 'Menunggu keputusan 2'), vSeg(6 / 13 * 100, '#3B82F6', 'Dalam proses 6'), vSeg(2 / 13 * 100, '#15803D', 'Selesai 2')], keys: [vKey('#C2410C', 'Belum 3'), vKey('#F59E0B', 'Tunggu 2'), vKey('#3B82F6', 'Proses 6'), vKey('#15803D', 'Selesai 2')], tt: 'Status tindak lanjut 13 regulasi tidak selaras' },
+        { hl: 'Dari', hb: '290 regulasi', hr: jTop.n + ' regulasi', hc: '#1E40AF', segs: jenisBar.map((x) => vSeg(x.n / 290 * 100, x.c, x.l + ' ' + x.n + ' · ' + x.p)), keys: [vKey(jTop.c, jTop.l + ' ' + jTop.p), vKey('#CBD5E1', 'jenis lain')], tt: jenisBar.map((x) => x.l + ' ' + x.n).join(' · ') },
+        { hl: 'Dari', hb: isuN + ' isu dipantau', hr: hlN + ' peringatan', hc: '#B45309', segs: [vSeg(hlN / Math.max(1, isuN) * 100, '#F59E0B', hlN + ' isu peringatan dini aktif'), vSeg((isuN - hlN) / Math.max(1, isuN) * 100, '#BFDBFE', (isuN - hlN) + ' isu dipantau')], keys: [vKey('#F59E0B', 'Peringatan ' + hlN), vKey('#BFDBFE', 'Dipantau ' + (isuN - hlN))], tt: hlN + ' dari ' + isuN + ' isu berstatus peringatan dini' }
+      ];
+      ri.items.forEach((x, i) => { x.viz = V[i]; });
+    }
     return { isList: view === 'list', isDetail: view === 'detail', fl, flDaftar, hasDaftarFilter, resetDaftarFilter, hasFilter, resetF, filterNote: ids.length + ' regulasi sesuai filter',
       jenisBar, regulatoryInsight, sectorInsight, sbTitle, sbTabs, sbJenis: sb === 'jenis', sbSektor: sb === 'sektor', jenisItems, kpiJenis, hasJenisFilter, activeJenisName, activeJenisCount, resetJenisFilter, sekRows, hasSektorFilter, activeSektorName, activeSektorCount, resetSektorFilter,
       hasLvlFilter: chips.length > 0, chips,

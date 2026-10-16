@@ -455,7 +455,7 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
             <button type="button" role="listitem" class="ri-item" sc-camel-on-click="{{r.go}}" title="Klik untuk melihat rincian" style="box-shadow: inset 0 3px 0 {{r.cc}};">
               <span class="ri-l">{{r.l}}</span>
               <b class="ri-v">{{r.v}}</b>
-              <span class="ri-s">{{r.s}}</span>
+              <span class="ri-s" style="justify-self: stretch; align-self: start;">{{r.s}}<sc-if value="{{r.viz}}" hint-placeholder-val="{{false}}"><span title="{{r.viz.tt}}" style="display: flex; flex-direction: column; gap: 4px; margin-top: 6px;"><span style="display: flex; justify-content: space-between; align-items: baseline; gap: 6px;"><span>{{r.viz.hl}} <b style="color: #0F172A;">{{r.viz.hb}}</b></span><b style="color: {{r.viz.hc}}; white-space: nowrap;">{{r.viz.hr}}</b></span><span style="display: flex; gap: 2px; height: 8px; border-radius: 4px; background: #E2E8F0; overflow: hidden;"><sc-for list="{{r.viz.segs}}" as="g" hint-placeholder-count="2"><span title="{{g.tt}}" style="flex: 0 0 {{g.w}}; background: {{g.c}};"></span></sc-for></span><span style="display: flex; flex-wrap: wrap; gap: 2px 10px; font-size: 10.5px;"><sc-for list="{{r.viz.keys}}" as="k" hint-placeholder-count="2"><span style="display: inline-flex; align-items: center; gap: 4px;"><span style="width: 7px; height: 7px; border-radius: 2px; background: {{k.c}};"></span>{{k.l}}</span></sc-for></span></span></sc-if></span>
               <span class="ri-c" style="background: {{r.cb}}; color: {{r.cc}};">{{r.stL}}</span>
               <span class="ri-i"><b>✦</b> {{r.a}}</span>
             </button>
@@ -1696,6 +1696,29 @@ class Component extends DCLogic {
       { l: 'Tren mobilitas', v: sgnPc(riKrl.yoy), s: 'penumpang KRL ' + nf(riKrl.v, 2) + ' jt · ' + riKrl.per + ' yoy', st: 'ok', a: 'Komuter KRL tumbuh, Whoosh ' + nf(riWho.v, 1) + ' rb penumpang; Bekasi–Bogor dan Bandung Raya jadi kantong tenaga kerja.', go: riTab('kerja') },
       { l: 'Wisatawan nusantara', v: nf(riWis.v, 1) + ' jt', s: 'perjalanan ' + riWis.per + ' · ' + sgnPc(riWis.yoy) + ' yoy', st: 'ok', a: 'Permintaan wisata domestik naik; peluang investasi akomodasi dan destinasi baru.', go: riTab('wisata') }
     ]);
+    // Visual mini per indikator Ringkasan Informasi: kepala pembanding, batang bersegmen, keterangan berwarna
+    const vSeg = (w, c, tt) => ({ w: Math.max(0, w) + '%', c, tt });
+    const vKey = (c, l) => ({ c, l });
+    {
+      const popAll = PV.reduce((a, p) => a + p.pop, 0);
+      const top5 = PV.slice().sort((a, b) => b.pop - a.pop).slice(0, 5), BL = ['#1E3A8A', '#1E40AF', '#2563EB', '#3B82F6', '#93C5FD'];
+      const top5Sh = top5.reduce((a, p) => a + p.pop, 0) / popAll * 100;
+      const ageW = [0, 1, 2].map((j) => PV.reduce((a, p) => a + p.pop * p.age[j], 0) / popAll);
+      const ageS = ageW.reduce((a, b) => a + b, 0) || 1;
+      const ag = ageW.map((v) => v / ageS * 100);
+      const grow = (o, nm, u, d) => { if (o.yoy == null) return null; const pv = o.v / (1 + o.yoy / 100), up = o.v >= pv, M = Math.max(o.v, pv);
+        return { hl: 'Periode sama 2025', hb: nf(pv, d) + ' ' + u, hr: (up ? '+' : '−') + nf(Math.abs(o.v - pv), d) + ' ' + u, hc: up ? '#15803D' : '#B45309',
+          segs: [vSeg(Math.min(o.v, pv) / M * 100, '#94A3B8', '2025 ' + nf(pv, d) + ' ' + u), vSeg(Math.abs(o.v - pv) / M * 100, up ? '#15803D' : '#F59E0B', (up ? 'Tambahan ' : 'Penurunan ') + nf(Math.abs(o.v - pv), d) + ' ' + u)],
+          keys: [vKey('#94A3B8', '2025'), vKey(up ? '#15803D' : '#F59E0B', up ? 'pertumbuhan' : 'penurunan')], tt: nm + ' ' + o.per + ': ' + nf(o.v, d) + ' ' + u + ' vs ' + nf(pv, d) + ' ' + u + ' setahun sebelumnya' }; };
+      const V = [
+        { hl: 'Terbanyak', hb: top5[0].n, hr: nf(top5[0].pop / popAll * 100, 1) + '%', hc: '#1E3A8A', segs: top5.map((p, i) => vSeg(p.pop / popAll * 100, BL[i], p.n + ' ' + nf(p.pop / popAll * 100, 1) + '%')).concat([vSeg(100 - top5Sh, '#CBD5E1', '33 provinsi lain ' + nf(100 - top5Sh, 1) + '%')]), keys: [vKey('#2563EB', '5 provinsi ' + nf(top5Sh, 1) + '%'), vKey('#CBD5E1', '33 lainnya')], tt: top5.map((p) => p.n + ' ' + nf(p.pop / popAll * 100, 1) + '%').join(' · ') },
+        { hl: 'Struktur umur', hb: '', hr: nf(ag[1], 1) + '% produktif', hc: '#1E40AF', segs: [vSeg(ag[0], '#93C5FD', '0–14 th ' + nf(ag[0], 1) + '%'), vSeg(ag[1], '#1E40AF', '15–64 th ' + nf(ag[1], 1) + '%'), vSeg(ag[2], '#94A3B8', '65+ th ' + nf(ag[2], 1) + '%')], keys: [vKey('#93C5FD', '0–14 ' + nf(ag[0], 1) + '%'), vKey('#1E40AF', '15–64'), vKey('#94A3B8', '65+ ' + nf(ag[2], 1) + '%')], tt: 'Struktur umur penduduk (tertimbang jumlah penduduk provinsi)' },
+        { hl: 'Bekerja', hb: jt(TKN.ak * (100 - TKN.tpt) / 100), hr: 'TPT ' + nf(TKN.tpt, 2) + '%', hc: '#B45309', segs: [vSeg(100 - TKN.tpt, '#1E40AF', 'Bekerja ' + nf(100 - TKN.tpt, 2) + '%'), vSeg(TKN.tpt, '#F59E0B', 'Menganggur ' + nf(TKN.tpt, 2) + '%')], keys: [vKey('#1E40AF', 'Bekerja'), vKey('#F59E0B', 'Menganggur ' + jt(TKN.ak * TKN.tpt / 100))], tt: 'Angkatan kerja ' + jt(TKN.ak) + ' (Sakernas Feb 2026)' },
+        grow(riKrl, 'Penumpang KRL', 'jt', 2),
+        grow(riWis, 'Perjalanan wisnus', 'jt', 1)
+      ];
+      ri.items.forEach((x, i) => { if (V[i]) x.viz = V[i]; });
+    }
     return {
       mini,
       nav, m, selD, mk, leg, clsOn: cls !== null, clsReset: () => this.setState({ cls: null }), provOpts, selV: sel || '',

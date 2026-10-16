@@ -555,7 +555,7 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
             <button type="button" role="listitem" class="ri-item" sc-camel-on-click="{{r.go}}" title="Klik untuk melihat rincian" style="box-shadow: inset 0 3px 0 {{r.cc}};">
               <span class="ri-l">{{r.l}}</span>
               <b class="ri-v">{{r.v}}</b>
-              <span class="ri-s">{{r.s}}</span>
+              <span class="ri-s" style="justify-self: stretch; align-self: start;">{{r.s}}<sc-if value="{{r.viz}}" hint-placeholder-val="{{false}}"><span title="{{r.viz.tt}}" style="display: flex; flex-direction: column; gap: 4px; margin-top: 6px;"><span style="display: flex; justify-content: space-between; align-items: baseline; gap: 6px;"><span>{{r.viz.hl}} <b style="color: #0F172A;">{{r.viz.hb}}</b></span><b style="color: {{r.viz.hc}}; white-space: nowrap;">{{r.viz.hr}}</b></span><span style="display: flex; gap: 2px; height: 8px; border-radius: 4px; background: #E2E8F0; overflow: hidden;"><sc-for list="{{r.viz.segs}}" as="g" hint-placeholder-count="2"><span title="{{g.tt}}" style="flex: 0 0 {{g.w}}; background: {{g.c}};"></span></sc-for></span><span style="display: flex; flex-wrap: wrap; gap: 2px 10px; font-size: 10.5px;"><sc-for list="{{r.viz.keys}}" as="k" hint-placeholder-count="2"><span style="display: inline-flex; align-items: center; gap: 4px;"><span style="width: 7px; height: 7px; border-radius: 2px; background: {{k.c}};"></span>{{k.l}}</span></sc-for></span></span></sc-if></span>
               <span class="ri-c" style="background: {{r.cb}}; color: {{r.cc}};">{{r.stL}}</span>
               <span class="ri-i"><b>✦</b> {{r.a}}</span>
             </button>
@@ -1555,6 +1555,25 @@ const pzClose = () => this.setState({ ews: null });
       ].map((x) => ({ ...x, stL: riSt[x.st][0], cb: riSt[x.st][1], cc: riSt[x.st][2] }));
       return { items, nWarn: items.filter((x) => x.st === 'warn').length, nWatch: items.filter((x) => x.st === 'watch').length, nOk: items.filter((x) => x.st === 'ok').length };
     })();
+    // Visual mini per indikator Ringkasan Informasi: kepala pembanding, batang bersegmen, keterangan berwarna
+    const vSeg = (w, c, tt) => ({ w: Math.max(0, w) + '%', c, tt });
+    const vKey = (c, l) => ({ c, l });
+    {
+      const req = masS[5], tr = tot / req * 100;
+      const tgt = TGW.all[1], gap = Math.max(0, tgt - natTw3);
+      const thN2 = TH.map((l, i) => sumT(i, 'all')), thS = thN2.reduce((a, b) => a + b, 0) || 1, thI2 = thN2.indexOf(Math.max(...thN2));
+      const THC = ['#1E3A8A', '#2563EB', '#F59E0B', '#93C5FD'];
+      const SC = { 'Diverifikasi analis': '#15803D', 'Dalam review analis': '#3B82F6', 'Menunggu verifikasi': '#F59E0B' };
+      const stK = Array.from(new Set(HB.map((h) => h.status)));
+      const V = [
+        { hl: 'Rasio terbit', hb: '', hr: f1(tr) + '%', hc: '#15803D', segs: [vSeg(tr, '#15803D', 'Terbit ' + fN(tot)), vSeg(100 - tr, '#CBD5E1', 'Belum terbit ' + fN(req - tot))], keys: [vKey('#15803D', 'Terbit ' + fN(tot)), vKey('#CBD5E1', 'Belum ' + fN(req - tot))], tt: fN(tot) + ' izin terbit dari ' + fN(req) + ' permintaan September 2026' },
+        { hl: 'Jenis izin', hb: '', hr: ewsJ.length + ' dari ' + JEN.length, hc: '#B45309', segs: JEN.map((j) => vSeg(100 / JEN.length - 0.4, ewsJ.includes(j) ? '#F59E0B' : '#93C5FD', j.l + ': ' + f1(j.avg) + ' vs SLA ' + j.sla + ' HK')), keys: [vKey('#F59E0B', 'lewat SLA > ' + THR + '%'), vKey('#93C5FD', 'dalam batas')], tt: 'Satu segmen = satu jenis izin' },
+        { hl: 'Target', hb: tgt + '%', hr: gap > 0 ? '−' + f1(gap) + ' poin' : 'tercapai', hc: gap > 0 ? '#B45309' : '#15803D', segs: [vSeg(natTw3, '#1E40AF', 'Kepatuhan ' + f1(natTw3) + '%'), vSeg(gap, '#F59E0B', 'Kekurangan ke target ' + f1(gap) + ' poin')], keys: [vKey('#1E40AF', 'Capaian ' + f1(natTw3) + '%'), vKey('#F59E0B', 'Kurang ke target')], tt: 'Kepatuhan SLA Tw III ' + f1(natTw3) + '% vs target ' + tgt + '%' },
+        { hl: 'Terbanyak di', hb: TH[thI2].split(' ')[0].replace(/[\/&]+$/, ''), hr: f1(thN2[thI2] / thS * 100) + '%', hc: '#B45309', segs: thN2.map((v, i) => vSeg(v / thS * 100, THC[i], TH[i] + ' ' + fN(v))), keys: [vKey(THC[thI2], TH[thI2].split(' ').slice(0, 2).join(' ')), vKey('#CBD5E1', 'tahap lain')], tt: TH.map((l, i) => l + ' ' + fN(thN2[i])).join(' · ') },
+        { hl: 'Dari', hb: HB.length + ' hambatan', hr: HB.filter((h) => h.ews).length + ' EWS', hc: '#C2410C', segs: stK.map((k) => vSeg(HB.filter((h) => h.status === k).length / HB.length * 100, SC[k] || '#94A3B8', k + ' ' + HB.filter((h) => h.status === k).length)), keys: stK.map((k) => vKey(SC[k] || '#94A3B8', k.replace(' analis', '') + ' ' + HB.filter((h) => h.status === k).length)), tt: 'Status verifikasi ' + HB.length + ' hambatan regulasi' }
+      ];
+      ri.items.forEach((x, i) => { x.viz = V[i]; });
+    }
     return {
       insB: !!st.insB, insBToggle: () => this.setState({ insB: !st.insB }), insBLabel: st.insB ? 'Sembunyikan dasar data ▴' : 'Lihat dasar data ▾',
       ri, regBars, mini, kaitIns, recap2,
