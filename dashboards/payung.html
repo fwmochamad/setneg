@@ -737,12 +737,24 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
         <section id="sec-daftar" style="background: #FFFFFF; border: 1px solid #EAECF0; border-radius: 12px; display: flex; flex-direction: column; scroll-margin-top: 16px;">
           <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px; padding: 8px 12px; border-bottom: 1px solid #EAECF0;">
             <h2 style="margin: 0; font-size: 14.5px; font-weight: 600;">Daftar Regulasi Investasi</h2>
-            <div style="display: flex; align-items: center; gap: 12px;">
+            <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px;">
               <sc-if value="{{hasLvlFilter}}">
                 <sc-for list="{{chips}}" as="c" hint-placeholder-count="2">
                   <span style="display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 4px 0 12px; box-sizing: border-box; border-radius: 8px; background: #F0F9FF; border: 1px solid #7CD4FD; font-size: 12px; color: #475569;"><b style="color: #0F172A;">Filter: {{c.l}}</b><span style="color: #64748B;">{{c.n}}</span><button type="button" sc-camel-on-click="{{c.clear}}" title="Hapus filter {{c.l}}" style="width: 22px; height: 22px; border: 0; border-radius: 5px; background: #FFFFFF; color: #0284C7; font-family: inherit; font-size: 13px; line-height: 1; cursor: pointer;">×</button></span>
                 </sc-for>
               </sc-if>
+              <sc-for list="{{flDaftar}}" as="f" hint-placeholder-count="2">
+                <div style="position: relative;">
+                  <button type="button" sc-camel-on-click="{{f.toggle}}" style="height: 36px; padding: 0 12px; border-radius: 8px; background: {{f.bg}}; border: 1px solid {{f.bd}}; font-family: inherit; font-size: 12px; color: #475569; cursor: pointer; white-space: nowrap;">{{f.l}}: <b style="color: #0F172A;">{{f.v}}</b> ▾</button>
+                  <sc-if value="{{f.open}}">
+                    <div style="position: absolute; z-index: 60; top: 40px; right: 0; min-width: 300px; max-width: calc(100vw - 32px); max-height: 360px; overflow-y: auto; padding: 6px; border-radius: 10px; background: #FFFFFF; border: 1px solid #E3E8F0; box-shadow: 0 12px 32px rgba(15,23,42,.16); display: flex; flex-direction: column; gap: 2px;">
+                      <sc-for list="{{f.opts}}" as="o" hint-placeholder-count="5">
+                        <a href="#sec-daftar" sc-camel-on-click="{{o.pick}}" style="padding: 8px 10px; border-radius: 6px; background: {{o.bg}}; font-size: 12.5px; color: #0F172A; font-weight: {{o.w}}; text-decoration: none; display: flex; justify-content: space-between; gap: 12px;"><span>{{o.l}}</span><span style="color: #94A3B8;">{{o.n}}</span></a>
+                      </sc-for>
+                    </div>
+                  </sc-if>
+                </div>
+              </sc-for>
               <div style="position: relative; width: 288px; max-width: 100%;">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #94A3B8; pointer-events: none;"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
                 <input type="search" value="{{q}}" sc-camel-on-change="{{onSearch}}" placeholder="Cari regulasi..." style="width: 100%; height: 36px; padding: 0 12px 0 36px; box-sizing: border-box; border-radius: 8px; border: 1px solid #E2E8F0; background: #FFFFFF; font-family: inherit; font-size: 12.5px; color: #0F172A; outline: 0;" />
@@ -1144,12 +1156,15 @@ class Component extends DCLogic {
       ['fs', 'Sektor (KBLI 2025)', [['Semua', 'Semua sektor'], [X, 'Lintas sektor'], ...KB.filter(([k]) => SEKV[k] > 0).map(([k, n]) => [k, k + ' · ' + n])], 's', (r, v) => r.sek.includes(v)],
       ['fw', 'Wilayah', [['Semua', 'Semua wilayah'], [N, 'Nasional'], ['DKI Jakarta', 'DKI Jakarta'], ['Jawa Barat', 'Jawa Barat'], ['Jawa Tengah', 'Jawa Tengah'], ['Jawa Timur', 'Jawa Timur']], 'w', (r, v) => r.wil === v]
     ];
-    const fl = F.map(([key, l, list, skip, getter]) => {
-      const cur = st[key] || 'Semua', isOpen = st.menu === key;
+    // menuPre membedakan dropdown bilah filter atas dan dropdown di kartu Daftar Regulasi
+    const mkFl = (defs, menuPre) => defs.map(([key, l, list, skip, getter]) => {
+      const cur = st[key] || 'Semua', mk = menuPre + key, isOpen = st.menu === mk;
       const lab = (list.find((x) => x[0] === cur) || [cur, cur])[1];
-      return { l, v: cur === 'Semua' ? 'Semua' : lab, open: isOpen, bg: cur === 'Semua' ? '#FFFFFF' : '#EFF6FF', bd: cur === 'Semua' ? '#E3E8F0' : '#B8E3DF', toggle: () => this.setState({ menu: isOpen ? null : key }),
+      return { l, v: cur === 'Semua' ? 'Semua' : lab, open: isOpen, bg: cur === 'Semua' ? '#FFFFFF' : '#EFF6FF', bd: cur === 'Semua' ? '#E3E8F0' : '#B8E3DF', toggle: () => this.setState({ menu: isOpen ? null : mk }),
         opts: list.map(([v, ol]) => ({ l: ol, n: ALL.filter((r) => pass(r, skip) && (v === 'Semua' || getter(r, v))).length, bg: cur === v ? '#EFF6FF' : 'transparent', w: cur === v ? 700 : 500, pick: () => set({ [key]: v }) })) };
     });
+    const fl = mkFl(F, '');
+    const flDaftar = mkFl(F.filter(([key]) => key === 'fj' || key === 'fs').map((d) => d[0] === 'fs' ? ['fs', 'Sektor', ...d.slice(2)] : d), 'daftar-');
     const hasFilter = fj !== 'Semua' || fs !== 'Semua' || fw !== 'Semua' || lvl !== 'Semua' || !!q;
     const resetF = () => set({ fj: 'Semua', fs: 'Semua', fw: 'Semua', lvl: 'Semua', q: '' });
     const ids = ALL.filter((r) => pass(r));
@@ -1510,7 +1525,7 @@ const closeEws = () => this.setState({ ews: null });
       { l: 'Dominasi aturan teknis', v: regulatoryInsight.topPct, s: 'regulasi berbentuk ' + regulatoryInsight.topLabel, st: 'watch', a: 'Pastikan aturan teknis K/L tidak menambah syarat di luar PP 28/2025.', go: riGo('sec-sebaran') },
       { l: 'Peringatan dini aktif', v: highlights.length + ' isu', s: highlights.length ? highlights[0].short : 'tidak ada isu aktif', st: highlights.length ? 'warn' : 'ok', a: 'Selesaikan kajian lingkungan & konflik lahan sebelum proyek berjalan.', go: () => { try { document.body.scrollIntoView({ behavior: 'smooth' }); } catch (e) {} } }
     ]);
-    return { isList: view === 'list', isDetail: view === 'detail', fl, hasFilter, resetF, filterNote: ids.length + ' regulasi sesuai filter',
+    return { isList: view === 'list', isDetail: view === 'detail', fl, flDaftar, hasFilter, resetF, filterNote: ids.length + ' regulasi sesuai filter',
       jenisBar, regulatoryInsight, sectorInsight, sbTitle, sbTabs, sbJenis: sb === 'jenis', sbSektor: sb === 'sektor', jenisItems, kpiJenis, hasJenisFilter, activeJenisName, activeJenisCount, resetJenisFilter, sekRows, hasSektorFilter, activeSektorName, activeSektorCount, resetSektorFilter,
       hasLvlFilter: chips.length > 0, chips,
       yrL: '2026', yrPrevL: '2025', sekRows, sekTotal: Object.values(SEKV).reduce((a, b) => a + b, 0), allSekLabel: st.allSek ? 'Tampilkan 10 teratas' : 'Tampilkan semua kategori',
