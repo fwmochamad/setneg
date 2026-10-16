@@ -1105,7 +1105,7 @@ class Component extends DCLogic {
     const fbOf = (n, p) => Math.round(n * 0.0062 * p);
     const ombOf = (n) => Math.max(1, Math.round(n * 0.0021));
     let c3rows = [], c3h1 = '', c3h2 = '', c3h3 = '', c3note = '';
-    const mkRow = (o) => { const ews = o.dv > THR && o.n >= 30, small = o.n < 30; return { ...o, ews, small, ok: !ews && !small, lb: ews ? RED : 'transparent', dc: ews ? RED : o.dv > 0 ? '#334155' : '#1D4ED8', dev: sg(o.dv) + '% thd standar' }; };
+    const mkRow = (o) => { const ews = o.dv > THR && o.n >= 30, small = o.n < 30; return { ...o, ews, small, ok: !ews && !small, c: ews ? (o.c === '#0B1F4B' ? '#C2410C' : '#F97316') : o.c, lb: ews ? RED : 'transparent', dc: ews ? RED : o.dv > 0 ? '#334155' : '#1D4ED8', dev: sg(o.dv) + '% thd standar' }; };
     if (c3m === 'jenis') {
       c3h1 = 'JENIS IZIN'; c3h2 = c3s === 'dev' ? 'DURASI SEBAGAI % SLA (GARIS = SLA)' : 'RATA-RATA HARI KERJA (GARIS = SLA)'; c3h3 = 'RATA-RATA';
       let rows = JEN.map((j, ji) => ({ ji, j, dv: devOf(j.avg, j.sla) }));
@@ -1115,7 +1115,7 @@ class Component extends DCLogic {
         return mkRow({ rk: i + 1, l: x.j.l, sub: 'standar ' + x.j.sla + ' HK · ' + fN(x.j.n) + ' observasi', n: x.j.n, dv: x.dv, v: f1(x.j.avg) + ' HK', fw: sel ? 700 : 500,
           w: (c3s === 'dev' ? Math.min(x.j.avg / x.j.sla / 1.6, 1) * 100 : (x.j.avg / sc) * 100) + '%', sw: (c3s === 'dev' ? 62.5 : (x.j.sla / sc) * 100) + '%', c: sel ? '#0B1F4B' : '#1D4ED8', bg: sel ? '#EFF6FF' : 'transparent',
           ewsA: 'Rata-rata ' + f1(x.j.avg) + ' HK vs SLA ' + x.j.sla + ' HK (deviasi ' + f1(x.dv) + '%).', ewsS: 'OSS · SLA PP 28/2025 · ' + fN(x.j.n) + ' observasi', pick: () => set({ c3sel: sel ? null : { t: 'jenis', id: x.j.id } }) }); });
-      c3note = c3s === 'dev' ? 'Diurutkan menurut deviasi terhadap SLA, karena jenis izin dengan SLA panjang tidak otomatis paling menyimpang. Klik baris untuk rincian per wilayah.' : 'Diurutkan menurut durasi absolut; garis hitam menandai SLA tiap jenis izin. Klik baris untuk rincian per wilayah.';
+      c3note = c3s === 'dev' ? 'Diurutkan menurut deviasi terhadap SLA, karena jenis izin dengan SLA panjang tidak otomatis paling menyimpang. Batang oranye = melewati ambang SLA (EWS); biru = dalam ambang. Klik baris untuk rincian per wilayah.' : 'Diurutkan menurut durasi absolut; garis hitam menandai SLA tiap jenis izin. Batang oranye = melewati ambang SLA (EWS); biru = dalam ambang. Klik baris untuk rincian per wilayah.';
     } else {
       const jj = c3j === 'all' ? null : JI[c3j];
       c3h1 = 'PROVINSI'; c3h2 = jj == null ? 'INDEKS DURASI THD SLA (GARIS = 100%)' : (c3s === 'dev' ? 'DURASI SEBAGAI % SLA (GARIS = SLA)' : 'RATA-RATA HARI KERJA (GARIS = SLA)'); c3h3 = jj == null ? 'INDEKS' : 'RATA-RATA';
@@ -1129,7 +1129,7 @@ class Component extends DCLogic {
         return mkRow({ rk: i + 1, l: w[1], sub: (jj == null ? 'rata-rata ' + f1(x.avg) + ' HK · standar tertimbang ' + f1(x.std) + ' HK' : 'standar ' + x.std + ' HK') + ' · ' + fN(x.n) + ' observasi', n: x.n, dv: x.dv, v: vIdx, fw: sel ? 700 : 500,
           w: (jj == null || c3s === 'dev' ? Math.min((100 + x.dv) / 160, 1) * 100 : (x.avg / sc) * 100) + '%', sw: (jj == null || c3s === 'dev' ? 62.5 : (x.std / sc) * 100) + '%', c: sel ? '#0B1F4B' : '#1D4ED8', bg: sel ? '#EFF6FF' : 'transparent',
           ewsA: (jj == null ? 'Indeks durasi ' + f1(100 + x.dv) + '% dari SLA tertimbang' : JEN[jj].l + ' rata-rata ' + f1(x.avg) + ' HK vs SLA ' + x.std + ' HK') + ' (deviasi ' + f1(x.dv) + '%).', ewsS: 'OSS · feedback OSS · ' + fN(x.n) + ' observasi', pick: () => set({ c3sel: sel ? null : { t: 'wil', id: w[0] } }) }); });
-      c3note = 'Ranking 10 provinsi dengan observasi terbanyak; 28 provinsi lainnya digabung dan tidak diberi peringkat. Kelompok dengan observasi di bawah 30 diberi label sampel kecil dan tidak diberi penanda EWS. Klik baris untuk rincian.';
+      c3note = 'Ranking 10 provinsi dengan observasi terbanyak; 28 provinsi lainnya digabung dan tidak diberi peringkat. Kelompok dengan observasi di bawah 30 diberi label sampel kecil dan tidak diberi penanda EWS. Batang oranye = melewati ambang SLA (EWS); biru = dalam ambang. Klik baris untuk rincian.';
     }
     const c3tabs = [['jenis', 'Per jenis izin'], ['wil', 'Per wilayah']].map(([k, l]) => ({ l, bg: c3m === k ? '#FFFFFF' : 'transparent', fg: c3m === k ? '#0F172A' : '#64748B', pick: () => set({ c3m: k, c3sel: null }) }));
     const c3sorts = [['dev', 'Deviasi terhadap SLA'], ['abs', 'Durasi absolut']].map(([k, l]) => ({ l, bg: c3s === k ? '#1E40AF' : '#FFFFFF', fg: c3s === k ? '#FFFFFF' : '#334155', bd: c3s === k ? '#1E40AF' : '#E3E8F0', pick: () => set({ c3s: k }) }));
