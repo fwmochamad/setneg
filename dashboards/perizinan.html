@@ -180,7 +180,8 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
 .ri-card[aria-label="Ringkasan informasi"] .ri-item{background:#fff!important;border:1px solid rgba(229,231,235,.5)!important;border-radius:12px!important;box-shadow:var(--ek-shadow)!important;padding:14px!important;transition:border-color .15s,box-shadow .15s}
 .ri-card[aria-label="Ringkasan informasi"] .ri-item:hover,.ri-card[aria-label="Ringkasan informasi"] .ri-item:focus-visible{background:#fff!important;border-color:#bfdbfe!important;box-shadow:0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -2px rgba(0,0,0,.1)!important}
 .ri-card[aria-label="Ringkasan informasi"] .ri-cap{border-top:0!important;padding:10px 2px 0!important;background:transparent!important}
-</style></head>
+</style><style id="hl-uniform">.harmonisasi-alert-track{align-items:stretch}.harmonisasi-alert-card{display:flex;flex-direction:column}.harmonisasi-alert-heading{min-height:40px}.harmonisasi-alert-title strong{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.harmonisasi-alert-details{flex:1}.harmonisasi-alert-details p{display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}</style>
+</head>
 <body>
 <x-dc>
 <helmet>
@@ -1430,10 +1431,10 @@ const PZ_SRC = [
 const PZ_LABEL = { pkkpr: 'PKKPR melalui penilaian', pbg: 'Persetujuan Bangunan Gedung', kkprl: 'KKPR Laut' };
 const PZ_KEYS = { 'PKKPR melalui penilaian': 'pkkpr', 'Persetujuan Bangunan Gedung': 'pbg', 'KKPR Laut': 'kkprl' };
 const PZ_SHORT = {
-  pkkpr: { s: 'PKKPR melalui penilaian melampaui SLA', m: 'Rata-rata penyelesaian 23,1 hari kerja, melampaui SLA 20 hari kerja (+15,5%); 1.846 izin terbit.', d: 'Permohonan tanpa konfirmasi KKPR otomatis berisiko menambah antrean pada tahap penilaian.', r: 'Pantau antrean penilaian dan percepat integrasi RDTR digital daerah dengan OSS.' },
-  pbg: { s: 'PBG melampaui SLA', m: 'Rata-rata penyelesaian PBG 36,9 hari kerja, dibanding SLA 32 hari kerja (+15,3%); 3.912 izin terbit.', d: 'Penyesuaian Perda pajak dan retribusi yang tertunda dapat menahan penerbitan pada tahap pembayaran.', r: 'Koordinasikan penyesuaian Perda pajak dan retribusi daerah.' },
-  kkprl: { s: 'KKPR Laut melampaui SLA', m: 'Rata-rata penyelesaian 35,2 hari kerja, melebihi SLA 33 hari kerja (+6,7%); 214 observasi.', d: 'Waktu pemrosesan yang lebih panjang berisiko menunda kepastian persetujuan ruang laut.', r: 'Telaah tahapan proses dan pantau durasi penyelesaian terhadap SLA.' },
-  dc: { s: 'Pembangunan data center AI Jatiluhur dihentikan sementara', m: 'Pembangunan kampus data center berkapasitas 640 MW IT dihentikan karena persetujuan lingkungan dan PBG belum terbit.', d: 'Kelanjutan proyek tertahan setelah peletakan batu pertama pada 22 September 2026.', r: 'Selesaikan persetujuan lingkungan dan PBG sebelum pembangunan dilanjutkan.' }
+  pkkpr: { s: 'PKKPR melalui penilaian melampaui SLA', m: 'Rata-rata 23,1 hari kerja, melampaui SLA 20 hari (+15,5%).', d: 'Antrean pada tahap penilaian berisiko bertambah.', r: 'Percepat integrasi RDTR digital daerah dengan OSS.' },
+  pbg: { s: 'PBG melampaui SLA', m: 'Rata-rata 36,9 hari kerja, melampaui SLA 32 hari (+15,3%).', d: 'Perda retribusi yang tertunda menahan penerbitan di tahap pembayaran.', r: 'Koordinasikan penyesuaian Perda pajak dan retribusi daerah.' },
+  kkprl: { s: 'KKPR Laut melampaui SLA', m: 'Rata-rata 35,2 hari kerja, melampaui SLA 33 hari (+6,7%).', d: 'Kepastian persetujuan ruang laut berisiko tertunda.', r: 'Telaah tahapan proses dan pantau durasi terhadap SLA.' },
+  dc: { s: 'Data center AI Jatiluhur dihentikan sementara', m: 'Persetujuan lingkungan dan PBG kampus data center 640 MW belum terbit.', d: 'Proyek tertahan setelah peletakan batu pertama 22 Sep 2026.', r: 'Selesaikan persetujuan lingkungan dan PBG sebelum dilanjutkan.' }
 };
 const PZ_LONG = {
   pkkpr: {

@@ -180,7 +180,8 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
 .ri-card[aria-label="Ringkasan informasi"] .ri-item{background:#fff!important;border:1px solid rgba(229,231,235,.5)!important;border-radius:12px!important;box-shadow:var(--ek-shadow)!important;padding:14px!important;transition:border-color .15s,box-shadow .15s}
 .ri-card[aria-label="Ringkasan informasi"] .ri-item:hover,.ri-card[aria-label="Ringkasan informasi"] .ri-item:focus-visible{background:#fff!important;border-color:#bfdbfe!important;box-shadow:0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -2px rgba(0,0,0,.1)!important}
 .ri-card[aria-label="Ringkasan informasi"] .ri-cap{border-top:0!important;padding:10px 2px 0!important;background:transparent!important}
-</style></head>
+</style><style id="dn-map-fill">@media(min-width:601px){.dn-wrap{flex:1 1 auto;display:flex;flex-direction:column;gap:10px}.dn-wrap>svg{margin:auto 0}.dn-leg{position:static;flex-direction:row;flex-wrap:wrap;align-items:center;gap:2px 4px;padding:8px 2px 0;border:0;border-top:1px solid #E3E8F0;border-radius:0;background:transparent;box-shadow:none}.dn-leg>b{margin:0 8px 0 0!important}.dn-leg>button{width:auto!important}}</style>
+</head>
 <body>
 <x-dc>
 <helmet>
@@ -704,19 +705,30 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
           <span style="margin-left: auto; height: 26px; padding: 0 9px; border-radius: 6px; background: #EFF6FF; color: #1E40AF; font-size: 11.5px; font-weight: 600; display: inline-flex; align-items: center;">Satuan:&nbsp;persen penduduk</span>
         </div>
 
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 14px 28px;">
-              <div style="display: flex; flex-direction: column; gap: 6px;">
-                <div style="display: flex; justify-content: space-between; gap: 8px; align-items: baseline;"><b style="font-size: 12.5px;">Pindah masuk vs keluar · {{mg.name}}</b><span style="font-size: 11px; color: #64748B;">% penduduk · SP2020 Long Form</span></div>
-                <sc-for list="{{mg.a}}" as="r" hint-placeholder-count="2">
-                  <div style="display: grid; grid-template-columns: 150px minmax(0, 1fr) 84px; gap: 10px; align-items: center; font-size: 12px;"><span>{{r.l}}</span><span style="display: block; height: 14px; border-radius: 4px; background: #EEF2F7;"><span style="display: block; width: {{r.w}}; height: 14px; border-radius: 4px; background: {{r.c}};"></span></span><b style="text-align: right;">{{r.v}}</b></div>
-                </sc-for>
-              </div>
-              <div style="display: flex; flex-direction: column; gap: 6px;">
-                <div style="display: flex; justify-content: space-between; gap: 8px; align-items: baseline;"><b style="font-size: 12.5px;">Neto migrasi risen · SP2020 Long Form vs SUPAS 2025</b><span style="font-size: 11px; color: #64748B;">% penduduk · kiri = keluar lebih banyak</span></div>
-                <sc-for list="{{mg.b}}" as="r" hint-placeholder-count="2">
-                  <div style="display: grid; grid-template-columns: 150px minmax(0, 1fr) 84px; gap: 10px; align-items: center; font-size: 12px;"><span>{{r.l}}</span><span style="position: relative; display: block; height: 14px; border-radius: 4px; background: #EEF2F7;"><span style="position: absolute; left: 50%; top: -2px; bottom: -2px; width: 1px; background: #94A3B8;"></span><span style="position: absolute; top: 0; left: {{r.left}}; width: {{r.w}}; height: 14px; border-radius: 3px; background: {{r.c}};"></span></span><b style="text-align: right; color: {{r.fc}};">{{r.v}}</b></div>
-                </sc-for>
-              </div>
+        <div style="padding: 12px 14px 10px; border-radius: 10px; border: 1px solid #E3E8F0; display: flex; flex-direction: column; gap: 8px;">
+          <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 6px;">
+            <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 4px 18px;"><sc-for list="{{mg.ch.legend}}" as="lg" hint-placeholder-count="3"><span style="display: inline-flex; align-items: center; gap: 7px;"><span style="width: 16px; height: 3px; border-radius: 2px; background: {{lg.c}};"></span><b style="font-size: 12.5px;">{{lg.n}}</b><span style="font-size: 11px; color: #64748B;">{{lg.w}}</span></span></sc-for></div>
+            <span style="font-size: 11.5px; color: #475569;">{{mg.name}} · % penduduk</span>
+          </div>
+          <div style="display: flex; gap: 8px;">
+            <div style="flex: none; width: 48px; height: 200px; display: flex; flex-direction: column; justify-content: space-between; text-align: right; font-size: 10.5px; color: #64748B;"><sc-for list="{{mg.ch.yt}}" as="y" hint-placeholder-count="5"><span style="line-height: 1;">{{y}}</span></sc-for></div>
+            <div style="position: relative; flex: 1; min-width: 0; height: 200px;">
+              <svg sc-camel-view-box="0 0 600 200" sc-camel-preserve-aspect-ratio="none" aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; overflow: visible;">
+                <path d="{{mg.ch.grid}}" stroke="#EEF2F7" fill="none" vector-effect="non-scaling-stroke"></path>
+                <path d="{{mg.ch.zero}}" stroke="#94A3B8" stroke-dasharray="3 3" fill="none" vector-effect="non-scaling-stroke"></path>
+                <sc-for list="{{mg.ch.lines}}" as="ln" hint-placeholder-count="3"><path d="{{ln.d}}" fill="none" stroke="{{ln.c}}" stroke-width="2.5" stroke-linecap="round" vector-effect="non-scaling-stroke"></path></sc-for>
+              </svg>
+              <span style="position: absolute; right: 0; top: {{mg.ch.zeroT}}; transform: translateY(-120%); font-size: 10px; color: #94A3B8;">0 = seimbang</span>
+              <sc-for list="{{mg.ch.pts}}" as="p" hint-placeholder-count="6">
+                <span style="position: absolute; left: {{p.l}}; top: {{p.t}}; transform: {{p.lx}}; font-size: 11.5px; font-weight: 700; color: {{p.c}}; white-space: nowrap; pointer-events: none;">{{p.v}}</span>
+                <span class="tip" tabindex="0" style="position: absolute; left: {{p.l}}; top: {{p.t}}; width: 18px; height: 18px; margin-left: -9px; margin-top: -9px; display: flex; align-items: center; justify-content: center; cursor: help; z-index: 2;"><span class="pt" style="display: block; width: 10px; height: 10px; border-radius: 99px; background: {{p.bg}}; border: 2px solid {{p.c}}; box-sizing: border-box;"></span><span class="pop {{p.pc}}" style="width: 230px;">{{p.tip}}</span></span>
+              </sc-for>
+            </div>
+          </div>
+          <div style="position: relative; height: 16px; margin-left: 56px;">
+            <sc-for list="{{mg.ch.xs}}" as="x" hint-placeholder-count="2"><span style="position: absolute; left: {{x.x}}; transform: translateX(-50%); font-size: 11px; font-weight: 600; color: #475569; white-space: nowrap;">{{x.l}}</span></sc-for>
+          </div>
+          <div style="font-size: 11px; color: #94A3B8; display: flex; align-items: center;">Catatan data<span class="tip info-i" tabindex="0" aria-label="Catatan data">i<span class="pop">{{mg.ch.note}}</span></span></div>
         </div>
       </div>
             <div class="mzi"><span class="mzi-b">Insight AI</span><ul class="mzi-l"><sc-for list="{{mini.mig}}" as="i" hint-placeholder-count="3"><li>{{i}}</li></sc-for></ul><span class="mzi-s">Terverifikasi analis</span></div>
@@ -1361,10 +1373,40 @@ class Component extends DCLogic {
     const div = (l, v) => (v == null
       ? { l, v: BT, left: '50%', w: '0%', c: 'transparent', fc: '#94A3B8' }
       : { l, v: sgn(v, 2) + '%', left: v < 0 ? (50 - (Math.abs(v) / 10) * 50).toFixed(2) + '%' : '50%', w: ((Math.abs(v) / 10) * 50).toFixed(2) + '%', c: v < 0 ? '#64748B' : '#0EA5E9', fc: v < 0 ? '#475569' : '#1D4ED8' });
+    // Grafik garis migrasi: SP2020 Long Form (2015–2020) → SUPAS 2025 (2020–2025).
+    // SUPAS 2025 hanya merilis neto (DKI Jakarta); neto provinsi lain diestimasi (lihat SUP).
+    // Pindah masuk/keluar 2025 diestimasi dengan asumsi total perpindahan (masuk + keluar) sama dengan SP2020.
+    const migCh = (() => {
+      const sup = SUP[lf[0]], G = lf[1] + lf[2], supRilis = lf[0] === 'DKI Jakarta';
+      const PER = ['SP2020 Long Form · 2015–2020', 'SUPAS 2025 · 2020–2025'];
+      const S = [
+        { n: 'Pindah masuk', w: 'pendatang dari provinsi lain', c: '#0EA5E9', v: [lf[1], (G + sup) / 2], est: [false, true], f: (v) => nf(v, 2) + '%' },
+        { n: 'Pindah keluar', w: 'penduduk yang pindah ke provinsi lain', c: '#D97706', v: [lf[2], (G - sup) / 2], est: [false, true], f: (v) => nf(v, 2) + '%' },
+        { n: 'Neto', w: 'masuk − keluar', c: '#1E3A8A', v: [lf[3], sup], est: [false, !supRilis], f: (v) => sgn(v, 2) + '%' }
+      ];
+      const all = S.flatMap((x) => x.v).concat([0]);
+      const mx = Math.max(...all), mn = Math.min(...all), pad = (mx - mn) * 0.15 || 1, lo = mn - pad, hi = mx + pad;
+      const X = [0.14, 0.86], yp = (v) => 1 - (v - lo) / (hi - lo);
+      return {
+        legend: S.map((x) => ({ c: x.c, n: x.n, w: x.w })),
+        lines: S.map((x) => ({ c: x.c, d: 'M' + (X[0] * 600).toFixed(1) + ' ' + (yp(x.v[0]) * 200).toFixed(1) + 'L' + (X[1] * 600).toFixed(1) + ' ' + (yp(x.v[1]) * 200).toFixed(1) })),
+        pts: S.flatMap((x) => x.v.map((v, i) => ({
+          l: X[i] * 100 + '%', t: (yp(v) * 100).toFixed(2) + '%', c: x.c, bg: x.est[i] ? '#FFFFFF' : x.c, pc: i ? '' : 'pl',
+          v: x.f(v), lx: i ? 'translate(12px, -50%)' : 'translate(calc(-100% - 12px), -50%)',
+          tip: x.n + ' · ' + lf[0] + ' · ' + PER[i] + ': ' + x.f(v) + ' penduduk' + (x.est[i] ? ' (estimasi)' : '')
+        }))),
+        grid: [0, 0.25, 0.5, 0.75, 1].map((f) => 'M0 ' + Math.max(0.5, Math.min(199.5, f * 200)).toFixed(1) + 'H600').join(''),
+        zero: 'M0 ' + (yp(0) * 200).toFixed(1) + 'H600', zeroT: (yp(0) * 100).toFixed(2) + '%',
+        yt: [0, 1, 2, 3, 4].map((i) => nf(hi - ((hi - lo) * i) / 4, 1) + '%'),
+        xs: PER.map((l, i) => ({ x: X[i] * 100 + '%', l })),
+        note: 'Titik berisi = angka rilis; titik putih = estimasi. ' + (supRilis
+          ? 'SUPAS 2025 hanya merilis neto migrasi risen; pindah masuk dan keluar 2025 dihitung dengan asumsi total perpindahan sama dengan SP2020 Long Form.'
+          : 'Neto SUPAS 2025 provinsi ini diestimasi dari neto SP2020 Long Form (rilis resmi baru tersedia untuk DKI Jakarta); pindah masuk dan keluar 2025 dihitung dengan asumsi total perpindahan sama dengan SP2020 Long Form.')
+      };
+    })();
     const mg = {
       name: lf[0],
-      a: [{ l: 'Masuk', v: nf(lf[1], 2) + '%', w: (lf[1] / 8) * 100 + '%', c: '#0EA5E9' }, { l: 'Keluar', v: nf(lf[2], 2) + '%', w: (lf[2] / 8) * 100 + '%', c: '#64748B' }],
-      b: [div('SP2020 Long Form', lf[3]), div('SUPAS 2025', SUP[lf[0]] != null ? SUP[lf[0]] : null)],
+      ch: migCh,
       pick: go(idOf[lf[0]])
     };
 

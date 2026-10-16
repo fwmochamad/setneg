@@ -181,7 +181,8 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
 .ri-card[aria-label="Ringkasan informasi"] .ri-item{background:#fff!important;border:1px solid rgba(229,231,235,.5)!important;border-radius:12px!important;box-shadow:var(--ek-shadow)!important;padding:14px!important;transition:border-color .15s,box-shadow .15s}
 .ri-card[aria-label="Ringkasan informasi"] .ri-item:hover,.ri-card[aria-label="Ringkasan informasi"] .ri-item:focus-visible{background:#fff!important;border-color:#bfdbfe!important;box-shadow:0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -2px rgba(0,0,0,.1)!important}
 .ri-card[aria-label="Ringkasan informasi"] .ri-cap{border-top:0!important;padding:10px 2px 0!important;background:transparent!important}
-</style></head>
+</style><style id="hl-uniform">.harmonisasi-alert-track{align-items:stretch}.harmonisasi-alert-card{display:flex;flex-direction:column}.harmonisasi-alert-heading{min-height:40px}.harmonisasi-alert-title strong{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.harmonisasi-alert-details{flex:1}.harmonisasi-alert-details p{display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}</style>
+</head>
 <body>
 <x-dc>
 <helmet>
@@ -941,7 +942,14 @@ class Component extends DCLogic {
     const onEwsKey = (e) => { if (e && (e.key === 'Escape' || e.key === 'Esc')) { if (e.stopPropagation) e.stopPropagation(); closeEws(); } };
     const openKey = (k) => (e) => { if (e && (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar')) { if (e.preventDefault) e.preventDefault(); openEws(k); } };
     const ewsStamp = (() => { const dt = new Date(), p = (x) => String(x).padStart(2, '0'), BUL = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des']; return p(dt.getHours()) + ':' + p(dt.getMinutes()) + ' WIB ' + dt.getDate() + ' ' + BUL[dt.getMonth()] + ' ' + dt.getFullYear(); })();
-    const highlights = ewsT.map((t) => ({ k: t.id, short: t.judul, level: lvlOf(t), tgl: fd(t.mulai), verif: vstat(t), m: s1(t.dinilai), d: s1(t.dampak), r: s1(t.rekomendasi.teks), open: () => openEws(t.id), key: openKey(t.id) }));
+    // Teks kartu dipadatkan agar ukuran kartu seragam dengan halaman lain; detail lengkap ada di pop-up.
+    const HL_SHORT = {
+      'T-007': { s: 'Rekomendasi daerah sebelum OSS di Kudus', m: 'Perda mensyaratkan rekomendasi daerah sebelum permohonan diproses OSS.', d: 'Permohonan investasi industri di Kudus berisiko tertunda.', r: 'Sesuaikan Perda dengan PP 28/2025 tanpa rekomendasi tambahan.' },
+      'T-002': { s: 'Pembinaan desa wisata bahari tumpang tindih', m: 'KKP mengatur pembinaan desa wisata bahari yang juga kewenangan Kemenpar.', d: 'Investasi akomodasi kecil di desa pesisir dapat tertunda.', r: 'Tetapkan pembagian peran pembinaan antara KKP dan Kemenpar.' },
+      'T-004': { s: 'Spesifikasi ekspor karet berbeda dengan SNI', m: 'Ambang mutu karet ekspor pada lampiran berbeda dari SNI.', d: 'Ekspor karet remah dan ekspansi pabrik berisiko tertunda.', r: 'Samakan parameter mutu lampiran dengan SNI 1903:2017.' },
+      'T-006': { s: 'Standar usaha kebudayaan di luar PP 28/2025', m: 'Usaha kebudayaan wajib rekomendasi dinas sebelum sertifikat standar terbit.', d: 'Galeri, pertunjukan, dan museum swasta berpotensi tertunda beroperasi.', r: 'Cabut syarat rekomendasi dinas atau masukkan ke lampiran PP.' }
+    };
+    const highlights = ewsT.map((t) => { const S = HL_SHORT[t.id] || {}; return { k: t.id, short: S.s || t.judul, level: lvlOf(t), tgl: fd(t.mulai), verif: vstat(t), m: S.m || s1(t.dinilai), d: S.d || s1(t.dampak), r: S.r || s1(t.rekomendasi.teks), open: () => openEws(t.id), key: openKey(t.id) }; });
     const ewsP = ewsT.filter((t) => t.id === ewsKey)[0];
     const ews = ewsP ? Object.assign({}, sev(lvlOf(ewsP)), {
       title: ewsP.judul, id: 'EWS-' + ewsP.id + '-2026', kat: JN[ewsP.jenis], level: lvlOf(ewsP), verif: vstat(ewsP), tgl: fd(ewsP.mulai),
