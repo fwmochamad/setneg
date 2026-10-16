@@ -671,7 +671,7 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
 
     <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: stretch;">
       <!-- 3. Jenis izin & wilayah dengan waktu terlama -->
-      <section id="sec-terlama" style="flex: 1 1 660px; min-width: 0; background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; box-shadow: 0 1px 2px rgba(15,23,42,.05); display: flex; flex-direction: column; scroll-margin-top: 16px;">
+      <section id="sec-terlama" style="flex: 1 1 100%; min-width: 0; background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; box-shadow: 0 1px 2px rgba(15,23,42,.05); display: flex; flex-direction: column; scroll-margin-top: 16px;">
         <div style="padding: 12px 18px; border-bottom: 1px solid #EEF2F7; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px;">
           <div><h2 style="margin: 0; font-size: 14.5px; font-weight: 600;">Jenis izin &amp; wilayah dengan waktu terlama<span class="tip info-i" tabindex="0" aria-label="Keterangan">i<span class="pop">Ranking dibandingkan dengan standar, bukan durasi absolut semata</span></span></h2></div>
           <div role="tablist" style="display: flex; gap: 2px; padding: 3px; background: #EEF2F7; border-radius: 8px;">
@@ -679,8 +679,9 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
           </div>
         </div>
         <div style="padding: 10px 18px; border-bottom: 1px solid #EEF2F7; display: flex; flex-wrap: wrap; align-items: center; gap: 8px;">
-          <span style="font-size: 12px; color: #475569;">Urutkan:</span>
-          <sc-for list="{{c3sorts}}" as="s" hint-placeholder-count="2"><button type="button" sc-camel-on-click="{{s.pick}}" style="height: 28px; padding: 0 10px; border-radius: 99px; border: 1px solid {{s.bd}}; background: {{s.bg}}; color: {{s.fg}}; font-family: inherit; font-size: 11.5px; font-weight: 600; cursor: pointer;">{{s.l}}</button></sc-for>
+          <sc-if value="{{c3wfOn}}" hint-placeholder-val="{{true}}"><div style="flex: 1 1 100%; display: flex; flex-wrap: wrap; align-items: center; gap: 6px; padding-bottom: 8px; margin-bottom: 2px; border-bottom: 1px dashed #E3E8F0;"><span style="font-size: 12px; color: #475569;">Tahap OSS:</span><sc-for list="{{c3wf}}" as="w" hint-placeholder-count="4"><button type="button" sc-camel-on-click="{{w.pick}}" title="{{w.tt}}" style="height: 28px; padding: 0 10px; border-radius: 8px; border: 1px solid {{w.bd}}; background: {{w.bg}}; color: {{w.fg}}; font-family: inherit; font-size: 11.5px; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;"><sc-if value="{{w.no}}" hint-placeholder-val="{{false}}"><span style="width: 17px; height: 17px; border-radius: 99px; background: {{w.nb}}; color: {{w.nf}}; font-size: 10px; display: inline-flex; align-items: center; justify-content: center;">{{w.no}}</span></sc-if>{{w.l}}<span style="font-weight: 500; opacity: .75;">{{w.n}}</span></button></sc-for></div></sc-if>
+          <sc-if value="{{c3rowsOn}}" hint-placeholder-val="{{true}}"><span style="font-size: 12px; color: #475569;">Urutkan:</span>
+          <sc-for list="{{c3sorts}}" as="s" hint-placeholder-count="2"><button type="button" sc-camel-on-click="{{s.pick}}" style="height: 28px; padding: 0 10px; border-radius: 99px; border: 1px solid {{s.bd}}; background: {{s.bg}}; color: {{s.fg}}; font-family: inherit; font-size: 11.5px; font-weight: 600; cursor: pointer;">{{s.l}}</button></sc-for></sc-if>
           <sc-for list="{{c3dd}}" as="f" hint-placeholder-count="1">
             <div style="position: relative; margin-left: auto;">
               <button type="button" sc-camel-on-click="{{f.toggle}}" style="height: 30px; padding: 0 12px; border-radius: 8px; background: {{f.bg}}; border: 1px solid {{f.bd}}; font-family: inherit; font-size: 12px; color: #475569; cursor: pointer;">{{f.l}}: <b style="color: #0F172A;">{{f.v}}</b> ▾</button>
@@ -692,10 +693,11 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
             </div>
           </sc-for>
         </div>
-        <div style="padding: 10px 18px 6px; display: grid; grid-template-columns: 24px minmax(0, 1.25fr) minmax(0, 1.3fr) 112px 84px; gap: 10px; font-size: 10.5px; font-weight: 700; letter-spacing: 0.4px; color: #64748B;"><span>#</span><span>{{c3h1}}</span><span>{{c3h2}}</span><span style="text-align: right;">{{c3h3}}</span><span style="text-align: right;">PENANDA</span></div>
-        <div style="padding: 0 18px 10px; display: flex; flex-direction: column; gap: 3px;">
+        <sc-if value="{{c3rowsOn}}" hint-placeholder-val="{{true}}"><div class="c3-head" style="padding: 10px 18px 6px; display: grid; grid-template-columns: 24px minmax(0, 1.25fr) minmax(0, 1.3fr) 112px 84px; gap: 10px; font-size: 10.5px; font-weight: 700; letter-spacing: 0.4px; color: #64748B;"><span>#</span><span>{{c3h1}}</span><span>{{c3h2}}</span><span style="text-align: right;">{{c3h3}}</span><span style="text-align: right;">PENANDA</span></div></sc-if>
+        <style>@media (max-width: 680px){.c3-head{display:none!important}}.c3-wrap{container-type:inline-size}@container (max-width: 600px){.c3-head{display:none!important}.c3-row{grid-template-columns:22px minmax(0,1fr) auto!important;row-gap:4px!important}.c3-row>:nth-child(2){grid-column:2/4}.c3-row>:nth-child(3){grid-column:2/3;grid-row:2;align-self:center}.c3-row>:nth-child(4){grid-column:3;grid-row:2}.c3-row>:nth-child(5){grid-column:2/4;grid-row:3;justify-self:start!important}}</style>
+        <div class="c3-wrap" style="padding: 0 18px 10px; display: flex; flex-direction: column; gap: 3px;">
           <sc-for list="{{c3rows}}" as="r" hint-placeholder-count="7">
-            <div sc-camel-on-click="{{r.pick}}" class="bar" style="display: grid; grid-template-columns: 24px minmax(0, 1.25fr) minmax(0, 1.3fr) 112px 84px; gap: 10px; align-items: center; padding: 7px 8px 7px 6px; margin: 0 -8px 0 -10px; border-radius: 0 8px 8px 0; border-left: 4px solid {{r.lb}}; background: {{r.bg}}; font-size: 12.5px;">
+            <div sc-camel-on-click="{{r.pick}}" class="bar c3-row" style="display: grid; grid-template-columns: 24px minmax(0, 1.25fr) minmax(0, 1.3fr) 112px 84px; gap: 10px; align-items: center; padding: 7px 8px 7px 6px; margin: 0 -8px 0 -10px; border-radius: 0 8px 8px 0; border-left: 4px solid {{r.lb}}; background: {{r.bg}}; font-size: 12.5px;">
               <span style="font-weight: 700; color: #64748B;">{{r.rk}}</span>
               <span style="min-width: 0;"><span style="display: block; font-weight: {{r.fw}};">{{r.l}}</span><span style="display: block; font-size: 11px; color: #64748B;">{{r.sub}}</span></span>
               <span style="position: relative; display: block; height: 14px; border-radius: 4px; background: #EEF2F7;"><span style="display: block; width: {{r.w}}; height: 14px; border-radius: 4px; background: {{r.c}};"></span><span style="position: absolute; top: -3px; left: {{r.sw}}; width: 2px; height: 20px; background: #0F172A;"></span></span>
@@ -707,6 +709,7 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
               </span>
             </div>
           </sc-for>
+          <sc-if value="{{c3empty}}" hint-placeholder-val="{{false}}"><div style="margin: 4px 0; padding: 16px; border-radius: 10px; border: 1.5px dashed #CBD5E1; background: #F8FAFC; display: flex; flex-direction: column; gap: 8px;"><b style="font-size: 13px; color: #334155;">Data waktu penyelesaian PB UMKU belum dihimpun dari OSS</b><span style="font-size: 12px; line-height: 18px; color: #475569;">Setelah tersedia, tahap ini menampilkan ranking waktu penyelesaian per sektor (K/L penerbit) terhadap SLA masing-masing, sama seperti Perizinan Berusaha.</span><div style="display: flex; flex-wrap: wrap; gap: 4px;"><sc-for list="{{c3emptyEx}}" as="x" hint-placeholder-count="4"><span style="height: 22px; padding: 0 8px; border-radius: 99px; border: 1px dashed #CBD5E1; color: #64748B; font-size: 10.5px; display: inline-flex; align-items: center;">{{x}}</span></sc-for></div></div></sc-if>
           <p style="margin: 6px 0 0; font-size: 11.5px; line-height: 17px; color: #64748B;">{{c3note}}</p>
         </div>
         <sc-if value="{{c3has}}" hint-placeholder-val="{{false}}">
@@ -727,9 +730,9 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
         <div style="margin-top: auto; padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;" class="cf"><span><b style="color: #475569;">Diperbarui:</b> 12 Okt 2026</span><span><b style="color: #475569;">Sumber:</b> OSS, feedback OSS, Ombudsman RI (pengaduan), berita daring</span><span class="chip" style="padding: 0 6px; border-radius: 4px; background: #EFF6FF; color: #1D4ED8; font-weight: 600;">Divalidasi analis</span><span class="tip info-i" tabindex="0" aria-label="Keterangan">i<span class="pop">Periode: izin terbit September 2026 · pemantauan mingguan s.d. 12 Okt 2026</span></span></div>
       </section>
 
-      <!-- 4. Permohonan tertahan -->
-      <section id="sec-tertahan" style="flex: 1 1 520px; min-width: 0; background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; box-shadow: 0 1px 2px rgba(15,23,42,.05); display: flex; flex-direction: column; scroll-margin-top: 16px;">
-        <div style="padding: 12px 18px; border-bottom: 1px solid #EEF2F7;"><h2 style="margin: 0; font-size: 14.5px; font-weight: 600;">Permohonan tertahan<span class="tip info-i" tabindex="0" aria-label="Keterangan">i<span class="pop">Tertahan: permohonan belum terbit dan tanpa perubahan status lebih dari 10 hari kerja. Halaman ini hanya menampilkan jumlah, tahap dan lama tertahan; penyebab tidak ditampilkan. Jumlah, tahap dan lama tertahan · posisi 30 Sep 2026</span></span></h2></div>
+      <!-- 4. Progres permohonan belum terbit -->
+      <section id="sec-tertahan" style="flex: 1 1 100%; min-width: 0; background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; box-shadow: 0 1px 2px rgba(15,23,42,.05); display: flex; flex-direction: column; scroll-margin-top: 16px;">
+        <div style="padding: 12px 18px; border-bottom: 1px solid #EEF2F7;"><h2 style="margin: 0; font-size: 14.5px; font-weight: 600;">Progres Permohonan Belum Terbit<span class="tip info-i" tabindex="0" aria-label="Keterangan">i<span class="pop">Tertahan: permohonan belum terbit dan tanpa perubahan status lebih dari 10 hari kerja. Halaman ini hanya menampilkan jumlah, tahap dan lama tertahan; penyebab tidak ditampilkan. Jumlah, tahap dan lama tertahan · posisi 30 Sep 2026</span></span></h2></div>
         <div style="padding: 10px 18px; border-bottom: 1px solid #EEF2F7; display: flex; flex-wrap: wrap; align-items: center; gap: 8px;">
           <sc-for list="{{c4dd}}" as="f" hint-placeholder-count="2">
             <div style="position: relative;">
@@ -1100,18 +1103,40 @@ class Component extends DCLogic {
     const avgJW = (ji, wi) => JEN[ji].avg * WIL[wi][3] * qf(ji, wi);
     const RW = WIL.slice(0, 10).map((w, wi) => wi);
     const c3m = st.c3m ?? 'jenis', c3s = st.c3s ?? 'dev', c3j = st.c3j ?? 'all', c3sel = st.c3sel ?? null;
+    // Tahap alur OSS untuk tab "Per jenis izin": PD = per jenis izin, PB = per sektor KBLI, PB UMKU = belum ada data
+    const c3w = st.c3w ?? 'all';
+    const WF_PD = ['pkkpr', 'kkprl', 'pertek', 'ukl', 'pbg', 'slf'];
+    const WF_LBL = { pd: 'Persyaratan Dasar', pb: 'Perizinan Berusaha' };
+    const ssJ = JEN[JI.ss];
+    // Durasi per sektor PB: simulasi di sekitar rata-rata nasional Sertifikat Standar & Izin; SLA sektor mengacu K/L pembina
+    const SLA_SEK = { A: 14, B: 20, C: 14, D: 20, F: 10, G: 7, H: 14, I: 14, K: 10, M: 10, X: 14 };
+    const PB_ADJ = { B: 1.18, D: 1.12, F: 1.21, H: 1.09, G: 0.97 };
+    const pbRows = SEK.map(([code, nm]) => { const n = sumC('ss', code, 'all'), sla = SLA_SEK[code] || ssJ.sla;
+      const avg = sla * (PB_ADJ[code] ?? (0.9 + rng('pb' + code)() * 0.16)); return { code, nm, n, sla, avg, dv: devOf(avg, sla) }; });
     const NEWS = [['Kompas, 3 Okt 2026', 'https://lestari.kompas.com/read/2026/10/03/182721286/pembangunan-data-center-jatiluhur-dihentikan-iesr-minta-kajian-dampak-dibuka'], ['Bisnis, 1 Okt 2026', 'https://teknologi.bisnis.com/read/20261001/84/2008695/data-center-ai-jatiluhur-serap-384-liter-air-per-detik-benarkah-ancam-pasokan-warga'], ['Bisnis, 5 Okt 2026', 'https://teknologi.bisnis.com/read/20261005/101/2009730/potensi-investasi-data-center-rp360-triliun-terancam-kebijakan-sepihak-pemda'], ['Katadata', 'https://katadata.co.id/digital/teknologi/6abb2b43de6e7/bdx-bangun-pusat-data-ai-dengan-kapasitas-640-mw-di-purwakarta']];
     const fbOf = (n, p) => Math.round(n * 0.0062 * p);
     const ombOf = (n) => Math.max(1, Math.round(n * 0.0021));
     let c3rows = [], c3h1 = '', c3h2 = '', c3h3 = '', c3note = '';
     const mkRow = (o) => { const ews = o.dv > THR && o.n >= 30, small = o.n < 30; return { ...o, ews, small, ok: !ews && !small, c: ews ? (o.c === '#0B1F4B' ? '#C2410C' : '#F97316') : o.c, lb: ews ? RED : 'transparent', dc: ews ? RED : o.dv > 0 ? '#334155' : '#1D4ED8', dev: sg(o.dv) + '% thd standar' }; };
-    if (c3m === 'jenis') {
+    let c3empty = false;
+    if (c3m === 'jenis' && c3w === 'umku') {
+      c3empty = true; c3rows = []; c3h1 = 'SEKTOR'; c3h2 = 'DURASI SEBAGAI % SLA'; c3h3 = 'RATA-RATA';
+      c3note = 'PB UMKU (perizinan penunjang kegiatan usaha) diterbitkan K/L sektor; datanya belum masuk umpan OSS dasbor ini.';
+    } else if (c3m === 'jenis' && c3w === 'pb') {
+      c3h1 = 'SEKTOR (KBLI 2025)'; c3h2 = c3s === 'dev' ? 'DURASI SEBAGAI % SLA SEKTOR (GARIS = SLA)' : 'RATA-RATA HARI KERJA (GARIS = SLA)'; c3h3 = 'RATA-RATA';
+      const rows = pbRows.slice().sort((a, b) => (c3s === 'dev' ? b.dv - a.dv : b.avg - a.avg));
+      const sc = Math.max(...pbRows.map((x) => Math.max(x.avg, x.sla))) * 1.12;
+      c3rows = rows.map((x, i) => mkRow({ rk: i + 1, l: (x.code === 'X' ? '' : x.code + ' · ') + x.nm, sub: 'SLA sektor ' + x.sla + ' HK · ' + fN(x.n) + ' observasi', n: x.n, dv: x.dv, v: f1(x.avg) + ' HK', fw: 500,
+        w: (c3s === 'dev' ? Math.min(x.avg / x.sla / 1.6, 1) * 100 : (x.avg / sc) * 100) + '%', sw: (c3s === 'dev' ? 62.5 : (x.sla / sc) * 100) + '%', c: '#1D4ED8', bg: 'transparent',
+        ewsA: 'Sertifikat Standar & Izin sektor ' + x.nm + ': rata-rata ' + f1(x.avg) + ' HK vs SLA sektor ' + x.sla + ' HK (deviasi ' + f1(x.dv) + '%).', ewsS: 'OSS · ' + fN(x.n) + ' observasi · durasi per sektor simulasi', pick: () => {} }));
+      c3note = 'Perizinan Berusaha (Sertifikat Standar & Izin) dirinci per sektor KBLI karena diterbitkan K/L sektor dengan SLA masing-masing. Durasi per sektor adalah data simulasi di sekitar rata-rata nasional ' + f1(ssJ.avg) + ' HK. Batang oranye = melewati ambang SLA (EWS); biru = dalam ambang.';
+    } else if (c3m === 'jenis') {
       c3h1 = 'JENIS IZIN'; c3h2 = c3s === 'dev' ? 'DURASI SEBAGAI % SLA (GARIS = SLA)' : 'RATA-RATA HARI KERJA (GARIS = SLA)'; c3h3 = 'RATA-RATA';
-      let rows = JEN.map((j, ji) => ({ ji, j, dv: devOf(j.avg, j.sla) }));
+      let rows = JEN.map((j, ji) => ({ ji, j, dv: devOf(j.avg, j.sla) })).filter((x) => c3w !== 'pd' || WF_PD.includes(x.j.id));
       rows.sort((a, b) => (c3s === 'dev' ? b.dv - a.dv : b.j.avg - a.j.avg));
       const sc = Math.max(...JEN.map((j) => Math.max(j.avg, j.sla))) * 1.12;
       c3rows = rows.map((x, i) => { const sel = c3sel && c3sel.t === 'jenis' && c3sel.id === x.j.id;
-        return mkRow({ rk: i + 1, l: x.j.l, sub: 'standar ' + x.j.sla + ' HK · ' + fN(x.j.n) + ' observasi', n: x.j.n, dv: x.dv, v: f1(x.j.avg) + ' HK', fw: sel ? 700 : 500,
+        return mkRow({ rk: i + 1, l: x.j.l, sub: (c3w === 'all' ? (WF_PD.includes(x.j.id) ? 'Persyaratan Dasar' : 'Perizinan Berusaha') + ' · ' : '') + 'standar ' + x.j.sla + ' HK · ' + fN(x.j.n) + ' observasi', n: x.j.n, dv: x.dv, v: f1(x.j.avg) + ' HK', fw: sel ? 700 : 500,
           w: (c3s === 'dev' ? Math.min(x.j.avg / x.j.sla / 1.6, 1) * 100 : (x.j.avg / sc) * 100) + '%', sw: (c3s === 'dev' ? 62.5 : (x.j.sla / sc) * 100) + '%', c: sel ? '#0B1F4B' : '#1D4ED8', bg: sel ? '#EFF6FF' : 'transparent',
           ewsA: 'Rata-rata ' + f1(x.j.avg) + ' HK vs SLA ' + x.j.sla + ' HK (deviasi ' + f1(x.dv) + '%).', ewsS: 'OSS · SLA PP 28/2025 · ' + fN(x.j.n) + ' observasi', pick: () => set({ c3sel: sel ? null : { t: 'jenis', id: x.j.id } }) }); });
       c3note = c3s === 'dev' ? 'Diurutkan menurut deviasi terhadap SLA, karena jenis izin dengan SLA panjang tidak otomatis paling menyimpang. Batang oranye = melewati ambang SLA (EWS); biru = dalam ambang. Klik baris untuk rincian per wilayah.' : 'Diurutkan menurut durasi absolut; garis hitam menandai SLA tiap jenis izin. Batang oranye = melewati ambang SLA (EWS); biru = dalam ambang. Klik baris untuk rincian per wilayah.';
@@ -1130,6 +1155,9 @@ class Component extends DCLogic {
           ewsA: (jj == null ? 'Indeks durasi ' + f1(100 + x.dv) + '% dari SLA tertimbang' : JEN[jj].l + ' rata-rata ' + f1(x.avg) + ' HK vs SLA ' + x.std + ' HK') + ' (deviasi ' + f1(x.dv) + '%).', ewsS: 'OSS · feedback OSS · ' + fN(x.n) + ' observasi', pick: () => set({ c3sel: sel ? null : { t: 'wil', id: w[0] } }) }); });
       c3note = 'Ranking 10 provinsi dengan observasi terbanyak; 28 provinsi lainnya digabung dan tidak diberi peringkat. Kelompok dengan observasi di bawah 30 diberi label sampel kecil dan tidak diberi penanda EWS. Batang oranye = melewati ambang SLA (EWS); biru = dalam ambang. Klik baris untuk rincian.';
     }
+    const nPD = WF_PD.reduce((a, id) => a + JEN[JI[id]].n, 0);
+    const c3wf = [['all', 'Semua', '', fN(nAll), 'Semua jenis izin'], ['pd', 'Persyaratan Dasar', '1', fN(nPD), 'Per jenis izin: lokasi, lingkungan, bangunan'], ['pb', 'Perizinan Berusaha', '2', fN(ssJ.n), 'Per sektor KBLI (SLA sektor)'], ['umku', 'PB UMKU', '3', 'belum ada data', 'Per sektor; data belum dihimpun']].map(([k, l, no, n, tt]) => { const on = c3w === k;
+      return { l, no, n, tt, bg: on ? '#1E40AF' : '#FFFFFF', fg: on ? '#FFFFFF' : (k === 'umku' ? '#64748B' : '#1E3A8A'), bd: on ? '#1E40AF' : (k === 'umku' ? '#CBD5E1' : '#BFDBFE'), nb: on ? '#FFFFFF' : '#1E40AF', nf: on ? '#1E40AF' : '#FFFFFF', pick: () => set({ c3w: k, c3sel: null }) }; });
     const c3tabs = [['jenis', 'Per jenis izin'], ['wil', 'Per wilayah']].map(([k, l]) => ({ l, bg: c3m === k ? '#FFFFFF' : 'transparent', fg: c3m === k ? '#0F172A' : '#64748B', pick: () => set({ c3m: k, c3sel: null }) }));
     const c3sorts = [['dev', 'Deviasi terhadap SLA'], ['abs', 'Durasi absolut']].map(([k, l]) => ({ l, bg: c3s === k ? '#1E40AF' : '#FFFFFF', fg: c3s === k ? '#FFFFFF' : '#334155', bd: c3s === k ? '#1E40AF' : '#E3E8F0', pick: () => set({ c3s: k }) }));
     const c3dd = c3m === 'wil' ? [dd('c3j', 'Jenis izin', c3j === 'all' ? 'Semua (indeks)' : JEN[JI[c3j]].l, c3j !== 'all', [opt('Semua jenis izin (indeks tertimbang)', '', c3j === 'all', () => set({ c3j: 'all' })), ...JEN.map((j) => opt(j.l, 'SLA ' + j.sla + ' HK', c3j === j.id, () => set({ c3j: j.id })))])] : [];
@@ -1315,7 +1343,7 @@ class Component extends DCLogic {
     const I_LK = svgIco('<path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>', '#9A4F5C');
     const recap2 = [
       { l: 'Waktu selesai', v: slaAll + ' HK', s: ewsJ.length + ' dari ' + JEN.length + ' jenis izin melewati SLA > ' + THR + '%', c: '#5B5B9A', bg: '#F8F8FC', bd: '#E5E5F1', ib: '#E8E8F4', ico: I_CLK, tt: 'Ke kartu waktu penyelesaian vs SLA', open: goSec('sec-sla') },
-      { l: 'Permohonan tertahan', v: fN(nat4), s: pc(nat4, 11874) + ' dari 11.874 permohonan dalam proses', c: '#3D7A8C', bg: '#F6FAFB', bd: '#DFEBEF', ib: '#E1EFF3', ico: I_HG, tt: 'Ke kartu permohonan tertahan', open: goSec('sec-tertahan') },
+      { l: 'Permohonan tertahan', v: fN(nat4), s: pc(nat4, 11874) + ' dari 11.874 permohonan dalam proses', c: '#3D7A8C', bg: '#F6FAFB', bd: '#DFEBEF', ib: '#E1EFF3', ico: I_HG, tt: 'Ke kartu progres permohonan belum terbit', open: goSec('sec-tertahan') },
       { l: 'Kepatuhan SLA', v: f1(natTw3) + '%', s: sg(natTw3 - TGW.all[1]) + ' poin vs target ' + TGW.all[1] + '%', c: '#3F7A75', bg: '#F6FAFA', bd: '#DDEBEA', ib: '#E0EFEE', ico: I_TG, tt: 'Ke kartu tren kemudahan berusaha', open: goSec('sec-tren') },
       { l: 'Hambatan regulasi', v: HB.filter((h) => h.ews).length + ' EWS', s: nStat('Menunggu verifikasi') + ' menunggu verifikasi · ' + regTop[0] + ' paling terkait', c: '#9A4F5C', bg: '#FCF8F8', bd: '#EFE0E3', ib: '#F3E3E6', ico: I_LK, tt: 'Ke modul Keselarasan Regulasi & Tindak Lanjut', open: () => { try { window.parent.postMessage({ type: 'harmonisasi:tab', index: 4 }, '*'); } catch (e) {} } }
     ];
@@ -1628,7 +1656,7 @@ const pzClose = () => this.setState({ ews: null });
     }
     return {
       insB: !!st.insB, insBToggle: () => this.setState({ insB: !st.insB }), insBLabel: st.insB ? 'Sembunyikan dasar data ▴' : 'Lihat dasar data ▾',
-      ri, regBars, mini, kaitIns, recap2, wf, wfPer: ML[5] + ' 2026',
+      ri, regBars, mini, kaitIns, recap2, wf, wfPer: ML[5] + ' 2026', c3wf, c3wfOn: c3m === 'jenis', c3empty, c3rowsOn: !c3empty, c3emptyEx: ['Izin edar', 'Sertifikat halal', 'SNI', 'Izin impor'],
       recapAll: (() => {
         const jLam = JEN.slice().sort((a, b) => devOf(b.avg, b.sla) - devOf(a.avg, a.sla))[0];
         const thN = TH.map((l, i) => sumT(i, 'all')), thI = thN.indexOf(Math.max(...thN));
