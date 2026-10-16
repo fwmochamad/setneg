@@ -867,10 +867,10 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
     <section id="sec-insight" style="background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; box-shadow: 0 1px 2px rgba(15,23,42,.05); scroll-margin-top: 16px;">
       <div style="padding: 12px 18px; border-bottom: 1px solid #EEF2F7; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px;">
         <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;"><h2 style="margin: 0; font-size: 14.5px; font-weight: 600;">Insight mobilitas untuk investasi</h2></div>
-        <span style="font-size: 11.5px; color: #64748B;">Disusun AI dari data kartu 1–5; angka berasal dari sumber resmi yang ditampilkan</span>
+        <span style="font-size: 11.5px; color: #64748B;">Disusun AI dari data kartu 1–5 · mencakup Jawa dan luar Jawa; angka berasal dari sumber resmi yang ditampilkan</span>
       </div>
       <div style="padding: 14px 18px 16px; display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 12px;">
-        <sc-for list="{{ins}}" as="i" hint-placeholder-count="3">
+        <sc-for list="{{ins}}" as="i" hint-placeholder-count="6">
           <div style="display: flex; flex-direction: column; gap: 10px; padding: 14px; border-radius: 10px; border: 1px solid #C7D2FE; background: #F8F9FF;">
             <div style="display: flex; gap: 10px; align-items: flex-start;"><span style="flex: none; width: 24px; height: 24px; border-radius: 99px; background: #3730A3; color: #FFFFFF; font-size: 12px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center;">{{i.no}}</span><b style="font-size: 13px; line-height: 19px; color: #1E1B4B;">{{i.t}}</b></div>
             <div style="padding: 12px; border-radius: 8px; background: #EEF2FF; border: 1px solid #C7D2FE; display: flex; flex-direction: column; gap: 10px;">
@@ -1482,6 +1482,61 @@ class Component extends DCLogic {
         ],
         dukung: 'Program perumahan nasional dan pembiayaan rumah bersubsidi menopang permintaan; perizinan melalui OSS; pemda penerima menyediakan pendampingan investasi melalui DPMPTSP.',
         links: [{ l: 'Lihat ranking migrasi ↑', h: '#sec-rank', pick: () => this.setState({ rkJ: 'migrasi' }) }, { l: 'Bandingkan SP2020 vs SUPAS ↓', h: '#sec-tren', pick: () => this.setState({ wilM: 'DKI Jakarta' }) }]
+      },
+      // 4–6: di luar Jawa, dihitung dari data kartu (BPS) + konteks kebijakan yang sudah berjalan
+      {
+        no: 4, t: 'Kalimantan Timur: lahan luas dan tenaga kerja usia produktif di sekitar IKN',
+        basis: [
+          'Usia produktif (15–64 th) Kalimantan Timur ' + nf(byId.kaltim.age[1], 1) + '%, setara DKI Jakarta ' + nf(byId.dki.age[1], 1) + '% (BPS)',
+          'Kepadatan ' + nf(byId.kaltim.dens) + ' jiwa/km² di wilayah ' + nf(byId.kaltim.luas) + ' km², jauh di bawah provinsi Jawa (BPS)',
+          'Pembangunan Ibu Kota Nusantara dan Tol Balikpapan–Samarinda menghubungkan simpul kota utama'
+        ],
+        impl: 'Pembangunan IKN menarik pekerja konstruksi dan aparatur yang membutuhkan hunian, layanan, dan pasokan material. Lahan yang masih longgar memberi ruang bagi kawasan pendukung di koridor Balikpapan–Samarinda.',
+        vp: 'Porsi usia produktif setara Jakarta (' + nf(byId.kaltim.age[1], 1) + '%), dengan kepadatan hanya ' + nf(byId.kaltim.dens) + ' jiwa/km² di koridor ibu kota baru.',
+        keys: [{ v: nf(byId.kaltim.age[1], 1) + '%', l: 'penduduk usia produktif' }, { v: nf(byId.kaltim.dens) + '/km²', l: 'kepadatan penduduk' }, { v: nf(byId.kaltim.pop / 1e6, 2) + ' jt', l: 'penduduk Kalimantan Timur' }],
+        opp: [
+          { s: 'Konstruksi & material', t: 'Pabrik semen, beton pracetak, dan baja ringan untuk proyek IKN dan kota penyangga' },
+          { s: 'Hunian & layanan', t: 'Hunian pekerja, ritel, dan layanan kesehatan di Balikpapan, Samarinda, dan Penajam Paser Utara' },
+          { s: 'Logistik', t: 'Pergudangan dan logistik pelabuhan di koridor Balikpapan–Samarinda' }
+        ],
+        dukung: 'Insentif fiskal bagi investor di IKN sesuai ketentuan Otorita IKN; perizinan melalui OSS; konektivitas tol Balikpapan–Samarinda.',
+        links: [{ l: 'Sorot Kalimantan Timur di peta ↑', h: '#sec-peta', pick: go('kaltim') }]
+      },
+      {
+        no: 5, t: 'Sulawesi Tengah dan Maluku Utara: kawasan hilirisasi nikel butuh ekosistem pendukung pekerja',
+        basis: [
+          'Migrasi risen Sulawesi Tengah: masuk ' + nf(byId.sulteng.mi) + ', keluar ' + nf(byId.sulteng.mo) + ' orang; Maluku Utara: masuk ' + nf(byId.malut.mi) + ', keluar ' + nf(byId.malut.mo) + ' orang (SP2020 LF)',
+          'Kepadatan Sulawesi Tengah ' + nf(byId.sulteng.dens) + ' dan Maluku Utara ' + nf(byId.malut.dens) + ' jiwa/km² (BPS)',
+          'Kawasan industri nikel Morowali (Sulteng) dan Weda Bay (Malut) menjadi pusat smelter nasional'
+        ],
+        impl: 'Kawasan smelter menyerap pekerja dari luar daerah, sementara kota di sekitarnya masih jarang penduduk dan layanan dasarnya terbatas. Kebutuhan hunian, pangan, dan layanan kesehatan pekerja menjadi peluang investasi turunan.',
+        vp: 'Arus pekerja ke kawasan nikel membuka pasar hunian, pangan, dan layanan di wilayah yang masih jarang penduduk.',
+        keys: [{ v: nf((byId.sulteng.mi + byId.malut.mi) / 1000, 0) + ' rb', l: 'migran masuk Sulteng & Malut' }, { v: nf(byId.sulteng.dens) + '/km²', l: 'kepadatan Sulawesi Tengah' }, { v: nf(byId.malut.dens) + '/km²', l: 'kepadatan Maluku Utara' }],
+        opp: [
+          { s: 'Hunian pekerja', t: 'Perumahan dan mes pekerja di sekitar kawasan industri Morowali dan Weda Bay' },
+          { s: 'Pangan & logistik', t: 'Pasokan pangan, cold storage, dan pelabuhan pengumpan untuk kawasan industri' },
+          { s: 'Kesehatan & pendidikan', t: 'Klinik, rumah sakit, dan pelatihan vokasi teknik bagi pekerja smelter' }
+        ],
+        dukung: 'Program hilirisasi nasional; kawasan industri yang sudah beroperasi; perizinan melalui OSS dan pendampingan DPMPTSP provinsi.',
+        links: [{ l: 'Sorot Sulawesi Tengah di peta ↑', h: '#sec-peta', pick: go('sulteng') }, { l: 'Sorot Maluku Utara di peta ↑', h: '#sec-peta', pick: go('malut') }]
+      },
+      {
+        no: 6, t: 'Kepulauan Riau: tujuan migran dengan basis industri dekat Singapura',
+        basis: [
+          'Migrasi risen Kepulauan Riau: masuk ' + nf(byId.kepri.mi) + ', keluar ' + nf(byId.kepri.mo) + ' orang, neto +' + nf(byId.kepri.mi - byId.kepri.mo) + ' (SP2020 LF)',
+          'Usia produktif ' + nf(byId.kepri.age[1], 1) + '% dan kepadatan ' + nf(byId.kepri.dens) + ' jiwa/km² (BPS)',
+          'Batam, Bintan, dan Karimun berstatus kawasan perdagangan bebas; KEK Nongsa dan KEK Batam Aero Technic sudah beroperasi'
+        ],
+        impl: 'Kepulauan Riau terus menarik pekerja dari provinsi lain dan berjarak sekitar satu jam perjalanan laut dari Singapura. Manufaktur berorientasi ekspor dan ekonomi digital dapat memanfaatkan pasokan pekerja muda ini.',
+        vp: 'Neto migran positif dan ' + nf(byId.kepri.age[1], 1) + '% usia produktif, sekitar satu jam dari Singapura.',
+        keys: [{ v: '+' + nf((byId.kepri.mi - byId.kepri.mo) / 1000, 1) + ' rb', l: 'neto migrasi risen' }, { v: nf(byId.kepri.age[1], 1) + '%', l: 'penduduk usia produktif' }, { v: '±1 jam', l: 'Batam–Singapura (feri)' }],
+        opp: [
+          { s: 'Manufaktur ekspor', t: 'Elektronik dan komponen presisi di kawasan industri Batam' },
+          { s: 'Galangan & MRO', t: 'Galangan kapal serta perawatan pesawat dan kapal di Batam dan Karimun' },
+          { s: 'Ekonomi digital', t: 'Pusat data dan layanan digital di KEK Nongsa' }
+        ],
+        dukung: 'Fasilitas kawasan perdagangan bebas Batam, Bintan, Karimun; insentif KEK sesuai ketentuan; perizinan melalui OSS dan BP Batam.',
+        links: [{ l: 'Sorot Kepulauan Riau di peta ↑', h: '#sec-peta', pick: go('kepri') }]
       }
     ];
 
@@ -1516,6 +1571,9 @@ class Component extends DCLogic {
     ins[0].ch = { t: 'UMP 2026 (Rp juta/bulan)', bars: insBar([['DKI Jakarta', 5.73, 'Rp5,73 jt', '#94A3B8'], ['Jawa Barat', 2.32, 'Rp2,32 jt', '#1E40AF']]) };
     ins[1].ch = { t: 'Daerah asal komuter terbesar (orang/hari)', bars: insBar([['Kab. Bogor', 486200, '486 rb'], ['Kota Bekasi', 428900, '429 rb'], ['Kota Depok', 352600, '353 rb'], ['Kota Tangsel', 301400, '301 rb'], ['Kab. Bekasi', 247800, '248 rb']], '#1E40AF') };
     ins[2].ch = { t: 'Arus migrasi risen (orang)', bars: insBar([['Keluar DKI', byId.dki.mo, nf(byId.dki.mo / 1000, 0) + ' rb', '#B45309'], ['Masuk ' + migIn[0].n, migIn[0].v, nf(migIn[0].v / 1000, 0) + ' rb', '#15803D'], ['Masuk ' + migIn[1].n, migIn[1].v, nf(migIn[1].v / 1000, 0) + ' rb', '#15803D']]) };
+    ins[3].ch = { t: 'Kepadatan penduduk (jiwa/km²)', bars: insBar([['Jawa Barat', byId.jabar.dens, nf(byId.jabar.dens), '#94A3B8'], ['Jawa Timur', byId.jatim.dens, nf(byId.jatim.dens), '#94A3B8'], ['Kalimantan Timur', byId.kaltim.dens, nf(byId.kaltim.dens), '#1E40AF']]) };
+    ins[4].ch = { t: 'Migran risen masuk (orang)', bars: insBar([['Sulawesi Tengah', byId.sulteng.mi, nf(byId.sulteng.mi / 1000, 1) + ' rb'], ['Maluku Utara', byId.malut.mi, nf(byId.malut.mi / 1000, 1) + ' rb']], '#15803D') };
+    ins[5].ch = { t: 'Arus migran Kepulauan Riau (orang, SP2020 LF)', bars: insBar([['Masuk', byId.kepri.mi, nf(byId.kepri.mi / 1000, 1) + ' rb', '#15803D'], ['Keluar', byId.kepri.mo, nf(byId.kepri.mo / 1000, 1) + ' rb', '#B45309']]) };
     // ---- Tenaga kerja & penyerapan (Sakernas Feb 2026; provinsi di luar Top 5 = simulasi) ----
     const TKR = { dki: [11.42, 6.03], jabar: [26.89, 6.64], jateng: [22.33, 4.24], jatim: [25.14, 3.55], sumut: [8.416, 5.01] };
     const tkRows = PV.map((p) => { const r = TKR[p.id], ak = r ? r[0] : Math.round(p.pop * 0.53 / 1e4) / 100, tpt = r ? r[1] : Math.round((3 + hsh('tpt' + p.id) * 4) * 100) / 100; return { id: p.id, n: p.n, ak, tpt, sim: !r }; });
