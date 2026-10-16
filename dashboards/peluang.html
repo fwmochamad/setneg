@@ -745,25 +745,6 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
           <div class="cf" style="padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;"><span><b style="color: #475569;">Diperbarui:</b> 16 Jul 2026 (rilis Tw II) · Tw III 2026 belum dirilis</span><span><b style="color: #475569;">Sumber:</b> Kementerian Investasi dan Hilirisasi/BKPM (LKPM); kurs: Bank Indonesia (JISDOR)</span><span class="chip" style="padding: 0 6px; border-radius: 4px; background: #EFF6FF; color: #1D4ED8; font-weight: 600;">Data resmi · target triwulan &amp; hilirisasi simulasi</span></div>
         </section>
 
-        <!-- 4. Proyek siap investasi per provinsi (Top 5 PDRB) -->
-        <section class="ri-card" aria-label="Proyek siap investasi per provinsi">
-          <div style="padding: 12px 18px 10px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px;">
-            <h2 style="margin: 0; font-size: 14.5px; font-weight: 600;">Proyek siap investasi<span class="tip info-i" tabindex="0" aria-label="Keterangan">i<span class="pop">Ringkasan profil proyek di 5 provinsi PDRB terbesar (data simulasi). Klik provinsi untuk membuka daftar proyeknya di halaman rinci.</span></span></h2>
-            <span style="font-size: 11.5px; color: #64748B;">{{prjSum.tot}}</span>
-          </div>
-          <div class="ri-strip" role="list">
-            <sc-for list="{{prjSum.items}}" as="r" hint-placeholder-count="5">
-            <button type="button" role="listitem" class="ri-item" sc-camel-on-click="{{r.go}}" title="Buka proyek di {{r.n}}">
-              <span class="ri-l" style="min-height: 0;">{{r.n}}</span>
-              <b class="ri-v">{{r.k}} proyek</b>
-              <span class="ri-s">Rp{{r.v}} T · {{r.kj}} tenaga kerja</span>
-              <span class="ri-c" style="background: {{r.cb}}; color: {{r.cc}};">{{r.m}} mencari investor</span>
-              <span title="Terbesar: {{r.top}}" style="margin-top: auto; display: block; width: 100%; height: 8px; border-radius: 4px; background: #EEF2F7;"><span style="display: block; width: {{r.bw}}; height: 8px; border-radius: 4px; background: #1E40AF;"></span></span>
-            </button>
-            </sc-for>
-          </div>
-        </section>
-
         <!-- 1 + 2. Peta & Top 5 PDRB -->
         <section id="sec-peta" style="background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; box-shadow: 0 1px 2px rgba(15,23,42,.05);">
           <div style="padding: 12px 18px; border-bottom: 1px solid #EEF2F7; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px;">
@@ -849,10 +830,9 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
                       </div>
                       <div style="padding: 10px 12px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 8px 10px;">
                         <div><div style="font-size: 10.5px; color: #64748B;">Populasi 2025</div><b style="font-size: 13px;">{{pp.pop}}</b><div style="font-size: 10px; color: #94A3B8;">{{pp.popSrc}}</div></div>
-                        <div><div style="font-size: 10.5px; color: #64748B;">Rasio ketergantungan</div><b style="font-size: 13px;">{{pp.up}}</b><div style="font-size: 10px; color: #94A3B8;">{{pp.upSrc}}</div></div>
                         <div><div style="font-size: 10.5px; color: #64748B;">UMP 2026</div><b style="font-size: 13px;">{{pp.ump}}</b><div style="font-size: 10px; color: #94A3B8;">{{pp.umpSrc}}</div></div>
                         <div><div style="font-size: 10.5px; color: #64748B;">PDRB 2025</div><b style="font-size: 13px;">{{pp.pdrb}}</b><div style="font-size: 10px; color: #94A3B8;">{{pp.pdrbSub}}</div></div>
-                        <div style="grid-column: 1 / -1;"><div style="font-size: 10.5px; color: #64748B;">Realisasi investasi Tw II 2026</div><b style="font-size: 13px; color: {{pp.invC}};">{{pp.inv}}</b> <span style="font-size: 10px; color: #94A3B8;">{{pp.invSub}}</span></div>
+                        <div><div style="font-size: 10.5px; color: #64748B;">Realisasi investasi Tw II 2026</div><b style="font-size: 13px; color: {{pp.invC}};">{{pp.inv}}</b> <span style="font-size: 10px; color: #94A3B8;">{{pp.invSub}}</span></div>
                       </div>
                       <div style="padding: 0 12px 10px;">
                         <div style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.4px; color: #1E40AF;">3 SEKTOR TERATAS PDRB</div>
@@ -906,6 +886,25 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
           </div>
                     <div class="mzi"><span class="mzi-b">Insight AI</span><ul class="mzi-l"><sc-for list="{{mini.peta}}" as="i" hint-placeholder-count="3"><li>{{i}}</li></sc-for></ul><span class="mzi-s">Terverifikasi analis</span></div>
           <div style="padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;" class="cf"><span><b style="color: #475569;">Diperbarui:</b> 12 Okt 2026, 06.00 WIB · {{I.freq}}</span><span><b style="color: #475569;">Sumber:</b> {{I.src}}; profil: BPS (penduduk, struktur PDRB)</span><span class="chip" style="padding: 0 6px; border-radius: 4px; background: #EFF6FF; color: #1D4ED8; font-weight: 600;">Data resmi</span><span class="tip info-i" tabindex="0" aria-label="Keterangan">i<span class="pop">Periode: {{I.per}}</span></span></div>
+        </section>
+
+        <!-- 4. Proyek siap investasi per provinsi (Top 5 PDRB) -->
+        <section class="ri-card" aria-label="Proyek siap investasi per provinsi">
+          <div style="padding: 12px 18px 10px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px;">
+            <h2 style="margin: 0; font-size: 14.5px; font-weight: 600;">Proyek siap investasi<span class="tip info-i" tabindex="0" aria-label="Keterangan">i<span class="pop">Nilai proyek siap investasi di 5 provinsi PDRB terbesar (data simulasi). Batang menunjukkan porsi nilai provinsi terhadap total. Klik provinsi untuk membuka daftar proyeknya di halaman rinci.</span></span></h2>
+            <span style="font-size: 11.5px; color: #64748B;">{{prjSum.tot}}</span>
+          </div>
+          <div class="ri-strip" role="list">
+            <sc-for list="{{prjSum.items}}" as="r" hint-placeholder-count="5">
+            <button type="button" role="listitem" class="ri-item" sc-camel-on-click="{{r.go}}" title="Buka proyek di {{r.n}}">
+              <span class="ri-l" style="min-height: 0;">{{r.n}}</span>
+              <b class="ri-v">Rp{{r.v}} T</b>
+              <span class="ri-s">{{r.k}} proyek · {{r.sh}} dari total nilai</span>
+              <span title="Porsi nilai {{r.n}}: {{r.sh}}" style="display: block; width: 100%; height: 8px; border-radius: 4px; background: #EEF2F7;"><span style="display: block; width: {{r.bw}}; height: 8px; border-radius: 4px; background: #1E40AF;"></span></span>
+              <span class="ri-s" title="{{r.top}}" style="max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Terbesar: <b style="color: #0F172A; font-weight: 600;">{{r.top}}</b></span>
+            </button>
+            </sc-for>
+          </div>
         </section>
 
       </div>
@@ -991,7 +990,7 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
         <section style="background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; box-shadow: 0 1px 2px rgba(15,23,42,.05);">
           <div style="padding: 12px 18px; border-bottom: 1px solid #EEF2F7; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px;"><h2 style="margin: 0; font-size: 14.5px; font-weight: 600;">Indikator kesiapan wilayah</h2><span style="font-size: 11.5px; color: #64748B;">Ditampilkan per indikator, tanpa skor gabungan · indikator kosong tidak dianggap nol</span></div>
           <div style="padding: 14px 18px;"><div class="kp-strip kp-5" role="list" aria-label="Indikator kesiapan wilayah">
-            <sc-for list="{{kes}}" as="k" hint-placeholder-count="10"><div role="listitem"><span style="font-size: 11px; color: #64748B; display: flex; align-items: center;">{{k.l}}<span class="tip info-i" tabindex="0" aria-label="Keterangan">i<span class="pop">{{k.tip}}</span></span></span><b style="font-size: 15px; line-height: 20px; color: {{k.vc}};">{{k.v}}</b><sc-if value="{{k.hasB}}" hint-placeholder-val="{{false}}"><span style="position: relative; display: block; height: 8px; margin-top: 4px; border-radius: 4px; background: #EEF2F7;"><span style="display: block; width: {{k.bw}}; height: 8px; border-radius: 4px; background: {{k.bc}};"></span><sc-if value="{{k.mkOn}}" hint-placeholder-val="{{false}}"><span style="position: absolute; left: {{k.mk}}; top: -3px; width: 2px; height: 14px; background: #0F172A;"></span></sc-if></span></sc-if><span style="margin-top: auto; padding-top: 3px; font-size: 10.5px; color: #64748B;">{{k.bl}}</span></div></sc-for>
+            <sc-for list="{{kes}}" as="k" hint-placeholder-count="9"><div role="listitem"><span style="font-size: 11px; color: #64748B; display: flex; align-items: center;">{{k.l}}<span class="tip info-i" tabindex="0" aria-label="Keterangan">i<span class="pop">{{k.tip}}</span></span></span><b style="font-size: 15px; line-height: 20px; color: {{k.vc}};">{{k.v}}</b><sc-if value="{{k.hasB}}" hint-placeholder-val="{{false}}"><span style="position: relative; display: block; height: 8px; margin-top: 4px; border-radius: 4px; background: #EEF2F7;"><span style="display: block; width: {{k.bw}}; height: 8px; border-radius: 4px; background: {{k.bc}};"></span><sc-if value="{{k.mkOn}}" hint-placeholder-val="{{false}}"><span style="position: absolute; left: {{k.mk}}; top: -3px; width: 2px; height: 14px; background: #0F172A;"></span></sc-if></span></sc-if><span style="margin-top: auto; padding-top: 3px; font-size: 10.5px; color: #64748B;">{{k.bl}}</span></div></sc-for>
           </div></div>
                     <div class="mzi"><span class="mzi-b">Insight AI</span><ul class="mzi-l"><sc-for list="{{mini.siap}}" as="i" hint-placeholder-count="3"><li>{{i}}</li></sc-for></ul><span class="mzi-s">Terverifikasi analis</span></div>
           <div style="padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;" class="cf"><span><b style="color: #475569;">Diperbarui:</b> 12 Okt 2026 (mingguan; UMP tahunan)</span><span><b style="color: #475569;">Sumber:</b> BPS, Kementerian ESDM, Kemenperin, Kementerian Investasi dan Hilirisasi/BKPM, Dewan Nasional KEK</span><span class="chip" style="padding: 0 6px; border-radius: 4px; background: #EFF6FF; color: #1D4ED8; font-weight: 600;">Diverifikasi analis</span><span class="tip info-i" tabindex="0" aria-label="Keterangan">i<span class="pop">Periode: sesuai tiap indikator (2024–2026)</span></span></div>
@@ -1001,14 +1000,13 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
         <section style="background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; box-shadow: 0 1px 2px rgba(15,23,42,.05);">
           <div style="padding: 12px 18px; border-bottom: 1px solid #EEF2F7; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px;"><div><h2 style="margin: 0; font-size: 14.5px; font-weight: 600;">Proyek siap investasi<span class="tip info-i" tabindex="0" aria-label="Keterangan">i<span class="pop">Profil peluang PIRBKPM berisi estimasi kelayakan, bukan realisasi investasi.</span></span></h2></div><span style="font-size: 11.5px; color: #64748B;">{{prjNote}}</span></div>
           <div style="padding: 14px 18px; display: flex; flex-direction: column; gap: 12px;">
-              <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 10px; font-size: 11px; color: #64748B;"><b style="color: #0F172A;">Profil proyek <span style="font-weight: 400; color: #64748B;">· klik kartu untuk rincian</span></b><span style="display: inline-flex; gap: 10px;"><span><span style="display: inline-block; width: 9px; height: 9px; border-radius: 2px; background: #1E40AF; margin-right: 4px;"></span>Siap ditawarkan</span><span><span style="display: inline-block; width: 9px; height: 9px; border-radius: 2px; background: #D4A72C; margin-right: 4px;"></span>Mencari investor</span></span></div>
+              <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 10px; font-size: 11px; color: #64748B;"><b style="color: #0F172A;">Profil proyek <span style="font-weight: 400; color: #64748B;">· klik kartu untuk rincian</span></b><span>batang = nilai relatif terhadap proyek terbesar</span></div>
               <div role="list" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px;">
                 <sc-for list="{{prjCards}}" as="c" hint-placeholder-count="4">
-                <button type="button" role="listitem" sc-camel-on-click="{{c.tg}}" aria-expanded="{{c.ax}}" title="Klik untuk rincian proyek" style="display: flex; flex-direction: column; gap: 6px; min-width: 0; padding: 10px 12px; border-radius: 10px; border: 1px solid {{c.cbd}}; background: {{c.cbg}}; box-shadow: inset 0 3px 0 {{c.bc}}; font-family: inherit; text-align: left; cursor: pointer;">
-                  <span style="align-self: flex-start; height: 18px; padding: 0 7px; border-radius: 99px; background: {{c.sbg}}; color: {{c.stc}}; display: inline-flex; align-items: center; font-size: 10.5px; font-weight: 700;">{{c.p.sts}}</span>
+                <button type="button" role="listitem" sc-camel-on-click="{{c.tg}}" aria-expanded="{{c.ax}}" title="Klik untuk rincian proyek" style="display: flex; flex-direction: column; gap: 6px; min-width: 0; padding: 10px 12px; border-radius: 10px; border: 1px solid {{c.cbd}}; background: {{c.cbg}}; font-family: inherit; text-align: left; cursor: pointer;">
                   <b style="font-size: 12.5px; line-height: 16px; color: #0F172A; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; min-height: 32px;">{{c.p.n}}</b>
                   <span style="font-size: 10.5px; color: #64748B; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{c.p.lok}} · {{c.p.sek}}</span>
-                  <span style="margin-top: auto; display: flex; justify-content: space-between; align-items: baseline; gap: 6px;"><b style="font-size: 15px; color: #0F172A;">{{c.p.nilai}}</b><span style="font-size: 10.5px; color: #64748B;">{{c.p.kerja}}</span></span>
+                  <span style="margin-top: auto; display: flex; justify-content: space-between; align-items: baseline; gap: 6px;"><b style="font-size: 15px; color: #0F172A;">{{c.p.nilai}}</b><span style="font-size: 10.5px; color: #64748B;">{{c.p.durasi}}</span></span>
                   <span style="display: block; width: 100%; height: 6px; border-radius: 3px; background: #EEF2F7;"><span style="display: block; width: {{c.bw}}; height: 6px; border-radius: 3px; background: {{c.bc}};"></span></span>
                 </button>
                 </sc-for>
@@ -1018,7 +1016,7 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
                 <div style="padding: 10px 14px; border-radius: 10px; background: #F8FAFC; border: 1px solid #E3E8F0; display: flex; flex-direction: column; gap: 6px; font-size: 12px; color: #334155;">
                   <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px;"><b style="font-size: 12.5px; color: #0F172A;">{{c.p.n}}</b><button type="button" sc-camel-on-click="{{c.tg}}" style="padding: 0; border: 0; background: transparent; font-family: inherit; font-size: 11px; font-weight: 600; color: #1D4ED8; cursor: pointer;">Tutup rincian ▴</button></div>
                   <span>{{c.p.ringkasan}}</span>
-                  <span style="font-size: 11.5px; color: #475569;">Kebutuhan dana <b style="color: #0F172A;">{{c.p.dana}}</b> · durasi <b style="color: #0F172A;">{{c.p.durasi}}</b> · tahap <b style="color: #0F172A;">{{c.p.tahap}}</b> · <b style="color: {{c.bc}};">{{c.p.sts}}</b></span>
+                  <span style="font-size: 11.5px; color: #475569;">Kebutuhan dana <b style="color: #0F172A;">{{c.p.dana}}</b> · durasi <b style="color: #0F172A;">{{c.p.durasi}}</b> · tahap <b style="color: #0F172A;">{{c.p.tahap}}</b></span>
                   <span style="font-size: 11.5px; color: #475569;"><sc-for list="{{c.p.pts}}" as="t" hint-placeholder-count="2"><span style="margin-right: 12px;">• {{t}}</span></sc-for></span>
                 </div>
               </sc-if>
@@ -1990,7 +1988,6 @@ const HIST = [[2020, 826.3, 413.5, 412.8], [2021, 901.02, 447, 454], [2022, 1207
     // 4. kesiapan
     const tile = (l, v, sub, src, nat) => ({ l, v: v == null ? BT : v, vc: v == null ? '#64748B' : '#0F172A', bg: v == null ? '#F8FAFC' : '#FFFFFF', bd: v == null ? '1px dashed #CBD5E1' : '1px solid #E3E8F0', sub, src, nat: nat || '' });
     const kes = [
-      tile('Rasio ketergantungan (0–14 & 65+ th)', dh.up, 'tiap 100 jiwa usia 15–64 · ' + dP.upSrc, 'BPS', 'Nasional 68,94% (SUPAS 2025)'),
       tile('Rata-rata upah buruh', 'Rp' + nf(({ dki: 5420000, jabar: 3380000, jateng: 2540000, jatim: 2730000, sumut: 3010000 })[dp] || 0), 'per bulan · data simulasi · UMP 2026 ' + dh.ump + ' sebagai acuan', 'BPS/Sakernas (simulasi)', 'Nasional Rp3.330.000 (simulasi)'),
       tile('Tingkat pengangguran terbuka', dK.tpt != null ? nf(dK.tpt, 2) + '%' : null, 'Februari 2026', 'BPS (Sakernas)', 'Nasional 4,68%'),
       tile('Angkatan kerja', dK.ak != null ? nf(dK.ak, dK.ak % 1 ? 2 : 0) + ' juta' : null, dK.akPer || 'Februari 2026', 'BPS (Sakernas)', ''),
@@ -2001,20 +1998,19 @@ const HIST = [[2020, 826.3, 413.5, 412.8], [2021, 901.02, 447, 454], [2022, 1207
       tile('Lahan siap bangun', nf(dK.lan) + ' ha', 'di kawasan industri', 'Kemenperin', 'Nasional 27.180 ha'),
       tile('Isu sosial aktif', isuAll.length + ' isu', EWS[dp] ? 'termasuk penanda EWS aktif' : 'dipantau, tanpa EWS aktif', 'Berita daring', '')
     ];
-    kes[1].vc = '#0F172A'; kes[1].bg = '#FFFFFF'; kes[1].bd = '1px solid #E3E8F0';
-    kes[7].vc = '#0F172A'; kes[7].bg = '#FFFFFF'; kes[7].bd = '1px solid #E3E8F0';
+    kes[0].vc = '#0F172A'; kes[0].bg = '#FFFFFF'; kes[0].bd = '1px solid #E3E8F0';
+    kes[6].vc = '#0F172A'; kes[6].bg = '#FFFFFF'; kes[6].bd = '1px solid #E3E8F0';
     // bullet bar: 'cmp' = nilai provinsi vs penanda nasional; 'share' = porsi dari total nasional
     const UPAHP = ({ dki: 5420000, jabar: 3380000, jateng: 2540000, jatim: 2730000, sumut: 3010000 })[dp] || 0;
     const bul = (i, kind, pv, nv, max, lbl, good) => { if (pv == null || !nv) return; const k = kes[i];
       k.hasB = true; k.bw = Math.max(2, Math.min(100, kind === 'share' ? (pv / nv) * 100 * (max || 1) : (pv / max) * 100)) + '%';
       k.mk = kind === 'cmp' ? (nv / max) * 100 + '%' : '0%'; k.mkOn = kind === 'cmp'; k.bl = lbl; k.bc = good == null ? '#1E40AF' : good ? '#15803D' : '#B45309'; };
-    bul(0, 'cmp', dP.up, 68.94, 100, 'nasional 68,94%', dP.up <= 68.94);
-    bul(1, 'cmp', UPAHP, 3330000, Math.max(UPAHP, 3330000) * 1.25, 'nasional Rp3,33 jt (simulasi)', null);
-    bul(2, 'cmp', dK.tpt, 4.68, 10, 'nasional 4,68%', dK.tpt != null && dK.tpt <= 4.68);
-    bul(3, 'share', dK.ak, 155.4, 4, nf((dK.ak / 155.4) * 100, 1) + '% dari angkatan kerja nasional', null);
-    bul(4, 'share', dK.smk[0], 10482, 4, nf((dK.smk[0] / 10482) * 100, 1) + '% dari SMK nasional', null);
-    bul(6, 'share', dK.ki, 173, 3, nf(((dK.ki || 0) / 173) * 100, 1) + '% dari kawasan industri nasional', null);
-    bul(8, 'share', dK.lan, 27180, 3, nf((dK.lan / 27180) * 100, 1) + '% dari lahan siap bangun nasional', null);
+    bul(0, 'cmp', UPAHP, 3330000, Math.max(UPAHP, 3330000) * 1.25, 'nasional Rp3,33 jt (simulasi)', null);
+    bul(1, 'cmp', dK.tpt, 4.68, 10, 'nasional 4,68%', dK.tpt != null && dK.tpt <= 4.68);
+    bul(2, 'share', dK.ak, 155.4, 4, nf((dK.ak / 155.4) * 100, 1) + '% dari angkatan kerja nasional', null);
+    bul(3, 'share', dK.smk[0], 10482, 4, nf((dK.smk[0] / 10482) * 100, 1) + '% dari SMK nasional', null);
+    bul(5, 'share', dK.ki, 173, 3, nf(((dK.ki || 0) / 173) * 100, 1) + '% dari kawasan industri nasional', null);
+    bul(7, 'share', dK.lan, 27180, 3, nf((dK.lan / 27180) * 100, 1) + '% dari lahan siap bangun nasional', null);
     kes.forEach((k) => { if (!k.hasB) { k.hasB = false; k.bl = k.nat; k.bw = '0%'; k.mk = '0%'; k.mkOn = false; k.bc = '#1E40AF'; } k.noB = !k.hasB; k.tip = k.sub + ' · Sumber: ' + k.src; });
     // 5. proyek
     const pq = st.pq || '';
@@ -2215,13 +2211,12 @@ const ewsClose = () => this.setState({ ews: null });
       { l: 'Peringkat PDRB', v: 'Peringkat ' + pCur.rank, s: 'dari 38 provinsi' },
       { l: 'Penduduk', v: nf(pCur.pop) + ' jiwa', s: pCur.popSrc },
       { l: 'UMP 2026', v: 'Rp' + nf(pCur.ump25, 2) + ' T', s: 'UMP 2025 Rp' + nf(pCur.ump, 2) + ' T' },
-      { l: 'Rasio ketergantungan', v: nf(pCur.up, 2) + '%', s: pCur.upSrc },
       { l: 'Investasi tw II 2026', v: 'Rp' + nf(pCur.inv ? pCur.inv.p : 0, 1) + ' T', s: pCur.invNote || EST_SRC }
     ] : [];
     const pMeta = pCur ? [
       { l: 'Kode wilayah', v: pCur.id.toUpperCase() }, { l: 'Peringkat nasional', v: String(pCur.rank) }, { l: 'Porsi nasional', v: nf(pCur.share, 2) + '%' },
       { l: 'PDRB per kapita', v: 'Rp' + nf(pCur.pdrb * 1e12 / Math.max(1, pCur.pop) / 1e6, 2) + ' juta' }, { l: 'Penduduk', v: nf(pCur.pop) + ' jiwa' },
-      { l: 'UMP 2026', v: 'Rp' + nf(pCur.ump25, 2) + ' T' }, { l: 'Rasio ketergantungan', v: nf(pCur.up, 2) + '%' },
+      { l: 'UMP 2026', v: 'Rp' + nf(pCur.ump25, 2) + ' T' },
       { l: 'Investasi tw II 2026', v: 'Rp' + nf(pCur.inv ? pCur.inv.p : 0, 1) + ' T' }, { l: 'Investasi PMA tw II 2026', v: 'Rp' + nf(pCur.inv ? pCur.inv.a : 0, 1) + ' T' }
     ] : [];
 
@@ -2263,9 +2258,9 @@ const ewsClose = () => this.setState({ ews: null });
       ]
     };
     const PRJD = (PRJP[dp] || []).map((x) => ({ ...x, wil: dh.n, src: 'Data simulasi · format profil peluang investasi daerah' }));
-    const PJ_KEYS = [['n', 'Nama proyek'], ['lok', 'Lokasi'], ['wil', 'Provinsi'], ['sek', 'Sektor'], ['nilai', 'Nilai investasi'], ['dana', 'Kebutuhan dana'], ['durasi', 'Durasi proyek'], ['kerja', 'Tenaga kerja'], ['tahap', 'Tahap saat ini'], ['sts', 'Status'], ['src', 'Sumber data']];
+    const PJ_KEYS = [['n', 'Nama proyek'], ['lok', 'Lokasi'], ['wil', 'Provinsi'], ['sek', 'Sektor'], ['nilai', 'Nilai investasi'], ['dana', 'Kebutuhan dana'], ['durasi', 'Durasi proyek'], ['tahap', 'Tahap saat ini'], ['src', 'Sumber data']];
     const PJC = ['#1E3A8A', '#1E40AF', '#2563EB', '#3B82F6', '#0EA5E9', '#047857', '#B45309', '#6D28D9', '#334155'];
-    const prjCards = PRJD.map((p, i) => ({ no: i + 1, c: PJC[i % PJC.length], bw: (p.nv / Math.max(...PRJD.map((x) => x.nv), 1)) * 100 + '%', bc: p.sts === 'Mencari investor' ? '#D4A72C' : '#1E40AF', rbg: st.pjO === i ? '#F8FAFC' : 'transparent', open: st.pjO === i, ax: st.pjO === i ? 'true' : 'false', cbg: st.pjO === i ? '#F5F9FF' : '#FFFFFF', cbd: st.pjO === i ? '#93C5FD' : '#E3E8F0', sbg: p.sts === 'Mencari investor' ? '#FEF3C7' : '#DBEAFE', stc: p.sts === 'Mencari investor' ? '#B45309' : '#1D4ED8', tg: () => this.setState({ pjO: st.pjO === i ? null : i }), tl: st.pjO === i ? 'Tutup rincian ▴' : 'Lihat rincian ▾', p: Object.assign({}, p, { kv: [['Nilai investasi', p.nilai], ['Tenaga kerja', p.kerja], ['Tahap', p.tahap]].map((x) => ({ l: x[0], v: x[1] })), kv2: [['Kebutuhan dana', p.dana], ['Durasi proyek', p.durasi]].map((x) => ({ l: x[0], v: x[1] })) }) }));
+    const prjCards = PRJD.map((p, i) => ({ no: i + 1, c: PJC[i % PJC.length], bw: (p.nv / Math.max(...PRJD.map((x) => x.nv), 1)) * 100 + '%', bc: '#1E40AF', rbg: st.pjO === i ? '#F8FAFC' : 'transparent', open: st.pjO === i, ax: st.pjO === i ? 'true' : 'false', cbg: st.pjO === i ? '#F5F9FF' : '#FFFFFF', cbd: st.pjO === i ? '#93C5FD' : '#E3E8F0', tg: () => this.setState({ pjO: st.pjO === i ? null : i }), tl: st.pjO === i ? 'Tutup rincian ▴' : 'Lihat rincian ▾', p: Object.assign({}, p, { kv: [['Nilai investasi', p.nilai], ['Tahap', p.tahap]].map((x) => ({ l: x[0], v: x[1] })), kv2: [['Kebutuhan dana', p.dana], ['Durasi proyek', p.durasi]].map((x) => ({ l: x[0], v: x[1] })) }) }));
     
 
     // ============ Insight AI ringkas per card (preskriptif) ============
@@ -2289,8 +2284,8 @@ const ewsClose = () => this.setState({ ews: null });
         'Bandingkan capaian antarprovinsi setiap triwulan.'
       ],
       proyek: PRJD.length ? [
-        PRJD.length + ' proyek di ' + dh.n + ' bernilai total Rp' + nf(PRJD.reduce((a, x) => a + x.nv, 0), 1) + ' triliun dan berpotensi menyerap ' + nf(PRJD.reduce((a, x) => a + x.kj, 0)) + ' tenaga kerja.',
-        PRJD.filter((x) => x.sts === 'Proyek siap ditawarkan').length + ' proyek siap ditawarkan; ' + PRJD.filter((x) => x.sts === 'Mencari investor').length + ' masih mencari investor dan perlu dipromosikan di forum bisnis.',
+        PRJD.length + ' proyek di ' + dh.n + ' bernilai total Rp' + nf(PRJD.reduce((a, x) => a + x.nv, 0), 1) + ' triliun.',
+        'Promosikan seluruh profil proyek di forum bisnis dan misi investasi.',
         'Proyek terbesar: ' + PRJD.slice().sort((a, b) => b.nv - a.nv)[0].n + ' (' + PRJD.slice().sort((a, b) => b.nv - a.nv)[0].nilai + '); pastikan kesiapan lahan dan perizinan sebelum ditawarkan.'
       ] : ['Belum ada profil proyek untuk provinsi ini.'],
       // insight dinamis halaman rinci provinsi
@@ -2351,12 +2346,13 @@ const ewsClose = () => this.setState({ ews: null });
     };
     // ---- Proyek siap investasi per provinsi (Top 5) ----
     const prjSum = (() => {
+      const all = TOP5.reduce((a, id) => a.concat(PRJP[id] || []), []), allV = all.reduce((a, x) => a + x.nv, 0) || 1;
       const items = TOP5.map((id) => {
-        const L = PRJP[id] || [], big = L.slice().sort((x, y) => y.nv - x.nv)[0], m = L.filter((x) => x.sts === 'Mencari investor').length;
-        return { bw: (L.reduce((a, x) => a + x.nv, 0) / 22) * 100 + '%', n: P[id].n, k: L.length, v: nf(L.reduce((a, x) => a + x.nv, 0), 1), kj: nf(L.reduce((a, x) => a + x.kj, 0)), m, top: big ? big.n + ' (' + big.nilai + ')' : '–',
-          cb: m >= 2 ? '#FEF3C7' : '#DBEAFE', cc: m >= 2 ? '#B45309' : '#1D4ED8', go: () => this.setState({ view: 'detail', dp: id, pop: false }) };
+        const L = PRJP[id] || [], big = L.slice().sort((x, y) => y.nv - x.nv)[0], v = L.reduce((a, x) => a + x.nv, 0);
+        // Batang = porsi nilai provinsi terhadap total nilai proyek Top 5
+        return { bw: (v / allV) * 100 + '%', sh: nf((v / allV) * 100, 1) + '%', n: P[id].n, k: L.length, v: nf(v, 1), top: big ? big.n + ' (' + big.nilai + ')' : '–',
+          go: () => this.setState({ view: 'detail', dp: id, pop: false }) };
       });
-      const all = TOP5.reduce((a, id) => a.concat(PRJP[id] || []), []);
       return { items, tot: all.length + ' proyek · Rp' + nf(all.reduce((a, x) => a + x.nv, 0), 1) + ' T · data simulasi' };
     })();
     // ---- Ringkasan Informasi (atensi Presiden) ----
@@ -2370,7 +2366,7 @@ const ewsClose = () => this.setState({ ews: null });
       { l: 'Porsi PMA', v: '50,4%', s: 'US$14,41 miliar ≈ Rp257,7 T', st: 'watch', a: 'Hong Kong & Singapura 59,4% PMA; perluas negara asal investor.', go: riGo('sec-nasional') },
       { l: 'Konsentrasi PDRB', v: '57,32%', s: 'disumbang 5 provinsi terbesar', st: 'warn', a: 'Arahkan insentif ke provinsi di luar lima besar.', go: riGo('sec-peta') },
       { l: 'Sebaran PMDN', v: '66,6%', s: 'terkumpul di 4 wilayah', st: 'warn', a: 'Kalimantan, Sulawesi, Bali–Nusra hanya 21,5% PMDN.', go: riGo('sec-nasional') },
-      { l: 'Proyek siap investasi (Top 5)', v: riPrj.length + ' proyek', s: 'Rp' + nf(riPrj.reduce((a, x) => a + x.nv, 0), 1) + ' T · data simulasi', st: 'watch', a: riPrj.filter((x) => x.sts === 'Mencari investor').length + ' proyek masih mencari investor; promosikan di forum bisnis.', go: () => this.setState({ view: 'detail', dp: 'dki', pop: false }) }
+      { l: 'Proyek siap investasi (Top 5)', v: riPrj.length + ' proyek', s: 'Rp' + nf(riPrj.reduce((a, x) => a + x.nv, 0), 1) + ' T · data simulasi', st: 'watch', a: 'Promosikan profil proyek Top 5 di forum bisnis dan misi investasi.', go: () => this.setState({ view: 'detail', dp: 'dki', pop: false }) }
     ]);
     return {
       mini,
