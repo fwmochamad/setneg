@@ -831,20 +831,21 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
                   <div style="display: flex; justify-content: space-between; gap: 8px; font-size: 10.5px; font-weight: 600;"><span style="color: {{ch.uLc}};">{{ch.uL}}</span><span style="color: {{ch.uRc}};">{{ch.uR}}</span></div>
                   <div style="display: flex; gap: 8px;">
                     <div style="flex: none; width: 44px; height: 180px; display: flex; flex-direction: column; justify-content: space-between; text-align: right; font-size: 10.5px; color: {{ch.uLc}};"><sc-for list="{{ch.yt}}" as="y" hint-placeholder-count="4"><span style="line-height: 1;">{{y}}</span></sc-for></div>
-                    <div style="position: relative; flex: 1; min-width: 0; height: 180px;">
+                    <div style="position: relative; flex: 1; min-width: 0; height: 180px; margin-right: 28px;">
                       <svg sc-camel-view-box="0 0 600 180" sc-camel-preserve-aspect-ratio="none" aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; overflow: visible;">
                         <path d="M0 0.5H600M0 60H600M0 120H600" stroke="#EEF2F7" fill="none" vector-effect="non-scaling-stroke"></path>
                         <path d="M0 179.5H600" stroke="#CBD5E1" fill="none" vector-effect="non-scaling-stroke"></path>
                         <path d="{{ch.selD}}" stroke="#94A3B8" stroke-dasharray="3 3" fill="none" vector-effect="non-scaling-stroke"></path>
-                        <sc-for list="{{ch.lines}}" as="ln" hint-placeholder-count="1"><path d="{{ln.d}}" fill="none" stroke="{{ln.c}}" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke"></path></sc-for>
+                        <sc-for list="{{ch.lines}}" as="ln" hint-placeholder-count="1"><path d="{{ln.d}}" fill="none" stroke="{{ln.c}}" stroke-width="{{ln.w}}" stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke"></path></sc-for>
                       </svg>
+                      <sc-for list="{{ch.tags}}" as="tg" hint-placeholder-count="0"><span aria-hidden="true" style="position: absolute; left: {{tg.l}}; top: {{tg.t}}; transform: translate(6px, -50%); font-size: 10px; font-weight: {{tg.fw}}; color: {{tg.c}}; background: rgba(255,255,255,.85); padding: 0 2px; border-radius: 3px; pointer-events: none; z-index: 1;">{{tg.txt}}</span></sc-for>
                       <sc-for list="{{ch.pts}}" as="p" hint-placeholder-count="12">
                         <span class="tip" tabindex="0" sc-camel-on-click="{{p.pick}}" style="position: absolute; left: {{p.l}}; top: {{p.t}}; width: 18px; height: 18px; margin-left: -9px; margin-top: -9px; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: {{p.z}};"><span class="pt" style="display: block; width: {{p.s}}; height: {{p.s}}; border-radius: 99px; background: {{p.bg}}; border: 2px solid {{p.c}}; box-sizing: border-box;"></span><span class="pop {{p.pc}}" style="width: 210px;">{{p.tip}}</span></span>
                       </sc-for>
                     </div>
                     <sc-if value="{{ch.dual}}" hint-placeholder-val="{{false}}"><div style="flex: none; width: 44px; height: 180px; display: flex; flex-direction: column; justify-content: space-between; text-align: left; font-size: 10.5px; color: {{ch.uRc}};"><sc-for list="{{ch.ytR}}" as="y" hint-placeholder-count="4"><span style="line-height: 1;">{{y}}</span></sc-for></div></sc-if>
                   </div>
-                  <div style="position: relative; height: 16px; margin-left: 52px; margin-right: {{ch.mr}};">
+                  <div style="position: relative; height: 16px; margin-left: 52px; margin-right: calc({{ch.mr}} + 28px);">
                     <sc-for list="{{ch.xs}}" as="x" hint-placeholder-count="12"><span style="position: absolute; left: {{x.x}}; transform: translateX(-50%); font-size: 10.5px; color: {{x.c}}; font-weight: {{x.fw}}; white-space: nowrap;">{{x.l}}</span></sc-for>
                   </div>
                   <div style="font-size: 11px; color: #94A3B8; display: flex; align-items: center;">Catatan data<span class="tip info-i" tabindex="0" aria-label="Catatan data">i<span class="pop">{{ch.note}}</span></span></div>
@@ -1263,9 +1264,9 @@ class Component extends DCLogic {
     const lineCard = (kind) => {
       const SER2 = Object.assign({}, SER);
       const perKey = kind === 'kerja' ? 'perK' : 'perW', ptKey = kind === 'kerja' ? 'ptK' : 'ptW';
-      const per = st[perKey] ?? 12;
-      const perOpts = [[6, '6 bulan'], [12, '12 bulan'], [0, 'Semua']].map(([v, l]) => ({ l, bg: per === v ? '#FFFFFF' : 'transparent', fg: per === v ? '#1E40AF' : '#475569', pick: () => this.setState({ [perKey]: v }) }));
-      let wil, keys = [];
+      const per = kind === 'wisata' ? (st[perKey] === 'y1' ? 'y1' : 'y5') : (st[perKey] ?? 12);
+      const perOpts = (kind === 'wisata' ? [['y1', 'Tahunan'], ['y5', '5 Tahun']] : [[6, '6 bulan'], [12, '12 bulan'], [0, 'Semua']]).map(([v, l]) => ({ l, bg: per === v ? '#FFFFFF' : 'transparent', fg: per === v ? '#1E40AF' : '#475569', pick: () => this.setState({ [perKey]: v }) }));
+      let wil, keys = [], wTourNote = '';
       if (kind === 'kerja') {
         keys = WK[wilK][1];
         wil = { lab: 'Kereta', v: wilK, opts: Object.entries(WK).map(([v, x]) => ({ v, l: x[0] })), note: 'Pilih kereta untuk melihat tren penumpang bulanannya; data tersedia per koridor, belum per provinsi.', on: (e) => { if (e && e.target) this.setState({ wilK: e.target.value }); } };
@@ -1279,9 +1280,73 @@ class Component extends DCLogic {
         const wTour = (v) => (v === 'nas' ? null : tSh[v] || 0);
         const TOPW = D.PV.map((r) => ({ n: r[1], sh: r[3] / POPT })).sort((a, b) => b.sh - a.sh).slice(0, 10).map((r) => r.n);
         const tPick = st.wilT && tSh[st.wilT] != null ? st.wilT : 'nas';
+        wTourNote = tPick === 'nas' ? '' : 'Nilai provinsi = agregat nasional × bobot penduduk.';
         SER2.wis = Object.assign({}, SER2.wis, { data: scaleSer(D.WIS, wTour(tPick)), der: {} });
         SER2.udr = Object.assign({}, SER2.udr, { data: scaleSer(D.UDR, wTour(tPick)), der: {} });
         wil = { lab: 'Wilayah', v: tPick, opts: [{ v: 'nas', l: 'Nasional' }].concat(TOPW.map((n) => ({ v: n, l: n }))), note: tPick === 'nas' ? 'Agregat nasional; 10 provinsi dengan bobot penduduk terbesar dapat dipilih.' : 'Estimasi: agregat nasional dikalikan bobot penduduk ' + nf(tSh[tPick] * 100, 1) + '%.', on: (e) => { if (e && e.target) this.setState({ wilT: e.target.value }); } };
+      }
+      if (kind === 'wisata') {
+        // Tahunan = 2026 vs 2025; 5 Tahun = 2026 vs 2021–2025. Sumbu Jan–Des, satu garis per tahun.
+        // Bulan yang ada di rilis BPS memakai angka rilis; bulan lain direkonstruksi dari
+        // total tahunan (estimasi) × pola musiman seri rilis, jadi bersifat simulasi.
+        const YRS = [2021, 2022, 2023, 2024, 2025, 2026], SHOW = per === 'y1' ? [2025, 2026] : YRS;
+        const YC = { 2025: '#475569', 2024: '#8492A6', 2023: '#A3AEBE', 2022: '#BDC6D3', 2021: '#D3DAE3' };
+        const ANN = { wis: { 2021: 613.3, 2022: 734.9, 2023: 825.8, 2024: 1022.0, 2025: 1115.0 }, udr: { 2021: 32.3, 2022: 52.5, 2023: 62.0, 2024: 64.0, 2025: 61.0 } };
+        const MM = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
+        const ptM = /^2026-\d\d$/.test(st[ptKey] || '') ? st[ptKey].slice(5) : null;
+        const histOf = (k) => {
+          const S = SER2[k], real = {};
+          S.data.forEach((r) => { if (r[1] != null) real[r[0]] = r[1]; });
+          const nat = {};
+          (k === 'wis' ? D.WIS : D.UDR).forEach((r) => { if (r[1] != null) nat[r[0]] = r[1]; });
+          const kw = Object.keys(nat).length ? (real[Object.keys(nat).pop()] || 0) / nat[Object.keys(nat).pop()] : 1;
+          const sm = MM.map((m) => { const v = Object.keys(nat).filter((x) => x.slice(5) === m).map((x) => nat[x]); return v.length ? v.reduce((a, b) => a + b, 0) / v.length : null; });
+          const sMean = sm.filter((v) => v != null).reduce((a, b) => a + b, 0) / sm.filter((v) => v != null).length;
+          const si = sm.map((v) => (v == null ? 1 : v / sMean));
+          const ser = {};
+          YRS.forEach((y) => {
+            const w = si.map((v, i) => (y === 2021 && (i === 6 || i === 7) ? v * 0.6 : v)); // PPKM Jul–Agt 2021
+            const wSum = w.reduce((a, b) => a + b, 0);
+            ser[y] = MM.map((m, i) => {
+              const key = y + '-' + m;
+              if (real[key] != null) return { v: real[key], est: false };
+              if (y === 2026) return null;
+              return { v: Math.round((ANN[k][y] * kw * w[i] / wSum) * 100) / 100, est: true };
+            });
+          });
+          return ser;
+        };
+        const lastM26 = MM.filter((m) => keys.some((k) => SER2[k].data.some((r) => r[0] === '2026-' + m && r[1] != null))).pop() || '01';
+        const selM = ptM || lastM26, selI = MM.indexOf(selM);
+        const xpY = (i) => i / 11;
+        const H = {};
+        keys.forEach((k) => { H[k] = histOf(k); });
+        const charts = keys.map((k) => {
+          const S = SER2[k], ser = H[k];
+          const all = SHOW.flatMap((y) => ser[y].filter(Boolean).map((o) => o.v));
+          const mx = Math.max(...all), mn = Math.min(...all), pad = (mx - mn) * 0.12 || 1, lo = Math.max(0, mn - pad), hi = mx + pad;
+          const yp = (v) => 1 - (v - lo) / (hi - lo);
+          const pathOf = (arr) => { let d = '', pen = false; arr.forEach((o, i) => { if (!o) { pen = false; return; } d += (pen ? 'L' : 'M') + (xpY(i) * 600).toFixed(1) + ' ' + (yp(o.v) * 180).toFixed(1); pen = true; }); return d || 'M0 0'; };
+          const lines = SHOW.slice(0, -1).map((y) => ({ d: pathOf(ser[y]), c: YC[y], w: '1.5' })).concat([{ d: pathOf(ser[2026]), c: S.c, w: '2.75' }]);
+          const tags = SHOW.map((y) => { const arr = ser[y]; const li = arr.map((o, i) => (o ? i : -1)).filter((i) => i >= 0).pop(); if (li == null) return null;
+            return { l: (xpY(li) * 100).toFixed(2) + '%', t: +(yp(arr[li].v) * 100).toFixed(2), txt: String(y), c: y === 2026 ? S.c : YC[y] === '#D3DAE3' || YC[y] === '#BDC6D3' ? '#94A3B8' : YC[y], fw: y === 2026 ? 700 : 600 }; }).filter(Boolean);
+          // jarakkan label tahun yang berujung di bulan sama agar tidak saling menimpa (min 7% tinggi)
+          tags.slice().sort((x, y) => parseFloat(x.l) - parseFloat(y.l) || x.t - y.t).forEach((tg, i, arr) => { const pv = arr[i - 1]; if (pv && pv.l === tg.l && tg.t - pv.t < 7) tg.t = (+pv.t + 7).toFixed(2); });
+          tags.forEach((tg) => { tg.t = tg.t + '%'; });
+          const pts = ser[2026].map((o, i) => (o ? { l: (xpY(i) * 100).toFixed(2) + '%', t: (yp(o.v) * 100).toFixed(2) + '%', s: i === selI ? '12px' : '9px', bg: i === selI ? S.c : '#E7F1E9', c: S.c, z: 3, pc: xpY(i) < 0.5 ? 'pl' : '',
+            tip: S.n + ' · ' + MON[i] + ' 2026 · ' + nf(o.v, S.dec) + ' ' + S.u + (ser[2025][i] ? ' · ' + sgn(((o.v - ser[2025][i].v) / ser[2025][i].v) * 100, 1) + '% yoy' : ''), pick: () => this.setState({ [ptKey]: '2026-' + MM[i] }) } : null)).filter(Boolean);
+          const v26 = ser[2026][selI], v25 = ser[2025][selI], v21 = ser[2021][selI];
+          return { selD: 'M' + (xpY(selI) * 600).toFixed(1) + ' 0V180',
+            xs: MM.map((m, i) => ({ x: (xpY(i) * 100).toFixed(2) + '%', l: MON[i], c: i === selI ? '#1E40AF' : '#64748B', fw: i === selI ? 700 : 400 })),
+            legend: [{ c: S.c, n: S.n, w: S.wil + (per === 'y1' ? ' · 2026 vs 2025' : ' · 2026 vs 2021–2025') }], lines, pts, tags, uR: '', ytR: [], dual: false, mr: '0px', uLc: '#64748B', uRc: '#64748B',
+            uL: S.u + ' per bulan', yt: [hi, lo + ((hi - lo) * 2) / 3, lo + (hi - lo) / 3, lo].map((v) => nf(v, S.dec > 1 ? 1 : 0)),
+            last: v26 ? MON[selI] + ' 2026: ' + nf(v26.v, S.dec) + (v25 ? ' · ' + sgn(((v26.v - v25.v) / v25.v) * 100, 1) + '% vs 2025' : '') : MON[selI] + ' 2026 belum tersedia',
+            note: (per === 'y1' ? 'Garis tebal = 2026; garis abu-abu = 2025.' : 'Garis tebal = 2026; garis abu-abu = 2021–2025 (makin muda makin lama).') + ' Label tahun di ujung garis.'+' Bulan yang belum ada di rilis BPS (2021–2024 dan sebagian 2025) direkonstruksi dari total tahunan × pola musiman seri rilis (simulasi); Jul–Agt 2021 disesuaikan untuk PPKM.' + (wTourNote ? ' ' + wTourNote : ''),
+            _y: { v26, v25, v21, S } };
+        });
+        const rd = { l: MON[selI] + ' 2026', items: charts.map((c) => { const { v26, v25, v21, S } = c._y;
+          return { n: S.n, v: v26 ? nf(v26.v, S.dec) : BT, u: v26 ? S.u : '', d: v26 && v25 ? sgn(((v26.v - v25.v) / v25.v) * 100, 1) + '% vs 2025' : '', dn: per === 'y5' && v26 && v21 ? '(' + sgn(((v26.v - v21.v) / v21.v) * 100, 0) + '% vs 2021)' : '' }; }) };
+        return { perOpts, wil, charts, rd, tr: Object.assign({}, TR[kind], { per: per === 'y1' ? 'bulanan 2025–2026' : 'bulanan 2021–2026 (2021–2025 sebagian estimasi)' }) };
       }
       let axis = [...new Set(keys.flatMap((k) => SER2[k].data.map((r) => r[0])))].sort();
       if (per) axis = axis.slice(-per);
@@ -1344,7 +1409,7 @@ class Component extends DCLogic {
       })() : keys.map((k) => {
         const g = serGeo(k);
         return Object.assign(chartBase(), single, {
-          legend: [{ c: g.c, n: g.S.n, w: g.S.wil, dash: '' }], lines: [{ d: g.d, c: g.c }], pts: g.pts,
+          legend: [{ c: g.c, n: g.S.n, w: g.S.wil, dash: '' }], lines: [{ d: g.d, c: g.c, w: '2.25' }], pts: g.pts, tags: [],
           uL: g.S.u + ' per bulan', yt: g.yt,
           last: g.last, note: g.notes.join(' ') || 'Seri lengkap untuk periode terpilih.'
         });

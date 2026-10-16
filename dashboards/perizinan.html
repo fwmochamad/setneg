@@ -749,59 +749,6 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
       </section>
     </div>
 
-    <!-- 5. Keterkaitan hambatan izin & regulasi -->
-    <section id="sec-hambatan" style="background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; box-shadow: 0 1px 2px rgba(15,23,42,.05); display: flex; flex-direction: column; scroll-margin-top: 16px;">
-      <div style="padding: 12px 18px; border-bottom: 1px solid #EEF2F7; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px;">
-        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px;"><h2 style="margin: 0; font-size: 14.5px; font-weight: 600;">Keterkaitan hambatan izin &amp; regulasi</h2></div>
-        <div style="display: flex; flex-wrap: wrap; gap: 6px;"><sc-for list="{{c5f}}" as="f" hint-placeholder-count="4"><button type="button" sc-camel-on-click="{{f.pick}}" style="height: 28px; padding: 0 10px; border-radius: 99px; border: 1px solid {{f.bd}}; background: {{f.bg}}; color: {{f.fg}}; font-family: inherit; font-size: 11.5px; font-weight: 600; cursor: pointer;">{{f.l}} · {{f.n}}</button></sc-for></div>
-      </div>
-      <div style="padding: 14px 18px 0; display: flex; flex-direction: column; gap: 5px;">
-        <span style="font-size: 11px; font-weight: 700; color: #475569;">Regulasi yang paling sering terkait hambatan</span>
-        <sc-for list="{{regBars}}" as="r" hint-placeholder-count="4"><div style="display: grid; grid-template-columns: 140px minmax(0, 1fr) 70px; gap: 8px; align-items: center; font-size: 11.5px; color: #334155;"><b>{{r.l}}</b><span style="display: block; height: 10px; border-radius: 5px; background: #EEF2F7;"><span style="display: block; width: {{r.w}}; height: 10px; border-radius: 5px; background: #1E40AF;"></span></span><span style="text-align: right; color: #475569;">{{r.n}} kasus</span></div></sc-for>
-      </div>
-      <div style="padding: 16px 18px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 14px;">
-        <sc-for list="{{hb}}" as="h" hint-placeholder-count="4">
-          <div style="padding: 14px; border-radius: 10px; border: 1px solid #E3E8F0; border-left: 4px solid {{h.lb}}; background: {{h.bg}}; display: flex; flex-direction: column; gap: 10px;">
-            <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;">
-              <div style="min-width: 0;"><b style="font-size: 13.5px; line-height: 19px;">{{h.t}}</b><div style="font-size: 11.5px; color: #64748B;">{{h.meta}}</div></div>
-              <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 6px; flex: none;">
-                <sc-if value="{{h.ews}}" hint-placeholder-val="{{true}}"><span class="tip" tabindex="0" style="display: inline-flex; align-items: center; gap: 5px; height: 24px; padding: 0 9px; border-radius: 6px; background: #DC2626; color: #FFFFFF; font-size: 11px; font-weight: 700; cursor: help;">● EWS<span class="pop"><b style="color: #FFFFFF;">Alasan:</b> {{h.ewsA}}<br><b style="color: #FFFFFF;">Sumber:</b> {{h.ewsS}}<br><b style="color: #FFFFFF;">Waktu:</b> {{h.ewsW}}<br><span style="color: #FCA5A5;">Penanda tetap merah sampai ditindaklanjuti.</span></span></span></sc-if>
-                <span style="height: 22px; padding: 0 8px; border-radius: 6px; background: {{h.sbg}}; color: {{h.sfg}}; font-size: 11px; font-weight: 600; display: inline-flex; align-items: center; white-space: nowrap;">{{h.status}}</span>
-              </div>
-            </div>
-            <p title="{{h.d}}" style="margin: 0; font-size: 12.5px; line-height: 19px; color: #334155; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">{{h.d}}</p>
-            <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 6px; font-size: 11.5px; color: #475569;"><b style="font-size: 10.5px; letter-spacing: 0.4px;">REGULASI / PASAL</b><sc-for list="{{h.regs}}" as="r" hint-placeholder-count="2"><a href="{{r.href}}" title="{{r.t}}" style="height: 24px; padding: 0 9px; border-radius: 99px; border: 1px solid #B8E3DF; background: #FFFFFF; color: #1D4ED8; font-size: 11px; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center;">{{r.l}} →</a></sc-for></div>
-            
-            <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px; padding-top: 8px; border-top: 1px dashed #E3E8F0;">
-              <span style="height: 22px; padding: 0 8px; border-radius: 6px; background: #EEF2FF; border: 1px solid #C7D2FE; color: #3730A3; font-size: 11px; font-weight: 600; display: inline-flex; align-items: center;">{{h.ai}}</span>
-              <button type="button" sc-camel-on-click="{{h.toggle}}" style="padding: 0; border: 0; background: transparent; font-family: inherit; font-size: 12px; font-weight: 600; color: #1D4ED8; cursor: pointer;">{{h.tl}}</button>
-            </div>
-            <sc-if value="{{h.open}}" hint-placeholder-val="{{false}}">
-              <div style="display: flex; flex-direction: column; gap: 4px;"><b style="font-size: 10.5px; letter-spacing: 0.4px; color: #475569;">BUKTI</b><sc-for list="{{h.bukti}}" as="b" hint-placeholder-count="2"><div style="font-size: 12px; line-height: 17px; color: #334155;"><a href="{{b.href}}" target="{{b.tg}}" rel="noopener" sc-camel-on-click="{{b.act}}" style="font-weight: 600; text-decoration: none;">{{b.l}} {{b.ic}}</a> <span style="color: #64748B;">· {{b.d}}</span></div></sc-for></div>
-              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px;">
-                <div style="padding: 10px 12px; border-radius: 8px; background: #F5F7FF; border: 1px dashed #A5B4FC;"><div style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.4px; color: #3730A3;">ANALISIS AI</div><p style="margin: 4px 0 0; font-size: 12px; line-height: 18px; color: #1E293B;">{{h.an}}</p></div>
-                <div style="padding: 10px 12px; border-radius: 8px; background: #F8FAFC; border: 1px solid #E3E8F0;"><div style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.4px; color: #475569;">INSTANSI PENGAMPU</div><p style="margin: 4px 0 0; font-size: 12px; line-height: 18px; color: #1E293B;">{{h.pj}}</p><div style="margin-top: 6px; font-size: 11px; color: #64748B;">Teridentifikasi {{h.tgl}}</div></div>
-              </div>
-            </sc-if>
-          </div>
-        </sc-for>
-        <sc-if value="{{c5empty}}" hint-placeholder-val="{{false}}"><div style="padding: 24px 16px; border-radius: 10px; border: 1px dashed #CBD5E1; background: #F8FAFC; text-align: center; font-size: 12.5px; color: #475569;">Tidak ada keterkaitan dengan status ini.</div></sc-if>
-      </div>
-        <sc-if value="{{c5HasPages}}" hint-placeholder-val="{{false}}">
-          <div role="navigation" aria-label="Navigasi kartu hambatan" style="padding: 0 18px 14px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px;">
-            <span style="font-size: 11.5px; color: #64748B;">Halaman {{c5PageLabel}} · {{c5Count}} isu</span>
-            <div style="display: flex; align-items: center; gap: 6px;">
-              <sc-if value="{{c5CanPrev}}" hint-placeholder-val="{{true}}"><button type="button" sc-camel-on-click="{{c5Prev}}" style="height: 30px; padding: 0 10px; border: 1px solid #B8E3DF; border-radius: 7px; background: #FFFFFF; color: #1D4ED8; font-family: inherit; font-size: 11.5px; font-weight: 600; cursor: pointer;">‹ Sebelumnya</button></sc-if>
-              <sc-if value="{{c5NoPrev}}" hint-placeholder-val="{{false}}"><span aria-disabled="true" style="height: 30px; padding: 0 10px; border: 1px solid #E3E8F0; border-radius: 7px; background: #F8FAFC; color: #94A3B8; display: inline-flex; align-items: center; font-size: 11.5px;">‹ Sebelumnya</span></sc-if>
-              <sc-if value="{{c5CanNext}}" hint-placeholder-val="{{true}}"><button type="button" sc-camel-on-click="{{c5Next}}" style="height: 30px; padding: 0 10px; border: 1px solid #B8E3DF; border-radius: 7px; background: #FFFFFF; color: #1D4ED8; font-family: inherit; font-size: 11.5px; font-weight: 600; cursor: pointer;">Berikutnya ›</button></sc-if>
-              <sc-if value="{{c5NoNext}}" hint-placeholder-val="{{false}}"><span aria-disabled="true" style="height: 30px; padding: 0 10px; border: 1px solid #E3E8F0; border-radius: 7px; background: #F8FAFC; color: #94A3B8; display: inline-flex; align-items: center; font-size: 11.5px;">Berikutnya ›</span></sc-if>
-            </div>
-          </div>
-        </sc-if>
-      <div class="mzi"><span class="mzi-b">Insight AI</span><ul class="mzi-l"><sc-for list="{{kaitIns}}" as="i" hint-placeholder-count="3"><li>{{i}}</li></sc-for></ul><span class="mzi-s">Terverifikasi analis</span></div>
-      <div style="margin-top: auto; padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;" class="cf"><span><b style="color: #475569;">Diperbarui:</b> 12 Okt 2026</span><span><b style="color: #475569;">Sumber:</b> berita daring, OSS, JDIH</span><span class="chip" style="padding: 0 6px; border-radius: 4px; background: #EEF2FF; color: #3730A3; font-weight: 600;">Relasi AI · status review per kartu</span><span class="tip info-i" tabindex="0" aria-label="Keterangan">i<span class="pop">Periode: pemantauan mingguan s.d. 12 Okt 2026</span></span></div>
-    </section>
-
     <!-- 6. Tren kemudahan berusaha -->
     <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: stretch;">
       <section id="sec-tren" style="flex: 1 1 100%; min-width: 0; background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; box-shadow: 0 1px 2px rgba(15,23,42,.05); display: flex; flex-direction: column; scroll-margin-top: 16px;">
@@ -1318,7 +1265,7 @@ class Component extends DCLogic {
       { l: 'Waktu selesai', v: slaAll + ' HK', s: ewsJ.length + ' dari ' + JEN.length + ' jenis izin melewati SLA > ' + THR + '%', c: '#5B5B9A', bg: '#F8F8FC', bd: '#E5E5F1', ib: '#E8E8F4', ico: I_CLK, tt: 'Ke kartu waktu penyelesaian vs SLA', open: goSec('sec-sla') },
       { l: 'Permohonan tertahan', v: fN(nat4), s: pc(nat4, 11874) + ' dari 11.874 permohonan dalam proses', c: '#3D7A8C', bg: '#F6FAFB', bd: '#DFEBEF', ib: '#E1EFF3', ico: I_HG, tt: 'Ke kartu permohonan tertahan', open: goSec('sec-tertahan') },
       { l: 'Kepatuhan SLA', v: f1(natTw3) + '%', s: sg(natTw3 - TGW.all[1]) + ' poin vs target ' + TGW.all[1] + '%', c: '#3F7A75', bg: '#F6FAFA', bd: '#DDEBEA', ib: '#E0EFEE', ico: I_TG, tt: 'Ke kartu tren kemudahan berusaha', open: goSec('sec-tren') },
-      { l: 'Hambatan regulasi', v: HB.filter((h) => h.ews).length + ' EWS', s: nStat('Menunggu verifikasi') + ' menunggu verifikasi · ' + regTop[0] + ' paling terkait', c: '#9A4F5C', bg: '#FCF8F8', bd: '#EFE0E3', ib: '#F3E3E6', ico: I_LK, tt: 'Ke kartu keterkaitan hambatan izin & regulasi', open: goSec('sec-hambatan') }
+      { l: 'Hambatan regulasi', v: HB.filter((h) => h.ews).length + ' EWS', s: nStat('Menunggu verifikasi') + ' menunggu verifikasi · ' + regTop[0] + ' paling terkait', c: '#9A4F5C', bg: '#FCF8F8', bd: '#EFE0E3', ib: '#F3E3E6', ico: I_LK, tt: 'Ke modul Keselarasan Regulasi & Tindak Lanjut', open: () => { try { window.parent.postMessage({ type: 'harmonisasi:tab', index: 4 }, '*'); } catch (e) {} } }
     ];
     const c6dd = [dd('c6w', 'Wilayah', c6wL, c6w !== 'all', [opt('Nasional', f1(natV) + '%', c6w === 'all', () => set({ c6w: 'all' })), ...rankSrc.map((r) => opt(r.n, f1(r.v) + '%', c6w === r.id, () => set({ c6w: r.id })))]),
       dd('c6c', 'Bandingkan', cmpOn ? cmpL : 'Tidak ada', cmpOn, [opt('Tidak ada', '', !cmpOn, () => set({ c6c: null })), ...(c6w !== 'all' ? [opt('Nasional', f1(natV) + '%', c6c === 'all', () => set({ c6c: 'all' }))] : []), ...rankSrc.filter((r) => r.id !== c6w).map((r) => opt(r.n, f1(r.v) + '%', c6c === r.id, () => set({ c6c: r.id })))])];
@@ -1384,7 +1331,7 @@ class Component extends DCLogic {
     ];
 
     // ===================== EWS ringkas =====================
-    const ewsTop = [...ewsJ.map((j) => ({ l: j.l.split(' (')[0] + ' ' + sg(devOf(j.avg, j.sla)) + '%', t: j.l + ': rata-rata ' + f1(j.avg) + ' HK vs SLA ' + j.sla + ' HK', href: '#sec-terlama', act: () => set({}) })), { l: 'Data center Jatiluhur', t: 'Pembangunan dihentikan sementara; persetujuan lingkungan dan PBG belum terbit', href: '#sec-hambatan', act: () => set({ c5: 'all', c5o: 'h3' }) }];
+    const ewsTop = [...ewsJ.map((j) => ({ l: j.l.split(' (')[0] + ' ' + sg(devOf(j.avg, j.sla)) + '%', t: j.l + ': rata-rata ' + f1(j.avg) + ' HK vs SLA ' + j.sla + ' HK', href: '#sec-terlama', act: () => set({}) })), { l: 'Data center Jatiluhur', t: 'Pembangunan dihentikan sementara; persetujuan lingkungan dan PBG belum terbit', href: '#sec-recap', act: () => { try { window.parent.postMessage({ type: 'harmonisasi:tab', index: 4 }, '*'); } catch (e) {} } }];
 
 const PZ_SRC = [
   ['BKPM - Sosialisasi PP 28/2025 (KKPR Darat)', 'https://dpb.unpad.ac.id/wp-content/uploads/2026/06/Sosialisasi-PP-28-Tahun-2025-Ketentuan-KKPR-Darat-Berdasarkan-PP-Nomor-28-Tahun-2025-dan-Permeninveshil-BKPM-Nomor-5-Tahun-2025.pdf'],
