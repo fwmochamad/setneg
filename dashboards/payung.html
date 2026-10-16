@@ -942,6 +942,17 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
 </x-dc>
 <script type="text/x-dc" data-dc-script="" data-props="{&quot;startView&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;list&quot;,&quot;detail&quot;],&quot;default&quot;:&quot;list&quot;,&quot;section&quot;:&quot;Prototipe&quot;},&quot;startReg&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;uu25&quot;,&quot;uu6&quot;,&quot;pp28&quot;,&quot;pp35&quot;,&quot;perpres10&quot;,&quot;pm5&quot;,&quot;atr13&quot;,&quot;jabar9&quot;],&quot;default&quot;:&quot;uu25&quot;,&quot;section&quot;:&quot;Prototipe&quot;},&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:3000}}">
 class Component extends DCLogic {
+  // Filter kiriman halaman lain (mis. Keselarasan → sektor): terapkan ke Daftar Regulasi Investasi lalu gulir ke kartunya
+  componentDidMount() {
+    this._onApply = (e) => {
+      const d = e && e.data;
+      if (!d || d.type !== 'harmonisasi:apply' || !d.apply) return;
+      this.setState({ view: 'list', menu: null, page: 0, fs: d.apply.fs || 'Semua', fj: 'Semua', fw: 'Semua', lvl: 'Semua', q: '' });
+      setTimeout(() => { const el = document.getElementById('sec-daftar'); if (el && el.scrollIntoView) el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 150);
+    };
+    window.addEventListener('message', this._onApply);
+  }
+  componentWillUnmount() { if (this._onApply) window.removeEventListener('message', this._onApply); }
   componentDidUpdate(pp, ps) {
     if (ps && (ps.view !== this.state.view || ps.sel !== this.state.sel)) { try { window.scrollTo(0, 0); } catch (e) {} }
   }

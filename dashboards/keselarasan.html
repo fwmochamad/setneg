@@ -621,7 +621,7 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
             </div>
           </div>
           <div class="mzi" style="margin: auto 0 0;"><span class="mzi-b">Analisis AI</span><ul class="mzi-l"><li>{{sekA}}</li></ul></div>
-          <button type="button" sc-camel-on-click="{{toPayung}}" style="align-self: flex-start; padding: 0; border: 0; background: transparent; font-family: inherit; font-size: 12px; font-weight: 600; color: #1D4ED8; cursor: pointer;">Lihat matriks prioritas sektor di Payung Kebijakan →</button>
+          <button type="button" sc-camel-on-click="{{toPayung}}" style="align-self: flex-start; padding: 0; border: 0; background: transparent; font-family: inherit; font-size: 12px; font-weight: 600; color: #1D4ED8; cursor: pointer;">{{payungL}}</button>
         </div>
       </div>
       <div style="padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;" class="cf"><span><b style="color: #475569;">Periode:</b> temuan s.d. {{acuan}}</span><span><b style="color: #475569;">Diperbarui:</b> {{meta.diperbarui}}</span><span><b style="color: #475569;">Sumber:</b> penilaian analis · KBLI 2025 (Peraturan BPS No. 7/2025)</span><span class="chip" style="padding: 0 6px; border-radius: 4px; background: #DBEAFE; color: #1E40AF; font-weight: 600;">Diverifikasi analis</span></div>
@@ -783,6 +783,8 @@ class Component extends DCLogic {
     const nf = (n, d) => Number(n).toLocaleString('id-ID', { minimumFractionDigits: d || 0, maximumFractionDigits: d || 0 });
     const scrollTo = (id) => () => { setTimeout(() => { const el = document.getElementById(id); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 30); };
     const toTab = (i) => () => { try { window.parent.postMessage({ type: 'harmonisasi:tab', index: i }, '*'); } catch (e) {} };
+    // Ke Daftar Regulasi Investasi di Payung Kebijakan dengan filter sektor ikut terbawa (LS = lintas sektor = X di Payung)
+    const toPayungSek = (c) => () => { try { window.parent.postMessage({ type: 'harmonisasi:tab', index: 0, apply: { fs: !c || c === 'all' ? 'Semua' : c === 'LS' ? 'X' : c } }, '*'); } catch (e) {} };
     const MON = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
     const pd = (s) => { const [y, m, d] = s.split('-').map(Number); return Date.UTC(y, m - 1, d); };
     const fd = (s) => { const [y, m, d] = s.split('-').map(Number); return d + ' ' + MON[m - 1] + ' ' + y; };
@@ -920,7 +922,7 @@ class Component extends DCLogic {
       unit: cur.unit.map((u) => ({ ...u, cb: ROLEC[u.chip][0], cc: ROLEC[u.chip][1] })),
       tl: cur.riwayat.map((r, i) => ({ ...r, dot: TLC[r.st][0], bg: TLC[r.st][1], line: TLC[r.st][2], c: TLC[r.st][3], fw: r.st === 'now' ? 700 : 500, last: i === cur.riwayat.length - 1 })),
       lamaTxt: 'Lama penanganan: ' + nf(cur.lama) + ' hari kalender (' + fd(cur.mulai) + ' – ' + (cur.selesai ? fd(cur.selesai) + ', selesai' : ACUAN + ', tanggal acuan') + ')',
-      toPayung: toTab(0)
+      toPayung: toPayungSek(cur.sektor && cur.sektor[0])
     };
 
     // ---- Ringkasan Informasi (atensi Presiden) ----
@@ -994,7 +996,7 @@ class Component extends DCLogic {
     }) : null;
     return {
       ri, acuan: ACUAN, fl, hasF, resetF, nF, toList: scrollTo('sec-temuan'),
-      staDn, staTot, kpi, alur, alurF, alurA, jenBars, jenNote, staSeg, staTxt, staA, sekBars, sekDn, sekTot, sekRef, sekA, toPayung: toTab(0),
+      staDn, staTot, kpi, alur, alurF, alurA, jenBars, jenNote, staSeg, staTxt, staA, sekBars, sekDn, sekTot, sekRef, sekA, toPayung: toPayungSek(F.sek), payungL: F.sek === 'all' ? 'Lihat daftar regulasi semua sektor di Payung Kebijakan →' : 'Lihat regulasi sektor ' + sekL(F.sek).split(',')[0] + ' di Payung Kebijakan →',
       list, staChips, d,
       isList: view !== 'detail', isDetail: view === 'detail',
       meta: K.meta,

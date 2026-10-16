@@ -177,7 +177,13 @@
           var index = Number(data.index);
           if (Number.isInteger(index) && index >= 0 && index < boards.length) {
             setActive(index, true);
-            window.scrollTo({ top: 0, behavior: "smooth" });
+            var target = boards[index].querySelector("iframe");
+            if (data.apply && target && target.contentWindow) {
+              // Halaman tujuan menerapkan filter lalu menggulir sendiri ke kartu terkait
+              try { target.contentWindow.postMessage({ type: "harmonisasi:apply", apply: data.apply }, "*"); } catch(e) {}
+            } else {
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }
           }
         }
       });
