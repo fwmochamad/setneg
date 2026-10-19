@@ -729,6 +729,66 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
 
 
 
+    <!-- 5. Wisata & penerbangan -->
+    <section id="sec-wisata" style="background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; box-shadow: 0 1px 2px rgba(15,23,42,.05); scroll-margin-top: 16px;">
+      <div style="padding: 12px 18px; border-bottom: 1px solid #EEF2F7; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px;">
+        <div><h2 style="margin: 0; font-size: 14.5px; font-weight: 600;">Wisata &amp; penerbangan<span class="tip info-i" tabindex="0" aria-label="Keterangan">i<span class="pop">{{lw.tr.cav}} Setiap seri memakai satuannya sendiri.</span></span></h2></div>
+      </div>
+      <div style="padding: 14px 18px 16px; display: flex; flex-direction: column; gap: 14px;">
+        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px;">
+            <div style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #475569;">Periode
+              <div style="display: flex; gap: 2px; padding: 3px; background: #EEF2F7; border-radius: 8px;">
+                <sc-for list="{{lw.perOpts}}" as="p" hint-placeholder-count="3"><button type="button" sc-camel-on-click="{{p.pick}}" style="height: 26px; padding: 0 10px; border: 0; border-radius: 6px; background: {{p.bg}}; color: {{p.fg}}; font-family: inherit; font-size: 12px; font-weight: 600; cursor: pointer;">{{p.l}}</button></sc-for>
+              </div>
+            </div>
+          <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #475569;">{{lw.wil.lab}}
+            <sc-raw-select value="{{lw.wil.v}}" sc-camel-on-change="{{lw.wil.on}}" aria-label="Pilih {{lw.wil.lab}}" style="height: 32px; min-width: 240px; padding: 0 10px; border: 1px solid #E3E8F0; border-radius: 8px; background: #FFFFFF; font-family: inherit; font-size: 12.5px; color: #0F172A; cursor: pointer;">
+              <sc-for list="{{lw.wil.opts}}" as="w" hint-placeholder-count="3"><option value="{{w.v}}">{{w.l}}</option></sc-for>
+            </sc-raw-select>
+          </label>
+          <span style="font-size: 11.5px; color: #64748B;">{{lw.wil.note}}</span>
+          <span style="margin-left: auto; height: 26px; padding: 0 9px; border-radius: 6px; background: #EFF6FF; color: #1E40AF; font-size: 11.5px; font-weight: 600; display: inline-flex; align-items: center;">Satuan:&nbsp;{{lw.tr.units}}</span>
+        </div>
+
+          <div style="display: flex; flex-direction: column; gap: 14px;">
+            <div style="display: flex; flex-wrap: wrap; gap: 16px;">
+              <sc-for list="{{lw.charts}}" as="ch" hint-placeholder-count="2">
+                <div style="flex: 1 1 540px; min-width: 0; padding: 12px 14px 10px; border-radius: 10px; border: 1px solid #E3E8F0; display: flex; flex-direction: column; gap: 8px;">
+                  <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 6px;">
+                    <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 4px 16px;"><sc-for list="{{ch.legend}}" as="lg" hint-placeholder-count="1"><span style="display: inline-flex; align-items: center; gap: 7px;"><span style="width: 14px; height: 3px; border-radius: 2px; background: {{lg.c}};"></span><b style="font-size: 12.5px;">{{lg.n}}</b><span style="font-size: 11px; color: #64748B;">{{lg.w}}</span></span></sc-for></div>
+                    <span style="font-size: 11.5px; color: #475569;">{{ch.last}}</span>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; gap: 8px; font-size: 10.5px; font-weight: 600;"><span style="color: {{ch.uLc}};">{{ch.uL}}</span><span style="color: {{ch.uRc}};">{{ch.uR}}</span></div>
+                  <div style="display: flex; gap: 8px;">
+                    <div style="flex: none; width: 44px; height: 180px; display: flex; flex-direction: column; justify-content: space-between; text-align: right; font-size: 10.5px; color: {{ch.uLc}};"><sc-for list="{{ch.yt}}" as="y" hint-placeholder-count="4"><span style="line-height: 1;">{{y}}</span></sc-for></div>
+                    <div style="position: relative; flex: 1; min-width: 0; height: 180px; margin-right: 28px;">
+                      <svg sc-camel-view-box="0 0 600 180" sc-camel-preserve-aspect-ratio="none" aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; overflow: visible;">
+                        <path d="M0 0.5H600M0 60H600M0 120H600" stroke="#EEF2F7" fill="none" vector-effect="non-scaling-stroke"></path>
+                        <path d="M0 179.5H600" stroke="#CBD5E1" fill="none" vector-effect="non-scaling-stroke"></path>
+                        <path d="{{ch.selD}}" stroke="#94A3B8" stroke-dasharray="3 3" fill="none" vector-effect="non-scaling-stroke"></path>
+                        <sc-for list="{{ch.lines}}" as="ln" hint-placeholder-count="1"><path d="{{ln.d}}" fill="none" stroke="{{ln.c}}" stroke-width="{{ln.w}}" stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke"></path></sc-for>
+                      </svg>
+                      <sc-for list="{{ch.tags}}" as="tg" hint-placeholder-count="0"><span aria-hidden="true" style="position: absolute; left: {{tg.l}}; top: {{tg.t}}; transform: translate(6px, -50%); font-size: 10px; font-weight: {{tg.fw}}; color: {{tg.c}}; background: rgba(255,255,255,.85); padding: 0 2px; border-radius: 3px; pointer-events: none; z-index: 1;">{{tg.txt}}</span></sc-for>
+                      <sc-for list="{{ch.pts}}" as="p" hint-placeholder-count="12">
+                        <span class="tip" tabindex="0" sc-camel-on-click="{{p.pick}}" style="position: absolute; left: {{p.l}}; top: {{p.t}}; width: 18px; height: 18px; margin-left: -9px; margin-top: -9px; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: {{p.z}};"><span class="pt" style="display: block; width: {{p.s}}; height: {{p.s}}; border-radius: 99px; background: {{p.bg}}; border: 2px solid {{p.c}}; box-sizing: border-box;"></span><span class="pop {{p.pc}}" style="width: 210px;">{{p.tip}}</span></span>
+                      </sc-for>
+                    </div>
+                    <sc-if value="{{ch.dual}}" hint-placeholder-val="{{false}}"><div style="flex: none; width: 44px; height: 180px; display: flex; flex-direction: column; justify-content: space-between; text-align: left; font-size: 10.5px; color: {{ch.uRc}};"><sc-for list="{{ch.ytR}}" as="y" hint-placeholder-count="4"><span style="line-height: 1;">{{y}}</span></sc-for></div></sc-if>
+                  </div>
+                  <div style="position: relative; height: 16px; margin-left: 52px; margin-right: calc({{ch.mr}} + 28px);">
+                    <sc-for list="{{ch.xs}}" as="x" hint-placeholder-count="12"><span style="position: absolute; left: {{x.x}}; transform: translateX(-50%); font-size: 10.5px; color: {{x.c}}; font-weight: {{x.fw}}; white-space: nowrap;">{{x.l}}</span></sc-for>
+                  </div>
+                  <div style="font-size: 11px; color: #94A3B8; display: flex; align-items: center;">Catatan data<span class="tip info-i" tabindex="0" aria-label="Catatan data">i<span class="pop">{{ch.note}}</span></span></div>
+                </div>
+              </sc-for>
+            </div>
+            
+          </div>
+      </div>
+            <div class="mzi"><span class="mzi-b">Ringkasan Wawasan</span><ul class="mzi-l"><sc-for list="{{mini.wis}}" as="i" hint-placeholder-count="3"><li>{{i}}</li></sc-for></ul></div>
+      <div style="padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;" class="cf"><span><b style="color: #475569;">Diperbarui:</b> 12 Okt 2026</span><span><b style="color: #475569;">Sumber:</b> {{lw.tr.src}}</span><span class="tip info-i" tabindex="0" aria-label="Keterangan">i<span class="pop">Periode: {{lw.tr.per}}</span></span></div>
+    </section>
+
 <div class="dm-duo">
     <!-- 4. Mobilitas kerja (komuter) -->
     <section id="sec-kerja" style="background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; box-shadow: 0 1px 2px rgba(15,23,42,.05); scroll-margin-top: 16px;">
@@ -809,70 +869,6 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
     </section>
     </div>
 
-    <!-- 5. Wisata & penerbangan -->
-    <section id="sec-wisata" style="background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; box-shadow: 0 1px 2px rgba(15,23,42,.05); scroll-margin-top: 16px;">
-      <div style="padding: 12px 18px; border-bottom: 1px solid #EEF2F7; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px;">
-        <div><h2 style="margin: 0; font-size: 14.5px; font-weight: 600;">Wisata &amp; penerbangan<span class="tip info-i" tabindex="0" aria-label="Keterangan">i<span class="pop">{{lw.tr.cav}} Setiap seri memakai satuannya sendiri.</span></span></h2></div>
-      </div>
-      <div style="padding: 14px 18px 16px; display: flex; flex-direction: column; gap: 14px;">
-        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px;">
-            <div style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #475569;">Periode
-              <div style="display: flex; gap: 2px; padding: 3px; background: #EEF2F7; border-radius: 8px;">
-                <sc-for list="{{lw.perOpts}}" as="p" hint-placeholder-count="3"><button type="button" sc-camel-on-click="{{p.pick}}" style="height: 26px; padding: 0 10px; border: 0; border-radius: 6px; background: {{p.bg}}; color: {{p.fg}}; font-family: inherit; font-size: 12px; font-weight: 600; cursor: pointer;">{{p.l}}</button></sc-for>
-              </div>
-            </div>
-          <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #475569;">{{lw.wil.lab}}
-            <sc-raw-select value="{{lw.wil.v}}" sc-camel-on-change="{{lw.wil.on}}" aria-label="Pilih {{lw.wil.lab}}" style="height: 32px; min-width: 240px; padding: 0 10px; border: 1px solid #E3E8F0; border-radius: 8px; background: #FFFFFF; font-family: inherit; font-size: 12.5px; color: #0F172A; cursor: pointer;">
-              <sc-for list="{{lw.wil.opts}}" as="w" hint-placeholder-count="3"><option value="{{w.v}}">{{w.l}}</option></sc-for>
-            </sc-raw-select>
-          </label>
-          <span style="font-size: 11.5px; color: #64748B;">{{lw.wil.note}}</span>
-          <span style="margin-left: auto; height: 26px; padding: 0 9px; border-radius: 6px; background: #EFF6FF; color: #1E40AF; font-size: 11.5px; font-weight: 600; display: inline-flex; align-items: center;">Satuan:&nbsp;{{lw.tr.units}}</span>
-        </div>
-
-          <div style="display: flex; flex-direction: column; gap: 14px;">
-            <div style="display: flex; flex-wrap: wrap; gap: 16px;">
-              <sc-for list="{{lw.charts}}" as="ch" hint-placeholder-count="2">
-                <div style="flex: 1 1 540px; min-width: 0; padding: 12px 14px 10px; border-radius: 10px; border: 1px solid #E3E8F0; display: flex; flex-direction: column; gap: 8px;">
-                  <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 6px;">
-                    <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 4px 16px;"><sc-for list="{{ch.legend}}" as="lg" hint-placeholder-count="1"><span style="display: inline-flex; align-items: center; gap: 7px;"><span style="width: 14px; height: 3px; border-radius: 2px; background: {{lg.c}};"></span><b style="font-size: 12.5px;">{{lg.n}}</b><span style="font-size: 11px; color: #64748B;">{{lg.w}}</span></span></sc-for></div>
-                    <span style="font-size: 11.5px; color: #475569;">{{ch.last}}</span>
-                  </div>
-                  <div style="display: flex; justify-content: space-between; gap: 8px; font-size: 10.5px; font-weight: 600;"><span style="color: {{ch.uLc}};">{{ch.uL}}</span><span style="color: {{ch.uRc}};">{{ch.uR}}</span></div>
-                  <div style="display: flex; gap: 8px;">
-                    <div style="flex: none; width: 44px; height: 180px; display: flex; flex-direction: column; justify-content: space-between; text-align: right; font-size: 10.5px; color: {{ch.uLc}};"><sc-for list="{{ch.yt}}" as="y" hint-placeholder-count="4"><span style="line-height: 1;">{{y}}</span></sc-for></div>
-                    <div style="position: relative; flex: 1; min-width: 0; height: 180px; margin-right: 28px;">
-                      <svg sc-camel-view-box="0 0 600 180" sc-camel-preserve-aspect-ratio="none" aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; overflow: visible;">
-                        <path d="M0 0.5H600M0 60H600M0 120H600" stroke="#EEF2F7" fill="none" vector-effect="non-scaling-stroke"></path>
-                        <path d="M0 179.5H600" stroke="#CBD5E1" fill="none" vector-effect="non-scaling-stroke"></path>
-                        <path d="{{ch.selD}}" stroke="#94A3B8" stroke-dasharray="3 3" fill="none" vector-effect="non-scaling-stroke"></path>
-                        <sc-for list="{{ch.lines}}" as="ln" hint-placeholder-count="1"><path d="{{ln.d}}" fill="none" stroke="{{ln.c}}" stroke-width="{{ln.w}}" stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke"></path></sc-for>
-                      </svg>
-                      <sc-for list="{{ch.tags}}" as="tg" hint-placeholder-count="0"><span aria-hidden="true" style="position: absolute; left: {{tg.l}}; top: {{tg.t}}; transform: translate(6px, -50%); font-size: 10px; font-weight: {{tg.fw}}; color: {{tg.c}}; background: rgba(255,255,255,.85); padding: 0 2px; border-radius: 3px; pointer-events: none; z-index: 1;">{{tg.txt}}</span></sc-for>
-                      <sc-for list="{{ch.pts}}" as="p" hint-placeholder-count="12">
-                        <span class="tip" tabindex="0" sc-camel-on-click="{{p.pick}}" style="position: absolute; left: {{p.l}}; top: {{p.t}}; width: 18px; height: 18px; margin-left: -9px; margin-top: -9px; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: {{p.z}};"><span class="pt" style="display: block; width: {{p.s}}; height: {{p.s}}; border-radius: 99px; background: {{p.bg}}; border: 2px solid {{p.c}}; box-sizing: border-box;"></span><span class="pop {{p.pc}}" style="width: 210px;">{{p.tip}}</span></span>
-                      </sc-for>
-                    </div>
-                    <sc-if value="{{ch.dual}}" hint-placeholder-val="{{false}}"><div style="flex: none; width: 44px; height: 180px; display: flex; flex-direction: column; justify-content: space-between; text-align: left; font-size: 10.5px; color: {{ch.uRc}};"><sc-for list="{{ch.ytR}}" as="y" hint-placeholder-count="4"><span style="line-height: 1;">{{y}}</span></sc-for></div></sc-if>
-                  </div>
-                  <div style="position: relative; height: 16px; margin-left: 52px; margin-right: calc({{ch.mr}} + 28px);">
-                    <sc-for list="{{ch.xs}}" as="x" hint-placeholder-count="12"><span style="position: absolute; left: {{x.x}}; transform: translateX(-50%); font-size: 10.5px; color: {{x.c}}; font-weight: {{x.fw}}; white-space: nowrap;">{{x.l}}</span></sc-for>
-                  </div>
-                  <div style="font-size: 11px; color: #94A3B8; display: flex; align-items: center;">Catatan data<span class="tip info-i" tabindex="0" aria-label="Catatan data">i<span class="pop">{{ch.note}}</span></span></div>
-                </div>
-              </sc-for>
-            </div>
-            <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 18px; padding: 10px 14px; border-radius: 10px; background: #EFF6FF; border: 1px solid #E7F1E9; font-size: 12px; color: #334155;">
-              <b style="color: #1E40AF;">{{lw.rd.l}}</b>
-              <sc-for list="{{lw.rd.items}}" as="it" hint-placeholder-count="2"><span>{{it.n}}: <b style="color: #0F172A;">{{it.v}}</b> {{it.u}} <span style="color: #1D4ED8; font-weight: 600;">{{it.d}}</span> <span style="color: #64748B;">{{it.dn}}</span></span></sc-for>
-              <span style="margin-left: auto; font-size: 11px; color: #64748B;">Klik titik pada grafik untuk membaca nilai bulan lain</span>
-            </div>
-            
-          </div>
-      </div>
-            <div class="mzi"><span class="mzi-b">Ringkasan Wawasan</span><ul class="mzi-l"><sc-for list="{{mini.wis}}" as="i" hint-placeholder-count="3"><li>{{i}}</li></sc-for></ul></div>
-      <div style="padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;" class="cf"><span><b style="color: #475569;">Diperbarui:</b> 12 Okt 2026</span><span><b style="color: #475569;">Sumber:</b> {{lw.tr.src}}</span><span class="tip info-i" tabindex="0" aria-label="Keterangan">i<span class="pop">Periode: {{lw.tr.per}}</span></span></div>
-    </section>
 
 
   </main>
