@@ -574,8 +574,9 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
           </div>
 
           <!-- Realisasi per periode vs target tahunan nasional -->
-          <style>.nas-bar{transition:filter .12s}.nas-bar:hover,.nas-bar:focus-visible{filter:brightness(1.12);outline:none}.nas-trk{container-type:inline-size}.nas-sub{display:none}@container (max-width: 560px){.nas-seg-t{display:none}.nas-sub{display:block}}</style>
-          <div style="padding: 14px 18px 4px; display: flex; flex-direction: column; gap: 10px;">
+          <style>.nas-bar{transition:filter .12s}.nas-bar:hover,.nas-bar:focus-visible{filter:brightness(1.12);outline:none}.nas-trk{container-type:inline-size}.nas-seg-t{display:none}.nas-sub{display:block}</style>
+          <div class="nas-duo" style="padding: 14px 18px 4px; display: flex; flex-wrap: wrap; align-items: stretch; gap: 14px;">
+          <div style="flex: 1.5 1 600px; min-width: 0; display: flex; flex-direction: column; gap: 8px;">
             <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 6px 14px; font-size: 11.5px; color: #64748B;">
               <span><b style="font-size: 12.5px; color: #0F172A;">Realisasi 2026 dibanding target tahunan</b> · panjang penuh batang = target Rp2.175,3 T · klik batang PMDN/PMA untuk rincian</span>
               <span style="display: inline-flex; flex-wrap: wrap; gap: 4px 12px;">
@@ -584,11 +585,11 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
                 <span style="display: inline-flex; align-items: center; gap: 5px;"><span style="width: 9px; height: 9px; box-sizing: border-box; border: 1.5px dashed #94A3B8; border-radius: 2px; background: repeating-linear-gradient(135deg, #F8FAFC 0 3px, #EEF2F7 3px 6px);"></span>Belum rilis</span>
               </span>
             </div>
-            <div role="list" aria-label="Realisasi investasi per periode 2026" style="display: flex; flex-direction: column; gap: 6px;">
+            <div role="list" aria-label="Realisasi investasi per periode 2026" style="display: flex; flex-direction: column; gap: 3px;">
               <sc-for list="{{nas.rows}}" as="r" hint-placeholder-count="6">
-                <div role="listitem" title="{{r.tt}}" style="display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; padding: 7px 10px; border-radius: 8px; background: {{r.bg}};">
-                  <span style="flex: 0 0 112px; display: flex; flex-direction: column; line-height: 15px;"><b style="font-size: 12.5px; color: #0F172A;">{{r.l}}</b><span style="font-size: 10.5px; color: #64748B;">{{r.s}}</span></span>
-                  <span class="nas-trk" style="flex: 1 1 280px; min-width: 0; display: flex; flex-direction: column; gap: 3px;"><span style="position: relative; height: 30px; box-sizing: border-box; border-radius: 6px; background: #F1F5F9; border-right: 2px dashed #0F172A;">
+                <div role="listitem" title="{{r.tt}}" style="display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; padding: 5px 8px; border-radius: 8px; background: {{r.bg}};">
+                  <span style="flex: 0 0 92px; display: flex; flex-direction: column; line-height: 14px;"><b style="font-size: 12.5px; color: #0F172A;">{{r.l}}</b><span style="font-size: 10.5px; color: #64748B;">{{r.s}}</span></span>
+                  <span class="nas-trk" style="flex: 1 1 280px; min-width: 0; display: flex; flex-direction: column; gap: 3px;"><span style="position: relative; height: 18px; box-sizing: border-box; border-radius: 5px; background: #F1F5F9; border-right: 2px dashed #0F172A;">
                     <sc-if value="{{r.has}}" hint-placeholder-val="{{true}}">
                       <span style="position: absolute; left: 0; top: 0; bottom: 0; width: {{r.w}}; display: flex; gap: 2px;">
                         <span title="PMDN {{r.l}}: {{r.pV}} ({{r.pP}}) · klik untuk rincian" role="button" tabindex="0" sc-camel-on-click="{{r.pOpen}}" class="nas-bar" style="cursor: pointer; flex: {{r.pF}} 1 0; min-width: 0; border-radius: 6px 0 0 6px; background: #1E40AF; color: #FFFFFF; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0 4px; line-height: 12px; white-space: nowrap; overflow: hidden;"><b class="nas-seg-t" style="font-size: 11px;">{{r.pV}}</b><span class="nas-seg-t" style="font-size: 10px; color: #DBEAFE;">{{r.pP}}</span></span>
@@ -599,10 +600,10 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
                       <span style="position: absolute; inset: 0; border-radius: 6px; background: repeating-linear-gradient(135deg, #F8FAFC 0 6px, #EEF2F7 6px 12px); display: flex; align-items: center; padding: 0 10px; font-size: 11px; color: #64748B; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{r.why}}</span>
                     </sc-if>
                     </span><sc-if value="{{r.has}}" hint-placeholder-val="{{true}}"><span class="nas-sub" style="font-size: 10.5px; color: #475569;"><b style="color: #1E40AF;">PMDN</b> {{r.pV}} ({{r.pP}}) · <b style="color: #A16207;">PMA</b> {{r.aV}} ({{r.aP}})</span></sc-if></span>
-                  <span style="flex: 0 0 auto; display: inline-flex; align-items: center; gap: 10px; font-size: 12px;">
-                    <b style="min-width: 76px; text-align: right; color: {{r.vc}};">{{r.v}}</b>
-                    <span style="min-width: 76px; text-align: right; color: #334155;"><b>{{r.pct}}</b> <span style="font-size: 10.5px; color: #64748B;">{{r.tsuf}}</span></span>
-                    <span title="{{r.yoyT}}" style="min-width: 84px; text-align: center; padding: 2px 8px; border-radius: 99px; background: {{r.yBg}}; color: {{r.yC}}; font-size: 11px; font-weight: 700;">{{r.yoy}}</span>
+                  <span style="flex: 0 0 auto; display: inline-flex; align-items: center; gap: 6px; font-size: 12px;">
+                    <b style="min-width: 70px; text-align: right; color: {{r.vc}};">{{r.v}}</b>
+                    <span style="min-width: 70px; text-align: right; color: #334155;"><b>{{r.pct}}</b> <span style="font-size: 10.5px; color: #64748B;">{{r.tsuf}}</span></span>
+                    <span title="{{r.yoyT}}" style="min-width: 74px; text-align: center; padding: 2px 6px; border-radius: 99px; background: {{r.yBg}}; color: {{r.yC}}; font-size: 11px; font-weight: 700;">{{r.yoy}}</span>
                   </span>
                 </div>
               </sc-for>
@@ -610,15 +611,15 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
             <div style="font-size: 11px; color: #64748B;">YoY dibanding periode yang sama 2025.</div>
           </div>
 
-          <!-- Hilirisasi per periode -->
-          <div style="position: relative; margin: 14px 18px 0; padding: 12px 14px; border-radius: 10px; background: #F0FDFA; border: 1px solid #CCFBF1; display: flex; flex-direction: column; gap: 10px;">
+          <!-- Hilirisasi per periode (berdampingan dengan realisasi) -->
+          <div style="flex: 1 1 400px; min-width: 0; position: relative; padding: 12px 14px; border-radius: 10px; background: #F0FDFA; border: 1px solid #CCFBF1; display: flex; flex-direction: column; gap: 10px;">
             <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 4px 12px;">
-              <span><b style="font-size: 12.5px; color: #0F172A;">Hilirisasi per periode 2026</b> <span style="font-size: 11.5px; color: #475569;">· Rp triliun, menurut subsektor · klik segmen untuk rincian komoditas</span></span>
-              <span style="padding: 0 6px; border-radius: 4px; background: #CCFBF1; color: #115E59; font-size: 11px; font-weight: 600;">Tw II resmi BKPM · lainnya estimasi</span>
+              <span><b style="font-size: 12.5px; color: #0F172A;">Hilirisasi per periode</b> <span style="font-size: 11px; color: #475569;">· Rp T · klik segmen untuk rincian</span></span>
+              <span title="Tw II resmi BKPM; periode lain estimasi" style="padding: 0 6px; border-radius: 4px; background: #CCFBF1; color: #115E59; font-size: 10.5px; font-weight: 600;">Tw II resmi · lainnya estimasi</span>
             </div>
-            <div style="display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 11.5px; color: #334155;"><sc-for list="{{nas.hLeg}}" as="h" hint-placeholder-count="4"><span style="display: inline-flex; align-items: center; gap: 5px;"><span style="width: 10px; height: 10px; border-radius: 2px; background: {{h.c}};"></span>{{h.l}} </span></sc-for></div>
-            <div class="hil-plot" role="img" aria-label="Nilai hilirisasi per periode 2026 menurut subsektor" style="overflow-x: auto; scrollbar-width: thin;"><div style="min-width: 560px;">
-              <div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: clamp(6px, 2vw, 18px); height: 230px; border-bottom: 1px solid #99F6E4;">
+            <div style="display: flex; flex-wrap: wrap; gap: 2px 10px; font-size: 10.5px; color: #334155;"><sc-for list="{{nas.hLeg}}" as="h" hint-placeholder-count="4"><span style="display: inline-flex; align-items: center; gap: 5px;"><span style="width: 10px; height: 10px; border-radius: 2px; background: {{h.c}};"></span>{{h.l}} </span></sc-for></div>
+            <div class="hil-plot" role="img" aria-label="Nilai hilirisasi per periode 2026 menurut subsektor" style="flex: 1 1 auto; display: flex; flex-direction: column; overflow-x: auto; scrollbar-width: thin;"><div style="flex: 1 1 auto; min-width: 330px; display: flex; flex-direction: column;">
+              <div style="flex: 1 1 auto; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 6px; min-height: 190px; border-bottom: 1px solid #99F6E4;">
                 <sc-for list="{{nas.hCols}}" as="c" hint-placeholder-count="6">
                   <div title="{{c.tt}}" style="height: 100%; display: flex; flex-direction: column; justify-content: flex-end; gap: 3px;">
                     <span style="font-size: clamp(10px, 2.6vw, 12px); font-weight: 700; color: {{c.vc}}; text-align: center; white-space: nowrap;">{{c.v}}</span>
@@ -633,8 +634,8 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
                   </div>
                 </sc-for>
               </div>
-              <div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: clamp(6px, 2vw, 18px); margin-top: 6px; text-align: center;">
-                <sc-for list="{{nas.hCols}}" as="c" hint-placeholder-count="6"><div style="display: flex; flex-direction: column; gap: 1px; line-height: 14px;"><b style="font-size: 12px; color: #0F172A;">{{c.l}}</b><span style="font-size: 10.5px; color: #475569;">{{c.sh}}</span></div></sc-for>
+              <div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 6px; margin-top: 5px; text-align: center;">
+                <sc-for list="{{nas.hCols}}" as="c" hint-placeholder-count="6"><div title="{{c.sh}}" style="display: flex; flex-direction: column; gap: 1px; line-height: 13px; min-width: 0;"><b style="font-size: 11px; color: #0F172A; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{c.l}}</b><span style="font-size: 10px; color: #475569;">{{c.sh}}</span></div></sc-for>
               </div>
             </div></div>
             <sc-if value="{{nas.hp}}" hint-placeholder-val="{{false}}">
@@ -650,6 +651,7 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
                 <span style="font-size: 10px; line-height: 14px; color: #94A3B8;">{{nas.hp.src}}</span>
               </div>
             </sc-if>
+          </div>
           </div>
 
           <!-- Pop-up rincian PMDN / PMA: dibuka dari klik batang Investasi nasional -->
