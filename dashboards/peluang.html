@@ -185,7 +185,8 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
 <style id="harmonisasi-ri-teks">.ri-card .ri-s{justify-self:stretch}.ri-vt{display:block;margin-top:4px;color:#334155}.ri-vt b{color:#0F172A;font-weight:600}.ri-vk{display:block;margin-top:1px;font-size:10.5px;color:#64748B}
 .ri-card .ri-i{align-self:stretch!important;display:flex;flex-direction:column;gap:6px;padding:9px 10px!important;font-weight:500!important;line-height:16px}
 .ri-card .ri-ie{font-weight:600}.ri-card .ri-ir b{color:inherit!important;font-weight:700;letter-spacing:.02em}
-.ri-card .ri-isrc{margin-top:auto;padding-top:6px;border-top:1px solid rgba(124,58,237,.15);font-size:10.5px;line-height:14px;font-weight:400;color:#6B7280}.ri-card .ri-isrc b{color:#4B5563!important;font-weight:600}</style>
+.ri-card .ri-isrc{margin-top:auto;padding-top:6px;border-top:1px solid rgba(124,58,237,.15);font-size:10.5px;line-height:14px;font-weight:400;color:#6B7280}.ri-card .ri-isrc b{color:#4B5563!important;font-weight:600}
+.ri-card .ri-item{grid-row:span 4!important}.ri-vl{display:flex;flex-direction:column;gap:3px;margin-top:8px;padding-top:8px;border-top:1px solid #F1F5F9}.ri-vr{display:flex;justify-content:space-between;gap:8px;line-height:16px}.ri-vr b{color:#0F172A;font-weight:600;white-space:nowrap}.ri-vr.ri-vk{display:flex;align-items:center;justify-content:flex-start;gap:6px;font-size:11px;color:#64748B}.ri-vr.ri-vk:before{content:"";flex:none;width:4px;height:4px;border-radius:99px;background:#CBD5E1}</style>
 </head>
 <body>
 <x-dc>
@@ -549,8 +550,7 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
             <button type="button" role="listitem" class="ri-item" sc-camel-on-click="{{r.go}}" title="Klik untuk melihat rincian" style="box-shadow: inset 0 3px 0 {{r.cc}};">
               <span class="ri-l">{{r.l}}</span>
               <b class="ri-v">{{r.v}}</b>
-              <span class="ri-s" style="justify-self: stretch; align-self: start;">{{r.s}}<sc-if value="{{r.viz}}" hint-placeholder-val="{{false}}"><span class="ri-vt" title="{{r.viz.tt}}"><b>{{r.viz.hl}} {{r.viz.hb}}</b> · {{r.viz.hr}}</span><span class="ri-vk">{{r.vk}}</span></sc-if></span>
-              <span class="ri-c" style="background: {{r.cb}}; color: {{r.cc}};">{{r.stL}}</span>
+              <span class="ri-s" style="justify-self: stretch; align-self: start;">{{r.s}}<sc-if value="{{r.viz}}" hint-placeholder-val="{{false}}"><span class="ri-vl" title="{{r.viz.tt}}"><span class="ri-vr"><span>{{r.viz.hl}} <b>{{r.viz.hb}}</b></span><b>{{r.viz.hr}}</b></span><sc-for list="{{r.vks}}" as="k" hint-placeholder-count="2"><span class="ri-vr ri-vk">{{k}}</span></sc-for></span></sc-if></span>
               <span class="ri-i"><span class="ri-ie">✦ {{r.e}}</span><span class="ri-ir"><b>REKOMENDASI:</b> {{r.a}}</span><span class="ri-isrc"><b>Sumber:</b> {{r.src}}</span></span>
             </button>
             </sc-for>
@@ -2453,7 +2453,7 @@ const ewsClose = () => this.setState({ ews: null });
         '66,6% PMDN terkumpul di 4 wilayah; Kalimantan, Sulawesi, dan Bali–Nusra hanya 21,5%.',
         riPrj.length + ' proyek siap investasi di 5 provinsi teratas senilai Rp' + nf(riPrjV, 1) + ' T; terbesar di ' + prjBy[0].n + '.'];
       const SRC = ['BKPM/Kementerian Investasi · rilis Tw II 2026', 'BKPM/Kementerian Investasi · rilis Tw II 2026', 'BPS · PDRB 2025', 'BKPM/Kementerian Investasi · rilis Tw II 2026', 'Data simulasi prototipe · profil proyek daerah'];
-      ri.items.forEach((x, i) => { x.e = E[i]; x.src = SRC[i]; x.vk = x.viz ? x.viz.keys.map((k) => k.l).join(' · ') : ''; });
+      ri.items.forEach((x, i) => { x.e = E[i]; x.src = SRC[i]; x.vks = x.viz ? x.viz.keys.map((k) => k.l) : []; });
     }
     return {
       mini,
