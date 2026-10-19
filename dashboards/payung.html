@@ -189,7 +189,8 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
 .ri-card .ri-vr{display:block}.ri-sep{color:#94A3B8;margin:0 3px}.ri-card .ri-up,.ri-card .ri-vr b.ri-up,.ri-card .ri-v.ri-up{color:#16A34A!important;font-weight:600}.ri-card .ri-v.ri-up{font-weight:700!important}.ri-card .ri-vr.ri-vk{display:flex}
 .ri-l .info-i{margin-left:5px!important;vertical-align:1px}.ri-l .info-i .pop{left:-8px!important;right:auto!important;width:240px}.ri-item:last-child .ri-l .info-i .pop{left:auto!important;right:-8px!important}
 .ri-l .info-i{width:auto!important;height:auto!important;border:0!important;color:#64748B}.ri-l .info-i:hover,.ri-l .info-i:focus{color:#0F172A}.ri-l .info-i svg{display:block}.ri-l .info-i .pop{width:260px;font-size:11.5px;line-height:17px}.ri-disc{display:block;margin-top:10px;font-style:italic;color:#CBD5E1}
-.ri-card .ri-l .info-i{vertical-align:-3px!important;line-height:0}.ri-card .ri-l .info-i svg{width:13px;height:13px}</style>
+.ri-card .ri-l .info-i{vertical-align:-3px!important;line-height:0}.ri-card .ri-l .info-i svg{width:13px;height:13px}
+.mzi{display:block!important;padding:12px 14px!important}.mzi .mzi-b{display:block;margin-bottom:6px;font-size:13px!important;font-weight:700!important}.mzi .mzi-s{display:none!important}.mzi .mzi-l{display:block!important;font-weight:400!important;font-size:12.5px!important;line-height:20px!important;color:#5B21B6!important}.mzi .mzi-l li{display:inline!important;padding-left:0!important}.mzi .mzi-l li:before{display:none!important}.mzi .mzi-l li:after{content:" "}</style>
 </head>
 <body>
 <x-dc>
@@ -694,7 +695,7 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
 
             </div>
 
-            <div class="mzi"><span class="mzi-b">Insight AI</span><ul class="mzi-l"><sc-for list="{{payIns}}" as="i" hint-placeholder-count="2"><li>{{i}}</li></sc-for></ul><span class="mzi-s">Terverifikasi analis</span></div>
+            <div class="mzi"><span class="mzi-b">Ringkasan Wawasan</span><ul class="mzi-l"><sc-for list="{{payIns}}" as="i" hint-placeholder-count="2"><li>{{i}}</li></sc-for></ul><span class="mzi-s">Terverifikasi analis</span></div>
             <div class="cf" style="margin-top: auto; padding: 8px 16px; border-top: 1px solid #EEF2F7; font-size: 10.5px; color: #94A3B8; display: flex; gap: 10px;"><span><b style="color: #64748B; font-weight: 600;">Sumber:</b> JDIH K/L · klasifikasi KBLI 2025 (Peraturan BPS No. 7/2025)</span><span>12 Okt 2026, 06.00 WIB</span></div>
           </section>
         </div>
@@ -882,7 +883,7 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
                 <p style="margin: 0; font-size: 13px; line-height: 20px; color: #334155;">{{d.ringSummary}}<sc-if value="{{d.hasPasal}}" hint-placeholder-val="{{false}}"> <span style="font-weight: 600;">Rujukan:</span> <sc-for list="{{d.pasal}}" as="ps" hint-placeholder-count="1"><a href="{{d.naskah}}" target="_blank" rel="noopener" style="margin-right: 6px; font-size: 12px; font-weight: 600; text-decoration: none; white-space: nowrap;">{{ps}} ↗</a></sc-for></sc-if></p>
               </div>
             </sc-if>
-            <div class="mzi"><span class="mzi-b">Insight AI</span><ul class="mzi-l"><sc-for list="{{d.ins}}" as="i" hint-placeholder-count="2"><li>{{i}}</li></sc-for></ul><span class="mzi-s">Terverifikasi analis</span></div>
+            <div class="mzi"><span class="mzi-b">Ringkasan Wawasan</span><ul class="mzi-l"><sc-for list="{{d.ins}}" as="i" hint-placeholder-count="2"><li>{{i}}</li></sc-for></ul><span class="mzi-s">Terverifikasi analis</span></div>
             <sc-if value="{{d.noRing}}" hint-placeholder-val="{{false}}"><div style="margin: 16px 18px; padding: 24px 16px; border-radius: 10px; border: 1px dashed #CBD5E1; background: #F8FAFC; text-align: center; font-size: 12.5px; color: #475569;">Ringkasan substansi belum tersedia. Ringkasan AI sedang menunggu review analis di Back Office.</div></sc-if>
             <div style="padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; border-radius: 0 0 12px 12px;"><b style="color: #475569;">Sumber:</b> naskah resmi (JDIH) · ringkasan disusun AI dan diverifikasi analis · {{d.verif}}</div>
           </section>
@@ -933,7 +934,7 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
                 </div>
               </sc-for>
             </div>
-            <div class="mzi"><span class="mzi-b">Insight AI</span><ul class="mzi-l"><sc-for list="{{d.relIns}}" as="i" hint-placeholder-count="3"><li>{{i}}</li></sc-for></ul><span class="mzi-s">Terverifikasi analis</span></div>
+            <div class="mzi"><span class="mzi-b">Ringkasan Wawasan</span><ul class="mzi-l"><sc-for list="{{d.relIns}}" as="i" hint-placeholder-count="3"><li>{{i}}</li></sc-for></ul><span class="mzi-s">Terverifikasi analis</span></div>
           </sc-if>
           <sc-if value="{{d.noRel}}" hint-placeholder-val="{{false}}"><div style="margin: 16px 18px; padding: 18px 16px; border-radius: 10px; border: 1px dashed #CBD5E1; background: #F8FAFC; font-size: 12.5px; color: #475569;">Relasi induk–turunan belum diverifikasi analis; relasi yang belum terverifikasi tidak ditampilkan sebagai tidak ada.</div></sc-if>
           <div style="padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; border-radius: 0 0 12px 12px;"><b style="color: #475569;">Sumber:</b> konsiderans dan pasal amanat pada naskah resmi · divalidasi analis</div>

@@ -190,7 +190,8 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
 .ri-card .ri-vr{display:block}.ri-sep{color:#94A3B8;margin:0 3px}.ri-card .ri-up,.ri-card .ri-vr b.ri-up,.ri-card .ri-v.ri-up{color:#16A34A!important;font-weight:600}.ri-card .ri-v.ri-up{font-weight:700!important}.ri-card .ri-vr.ri-vk{display:flex}
 .ri-l .info-i{margin-left:5px!important;vertical-align:1px}.ri-l .info-i .pop{left:-8px!important;right:auto!important;width:240px}.ri-item:last-child .ri-l .info-i .pop{left:auto!important;right:-8px!important}
 .ri-l .info-i{width:auto!important;height:auto!important;border:0!important;color:#64748B}.ri-l .info-i:hover,.ri-l .info-i:focus{color:#0F172A}.ri-l .info-i svg{display:block}.ri-l .info-i .pop{width:260px;font-size:11.5px;line-height:17px}.ri-disc{display:block;margin-top:10px;font-style:italic;color:#CBD5E1}
-.ri-card .ri-l .info-i{vertical-align:-3px!important;line-height:0}.ri-card .ri-l .info-i svg{width:13px;height:13px}</style>
+.ri-card .ri-l .info-i{vertical-align:-3px!important;line-height:0}.ri-card .ri-l .info-i svg{width:13px;height:13px}
+.mzi{display:block!important;padding:12px 14px!important}.mzi .mzi-b{display:block;margin-bottom:6px;font-size:13px!important;font-weight:700!important}.mzi .mzi-s{display:none!important}.mzi .mzi-l{display:block!important;font-weight:400!important;font-size:12.5px!important;line-height:20px!important;color:#5B21B6!important}.mzi .mzi-l li{display:inline!important;padding-left:0!important}.mzi .mzi-l li:before{display:none!important}.mzi .mzi-l li:after{content:" "}</style>
 </head>
 <body>
 <x-dc>
@@ -574,11 +575,11 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
           </div>
 
           <!-- Realisasi per periode vs target tahunan nasional -->
-          <style>.nas-bar{transition:filter .12s}.nas-bar:hover,.nas-bar:focus-visible{filter:brightness(1.12);outline:none}.nas-trk{container-type:inline-size}.nas-seg-t{display:none}.nas-sub{display:block}</style>
+          <style>.nas-bar{transition:filter .12s}.nas-bar:hover,.nas-bar:focus-visible{filter:brightness(1.12);outline:none}.nas-trk{container-type:inline-size}.nas-sub{display:none}</style>
           <div class="nas-duo" style="padding: 14px 18px 4px; display: flex; flex-wrap: wrap; align-items: stretch; gap: 14px;">
           <div style="flex: 1.5 1 600px; min-width: 0; display: flex; flex-direction: column; gap: 8px;">
             <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 6px 14px; font-size: 11.5px; color: #64748B;">
-              <span><b style="font-size: 12.5px; color: #0F172A;">Realisasi 2026 dibanding target tahunan</b> · panjang penuh batang = target Rp2.175,3 T · klik batang PMDN/PMA untuk rincian</span>
+              <span><b style="font-size: 12.5px; color: #0F172A;">Realisasi 2026 dibanding target tahunan</b> · Rp T · batang penuh = target Rp2.175,3 T · klik untuk rincian</span>
               <span style="display: inline-flex; flex-wrap: wrap; gap: 4px 12px;">
                 <span style="display: inline-flex; align-items: center; gap: 5px;"><span style="width: 9px; height: 9px; border-radius: 2px; background: #1E40AF;"></span>PMDN</span>
                 <span style="display: inline-flex; align-items: center; gap: 5px;"><span style="width: 9px; height: 9px; border-radius: 2px; background: #D4A72C;"></span>PMA</span>
@@ -589,11 +590,11 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
               <sc-for list="{{nas.rows}}" as="r" hint-placeholder-count="6">
                 <div role="listitem" title="{{r.tt}}" style="display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; padding: 5px 8px; border-radius: 8px; background: {{r.bg}};">
                   <span style="flex: 0 0 92px; display: flex; flex-direction: column; line-height: 14px;"><b style="font-size: 12.5px; color: #0F172A;">{{r.l}}</b><span style="font-size: 10.5px; color: #64748B;">{{r.s}}</span></span>
-                  <span class="nas-trk" style="flex: 1 1 280px; min-width: 0; display: flex; flex-direction: column; gap: 3px;"><span style="position: relative; height: 18px; box-sizing: border-box; border-radius: 5px; background: #F1F5F9; border-right: 2px dashed #0F172A;">
+                  <span class="nas-trk" style="flex: 1 1 280px; min-width: 0; display: flex; flex-direction: column; gap: 3px;"><span style="position: relative; height: 24px; box-sizing: border-box; border-radius: 5px; background: #F1F5F9; border-right: 2px dashed #0F172A;">
                     <sc-if value="{{r.has}}" hint-placeholder-val="{{true}}">
                       <span style="position: absolute; left: 0; top: 0; bottom: 0; width: {{r.w}}; display: flex; gap: 2px;">
-                        <span title="PMDN {{r.l}}: {{r.pV}} ({{r.pP}}) · klik untuk rincian" role="button" tabindex="0" sc-camel-on-click="{{r.pOpen}}" class="nas-bar" style="cursor: pointer; flex: {{r.pF}} 1 0; min-width: 0; border-radius: 6px 0 0 6px; background: #1E40AF; color: #FFFFFF; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0 4px; line-height: 12px; white-space: nowrap; overflow: hidden;"><b class="nas-seg-t" style="font-size: 11px;">{{r.pV}}</b><span class="nas-seg-t" style="font-size: 10px; color: #DBEAFE;">{{r.pP}}</span></span>
-                        <span title="PMA {{r.l}}: {{r.aV}} ({{r.aP}}) · klik untuk rincian" role="button" tabindex="0" sc-camel-on-click="{{r.aOpen}}" class="nas-bar" style="cursor: pointer; flex: {{r.aF}} 1 0; min-width: 0; background: #D4A72C; color: #1F2937; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0 4px; line-height: 12px; white-space: nowrap; overflow: hidden;"><b class="nas-seg-t" style="font-size: 11px;">{{r.aV}}</b><span class="nas-seg-t" style="font-size: 10px;">{{r.aP}}</span></span>
+                        <span title="PMDN {{r.l}}: {{r.pV}} ({{r.pP}}) · klik untuk rincian" role="button" tabindex="0" sc-camel-on-click="{{r.pOpen}}" class="nas-bar" style="cursor: pointer; flex: {{r.pF}} 1 0; min-width: 0; border-radius: 6px 0 0 6px; background: #1E40AF; color: #FFFFFF; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0 4px; line-height: 12px; white-space: nowrap; overflow: hidden;"><b class="nas-seg-t" style="font-size: 10.5px;">{{r.pN}}</b></span>
+                        <span title="PMA {{r.l}}: {{r.aV}} ({{r.aP}}) · klik untuk rincian" role="button" tabindex="0" sc-camel-on-click="{{r.aOpen}}" class="nas-bar" style="cursor: pointer; flex: {{r.aF}} 1 0; min-width: 0; background: #D4A72C; color: #1F2937; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0 4px; line-height: 12px; white-space: nowrap; overflow: hidden;"><b class="nas-seg-t" style="font-size: 10.5px;">{{r.aN}}</b></span>
                       </span>
                     </sc-if>
                     <sc-if value="{{r.none}}" hint-placeholder-val="{{false}}">
@@ -750,7 +751,7 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
           </div>
           </div>
           </sc-if>
-          <div class="mzi"><span class="mzi-b">Insight AI</span><ul class="mzi-l"><sc-for list="{{mini.inv}}" as="i" hint-placeholder-count="3"><li>{{i}}</li></sc-for></ul><span class="mzi-s">Terverifikasi analis</span></div>
+          <div class="mzi"><span class="mzi-b">Ringkasan Wawasan</span><ul class="mzi-l"><sc-for list="{{mini.inv}}" as="i" hint-placeholder-count="3"><li>{{i}}</li></sc-for></ul><span class="mzi-s">Terverifikasi analis</span></div>
           <div class="cf" style="padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;"><span><b style="color: #475569;">Diperbarui:</b> 16 Jul 2026 (rilis Tw II) · Tw III 2026 belum dirilis</span><span><b style="color: #475569;">Sumber:</b> Kementerian Investasi dan Hilirisasi/BKPM (LKPM); kurs: APBN 2026</span><span class="chip" style="padding: 0 6px; border-radius: 4px; background: #EFF6FF; color: #1D4ED8; font-weight: 600;">Data resmi · hilirisasi simulasi</span></div>
         </section>
 
@@ -893,7 +894,7 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
               <div style="padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 0;" class="cf"><span><b style="color: #475569;">Diperbarui:</b> 5 Feb 2026 (rilis BPS)</span><span><b style="color: #475569;">Sumber:</b> BPS, PDRB ADHB seri 2010</span><span class="chip" style="padding: 0 6px; border-radius: 4px; background: #EFF6FF; color: #1D4ED8; font-weight: 600;">Data resmi</span><span class="tip info-i" tabindex="0" aria-label="Keterangan">i<span class="pop">Periode: 2025</span></span></div>
             </aside>
           </div>
-                    <div class="mzi"><span class="mzi-b">Insight AI</span><ul class="mzi-l"><sc-for list="{{mini.peta}}" as="i" hint-placeholder-count="3"><li>{{i}}</li></sc-for></ul><span class="mzi-s">Terverifikasi analis</span></div>
+                    <div class="mzi"><span class="mzi-b">Ringkasan Wawasan</span><ul class="mzi-l"><sc-for list="{{mini.peta}}" as="i" hint-placeholder-count="3"><li>{{i}}</li></sc-for></ul><span class="mzi-s">Terverifikasi analis</span></div>
           <div style="padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;" class="cf"><span><b style="color: #475569;">Diperbarui:</b> 12 Okt 2026, 06.00 WIB · {{I.freq}}</span><span><b style="color: #475569;">Sumber:</b> {{I.src}}; profil: BPS (penduduk, struktur PDRB)</span><span class="chip" style="padding: 0 6px; border-radius: 4px; background: #EFF6FF; color: #1D4ED8; font-weight: 600;">Data resmi</span><span class="tip info-i" tabindex="0" aria-label="Keterangan">i<span class="pop">Periode: {{I.per}}</span></span></div>
         </section>
 
@@ -991,7 +992,7 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
               <div style="font-size: 10.5px; color: #94A3B8;">Periode: {{dh.strPer}}</div>
             </div>
           </div>
-          <div class="mzi"><span class="mzi-b">Insight AI</span><ul class="mzi-l"><sc-for list="{{mini.prov}}" as="i" hint-placeholder-count="3"><li>{{i}}</li></sc-for></ul><span class="mzi-s">Terverifikasi analis</span></div>
+          <div class="mzi"><span class="mzi-b">Ringkasan Wawasan</span><ul class="mzi-l"><sc-for list="{{mini.prov}}" as="i" hint-placeholder-count="3"><li>{{i}}</li></sc-for></ul><span class="mzi-s">Terverifikasi analis</span></div>
           <div style="padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;" class="cf"><span><b style="color: #475569;">Diperbarui:</b> 12 Okt 2026</span><span><b style="color: #475569;">Sumber:</b> BPS, Kemnaker, Kementerian Investasi dan Hilirisasi/BKPM, DPMPTSP provinsi</span><span class="chip" style="padding: 0 6px; border-radius: 4px; background: #EFF6FF; color: #1D4ED8; font-weight: 600;">Data resmi</span><span class="tip info-i" tabindex="0" aria-label="Keterangan">i<span class="pop">Periode: penduduk 2025 · UMP 2026 · PDRB 2025 · realisasi Tw II 2026 · * angka turunan dari rilis resmi</span></span></div>
         </section>
 
@@ -1001,7 +1002,7 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
           <div style="padding: 14px 18px;"><div class="kp-strip kp-5" role="list" aria-label="Indikator kesiapan wilayah">
             <sc-for list="{{kes}}" as="k" hint-placeholder-count="9"><div role="listitem"><span style="font-size: 11px; color: #64748B; display: flex; align-items: center;">{{k.l}}<span class="tip info-i" tabindex="0" aria-label="Keterangan">i<span class="pop">{{k.tip}}</span></span></span><b style="font-size: 15px; line-height: 20px; color: {{k.vc}};">{{k.v}}</b><sc-if value="{{k.hasB}}" hint-placeholder-val="{{false}}"><span style="position: relative; display: block; height: 8px; margin-top: 4px; border-radius: 4px; background: #EEF2F7;"><span style="display: block; width: {{k.bw}}; height: 8px; border-radius: 4px; background: {{k.bc}};"></span><sc-if value="{{k.mkOn}}" hint-placeholder-val="{{false}}"><span style="position: absolute; left: {{k.mk}}; top: -3px; width: 2px; height: 14px; background: #0F172A;"></span></sc-if></span></sc-if><span style="margin-top: auto; padding-top: 3px; font-size: 10.5px; color: #64748B;">{{k.bl}}</span></div></sc-for>
           </div></div>
-                    <div class="mzi"><span class="mzi-b">Insight AI</span><ul class="mzi-l"><sc-for list="{{mini.siap}}" as="i" hint-placeholder-count="3"><li>{{i}}</li></sc-for></ul><span class="mzi-s">Terverifikasi analis</span></div>
+                    <div class="mzi"><span class="mzi-b">Ringkasan Wawasan</span><ul class="mzi-l"><sc-for list="{{mini.siap}}" as="i" hint-placeholder-count="3"><li>{{i}}</li></sc-for></ul><span class="mzi-s">Terverifikasi analis</span></div>
           <div style="padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;" class="cf"><span><b style="color: #475569;">Diperbarui:</b> 12 Okt 2026 (mingguan; UMP tahunan)</span><span><b style="color: #475569;">Sumber:</b> BPS, Kementerian ESDM, Kemenperin, Kementerian Investasi dan Hilirisasi/BKPM, Dewan Nasional KEK</span><span class="chip" style="padding: 0 6px; border-radius: 4px; background: #EFF6FF; color: #1D4ED8; font-weight: 600;">Diverifikasi analis</span><span class="tip info-i" tabindex="0" aria-label="Keterangan">i<span class="pop">Periode: sesuai tiap indikator (2024–2026)</span></span></div>
         </section>
 
@@ -1032,7 +1033,7 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
               </sc-for>
               <sc-if value="{{prjEmpty}}" hint-placeholder-val="{{false}}"><div style="padding: 20px; text-align: center; font-size: 12px; color: #94A3B8; border: 1px dashed #CBD5E1; border-radius: 10px;">Belum ada data proyek siap investasi untuk wilayah ini.</div></sc-if>
           </div>
-              <div class="mzi"><span class="mzi-b">Insight AI</span><ul class="mzi-l"><sc-for list="{{mini.proyek}}" as="i" hint-placeholder-count="3"><li>{{i}}</li></sc-for></ul><span class="mzi-s">Terverifikasi analis</span></div>
+              <div class="mzi"><span class="mzi-b">Ringkasan Wawasan</span><ul class="mzi-l"><sc-for list="{{mini.proyek}}" as="i" hint-placeholder-count="3"><li>{{i}}</li></sc-for></ul><span class="mzi-s">Terverifikasi analis</span></div>
 </section>
 
         <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: stretch;">
@@ -1094,7 +1095,7 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
                 </div>
               </div>
             </div>
-            <div class="mzi"><span class="mzi-b">Insight AI</span><ul class="mzi-l"><sc-for list="{{mini.lak}}" as="i" hint-placeholder-count="3"><li>{{i}}</li></sc-for></ul><span class="mzi-s">Terverifikasi analis</span></div>
+            <div class="mzi"><span class="mzi-b">Ringkasan Wawasan</span><ul class="mzi-l"><sc-for list="{{mini.lak}}" as="i" hint-placeholder-count="3"><li>{{i}}</li></sc-for></ul><span class="mzi-s">Terverifikasi analis</span></div>
             <div style="padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;" class="cf"><span><b style="color: #475569;">Diperbarui:</b> 12 Okt 2026 (analisis AI harian; versi tayang)</span><span><b style="color: #475569;">Sumber:</b> BKPM, BPS, berita daring, JDIH</span><span class="chip" style="padding: 0 6px; border-radius: 4px; background: #EEF2FF; color: #3730A3; font-weight: 600;">Disahkan pimpinan</span><span class="tip info-i" tabindex="0" aria-label="Keterangan">i<span class="pop">Periode: 2025 s.d. Tw II 2026; berita s.d. 12 Okt 2026</span></span></div>
           </section>
 
@@ -1264,7 +1265,7 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
               </sc-for>
             </div>
           </div>
-                    <div class="mzi"><span class="mzi-b">Insight AI</span><ul class="mzi-l"><sc-for list="{{mini.aturan}}" as="i" hint-placeholder-count="3"><li>{{i}}</li></sc-for></ul><span class="mzi-s">Terverifikasi analis</span></div>
+                    <div class="mzi"><span class="mzi-b">Ringkasan Wawasan</span><ul class="mzi-l"><sc-for list="{{mini.aturan}}" as="i" hint-placeholder-count="3"><li>{{i}}</li></sc-for></ul><span class="mzi-s">Terverifikasi analis</span></div>
           <div style="padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;" class="cf"><span><b style="color: #475569;">Diperbarui:</b> 12 Okt 2026 (tahunan)</span><span><b style="color: #475569;">Sumber:</b> JDIH provinsi, peraturan.bpk.go.id</span><span class="chip" style="padding: 0 6px; border-radius: 4px; background: #EFF6FF; color: #1D4ED8; font-weight: 600;">Relevansi diverifikasi analis</span><span class="tip info-i" tabindex="0" aria-label="Keterangan">i<span class="pop">Periode: s.d. 12 Okt 2026</span></span></div>
         </section>
       </div>
@@ -2419,6 +2420,7 @@ const ewsClose = () => this.setState({ ews: null });
         return { l, s, has: !!v, none: !v, why: NWHY[k] || '', bg: agg ? '#F8FAFC' : 'transparent',
           w: v ? (v.t / TG26) * 100 + '%' : '0%', pF: v ? v.p : 0, aF: v ? v.a : 0,
           pOpen: (e) => nasOpen('pmdn', e, k), aOpen: (e) => nasOpen('pma', e, k),
+          pN: v ? nf(v.p, 1) : '', aN: v ? nf(v.a, 1) : '',
           pV: v ? tT(v.p) : '', aV: v ? tT(v.a) : '', pP: v ? pc(v.p / v.t) : '', aP: v ? pc(v.a / v.t) : '',
                     tsuf: v ? 'target' : '', v: v ? tT(v.t) : '—', vc: v ? '#0F172A' : '#94A3B8', pct: v ? pc(v.t / TG26) : '—',
           yoy: y == null ? 'YoY —' : (y >= 0 ? '▲ ' : '▼ ') + nf(Math.abs(y) * 100, 1) + '% YoY', yBg: y == null ? '#F1F5F9' : y >= 0 ? '#DCFCE7' : '#FEF3C7', yC: y == null ? '#94A3B8' : y >= 0 ? '#15803D' : '#B45309',
@@ -2499,6 +2501,12 @@ const ewsClose = () => this.setState({ ews: null });
       const DSC = ['Nilai investasi PMA dan PMDN yang terealisasi pada triwulan II 2026 dan capaiannya terhadap target tahunan.', 'Bagian investasi dari penanaman modal asing (PMA) dibandingkan penanaman modal dalam negeri (PMDN).', 'Porsi ekonomi nasional (PDRB) yang disumbang lima provinsi terbesar; makin tinggi, makin tidak merata.', 'Porsi investasi dalam negeri yang terkumpul di wilayah teratas; menunjukkan pemerataan investasi antarwilayah.', 'Proyek yang profilnya sudah siap ditawarkan kepada investor di lima provinsi teratas (data simulasi).'];
       ri.items.forEach((x, i) => { x.e = E[i]; x.src = SRC[i]; x.d = DSC[i]; x.disc = 'DISCLAIMER: ' + (/simulasi/i.test(x.src) ? 'Data yang ditampilkan merupakan data simulasi untuk prototipe, belum data resmi.' : 'Data yang ditampilkan bersumber dari ' + x.src + '.'); const m = String(x.s).match(/naik [\d.,]+%|\+[\d.,]+%?(?: yoy)?/i); x.s1 = m ? x.s.slice(0, m.index) : x.s; x.sg = m ? m[0] : ''; x.s2 = m ? x.s.slice(m.index + m[0].length) : ''; x.vcls = /^\+/.test(x.v) ? 'ri-v ri-up' : 'ri-v'; x.vsep = x.viz && x.viz.hr ? '·' : ''; x.hrcls = x.viz && x.viz.hc === '#15803D' ? 'ri-up' : ''; x.vks = x.viz ? x.viz.keys.map((k) => ({ l: k.l, cls: /^(\+|Naik)/.test(k.l) ? 'ri-vr ri-vk ri-up' : 'ri-vr ri-vk' })) : []; });
     }
+    mini.inv = ['Realisasi investasi Semester I 2026 mencapai Rp1.010,6 T atau 46,5% dari target nasional Rp2.175,3 T, tumbuh 7,2% dibanding periode yang sama 2025. Komposisinya seimbang antara PMA Rp507,6 T (50,2%) dan PMDN Rp502,9 T (49,8%).',
+      'Hilirisasi menyumbang Rp287,9 T atau 28,5% dari realisasi, didominasi mineral dan logam Rp200,0 T. Data Tw III 2026 belum dirilis BKPM.'];
+    mini.peta = ['Lima provinsi terbesar, yaitu ' + TOP5.map((id) => P[id].n).join(', ') + ', menyumbang ' + nf(TOP5.reduce((a, id) => a + P[id].share, 0), 2) + '% PDRB nasional, dengan ' + P[TOP5[0]].n + ' sebagai penyumbang terbesar (' + nf(P[TOP5[0]].share, 2) + '%).',
+      'Konsentrasi ini menunjukkan aktivitas ekonomi masih terpusat di Jawa dan Sumatera Utara, sehingga provinsi lain membutuhkan dukungan tambahan untuk menarik investasi.'];
+    mini.siap = ['Indikator kesiapan wilayah merangkum kondisi pendukung investasi di provinsi ini. Indikator dengan capaian terendah menjadi penentu utama daya tarik provinsi dan titik perbaikan pertama sebelum promosi investasi.'];
+    mini.aturan = ['Daftar ini memuat peraturan pusat dan daerah yang relevan bagi investasi di provinsi ini. Peraturan daerah yang belum selaras dengan regulasi nasional berpotensi menambah syarat perizinan dan memperlambat realisasi proyek.'];
     return {
       mini,
       highlights, ewsCount: highlights.length, ewsOpen: !!ews, ews, ewsStamp: ewsStamp, closeEws: ewsClose, stop: ewsStop, onEwsKey: ewsOnKey,
