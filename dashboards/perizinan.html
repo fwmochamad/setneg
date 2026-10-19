@@ -181,12 +181,13 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
 .ri-card[aria-label="Ringkasan informasi"] .ri-item:hover,.ri-card[aria-label="Ringkasan informasi"] .ri-item:focus-visible{background:#fff!important;border-color:#bfdbfe!important;box-shadow:0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -2px rgba(0,0,0,.1)!important}
 .ri-card[aria-label="Ringkasan informasi"] .ri-cap{border-top:0!important;padding:10px 2px 0!important;background:transparent!important}
 </style><style id="hl-uniform">.harmonisasi-alert-track{align-items:stretch}.harmonisasi-alert-card{display:flex;flex-direction:column}.harmonisasi-alert-heading{min-height:40px}.harmonisasi-alert-title strong{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.harmonisasi-alert-details{flex:1}.harmonisasi-alert-details p{display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}</style>
-<style id="harmonisasi-ri-teks">.ri-card .ri-s{justify-self:stretch}.ri-vt{display:block;margin-top:4px;color:#334155}.ri-vt b{color:#0F172A;font-weight:600}.ri-vk{display:block;margin-top:1px;font-size:10.5px;color:#64748B}
+<style id="harmonisasi-ri-teks">@media (min-width:1024px){.ri-card[aria-label="Ringkasan informasi"] .ri-strip{grid-template-columns:repeat(4,minmax(0,1fr))!important}.ri-card .ri-item:last-child{grid-column:auto!important}}.ri-card .ri-s{justify-self:stretch}.ri-vt{display:block;margin-top:4px;color:#334155}.ri-vt b{color:#0F172A;font-weight:600}.ri-vk{display:block;margin-top:1px;font-size:10.5px;color:#64748B}
 .ri-card .ri-i{align-self:stretch!important;display:flex;flex-direction:column;gap:6px;padding:9px 10px!important;font-weight:500!important;line-height:16px}
 .ri-card .ri-ie{font-weight:600}.ri-card .ri-ir b{color:inherit!important;font-weight:700;letter-spacing:.02em}
 .ri-card .ri-isrc{margin-top:auto;padding-top:6px;border-top:1px solid rgba(124,58,237,.15);font-size:10.5px;line-height:14px;font-weight:400;color:#6B7280}.ri-card .ri-isrc b{color:#4B5563!important;font-weight:600}
 .ri-card .ri-item{grid-row:span 4!important}.ri-vl{display:flex;flex-direction:column;gap:3px;margin-top:8px;padding-top:8px;border-top:1px solid #F1F5F9}.ri-vr{display:flex;justify-content:space-between;gap:8px;line-height:16px}.ri-vr b{color:#0F172A;font-weight:600;white-space:nowrap}.ri-vr.ri-vk{display:flex;align-items:center;justify-content:flex-start;gap:6px;font-size:11px;color:#64748B}.ri-vr.ri-vk:before{content:"";flex:none;width:4px;height:4px;border-radius:99px;background:#CBD5E1}
-.ri-card .ri-vr{display:block}.ri-sep{color:#94A3B8;margin:0 3px}.ri-card .ri-up,.ri-card .ri-vr b.ri-up,.ri-card .ri-v.ri-up{color:#16A34A!important;font-weight:600}.ri-card .ri-v.ri-up{font-weight:700!important}.ri-card .ri-vr.ri-vk{display:flex}</style>
+.ri-card .ri-vr{display:block}.ri-sep{color:#94A3B8;margin:0 3px}.ri-card .ri-up,.ri-card .ri-vr b.ri-up,.ri-card .ri-v.ri-up{color:#16A34A!important;font-weight:600}.ri-card .ri-v.ri-up{font-weight:700!important}.ri-card .ri-vr.ri-vk{display:flex}
+.ri-l .info-i{margin-left:5px!important;vertical-align:1px}.ri-l .info-i .pop{left:-8px!important;right:auto!important;width:240px}.ri-item:last-child .ri-l .info-i .pop{left:auto!important;right:-8px!important}</style>
 </head>
 <body>
 <x-dc>
@@ -555,7 +556,7 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
           <div class="ri-strip" role="list">
             <sc-for list="{{ri.items}}" as="r" hint-placeholder-count="5">
             <button type="button" role="listitem" class="ri-item" sc-camel-on-click="{{r.go}}" title="Klik untuk melihat rincian" style="box-shadow: inset 0 3px 0 {{r.cc}};">
-              <span class="ri-l">{{r.l}}</span>
+              <span class="ri-l">{{r.l}}<span class="tip info-i" tabindex="0" aria-label="Keterangan" onclick="event.stopPropagation()">i<span class="pop">{{r.d}}</span></span></span>
               <b class="{{r.vcls}}">{{r.v}}</b>
               <span class="ri-s" style="justify-self: stretch; align-self: start;">{{r.s1}}<b class="ri-up">{{r.sg}}</b>{{r.s2}}<sc-if value="{{r.viz}}" hint-placeholder-val="{{false}}"><span class="ri-vl" title="{{r.viz.tt}}"><span class="ri-vr">{{r.viz.hl}} <b>{{r.viz.hb}}</b> <span class="ri-sep">{{r.vsep}}</span> <b class="{{r.hrcls}}">{{r.viz.hr}}</b></span><sc-for list="{{r.vks}}" as="k" hint-placeholder-count="2"><span class="{{k.cls}}">{{k.l}}</span></sc-for></span></sc-if></span>
               <span class="ri-i"><span class="ri-ie">✦ {{r.e}}</span><span class="ri-ir"><b>REKOMENDASI:</b> {{r.a}}</span><span class="ri-isrc"><b>Sumber:</b> {{r.src}}</span></span>
@@ -1631,8 +1632,7 @@ const pzClose = () => this.setState({ ews: null });
         { l: 'Izin terbit · Sep 2026', v: recap[1].v, s: pc(tot, masS[5]) + ' dari ' + fN(masS[5]) + ' permintaan', st: 'ok', a: 'Naik ' + fN(Math.abs(tot - terS[4])) + ' dari Agustus; jaga rasio terbit di atas 70%.', go: recap[1].open },
         { l: 'Melewati SLA', v: recap[2].v, s: recap[2].s, st: 'warn', a: 'Percepat ' + jLam.l.split(' (')[0] + ' yang rata-rata ' + f1(jLam.avg) + ' HK vs SLA ' + jLam.sla + ' HK.', go: recap[2].open },
         { l: 'Kepatuhan SLA · Tw III', v: recap2[2].v, s: recap2[2].s, st: natTw3 >= TGW.all[1] ? 'ok' : 'watch', a: 'Terendah ' + wLow.n + ' ' + f1(wLow.v) + '%; dorong wilayah tertinggal.', go: recap2[2].open },
-        { l: 'Progres permohonan belum terbit', v: recap2[1].v, s: recap2[1].s, st: 'watch', a: 'Tambah kapasitas petugas di tahap ' + TH[thI].toLowerCase() + '.', go: recap2[1].open },
-        { l: 'Hambatan regulasi', v: recap2[3].v, s: recap2[3].s, st: 'warn', a: 'Harmonisasikan ' + regTop[0] + ' lebih dulu.', go: recap2[3].open }
+        { l: 'Progres permohonan belum terbit', v: recap2[1].v, s: recap2[1].s, st: 'watch', a: 'Tambah kapasitas petugas di tahap ' + TH[thI].toLowerCase() + '.', go: recap2[1].open }
       ].map((x) => ({ ...x, stL: riSt[x.st][0], cb: riSt[x.st][1], cc: riSt[x.st][2] }));
       return { items, nWarn: items.filter((x) => x.st === 'warn').length, nWatch: items.filter((x) => x.st === 'watch').length, nOk: items.filter((x) => x.st === 'ok').length };
     })();
@@ -1650,17 +1650,16 @@ const pzClose = () => this.setState({ ews: null });
         { hl: 'Rasio terbit', hb: '', hr: f1(tr) + '%', hc: '#15803D', segs: [vSeg(tr, '#15803D', 'Terbit ' + fN(tot)), vSeg(100 - tr, '#CBD5E1', 'Belum terbit ' + fN(req - tot))], keys: [vKey('#15803D', 'Terbit ' + fN(tot)), vKey('#CBD5E1', 'Belum ' + fN(req - tot))], tt: fN(tot) + ' izin terbit dari ' + fN(req) + ' permintaan September 2026' },
         { hl: 'Jenis izin', hb: '', hr: ewsJ.length + ' dari ' + JEN.length, hc: '#B45309', segs: JEN.map((j) => vSeg(100 / JEN.length - 0.4, ewsJ.includes(j) ? '#F59E0B' : '#93C5FD', j.l + ': ' + f1(j.avg) + ' vs SLA ' + j.sla + ' HK')), keys: [vKey('#F59E0B', 'lewat SLA > ' + THR + '%'), vKey('#93C5FD', 'dalam batas')], tt: 'Satu segmen = satu jenis izin' },
         { hl: 'Target', hb: tgt + '%', hr: gap > 0 ? '−' + f1(gap) + ' poin' : 'tercapai', hc: gap > 0 ? '#B45309' : '#15803D', segs: [vSeg(natTw3, '#1E40AF', 'Kepatuhan ' + f1(natTw3) + '%'), vSeg(gap, '#F59E0B', 'Kekurangan ke target ' + f1(gap) + ' poin')], keys: [vKey('#1E40AF', 'Capaian ' + f1(natTw3) + '%'), vKey('#F59E0B', 'Kurang ke target')], tt: 'Kepatuhan SLA Tw III ' + f1(natTw3) + '% vs target ' + tgt + '%' },
-        { hl: 'Terbanyak di', hb: TH[thI2].split(' ')[0].replace(/[\/&]+$/, ''), hr: f1(thN2[thI2] / thS * 100) + '%', hc: '#B45309', segs: thN2.map((v, i) => vSeg(v / thS * 100, THC[i], TH[i] + ' ' + fN(v))), keys: [vKey(THC[thI2], TH[thI2].split(' ').slice(0, 2).join(' ')), vKey('#CBD5E1', 'tahap lain')], tt: TH.map((l, i) => l + ' ' + fN(thN2[i])).join(' · ') },
-        { hl: 'Dari', hb: HB.length + ' hambatan', hr: HB.filter((h) => h.ews).length + ' EWS', hc: '#C2410C', segs: stK.map((k) => vSeg(HB.filter((h) => h.status === k).length / HB.length * 100, SC[k] || '#94A3B8', k + ' ' + HB.filter((h) => h.status === k).length)), keys: stK.map((k) => vKey(SC[k] || '#94A3B8', k.replace(' analis', '') + ' ' + HB.filter((h) => h.status === k).length)), tt: 'Status verifikasi ' + HB.length + ' hambatan regulasi' }
+        { hl: 'Terbanyak di', hb: TH[thI2].split(' ')[0].replace(/[\/&]+$/, ''), hr: f1(thN2[thI2] / thS * 100) + '%', hc: '#B45309', segs: thN2.map((v, i) => vSeg(v / thS * 100, THC[i], TH[i] + ' ' + fN(v))), keys: [vKey(THC[thI2], TH[thI2].split(' ').slice(0, 2).join(' ')), vKey('#CBD5E1', 'tahap lain')], tt: TH.map((l, i) => l + ' ' + fN(thN2[i])).join(' · ') }
       ];
       ri.items.forEach((x, i) => { x.viz = V[i]; });
       const E = [fN(tot) + ' izin terbit pada Sep 2026, ' + pc(tot, req) + ' dari ' + fN(req) + ' permintaan.',
         ewsJ.length + ' dari ' + JEN.length + ' jenis izin rata-rata selesai melewati SLA lebih dari ' + THR + '%.',
         'Kepatuhan SLA nasional Tw III ' + f1(natTw3) + '% terhadap target ' + tgt + '%.',
-        recap2[1].v + ' permohonan belum terbit; terbanyak di tahap ' + TH[thI2].toLowerCase() + ' (' + f1(thN2[thI2] / thS * 100) + '%).',
-        HB.length + ' hambatan regulasi tercatat; ' + HB.filter((h) => h.ews).length + ' masuk peringatan dini (EWS).'];
-      const SRC = ['OSS RBA · per 30 Sep 2026', 'OSS RBA · per 30 Sep 2026', 'OSS RBA · Tw III 2026', 'OSS RBA · posisi 30 Sep 2026', 'Analisis hambatan regulasi · feedback OSS & pengaduan'];
-      ri.items.forEach((x, i) => { x.e = E[i]; x.src = SRC[i]; const m = String(x.s).match(/naik [\d.,]+%|\+[\d.,]+%?(?: yoy)?/i); x.s1 = m ? x.s.slice(0, m.index) : x.s; x.sg = m ? m[0] : ''; x.s2 = m ? x.s.slice(m.index + m[0].length) : ''; x.vcls = /^\+/.test(x.v) ? 'ri-v ri-up' : 'ri-v'; x.vsep = x.viz && x.viz.hr ? '·' : ''; x.hrcls = x.viz && x.viz.hc === '#15803D' ? 'ri-up' : ''; x.vks = x.viz ? x.viz.keys.map((k) => ({ l: k.l, cls: /^(\+|Naik)/.test(k.l) ? 'ri-vr ri-vk ri-up' : 'ri-vr ri-vk' })) : []; });
+        recap2[1].v + ' permohonan belum terbit; terbanyak di tahap ' + TH[thI2].toLowerCase() + ' (' + f1(thN2[thI2] / thS * 100) + '%).'];
+      const SRC = ['OSS RBA · per 30 Sep 2026', 'OSS RBA · per 30 Sep 2026', 'OSS RBA · Tw III 2026', 'OSS RBA · posisi 30 Sep 2026'];
+      const DSC = ['Jumlah izin usaha yang diterbitkan melalui OSS pada bulan berjalan dibandingkan jumlah permintaan.', 'Izin yang terbit melewati batas waktu layanan (SLA) yang ditetapkan untuk jenis izinnya.', 'Persentase izin yang selesai dalam batas waktu SLA pada triwulan berjalan, dibandingkan target.', 'Permohonan yang masih diproses dan belum terbit, beserta tahap tempat permohonan paling banyak tertahan.'];
+      ri.items.forEach((x, i) => { x.e = E[i]; x.src = SRC[i]; x.d = DSC[i]; const m = String(x.s).match(/naik [\d.,]+%|\+[\d.,]+%?(?: yoy)?/i); x.s1 = m ? x.s.slice(0, m.index) : x.s; x.sg = m ? m[0] : ''; x.s2 = m ? x.s.slice(m.index + m[0].length) : ''; x.vcls = /^\+/.test(x.v) ? 'ri-v ri-up' : 'ri-v'; x.vsep = x.viz && x.viz.hr ? '·' : ''; x.hrcls = x.viz && x.viz.hc === '#15803D' ? 'ri-up' : ''; x.vks = x.viz ? x.viz.keys.map((k) => ({ l: k.l, cls: /^(\+|Naik)/.test(k.l) ? 'ri-vr ri-vk ri-up' : 'ri-vr ri-vk' })) : []; });
     }
     return {
       insB: !!st.insB, insBToggle: () => this.setState({ insB: !st.insB }), insBLabel: st.insB ? 'Sembunyikan dasar data ▴' : 'Lihat dasar data ▾',
