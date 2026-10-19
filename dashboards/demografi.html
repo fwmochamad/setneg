@@ -734,7 +734,7 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
       <div style="padding: 12px 18px; border-bottom: 1px solid #EEF2F7; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px;">
         <div><h2 style="margin: 0; font-size: 14.5px; font-weight: 600;">Wisata &amp; penerbangan<span class="tip info-i" tabindex="0" aria-label="Keterangan">i<span class="pop">{{lw.tr.cav}} Setiap seri memakai satuannya sendiri.</span></span></h2></div>
       </div>
-      <div style="padding: 14px 18px 16px; display: flex; flex-direction: column; gap: 14px;">
+      <div style="padding: 10px 18px 12px; display: flex; flex-direction: column; gap: 10px;">
         <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px;">
             <div style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #475569;">Periode
               <div style="display: flex; gap: 2px; padding: 3px; background: #EEF2F7; border-radius: 8px;">
@@ -751,15 +751,15 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
           <div style="display: flex; flex-direction: column; gap: 14px;">
             <div style="display: flex; flex-wrap: wrap; gap: 16px;">
               <sc-for list="{{lw.charts}}" as="ch" hint-placeholder-count="2">
-                <div style="flex: 1 1 540px; min-width: 0; padding: 12px 14px 10px; border-radius: 10px; border: 1px solid #E3E8F0; display: flex; flex-direction: column; gap: 8px;">
+                <div style="flex: 1 1 540px; min-width: 0; padding: 10px 12px 8px; border-radius: 10px; border: 1px solid #E3E8F0; display: flex; flex-direction: column; gap: 6px;">
                   <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 6px;">
                     <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 4px 16px;"><sc-for list="{{ch.legend}}" as="lg" hint-placeholder-count="1"><span style="display: inline-flex; align-items: center; gap: 7px;"><span style="width: 14px; height: 3px; border-radius: 2px; background: {{lg.c}};"></span><b style="font-size: 12.5px;">{{lg.n}}</b><span style="font-size: 11px; color: #64748B;">{{lg.w}}</span></span></sc-for></div>
                     <span style="font-size: 11.5px; color: #475569;">{{ch.last}}</span>
                   </div>
                   <div style="display: flex; justify-content: space-between; gap: 8px; font-size: 10.5px; font-weight: 600;"><span style="color: {{ch.uLc}};">{{ch.uL}}</span><span style="color: {{ch.uRc}};">{{ch.uR}}</span></div>
                   <div style="display: flex; gap: 8px;">
-                    <div style="flex: none; width: 84px; height: 130px; display: flex; flex-direction: column; justify-content: space-between; text-align: right; font-size: 10.5px; color: {{ch.uLc}};"><sc-for list="{{ch.yt}}" as="y" hint-placeholder-count="4"><span style="line-height: 1;">{{y}}</span></sc-for></div>
-                    <div style="position: relative; flex: 1; min-width: 0; height: 130px;">
+                    <div style="flex: none; width: 84px; height: 110px; display: flex; flex-direction: column; justify-content: space-between; text-align: right; font-size: 10.5px; color: {{ch.uLc}};"><sc-for list="{{ch.yt}}" as="y" hint-placeholder-count="4"><span style="line-height: 1;">{{y}}</span></sc-for></div>
+                    <div style="position: relative; flex: 1; min-width: 0; height: 110px;">
                       <svg sc-camel-view-box="0 0 600 180" sc-camel-preserve-aspect-ratio="none" aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; overflow: visible;">
                         <path d="M0 0.5H600M0 60H600M0 120H600" stroke="#EEF2F7" fill="none" vector-effect="non-scaling-stroke"></path>
                         <path d="M0 179.5H600" stroke="#CBD5E1" fill="none" vector-effect="non-scaling-stroke"></path>
@@ -771,12 +771,11 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
                         <span class="tip" tabindex="0" sc-camel-on-click="{{p.pick}}" style="position: absolute; left: {{p.l}}; top: {{p.t}}; width: 18px; height: 18px; margin-left: -9px; margin-top: -9px; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: {{p.z}};"><span class="pt" style="display: block; width: {{p.s}}; height: {{p.s}}; border-radius: 99px; background: {{p.bg}}; border: 2px solid {{p.c}}; box-sizing: border-box;"></span><span class="pop {{p.pc}}" style="width: 210px;">{{p.tip}}</span></span>
                       </sc-for>
                     </div>
-                    <sc-if value="{{ch.dual}}" hint-placeholder-val="{{false}}"><div style="flex: none; width: 44px; height: 130px; display: flex; flex-direction: column; justify-content: space-between; text-align: left; font-size: 10.5px; color: {{ch.uRc}};"><sc-for list="{{ch.ytR}}" as="y" hint-placeholder-count="4"><span style="line-height: 1;">{{y}}</span></sc-for></div></sc-if>
+                    <sc-if value="{{ch.dual}}" hint-placeholder-val="{{false}}"><div style="flex: none; width: 44px; height: 110px; display: flex; flex-direction: column; justify-content: space-between; text-align: left; font-size: 10.5px; color: {{ch.uRc}};"><sc-for list="{{ch.ytR}}" as="y" hint-placeholder-count="4"><span style="line-height: 1;">{{y}}</span></sc-for></div></sc-if>
                   </div>
                   <div style="position: relative; height: 16px; margin-left: 92px; margin-right: calc({{ch.mr}} + 28px);">
                     <sc-for list="{{ch.xs}}" as="x" hint-placeholder-count="12"><span style="position: absolute; left: {{x.x}}; transform: translateX(-50%); font-size: 10.5px; color: {{x.c}}; font-weight: {{x.fw}}; white-space: nowrap;">{{x.l}}</span></sc-for>
                   </div>
-                  <div style="font-size: 11px; color: #94A3B8; display: flex; align-items: center;">Catatan data<span class="tip info-i" tabindex="0" aria-label="Catatan data">i<span class="pop">{{ch.note}}</span></span></div>
                 </div>
               </sc-for>
             </div>
