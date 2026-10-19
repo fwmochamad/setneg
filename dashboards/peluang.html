@@ -1181,21 +1181,21 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
                     <div style="display: flex; align-items: baseline; gap: 8px;"><span style="font-size: 20px; font-weight: 700; color: {{env.irbiC}};">{{env.irbi}}</span><span style="padding: 1px 7px; border-radius: 5px; background: #FFF7ED; color: #9A3412; font-size: 11px; font-weight: 600;">{{env.irbiK}}</span></div>
                     <div style="font-size: 10.5px; color: #64748B;">{{env.irbiSub}}</div>
                   </div>
-                  <sc-if value="{{hxOpen}}" hint-placeholder-val="{{false}}">
+                  
                   <div>
-                    <div style="font-size: 10.5px; color: #64748B;">Komposisi kejadian menurut jenis bahaya</div>
+                    <div style="font-size: 10.5px; color: #64748B;">Komposisi kejadian bencana 2021–2025 menurut jenis bahaya</div>
                     <div style="display: flex; height: 10px; margin-top: 5px; border-radius: 5px; overflow: hidden; background: #EEF2F7;"><sc-for list="{{irbiIns.seg}}" as="g" hint-placeholder-count="4"><span title="{{g.l}}: {{g.v}}" style="width: {{g.w}}; background: {{g.c}};"></span></sc-for></div>
                     <div style="margin-top: 6px; display: flex; flex-wrap: wrap; gap: 3px 10px; font-size: 11px; color: #334155;"><sc-for list="{{irbiIns.seg}}" as="g" hint-placeholder-count="4"><span style="display: inline-flex; align-items: center; gap: 4px;"><span style="width: 8px; height: 8px; border-radius: 2px; background: {{g.c}};"></span>{{g.l}} <b>{{g.v}}</b></span></sc-for></div>
                   </div>
-                  <div style="padding: 10px 12px; border-radius: 8px; background: #FFF7ED; border: 1px solid #FED7AA;">
-                    <div style="font-size: 10.5px; font-weight: 700; letter-spacing: .04em; color: #9A3412;">✦ INSIGHT</div>
+                  <div style="padding: 10px 12px; border-radius: 8px; background: #F8FAFC; border: 1px solid #E3E8F0;">
+                    <div style="font-size: 10.5px; font-weight: 700; letter-spacing: .04em; color: #475569;">FAKTA DATA</div>
                     <div style="margin-top: 4px; font-size: 11.5px; line-height: 17px; color: #1F2937;">{{irbiIns.txt}}</div>
                     <div style="margin-top: 8px; font-size: 10.5px; color: #64748B;">Skor IRBI tertinggi · klik untuk lihat di peta</div>
                     <div style="margin-top: 4px; display: flex; flex-wrap: wrap; gap: 5px;"><sc-for list="{{irbiIns.top}}" as="k" hint-placeholder-count="3"><button type="button" sc-camel-on-click="{{k.pick}}" style="height: 24px; padding: 0 8px; border-radius: 6px; border: 1px solid #FDBA74; background: {{k.bg}}; color: {{k.fg}}; font-family: inherit; font-size: 11px; cursor: pointer;">{{k.n}} · <b>{{k.v}}</b></button></sc-for></div>
                   </div>
-                  </sc-if>
+                  <div style="font-size: 10.5px; line-height: 15px; color: #64748B;"><b style="color: #475569;">Sumber:</b> BNPB · Indeks Risiko Bencana Indonesia (IRBI) 2024, <a href="https://inarisk.bnpb.go.id" target="_blank" rel="noopener" style="font-weight: 600; text-decoration: none;">inarisk.bnpb.go.id ↗</a> · Data Informasi Bencana Indonesia (DIBI) 2021–2025, <a href="https://dibi.bnpb.go.id" target="_blank" rel="noopener" style="font-weight: 600; text-decoration: none;">dibi.bnpb.go.id ↗</a></div>
+                  
                 </div>
-                <button type="button" sc-camel-on-click="{{hxToggle}}" style="grid-column: 1 / -1; justify-self: start; padding: 0; border: 0; background: transparent; font-family: inherit; font-size: 12px; font-weight: 600; color: #1D4ED8; cursor: pointer;">{{hxLabel}}</button>
               </div>
             </div>
             <div style="flex: 2 1 380px; min-width: 0; border-left: 1px solid #EEF2F7; padding: 12px 18px; display: flex; flex-direction: column; gap: 8px; background: #FBFCFE;">
@@ -1211,7 +1211,7 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
                   <circle cx="{{hm.cap.x}}" cy="{{hm.cap.y}}" r="{{hm.cap.r}}" fill="#FFFFFF" stroke="#0F172A" stroke-width="{{hm.cap.sw}}" pointer-events="none"></circle><circle cx="{{hm.cap.x}}" cy="{{hm.cap.y}}" r="{{hm.cap.ri}}" fill="#0F172A" pointer-events="none"></circle>
                   <sc-for list="{{hm.isuPts}}" as="p" hint-placeholder-count="2"><g style="cursor: pointer;" sc-camel-on-click="{{p.pick}}"><circle cx="{{p.cx}}" cy="{{p.cy}}" r="{{p.rh}}" fill="{{p.c}}" fill-opacity="0.18"></circle><circle cx="{{p.cx}}" cy="{{p.cy}}" r="{{p.r}}" fill="{{p.c}}" stroke="#FFFFFF" stroke-width="{{p.sw}}"></circle><title>{{p.t}}</title></g></sc-for>
                 </svg>
-                <div class="pl-leg" role="group" aria-label="Legenda peta risiko bencana"><b style="font-size: 12px; color: #0F172A; margin-bottom: 4px;">Skor IRBI kab/kota</b><sc-for list="{{mapLeg.ir}}" as="g" hint-placeholder-count="5"><span class="pl-leg-r"><span class="pl-dot" style="background: {{g.c}};"></span>{{g.l}}</span></sc-for><span class="pl-leg-r" style="margin-top: 3px; padding-top: 4px; border-top: 1px solid #EEF2F7;"><span class="pl-dot" style="background: #0B1F4B;"></span>Lokasi isu</span><span class="pl-leg-r"><span class="pl-dot" style="background: #DC2626;"></span>Isu ber-EWS</span><span class="pl-leg-r"><span class="pl-dot" style="background: #FFFFFF; box-shadow: inset 0 0 0 2px #0F172A;"></span>Ibu kota provinsi</span></div>
+                <div class="pl-leg" role="group" aria-label="Legenda peta risiko bencana"><b style="font-size: 12px; color: #0F172A;">Skor IRBI kab/kota</b><span style="font-size: 10.5px; color: #64748B; margin-bottom: 4px; white-space: nowrap;">indeks tanpa satuan · makin tinggi makin rawan</span><sc-for list="{{mapLeg.ir}}" as="g" hint-placeholder-count="5"><span class="pl-leg-r"><span class="pl-dot" style="background: {{g.c}};"></span>{{g.l}}</span></sc-for><span class="pl-leg-r" style="margin-top: 3px; padding-top: 4px; border-top: 1px solid #EEF2F7;"><span class="pl-dot" style="background: #0B1F4B;"></span>Lokasi isu</span><span class="pl-leg-r"><span class="pl-dot" style="background: #FFFFFF; box-shadow: inset 0 0 0 2px #0F172A;"></span>Ibu kota provinsi</span></div>
 
                 <span style="position: absolute; left: {{hm.capL}}; top: {{hm.capT}}; transform: translate(9px, -50%); font-size: 11px; font-weight: 700; color: #0F172A; text-shadow: 0 0 3px #FFFFFF, 0 0 3px #FFFFFF, 0 0 3px #FFFFFF; pointer-events: none; white-space: nowrap;">{{hm.cap.n}}</span>
                 <sc-for list="{{hm.isuPts}}" as="p" hint-placeholder-count="2"><span style="position: absolute; left: {{p.lx}}; top: {{p.ly}}; transform: translate(-50%, -50%); font-size: {{p.lfs}}; font-weight: 700; color: #FFFFFF; pointer-events: none; line-height: 1;">{{p.no}}</span></sc-for>
@@ -1975,7 +1975,7 @@ const HIST = [[2020, 826.3, 413.5, 412.8], [2021, 901.02, 447, 454], [2022, 1207
     const nTinggi = kabs.filter((k) => k.ir > 176).length;
     const irbiIns = {
       seg: HZ.map(([l, v], i) => ({ l, v: nf((v / hzTot) * 100, 0) + '%', w: (v / hzTot) * 100 + '%', c: HZC[i] })),
-      txt: (HZ[0] ? HZ[0][0] + ' mendominasi (' + nf((HZ[0][1] / hzTot) * 100, 0) + '% kejadian 2021–2025). ' : '') + (nTinggi ? nTinggi + ' kab/kota masuk kelas tinggi' : 'Belum ada kab/kota kelas tinggi') + '; wajibkan kajian risiko bencana dan rencana kontinjensi untuk proyek di wilayah berskor tertinggi.',
+      txt: (HZ[0] ? HZ[0][0] + ' mendominasi (' + nf((HZ[0][1] / hzTot) * 100, 0) + '% kejadian 2021–2025). ' : '') + (nTinggi ? nTinggi + ' kab/kota masuk kelas tinggi' : 'Belum ada kab/kota kelas tinggi') + ' (skor > 176).',
       top: byIr.slice(0, 3).map((k) => chipK(k, 'irbi', nf(k.ir, 1)))
     };
     const env = {
