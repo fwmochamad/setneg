@@ -907,7 +907,7 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
         <!-- 4. Proyek siap investasi per provinsi (Top 5 PDRB) -->
         <section class="ri-card" aria-label="Proyek siap investasi per provinsi">
           <div style="padding: 12px 18px 10px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px;">
-            <h2 style="margin: 0; font-size: 14.5px; font-weight: 600;">Proyek siap investasi<span class="tip info-i" tabindex="0" aria-label="Keterangan">i<span class="pop">Nilai proyek siap investasi di 5 provinsi PDRB terbesar (data simulasi). Batang menunjukkan porsi nilai provinsi terhadap total. Klik provinsi untuk membuka daftar proyeknya di halaman rinci.</span></span></h2>
+            <h2 style="margin: 0; font-size: 14.5px; font-weight: 600;">Proyek siap investasi<span class="tip info-i" tabindex="0" aria-label="Keterangan">i<span class="pop">Jumlah dan nilai peluang investasi yang dipublikasikan BKPM di Portal Investasi Regional (kategori PPI, PID, dan IPRO, tahun profil 2020–2026) untuk 5 provinsi PDRB terbesar. Data ditarik 19 Okt 2026. Klik provinsi untuk membuka daftar proyeknya di halaman rinci.</span></span></h2>
             <span style="font-size: 11.5px; color: #64748B;">{{prjSum.tot}}</span>
           </div>
           <div class="ri-strip" role="list">
@@ -916,7 +916,6 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
               <span class="ri-l" style="min-height: 0;">{{r.n}}</span>
               <b class="ri-v">Rp{{r.v}} T</b>
               <span class="ri-s">{{r.k}} proyek · {{r.sh}} dari total nilai</span>
-              <span title="Porsi nilai {{r.n}}: {{r.sh}}" style="display: block; width: 100%; height: 8px; border-radius: 4px; background: #EEF2F7;"><span style="display: block; width: {{r.bw}}; height: 8px; border-radius: 4px; background: #1E40AF;"></span></span>
               <span class="ri-s" title="{{r.top}}" style="max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Terbesar: <b style="color: #0F172A; font-weight: 600;">{{r.top}}</b></span>
             </button>
             </sc-for>
@@ -2289,46 +2288,86 @@ const ewsClose = () => this.setState({ ews: null });
     ] : [];
 
 // ================= PROYEK SIAP INVESTASI (carousel deskriptif, data contoh) =================
-    // Proyek siap investasi: data simulasi per provinsi (hanya 5 provinsi PDRB terbesar yang dapat dibuka).
-    // nv = nilai investasi (Rp triliun), dn = kebutuhan dana (Rp miliar), kj = tenaga kerja (orang).
-    const PJ = (n, lok, sek, nv, dn, th, kj, tahap, sts, ringkasan, pts) => ({ n, lok, sek, nv, dn, kj, sts, ringkasan, pts,
-      nilai: nv < 1 ? 'Rp' + nf(nv * 1000) + ' miliar' : 'Rp' + nf(nv, nv % 1 ? 1 : 0) + ' triliun', dana: dn >= 1000 ? 'Rp' + nf(dn / 1000, 1) + ' triliun' : 'Rp' + nf(dn) + ' miliar', durasi: th + ' tahun', kerja: nf(kj) + ' orang', tahap });
-    const PRJP = {
+    // Proyek siap investasi: Portal Investasi Regional (PIR) BKPM, regionalinvestment.bkpm.go.id/be/peluang/peluang_investasi_wilayah
+    // ditarik 19 Okt 2026; semua kategori (PPI, PID, IPRO). Kolom: [id, nama, kab/kota, sektor, nilai (Rp T), kategori, tahun, IRR, NPV, payback (tahun)].
+    const PIR = {
       dki: [
-        PJ('Kawasan TOD Dukuh Atas Terpadu', 'Kec. Menteng dan Tanah Abang, Jakarta Pusat', 'Properti dan transportasi', 9.6, 2100, 6, 4800, 'Fase I, 6,5 ha', 'Mencari investor', 'Kawasan berorientasi transit di simpul MRT, LRT, KRL, dan Transjakarta. Fase I membangun hunian vertikal, perkantoran, dan ruang publik di atas lahan milik BUMD.', ['Integrasi empat moda angkutan massal', 'Skema KPBU dengan hak pengelolaan kawasan']),
-        PJ('Pusat Data Hijau Cakung', 'Kec. Cakung, Jakarta Timur', 'Infrastruktur digital', 5.2, 1400, 3, 1200, 'Fase I, 40 MW', 'Proyek siap ditawarkan', 'Kampus pusat data berdaya 40 MW pada fase I dengan pendingin hemat air dan pasokan listrik energi terbarukan untuk penyewa hyperscale dan colocation.', ['Gardu induk 150 kV di dalam kawasan', 'Sertifikat energi terbarukan untuk penyewa']),
-        PJ('Fasilitas Pengolahan Sampah Terpadu Sunter', 'Kec. Tanjung Priok, Jakarta Utara', 'Pengelolaan sampah dan energi', 4.1, 1200, 4, 900, 'Desain rinci', 'Mencari investor', 'Fasilitas pengolahan sampah menjadi energi listrik untuk mengurangi beban TPST Bantargebang. Pemprov menjamin pasokan sampah dan biaya layanan pengolahan.', ['Kapasitas 2.200 ton sampah per hari', 'Biaya layanan pengolahan dijamin Pemprov']),
-        PJ('Revitalisasi Kawasan Kota Tua dan Sunda Kelapa', 'Jakarta Barat dan Jakarta Utara', 'Pariwisata dan ekonomi kreatif', 1.6, 400, 3, 3500, 'Fase I, 12 ha', 'Proyek siap ditawarkan', 'Pemanfaatan kembali bangunan cagar budaya untuk hotel butik, ruang kreatif, dan wisata bahari di kawasan pelabuhan lama.', ['Bangunan cagar budaya siap dimanfaatkan kembali', 'Terhubung stasiun MRT Fase 2A Kota'])
-      ],
-      jabar: [
-        PJ('Kawasan Teknologi dan Inovasi', 'Kab. Bekasi', 'Industri teknologi', 4.6, 1100, 5, 18400, 'Fase I, 60 ha', 'Mencari investor', 'Kawasan khusus untuk industri teknologi tinggi dan elektronik. Menyediakan daya listrik besar, air bersih, dan akses tenaga teknik. Insentif fiskal tersedia bagi tenant yang memenuhi syarat serapan kerja.', ['Daya listrik 400 MW tersedia di dalam kawasan', 'Akses udara ke bandara internasional']),
-        PJ('Kawasan Industri Koridor Rebana', 'Kab. Majalengka', 'Kawasan industri', 3.8, 900, 5, 15000, 'Fase I, 120 ha', 'Mencari investor', 'Kawasan industri baru di koridor Cirebon–Patimban–Kertajati untuk manufaktur padat karya dan komponen otomotif.', ['Dekat Bandara Kertajati dan Pelabuhan Patimban', 'Insentif daerah untuk industri padat karya']),
-        PJ('Pusat Sains dan Inovasi', 'Kota Bandung', 'Jasa profesional dan teknologi', 1.1, 300, 3, 2600, 'Fase I, 8 ha', 'Proyek siap ditawarkan', 'Klaster riset bersama kampus untuk laboratorium, inkubator, dan kantor R&D perusahaan teknologi.', ['Laboratorium bersama dengan kampus lokal', 'Inkubator dan akselerator bersama']),
-        PJ('Agroindustri dan Agrowisata Kopi Priangan', 'Kab. Garut', 'Agroindustri', 0.65, 180, 3, 2400, 'Fase I, 25 ha', 'Proyek siap ditawarkan', 'Pengolahan kopi spesialti terintegrasi dengan agrowisata dan pelatihan petani untuk pasar ekspor.', ['Bahan baku dari ±12.000 ha kebun rakyat', 'Pasar ekspor kopi spesialti'])
-      ],
-      jateng: [
-        PJ('Kawasan Industri Terpadu Hijau', 'Kec. Genuk, Kota Semarang', 'Kawasan industri', 2.4, 620, 4, 12500, 'Fase I, 45 ha', 'Mencari investor', 'Kawasan industri dengan utilitas bersama dan energi terbarukan. Fase I menyiapkan 45 ha lahan siap bangun untuk manufaktur, elektronik, dan logistik. Pencemaran air diminimalkan lewat instalasi pengolahan bersama.', ['Lahan 45 ha fase I sudah dibebaskan', 'Utilitas terhubung ke tol dan rel', 'Air buangan diolah di dalam kawasan']),
-        PJ('Perluasan Kawasan Industri Batang', 'Kab. Batang', 'Kawasan industri', 5.5, 1300, 5, 20000, 'Fase III, 200 ha', 'Mencari investor', 'Perluasan kawasan berstatus KEK untuk industri kaca, baterai, dan komponen elektronik dengan pelabuhan khusus yang direncanakan.', ['Status KEK dengan insentif fiskal', 'Akses Tol Trans Jawa']),
-        PJ('Pengolahan Limbah Pertanian Menjadi Biomassa', 'Kab. Grobogan', 'Energi terbarukan', 0.85, 240, 2, 1600, 'Fase I, 10 ha', 'Proyek siap ditawarkan', 'Pengolahan tongkol jagung dan sekam padi menjadi pelet biomassa untuk co-firing PLTU dan kebutuhan panas industri.', ['Bahan baku dari sawah dan ladang jagung sekitar', 'Pembeli siaga dari pembangkit dan industri']),
-        PJ('Industri Furnitur Berorientasi Ekspor', 'Kab. Jepara', 'Industri pengolahan kayu', 0.42, 120, 2, 3100, 'Fase I, 15 ha', 'Proyek siap ditawarkan', 'Sentra produksi furnitur bersama dengan fasilitas pengeringan kayu, finishing, dan gudang ekspor bagi UMKM perajin.', ['Bahan baku kayu bersertifikat legalitas', 'Akses Pelabuhan Tanjung Emas'])
+        [328, "BLOK C MIXED USE", "", "PARIWISATA", 32.5, "PID", 2026, "11%", "Rp 1,6T", 9],
+        [330, "LRT TRASE 2.A", "", "PENGANGKUTAN", 0.78, "PID", 2026, "12%", "0,0", 14],
+        [329, "LRT TRASE 1.C", "", "PENGANGKUTAN", 0.29, "PID", 2026, "12%", "0,0", 17],
+        [391, "MODERN FULFILLMENT", "Kota Jakarta Timur", "PENGANGKUTAN", 0.1703, "PID", 2025, "19.37%", "Rp 295,5M", 8],
+        [1149, "Fasilitas SPKLU Terintegrasi", "Kota Jakarta Selatan", "Infrastruktur", 0.0673, "PPI", 2021, "10.65%", "Rp 21,6M", 10.17],
+        [325, "Ancol Ecopark", "", "PARIWISATA", 0.0422, "PID", 2025, "11%", "Rp 9,0M", 8],
+        [335, "HAILAI INTEGRATED LIFESTYLE DISTRICT", "", "PARIWISATA", 0, "PID", 2026, "0%", "0,0", 0],
+        [334, "PASAR SENI", "", "PARIWISATA", 0, "PID", 2025, "0%", "0,0", 0]
       ],
       jatim: [
-        PJ('Ekspansi Kawasan Industri Hilir Logam Gresik', 'Kab. Gresik', 'Industri logam dan kimia', 7.8, 2000, 5, 9000, 'Fase II, 150 ha', 'Mencari investor', 'Ekspansi kawasan berstatus KEK untuk industri turunan tembaga, kimia dasar, dan bahan baku baterai di sekitar smelter.', ['Pelabuhan laut dalam di dalam kawasan', 'Status KEK dengan insentif fiskal']),
-        PJ('Banyuwangi Eco Industrial Park', 'Kab. Banyuwangi', 'Kawasan industri', 1.9, 500, 4, 7000, 'Fase I, 60 ha', 'Proyek siap ditawarkan', 'Kawasan industri ramah lingkungan untuk pengolahan hasil laut dan agro dengan konsep nol limbah.', ['Dekat Pelabuhan Ketapang dan Bandara Banyuwangi', 'Konsep nol limbah untuk agro dan perikanan']),
-        PJ('Pusat Logistik Pangan Madura', 'Kab. Bangkalan', 'Logistik pangan', 0.85, 230, 3, 2600, 'Fase I, 35 ha', 'Mencari investor', 'Pusat distribusi dan penyimpanan dingin untuk garam, hasil laut, dan ternak dari Pulau Madura.', ['Terhubung Jembatan Suramadu', 'Gudang berpendingin untuk hasil laut']),
-        PJ('Peternakan Sapi Terpadu', 'Kab. Sumenep', 'Peternakan', 0.32, 90, 3, 1500, 'Fase I, 80 ha', 'Proyek siap ditawarkan', 'Peternakan sapi potong terintegrasi dengan pakan, rumah potong, dan pengolahan daging untuk pasar Jawa.', ['Bibit sapi Madura unggul', 'Pasar daging Jawa Timur dan Jakarta'])
+        [1264, "Industri Pengolahan Logam Tembaga", "Kabupaten Gresik", "Industri", 17.2, "PPI", 2022, "15.99%", "Rp 7,1T", 11.3],
+        [1317, "Smart Eco-Industrial Park (SEIP) Lamongan", "Kabupaten Lamongan", "Industri", 5.6, "PPI", 2024, "13.77%", "Rp 2,4T", 8],
+        [1531, "Banyuwangi Eco Industrial Park", "Kabupaten Banyuwangi", "Industri", 5.4, "IPRO", 2025, "16.35%", "Rp 2,9T", 7],
+        [1314, "Industri Hilirisasi Timah", "Kabupaten Gresik", "Industri", 4.2, "PPI", 2023, "17.16%", "Rp 2,1T", 8.1],
+        [1138, "Industri Soda Ash Terintegrasi", "Kabupaten Sumenep", "Industri", 3.1, "PPI", 2021, "11.7%", "Rp 605,0M", 7.17],
+        [1267, "Industri Bioetanol", "Kabupaten Bojonegoro", "Industri", 2.8, "PPI", 2022, "12.8%", "Rp 659,4M", 7.6],
+        [1144, "Industri Pengolahan Limbah Bahan Berbahaya dan Beracun (B3)", "Kabupaten Mojokerto", "Infrastruktur", 1.7, "PPI", 2021, "15.8%", "Rp 187,8M", 6.17],
+        [384, "Pabrik Pengolahan Pakan Ternak", "", "PERINDUSTRIAN", 1.2, "PID", 2025, "10%", "Rp 549,0M", 5],
+        [1150, "Tumpak Sewu Leisure Park", "Kabupaten Lumajang", "Pariwisata", 0.9657, "PPI", 2021, "13.29%", "Rp 317,0M", 8.25],
+        [1282, "Industri Alat dan Mesin Pertanian", "Kabupaten Gresik", "Industri", 0.7848, "PPI", 2022, "20.1%", "Rp 426,4M", 5],
+        [1270, "Perkebunan Pisang Terintegrasi dengan Industri Pengolahannya", "Kabupaten Malang", "Agro Industri", 0.7427, "PPI", 2022, "18.81%", "Rp 293,2M", 6.3],
+        [1269, "Industri Mandiri Garam Farmasi", "Kabupaten Gresik", "Industri", 0.608, "PPI", 2022, "14.52%", "Rp 73,0M", 6],
+        [216, "Industri Pengolahan Udang", "", "PERINDUSTRIAN", 0.4495, "PID", 2022, "18%", "Rp 70,2M", 4],
+        [1526, "Pengembangan Investasi Budidaya Ubi Kayu Terintegrasi Industri Pengolahannya", "Kabupaten Ponorogo", "Sumber Daya Alam", 0.4343, "IPRO", 2024, "30.99%", "Rp 516,4M", 4],
+        [209, "Unit Pengolahan Ikan Bandeng Bernilai Tambah", "", "PERINDUSTRIAN", 0.4318, "PID", 2022, "62.7%", "Rp 122,0M", 2],
+        [1525, "Akasha Bromo co-Resort", "Kabupaten Pasuruan", "Jasa dan Kawasan", 0.2607, "IPRO", 2024, "13.79%", "Rp 111,7M", 8],
+        [207, "Budidaya Sapi Potong", "", "PERTANIAN", 0.1374, "PID", 2023, "24%", "Rp 41,2M", 5],
+        [1520, "Bromo Volcano Eco Safari", "Kabupaten Malang", "Pariwisata", 0.1083, "IPRO", 2023, "17%", "Rp 58,4M", 6],
+        [110, "Pembangunan Pembangkit Listrik Tenaga Minihidro Sumberarum 2", "", "ENERGI", 0.0682, "PID", 2021, "18%", "Rp 50,5M", 0]
+      ],
+      jabar: [
+        [1133, "Industri Bahan Baku Obat Paracetamol, Clopidogrel dan Amoxicilin", "Kabupaten Subang", "Industri", 3.2, "PPI", 2021, "13%", "Rp 721,0M", 12.25],
+        [1285, "Industri Ban Pesawat Terbang dari Karet Alam", "Kabupaten Majalengka", "Industri", 2.7, "PPI", 2022, "12.75%", "Rp 113,6M", 9.75],
+        [1527, "Kertajati Aircraft Maintenance Center (KAMC) - Maintenance, Repair, Overhaul (MRO) Facility", "Kabupaten Majalengka", "Infrastruktur", 2.6, "IPRO", 2024, "19.79%", "Rp 1,8T", 8],
+        [1137, "Industri Komponen Brake System dan Suspension System untuk Kendaraan Bermotor", "Kabupaten Bekasi", "Industri", 1.1, "PPI", 2021, "14.5%", "Rp 99,4M", 7.25],
+        [1265, "Industri Motor Listrik untuk Kendaraan Listrik", "Kabupaten Bekasi", "Industri", 0.3741, "PPI", 2022, "17.5%", "Rp 181,0M", 6],
+        [214, "Industri Ban Pesawat Terbang dari Karet Alam", "", "PERINDUSTRIAN", 0.273, "PID", 2022, "12.75%", "Rp 113,6M", 10],
+        [399, "Integrasi pertanian organik berbasis ekonomi sirkuler di Desa Cikurubuk Kec. Buahdua", "Kabupaten Sumedang", "PERTANIAN", 0.0666, "PID", 2026, "17%", "Rp 144,0M", 7],
+        [428, "Transportasi Massal Berbasis Rel di Kabupaten Bandung", "Kabupaten Bandung", "KONSTRUKSI", 0, "PID", 2022, "5%", "Rp 4,4Jt", 30]
+      ],
+      jateng: [
+        [1316, "Industri Katoda Baterai EV", "Kabupaten Batang", "Industri", 8.0, "PPI", 2024, "14%", "Rp 3,5T", 13],
+        [424, "Pengembangan Kawasan Khusus Perikanan Terpadu", "", "PERINDUSTRIAN", 0.8094, "PID", 2025, "28.3%", "Rp 51,7M", 4],
+        [1510, "Proyek KPBU Bendungan Bodri", "Kabupaten Kendal", "Infrastruktur", 0.3942, "IPRO", 2023, "11.84%", "Rp 5,6M", 12],
+        [866, "Transito Hotel and Convention Borobudur", "Kota Magelang", "Pariwisata", 0.2985, "PPI", 2020, "17.47%", "Rp 70,0M", 8],
+        [373, "Pengolahan Sampah menjadi Refuse Derived Fuel (RDF) dan Maggot", "", "PERINDUSTRIAN", 0.2668, "PID", 2025, "22%", "Rp 51,0M", 4],
+        [199, "Transformasi TKL Ecopark", "", "PARIWISATA", 0.1806, "PID", 2023, "13.76%", "Rp 54,5M", 12],
+        [121, "Industri Pengolahan Udang Terintegrasi", "Kabupaten Kebumen", "PERIKANAN", 0.1416, "PID", 2023, "35%", "Rp 398,7M", 0],
+        [203, "Industri Modified Cassava Flour (Mocaf)", "", "PERINDUSTRIAN", 0.0561, "PID", 2022, "15.11%", "Rp 21,5M", 8],
+        [218, "Pengelolaan Sampah Menjadi Energi Alternatif Refused Derived Fuel (RDF)", "", "ENERGI", 0.0101, "PID", 2023, "14.32%", "Rp 3,7M", 6],
+        [219, "Budidaya Ikan Nila Salin di Kabupaten Pati", "", "PERIKANAN", 0, "PID", 2023, "183.19%", "Rp 651,8Jt", 7]
       ],
       sumut: [
-        PJ('Pusat Logistik Intermoda', 'Kab. Deli Serdang', 'Logistik dan transportasi', 1.8, 450, 3, 6200, 'Fase I, 30 ha', 'Proyek siap ditawarkan', 'Pusat logistik inland yang menghubungkan pelabuhan, rel, dan Tol Trans Sumatra. Dirancang untuk memangkas biaya penanganan kargo ekspor.', ['Dekat Tol Trans Sumatra dan rel', 'Koneksi langsung ke Pelabuhan Belawan']),
-        PJ('Hilirisasi Sawit Sei Mangkei', 'Kab. Simalungun', 'Industri oleokimia', 4.4, 1100, 4, 8500, 'Fase II, 100 ha', 'Mencari investor', 'Perluasan klaster oleokimia di KEK Sei Mangkei untuk produk turunan minyak sawit bernilai tambah tinggi.', ['Status KEK dengan insentif fiskal', 'Pasokan CPO dari kebun sekitar']),
-        PJ('Resor Wisata Danau Toba', 'Kab. Toba', 'Pariwisata', 1.2, 320, 3, 2900, 'Fase I, 30 ha', 'Proyek siap ditawarkan', 'Resor terpadu di tepi Danau Toba dengan fasilitas MICE dan wisata budaya Batak.', ['Destinasi Pariwisata Super Prioritas', 'Akses Bandara Silangit']),
-        PJ('Pabrik Pakan Berbasis Jagung', 'Kab. Dairi', 'Agroindustri', 0.38, 110, 2, 1100, 'Fase I, 12 ha', 'Mencari investor', 'Pabrik pakan ternak yang menyerap jagung petani Dairi dan Karo untuk pasar peternakan Sumatra Utara.', ['Bahan baku jagung dari Dairi dan Karo', 'Pasar pakan ternak Sumatra Utara'])
+        [1142, "Industri Ekstrusi Aluminium", "Kabupaten Batu Bara", "Industri", 3.9, "PPI", 2021, "11.99%", "Rp 236,2M", 9.08],
+        [396, "Pengembangan Kawasan Komersial Terpadu (Mix Use Building)", "Kota Medan", "PARIWISATA", 2.7, "PID", 2025, "14%", "Rp 7,1M", 7],
+        [282, "Pembangunan Pusat Pasar Kabupaten Karo", "", "KONSTRUKSI", 0.4669, "PID", 2024, "14%", "Rp 168,0M", 25],
+        [1275, "Industri Alat Kesehatan dari Karet Alam", "Kabupaten Deliserdang", "Industri", 0.367, "PPI", 2022, "20.07%", "Rp 305,7M", 5.1],
+        [1148, "Toba Resort & Natural Park", "Kabupaten Samosir", "Pariwisata", 0.2452, "PPI", 2021, "12.98%", "Rp 96,8M", 7.92],
+        [108, "Pembangunan RSUD Tipe C", "", "KONSTRUKSI", 0.2093, "PID", 2022, "18.31%", "Rp 37,8M", 0],
+        [1522, "Geo-Culture Theme Park Sigulatti Toba", "Kabupaten Samosir", "Pariwisata", 0.1915, "IPRO", 2023, "15%", "Rp 64,2M", 10],
+        [1278, "Hortikultura Komoditas Jeruk Siam Madu", "Kabupaten Karo", "Agro Industri", 0.1707, "PPI", 2022, "21.91%", "Rp 181,8M", 6.2],
+        [212, "Kawasan Wisata Muara Indah Kota Gunungsitoli", "", "PARIWISATA", 0.0642, "PID", 2023, "27%", "Rp 259,0M", 5],
+        [289, "Pembangunan Objek Wisata Seribu Gua Desa Banuarea Kabupaten Humbang Hasundutan", "", "KONSTRUKSI", 0.0338, "PID", 2024, "117%", "Rp 17,2M", 0],
+        [283, "Pembangunan Pabrik Jagung Kabupaten Dairi", "", "KONSTRUKSI", 0.0144, "PID", 2024, "62.88%", "Rp 41,9M", 2]
       ]
     };
-    const PRJD = (PRJP[dp] || []).map((x) => ({ ...x, wil: dh.n, src: 'Data simulasi · format profil peluang investasi daerah' }));
-    const PJ_KEYS = [['n', 'Nama proyek'], ['lok', 'Lokasi'], ['wil', 'Provinsi'], ['sek', 'Sektor'], ['nilai', 'Nilai investasi'], ['dana', 'Kebutuhan dana'], ['durasi', 'Durasi proyek'], ['tahap', 'Tahap saat ini'], ['src', 'Sumber data']];
+    const PIR_KAT = { PPI: 'Peluang Proyek Investasi (PPI)', PID: 'Peluang Investasi Daerah (PID)', IPRO: 'Investment Project Ready to Offer (IPRO)' };
+    const PJR = ([id, n, lok, sek, nv, kat, th, irr, npv, pp]) => ({ n, lok, sek, nv, sts: kat, tahap: kat + ' · ' + th,
+      nilai: nv < 1 ? 'Rp' + nf(nv * 1000, 1) + ' miliar' : 'Rp' + nf(nv, 1) + ' triliun', dana: irr || '–', durasi: pp ? pp + ' tahun' : '–', npv: npv || '–',
+      ringkasan: (PIR_KAT[kat] || kat) + ' tahun ' + th + ' di ' + lok + '. Profil lengkap tersedia di Portal Investasi Regional BKPM.',
+      pts: ['IRR ' + (irr || '–') + ' · NPV ' + (npv || '–'), 'Payback ' + (pp ? pp + ' tahun' : '–')], url: 'https://regionalinvestment.bkpm.go.id/peluang_investasi/detailed/' + id });
+    const PRJP = Object.fromEntries(Object.entries(PIR).map(([k, L]) => [k, L.map(PJR)]));
+    const PRJD = (PRJP[dp] || []).map((x) => ({ ...x, wil: dh.n, src: 'Portal Investasi Regional (PIR) BKPM · ditarik 19 Okt 2026' }));
+    const PJ_KEYS = [['n', 'Nama proyek'], ['lok', 'Lokasi'], ['wil', 'Provinsi'], ['sek', 'Sektor'], ['nilai', 'Nilai investasi'], ['dana', 'IRR'], ['npv', 'NPV'], ['durasi', 'Payback'], ['tahap', 'Kategori · tahun'], ['src', 'Sumber data']];
     const PJC = ['#1E3A8A', '#1E40AF', '#2563EB', '#3B82F6', '#0EA5E9', '#047857', '#B45309', '#6D28D9', '#334155'];
-    const prjCards = PRJD.map((p, i) => ({ no: i + 1, c: PJC[i % PJC.length], bw: (p.nv / Math.max(...PRJD.map((x) => x.nv), 1)) * 100 + '%', bc: '#1E40AF', rbg: st.pjO === i ? '#F8FAFC' : 'transparent', open: st.pjO === i, ax: st.pjO === i ? 'true' : 'false', cbg: st.pjO === i ? '#F5F9FF' : '#FFFFFF', cbd: st.pjO === i ? '#93C5FD' : '#E3E8F0', tg: () => this.setState({ pjO: st.pjO === i ? null : i }), tl: st.pjO === i ? 'Tutup rincian ▴' : 'Lihat rincian ▾', p: Object.assign({}, p, { kv: [['Nilai investasi', p.nilai], ['Tahap', p.tahap]].map((x) => ({ l: x[0], v: x[1] })), kv2: [['Kebutuhan dana', p.dana], ['Durasi proyek', p.durasi]].map((x) => ({ l: x[0], v: x[1] })) }) }));
+    const prjCards = PRJD.map((p, i) => ({ no: i + 1, c: PJC[i % PJC.length], bw: (p.nv / Math.max(...PRJD.map((x) => x.nv), 1)) * 100 + '%', bc: '#1E40AF', rbg: st.pjO === i ? '#F8FAFC' : 'transparent', open: st.pjO === i, ax: st.pjO === i ? 'true' : 'false', cbg: st.pjO === i ? '#F5F9FF' : '#FFFFFF', cbd: st.pjO === i ? '#93C5FD' : '#E3E8F0', tg: () => this.setState({ pjO: st.pjO === i ? null : i }), tl: st.pjO === i ? 'Tutup rincian ▴' : 'Lihat rincian ▾', p: Object.assign({}, p, { kv: [['Nilai investasi', p.nilai], ['Tahap', p.tahap]].map((x) => ({ l: x[0], v: x[1] })), kv2: [['IRR', p.dana], ['Payback', p.durasi]].map((x) => ({ l: x[0], v: x[1] })) }) }));
     
 
     // ============ Insight AI ringkas per card (preskriptif) ============
@@ -2461,7 +2500,7 @@ const ewsClose = () => this.setState({ ews: null });
         return { bw: (v / allV) * 100 + '%', sh: nf((v / allV) * 100, 1) + '%', n: P[id].n, k: L.length, v: nf(v, 1), top: big ? big.n + ' (' + big.nilai + ')' : '–',
           go: () => this.setState({ view: 'detail', dp: id, pop: false }) };
       });
-      return { items, tot: all.length + ' proyek · Rp' + nf(all.reduce((a, x) => a + x.nv, 0), 1) + ' T · data simulasi' };
+      return { items, tot: all.length + ' proyek · Rp' + nf(all.reduce((a, x) => a + x.nv, 0), 1) + ' T · PIR BKPM' };
     })();
     // ---- Ringkasan Informasi (atensi Presiden) ----
     const riSt = { warn: ['Perlu atensi', '#FEF3C7', '#B45309'], watch: ['Dipantau', '#DBEAFE', '#1D4ED8'], ok: ['Terkendali', '#DCFCE7', '#15803D'] };
@@ -2474,7 +2513,7 @@ const ewsClose = () => this.setState({ ews: null });
     const vKey = (c, l) => ({ c, l });
     const riPrjV = riPrj.reduce((a, x) => a + x.nv, 0) || 1;
     const PRJC = ['#1E3A8A', '#1E40AF', '#2563EB', '#3B82F6', '#93C5FD'];
-    const prjBy = TOP5.map((id, i) => { const v = (PRJP[id] || []).reduce((a, x) => a + x.nv, 0); return { n: P[id].n, v, c: PRJC[i] }; });
+    const prjBy = TOP5.map((id, i) => { const v = (PRJP[id] || []).reduce((a, x) => a + x.nv, 0); return { n: P[id].n, v, c: PRJC[i] }; }).sort((x, y) => y.v - x.v);
     const pdrbTop = TOP5.map((id, i) => ({ n: P[id].n, sh: P[id].share, c: PRJC[i] }));
     const pdrbTopSum = pdrbTop.reduce((a, x) => a + x.sh, 0);
     const ri = riMake('Triwulan II 2026 · PDRB 2025', [
@@ -2495,7 +2534,7 @@ const ewsClose = () => this.setState({ ews: null });
         viz: { hl: 'Kal–Sul–Bali–Nusra', hb: '', hr: '21,5%', hc: '#B45309',
           segs: [vSeg(66.6, '#1E40AF', '4 wilayah teratas 66,6%'), vSeg(21.5, '#F59E0B', 'Kalimantan, Sulawesi, Bali–Nusra 21,5%'), vSeg(11.9, '#CBD5E1', 'Wilayah lain 11,9%')],
           keys: [vKey('#1E40AF', '4 wilayah 66,6%'), vKey('#CBD5E1', 'lainnya 11,9%')], tt: 'Porsi PMDN Tw II 2026 menurut wilayah' } },
-      { l: 'Proyek siap investasi', v: riPrj.length + ' proyek', s: 'Rp' + nf(riPrjV, 1) + ' T · data simulasi', st: 'watch', a: 'Promosikan profil proyek Top 5 di forum bisnis dan misi investasi.', go: () => this.setState({ view: 'detail', dp: 'dki', pop: false }),
+      { l: 'Proyek siap investasi', v: riPrj.length + ' proyek', s: 'Rp' + nf(riPrjV, 1) + ' T · PIR BKPM', st: 'watch', a: 'Promosikan profil proyek Top 5 di forum bisnis dan misi investasi.', go: () => this.setState({ view: 'detail', dp: 'dki', pop: false }),
         viz: { hl: 'Terbesar', hb: prjBy[0].n, hr: nf(prjBy[0].v / riPrjV * 100, 1) + '%', hc: '#1E40AF',
           segs: prjBy.map((x) => vSeg(x.v / riPrjV * 100, x.c, x.n + ' Rp' + nf(x.v, 1) + ' T')),
           keys: [vKey(prjBy[0].c, 'Rp' + nf(prjBy[0].v, 1) + ' T'), vKey('#93C5FD', '4 provinsi lain Rp' + nf(riPrjV - prjBy[0].v, 1) + ' T')], tt: prjBy.map((x) => x.n + ' Rp' + nf(x.v, 1) + ' T').join(' · ') } }
@@ -2505,9 +2544,9 @@ const ewsClose = () => this.setState({ ews: null });
         'PMA Rp257,7 T (50,4%) sedikit di atas PMDN Rp254,1 T (49,6%); Hong Kong & Singapura menyumbang 59,4% PMA.',
         'Lima provinsi terbesar menyumbang 57,32% PDRB nasional; terbesar ' + pdrbTop[0].n + ' ' + nf(pdrbTop[0].sh, 2) + '%.',
         '66,6% PMDN terkumpul di 4 wilayah; Kalimantan, Sulawesi, dan Bali–Nusra hanya 21,5%.',
-        riPrj.length + ' proyek siap investasi di 5 provinsi teratas senilai Rp' + nf(riPrjV, 1) + ' T; terbesar di ' + prjBy[0].n + '.'];
-      const SRC = ['BKPM/Kementerian Investasi · rilis Tw II 2026', 'BKPM/Kementerian Investasi · rilis Tw II 2026', 'BPS · PDRB 2025', 'BKPM/Kementerian Investasi · rilis Tw II 2026', 'Data simulasi prototipe · profil proyek daerah'];
-      const DSC = ['Nilai investasi PMA dan PMDN yang terealisasi pada triwulan II 2026 dan capaiannya terhadap target tahunan.', 'Bagian investasi dari penanaman modal asing (PMA) dibandingkan penanaman modal dalam negeri (PMDN).', 'Porsi ekonomi nasional (PDRB) yang disumbang lima provinsi terbesar; makin tinggi, makin tidak merata.', 'Porsi investasi dalam negeri yang terkumpul di wilayah teratas; menunjukkan pemerataan investasi antarwilayah.', 'Proyek yang profilnya sudah siap ditawarkan kepada investor di lima provinsi teratas (data simulasi).'];
+        riPrj.length + ' peluang investasi (PPI, PID, IPRO) di 5 provinsi teratas senilai Rp' + nf(riPrjV, 1) + ' T; terbesar di ' + prjBy[0].n + '.'];
+      const SRC = ['BKPM/Kementerian Investasi · rilis Tw II 2026', 'BKPM/Kementerian Investasi · rilis Tw II 2026', 'BPS · PDRB 2025', 'BKPM/Kementerian Investasi · rilis Tw II 2026', 'Portal Investasi Regional BKPM · 19 Okt 2026'];
+      const DSC = ['Nilai investasi PMA dan PMDN yang terealisasi pada triwulan II 2026 dan capaiannya terhadap target tahunan.', 'Bagian investasi dari penanaman modal asing (PMA) dibandingkan penanaman modal dalam negeri (PMDN).', 'Porsi ekonomi nasional (PDRB) yang disumbang lima provinsi terbesar; makin tinggi, makin tidak merata.', 'Porsi investasi dalam negeri yang terkumpul di wilayah teratas; menunjukkan pemerataan investasi antarwilayah.', 'Peluang investasi yang profilnya sudah dipublikasikan BKPM di Portal Investasi Regional (kategori PPI, PID, dan IPRO) untuk lima provinsi PDRB terbesar.'];
       ri.items.forEach((x, i) => { x.e = E[i]; x.src = SRC[i]; x.d = DSC[i]; x.disc = 'DISCLAIMER: ' + (/simulasi/i.test(x.src) ? 'Data yang ditampilkan merupakan data simulasi untuk prototipe, belum data resmi.' : 'Data yang ditampilkan bersumber dari ' + x.src + '.'); const m = String(x.s).match(/naik [\d.,]+%|\+[\d.,]+%?(?: yoy)?/i); x.s1 = m ? x.s.slice(0, m.index) : x.s; x.sg = m ? m[0] : ''; x.s2 = m ? x.s.slice(m.index + m[0].length) : ''; x.vcls = /^\+/.test(x.v) ? 'ri-v ri-up' : 'ri-v'; x.vsep = x.viz && x.viz.hr ? '·' : ''; x.hrcls = x.viz && x.viz.hc === '#15803D' ? 'ri-up' : ''; x.vks = x.viz ? x.viz.keys.map((k) => ({ l: k.l, cls: /^(\+|Naik)/.test(k.l) ? 'ri-vr ri-vk ri-up' : 'ri-vr ri-vk' })) : []; });
     }
     mini.inv = ['Realisasi investasi Semester I 2026 mencapai Rp1.010,6 T atau 46,5% dari target nasional Rp2.175,3 T, tumbuh 7,2% dibanding periode yang sama 2025. Komposisinya seimbang antara PMA Rp507,6 T (50,2%) dan PMDN Rp502,9 T (49,8%).',
@@ -2524,7 +2563,7 @@ const ewsClose = () => this.setState({ ews: null });
       ewsO, ewsN: ek.length, indTabs, I: { l: I.l, u: I.u, per: I.per, src: I.src, freq: I.freq }, leg, naN, hasNA: naN > 0, m, selD, mk, popOpen, pp, ewsList, t5, quick,
       clearSel: set({ sel: null, pop: false }), hasSel: !!sel,
       ri, nas, prjSum, dsOpen: !!st.dsOpen, dsIc: st.dsOpen ? '▴' : '▾', dsToggle: () => this.setState({ dsOpen: !st.dsOpen }), hxOpen: !!st.hxOpen, hxToggle: () => this.setState({ hxOpen: !st.hxOpen }), hxLabel: st.hxOpen ? 'Sembunyikan rincian komponen & insight ▴' : 'Lihat rincian komponen IKLH, komposisi bahaya & insight ▾',
-      prjCards, prjNote: PRJD.length ? 'Data simulasi untuk prototipe · ' + PRJD.length + ' profil proyek di ' + dh.n + '; angka merupakan estimasi, bukan realisasi.' : 'Belum ada profil proyek untuk provinsi ini.', prjScrollP: () => { const el = document.querySelector('[data-prj-track]'); if (el) el.scrollBy({ left: 660, behavior: 'smooth' }); },
+      prjCards, prjNote: PRJD.length ? PRJD.length + ' peluang investasi di ' + dh.n + ' dari Portal Investasi Regional BKPM (PPI, PID, IPRO; ditarik 19 Okt 2026) · nilai adalah estimasi kelayakan, bukan realisasi.' : 'Belum ada profil proyek untuk provinsi ini.', prjScrollP: () => { const el = document.querySelector('[data-prj-track]'); if (el) el.scrollBy({ left: 660, behavior: 'smooth' }); },
       prjScrollN: () => { const el = document.querySelector('[data-prj-track]'); if (el) el.scrollBy({ left: -660, behavior: 'smooth' }); }, pSearch, pOpen: pShowBox, pOpts, pNoHit, pVal, pClear, pCur: !!pCur, pStats, pMeta, pCurN, onPSearch: (e) => this.setState({ pSearch: e && e.target ? e.target.value : "", pOpen: true }), onPOpen: () => this.setState({ pOpen: true }), d1, d2, l1, l2, d1Info: st.donutDetail && st.donutDetail.group === 'PMDN' ? st.donutDetail : null, d2Info: st.donutDetail && st.donutDetail.group === 'PMA' ? st.donutDetail : null, closeDonut: () => this.setState({ donutDetail: null }), nasPop: !!st.nasPop, nasC, nasPos: st.nasPos || { top: '0px', left: '0px', w: '0px' }, nasPopP: st.nasPop === 'pmdn', nasPopA: st.nasPop === 'pma', nasPopT: st.nasPop === 'pma' ? 'Rincian PMA menurut negara asal' : 'Rincian PMDN menurut wilayah', closeNasPop: () => this.setState({ nasPop: null, donutDetail: null }), stopNas: (e) => { if (e && e.stopPropagation) e.stopPropagation(); }, pmaUsd, openL1: openL(), openL2: openL(), openLs: openL({ lt: 'sek' }), openLh: openL({ lt: 'hist' }),
       // lampiran
       lm, closeL: set({ lm: false }), lTabs, isLp: lt === 'prov', isLs: lt === 'sek', isLk: lt === 'skala', isLh: lt === 'hist', lperBtns, lpOpts, lpv, onLp, lsOpts, lsk, onLs,
