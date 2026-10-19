@@ -181,11 +181,12 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
 .ri-card[aria-label="Ringkasan informasi"] .ri-item:hover,.ri-card[aria-label="Ringkasan informasi"] .ri-item:focus-visible{background:#fff!important;border-color:#bfdbfe!important;box-shadow:0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -2px rgba(0,0,0,.1)!important}
 .ri-card[aria-label="Ringkasan informasi"] .ri-cap{border-top:0!important;padding:10px 2px 0!important;background:transparent!important}
 </style><style id="hl-uniform">.harmonisasi-alert-track{align-items:stretch}.harmonisasi-alert-card{display:flex;flex-direction:column}.harmonisasi-alert-heading{min-height:40px}.harmonisasi-alert-title strong{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.harmonisasi-alert-details{flex:1}.harmonisasi-alert-details p{display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}</style>
-<style id="harmonisasi-ri-teks">.ri-card .ri-s{justify-self:stretch}.ri-vt{display:block;margin-top:4px;color:#334155}.ri-vt b{color:#0F172A;font-weight:600}.ri-vk{display:block;margin-top:1px;font-size:10.5px;color:#64748B}
+<style id="harmonisasi-ri-teks">@media (min-width:1024px){.ri-card[aria-label="Ringkasan informasi"] .ri-strip{grid-template-columns:repeat(4,minmax(0,1fr))!important}.ri-card .ri-item:last-child{grid-column:auto!important}}.ri-card .ri-s{justify-self:stretch}.ri-vt{display:block;margin-top:4px;color:#334155}.ri-vt b{color:#0F172A;font-weight:600}.ri-vk{display:block;margin-top:1px;font-size:10.5px;color:#64748B}
 .ri-card .ri-i{align-self:stretch!important;display:flex;flex-direction:column;gap:6px;padding:9px 10px!important;font-weight:500!important;line-height:16px}
 .ri-card .ri-ie{font-weight:600}.ri-card .ri-ir b{color:inherit!important;font-weight:700;letter-spacing:.02em}
 .ri-card .ri-isrc{margin-top:auto;padding-top:6px;border-top:1px solid rgba(124,58,237,.15);font-size:10.5px;line-height:14px;font-weight:400;color:#6B7280}.ri-card .ri-isrc b{color:#4B5563!important;font-weight:600}
-.ri-card .ri-item{grid-row:span 4!important}.ri-vl{display:flex;flex-direction:column;gap:3px;margin-top:8px;padding-top:8px;border-top:1px solid #F1F5F9}.ri-vr{display:flex;justify-content:space-between;gap:8px;line-height:16px}.ri-vr b{color:#0F172A;font-weight:600;white-space:nowrap}.ri-vr.ri-vk{display:flex;align-items:center;justify-content:flex-start;gap:6px;font-size:11px;color:#64748B}.ri-vr.ri-vk:before{content:"";flex:none;width:4px;height:4px;border-radius:99px;background:#CBD5E1}</style>
+.ri-card .ri-item{grid-row:span 4!important}.ri-vl{display:flex;flex-direction:column;gap:3px;margin-top:8px;padding-top:8px;border-top:1px solid #F1F5F9}.ri-vr{display:flex;justify-content:space-between;gap:8px;line-height:16px}.ri-vr b{color:#0F172A;font-weight:600;white-space:nowrap}.ri-vr.ri-vk{display:flex;align-items:center;justify-content:flex-start;gap:6px;font-size:11px;color:#64748B}.ri-vr.ri-vk:before{content:"";flex:none;width:4px;height:4px;border-radius:99px;background:#CBD5E1}
+.ri-card .ri-vr{display:block}.ri-sep{color:#94A3B8;margin:0 3px}.ri-card .ri-up,.ri-card .ri-vr b.ri-up,.ri-card .ri-v.ri-up{color:#16A34A!important;font-weight:600}.ri-card .ri-v.ri-up{font-weight:700!important}.ri-card .ri-vr.ri-vk{display:flex}</style>
 </head>
 <body>
 <x-dc>
@@ -548,8 +549,8 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
             <sc-for list="{{ri.items}}" as="r" hint-placeholder-count="5">
             <button type="button" role="listitem" class="ri-item" sc-camel-on-click="{{r.go}}" title="Klik untuk melihat rincian" style="box-shadow: inset 0 3px 0 {{r.cc}};">
               <span class="ri-l">{{r.l}}</span>
-              <b class="ri-v">{{r.v}}</b>
-              <span class="ri-s" style="justify-self: stretch; align-self: start;">{{r.s}}<sc-if value="{{r.viz}}" hint-placeholder-val="{{false}}"><span class="ri-vl" title="{{r.viz.tt}}"><span class="ri-vr"><span>{{r.viz.hl}} <b>{{r.viz.hb}}</b></span><b>{{r.viz.hr}}</b></span><sc-for list="{{r.vks}}" as="k" hint-placeholder-count="2"><span class="ri-vr ri-vk">{{k}}</span></sc-for></span></sc-if></span>
+              <b class="{{r.vcls}}">{{r.v}}</b>
+              <span class="ri-s" style="justify-self: stretch; align-self: start;">{{r.s1}}<b class="ri-up">{{r.sg}}</b>{{r.s2}}<sc-if value="{{r.viz}}" hint-placeholder-val="{{false}}"><span class="ri-vl" title="{{r.viz.tt}}"><span class="ri-vr">{{r.viz.hl}} <b>{{r.viz.hb}}</b> <span class="ri-sep">{{r.vsep}}</span> <b class="{{r.hrcls}}">{{r.viz.hr}}</b></span><sc-for list="{{r.vks}}" as="k" hint-placeholder-count="2"><span class="{{k.cls}}">{{k.l}}</span></sc-for></span></sc-if></span>
               <span class="ri-i"><span class="ri-ie">✦ {{r.e}}</span><span class="ri-ir"><b>REKOMENDASI:</b> {{r.a}}</span><span class="ri-isrc"><b>Sumber:</b> {{r.src}}</span></span>
             </button>
             </sc-for>
@@ -1535,8 +1536,7 @@ const closeEws = () => this.setState({ ews: null });
       { l: 'Regulasi investasi berlaku', v: '290', s: '284 status terverifikasi · 6 belum', st: 'ok', a: 'Basis regulasi lengkap; jaga pemutakhiran JDIH daerah.', go: riGo('sec-daftar') },
       { l: 'Tingkat keselarasan', v: '95,42%', s: '271 dari 284 regulasi dinilai', st: 'ok', a: '6 Perda baru belum dinilai; jadwalkan pada siklus berikutnya.', go: toKeselarasan },
       { l: 'Regulasi tidak selaras', v: '13', s: '3 belum ditindaklanjuti · 2 menunggu keputusan', st: 'warn', a: 'Dorong keputusan lintas kementerian untuk 2 kasus tertahan.', go: toKeselarasan },
-      { l: 'Dominasi aturan teknis', v: regulatoryInsight.topPct, s: 'regulasi berbentuk ' + regulatoryInsight.topLabel, st: 'watch', a: 'Pastikan aturan teknis K/L tidak menambah syarat di luar PP 28/2025.', go: riGo('sec-sebaran') },
-      { l: 'Peringatan dini aktif', v: highlights.length + ' isu', s: highlights.length ? highlights[0].short : 'tidak ada isu aktif', st: highlights.length ? 'warn' : 'ok', a: 'Selesaikan kajian lingkungan & konflik lahan sebelum proyek berjalan.', go: () => { try { document.body.scrollIntoView({ behavior: 'smooth' }); } catch (e) {} } }
+      { l: 'Dominasi aturan teknis', v: regulatoryInsight.topPct, s: 'regulasi berbentuk ' + regulatoryInsight.topLabel, st: 'watch', a: 'Pastikan aturan teknis K/L tidak menambah syarat di luar PP 28/2025.', go: riGo('sec-sebaran') }
     ]);
     // Visual mini per indikator Ringkasan Informasi: kepala pembanding, batang bersegmen, keterangan berwarna
     const vSeg = (w, c, tt) => ({ w: Math.max(0, w) + '%', c, tt });
@@ -1548,17 +1548,15 @@ const closeEws = () => this.setState({ ews: null });
         { hl: 'Pusat', hb: '251', hr: 'Daerah 39', hc: '#B45309', segs: [vSeg(86.6, '#1E40AF', 'Pusat 251 · 86,6%'), vSeg(13.4, '#D4A72C', 'Daerah 39 · 13,4%')], keys: [vKey('#1E40AF', 'Pusat 86,6%'), vKey('#D4A72C', 'Daerah 13,4%')], tt: 'Regulasi berlaku menurut tingkat: pusat 251, daerah 39' },
         { hl: 'Dari', hb: '290 regulasi', hr: '6 belum dinilai', hc: '#64748B', segs: [vSeg(271 / 290 * 100, '#15803D', 'Selaras 271'), vSeg(13 / 290 * 100, '#F59E0B', 'Tidak selaras 13'), vSeg(6 / 290 * 100, '#94A3B8', 'Belum dinilai 6')], keys: [vKey('#15803D', 'Selaras 271'), vKey('#F59E0B', 'Tidak 13'), vKey('#94A3B8', 'Belum 6')], tt: 'Selaras 271 · tidak selaras 13 · belum dinilai 6 (Perda baru)' },
         { hl: 'Belum ditindaklanjuti', hb: '', hr: '3 dari 13', hc: '#C2410C', segs: [vSeg(3 / 13 * 100, '#C2410C', 'Belum ditindaklanjuti 3'), vSeg(2 / 13 * 100, '#F59E0B', 'Menunggu keputusan 2'), vSeg(6 / 13 * 100, '#3B82F6', 'Dalam proses 6'), vSeg(2 / 13 * 100, '#15803D', 'Selesai 2')], keys: [vKey('#C2410C', 'Belum 3'), vKey('#F59E0B', 'Tunggu 2'), vKey('#3B82F6', 'Proses 6'), vKey('#15803D', 'Selesai 2')], tt: 'Status tindak lanjut 13 regulasi tidak selaras' },
-        { hl: 'Dari', hb: '290 regulasi', hr: jTop.n + ' regulasi', hc: '#1E40AF', segs: jenisBar.map((x) => vSeg(x.n / 290 * 100, x.c, x.l + ' ' + x.n + ' · ' + x.p)), keys: [vKey(jTop.c, jTop.l + ' ' + jTop.p), vKey('#CBD5E1', 'jenis lain')], tt: jenisBar.map((x) => x.l + ' ' + x.n).join(' · ') },
-        { hl: 'Dari', hb: isuN + ' isu dipantau', hr: hlN + ' peringatan', hc: '#B45309', segs: [vSeg(hlN / Math.max(1, isuN) * 100, '#F59E0B', hlN + ' isu peringatan dini aktif'), vSeg((isuN - hlN) / Math.max(1, isuN) * 100, '#BFDBFE', (isuN - hlN) + ' isu dipantau')], keys: [vKey('#F59E0B', 'Peringatan ' + hlN), vKey('#BFDBFE', 'Dipantau ' + (isuN - hlN))], tt: hlN + ' dari ' + isuN + ' isu berstatus peringatan dini' }
+        { hl: 'Dari', hb: '290 regulasi', hr: jTop.n + ' regulasi', hc: '#1E40AF', segs: jenisBar.map((x) => vSeg(x.n / 290 * 100, x.c, x.l + ' ' + x.n + ' · ' + x.p)), keys: jenisBar.map((x) => vKey(x.c, x.l + ' ' + x.n + ' · ' + x.p)), tt: jenisBar.map((x) => x.l + ' ' + x.n).join(' · ') }
       ];
       ri.items.forEach((x, i) => { x.viz = V[i]; });
       const E = ['290 regulasi investasi berlaku: 251 tingkat pusat dan 39 tingkat daerah; 6 belum terverifikasi statusnya.',
         '271 dari 284 regulasi yang dinilai selaras; 13 berpotensi tidak selaras dan 6 Perda baru belum dinilai.',
         '13 regulasi tidak selaras: 3 belum ditindaklanjuti, 2 menunggu keputusan, 6 dalam proses, dan 2 selesai.',
-        regulatoryInsight.topPct + ' regulasi investasi berbentuk ' + regulatoryInsight.topLabel + ', jenis yang paling dominan.',
-        hlN + ' dari ' + isuN + ' isu yang dipantau berstatus peringatan dini' + (hlN ? '; teratas: ' + highlights[0].short + '.' : '.')];
-      const SRC = ['JDIH BPK & JDIH K/L/daerah · per 12 Okt 2026', 'Analisis keselarasan regulasi · terverifikasi analis', 'Analisis keselarasan regulasi · terverifikasi analis', 'JDIH BPK · klasifikasi jenis peraturan', 'Pemantauan isu & berita daring · terverifikasi analis'];
-      ri.items.forEach((x, i) => { x.e = E[i]; x.src = SRC[i]; x.vks = x.viz ? x.viz.keys.map((k) => k.l) : []; });
+        regulatoryInsight.topPct + ' regulasi investasi berbentuk ' + regulatoryInsight.topLabel + ', jenis yang paling dominan.'];
+      const SRC = ['JDIH BPK & JDIH K/L/daerah · per 12 Okt 2026', 'Analisis keselarasan regulasi · terverifikasi analis', 'Analisis keselarasan regulasi · terverifikasi analis', 'JDIH BPK · klasifikasi jenis peraturan'];
+      ri.items.forEach((x, i) => { x.e = E[i]; x.src = SRC[i]; const m = String(x.s).match(/naik [\d.,]+%|\+[\d.,]+%?(?: yoy)?/i); x.s1 = m ? x.s.slice(0, m.index) : x.s; x.sg = m ? m[0] : ''; x.s2 = m ? x.s.slice(m.index + m[0].length) : ''; x.vcls = /^\+/.test(x.v) ? 'ri-v ri-up' : 'ri-v'; x.vsep = x.viz && x.viz.hr ? '·' : ''; x.hrcls = x.viz && x.viz.hc === '#15803D' ? 'ri-up' : ''; x.vks = x.viz ? x.viz.keys.map((k) => ({ l: k.l, cls: /^(\+|Naik)/.test(k.l) ? 'ri-vr ri-vk ri-up' : 'ri-vr ri-vk' })) : []; });
     }
     return { isList: view === 'list', isDetail: view === 'detail', fl, flDaftar, hasDaftarFilter, resetDaftarFilter, hasFilter, resetF, filterNote: ids.length + ' regulasi sesuai filter',
       jenisBar, regulatoryInsight, sectorInsight, sbTitle, sbTabs, sbJenis: sb === 'jenis', sbSektor: sb === 'sektor', jenisItems, kpiJenis, hasJenisFilter, activeJenisName, activeJenisCount, resetJenisFilter, sekRows, hasSektorFilter, activeSektorName, activeSektorCount, resetSektorFilter,

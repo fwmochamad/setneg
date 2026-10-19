@@ -185,7 +185,8 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
 .ri-card .ri-i{align-self:stretch!important;display:flex;flex-direction:column;gap:6px;padding:9px 10px!important;font-weight:500!important;line-height:16px}
 .ri-card .ri-ie{font-weight:600}.ri-card .ri-ir b{color:inherit!important;font-weight:700;letter-spacing:.02em}
 .ri-card .ri-isrc{margin-top:auto;padding-top:6px;border-top:1px solid rgba(124,58,237,.15);font-size:10.5px;line-height:14px;font-weight:400;color:#6B7280}.ri-card .ri-isrc b{color:#4B5563!important;font-weight:600}
-.ri-card .ri-item{grid-row:span 4!important}.ri-vl{display:flex;flex-direction:column;gap:3px;margin-top:8px;padding-top:8px;border-top:1px solid #F1F5F9}.ri-vr{display:flex;justify-content:space-between;gap:8px;line-height:16px}.ri-vr b{color:#0F172A;font-weight:600;white-space:nowrap}.ri-vr.ri-vk{display:flex;align-items:center;justify-content:flex-start;gap:6px;font-size:11px;color:#64748B}.ri-vr.ri-vk:before{content:"";flex:none;width:4px;height:4px;border-radius:99px;background:#CBD5E1}</style>
+.ri-card .ri-item{grid-row:span 4!important}.ri-vl{display:flex;flex-direction:column;gap:3px;margin-top:8px;padding-top:8px;border-top:1px solid #F1F5F9}.ri-vr{display:flex;justify-content:space-between;gap:8px;line-height:16px}.ri-vr b{color:#0F172A;font-weight:600;white-space:nowrap}.ri-vr.ri-vk{display:flex;align-items:center;justify-content:flex-start;gap:6px;font-size:11px;color:#64748B}.ri-vr.ri-vk:before{content:"";flex:none;width:4px;height:4px;border-radius:99px;background:#CBD5E1}
+.ri-card .ri-vr{display:block}.ri-sep{color:#94A3B8;margin:0 3px}.ri-card .ri-up,.ri-card .ri-vr b.ri-up,.ri-card .ri-v.ri-up{color:#16A34A!important;font-weight:600}.ri-card .ri-v.ri-up{font-weight:700!important}.ri-card .ri-vr.ri-vk{display:flex}</style>
 </head>
 <body>
 <x-dc>
@@ -555,8 +556,8 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
             <sc-for list="{{ri.items}}" as="r" hint-placeholder-count="5">
             <button type="button" role="listitem" class="ri-item" sc-camel-on-click="{{r.go}}" title="Klik untuk melihat rincian" style="box-shadow: inset 0 3px 0 {{r.cc}};">
               <span class="ri-l">{{r.l}}</span>
-              <b class="ri-v">{{r.v}}</b>
-              <span class="ri-s" style="justify-self: stretch; align-self: start;">{{r.s}}<sc-if value="{{r.viz}}" hint-placeholder-val="{{false}}"><span class="ri-vl" title="{{r.viz.tt}}"><span class="ri-vr"><span>{{r.viz.hl}} <b>{{r.viz.hb}}</b></span><b>{{r.viz.hr}}</b></span><sc-for list="{{r.vks}}" as="k" hint-placeholder-count="2"><span class="ri-vr ri-vk">{{k}}</span></sc-for></span></sc-if></span>
+              <b class="{{r.vcls}}">{{r.v}}</b>
+              <span class="ri-s" style="justify-self: stretch; align-self: start;">{{r.s1}}<b class="ri-up">{{r.sg}}</b>{{r.s2}}<sc-if value="{{r.viz}}" hint-placeholder-val="{{false}}"><span class="ri-vl" title="{{r.viz.tt}}"><span class="ri-vr">{{r.viz.hl}} <b>{{r.viz.hb}}</b> <span class="ri-sep">{{r.vsep}}</span> <b class="{{r.hrcls}}">{{r.viz.hr}}</b></span><sc-for list="{{r.vks}}" as="k" hint-placeholder-count="2"><span class="{{k.cls}}">{{k.l}}</span></sc-for></span></sc-if></span>
               <span class="ri-i"><span class="ri-ie">✦ {{r.e}}</span><span class="ri-ir"><b>REKOMENDASI:</b> {{r.a}}</span><span class="ri-isrc"><b>Sumber:</b> {{r.src}}</span></span>
             </button>
             </sc-for>
@@ -1659,7 +1660,7 @@ const pzClose = () => this.setState({ ews: null });
         recap2[1].v + ' permohonan belum terbit; terbanyak di tahap ' + TH[thI2].toLowerCase() + ' (' + f1(thN2[thI2] / thS * 100) + '%).',
         HB.length + ' hambatan regulasi tercatat; ' + HB.filter((h) => h.ews).length + ' masuk peringatan dini (EWS).'];
       const SRC = ['OSS RBA · per 30 Sep 2026', 'OSS RBA · per 30 Sep 2026', 'OSS RBA · Tw III 2026', 'OSS RBA · posisi 30 Sep 2026', 'Analisis hambatan regulasi · feedback OSS & pengaduan'];
-      ri.items.forEach((x, i) => { x.e = E[i]; x.src = SRC[i]; x.vks = x.viz ? x.viz.keys.map((k) => k.l) : []; });
+      ri.items.forEach((x, i) => { x.e = E[i]; x.src = SRC[i]; const m = String(x.s).match(/naik [\d.,]+%|\+[\d.,]+%?(?: yoy)?/i); x.s1 = m ? x.s.slice(0, m.index) : x.s; x.sg = m ? m[0] : ''; x.s2 = m ? x.s.slice(m.index + m[0].length) : ''; x.vcls = /^\+/.test(x.v) ? 'ri-v ri-up' : 'ri-v'; x.vsep = x.viz && x.viz.hr ? '·' : ''; x.hrcls = x.viz && x.viz.hc === '#15803D' ? 'ri-up' : ''; x.vks = x.viz ? x.viz.keys.map((k) => ({ l: k.l, cls: /^(\+|Naik)/.test(k.l) ? 'ri-vr ri-vk ri-up' : 'ri-vr ri-vk' })) : []; });
     }
     return {
       insB: !!st.insB, insBToggle: () => this.setState({ insB: !st.insB }), insBLabel: st.insB ? 'Sembunyikan dasar data ▴' : 'Lihat dasar data ▾',

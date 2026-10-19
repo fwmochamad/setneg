@@ -185,7 +185,8 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
 .ri-card .ri-i{align-self:stretch!important;display:flex;flex-direction:column;gap:6px;padding:9px 10px!important;font-weight:500!important;line-height:16px}
 .ri-card .ri-ie{font-weight:600}.ri-card .ri-ir b{color:inherit!important;font-weight:700;letter-spacing:.02em}
 .ri-card .ri-isrc{margin-top:auto;padding-top:6px;border-top:1px solid rgba(124,58,237,.15);font-size:10.5px;line-height:14px;font-weight:400;color:#6B7280}.ri-card .ri-isrc b{color:#4B5563!important;font-weight:600}
-.ri-card .ri-item{grid-row:span 4!important}.ri-vl{display:flex;flex-direction:column;gap:3px;margin-top:8px;padding-top:8px;border-top:1px solid #F1F5F9}.ri-vr{display:flex;justify-content:space-between;gap:8px;line-height:16px}.ri-vr b{color:#0F172A;font-weight:600;white-space:nowrap}.ri-vr.ri-vk{display:flex;align-items:center;justify-content:flex-start;gap:6px;font-size:11px;color:#64748B}.ri-vr.ri-vk:before{content:"";flex:none;width:4px;height:4px;border-radius:99px;background:#CBD5E1}</style>
+.ri-card .ri-item{grid-row:span 4!important}.ri-vl{display:flex;flex-direction:column;gap:3px;margin-top:8px;padding-top:8px;border-top:1px solid #F1F5F9}.ri-vr{display:flex;justify-content:space-between;gap:8px;line-height:16px}.ri-vr b{color:#0F172A;font-weight:600;white-space:nowrap}.ri-vr.ri-vk{display:flex;align-items:center;justify-content:flex-start;gap:6px;font-size:11px;color:#64748B}.ri-vr.ri-vk:before{content:"";flex:none;width:4px;height:4px;border-radius:99px;background:#CBD5E1}
+.ri-card .ri-vr{display:block}.ri-sep{color:#94A3B8;margin:0 3px}.ri-card .ri-up,.ri-card .ri-vr b.ri-up,.ri-card .ri-v.ri-up{color:#16A34A!important;font-weight:600}.ri-card .ri-v.ri-up{font-weight:700!important}.ri-card .ri-vr.ri-vk{display:flex}</style>
 </head>
 <body>
 <x-dc>
@@ -455,8 +456,8 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
             <sc-for list="{{ri.items}}" as="r" hint-placeholder-count="5">
             <button type="button" role="listitem" class="ri-item" sc-camel-on-click="{{r.go}}" title="Klik untuk melihat rincian" style="box-shadow: inset 0 3px 0 {{r.cc}};">
               <span class="ri-l">{{r.l}}</span>
-              <b class="ri-v">{{r.v}}</b>
-              <span class="ri-s" style="justify-self: stretch; align-self: start;">{{r.s}}<sc-if value="{{r.viz}}" hint-placeholder-val="{{false}}"><span class="ri-vl" title="{{r.viz.tt}}"><span class="ri-vr"><span>{{r.viz.hl}} <b>{{r.viz.hb}}</b></span><b>{{r.viz.hr}}</b></span><sc-for list="{{r.vks}}" as="k" hint-placeholder-count="2"><span class="ri-vr ri-vk">{{k}}</span></sc-for></span></sc-if></span>
+              <b class="{{r.vcls}}">{{r.v}}</b>
+              <span class="ri-s" style="justify-self: stretch; align-self: start;">{{r.s1}}<b class="ri-up">{{r.sg}}</b>{{r.s2}}<sc-if value="{{r.viz}}" hint-placeholder-val="{{false}}"><span class="ri-vl" title="{{r.viz.tt}}"><span class="ri-vr">{{r.viz.hl}} <b>{{r.viz.hb}}</b> <span class="ri-sep">{{r.vsep}}</span> <b class="{{r.hrcls}}">{{r.viz.hr}}</b></span><sc-for list="{{r.vks}}" as="k" hint-placeholder-count="2"><span class="{{k.cls}}">{{k.l}}</span></sc-for></span></sc-if></span>
               <span class="ri-i"><span class="ri-ie">✦ {{r.e}}</span><span class="ri-ir"><b>REKOMENDASI:</b> {{r.a}}</span><span class="ri-isrc"><b>Sumber:</b> {{r.src}}</span></span>
             </button>
             </sc-for>
@@ -1691,7 +1692,7 @@ class Component extends DCLogic {
     const riTab = (k) => riGo({ migrasi: 'sec-tren', kerja: 'sec-kerja', wisata: 'sec-wisata' }[k]);
     const ri = riMake('penduduk 2025 · tenaga kerja Feb 2026 · mobilitas s.d. ' + riWis.per, [
       { l: 'Jumlah penduduk', v: '284,4 juta', s: 'lima provinsi menampung 56,0%', st: 'watch', a: 'Pasar dan tenaga kerja terpusat di Jawa; siapkan infrastruktur luar Jawa.', go: riGo('sec-peta') },
-      { l: 'Usia produktif (15–64 th)', v: '69,30%', s: 'rasio ketergantungan 44,3', st: 'ok', a: 'Bonus demografi perlu diimbangi lapangan kerja formal.', go: riGo('sec-peta') },
+      { l: 'Usia produktif', v: '69,30%', s: 'penduduk berusia 15–64 tahun', st: 'ok', a: 'Bonus demografi perlu diimbangi lapangan kerja formal.', go: riGo('sec-peta') },
       { l: 'Penyerapan tenaga kerja', v: nf(100 - TKN.tpt, 2) + '%', s: 'dari ' + jt(TKN.ak) + ' angkatan kerja · TPT ' + nf(TKN.tpt, 2) + '%', st: 'watch', a: 'Pengangguran tertinggi di Jawa Barat (' + nf(TKR.jabar[1], 2) + '%) dan DKI (' + nf(TKR.dki[1], 2) + '%); dorong investasi padat karya.', go: riGo('sec-peta') },
       { l: 'Tren mobilitas', v: sgnPc(riKrl.yoy), s: 'penumpang KRL ' + nf(riKrl.v, 2) + ' jt · ' + riKrl.per + ' yoy', st: 'ok', a: 'Komuter KRL tumbuh, Whoosh ' + nf(riWho.v, 1) + ' rb penumpang; Bekasi–Bogor dan Bandung Raya jadi kantong tenaga kerja.', go: riTab('kerja') },
       { l: 'Wisatawan nusantara', v: nf(riWis.v, 1) + ' jt', s: 'perjalanan ' + riWis.per + ' · ' + sgnPc(riWis.yoy) + ' yoy', st: 'ok', a: 'Permintaan wisata domestik naik; peluang investasi akomodasi dan destinasi baru.', go: riTab('wisata') }
@@ -1707,9 +1708,10 @@ class Component extends DCLogic {
       const ageS = ageW.reduce((a, b) => a + b, 0) || 1;
       const ag = ageW.map((v) => v / ageS * 100);
       const grow = (o, nm, u, d) => { if (o.yoy == null) return null; const pv = o.v / (1 + o.yoy / 100), up = o.v >= pv, M = Math.max(o.v, pv);
-        return { hl: 'Periode sama 2025', hb: nf(pv, d) + ' ' + u, hr: (up ? '+' : '−') + nf(Math.abs(o.v - pv), d) + ' ' + u, hc: up ? '#15803D' : '#B45309',
+        const pPer = o.per.replace(/\d{4}/, (y) => y - 1);
+        return { hl: 'Dibanding ' + pPer + ':', hb: nf(pv, d) + ' ' + u, hr: (up ? '+' : '−') + nf(Math.abs(o.v - pv), d) + ' ' + u, hc: up ? '#15803D' : '#B45309',
           segs: [vSeg(Math.min(o.v, pv) / M * 100, '#94A3B8', '2025 ' + nf(pv, d) + ' ' + u), vSeg(Math.abs(o.v - pv) / M * 100, up ? '#15803D' : '#F59E0B', (up ? 'Tambahan ' : 'Penurunan ') + nf(Math.abs(o.v - pv), d) + ' ' + u)],
-          keys: [vKey('#94A3B8', '2025'), vKey(up ? '#15803D' : '#F59E0B', up ? 'pertumbuhan' : 'penurunan')], tt: nm + ' ' + o.per + ': ' + nf(o.v, d) + ' ' + u + ' vs ' + nf(pv, d) + ' ' + u + ' setahun sebelumnya' }; };
+          keys: [vKey('#94A3B8', o.per + ': ' + nf(o.v, d) + ' ' + u), vKey(up ? '#15803D' : '#F59E0B', (up ? 'Naik ' : 'Turun ') + nf(Math.abs(o.v - pv), d) + ' ' + u + ' dibanding tahun lalu')], tt: nm + ' ' + o.per + ': ' + nf(o.v, d) + ' ' + u + ' vs ' + nf(pv, d) + ' ' + u + ' setahun sebelumnya' }; };
       const V = [
         { hl: 'Terbanyak', hb: top5[0].n, hr: nf(top5[0].pop / popAll * 100, 1) + '%', hc: '#1E3A8A', segs: top5.map((p, i) => vSeg(p.pop / popAll * 100, BL[i], p.n + ' ' + nf(p.pop / popAll * 100, 1) + '%')).concat([vSeg(100 - top5Sh, '#CBD5E1', '33 provinsi lain ' + nf(100 - top5Sh, 1) + '%')]), keys: [vKey('#2563EB', '5 provinsi ' + nf(top5Sh, 1) + '%'), vKey('#CBD5E1', '33 lainnya')], tt: top5.map((p) => p.n + ' ' + nf(p.pop / popAll * 100, 1) + '%').join(' · ') },
         { hl: 'Struktur umur', hb: '', hr: nf(ag[1], 1) + '% produktif', hc: '#1E40AF', segs: [vSeg(ag[0], '#93C5FD', '0–14 th ' + nf(ag[0], 1) + '%'), vSeg(ag[1], '#1E40AF', '15–64 th ' + nf(ag[1], 1) + '%'), vSeg(ag[2], '#94A3B8', '65+ th ' + nf(ag[2], 1) + '%')], keys: [vKey('#93C5FD', '0–14 ' + nf(ag[0], 1) + '%'), vKey('#1E40AF', '15–64'), vKey('#94A3B8', '65+ ' + nf(ag[2], 1) + '%')], tt: 'Struktur umur penduduk (tertimbang jumlah penduduk provinsi)' },
@@ -1719,12 +1721,12 @@ class Component extends DCLogic {
       ];
       ri.items.forEach((x, i) => { if (V[i]) x.viz = V[i]; });
       const E = ['Penduduk Indonesia 284,4 juta jiwa; 56,0% tinggal di lima provinsi terpadat.',
-        'Penduduk usia 15–64 tahun mencapai 69,30% dengan rasio ketergantungan 44,3.',
+        'Penduduk usia 15–64 tahun mencapai 69,30% dari total penduduk.',
         nf(100 - TKN.tpt, 2) + '% dari ' + jt(TKN.ak) + ' angkatan kerja bekerja; tingkat pengangguran terbuka ' + nf(TKN.tpt, 2) + '%.',
         'Penumpang KRL ' + nf(riKrl.v, 2) + ' juta pada ' + riKrl.per + ', ' + sgnPc(riKrl.yoy) + ' dibanding periode sama tahun lalu.',
         'Perjalanan wisatawan nusantara ' + nf(riWis.v, 1) + ' juta pada ' + riWis.per + ', ' + sgnPc(riWis.yoy) + ' dibanding periode sama tahun lalu.'];
       const SRC = ['BPS · proyeksi penduduk 2025', 'BPS · proyeksi penduduk 2025', 'BPS · Sakernas Februari 2026', 'BPS · statistik transportasi (KRL, Whoosh)', 'BPS · statistik wisatawan nusantara'];
-      ri.items.forEach((x, i) => { x.e = E[i]; x.src = SRC[i]; x.vks = x.viz ? x.viz.keys.map((k) => k.l) : []; });
+      ri.items.forEach((x, i) => { x.e = E[i]; x.src = SRC[i]; const m = String(x.s).match(/naik [\d.,]+%|\+[\d.,]+%?(?: yoy)?/i); x.s1 = m ? x.s.slice(0, m.index) : x.s; x.sg = m ? m[0] : ''; x.s2 = m ? x.s.slice(m.index + m[0].length) : ''; x.vcls = /^\+/.test(x.v) ? 'ri-v ri-up' : 'ri-v'; x.vsep = x.viz && x.viz.hr ? '·' : ''; x.hrcls = x.viz && x.viz.hc === '#15803D' ? 'ri-up' : ''; x.vks = x.viz ? x.viz.keys.map((k) => ({ l: k.l, cls: /^(\+|Naik)/.test(k.l) ? 'ri-vr ri-vk ri-up' : 'ri-vr ri-vk' })) : []; });
     }
     return {
       mini,
