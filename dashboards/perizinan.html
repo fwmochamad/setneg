@@ -914,11 +914,11 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
           <sc-for list="{{m.stats}}" as="s" hint-placeholder-count="4"><div style="padding: 7px 10px; border-radius: 8px; background: #F8FAFC; border: 1px solid #EEF2F7;"><div style="font-size: 10.5px; color: #64748B;">{{s.l}}</div><b style="font-size: 13px; color: {{s.c}};">{{s.v}}</b></div></sc-for>
         </div>
         <div class="mzl-tabs">
-          <sc-if value="{{m.sekOn}}" hint-placeholder-val="{{true}}"><label style="order: 99; flex: 1 1 100%; display: flex; justify-content: center; align-items: center; gap: 6px; font-size: 11.5px; font-weight: 600; color: #475569;">Sektor
+          <sc-if value="{{m.sekOn}}" hint-placeholder-val="{{true}}"><div style="order: 99; flex: 1 1 100%; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 8px;"><label style="display: flex; align-items: center; gap: 6px; font-size: 11.5px; font-weight: 600; color: #475569;">Sektor
             <sc-raw-select value="{{m.sekV}}" sc-camel-on-change="{{m.sekPick}}" aria-label="Filter sektor" style="height: 28px; max-width: 260px; padding: 0 8px; border: 1px solid #E3E8F0; border-radius: 8px; background: #FFFFFF; font-family: inherit; font-size: 11.5px; color: #0F172A; cursor: pointer;">
               <sc-for list="{{m.sekOpts}}" as="o" hint-placeholder-count="18"><option value="{{o.v}}">{{o.l}}</option></sc-for>
-            </sc-raw-select></label></sc-if>
-          <input type="search" value="{{m.q}}" sc-camel-on-change="{{m.onQ}}" aria-label="Cari di daftar" placeholder="Cari ID, jenis izin, provinsi…" style="order: 50; height: 28px; width: 220px; padding: 0 12px; box-sizing: border-box; border: 1px solid #E3E8F0; border-radius: 99px; background: #FFFFFF; font-family: inherit; font-size: 11.5px; color: #0F172A;">
+            </sc-raw-select></label><input type="search" value="{{m.q}}" sc-camel-on-change="{{m.onQ}}" aria-label="Cari di daftar" placeholder="Cari ID, jenis izin, provinsi…" style="height: 28px; width: 220px; padding: 0 12px; box-sizing: border-box; border: 1px solid #E3E8F0; border-radius: 99px; background: #FFFFFF; font-family: inherit; font-size: 11.5px; color: #0F172A;"></div></sc-if>
+          <sc-if value="{{m.noSek}}" hint-placeholder-val="{{false}}"><input type="search" value="{{m.q}}" sc-camel-on-change="{{m.onQ}}" aria-label="Cari di daftar" placeholder="Cari ID, jenis izin, provinsi…" style="order: 50; height: 28px; width: 220px; padding: 0 12px; box-sizing: border-box; border: 1px solid #E3E8F0; border-radius: 99px; background: #FFFFFF; font-family: inherit; font-size: 11.5px; color: #0F172A;"></sc-if>
           <sc-for list="{{m.tabs}}" as="t" hint-placeholder-count="4"><button type="button" sc-camel-on-click="{{t.pick}}" style="height: 28px; padding: 0 10px; border-radius: 99px; border: 1px solid {{t.bd}}; background: {{t.bg}}; color: {{t.fg}}; font-family: inherit; font-size: 11.5px; font-weight: 600; cursor: pointer;">{{t.l}} · {{t.n}}</button></sc-for>
         </div>
         <div class="mzl-hint">Geser tabel ke kiri dan kanan untuk melihat seluruh kolom.</div>
@@ -1520,7 +1520,7 @@ const pzClose = () => this.setState({ ews: null });
     })()) : null;
     // ===================== Modal =====================
     const M = st.modal || null;
-    let m = { q: '', onQ: null, sekOn: false, sekV: 'all', sekOpts: [], sekPick: null, t: '', sub: '', stats: [], tabs: [], cols: [], grid: '1fr', rows: [], empty: false, note: '', pg: '', prev: null, next: null, pc: '#CBD5E1', nc: '#CBD5E1' };
+    let m = { q: '', onQ: null, noSek: true, sekOn: false, sekV: 'all', sekOpts: [], sekPick: null, t: '', sub: '', stats: [], tabs: [], cols: [], grid: '1fr', rows: [], empty: false, note: '', pg: '', prev: null, next: null, pc: '#CBD5E1', nc: '#CBD5E1' };
     if (M) {
       const tab = st.mTab ?? 'all', page = st.mPage ?? 0, PS = 10;
       const cell = (v, o) => ({ v, pad: '0', bg: 'transparent', c: '#0F172A', fw: 400, fs: '12px', ...(o || {}) });
@@ -1530,7 +1530,7 @@ const pzClose = () => this.setState({ ews: null });
       const mSek = st.mSek && SEK.some((x) => x[0] === st.mSek) ? st.mSek : 'all';
       const bySek = (cs) => (mSek === 'all' ? cs : cs.filter((x) => SEK[x.si][0] === mSek));
       if (M.mode === 'terbit' || M.mode === 'kasus') {
-        m.sekOn = true; m.sekV = mSek;
+        m.sekOn = true; m.noSek = false; m.sekV = mSek;
         m.sekOpts = [{ v: 'all', l: 'Semua sektor' }].concat(SEK.map((x) => ({ v: x[0], l: SEKS[x[0]] || (x[0] + ' · ' + x[1]) })));
         m.sekPick = (e) => { if (e && e.target) this.setState({ mSek: e.target.value, mPage: 0 }); };
       }
