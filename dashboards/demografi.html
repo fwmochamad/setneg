@@ -549,17 +549,7 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
           <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px; font-size: 11.5px; color: #64748B;">
             <span>Arahkan kursor ke provinsi untuk melihat nilai; klik untuk membuka profil. Batas 38 provinsi (termasuk pemekaran Papua 2022).</span>
             <button type="button" sc-camel-on-click="{{toggleTbl}}" style="height: 28px; padding: 0 10px; border-radius: 7px; border: 1px solid #B8E3DF; background: #FFFFFF; font-family: inherit; font-size: 12px; font-weight: 600; color: #1D4ED8; cursor: pointer;">{{tblLabel}}</button>
-<div style="flex: 1 1 100%; padding: 10px 14px; border-radius: 10px; border: 1px solid #E3E8F0; background: #FFFFFF; display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px; min-width: 0;">
-              <span style="flex: 1 1 100%; font-size: 11px; font-weight: 700; color: #475569; display: flex; align-items: center;">Sebaran penduduk<span class="tip info-i" tabindex="0" aria-label="Keterangan">i<span class="pop">{{pola.tip}}</span></span></span>
-              <div style="flex: 1 1 100%; min-width: 0; display: flex; align-items: center; gap: 14px;">
-                <span style="flex: none; position: relative; width: 56px; height: 56px; border-radius: 50%; background: {{pola.dn}};"><span style="position: absolute; inset: 12px; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 10.5px; font-weight: 700; color: #1E40AF;">{{pola.top5}}</span></span>
-                <div style="flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 6px;">
-                  <span style="font-size: 11.5px; line-height: 16px; color: #334155;"><b>5 provinsi</b> menampung {{pola.top5}} penduduk nasional <span style="color: #94A3B8;">· klik untuk melihat di peta</span></span>
-                  <div style="display: flex; flex-wrap: wrap; gap: 4px;"><sc-for list="{{pola.top5L}}" as="t" hint-placeholder-count="5"><button type="button" sc-camel-on-click="{{t.pick}}" aria-pressed="{{t.on}}" title="Peringkat {{t.no}} · sorot {{t.n}} di peta" style="height: 22px; padding: 0 7px; border-radius: 99px; border: 1px solid {{t.bd}}; background: {{t.bg}}; display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; font-family: inherit; font-size: 10.5px; font-weight: {{t.fw}}; color: #0F172A; cursor: pointer;">{{t.n}} <b style="color: #1E40AF;">{{t.v}}</b></button></sc-for></div>
-                  <span style="font-size: 10.5px; line-height: 14px; color: #64748B;">{{pola.selLine}}</span>
-                </div>
-              </div>
-            </div>
+<div class="mzi" style="flex: 1 1 100%; margin: 0 !important;"><span class="mzi-b">Ringkasan Wawasan</span><ul class="mzi-l"><sc-for list="{{pola.ins}}" as="i" hint-placeholder-count="2"><li>{{i}}</li></sc-for></ul></div>
           </div>
         </div>
         <aside style="flex: 1 1 380px; min-width: 0; border-left: 1px solid #EEF2F7; padding: 14px 18px 16px; display: flex; flex-direction: column; gap: 12px; background: #FBFCFE;">
@@ -1678,7 +1668,10 @@ class Component extends DCLogic {
         selLine: sp ? sp.n + ' menampung ' + nf(sp.pop / tot * 100, 1) + '% penduduk nasional (peringkat ' + (popRank.indexOf(sp.id) + 1) + ' dari 38).' : 'Klik provinsi di peta untuk melihat porsinya terhadap penduduk nasional.',
         age: [['Belum produktif', '0–14 th'], ['Usia produktif', '15–64 th'], ['Lanjut usia', '65+ th']].map(([l, r], i) => ({ l, r, v: nf(a3[i], sp ? 1 : 2) + '%', n: jt((sp ? sp.pop : tot) * a3[i] / 100 / 1e6), bg: i === 1 ? '#EFF6FF' : '#FFFFFF', bd: i === 1 ? '#BFDBFE' : '#E3E8F0', fl: i === 1 ? '#1E40AF' : '#64748B', fv: i === 1 ? '#1E40AF' : '#0F172A' })),
         ageSrc: sp ? 'BPS · SP2020 Long Form' : 'Dukcapil · DKB Semester I 2026',
-        tip: mapIns.map((x) => x.t).join(' · ')
+        tip: mapIns.map((x) => x.t).join(' · '),
+        ins: [(() => { const T = [...PV].sort((x, y) => y.pop - x.pop).slice(0, 5); return 'Lima provinsi terpadat, yaitu ' + T.map((p) => p.n + ' (' + nf(p.pop / tot * 100, 1) + '%)').join(', ') + ', menampung ' + nf(top5, 1) + '% penduduk nasional.'; })(),
+          'Konsentrasi penduduk di Pulau Jawa menjadikannya pasar dan sumber tenaga kerja terbesar, sementara provinsi lain memiliki pasar yang lebih kecil dan tersebar.',
+          sp ? sp.n + ' menampung ' + nf(sp.pop / tot * 100, 1) + '% penduduk nasional (peringkat ' + (popRank.indexOf(sp.id) + 1) + ' dari 38).' : ''].filter(Boolean)
       };
     })();
     // ---- Ringkasan Informasi (atensi Presiden) ----
