@@ -182,6 +182,10 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
 .ri-card[aria-label="Ringkasan informasi"] .ri-item:hover,.ri-card[aria-label="Ringkasan informasi"] .ri-item:focus-visible{background:#fff!important;border-color:#bfdbfe!important;box-shadow:0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -2px rgba(0,0,0,.1)!important}
 .ri-card[aria-label="Ringkasan informasi"] .ri-cap{border-top:0!important;padding:10px 2px 0!important;background:transparent!important}
 </style><style id="hl-uniform">.harmonisasi-alert-track{align-items:stretch}.harmonisasi-alert-card{display:flex;flex-direction:column}.harmonisasi-alert-heading{min-height:40px}.harmonisasi-alert-title strong{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.harmonisasi-alert-details{flex:1}.harmonisasi-alert-details p{display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}</style>
+<style id="harmonisasi-ri-teks">.ri-card .ri-s{justify-self:stretch}.ri-vt{display:block;margin-top:4px;color:#334155}.ri-vt b{color:#0F172A;font-weight:600}.ri-vk{display:block;margin-top:1px;font-size:10.5px;color:#64748B}
+.ri-card .ri-i{align-self:stretch!important;display:flex;flex-direction:column;gap:6px;padding:9px 10px!important;font-weight:500!important;line-height:16px}
+.ri-card .ri-ie{font-weight:600}.ri-card .ri-ir b{color:inherit!important;font-weight:700;letter-spacing:.02em}
+.ri-card .ri-isrc{margin-top:auto;padding-top:6px;border-top:1px solid rgba(124,58,237,.15);font-size:10.5px;line-height:14px;font-weight:400;color:#6B7280}.ri-card .ri-isrc b{color:#4B5563!important;font-weight:600}</style>
 </head>
 <body>
 <x-dc>
@@ -545,9 +549,9 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
             <button type="button" role="listitem" class="ri-item" sc-camel-on-click="{{r.go}}" title="Klik untuk melihat rincian" style="box-shadow: inset 0 3px 0 {{r.cc}};">
               <span class="ri-l">{{r.l}}</span>
               <b class="ri-v">{{r.v}}</b>
-              <span class="ri-s" style="justify-self: stretch; align-self: start;">{{r.s}}<sc-if value="{{r.viz}}" hint-placeholder-val="{{false}}"><span title="{{r.viz.tt}}" style="display: flex; flex-direction: column; gap: 4px; margin-top: 6px;"><span style="display: flex; justify-content: space-between; align-items: baseline; gap: 6px;"><span>{{r.viz.hl}} <b style="color: #0F172A;">{{r.viz.hb}}</b></span><b style="color: {{r.viz.hc}};">{{r.viz.hr}}</b></span><span style="display: flex; gap: 2px; height: 8px; border-radius: 4px; background: #E2E8F0; overflow: hidden;"><sc-for list="{{r.viz.segs}}" as="g" hint-placeholder-count="2"><span title="{{g.tt}}" style="flex: 0 0 {{g.w}}; background: {{g.c}};"></span></sc-for></span><span style="display: flex; flex-wrap: wrap; gap: 2px 10px; font-size: 10.5px;"><sc-for list="{{r.viz.keys}}" as="k" hint-placeholder-count="2"><span style="display: inline-flex; align-items: center; gap: 4px;"><span style="width: 7px; height: 7px; border-radius: 2px; background: {{k.c}};"></span>{{k.l}}</span></sc-for></span></span></sc-if></span>
+              <span class="ri-s" style="justify-self: stretch; align-self: start;">{{r.s}}<sc-if value="{{r.viz}}" hint-placeholder-val="{{false}}"><span class="ri-vt" title="{{r.viz.tt}}"><b>{{r.viz.hl}} {{r.viz.hb}}</b> · {{r.viz.hr}}</span><span class="ri-vk">{{r.vk}}</span></sc-if></span>
               <span class="ri-c" style="background: {{r.cb}}; color: {{r.cc}};">{{r.stL}}</span>
-              <span class="ri-i"><b>✦</b> {{r.a}}</span>
+              <span class="ri-i"><span class="ri-ie">✦ {{r.e}}</span><span class="ri-ir"><b>REKOMENDASI:</b> {{r.a}}</span><span class="ri-isrc"><b>Sumber:</b> {{r.src}}</span></span>
             </button>
             </sc-for>
           </div>
@@ -2425,7 +2429,7 @@ const ewsClose = () => this.setState({ ews: null });
           segs: [vSeg(NV.tw1.t / TG26 * 100, '#94A3B8', 'Tw I ' + nf(NV.tw1.t / TG26 * 100, 1) + '% target'), vSeg(NV.tw2.t / TG26 * 100, '#1E40AF', 'Tw II ' + nf(NV.tw2.t / TG26 * 100, 1) + '% target')],
           keys: [vKey('#94A3B8', 'Tw I ' + nf(NV.tw1.t / TG26 * 100, 1) + '%'), vKey('#1E40AF', 'Tw II ' + nf(NV.tw2.t / TG26 * 100, 1) + '%')],
           tt: 'Kumulatif s.d. Tw II Rp' + nf(NV.y26.t, 1) + ' T = ' + nf(NV.y26.t / TG26 * 100, 1) + '% dari target nasional Rp' + nf(TG26, 1) + ' T' } },
-      { l: 'Porsi PMA', v: '50,4%', s: pmaUsd + ' ≈ Rp257,7 T', st: 'watch', a: 'Hong Kong & Singapura 59,4% PMA; perluas negara asal investor.', go: riGo('sec-nasional'),
+      { l: 'Porsi PMA', v: '50,4%', s: pmaUsd + ' ≈ Rp257,7 T', st: 'watch', a: 'Perluas negara asal investor di luar Hong Kong & Singapura.', go: riGo('sec-nasional'),
         viz: { hl: 'Komposisi', hb: 'Rp511,8 T', hr: 'PMA unggul tipis', hc: '#A16207',
           segs: [vSeg(49.6, '#1E40AF', 'PMDN Rp254,1 T · 49,6%'), vSeg(50.4, '#D4A72C', 'PMA Rp257,7 T · 50,4%')],
           keys: [vKey('#1E40AF', 'PMDN 49,6%'), vKey('#D4A72C', 'PMA 50,4%')], tt: 'Tw II 2026: PMDN Rp254,1 T, PMA Rp257,7 T' } },
@@ -2433,7 +2437,7 @@ const ewsClose = () => this.setState({ ews: null });
         viz: { hl: 'Terbesar', hb: pdrbTop[0].n, hr: nf(pdrbTop[0].sh, 2) + '%', hc: '#1E3A8A',
           segs: pdrbTop.map((x) => vSeg(x.sh, x.c, x.n + ' ' + nf(x.sh, 2) + '% PDRB')).concat([vSeg(100 - pdrbTopSum, '#CBD5E1', '33 provinsi lain ' + nf(100 - pdrbTopSum, 2) + '%')]),
           keys: [vKey('#2563EB', '5 provinsi ' + nf(pdrbTopSum, 2) + '%'), vKey('#CBD5E1', '33 lainnya ' + nf(100 - pdrbTopSum, 2) + '%')], tt: pdrbTop.map((x) => x.n + ' ' + nf(x.sh, 2) + '%').join(' · ') } },
-      { l: 'Sebaran PMDN', v: '66,6%', s: 'terkumpul di 4 wilayah', st: 'warn', a: 'Kalimantan, Sulawesi, Bali–Nusra hanya 21,5% PMDN.', go: riGo('sec-nasional'),
+      { l: 'Sebaran PMDN', v: '66,6%', s: 'terkumpul di 4 wilayah', st: 'warn', a: 'Arahkan insentif PMDN ke Kalimantan, Sulawesi, dan Bali–Nusra.', go: riGo('sec-nasional'),
         viz: { hl: 'Kal–Sul–Bali–Nusra', hb: '', hr: '21,5%', hc: '#B45309',
           segs: [vSeg(66.6, '#1E40AF', '4 wilayah teratas 66,6%'), vSeg(21.5, '#F59E0B', 'Kalimantan, Sulawesi, Bali–Nusra 21,5%'), vSeg(11.9, '#CBD5E1', 'Wilayah lain 11,9%')],
           keys: [vKey('#1E40AF', '4 wilayah 66,6%'), vKey('#CBD5E1', 'lainnya 11,9%')], tt: 'Porsi PMDN Tw II 2026 menurut wilayah' } },
@@ -2442,6 +2446,15 @@ const ewsClose = () => this.setState({ ews: null });
           segs: prjBy.map((x) => vSeg(x.v / riPrjV * 100, x.c, x.n + ' Rp' + nf(x.v, 1) + ' T')),
           keys: [vKey(prjBy[0].c, 'Rp' + nf(prjBy[0].v, 1) + ' T'), vKey('#93C5FD', '4 provinsi lain Rp' + nf(riPrjV - prjBy[0].v, 1) + ' T')], tt: prjBy.map((x) => x.n + ' Rp' + nf(x.v, 1) + ' T').join(' · ') } }
     ]);
+    {
+      const E = ['Realisasi investasi Tw II 2026 Rp511,8 T, naik 7,1% yoy; kumulatif ' + nf(NV.y26.t / TG26 * 100, 1) + '% dari target tahunan.',
+        'PMA Rp257,7 T (50,4%) sedikit di atas PMDN Rp254,1 T (49,6%); Hong Kong & Singapura menyumbang 59,4% PMA.',
+        'Lima provinsi terbesar menyumbang 57,32% PDRB nasional; terbesar ' + pdrbTop[0].n + ' ' + nf(pdrbTop[0].sh, 2) + '%.',
+        '66,6% PMDN terkumpul di 4 wilayah; Kalimantan, Sulawesi, dan Bali–Nusra hanya 21,5%.',
+        riPrj.length + ' proyek siap investasi di 5 provinsi teratas senilai Rp' + nf(riPrjV, 1) + ' T; terbesar di ' + prjBy[0].n + '.'];
+      const SRC = ['BKPM/Kementerian Investasi · rilis Tw II 2026', 'BKPM/Kementerian Investasi · rilis Tw II 2026', 'BPS · PDRB 2025', 'BKPM/Kementerian Investasi · rilis Tw II 2026', 'Data simulasi prototipe · profil proyek daerah'];
+      ri.items.forEach((x, i) => { x.e = E[i]; x.src = SRC[i]; x.vk = x.viz ? x.viz.keys.map((k) => k.l).join(' · ') : ''; });
+    }
     return {
       mini,
       highlights, ewsCount: highlights.length, ewsOpen: !!ews, ews, ewsStamp: ewsStamp, closeEws: ewsClose, stop: ewsStop, onEwsKey: ewsOnKey,

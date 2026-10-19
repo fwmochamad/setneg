@@ -181,6 +181,10 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
 .ri-card[aria-label="Ringkasan informasi"] .ri-item:hover,.ri-card[aria-label="Ringkasan informasi"] .ri-item:focus-visible{background:#fff!important;border-color:#bfdbfe!important;box-shadow:0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -2px rgba(0,0,0,.1)!important}
 .ri-card[aria-label="Ringkasan informasi"] .ri-cap{border-top:0!important;padding:10px 2px 0!important;background:transparent!important}
 </style><style id="hl-uniform">.harmonisasi-alert-track{align-items:stretch}.harmonisasi-alert-card{display:flex;flex-direction:column}.harmonisasi-alert-heading{min-height:40px}.harmonisasi-alert-title strong{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.harmonisasi-alert-details{flex:1}.harmonisasi-alert-details p{display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}</style>
+<style id="harmonisasi-ri-teks">.ri-card .ri-s{justify-self:stretch}.ri-vt{display:block;margin-top:4px;color:#334155}.ri-vt b{color:#0F172A;font-weight:600}.ri-vk{display:block;margin-top:1px;font-size:10.5px;color:#64748B}
+.ri-card .ri-i{align-self:stretch!important;display:flex;flex-direction:column;gap:6px;padding:9px 10px!important;font-weight:500!important;line-height:16px}
+.ri-card .ri-ie{font-weight:600}.ri-card .ri-ir b{color:inherit!important;font-weight:700;letter-spacing:.02em}
+.ri-card .ri-isrc{margin-top:auto;padding-top:6px;border-top:1px solid rgba(124,58,237,.15);font-size:10.5px;line-height:14px;font-weight:400;color:#6B7280}.ri-card .ri-isrc b{color:#4B5563!important;font-weight:600}</style>
 </head>
 <body>
 <x-dc>
@@ -544,9 +548,9 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
             <button type="button" role="listitem" class="ri-item" sc-camel-on-click="{{r.go}}" title="Klik untuk melihat rincian" style="box-shadow: inset 0 3px 0 {{r.cc}};">
               <span class="ri-l">{{r.l}}</span>
               <b class="ri-v">{{r.v}}</b>
-              <span class="ri-s" style="justify-self: stretch; align-self: start;">{{r.s}}<sc-if value="{{r.viz}}" hint-placeholder-val="{{false}}"><span title="{{r.viz.tt}}" style="display: flex; flex-direction: column; gap: 4px; margin-top: 6px;"><span style="display: flex; justify-content: space-between; align-items: baseline; gap: 6px;"><span>{{r.viz.hl}} <b style="color: #0F172A;">{{r.viz.hb}}</b></span><b style="color: {{r.viz.hc}}; white-space: nowrap;">{{r.viz.hr}}</b></span><span style="display: flex; gap: 2px; height: 8px; border-radius: 4px; background: #E2E8F0; overflow: hidden;"><sc-for list="{{r.viz.segs}}" as="g" hint-placeholder-count="2"><span title="{{g.tt}}" style="flex: 0 0 {{g.w}}; background: {{g.c}};"></span></sc-for></span><span style="display: flex; flex-wrap: wrap; gap: 2px 10px; font-size: 10.5px;"><sc-for list="{{r.viz.keys}}" as="k" hint-placeholder-count="2"><span style="display: inline-flex; align-items: center; gap: 4px;"><span style="width: 7px; height: 7px; border-radius: 2px; background: {{k.c}};"></span>{{k.l}}</span></sc-for></span></span></sc-if></span>
+              <span class="ri-s" style="justify-self: stretch; align-self: start;">{{r.s}}<sc-if value="{{r.viz}}" hint-placeholder-val="{{false}}"><span class="ri-vt" title="{{r.viz.tt}}"><b>{{r.viz.hl}} {{r.viz.hb}}</b> · {{r.viz.hr}}</span><span class="ri-vk">{{r.vk}}</span></sc-if></span>
               <span class="ri-c" style="background: {{r.cb}}; color: {{r.cc}};">{{r.stL}}</span>
-              <span class="ri-i"><b>✦</b> {{r.a}}</span>
+              <span class="ri-i"><span class="ri-ie">✦ {{r.e}}</span><span class="ri-ir"><b>REKOMENDASI:</b> {{r.a}}</span><span class="ri-isrc"><b>Sumber:</b> {{r.src}}</span></span>
             </button>
             </sc-for>
           </div>
@@ -1548,6 +1552,13 @@ const closeEws = () => this.setState({ ews: null });
         { hl: 'Dari', hb: isuN + ' isu dipantau', hr: hlN + ' peringatan', hc: '#B45309', segs: [vSeg(hlN / Math.max(1, isuN) * 100, '#F59E0B', hlN + ' isu peringatan dini aktif'), vSeg((isuN - hlN) / Math.max(1, isuN) * 100, '#BFDBFE', (isuN - hlN) + ' isu dipantau')], keys: [vKey('#F59E0B', 'Peringatan ' + hlN), vKey('#BFDBFE', 'Dipantau ' + (isuN - hlN))], tt: hlN + ' dari ' + isuN + ' isu berstatus peringatan dini' }
       ];
       ri.items.forEach((x, i) => { x.viz = V[i]; });
+      const E = ['290 regulasi investasi berlaku: 251 tingkat pusat dan 39 tingkat daerah; 6 belum terverifikasi statusnya.',
+        '271 dari 284 regulasi yang dinilai selaras; 13 berpotensi tidak selaras dan 6 Perda baru belum dinilai.',
+        '13 regulasi tidak selaras: 3 belum ditindaklanjuti, 2 menunggu keputusan, 6 dalam proses, dan 2 selesai.',
+        regulatoryInsight.topPct + ' regulasi investasi berbentuk ' + regulatoryInsight.topLabel + ', jenis yang paling dominan.',
+        hlN + ' dari ' + isuN + ' isu yang dipantau berstatus peringatan dini' + (hlN ? '; teratas: ' + highlights[0].short + '.' : '.')];
+      const SRC = ['JDIH BPK & JDIH K/L/daerah · per 12 Okt 2026', 'Analisis keselarasan regulasi · terverifikasi analis', 'Analisis keselarasan regulasi · terverifikasi analis', 'JDIH BPK · klasifikasi jenis peraturan', 'Pemantauan isu & berita daring · terverifikasi analis'];
+      ri.items.forEach((x, i) => { x.e = E[i]; x.src = SRC[i]; x.vk = x.viz ? x.viz.keys.map((k) => k.l).join(' · ') : ''; });
     }
     return { isList: view === 'list', isDetail: view === 'detail', fl, flDaftar, hasDaftarFilter, resetDaftarFilter, hasFilter, resetF, filterNote: ids.length + ' regulasi sesuai filter',
       jenisBar, regulatoryInsight, sectorInsight, sbTitle, sbTabs, sbJenis: sb === 'jenis', sbSektor: sb === 'sektor', jenisItems, kpiJenis, hasJenisFilter, activeJenisName, activeJenisCount, resetJenisFilter, sekRows, hasSektorFilter, activeSektorName, activeSektorCount, resetSektorFilter,
