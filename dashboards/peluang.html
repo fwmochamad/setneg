@@ -194,7 +194,8 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
 .mzi{display:block!important;padding:12px 14px!important}.mzi .mzi-b{display:block;margin-bottom:6px;font-size:13px!important;font-weight:700!important}.mzi .mzi-s{display:none!important}.mzi .mzi-l{display:block!important;font-weight:400!important;font-size:12.5px!important;line-height:20px!important;color:#5B21B6!important}.mzi .mzi-l li{display:inline!important;padding-left:0!important}.mzi .mzi-l li:before{display:none!important}.mzi .mzi-l li:after{content:" "}</style>
 <style id="harmonisasi-pl-leg">.pl-leg{position:absolute;right:8px;bottom:8px;z-index:2;padding:10px 12px 8px;border-radius:10px;background:#FFFFFF;border:1px solid #E3E8F0;box-shadow:0 4px 14px rgba(15,23,42,.10);display:flex;flex-direction:column;gap:3px;font-size:11.5px;color:#0F172A}.pl-leg-r{display:flex;align-items:center;gap:8px;white-space:nowrap}.pl-dot{flex:none;width:10px;height:10px;border-radius:99px;box-shadow:inset 0 0 0 1px rgba(15,23,42,.08)}@media (max-width:640px){.pl-leg{position:static;margin-top:10px;box-shadow:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.pl-leg>b{grid-column:1/-1}}</style>
 <style id="harmonisasi-prj-car">.prj-track{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding-bottom:6px;scrollbar-width:thin}.prj-nav{width:26px;height:26px;border-radius:99px;border:1px solid #E3E8F0;background:#FFFFFF;color:#334155;font-family:inherit;font-size:16px;line-height:1;cursor:pointer}.prj-nav:hover{background:#F1F5F9}</style>
-<style id="harmonisasi-dh-duo">.dh-duo{display:flex;flex-wrap:wrap;gap:16px;align-items:stretch}.dh-duo>section{min-width:0}.dh-duo>section:first-of-type{flex:1.25 1 640px}.dh-duo>section:last-of-type{flex:1 1 460px;display:flex;flex-direction:column}.dh-duo>section:last-of-type>.cf{margin-top:auto}.dh-duo .kp-5{grid-template-columns:repeat(3,minmax(0,1fr))!important}.dh-duo .kp-strip>[role=listitem] b{font-size:17px!important;line-height:22px!important}@media (max-width:640px){.dh-duo .kp-5{grid-template-columns:repeat(2,minmax(0,1fr))!important}}</style>
+<style id="harmonisasi-dh-duo">.dh-duo{display:flex;flex-wrap:wrap;gap:16px;align-items:stretch}.dh-duo>section{min-width:0}.dh-duo>section:first-of-type{flex:1.25 1 640px}.dh-duo>section:last-of-type{flex:1 1 460px;display:flex;flex-direction:column}.dh-duo>section:last-of-type>.cf{margin-top:auto}.dh-duo .kp-3{grid-template-columns:repeat(2,minmax(0,1fr))!important}.dh-duo .kp-5{grid-template-columns:repeat(3,minmax(0,1fr))!important}.dh-duo .kp-strip>[role=listitem] b{font-size:17px!important;line-height:22px!important}@media (max-width:640px){.dh-duo .kp-5{grid-template-columns:repeat(2,minmax(0,1fr))!important}}</style>
+<style id="harmonisasi-prj-kv">.prj-kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px}.prj-kv>div{display:flex;flex-direction:column;gap:2px;padding:8px 10px;border-radius:8px;background:#FFFFFF;border:1px solid #E3E8F0}.prj-kv-l{font-size:11px;color:#64748B}.prj-kv-v{font-size:14px;color:#0F172A}.prj-kv-d{font-size:10.5px;line-height:14px;color:#64748B}</style>
 </head>
 <body>
 <x-dc>
@@ -961,8 +962,6 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
               </div>
               <div class="kp-strip kp-3" role="list" aria-label="Profil provinsi">
                 <div role="listitem"><div style="font-size: 11px; color: #64748B;">Populasi 2025</div><div style="font-size: 16px; font-weight: 700;">{{dh.pop}}</div><div style="font-size: 10.5px; line-height: 14px; color: #64748B;">{{dh.popSub}}</div></div>
-                <div role="listitem"><div style="font-size: 11px; color: #64748B;">Tenaga kerja</div><div style="font-size: 16px; font-weight: 700;">{{dh.tk}}</div><div style="font-size: 10.5px; line-height: 14px; color: #64748B;">{{dh.tkSub}}</div></div>
-                <div role="listitem"><div style="font-size: 11px; color: #64748B;">UMP 2026</div><div style="font-size: 16px; font-weight: 700;">{{dh.ump}}</div><div style="font-size: 10.5px; line-height: 14px; color: #64748B;">{{dh.umpSub}}</div></div>
                 <div role="listitem"><div style="font-size: 11px; color: #64748B;">Sektor unggulan</div><div style="font-size: 14px; font-weight: 700; line-height: 20px;">{{dh.sek}}</div><div style="font-size: 10.5px; line-height: 14px; color: #64748B;">{{dh.sekSub}}</div></div>
                 <div role="listitem"><div style="font-size: 11px; color: #64748B;">PDRB 2025</div><div style="font-size: 16px; font-weight: 700;">{{dh.pdrb}}</div><div style="font-size: 10.5px; line-height: 14px; color: #64748B;">{{dh.pdrbSub}}</div></div>
                 <div role="listitem"><div style="font-size: 11px; color: #64748B;">Realisasi investasi</div><div style="font-size: 16px; font-weight: 700; color: {{dh.invC}};">{{dh.inv}}</div><div style="font-size: 10.5px; line-height: 14px; color: #475569;">{{dh.invSub}}</div><div style="font-size: 10px; color: #94A3B8;">{{dh.invSrc}}</div></div>
@@ -1019,14 +1018,13 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
         <section style="background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; box-shadow: 0 1px 2px rgba(15,23,42,.05);">
           <div style="padding: 12px 18px; border-bottom: 1px solid #EEF2F7; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px;"><div><h2 style="margin: 0; font-size: 14.5px; font-weight: 600;">Proyek siap investasi<span class="tip info-i" tabindex="0" aria-label="Keterangan">i<span class="pop">Profil peluang PIRBKPM berisi estimasi kelayakan, bukan realisasi investasi.</span></span></h2></div><span style="font-size: 11.5px; color: #64748B;">{{prjNote}}</span></div>
           <div style="padding: 14px 18px; display: flex; flex-direction: column; gap: 12px;">
-              <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 10px; font-size: 11px; color: #64748B;"><b style="color: #0F172A;">Profil proyek <span style="font-weight: 400; color: #64748B;">· klik kartu untuk rincian</span></b><span style="display: inline-flex; align-items: center; gap: 8px;">batang = nilai relatif terhadap proyek terbesar<button type="button" class="prj-nav" aria-label="Geser ke kiri" sc-camel-on-click="{{prjScrollN}}">&#8249;</button><button type="button" class="prj-nav" aria-label="Geser ke kanan" sc-camel-on-click="{{prjScrollP}}">&#8250;</button></span></div>
+              <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 10px; font-size: 11px; color: #64748B;"><b style="color: #0F172A;">Profil proyek <span style="font-weight: 400; color: #64748B;">· klik kartu untuk rincian</span></b><span style="display: inline-flex; align-items: center; gap: 8px;">geser untuk melihat proyek lain<button type="button" class="prj-nav" aria-label="Geser ke kiri" sc-camel-on-click="{{prjScrollN}}">&#8249;</button><button type="button" class="prj-nav" aria-label="Geser ke kanan" sc-camel-on-click="{{prjScrollP}}">&#8250;</button></span></div>
               <div role="list" data-prj-track="1" class="prj-track">
                 <sc-for list="{{prjCards}}" as="c" hint-placeholder-count="4">
                 <button type="button" role="listitem" sc-camel-on-click="{{c.tg}}" aria-expanded="{{c.ax}}" title="Klik untuk rincian proyek" style="flex: 0 0 230px; scroll-snap-align: start; display: flex; flex-direction: column; gap: 6px; min-width: 0; padding: 10px 12px; border-radius: 10px; border: 1px solid {{c.cbd}}; background: {{c.cbg}}; font-family: inherit; text-align: left; cursor: pointer;">
                   <b style="font-size: 12.5px; line-height: 16px; color: #0F172A; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; min-height: 32px;">{{c.p.n}}</b>
                   <span style="font-size: 10.5px; color: #64748B; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{c.p.meta}}</span>
-                  <span style="margin-top: auto; display: flex; justify-content: space-between; align-items: baseline; gap: 6px;"><b style="font-size: 15px; color: #0F172A;">{{c.p.nilai}}</b><span style="font-size: 10.5px; color: #64748B;">{{c.p.durasi}}</span></span>
-                  <span style="display: block; width: 100%; height: 6px; border-radius: 3px; background: #EEF2F7;"><span style="display: block; width: {{c.bw}}; height: 6px; border-radius: 3px; background: {{c.bc}};"></span></span>
+                  <span style="margin-top: auto; display: flex; justify-content: space-between; align-items: baseline; gap: 6px;"><b style="font-size: 15px; color: #0F172A;">{{c.p.nilai}}</b><span title="Masa balik modal (payback period)" style="font-size: 10.5px; color: #64748B;">balik modal {{c.p.durasi}}</span></span>
                 </button>
                 </sc-for>
               </div>
@@ -1034,9 +1032,9 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
               <sc-if value="{{c.open}}" hint-placeholder-val="{{false}}">
                 <div style="padding: 10px 14px; border-radius: 10px; background: #F8FAFC; border: 1px solid #E3E8F0; display: flex; flex-direction: column; gap: 6px; font-size: 12px; color: #334155;">
                   <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px;"><b style="font-size: 12.5px; color: #0F172A;">{{c.p.n}}</b><button type="button" sc-camel-on-click="{{c.tg}}" style="padding: 0; border: 0; background: transparent; font-family: inherit; font-size: 11px; font-weight: 600; color: #1D4ED8; cursor: pointer;">Tutup rincian ▴</button></div>
-                  <span>{{c.p.ringkasan}}</span>
-                  <span style="font-size: 11.5px; color: #475569;">IRR <b style="color: #0F172A;">{{c.p.dana}}</b> · NPV <b style="color: #0F172A;">{{c.p.npv}}</b> · payback <b style="color: #0F172A;">{{c.p.durasi}}</b> · <b style="color: #0F172A;">{{c.p.tahap}}</b> · <a href="{{c.p.url}}" target="_blank" rel="noopener" style="color: #1D4ED8; font-weight: 600;">Buka di PIR BKPM ↗</a></span>
-                  <span style="font-size: 11.5px; color: #475569;"><sc-for list="{{c.p.pts}}" as="t" hint-placeholder-count="2"><span style="margin-right: 12px;">• {{t}}</span></sc-for></span>
+                  <span style="line-height: 18px;">{{c.p.desk}}</span>
+                  <div class="prj-kv"><sc-for list="{{c.p.kv3}}" as="k" hint-placeholder-count="4"><div><span class="prj-kv-l">{{k.l}}</span><b class="prj-kv-v">{{k.v}}</b><span class="prj-kv-d">{{k.d}}</span></div></sc-for></div>
+                  <a href="{{c.p.url}}" target="_blank" rel="noopener" style="align-self: flex-start; font-size: 11.5px; font-weight: 600; color: #1D4ED8;">Lihat profil lengkap di Portal Investasi Regional BKPM ↗</a>
                 </div>
               </sc-if>
               </sc-for>
@@ -2033,7 +2031,7 @@ const HIST = [[2020, 826.3, 413.5, 412.8], [2021, 901.02, 447, 454], [2022, 1207
     // 4. kesiapan
     const tile = (l, v, sub, src, nat) => ({ l, v: v == null ? BT : v, vc: v == null ? '#64748B' : '#0F172A', bg: v == null ? '#F8FAFC' : '#FFFFFF', bd: v == null ? '1px dashed #CBD5E1' : '1px solid #E3E8F0', sub, src, nat: nat || '' });
     const kes = [
-      tile('Rata-rata upah buruh', 'Rp' + nf(({ dki: 5420000, jabar: 3380000, jateng: 2540000, jatim: 2730000, sumut: 3010000 })[dp] || 0), 'per bulan · data simulasi · UMP 2026 ' + dh.ump + ' sebagai acuan', 'BPS/Sakernas (simulasi)', 'Nasional Rp3.330.000 (simulasi)'),
+      tile('UMP 2026', dh.ump, dh.umpSub, 'Kemnaker (keputusan gubernur)', dh.umpSub),
       tile('Tingkat pengangguran terbuka', dK.tpt != null ? nf(dK.tpt, 2) + '%' : null, 'Februari 2026', 'BPS (Sakernas)', 'Nasional 4,68%'),
       tile('Angkatan kerja', dK.ak != null ? nf(dK.ak, dK.ak % 1 ? 2 : 0) + ' juta' : null, dK.akPer || 'Februari 2026', 'BPS (Sakernas)', ''),
       tile('Sekolah vokasi (SMK)', nf(dK.smk[0]) + ' sekolah · ' + nf(dK.smk[1]) + ' lulusan', 'tahun ajaran 2025/2026', 'Kemendikdasmen', 'Nasional 10.482 sekolah'),
@@ -2050,7 +2048,7 @@ const HIST = [[2020, 826.3, 413.5, 412.8], [2021, 901.02, 447, 454], [2022, 1207
     const bul = (i, kind, pv, nv, max, lbl, good) => { if (pv == null || !nv) return; const k = kes[i];
       k.hasB = true; k.bw = Math.max(2, Math.min(100, kind === 'share' ? (pv / nv) * 100 * (max || 1) : (pv / max) * 100)) + '%';
       k.mk = kind === 'cmp' ? (nv / max) * 100 + '%' : '0%'; k.mkOn = kind === 'cmp'; k.bl = lbl; k.bc = good == null ? '#1E40AF' : good ? '#15803D' : '#B45309'; };
-    bul(0, 'cmp', UPAHP, 3330000, Math.max(UPAHP, 3330000) * 1.25, 'nasional Rp3,33 jt (simulasi)', null);
+
     bul(1, 'cmp', dK.tpt, 4.68, 10, 'nasional 4,68%', dK.tpt != null && dK.tpt <= 4.68);
     bul(2, 'share', dK.ak, 155.4, 4, nf((dK.ak / 155.4) * 100, 1) + '% dari angkatan kerja nasional', null);
     bul(3, 'share', dK.smk[0], 10482, 4, nf((dK.smk[0] / 10482) * 100, 1) + '% dari SMK nasional', null);
@@ -2364,11 +2362,24 @@ const ewsClose = () => this.setState({ ews: null });
     };
     const PIR_KAT = { PPI: 'Peluang Proyek Investasi (PPI)', PID: 'Peluang Investasi Daerah (PID)', IPRO: 'Investment Project Ready to Offer (IPRO)' };
     const PJR = ([id, n, lok, sek, nv, kat, th, irr, npv, pp]) => ({ n, lok, sek, nv, sts: kat, tahap: kat + ' · ' + th,
-      meta: [lok, sek].filter(Boolean).join(' · ') || '–', nilai: !nv ? 'Nilai belum tersedia' : nv < 1 ? 'Rp' + nf(nv * 1000, 1) + ' miliar' : 'Rp' + nf(nv, 1) + ' triliun', dana: irr || '–', durasi: pp ? pp + ' tahun' : '–', npv: npv || '–',
+      meta: [lok, sek].filter(Boolean).join(' · ') || '–', nilai: !nv ? 'Nilai belum tersedia' : nv < 1 ? 'Rp' + nf(nv * 1000, 1) + ' miliar' : 'Rp' + nf(nv, 1) + ' triliun', dana: irr || '–', durasi: pp ? nf(+pp, pp % 1 ? 1 : 0) + ' tahun' : '–', npv: npv || '–',
       ringkasan: (PIR_KAT[kat] || kat) + ' tahun ' + th + ' di ' + lok + '. Profil lengkap tersedia di Portal Investasi Regional BKPM.',
-      pts: ['IRR ' + (irr || '–') + ' · NPV ' + (npv || '–'), 'Payback ' + (pp ? pp + ' tahun' : '–')], url: 'https://regionalinvestment.bkpm.go.id/peluang_investasi/detailed/' + id });
+      pts: ['IRR ' + (irr || '–') + ' · NPV ' + (npv || '–'), 'Payback ' + (pp ? nf(+pp, pp % 1 ? 1 : 0) + ' tahun' : '–')], url: 'https://regionalinvestment.bkpm.go.id/peluang_investasi/detailed/' + id });
     const PRJP = Object.fromEntries(Object.entries(PIR).map(([k, L]) => [k, L.map(PJR)]));
-    const PRJD = (PRJP[dp] || []).map((x) => ({ ...x, wil: dh.n, src: 'Portal Investasi Regional (PIR) BKPM · ditarik 19 Okt 2026' }));
+    const PIR_DESK = {
+      PPI: ['Peluang Proyek Investasi (PPI)', 'proyek yang kelayakannya sudah dikaji oleh Kementerian Investasi dan Hilirisasi/BKPM untuk ditawarkan kepada investor'],
+      PID: ['Peluang Investasi Daerah (PID)', 'proyek yang diusulkan pemerintah daerah dan profilnya disusun bersama Kementerian Investasi dan Hilirisasi/BKPM'],
+      IPRO: ['Investment Project Ready to Offer (IPRO)', 'proyek yang paling siap ditawarkan: kajian kelayakan, kesiapan lahan, dan perizinan dasarnya sudah disiapkan']
+    };
+    const PRJD = (PRJP[dp] || []).map((x) => { const K = PIR_DESK[x.sts] || [x.sts, ''], th = (x.tahap || '').split(' · ')[1] || '';
+      return { ...x, wil: dh.n, src: 'Portal Investasi Regional (PIR) BKPM · ditarik 19 Okt 2026',
+        desk: x.n + ' berlokasi di ' + (x.lok ? x.lok + ', ' : '') + dh.n + ' dan bergerak di sektor ' + (x.sek || 'lainnya').toLowerCase() + '. Proyek ini masuk kategori ' + K[0] + ', yaitu ' + K[1] + (th ? '; profilnya diterbitkan tahun ' + th : '') + '.',
+        kv3: [
+          { l: 'Nilai investasi', v: x.nilai, d: 'Perkiraan total modal yang dibutuhkan untuk membangun proyek.' },
+          { l: 'Tingkat pengembalian (IRR)', v: x.dana, d: 'Internal Rate of Return: perkiraan keuntungan per tahun dari modal yang ditanam. Makin tinggi makin menarik.' },
+          { l: 'Keuntungan bersih (NPV)', v: x.npv, d: 'Net Present Value: perkiraan keuntungan bersih selama umur proyek, dihitung ke nilai uang hari ini. Positif berarti layak.' },
+          { l: 'Masa balik modal', v: x.durasi, d: 'Payback period: lama waktu sampai modal awal kembali dari pendapatan proyek.' }
+        ] }; });
     const PJ_KEYS = [['n', 'Nama proyek'], ['lok', 'Lokasi'], ['wil', 'Provinsi'], ['sek', 'Sektor'], ['nilai', 'Nilai investasi'], ['dana', 'IRR'], ['npv', 'NPV'], ['durasi', 'Payback'], ['tahap', 'Kategori · tahun'], ['src', 'Sumber data']];
     const PJC = ['#1E3A8A', '#1E40AF', '#2563EB', '#3B82F6', '#0EA5E9', '#047857', '#B45309', '#6D28D9', '#334155'];
     const prjCards = PRJD.map((p, i) => ({ no: i + 1, c: PJC[i % PJC.length], bw: (p.nv / Math.max(...PRJD.map((x) => x.nv), 1)) * 100 + '%', bc: '#1E40AF', rbg: st.pjO === i ? '#F8FAFC' : 'transparent', open: st.pjO === i, ax: st.pjO === i ? 'true' : 'false', cbg: st.pjO === i ? '#F5F9FF' : '#FFFFFF', cbd: st.pjO === i ? '#93C5FD' : '#E3E8F0', tg: () => this.setState({ pjO: st.pjO === i ? null : i }), tl: st.pjO === i ? 'Tutup rincian ▴' : 'Lihat rincian ▾', p: Object.assign({}, p, { kv: [['Nilai investasi', p.nilai], ['Tahap', p.tahap]].map((x) => ({ l: x[0], v: x[1] })), kv2: [['IRR', p.dana], ['Payback', p.durasi]].map((x) => ({ l: x[0], v: x[1] })) }) }));
@@ -2402,7 +2413,6 @@ const ewsClose = () => this.setState({ ews: null });
       // insight dinamis halaman rinci provinsi
       prov: [
         dh.n + ' menyumbang ' + nf(dP.share, 2) + '% PDRB nasional (peringkat ' + dP.rank + ')' + (allKnown ? '; tiga sektor teratas mencakup ' + nf(known, 2) + '% PDRB, sisanya ' + dh.rest + ' tersebar di sektor lain.' : '.'),
-        dK.tpt != null ? 'Pengangguran terbuka ' + nf(dK.tpt, 2) + '% (' + (dK.tpt > 4.68 ? 'di atas' : 'di bawah') + ' nasional 4,68%)' + (dK.tpt > 4.68 ? '; dorong investasi padat karya untuk menyerap angkatan kerja.' : '; tenaga kerja relatif terserap, tonjolkan produktivitas dan keterampilan.') : 'Data pengangguran terbuka belum tersedia.',
         'Arahkan promosi investasi ke sektor unggulan (' + dh.sek + ') beserta rantai pasok pendukungnya.'
       ],
       lak: fc.has ? [
@@ -2557,7 +2567,8 @@ const ewsClose = () => this.setState({ ews: null });
       'Hilirisasi menyumbang Rp287,9 T atau 28,5% dari realisasi, didominasi mineral dan logam Rp200,0 T. Data Tw III 2026 belum dirilis BKPM.'];
     mini.peta = ['Lima provinsi terbesar, yaitu ' + TOP5.map((id) => P[id].n).join(', ') + ', menyumbang ' + nf(TOP5.reduce((a, id) => a + P[id].share, 0), 2) + '% PDRB nasional, dengan ' + P[TOP5[0]].n + ' sebagai penyumbang terbesar (' + nf(P[TOP5[0]].share, 2) + '%).',
       'Konsentrasi ini menunjukkan aktivitas ekonomi masih terpusat di Jawa dan Sumatera Utara, sehingga provinsi lain membutuhkan dukungan tambahan untuk menarik investasi.'];
-    mini.siap = ['Indikator kesiapan wilayah merangkum kondisi pendukung investasi di provinsi ini. Indikator dengan capaian terendah menjadi penentu utama daya tarik provinsi dan titik perbaikan pertama sebelum promosi investasi.'];
+    mini.siap = ['Indikator ini merangkum kondisi pendukung investasi di ' + dh.n + ': biaya dan ketersediaan tenaga kerja, pendidikan vokasi, konektivitas, kawasan industri, dan isu sosial.',
+      dK.tpt != null ? 'Pengangguran terbuka ' + nf(dK.tpt, 2) + '% (' + (dK.tpt > 4.68 ? 'di atas' : 'di bawah') + ' nasional 4,68%)' + (dK.tpt > 4.68 ? '; dorong investasi padat karya untuk menyerap angkatan kerja.' : '; tenaga kerja relatif terserap, tonjolkan produktivitas dan keterampilan.') : 'Data pengangguran terbuka belum tersedia.'];
     mini.aturan = ['Daftar ini memuat peraturan pusat dan daerah yang relevan bagi investasi di provinsi ini. Peraturan daerah yang belum selaras dengan regulasi nasional berpotensi menambah syarat perizinan dan memperlambat realisasi proyek.'];
     return {
       mini, t5Sum, t5Rest,
