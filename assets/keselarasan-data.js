@@ -70,13 +70,13 @@ window.KESELARASAN_DATA = {
       dinilai: 'Penyertaan modal daerah kepada BUMD ditetapkan tanpa tujuan, indikator kinerja, dan jangka waktu pengembalian yang terukur.',
       pembanding: { reg: 'Perpres 12/2025 (RPJMN 2025–2029)', teks: 'Belanja dan investasi daerah diarahkan untuk mendukung sasaran pembangunan nasional dan daerah dengan indikator yang terukur.' },
       pertimbangan: 'Tanpa indikator kinerja, penyertaan modal tidak dapat dinilai kontribusinya terhadap sasaran RPJMN dan RPJMD. Pemkab telah menetapkan indikator melalui peraturan bupati pelaksana.',
-      jejak: 'Ditandai AI 30 Jul 2026 · verifikasi analis 31 Jul–3 Agu 2026 · naskah: JDIH Kabupaten Pulang Pisau',
+      jejak: 'Ditandai AI 30 Jul 2026 · naskah: JDIH Kabupaten Pulang Pisau',
       blocker: [
         { kat: 'Internal', uraian: 'Tujuan penyertaan modal tidak disertai indikator kinerja BUMD.', dampak: 'Manfaat investasi daerah tidak terukur.', unit: 'Bagian Perekonomian Setda Kab. Pulang Pisau', status: 'selesai' },
         { kat: 'Antarperaturan', uraian: 'Belum merujuk sasaran RPJMN 2025–2029 dan RPJMD.', dampak: 'Penyertaan modal berisiko tidak selaras dengan prioritas pembangunan.', unit: 'Bappelitbangda Kab. Pulang Pisau', status: 'selesai' }
       ],
       dampak: 'Setelah indikator kinerja ditetapkan, penyertaan modal diarahkan ke BUMD agribisnis yang mendukung ketahanan pangan, sehingga kepastian bagi mitra investasi daerah meningkat.',
-      rekomendasi: { teks: 'Tetapkan indikator kinerja dan keterkaitan penyertaan modal dengan sasaran RPJMN 2025–2029 melalui peraturan bupati pelaksana.', pj: 'Pemerintah Kabupaten Pulang Pisau', pembina: 'Kemendagri (Ditjen Bina Keuangan Daerah)', status: 'Selesai · disahkan pimpinan' },
+      rekomendasi: { teks: 'Tetapkan indikator kinerja dan keterkaitan penyertaan modal dengan sasaran RPJMN 2025–2029 melalui peraturan bupati pelaksana.', pj: 'Pemerintah Kabupaten Pulang Pisau', pembina: 'Kemendagri (Ditjen Bina Keuangan Daerah)', status: 'Selesai' },
       unit: [
         { nama: 'Bagian Perekonomian Setda', instansi: 'Pemkab Pulang Pisau', peran: 'Menyusun perbup pelaksana', chip: 'Penanggung jawab utama' },
         { nama: 'Bappelitbangda', instansi: 'Pemkab Pulang Pisau', peran: 'Menyelaraskan dengan RPJMD', chip: 'Pelaksana' },
@@ -102,7 +102,7 @@ window.KESELARASAN_DATA = {
       dinilai: 'Kementerian Kelautan dan Perikanan menetapkan kriteria, pembinaan, dan sertifikasi desa wisata bahari.',
       pembanding: { reg: 'UU 10/2009 jo. UU 6/2023 (Kepariwisataan)', teks: 'Penetapan standar dan pembinaan destinasi serta usaha pariwisata menjadi kewenangan menteri yang menyelenggarakan urusan pariwisata.' },
       pertimbangan: 'Sertifikasi desa wisata bahari oleh KKP berpotensi menduplikasi standar desa wisata Kemenpar, sehingga pengelola desa menghadapi dua rezim pembinaan. Pembagian peran memerlukan keputusan rapat koordinasi tingkat menteri.',
-      jejak: 'Ditandai AI 14 Agu 2026 · verifikasi analis 15–20 Agu 2026 · naskah: JDIH Kementerian Kelautan dan Perikanan',
+      jejak: 'Ditandai AI 14 Agu 2026 · naskah: JDIH Kementerian Kelautan dan Perikanan',
       blocker: [
         { kat: 'Antarperaturan', uraian: 'Kriteria desa wisata bahari berbeda dengan standar desa wisata Kemenpar.', dampak: 'Pengelola desa dan investor wisata menghadapi dua acuan.', unit: 'Ditjen Pengelolaan Kelautan KKP', status: 'tunggu' },
         { kat: 'Eksternal', uraian: 'Belum ada forum penetapan pembagian peran KKP–Kemenpar.', dampak: 'Keputusan tertunda menunggu rapat koordinasi.', unit: 'Kemenko Pangan · Kemenko Perekonomian', status: 'tunggu' }
@@ -135,7 +135,7 @@ window.KESELARASAN_DATA = {
       dinilai: 'Lampiran menetapkan parameter mutu karet alam untuk ekspor (kadar kotoran dan plastisitas) dengan ambang yang berbeda dari SNI yang berlaku.',
       pembanding: { reg: 'SNI 1903:2017 (Standard Indonesian Rubber)', teks: 'Parameter mutu SIR ditetapkan per kelas; SNI yang diberlakukan wajib menjadi acuan penilaian kesesuaian produk.' },
       pertimbangan: 'Perbedaan ambang mutu membuat produk yang lolos SNI dapat tertahan saat verifikasi ekspor, dan sebaliknya. Kemendag dan Kemenperin sedang menyelaraskan lampiran teknis.',
-      jejak: 'Ditandai AI 20 Agu 2026 · verifikasi analis 21–25 Agu 2026 · naskah: JDIH Kementerian Perdagangan',
+      jejak: 'Ditandai AI 20 Agu 2026 · naskah: JDIH Kementerian Perdagangan',
       blocker: [
         { kat: 'Antarperaturan', uraian: 'Ambang kadar kotoran pada lampiran berbeda dengan SNI 1903:2017.', dampak: 'Eksportir menghadapi dua standar mutu.', unit: 'Ditjen Perdagangan Luar Negeri Kemendag', status: 'proses' },
         { kat: 'Eksternal', uraian: 'Lembaga verifikasi ekspor belum menerima petunjuk teknis baru.', dampak: 'Potensi penahanan pengapalan.', unit: 'Kemendag · surveyor', status: 'proses' },
@@ -169,7 +169,7 @@ window.KESELARASAN_DATA = {
       dinilai: 'Pelaku usaha subsektor kebudayaan wajib memenuhi standar tambahan berupa rekomendasi kesesuaian dari dinas kebudayaan sebelum sertifikat standar terbit.',
       pembanding: { reg: 'PP 28/2025', teks: 'Standar usaha ditetapkan dalam lampiran PP; kementerian tidak menambah persyaratan di luar yang diatur.' },
       pertimbangan: 'Rekomendasi dinas tidak tercantum dalam lampiran PP 28/2025 sehingga berfungsi sebagai persyaratan tambahan dan memperpanjang proses sertifikat standar.',
-      jejak: 'Ditandai AI 22 Agu 2026 · verifikasi analis 23–28 Agu 2026 · naskah: JDIH Kementerian Kebudayaan',
+      jejak: 'Ditandai AI 22 Agu 2026 · naskah: JDIH Kementerian Kebudayaan',
       blocker: [
         { kat: 'Antarperaturan', uraian: 'Rekomendasi dinas kebudayaan tidak ada dalam lampiran PP 28/2025.', dampak: 'Sertifikat standar tertahan di daerah.', unit: 'Ditjen Pelindungan Kebudayaan', status: 'proses' },
         { kat: 'Eksternal', uraian: 'Belum ada format rekomendasi baku di OSS.', dampak: 'Proses berlangsung manual di luar sistem.', unit: 'Kementerian Investasi/BKPM (pengelola OSS)', status: 'belum' }
@@ -201,7 +201,7 @@ window.KESELARASAN_DATA = {
       dinilai: 'Ketentuan perizinan penanaman modal mensyaratkan rekomendasi perangkat daerah sebelum permohonan perizinan berusaha diproses.',
       pembanding: { reg: 'PP 28/2025', teks: 'Menjadi satu-satunya acuan perizinan berusaha berbasis risiko; K/L dan pemda tidak menambah persyaratan di luar yang diatur.' },
       pertimbangan: 'Rekomendasi daerah berfungsi sebagai persyaratan tambahan dan berpotensi menahan permohonan sebelum masuk OSS. Penilaian menunggu konfirmasi naskah pasal dari JDIH Kabupaten Kudus.',
-      jejak: 'Ditandai AI 19 Sep 2026 · verifikasi analis sejak 22 Sep 2026 · naskah: JDIH Kabupaten Kudus',
+      jejak: 'Ditandai AI 19 Sep 2026 · naskah: JDIH Kabupaten Kudus',
       blocker: [
         { kat: 'Antarperaturan', uraian: 'Rekomendasi daerah disyaratkan sebelum permohonan masuk OSS.', dampak: 'Permohonan tertahan di luar sistem dan SLA tidak berjalan.', unit: 'DPMPTSP Kab. Kudus', status: 'belum' },
         { kat: 'Internal', uraian: 'Pasal insentif mendelegasikan pengaturan ke Perbup yang belum terbit.', dampak: 'Insentif penanaman modal belum dapat diberikan.', unit: 'Bagian Hukum Setda Kab. Kudus', status: 'belum' }
@@ -216,8 +216,7 @@ window.KESELARASAN_DATA = {
       ],
       riwayat: [
         { tgl: '19 Sep 2026', l: 'Indikasi awal ditandai AI', st: 'done' },
-        { tgl: '22 Sep 2026–sekarang', l: 'Verifikasi analis', st: 'now' },
-        { tgl: 'Berikutnya', l: 'Diteruskan ke Pemkab Kudus', st: 'next' },
+        { tgl: '22 Sep 2026–sekarang', l: 'Diteruskan ke Pemkab Kudus', st: 'now' },
         { tgl: 'Berikutnya', l: 'Penyesuaian Perda', st: 'next' }
       ]
     }
