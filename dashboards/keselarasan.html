@@ -683,7 +683,8 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
       <div style="font-size: 11.5px; color: #64748B;">Indikasi ketidakselarasan adalah hasil penilaian analis, bukan putusan hukum.</div>
     </section>
 
-    <section style="background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; display: flex; flex-direction: column;">
+    <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: stretch;">
+    <section style="flex: 1 1 420px; min-width: 0; background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; display: flex; flex-direction: column;">
       <div style="padding: 12px 18px; border-bottom: 1px solid #EEF2F7;"><h3 style="margin: 0; font-size: 14.5px; font-weight: 600;">Dasar penilaian &amp; ketentuan yang dibandingkan</h3></div>
       <div style="padding: 14px 18px; display: flex; flex-direction: column; gap: 12px;">
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px;">
@@ -696,17 +697,15 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
       <div style="padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;" class="cf"><span><b style="color: #475569;">Periode:</b> s.d. {{acuan}}</span><span><b style="color: #475569;">Diperbarui:</b> {{meta.diperbarui}}</span><span><b style="color: #475569;">Sumber:</b> naskah resmi (JDIH) · penilaian analis</span></div>
     </section>
 
-    <section style="background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; display: flex; flex-direction: column;">
+    <section style="flex: 1 1 420px; min-width: 0; background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; display: flex; flex-direction: column;">
       <div style="padding: 12px 18px; border-bottom: 1px solid #EEF2F7; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px;"><h3 style="margin: 0; font-size: 14.5px; font-weight: 600;">Titik blocker pada regulasi ini</h3><div role="group" aria-label="Filter kategori blocker" style="display: flex; flex-wrap: wrap; gap: 6px;"><sc-for list="{{d.bkChips}}" as="c" hint-placeholder-count="4"><button type="button" sc-camel-on-click="{{c.pick}}" style="height: 28px; padding: 0 10px; border-radius: 99px; border: 1px solid {{c.bd}}; background: {{c.bg}}; color: {{c.fg}}; font-family: inherit; font-size: 11.5px; font-weight: 600; cursor: pointer;">{{c.l}} · {{c.n}}</button></sc-for></div></div>
       <div style="padding: 6px 18px 12px; display: flex; flex-direction: column;">
-        <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; padding: 8px 0 10px;"><sc-for list="{{d.bkBars}}" as="b" hint-placeholder-count="3"><div style="font-size: 11px; color: #475569;"><div style="display: flex; justify-content: space-between;"><span>{{b.l}}</span><b style="color: #0F172A;">{{b.n}}</b></div><span style="display: block; margin-top: 3px; height: 8px; border-radius: 4px; background: #EEF2F7;"><span style="display: block; width: {{b.w}}; height: 8px; border-radius: 4px; background: #1E40AF;"></span></span></div></sc-for></div>
         <sc-for list="{{d.bkRows}}" as="b" hint-placeholder-count="2">
-          <div style="display: grid; grid-template-columns: 120px minmax(0, 1.4fr) minmax(0, 1.2fr) minmax(0, 1fr) 150px; gap: 12px; align-items: start; padding: 10px 0; border-bottom: 1px solid #EEF2F7; font-size: 12px; color: #0F172A;">
-            <span><span style="display: inline-block; padding: 2px 8px; border-radius: 99px; background: #EFF6FF; color: #1E40AF; font-size: 11px; font-weight: 700;">{{b.kat}}</span></span>
+          <div style="display: flex; flex-direction: column; gap: 5px; padding: 10px 0; border-bottom: 1px solid #EEF2F7; font-size: 12px; color: #0F172A;">
+            <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px;"><span style="display: inline-block; padding: 2px 8px; border-radius: 99px; background: #EFF6FF; color: #1E40AF; font-size: 11px; font-weight: 700;">{{b.kat}}</span><span style="display: inline-block; padding: 2px 8px; border-radius: 6px; background: {{b.st.bg}}; color: {{b.st.c}}; font-size: 11px; font-weight: 700; white-space: nowrap;">{{b.st.l}}</span></div>
             <span style="line-height: 17px;">{{b.uraian}}</span>
             <span style="line-height: 17px; color: #475569;"><b style="color: #334155;">Dampak:</b> {{b.dampak}}</span>
-            <span style="line-height: 17px; color: #475569;">{{b.unit}}</span>
-            <span><span style="display: inline-block; padding: 2px 8px; border-radius: 6px; background: {{b.st.bg}}; color: {{b.st.c}}; font-size: 11px; font-weight: 700;">{{b.st.l}}</span></span>
+            <span style="line-height: 17px; color: #64748B; font-size: 11.5px;"><b style="color: #334155;">Unit:</b> {{b.unit}}</span>
           </div>
         </sc-for>
         <sc-if value="{{d.bkEmpty}}" hint-placeholder-val="{{false}}"><div style="padding: 16px 0; font-size: 12px; color: #64748B;">Tidak ada blocker pada kategori ini.</div></sc-if>
@@ -714,6 +713,7 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
       </div>
       <div style="padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;" class="cf"><span><b style="color: #475569;">Periode:</b> s.d. {{acuan}}</span><span><b style="color: #475569;">Diperbarui:</b> {{meta.diperbarui}}</span><span><b style="color: #475569;">Sumber:</b> penilaian analis · laporan instansi</span></div>
     </section>
+    </div>
 
     <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: stretch;">
       <section style="flex: 1 1 380px; min-width: 0; background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; display: flex; flex-direction: column;">
