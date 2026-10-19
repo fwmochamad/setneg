@@ -567,17 +567,17 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
         </div>
 
         <!-- 0. Investasi nasional: realisasi vs target, hilirisasi, rincian PMDN & PMA -->
-        <section id="sec-nasional" class="ri-card" style="scroll-margin-top: 16px;">
+        <section id="sec-nasional" class="ri-card" style="position: relative; scroll-margin-top: 16px;">
           <div style="padding: 12px 18px; border-bottom: 1px solid #EEF2F7; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px;">
             <h2 style="margin: 0; font-size: 14.5px; font-weight: 600;">Investasi nasional<span class="tip info-i" tabindex="0" aria-label="Keterangan">i<span class="pop">Realisasi PMDN dan PMA dari Kementerian Investasi dan Hilirisasi/BKPM; Tw I dihitung dari Semester I dikurangi Tw II. Semua periode dibandingkan dengan target nasional 2026 Rp2.175,3 T; YoY dibandingkan dengan periode yang sama 2025. Nilai hilirisasi dan rinciannya adalah data simulasi mengikuti format laporan BKPM.</span></span></h2>
             <span style="display: inline-flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; font-size: 12px; color: #475569;">Target nasional 2026 <b style="color: #0F172A;">{{nas.tg}}</b><span style="padding: 2px 8px; border-radius: 99px; background: #EFF6FF; color: #1E40AF; font-weight: 700;">{{nas.head}}</span></span>
           </div>
 
           <!-- Realisasi per periode vs target tahunan nasional -->
-          <style>.nas-trk{container-type:inline-size}.nas-sub{display:none}@container (max-width: 560px){.nas-seg-t{display:none}.nas-sub{display:block}}</style>
+          <style>.nas-bar{transition:filter .12s}.nas-bar:hover,.nas-bar:focus-visible{filter:brightness(1.12);outline:none}.nas-trk{container-type:inline-size}.nas-sub{display:none}@container (max-width: 560px){.nas-seg-t{display:none}.nas-sub{display:block}}</style>
           <div style="padding: 14px 18px 4px; display: flex; flex-direction: column; gap: 10px;">
             <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 6px 14px; font-size: 11.5px; color: #64748B;">
-              <span><b style="font-size: 12.5px; color: #0F172A;">Realisasi 2026 dibanding target tahunan</b> · panjang penuh batang = target Rp2.175,3 T</span>
+              <span><b style="font-size: 12.5px; color: #0F172A;">Realisasi 2026 dibanding target tahunan</b> · panjang penuh batang = target Rp2.175,3 T · klik batang PMDN/PMA untuk rincian</span>
               <span style="display: inline-flex; flex-wrap: wrap; gap: 4px 12px;">
                 <span style="display: inline-flex; align-items: center; gap: 5px;"><span style="width: 9px; height: 9px; border-radius: 2px; background: #1E40AF;"></span>PMDN</span>
                 <span style="display: inline-flex; align-items: center; gap: 5px;"><span style="width: 9px; height: 9px; border-radius: 2px; background: #D4A72C;"></span>PMA</span>
@@ -591,8 +591,8 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
                   <span class="nas-trk" style="flex: 1 1 280px; min-width: 0; display: flex; flex-direction: column; gap: 3px;"><span style="position: relative; height: 30px; box-sizing: border-box; border-radius: 6px; background: #F1F5F9; border-right: 2px dashed #0F172A;">
                     <sc-if value="{{r.has}}" hint-placeholder-val="{{true}}">
                       <span style="position: absolute; left: 0; top: 0; bottom: 0; width: {{r.w}}; display: flex; gap: 2px;">
-                        <span title="PMDN {{r.l}}: {{r.pV}} ({{r.pP}})" style="flex: {{r.pF}} 1 0; min-width: 0; border-radius: 6px 0 0 6px; background: #1E40AF; color: #FFFFFF; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0 4px; line-height: 12px; white-space: nowrap; overflow: hidden;"><b class="nas-seg-t" style="font-size: 11px;">{{r.pV}}</b><span class="nas-seg-t" style="font-size: 10px; color: #DBEAFE;">{{r.pP}}</span></span>
-                        <span title="PMA {{r.l}}: {{r.aV}} ({{r.aP}})" style="flex: {{r.aF}} 1 0; min-width: 0; background: #D4A72C; color: #1F2937; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0 4px; line-height: 12px; white-space: nowrap; overflow: hidden;"><b class="nas-seg-t" style="font-size: 11px;">{{r.aV}}</b><span class="nas-seg-t" style="font-size: 10px;">{{r.aP}}</span></span>
+                        <span title="PMDN {{r.l}}: {{r.pV}} ({{r.pP}}) · klik untuk rincian" role="button" tabindex="0" sc-camel-on-click="{{r.pOpen}}" class="nas-bar" style="cursor: pointer; flex: {{r.pF}} 1 0; min-width: 0; border-radius: 6px 0 0 6px; background: #1E40AF; color: #FFFFFF; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0 4px; line-height: 12px; white-space: nowrap; overflow: hidden;"><b class="nas-seg-t" style="font-size: 11px;">{{r.pV}}</b><span class="nas-seg-t" style="font-size: 10px; color: #DBEAFE;">{{r.pP}}</span></span>
+                        <span title="PMA {{r.l}}: {{r.aV}} ({{r.aP}}) · klik untuk rincian" role="button" tabindex="0" sc-camel-on-click="{{r.aOpen}}" class="nas-bar" style="cursor: pointer; flex: {{r.aF}} 1 0; min-width: 0; background: #D4A72C; color: #1F2937; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0 4px; line-height: 12px; white-space: nowrap; overflow: hidden;"><b class="nas-seg-t" style="font-size: 11px;">{{r.aV}}</b><span class="nas-seg-t" style="font-size: 10px;">{{r.aP}}</span></span>
                       </span>
                     </sc-if>
                     <sc-if value="{{r.none}}" hint-placeholder-val="{{false}}">
@@ -652,14 +652,17 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
             </sc-if>
           </div>
 
+          <!-- Pop-up rincian PMDN / PMA: dibuka dari klik batang Investasi nasional -->
+          <sc-if value="{{nasPop}}" hint-placeholder-val="{{false}}">
+          <div class="nas-pop" role="dialog" aria-label="{{nasPopT}}" style="position: absolute; z-index: 45; top: {{nasPos.top}}; left: {{nasPos.left}}; width: {{nasPos.w}}; box-sizing: border-box; background: #FFFFFF; border: 1px solid #CBD5E1; border-radius: 12px; box-shadow: 0 16px 40px rgba(15,23,42,.18);">
           <!-- Rincian PMDN & PMA (dipindah dari kartu Realisasi investasi PMDN & PMA) -->
-          <div id="sec-realisasi" style="margin-top: 14px; padding: 14px 18px 4px; border-top: 1px solid #EEF2F7; display: flex; flex-direction: column; gap: 12px; scroll-margin-top: 16px;">
+          <div id="sec-realisasi" style="padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 12px; scroll-margin-top: 16px;">
             <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px;">
-              <span style="display: inline-flex; align-items: center; gap: 6px;"><b style="font-size: 13px; color: #0F172A;">Rincian PMDN &amp; PMA</b><span style="padding: 1px 7px; border-radius: 5px; background: #EFF6FF; color: #1D4ED8; font-size: 11px; font-weight: 600;">Tw II 2026</span><span class="tip info-i" tabindex="0" aria-label="Keterangan">i<span class="pop">Rincian wilayah dan negara asal baru tersedia untuk Triwulan II 2026 (April–Juni), rilis terakhir BKPM. Klik segmen donat untuk melihat nilai, porsi, dan komposisi sektornya.</span></span></span>
-              <button type="button" sc-camel-on-click="{{openL1}}" style="height: 32px; padding: 0 12px; border-radius: 8px; border: 1px solid #B8E3DF; background: #FFFFFF; font-family: inherit; font-size: 12px; font-weight: 600; color: #1D4ED8; cursor: pointer;">Lihat data pembentuk &rarr;</button>
+              <span style="display: inline-flex; align-items: center; gap: 6px;"><b style="font-size: 15px; color: #0F172A;">{{nasPopT}}</b><span style="padding: 1px 7px; border-radius: 5px; background: #EFF6FF; color: #1D4ED8; font-size: 11px; font-weight: 600;">Tw II 2026</span><span class="tip info-i" tabindex="0" aria-label="Keterangan">i<span class="pop">Rincian wilayah dan negara asal baru tersedia untuk Triwulan II 2026 (April–Juni), rilis terakhir BKPM. Klik segmen donat untuk melihat nilai, porsi, dan komposisi sektornya.</span></span></span>
+              <span style="display: inline-flex; align-items: center; gap: 8px;"><button type="button" sc-camel-on-click="{{openL1}}" style="height: 32px; padding: 0 12px; border-radius: 8px; border: 1px solid #B8E3DF; background: #FFFFFF; font-family: inherit; font-size: 12px; font-weight: 600; color: #1D4ED8; cursor: pointer;">Lihat data pembentuk &rarr;</button><button type="button" sc-camel-on-click="{{closeNasPop}}" aria-label="Tutup" style="width: 32px; height: 32px; border-radius: 8px; border: 1px solid #E3E8F0; background: #FFFFFF; color: #475569; font-family: inherit; cursor: pointer;">✕</button></span>
             </div>
             <div style="display: flex; flex-wrap: wrap; gap: 16px;">
-              <div style="flex: 1 1 520px; min-width: 0; padding: 14px; border: 1px solid #E3E8F0; border-radius: 10px; display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start; align-content: flex-start; position: relative;">
+              <sc-if value="{{nasPopP}}" hint-placeholder-val="{{true}}"><div style="flex: 1 1 520px; min-width: 0; padding: 14px; border: 1px solid #E3E8F0; border-radius: 10px; display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start; align-content: flex-start; position: relative;">
                 <div role="group" aria-label="Donat PMDN" style="flex: none; align-self: center; width: 200px; height: 200px; padding: 0; border: 0; outline: none; background: transparent; position: relative;">
                   <svg sc-camel-view-box="0 0 42 42" style="width: 200px; height: 200px; display: block;">
                     <circle cx="21" cy="21" r="15.9155" fill="none" stroke="#EEF2F7" stroke-width="6"></circle>
@@ -699,8 +702,8 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
                   <sc-for list="{{l1}}" as="r" hint-placeholder-count="9"><button type="button" sc-camel-on-click="{{r.pick}}" class="rw" style="display: grid; grid-template-columns: 10px minmax(0, 1fr) auto 40px; gap: 7px; align-items: center; padding: 2px 6px; border: 0; border-radius: 6px; background: transparent; font-family: inherit; font-size: 11.5px; color: #0F172A; text-align: left;"><span style="width: 9px; height: 9px; border-radius: 2px; background: {{r.c}};"></span><span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{r.l}}</span><b style="font-weight: 600;">{{r.v}}</b><span style="text-align: right; color: #475569;">{{r.p}}</span></button></sc-for>
                   
                 </div>
-              </div>
-              <div style="flex: 1 1 520px; min-width: 0; padding: 14px; border: 1px solid #E3E8F0; border-radius: 10px; display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start; align-content: flex-start;">
+              </div></sc-if>
+              <sc-if value="{{nasPopA}}" hint-placeholder-val="{{false}}"><div style="flex: 1 1 520px; min-width: 0; padding: 14px; border: 1px solid #E3E8F0; border-radius: 10px; display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start; align-content: flex-start;">
                 <div role="group" aria-label="Donat PMA" class="bar" style="flex: none; align-self: center; width: 200px; height: 200px; padding: 0; border: 0; background: transparent; position: relative;">
                   <svg sc-camel-view-box="0 0 42 42" style="width: 200px; height: 200px; display: block;">
                     <circle cx="21" cy="21" r="15.9155" fill="none" stroke="#EEF2F7" stroke-width="6"></circle>
@@ -740,15 +743,16 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
                   <sc-for list="{{l2}}" as="r" hint-placeholder-count="9"><button type="button" sc-camel-on-click="{{r.pick}}" class="rw" style="display: grid; grid-template-columns: 10px minmax(0, 1fr) auto 40px; gap: 7px; align-items: center; padding: 2px 6px; border: 0; border-radius: 6px; background: transparent; font-family: inherit; font-size: 11.5px; color: #0F172A; text-align: left;"><span style="width: 9px; height: 9px; border-radius: 2px; background: {{r.c}};"></span><span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{r.l}}</span><b style="font-weight: 600;">{{r.v}}</b><span style="text-align: right; color: #475569;">{{r.p}}</span></button></sc-for>
                 </div>
                 <div class="fx-card" style="flex: 1 1 100%; min-width: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 14px; padding: 6px 10px; border-radius: 8px; background: #F8FAFC; border: 1px solid #E3E8F0; font-size: 11px; line-height: 16px; color: #475569;"><span style="display: inline-flex; align-items: center; gap: 6px; font-size: 10px; font-weight: 700; letter-spacing: .06em; color: #475569;"><span class="fx-live" aria-hidden="true"></span>KURS APBN 2026</span><span>US$ 1 = <b style="color: #0F172A; font-variant-numeric: tabular-nums;">Rp16.500</b></span><span>Total PMA Rp257,7 T ≈ <b style="color: #1E40AF;">{{pmaUsd}}</b></span><span style="margin-left: auto; display: inline-flex;"><span class="tip" tabindex="0" aria-label="Keterangan kurs" style="display: inline-flex; width: 16px; height: 16px; border-radius: 99px; border: 1px solid #CBD5E1; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; color: #64748B; cursor: help;">i<span class="pop">Asumsi kurs APBN 2026 (UU APBN 2026): Rp16.500 per dolar AS. Total {{pmaUsd}} = Rp257,7 T ÷ Rp16.500. Nilai per negara memakai kurs periode transaksi yang dilaporkan BKPM, jadi tidak dijumlahkan langsung dengan total konversi. Korea Selatan, Taiwan, India, dan 120+ negara lain adalah estimasi pembagian sisa 20,4% PMA.</span></span></span></div>
-              </div>
+              </div></sc-if>
             </div>
           </div>
+          </div>
+          </sc-if>
           <div class="mzi"><span class="mzi-b">Insight AI</span><ul class="mzi-l"><sc-for list="{{mini.inv}}" as="i" hint-placeholder-count="3"><li>{{i}}</li></sc-for></ul><span class="mzi-s">Terverifikasi analis</span></div>
           <div class="cf" style="padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;"><span><b style="color: #475569;">Diperbarui:</b> 16 Jul 2026 (rilis Tw II) · Tw III 2026 belum dirilis</span><span><b style="color: #475569;">Sumber:</b> Kementerian Investasi dan Hilirisasi/BKPM (LKPM); kurs: APBN 2026</span><span class="chip" style="padding: 0 6px; border-radius: 4px; background: #EFF6FF; color: #1D4ED8; font-weight: 600;">Data resmi · hilirisasi simulasi</span></div>
         </section>
 
         <!-- 1 + 2. Peta & Top 5 PDRB -->
-        <div style="margin-bottom: -6px; font-size: 12px; color: #475569;">Klik provinsi pada peta untuk profil singkat; halaman rinci tersedia untuk 5 provinsi dengan PDRB terbesar.</div>
         <section id="sec-peta" style="background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; box-shadow: 0 1px 2px rgba(15,23,42,.05);">
           <div style="padding: 12px 18px; border-bottom: 1px solid #EEF2F7; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px;">
             <div><h2 style="margin: 0; font-size: 14.5px; font-weight: 600;">Peta peluang investasi daerah<span class="tip info-i" tabindex="0" aria-label="Keterangan">i<span class="pop">Peta diwarnai menurut PDRB ADHB 2025; arahkan kursor untuk melihat profil dan klik untuk membuka halaman rinci.</span></span></h2></div>
@@ -2373,12 +2377,20 @@ const ewsClose = () => this.setState({ ews: null });
     const tT = (v) => 'Rp' + nf(v, 1) + ' T';
     const pc = (v, d) => nf(v * 100, d == null ? 1 : d) + '%';
     const hMax = Math.max(...Object.values(NV).map((v) => v.h));
+    // Pop-up rincian PMDN/PMA menempel di bawah batang yang diklik (bukan menutupi halaman)
+    const nasOpen = (k, e) => { const el = e && e.currentTarget, sec = document.getElementById('sec-nasional');
+      if (st.nasPop === k) { this.setState({ nasPop: null, donutDetail: null }); return; }
+      let pos = { top: '120px', left: '18px', w: 'min(760px, calc(100% - 36px))' };
+      if (el && sec) { const r = el.getBoundingClientRect(), b = sec.getBoundingClientRect(), W = Math.min(760, b.width - 36);
+        pos = { top: Math.round(r.bottom - b.top + 8) + 'px', left: Math.round(Math.max(18, Math.min(r.left - b.left, b.width - W - 18))) + 'px', w: W + 'px' }; }
+      this.setState({ nasPop: k, nasPos: pos, donutDetail: null }); };
     const nas = {
       tg: tT(TG26), head: pc(NV.y26.t / TG26) + ' tercapai s.d. Tw II · ' + (NV.y26.t >= N25.y26 ? '+' : '−') + nf(Math.abs(NV.y26.t / N25.y26 - 1) * 100, 1) + '% YoY',
       rows: NROW.map(([k, l, s]) => { const v = NV[k], b = N25[k], agg = k === 's1' || k === 'y26';
         const y = v && b ? v.t / b - 1 : null;
         return { l, s, has: !!v, none: !v, why: NWHY[k] || '', bg: agg ? '#F8FAFC' : 'transparent',
           w: v ? (v.t / TG26) * 100 + '%' : '0%', pF: v ? v.p : 0, aF: v ? v.a : 0,
+          pOpen: (e) => nasOpen('pmdn', e), aOpen: (e) => nasOpen('pma', e),
           pV: v ? tT(v.p) : '', aV: v ? tT(v.a) : '', pP: v ? pc(v.p / v.t) : '', aP: v ? pc(v.a / v.t) : '',
                     tsuf: v ? 'target' : '', v: v ? tT(v.t) : '—', vc: v ? '#0F172A' : '#94A3B8', pct: v ? pc(v.t / TG26) : '—',
           yoy: y == null ? 'YoY —' : (y >= 0 ? '▲ ' : '▼ ') + nf(Math.abs(y) * 100, 1) + '% YoY', yBg: y == null ? '#F1F5F9' : y >= 0 ? '#DCFCE7' : '#FEF3C7', yC: y == null ? '#94A3B8' : y >= 0 ? '#15803D' : '#B45309',
@@ -2468,7 +2480,7 @@ const ewsClose = () => this.setState({ ews: null });
       clearSel: set({ sel: null, pop: false }), hasSel: !!sel,
       ri, nas, prjSum, dsOpen: !!st.dsOpen, dsIc: st.dsOpen ? '▴' : '▾', dsToggle: () => this.setState({ dsOpen: !st.dsOpen }), hxOpen: !!st.hxOpen, hxToggle: () => this.setState({ hxOpen: !st.hxOpen }), hxLabel: st.hxOpen ? 'Sembunyikan rincian komponen & insight ▴' : 'Lihat rincian komponen IKLH, komposisi bahaya & insight ▾',
       prjCards, prjNote: PRJD.length ? 'Data simulasi untuk prototipe · ' + PRJD.length + ' profil proyek di ' + dh.n + '; angka merupakan estimasi, bukan realisasi.' : 'Belum ada profil proyek untuk provinsi ini.', prjScrollP: () => { const el = document.querySelector('[data-prj-track]'); if (el) el.scrollBy({ left: 660, behavior: 'smooth' }); },
-      prjScrollN: () => { const el = document.querySelector('[data-prj-track]'); if (el) el.scrollBy({ left: -660, behavior: 'smooth' }); }, pSearch, pOpen: pShowBox, pOpts, pNoHit, pVal, pClear, pCur: !!pCur, pStats, pMeta, pCurN, onPSearch: (e) => this.setState({ pSearch: e && e.target ? e.target.value : "", pOpen: true }), onPOpen: () => this.setState({ pOpen: true }), d1, d2, l1, l2, d1Info: st.donutDetail && st.donutDetail.group === 'PMDN' ? st.donutDetail : null, d2Info: st.donutDetail && st.donutDetail.group === 'PMA' ? st.donutDetail : null, closeDonut: () => this.setState({ donutDetail: null }), pmaUsd, openL1: openL(), openL2: openL(), openLs: openL({ lt: 'sek' }), openLh: openL({ lt: 'hist' }),
+      prjScrollN: () => { const el = document.querySelector('[data-prj-track]'); if (el) el.scrollBy({ left: -660, behavior: 'smooth' }); }, pSearch, pOpen: pShowBox, pOpts, pNoHit, pVal, pClear, pCur: !!pCur, pStats, pMeta, pCurN, onPSearch: (e) => this.setState({ pSearch: e && e.target ? e.target.value : "", pOpen: true }), onPOpen: () => this.setState({ pOpen: true }), d1, d2, l1, l2, d1Info: st.donutDetail && st.donutDetail.group === 'PMDN' ? st.donutDetail : null, d2Info: st.donutDetail && st.donutDetail.group === 'PMA' ? st.donutDetail : null, closeDonut: () => this.setState({ donutDetail: null }), nasPop: !!st.nasPop, nasPos: st.nasPos || { top: '0px', left: '0px', w: '0px' }, nasPopP: st.nasPop === 'pmdn', nasPopA: st.nasPop === 'pma', nasPopT: st.nasPop === 'pma' ? 'Rincian PMA menurut negara asal' : 'Rincian PMDN menurut wilayah', closeNasPop: () => this.setState({ nasPop: null, donutDetail: null }), stopNas: (e) => { if (e && e.stopPropagation) e.stopPropagation(); }, pmaUsd, openL1: openL(), openL2: openL(), openLs: openL({ lt: 'sek' }), openLh: openL({ lt: 'hist' }),
       // lampiran
       lm, closeL: set({ lm: false }), lTabs, isLp: lt === 'prov', isLs: lt === 'sek', isLk: lt === 'skala', isLh: lt === 'hist', lperBtns, lpOpts, lpv, onLp, lsOpts, lsk, onLs,
       lp, lpEmpty, lpHas: !lpEmpty, lpNas, lpNote, lperL: lper === 'tw2' ? 'Triwulan II 2026' : 'Semester I 2026', lsHas, lsNo: !lsHas, ls, lsNote, lk, lkNote, lh, lhProv, hasLhProv, lNoteHist,
