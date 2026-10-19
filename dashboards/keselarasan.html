@@ -559,22 +559,6 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
             </sc-for>
           </div>
         </section>
-    <!-- 2.1 Bar filter -->
-    <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px;">
-      <span style="height: 36px; padding: 0 12px; border-radius: 8px; background: #FFFFFF; border: 1px solid #E3E8F0; font-size: 12px; color: #475569; display: inline-flex; align-items: center; gap: 4px; box-sizing: border-box;">Tanggal acuan: <b style="color: #0F172A;">{{acuan}}</b></span>
-      <sc-for list="{{fl}}" as="f" hint-placeholder-count="4">
-        <div style="position: relative;">
-          <button type="button" sc-camel-on-click="{{f.toggle}}" aria-haspopup="listbox" aria-expanded="{{f.open}}" style="height: 36px; padding: 0 12px; border-radius: 8px; background: {{f.bg}}; border: 1px solid {{f.bd}}; font-family: inherit; font-size: 12px; color: #475569; cursor: pointer;">{{f.l}}: <b style="color: #0F172A;">{{f.v}}</b> ▾</button>
-          <sc-if value="{{f.open}}" hint-placeholder-val="{{false}}">
-            <div role="listbox" style="position: absolute; z-index: 60; top: 40px; left: 0; min-width: 300px; max-height: 360px; overflow-y: auto; padding: 6px; border-radius: 10px; background: #FFFFFF; border: 1px solid #E3E8F0; box-shadow: 0 12px 32px rgba(15,23,42,.16); display: flex; flex-direction: column; gap: 2px;">
-              <sc-for list="{{f.opts}}" as="o" hint-placeholder-count="5"><button type="button" role="option" sc-camel-on-click="{{o.pick}}" class="rw" style="padding: 8px 10px; border: 0; border-radius: 6px; background: {{o.bg}}; font-family: inherit; font-size: 12.5px; color: {{o.dim}}; font-weight: {{o.w}}; text-align: left; display: flex; justify-content: space-between; gap: 12px; cursor: pointer;"><span>{{o.l}}</span><span style="color: #94A3B8;">{{o.n}}</span></button></sc-for>
-            </div>
-          </sc-if>
-        </div>
-      </sc-for>
-      <sc-if value="{{hasF}}" hint-placeholder-val="{{false}}"><button type="button" sc-camel-on-click="{{resetF}}" style="height: 36px; padding: 0 10px; border: 0; background: transparent; font-family: inherit; font-size: 12px; font-weight: 600; color: #1D4ED8; cursor: pointer;">Reset filter</button><button type="button" sc-camel-on-click="{{toList}}" style="margin-left: auto; padding: 0; border: 0; background: transparent; font-family: inherit; font-size: 12px; font-weight: 600; color: #1D4ED8; cursor: pointer;">{{nF}} temuan sesuai filter ↓</button></sc-if>
-    </div>
-
     <!-- 2.3 Tiga panel grafik -->
     <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: stretch;">
       <section style="flex: 1 1 380px; min-width: 0; background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; display: flex; flex-direction: column;">
