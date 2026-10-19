@@ -572,7 +572,6 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
     <section id="sec-terbit" style="background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; box-shadow: 0 1px 2px rgba(15,23,42,.05); display: flex; flex-direction: column; scroll-margin-top: 16px;">
       <div style="padding: 12px 18px; border-bottom: 1px solid #EEF2F7; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px;">
         <div><h2 style="margin: 0; font-size: 14.5px; font-weight: 600;">Jumlah izin diterbitkan &amp; status<span class="tip info-i" tabindex="0" aria-label="Keterangan">i<span class="pop">Hanya izin yang sudah diterbitkan · NIB tidak dihitung sebagai izin tuntas</span></span></h2></div>
-        <span style="font-size: 11.5px; color: #64748B;">Klik angka atau status untuk membuka daftar pembentuk</span>
       </div>
       <div style="padding: 10px 18px; border-bottom: 1px solid #EEF2F7; display: flex; flex-wrap: wrap; align-items: center; gap: 8px;">
         <sc-for list="{{fl1}}" as="f" hint-placeholder-count="3">
@@ -608,7 +607,7 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
                 </sc-if>
                 <sc-if value="{{w.none}}" hint-placeholder-val="{{false}}">
                   <span style="font-size: 11.5px; line-height: 16px; color: #475569;">{{w.why}}</span>
-                  <div style="display: flex; flex-wrap: wrap; gap: 4px;"><sc-for list="{{w.ex}}" as="x" hint-placeholder-count="3"><span style="height: 22px; padding: 0 8px; border-radius: 99px; border: 1px dashed #CBD5E1; color: #64748B; font-size: 10.5px; display: inline-flex; align-items: center;">{{x}}</span></sc-for></div>
+                  
                 </sc-if>
               </div>
               <sc-if value="{{w.arrow}}" hint-placeholder-val="{{true}}"><span class="wf-arr" aria-hidden="true" style="flex: none; align-self: center; color: #94A3B8; font-size: 18px; font-weight: 700;">→</span></sc-if>
@@ -713,7 +712,7 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
               </span>
             </div>
           </sc-for>
-          <sc-if value="{{c3empty}}" hint-placeholder-val="{{false}}"><div style="margin: 4px 0; padding: 16px; border-radius: 10px; border: 1.5px dashed #CBD5E1; background: #F8FAFC; display: flex; flex-direction: column; gap: 8px;"><b style="font-size: 13px; color: #334155;">Data waktu penyelesaian PB UMKU belum dihimpun dari OSS</b><span style="font-size: 12px; line-height: 18px; color: #475569;">Setelah tersedia, tahap ini menampilkan ranking waktu penyelesaian per sektor (K/L penerbit) terhadap SLA masing-masing, sama seperti Perizinan Berusaha.</span><div style="display: flex; flex-wrap: wrap; gap: 4px;"><sc-for list="{{c3emptyEx}}" as="x" hint-placeholder-count="4"><span style="height: 22px; padding: 0 8px; border-radius: 99px; border: 1px dashed #CBD5E1; color: #64748B; font-size: 10.5px; display: inline-flex; align-items: center;">{{x}}</span></sc-for></div></div></sc-if>
+          <sc-if value="{{c3empty}}" hint-placeholder-val="{{false}}"><div style="margin: 4px 0; padding: 16px; border-radius: 10px; border: 1.5px dashed #CBD5E1; background: #F8FAFC; display: flex; flex-direction: column; gap: 8px;"><b style="font-size: 13px; color: #334155;">Data waktu penyelesaian PB UMKU belum dihimpun dari OSS</b><span style="font-size: 12px; line-height: 18px; color: #475569;">Setelah tersedia, tahap ini menampilkan ranking waktu penyelesaian per sektor (K/L penerbit) terhadap SLA masing-masing, sama seperti Perizinan Berusaha.</span></div></sc-if>
           <p style="margin: 6px 0 0; font-size: 11.5px; line-height: 17px; color: #64748B;">{{c3note}}</p>
         </div>
         <sc-if value="{{c3has}}" hint-placeholder-val="{{false}}">
@@ -1041,7 +1040,7 @@ class Component extends DCLogic {
         ex: ['Izin edar', 'Sertifikat halal', 'SNI', 'Izin impor'] };
     });
     const has1 = fS !== 'all' || fW !== 'all' || fJ !== 'all';
-    const f1Note = has1 ? 'Filter aktif: ' + [fS !== 'all' ? sekL : '', fW !== 'all' ? wilL : '', fJ !== 'all' ? jenL : ''].filter(Boolean).join(' · ') : 'Nasional · seluruh sektor · seluruh jenis izin';
+    const f1Note = has1 ? 'Filter aktif: ' + [fS !== 'all' ? sekL : '', fW !== 'all' ? wilL : '', fJ !== 'all' ? jenL : ''].filter(Boolean).join(' · ') : '';
     const filt1 = { j: fJ, s: fS, w: fW };
     const dAug = tot - terS[4];
 // ---------- 0. Ringkasan singkat ----------
