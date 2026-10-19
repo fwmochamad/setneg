@@ -918,6 +918,7 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
             <sc-raw-select value="{{m.sekV}}" sc-camel-on-change="{{m.sekPick}}" aria-label="Filter sektor" style="height: 28px; max-width: 260px; padding: 0 8px; border: 1px solid #E3E8F0; border-radius: 8px; background: #FFFFFF; font-family: inherit; font-size: 11.5px; color: #0F172A; cursor: pointer;">
               <sc-for list="{{m.sekOpts}}" as="o" hint-placeholder-count="18"><option value="{{o.v}}">{{o.l}}</option></sc-for>
             </sc-raw-select></label></sc-if>
+          <input type="search" value="{{m.q}}" sc-camel-on-change="{{m.onQ}}" aria-label="Cari di daftar" placeholder="Cari ID, jenis izin, provinsi…" style="order: 50; height: 28px; width: 220px; padding: 0 12px; box-sizing: border-box; border: 1px solid #E3E8F0; border-radius: 99px; background: #FFFFFF; font-family: inherit; font-size: 11.5px; color: #0F172A;">
           <sc-for list="{{m.tabs}}" as="t" hint-placeholder-count="4"><button type="button" sc-camel-on-click="{{t.pick}}" style="height: 28px; padding: 0 10px; border-radius: 99px; border: 1px solid {{t.bd}}; background: {{t.bg}}; color: {{t.fg}}; font-family: inherit; font-size: 11.5px; font-weight: 600; cursor: pointer;">{{t.l}} · {{t.n}}</button></sc-for>
         </div>
         <div class="mzl-hint">Geser tabel ke kiri dan kanan untuk melihat seluruh kolom.</div>
@@ -1004,7 +1005,7 @@ class Component extends DCLogic {
     const opt = (l, n, on, pick) => ({ l, n, bg: on ? '#EFF6FF' : 'transparent', w: on ? 700 : 500, pick });
 
     // ---------- Modal ----------
-    const openM = (mode, extra) => set({ modal: { mode, ...(extra || {}) }, mTab: (extra && extra.tab) || 'all', mSek: 'all', mPage: 0 });
+    const openM = (mode, extra) => set({ modal: { mode, ...(extra || {}) }, mTab: (extra && extra.tab) || 'all', mSek: 'all', mQ: '', mPage: 0 });
 
     // ===================== 1. Izin terbit & status =====================
     const fS = st.fSek ?? 'all', fW = st.fWil ?? 'all', fJ = st.fJen ?? 'all';
@@ -1519,7 +1520,7 @@ const pzClose = () => this.setState({ ews: null });
     })()) : null;
     // ===================== Modal =====================
     const M = st.modal || null;
-    let m = { sekOn: false, sekV: 'all', sekOpts: [], sekPick: null, t: '', sub: '', stats: [], tabs: [], cols: [], grid: '1fr', rows: [], empty: false, note: '', pg: '', prev: null, next: null, pc: '#CBD5E1', nc: '#CBD5E1' };
+    let m = { q: '', onQ: null, sekOn: false, sekV: 'all', sekOpts: [], sekPick: null, t: '', sub: '', stats: [], tabs: [], cols: [], grid: '1fr', rows: [], empty: false, note: '', pg: '', prev: null, next: null, pc: '#CBD5E1', nc: '#CBD5E1' };
     if (M) {
       const tab = st.mTab ?? 'all', page = st.mPage ?? 0, PS = 10;
       const cell = (v, o) => ({ v, pad: '0', bg: 'transparent', c: '#0F172A', fw: 400, fs: '12px', ...(o || {}) });
@@ -1534,6 +1535,16 @@ const pzClose = () => this.setState({ ews: null });
         m.sekPick = (e) => { if (e && e.target) this.setState({ mSek: e.target.value, mPage: 0 }); };
       }
       let total = 0, rows = [];
+      // Pencarian: telusuri seluruh data (maks. QCAP baris) lalu paginasi hasilnya
+      const mq = String(st.mQ || '').trim().toLowerCase(), QCAP = 6000;
+      m.q = st.mQ || ''; m.onQ = (e) => { if (e && e.target) this.setState({ mQ: e.target.value, mPage: 0 }); };
+      let qCut = false;
+      const pushRows = (gen, n) => {
+        if (!mq) { for (let i = 0; i < n; i++) rows.push(gen(page, i)); return; }
+        const hits = [], lim = Math.min(total, QCAP); qCut = total > QCAP;
+        for (let g = 0; g < lim; g++) { const row = gen(Math.floor(g / PS), g % PS); if (row[1].some((c) => String(c.v).toLowerCase().includes(mq))) hits.push(row); }
+        total = hits.length; hits.slice(page * PS, (page + 1) * PS).forEach((r) => rows.push(r));
+      };
       const provOf = (wi, r) => (WIL[wi][0] === 'lain' ? OTH[Math.floor(r() * OTH.length)] : WIL[wi][1]);
       const recT = (x, r, durOv) => { const j = JEN[x.ji]; const dur = durOv != null ? durOv : x.k === 0 ? Math.max(1, Math.round(j.sla * 0.4)) + Math.floor(r() * (j.sla - Math.max(1, Math.round(j.sla * 0.4)) + 1)) : x.k === 1 ? j.sla + 1 + Math.floor(r() * Math.max(2, Math.round(j.sla * 0.9))) : j.sla;
         const tb = wdSep(r), ms = subWD(tb, dur); return { id: 'OSS-' + yymm(ms) + '-' + String(10000 + Math.floor(r() * 89999)), j, x, dur, tb, ms, prov: provOf(x.wi, r) }; };
@@ -1548,8 +1559,9 @@ const pzClose = () => this.setState({ ews: null });
         m.cols = ['ID PERMOHONAN', 'JENIS IZIN', 'SEKTOR (KBLI 2025)', 'PROVINSI', 'MASUK', 'TERBIT', 'DURASI', 'STATUS'];
         m.grid = '128px minmax(0, 1.5fr) minmax(0, 1.4fr) minmax(0, 1fr) 84px 84px 64px 150px';
         const n = Math.max(0, Math.min(PS, total - page * PS));
-        for (let i = 0; i < n; i++) { const r = rng('t|' + JSON.stringify(M) + tab + '|' + page + '|' + i); const x = pickCell(cells, r); const o = recT(x, r);
-          rows.push([o.tb.getTime(), [cell(o.id, { fw: 600, c: '#1E40AF' }), cell(o.j.l), cell(SEKS[SEK[x.si][0]]), cell(o.prov), cell(fD(o.ms), { c: '#475569' }), cell(fD(o.tb), { c: '#475569' }), cell(o.dur + ' HK', { fw: 600 }), chip(x.k)]]); }
+        const gen = (page, i) => { const rows = []; const r = rng('t|' + JSON.stringify(M) + tab + '|' + page + '|' + i); const x = pickCell(cells, r); const o = recT(x, r);
+          rows.push([o.tb.getTime(), [cell(o.id, { fw: 600, c: '#1E40AF' }), cell(o.j.l), cell(SEKS[SEK[x.si][0]]), cell(o.prov), cell(fD(o.ms), { c: '#475569' }), cell(fD(o.tb), { c: '#475569' }), cell(o.dur + ' HK', { fw: 600 }), chip(x.k)]]); return rows[0]; };
+        pushRows(gen, n);
         rows.sort((a, b) => b[0] - a[0]);
         m.note = 'Identitas pelaku usaha tidak ditampilkan · diurutkan menurut tanggal terbit';
       } else if (M.mode === 'kasus') {
@@ -1563,9 +1575,10 @@ const pzClose = () => this.setState({ ews: null });
         m.cols = ['ID PERMOHONAN', 'SEKTOR (KBLI 2025)', 'PROVINSI', 'MASUK', 'TERBIT', 'DURASI', 'SELISIH SLA', 'STATUS'];
         m.grid = '128px minmax(0, 1.5fr) minmax(0, 1.1fr) 84px 84px 64px 84px 150px';
         const n = Math.max(0, Math.min(PS, total - page * PS));
-        for (let i = 0; i < n; i++) { const r = rng('k|' + M.ji + tab + '|' + page + '|' + i); const x = pickCell(cells, r);
+        const gen = (page, i) => { const rows = []; const r = rng('k|' + M.ji + tab + '|' + page + '|' + i); const x = pickCell(cells, r);
           const o = recT(x, r, isTop ? Math.round(j.p90 + r() * j.p90 * 0.7) : null); const sel = o.dur - j.sla;
-          rows.push([isTop ? -o.dur : -o.tb.getTime(), [cell(o.id, { fw: 600, c: '#1E40AF' }), cell(SEKS[SEK[x.si][0]]), cell(o.prov), cell(fD(o.ms), { c: '#475569' }), cell(fD(o.tb), { c: '#475569' }), cell(o.dur + ' HK', { fw: 600 }), cell((sel > 0 ? '+' : sel < 0 ? '−' : '') + Math.abs(sel) + ' HK', { c: sel > 0 ? '#0F172A' : '#1D4ED8', fw: 600 }), chip(x.k)]]); }
+          rows.push([isTop ? -o.dur : -o.tb.getTime(), [cell(o.id, { fw: 600, c: '#1E40AF' }), cell(SEKS[SEK[x.si][0]]), cell(o.prov), cell(fD(o.ms), { c: '#475569' }), cell(fD(o.tb), { c: '#475569' }), cell(o.dur + ' HK', { fw: 600 }), cell((sel > 0 ? '+' : sel < 0 ? '−' : '') + Math.abs(sel) + ' HK', { c: sel > 0 ? '#0F172A' : '#1D4ED8', fw: 600 }), chip(x.k)]]); return rows[0]; };
+        pushRows(gen, n);
         rows.sort((a, b) => a[0] - b[0]);
         m.note = isTop ? 'Kasus dengan durasi di atas P90 (' + f1(j.p90) + ' HK), diurutkan dari terlama' : 'Identitas pelaku usaha tidak ditampilkan · diurutkan menurut tanggal terbit';
       } else {
@@ -1582,16 +1595,18 @@ const pzClose = () => this.setState({ ews: null });
         m.grid = '128px minmax(0, 1.3fr) minmax(0, 1.3fr) minmax(0, 1fr) minmax(0, 1.4fr) 84px 92px 96px';
         const TJW = [22, 3, 28, 6, 9, 7, 25], REF = new Date(Date.UTC(2026, 8, 30));
         const n = Math.max(0, Math.min(PS, total - page * PS));
-        for (let i = 0; i < n; i++) { const r = rng('h|' + JSON.stringify(M) + tab + '|' + page + '|' + i); const x = pickCell(cells, r);
+        const gen = (page, i) => { const rows = []; const r = rng('h|' + JSON.stringify(M) + tab + '|' + page + '|' + i); const x = pickCell(cells, r);
           let u = r() * 100, ji = 0; for (; ji < TJW.length - 1; ji++) { u -= TJW[ji]; if (u < 0) break; }
           const lama = AGR[x.a][0] + Math.floor(r() * (AGR[x.a][1] - AGR[x.a][0] + 1)); const ch = subWD(REF, lama), ms = subWD(ch, 3 + Math.floor(r() * 20));
-          rows.push([-lama, [cell('OSS-' + yymm(ms) + '-' + String(10000 + Math.floor(r() * 89999)), { fw: 600, c: '#1E40AF' }), cell(JEN[ji].l), cell(TH[x.t]), cell(provOf(x.wi, r)), cell(JEN[ji].inst, { c: '#475569' }), cell(fD(ms), { c: '#475569' }), cell(fD(ch), { c: '#475569' }), cell(lama + ' HK', { pad: '2px 8px', bg: x.a >= 3 ? '#E0E7FF' : '#EFF6FF', c: '#1E40AF', fw: 600, fs: '11px' })]]); }
+          rows.push([-lama, [cell('OSS-' + yymm(ms) + '-' + String(10000 + Math.floor(r() * 89999)), { fw: 600, c: '#1E40AF' }), cell(JEN[ji].l), cell(TH[x.t]), cell(provOf(x.wi, r)), cell(JEN[ji].inst, { c: '#475569' }), cell(fD(ms), { c: '#475569' }), cell(fD(ch), { c: '#475569' }), cell(lama + ' HK', { pad: '2px 8px', bg: x.a >= 3 ? '#E0E7FF' : '#EFF6FF', c: '#1E40AF', fw: 600, fs: '11px' })]]); return rows[0]; };
+        pushRows(gen, n);
         rows.sort((a, b) => a[0] - b[0]);
         m.note = 'Tanpa perkiraan penyebab · identitas pelaku usaha tidak ditampilkan · diurutkan dari tertahan terlama';
       }
       const pages = Math.max(1, Math.ceil(total / PS));
       m.rows = rows.map(([, cells]) => ({ cells }));
       m.empty = total === 0;
+      if (mq) m.note = 'Hasil pencarian "' + (st.mQ || '').trim() + '"' + (qCut ? ' pada ' + fN(QCAP) + ' data teratas' : '') + ' · ' + m.note;
       m.pg = total ? 'Menampilkan ' + fN(page * PS + 1) + '–' + fN(Math.min(total, (page + 1) * PS)) + ' dari ' + fN(total) : '0 data';
       m.prev = () => this.setState({ mPage: Math.max(0, page - 1) }); m.next = () => this.setState({ mPage: Math.min(pages - 1, page + 1) });
       m.pc = page > 0 ? '#0F172A' : '#CBD5E1'; m.nc = page < pages - 1 ? '#0F172A' : '#CBD5E1';
