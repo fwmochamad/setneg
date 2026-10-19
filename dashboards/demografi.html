@@ -122,6 +122,7 @@ button:focus-visible,a:focus-visible{outline:2px solid #0f827d!important;outline
 .harmonisasi-alert-card:focus-visible{box-shadow:0 0 0 3px rgba(245,158,11,.35)!important}
 @media(max-width:860px){.ews-modal-backdrop{padding:0;align-items:stretch}.ews-modal-panel{max-width:100%;border-radius:0;max-height:none;height:100%}.ews-modal-body{grid-template-columns:1fr;overflow-y:auto}.ews-modal-main,.ews-modal-side{overflow:visible;border-left:0;border-top:1px solid #E5E7EB}.ews-modal-main{padding:20px 16px}.ews-modal-side{padding:16px}}
 
+.krdd summary::-webkit-details-marker{display:none}
 </style>
 <style id="harmonisasi-centered-tabs">
 .harmonisasi-page-tabs{box-sizing:border-box!important;width:fit-content!important;max-width:calc(100% - 32px)!important;margin:16px auto 0!important;padding:4px 8px!important;display:flex!important;flex-wrap:nowrap!important;justify-content:center!important;gap:4px!important;overflow-x:auto!important;background:#F1F3F7!important;border:1px solid #E7EAF0!important;border-radius:12px!important;scrollbar-width:none!important}
@@ -741,10 +742,14 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
                 <sc-for list="{{lk.perOpts}}" as="p" hint-placeholder-count="3"><button type="button" sc-camel-on-click="{{p.pick}}" style="height: 26px; padding: 0 10px; border: 0; border-radius: 6px; background: {{p.bg}}; color: {{p.fg}}; font-family: inherit; font-size: 12px; font-weight: 600; cursor: pointer;">{{p.l}}</button></sc-for>
               </div>
             </div>
-          <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 6px; font-size: 12px; color: #475569;">Kereta
-            <sc-for list="{{lk.kr}}" as="k" hint-placeholder-count="9"><button type="button" role="checkbox" aria-checked="{{k.on}}" sc-camel-on-click="{{k.pick}}" style="height: 28px; padding: 0 10px; display: inline-flex; align-items: center; gap: 6px; border: 1px solid {{k.bd}}; border-radius: 7px; background: {{k.bg}}; color: #0F172A; font-family: inherit; font-size: 12px; cursor: pointer; white-space: nowrap;"><span style="flex: none; width: 14px; height: 14px; border-radius: 3px; border: 1.5px solid {{k.c}}; background: {{k.box}}; color: #FFFFFF; font-size: 10px; font-weight: 700; line-height: 11px; text-align: center; box-sizing: border-box;">{{k.tick}}</span>{{k.l}}</button></sc-for>
+          <div style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #475569;">Kereta
+            <details class="krdd" style="position: relative;">
+              <summary aria-label="Pilih kereta" style="list-style: none; height: 32px; min-width: 260px; padding: 0 30px 0 10px; border: 1px solid #E3E8F0; border-radius: 8px; background: #FFFFFF; display: flex; align-items: center; font-size: 12.5px; color: #0F172A; cursor: pointer; position: relative; white-space: nowrap;">{{lk.krSum}}<span aria-hidden="true" style="position: absolute; right: 10px; font-size: 10px; color: #64748B;">▼</span></summary>
+              <div style="position: absolute; z-index: 30; top: calc(100% + 4px); left: 0; min-width: 100%; padding: 6px; background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 8px; box-shadow: 0 8px 24px rgba(15,23,42,.12); display: flex; flex-direction: column; gap: 2px;">
+                <sc-for list="{{lk.kr}}" as="k" hint-placeholder-count="9"><button type="button" role="checkbox" aria-checked="{{k.on}}" sc-camel-on-click="{{k.pick}}" style="height: 30px; padding: 0 8px; display: flex; align-items: center; gap: 8px; border: 0; border-radius: 6px; background: {{k.bg}}; color: #0F172A; font-family: inherit; font-size: 12.5px; text-align: left; cursor: pointer; white-space: nowrap;"><span style="flex: none; width: 14px; height: 14px; border-radius: 3px; border: 1.5px solid {{k.c}}; background: {{k.box}}; color: #FFFFFF; font-size: 10px; font-weight: 700; line-height: 11px; text-align: center; box-sizing: border-box;">{{k.tick}}</span>{{k.l}}</button></sc-for>
+              </div>
+            </details>
           </div>
-          <span style="font-size: 11.5px; color: #64748B;">{{lk.krNote}}</span>
         </div>
 
           <div style="display: flex; flex-direction: column; gap: 14px;">
@@ -1302,7 +1307,7 @@ class Component extends DCLogic {
           return { l, c, on: on ? 'true' : 'false', tick: on ? '✓' : '', box: on ? c : '#FFFFFF', bg: on ? '#F8FAFC' : '#FFFFFF', bd: on ? c : '#E3E8F0',
             pick: () => this.setState({ krK: on ? (ks.length > 1 ? ks.filter((x) => x !== k) : ks) : ks.concat(k) }) }; });
         const tr = Object.assign({}, TR.kerja, { per: y5 ? 'tahunan, 2021–2025' : 'bulanan, Jan–Agt 2026' });
-        return { perOpts, kr, krNote: 'Centang lebih dari satu untuk membandingkan; data per wilayah/rute, belum per provinsi.', charts, rd: { l: '', items: [] }, tr };
+        return { perOpts, kr, krSum: ks.length === 1 ? KA[ks[0]][0] : ks.length + ' kereta dipilih', charts, rd: { l: '', items: [] }, tr };
       } else if (kind === 'wisata') {
         keys = ['wis', 'udr'];
         // Seri provinsi diturunkan dari agregat nasional memakai bobot penduduk,
