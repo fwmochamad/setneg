@@ -1150,7 +1150,7 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
         <!-- 3. Hambatan eksternal -->
         <section style="background: #FFFFFF; border: 1px solid #E3E8F0; border-left: 4px solid {{dh.lb}}; border-radius: 12px; box-shadow: 0 1px 2px rgba(15,23,42,.05);">
           <div style="padding: 12px 18px; border-bottom: 1px solid #EEF2F7; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px;">
-            <div><h2 style="margin: 0; font-size: 14.5px; font-weight: 600;">Hambatan eksternal<span class="tip info-i" tabindex="0" aria-label="Keterangan">i<span class="pop">Isu sosial dari pemberitaan, kualitas lingkungan, dan risiko bencana</span></span></h2></div>
+            <div><h2 style="margin: 0; font-size: 14.5px; font-weight: 600;">Hambatan eksternal<span class="tip info-i" tabindex="0" aria-label="Keterangan">i<span class="pop">Isu sosial dari pemberitaan dan risiko bencana</span></span></h2></div>
           </div>
           <div style="display: flex; flex-wrap: wrap;">
             <div style="flex: 3 1 560px; min-width: 0; display: flex; flex-direction: column;">
@@ -1174,36 +1174,6 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
                 </div>
               </sc-for>
               <div style="padding: 12px 18px 14px; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 10px; flex: 1;">
-                <!-- IKLH + insight -->
-                <div style="padding: 12px 14px; border-radius: 10px; border: 1px solid #E3E8F0; display: flex; flex-direction: column; gap: 10px;">
-                  <div>
-                    <div style="font-size: 11px; color: #64748B;">Lingkungan · Indeks Kualitas Lingkungan Hidup</div>
-                    <div style="font-size: 20px; font-weight: 700; color: {{env.iklhC}};">{{env.iklh}}</div>
-                    <div style="font-size: 10.5px; color: #64748B;">{{env.iklhSub}}</div>
-                    <div title="IKLH provinsi {{env.iklh}} · nasional 73,53" style="position: relative; height: 8px; margin-top: 8px; border-radius: 4px; background: #EEF2F7;">
-                      <span style="position: absolute; left: 0; top: 0; bottom: 0; width: {{iklhIns.gW}}; border-radius: 4px; background: {{iklhIns.gC}};"></span>
-                      <span style="position: absolute; left: {{iklhIns.natL}}; top: -3px; width: 2px; height: 14px; background: #0F172A;"></span>
-                    </div>
-                    <div style="display: flex; justify-content: space-between; margin-top: 3px; font-size: 10px; color: #94A3B8;"><span>0</span><span>▲ nasional 73,53</span><span>100</span></div>
-                  </div>
-                  <sc-if value="{{hxOpen}}" hint-placeholder-val="{{false}}">
-                  <div style="display: flex; flex-direction: column; gap: 5px;">
-                    <sc-for list="{{iklhIns.comp}}" as="c" hint-placeholder-count="4">
-                      <div style="display: grid; grid-template-columns: 112px minmax(0, 1fr) 34px; gap: 8px; align-items: center; font-size: 11.5px; color: #334155;">
-                        <span style="font-weight: {{c.fw}};">{{c.l}}</span>
-                        <span style="height: 6px; border-radius: 3px; background: #EEF2F7;"><span style="display: block; width: {{c.w}}; height: 6px; border-radius: 3px; background: {{c.c}};"></span></span>
-                        <b style="text-align: right; color: {{c.c}};">{{c.v}}</b>
-                      </div>
-                    </sc-for>
-                  </div>
-                  <div style="padding: 10px 12px; border-radius: 8px; background: #F0FDFA; border: 1px solid #CCFBF1;">
-                    <div style="font-size: 10.5px; font-weight: 700; letter-spacing: .04em; color: #0F766E;">✦ INSIGHT</div>
-                    <div style="margin-top: 4px; font-size: 11.5px; line-height: 17px; color: #1F2937;">{{iklhIns.txt}}</div>
-                    <div style="margin-top: 8px; font-size: 10.5px; color: #64748B;">IKLH terendah · klik untuk lihat di peta</div>
-                    <div style="margin-top: 4px; display: flex; flex-wrap: wrap; gap: 5px;"><sc-for list="{{iklhIns.low}}" as="k" hint-placeholder-count="3"><button type="button" sc-camel-on-click="{{k.pick}}" style="height: 24px; padding: 0 8px; border-radius: 6px; border: 1px solid #99F6E4; background: {{k.bg}}; color: {{k.fg}}; font-family: inherit; font-size: 11px; cursor: pointer;">{{k.n}} · <b>{{k.v}}</b></button></sc-for></div>
-                  </div>
-                  </sc-if>
-                </div>
                 <!-- IRBI + insight -->
                 <div style="padding: 12px 14px; border-radius: 10px; border: 1px solid #E3E8F0; display: flex; flex-direction: column; gap: 10px;">
                   <div>
@@ -1229,10 +1199,10 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
               </div>
             </div>
             <div style="flex: 2 1 380px; min-width: 0; border-left: 1px solid #EEF2F7; padding: 12px 18px; display: flex; flex-direction: column; gap: 8px; background: #FBFCFE;">
-              <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 6px;"><div><b style="font-size: 12.5px;">Peta lapisan provinsi</b><div style="font-size: 11px; color: #64748B;">{{dh.n}} · {{hm.kab.length}} kab/kota</div></div><div style="display: flex; flex-wrap: wrap; gap: 4px;"><sc-for list="{{lyrBtns}}" as="b" hint-placeholder-count="3"><button type="button" sc-camel-on-click="{{b.pick}}" style="height: 26px; padding: 0 9px; border-radius: 7px; border: 1px solid {{b.bd}}; background: {{b.bg}}; color: {{b.fg}}; font-family: inherit; font-size: 11px; font-weight: 600; cursor: pointer;">{{b.l}}</button></sc-for></div></div>
+              <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 6px;"><div><b style="font-size: 12.5px;">Peta lapisan provinsi</b><div style="font-size: 11px; color: #64748B;">{{dh.n}} · {{hm.kab.length}} kab/kota</div></div><span style="font-size: 11px; font-weight: 600; color: #1E40AF;">Risiko bencana (IRBI)</span></div>
               <div style="border-radius: 10px; border: 1px solid #E3E8F0; background: #EAF2FB; overflow: hidden;">
                 <div style="position: relative;">
-                <svg sc-camel-view-box="{{hm.vb}}" role="img" aria-label="Peta kab/kota {{dh.n}}: lapisan risiko bencana, kualitas lingkungan, lokasi isu dan proyek" style="width: 100%; height: auto; display: block;">
+                <svg sc-camel-view-box="{{hm.vb}}" role="img" aria-label="Peta kab/kota {{dh.n}}: lapisan risiko bencana dan lokasi isu" style="width: 100%; height: auto; max-height: 300px; display: block;">
                   <sc-for list="{{hm.nb}}" as="n" hint-placeholder-count="2"><path d="{{n.d}}" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="{{hm.nbSw}}" stroke-linejoin="round"></path></sc-for>
                   <sc-for list="{{hm.kab}}" as="k" hint-placeholder-count="6"><path d="{{k.d}}" fill="{{k.fill}}" fill-opacity="{{k.op}}" stroke="{{hm.kSt}}" stroke-width="{{hm.kSw}}" stroke-linejoin="round" style="cursor: pointer;" sc-camel-onMouseEnter="{{k.hov}}" sc-camel-onMouseLeave="{{k.out}}" sc-camel-on-click="{{k.pick}}"><title>{{k.t}}</title></path></sc-for>
                   <path d="{{hm.hovD}}" fill="none" stroke="#334155" stroke-width="{{hm.hovSw}}" stroke-linejoin="round" pointer-events="none"></path>
@@ -1241,6 +1211,8 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
                   <circle cx="{{hm.cap.x}}" cy="{{hm.cap.y}}" r="{{hm.cap.r}}" fill="#FFFFFF" stroke="#0F172A" stroke-width="{{hm.cap.sw}}" pointer-events="none"></circle><circle cx="{{hm.cap.x}}" cy="{{hm.cap.y}}" r="{{hm.cap.ri}}" fill="#0F172A" pointer-events="none"></circle>
                   <sc-for list="{{hm.isuPts}}" as="p" hint-placeholder-count="2"><g style="cursor: pointer;" sc-camel-on-click="{{p.pick}}"><circle cx="{{p.cx}}" cy="{{p.cy}}" r="{{p.rh}}" fill="{{p.c}}" fill-opacity="0.18"></circle><circle cx="{{p.cx}}" cy="{{p.cy}}" r="{{p.r}}" fill="{{p.c}}" stroke="#FFFFFF" stroke-width="{{p.sw}}"></circle><title>{{p.t}}</title></g></sc-for>
                 </svg>
+                <div class="pl-leg" role="group" aria-label="Legenda peta risiko bencana"><b style="font-size: 12px; color: #0F172A; margin-bottom: 4px;">Skor IRBI kab/kota</b><sc-for list="{{mapLeg.ir}}" as="g" hint-placeholder-count="5"><span class="pl-leg-r"><span class="pl-dot" style="background: {{g.c}};"></span>{{g.l}}</span></sc-for><span class="pl-leg-r" style="margin-top: 3px; padding-top: 4px; border-top: 1px solid #EEF2F7;"><span class="pl-dot" style="background: #0B1F4B;"></span>Lokasi isu</span><span class="pl-leg-r"><span class="pl-dot" style="background: #DC2626;"></span>Isu ber-EWS</span><span class="pl-leg-r"><span class="pl-dot" style="background: #FFFFFF; box-shadow: inset 0 0 0 2px #0F172A;"></span>Ibu kota provinsi</span></div>
+
                 <span style="position: absolute; left: {{hm.capL}}; top: {{hm.capT}}; transform: translate(9px, -50%); font-size: 11px; font-weight: 700; color: #0F172A; text-shadow: 0 0 3px #FFFFFF, 0 0 3px #FFFFFF, 0 0 3px #FFFFFF; pointer-events: none; white-space: nowrap;">{{hm.cap.n}}</span>
                 <sc-for list="{{hm.isuPts}}" as="p" hint-placeholder-count="2"><span style="position: absolute; left: {{p.lx}}; top: {{p.ly}}; transform: translate(-50%, -50%); font-size: {{p.lfs}}; font-weight: 700; color: #FFFFFF; pointer-events: none; line-height: 1;">{{p.no}}</span></sc-for>
                 </div>
@@ -1250,15 +1222,7 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
                   <sc-if value="{{mapInfo.isI}}" hint-placeholder-val="{{false}}"><div style="display: flex; align-items: center; gap: 8px;"><div style="min-width: 0;"><b style="color: #0F172A;">{{mapInfo.ij}}</b><div style="font-size: 11px; color: #64748B;">{{mapInfo.ik2}}</div></div><button type="button" sc-camel-on-click="{{mapInfo.clear}}" aria-label="Hapus pilihan" style="margin-left: auto; padding: 0 4px; border: 0; background: transparent; color: #94A3B8; font-family: inherit; font-size: 14px; cursor: pointer;">×</button></div></sc-if>
                 </div>
               </div>
-              <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; font-size: 11px; color: #334155;">
-                <sc-if value="{{mapLeg.irbi}}" hint-placeholder-val="{{true}}"><span style="font-weight: 600;">Skor IRBI kab/kota</span><sc-for list="{{mapLeg.ir}}" as="g" hint-placeholder-count="5"><span style="display: inline-flex; align-items: center; gap: 4px;"><span style="width: 10px; height: 10px; border-radius: 2px; background: {{g.c}};"></span>{{g.l}}</span></sc-for><span style="color: #64748B;">(&gt; 176 = kelas tinggi)</span></sc-if>
-                <sc-if value="{{mapLeg.iklh}}" hint-placeholder-val="{{false}}"><span style="font-weight: 600;">IKLH kab/kota</span><sc-for list="{{mapLeg.ik}}" as="g" hint-placeholder-count="5"><span style="display: inline-flex; align-items: center; gap: 4px;"><span style="width: 10px; height: 10px; border-radius: 2px; background: {{g.c}};"></span>{{g.l}}</span></sc-for></sc-if>
-                <sc-if value="{{mapLeg.isu}}" hint-placeholder-val="{{false}}"><span style="display: inline-flex; align-items: center; gap: 5px;"><span style="width: 8px; height: 8px; background: #2563EB; transform: rotate(45deg);"></span>Proyek siap investasi</span></sc-if>
-                <span style="display: inline-flex; align-items: center; gap: 5px;"><span style="width: 10px; height: 10px; border-radius: 99px; background: #0B1F4B;"></span>Lokasi isu</span>
-                <span style="display: inline-flex; align-items: center; gap: 5px;"><span style="width: 10px; height: 10px; border-radius: 99px; background-color: #DC2626;"></span>Isu ber-EWS</span>
-                <span style="display: inline-flex; align-items: center; gap: 5px;"><span style="width: 8px; height: 8px; border-radius: 99px; background: #FFFFFF; border: 2px solid #0F172A;"></span>Ibu kota provinsi</span>
-              </div>
-              <div style="font-size: 10.5px; line-height: 15px; color: #64748B;">{{env.irbiNote}} Batas kab/kota: GADM; skor kab/kota, komponen IKLH, dan komposisi bahaya adalah <b>data simulasi</b> untuk prototipe. Titik isu bersifat indikatif.</div>
+              <div style="font-size: 10.5px; line-height: 15px; color: #64748B;">{{env.irbiNote}} Skor IRBI di atas 176 = kelas tinggi. Batas kab/kota: GADM; skor kab/kota dan komposisi bahaya adalah <b>data simulasi</b> untuk prototipe. Titik isu bersifat indikatif.</div>
             </div>
           </div>
           <div style="padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;" class="cf"><span><b style="color: #475569;">Diperbarui:</b> 12 Okt 2026 (mingguan)</span><span><b style="color: #475569;">Sumber:</b> berita daring, KLH/BPS, BNPB</span><span class="chip" style="padding: 0 6px; border-radius: 4px; background: #EFF6FF; color: #1D4ED8; font-weight: 600;">Diverifikasi analis</span><span class="tip info-i" tabindex="0" aria-label="Keterangan">i<span class="pop">Periode: berita 2025–2026; IKLH 2024; IRBI 2024 · Batas wilayah: GADM (kab/kota), BIG (provinsi)</span></span></div>
@@ -1933,7 +1897,7 @@ const HIST = [[2020, 826.3, 413.5, 412.8], [2021, 901.02, 447, 454], [2022, 1207
     const IRB = [[0, '#FEF3C7'], [60, '#FCD34D'], [100, '#F59E0B'], [140, '#D97706'], [176, '#9A3412']];
     const IKB = [[0, '#FEE2E2'], [55, '#FDE68A'], [65, '#D9F99D'], [75, '#86EFAC'], [85, '#16A34A']];
     const binC = (bins, v) => { let c = bins[0][1]; bins.forEach(([t, col]) => { if (v >= t) c = col; }); return c; };
-    const lyr = st.lyr || 'irbi';
+    const lyr = 'irbi'; // hanya lapisan risiko bencana
     const kSel = st.kSel && st.kSel.dp === dp ? st.kSel.i : -1;
     const kHov = st.kHov && st.kHov.dp === dp ? st.kHov.i : -1;
     const iSel = st.iSel && st.iSel.dp === dp ? st.iSel.i : -1;
@@ -2567,7 +2531,7 @@ const ewsClose = () => this.setState({ ews: null });
       // main
       ewsO, ewsN: ek.length, indTabs, I: { l: I.l, u: I.u, per: I.per, src: I.src, freq: I.freq }, leg, naN, hasNA: naN > 0, m, selD, mk, popOpen, pp, ewsList, t5, quick,
       clearSel: set({ sel: null, pop: false }), hasSel: !!sel,
-      ri, nas, prjSum, dsOpen: !!st.dsOpen, dsIc: st.dsOpen ? '▴' : '▾', dsToggle: () => this.setState({ dsOpen: !st.dsOpen }), hxOpen: !!st.hxOpen, hxToggle: () => this.setState({ hxOpen: !st.hxOpen }), hxLabel: st.hxOpen ? 'Sembunyikan rincian komponen & insight ▴' : 'Lihat rincian komponen IKLH, komposisi bahaya & insight ▾',
+      ri, nas, prjSum, dsOpen: !!st.dsOpen, dsIc: st.dsOpen ? '▴' : '▾', dsToggle: () => this.setState({ dsOpen: !st.dsOpen }), hxOpen: !!st.hxOpen, hxToggle: () => this.setState({ hxOpen: !st.hxOpen }), hxLabel: st.hxOpen ? 'Sembunyikan komposisi bahaya & insight ▴' : 'Lihat komposisi bahaya & insight ▾',
       prjCards, prjNote: PRJD.length ? PRJD.length + ' peluang investasi di ' + dh.n + ' dari Portal Investasi Regional BKPM (PPI, PID, IPRO; ditarik 19 Okt 2026) · nilai adalah estimasi kelayakan, bukan realisasi.' : 'Belum ada profil proyek untuk provinsi ini.', prjScrollP: () => { const el = document.querySelector('[data-prj-track]'); if (el) el.scrollBy({ left: 660, behavior: 'smooth' }); },
       prjScrollN: () => { const el = document.querySelector('[data-prj-track]'); if (el) el.scrollBy({ left: -660, behavior: 'smooth' }); }, pSearch, pOpen: pShowBox, pOpts, pNoHit, pVal, pClear, pCur: !!pCur, pStats, pMeta, pCurN, onPSearch: (e) => this.setState({ pSearch: e && e.target ? e.target.value : "", pOpen: true }), onPOpen: () => this.setState({ pOpen: true }), d1, d2, l1, l2, d1Info: st.donutDetail && st.donutDetail.group === 'PMDN' ? st.donutDetail : null, d2Info: st.donutDetail && st.donutDetail.group === 'PMA' ? st.donutDetail : null, closeDonut: () => this.setState({ donutDetail: null }), nasPop: !!st.nasPop, nasC, nasPos: st.nasPos || { top: '0px', left: '0px', w: '0px' }, nasPopP: st.nasPop === 'pmdn', nasPopA: st.nasPop === 'pma', nasPopT: st.nasPop === 'pma' ? 'Rincian PMA menurut negara asal' : 'Rincian PMDN menurut wilayah', closeNasPop: () => this.setState({ nasPop: null, donutDetail: null }), stopNas: (e) => { if (e && e.stopPropagation) e.stopPropagation(); }, pmaUsd, openL1: openL(), openL2: openL(), openLs: openL({ lt: 'sek' }), openLh: openL({ lt: 'hist' }),
       // lampiran
