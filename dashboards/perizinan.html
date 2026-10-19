@@ -911,6 +911,10 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
           <sc-for list="{{m.stats}}" as="s" hint-placeholder-count="4"><div style="padding: 7px 10px; border-radius: 8px; background: #F8FAFC; border: 1px solid #EEF2F7;"><div style="font-size: 10.5px; color: #64748B;">{{s.l}}</div><b style="font-size: 13px; color: {{s.c}};">{{s.v}}</b></div></sc-for>
         </div>
         <div class="mzl-tabs">
+          <sc-if value="{{m.sekOn}}" hint-placeholder-val="{{true}}"><label style="display: inline-flex; align-items: center; gap: 6px; font-size: 11.5px; font-weight: 600; color: #475569;">Sektor
+            <sc-raw-select value="{{m.sekV}}" sc-camel-on-change="{{m.sekPick}}" aria-label="Filter sektor" style="height: 28px; max-width: 260px; padding: 0 8px; border: 1px solid #E3E8F0; border-radius: 8px; background: #FFFFFF; font-family: inherit; font-size: 11.5px; color: #0F172A; cursor: pointer;">
+              <sc-for list="{{m.sekOpts}}" as="o" hint-placeholder-count="18"><option value="{{o.v}}">{{o.l}}</option></sc-for>
+            </sc-raw-select></label></sc-if>
           <sc-for list="{{m.tabs}}" as="t" hint-placeholder-count="4"><button type="button" sc-camel-on-click="{{t.pick}}" style="height: 28px; padding: 0 10px; border-radius: 99px; border: 1px solid {{t.bd}}; background: {{t.bg}}; color: {{t.fg}}; font-family: inherit; font-size: 11.5px; font-weight: 600; cursor: pointer;">{{t.l}} · {{t.n}}</button></sc-for>
         </div>
         <div class="mzl-hint">Geser tabel ke kiri dan kanan untuk melihat seluruh kolom.</div>
@@ -997,7 +1001,7 @@ class Component extends DCLogic {
     const opt = (l, n, on, pick) => ({ l, n, bg: on ? '#EFF6FF' : 'transparent', w: on ? 700 : 500, pick });
 
     // ---------- Modal ----------
-    const openM = (mode, extra) => set({ modal: { mode, ...(extra || {}) }, mTab: (extra && extra.tab) || 'all', mPage: 0 });
+    const openM = (mode, extra) => set({ modal: { mode, ...(extra || {}) }, mTab: (extra && extra.tab) || 'all', mSek: 'all', mPage: 0 });
 
     // ===================== 1. Izin terbit & status =====================
     const fS = st.fSek ?? 'all', fW = st.fWil ?? 'all', fJ = st.fJen ?? 'all';
@@ -1509,12 +1513,20 @@ const pzClose = () => this.setState({ ews: null });
     })()) : null;
     // ===================== Modal =====================
     const M = st.modal || null;
-    let m = { t: '', sub: '', stats: [], tabs: [], cols: [], grid: '1fr', rows: [], empty: false, note: '', pg: '', prev: null, next: null, pc: '#CBD5E1', nc: '#CBD5E1' };
+    let m = { sekOn: false, sekV: 'all', sekOpts: [], sekPick: null, t: '', sub: '', stats: [], tabs: [], cols: [], grid: '1fr', rows: [], empty: false, note: '', pg: '', prev: null, next: null, pc: '#CBD5E1', nc: '#CBD5E1' };
     if (M) {
       const tab = st.mTab ?? 'all', page = st.mPage ?? 0, PS = 10;
       const cell = (v, o) => ({ v, pad: '0', bg: 'transparent', c: '#0F172A', fw: 400, fs: '12px', ...(o || {}) });
       const chip = (k) => cell(ST3[k].replace('Persetujuan otomatis (fiktif positif)', 'Fiktif positif'), { pad: '2px 8px', bg: STCHIP[k][0], c: STCHIP[k][1], fw: 600, fs: '11px' });
       const tabsOf = (list) => list.map(([k, l, n]) => ({ l, n: fN(n), bg: tab === k ? '#1E40AF' : '#FFFFFF', fg: tab === k ? '#FFFFFF' : '#334155', bd: tab === k ? '#1E40AF' : '#E3E8F0', pick: () => this.setState({ mTab: k, mPage: 0 }) }));
+      // Filter sektor di dalam daftar (berlaku untuk daftar izin terbit dan daftar kasus)
+      const mSek = st.mSek && SEK.some((x) => x[0] === st.mSek) ? st.mSek : 'all';
+      const bySek = (cs) => (mSek === 'all' ? cs : cs.filter((x) => SEK[x.si][0] === mSek));
+      if (M.mode === 'terbit' || M.mode === 'kasus') {
+        m.sekOn = true; m.sekV = mSek;
+        m.sekOpts = [{ v: 'all', l: 'Semua sektor' }].concat(SEK.map((x) => ({ v: x[0], l: SEKS[x[0]] || (x[0] + ' · ' + x[1]) })));
+        m.sekPick = (e) => { if (e && e.target) this.setState({ mSek: e.target.value, mPage: 0 }); };
+      }
       let total = 0, rows = [];
       const provOf = (wi, r) => (WIL[wi][0] === 'lain' ? OTH[Math.floor(r() * OTH.length)] : WIL[wi][1]);
       const recT = (x, r, durOv) => { const j = JEN[x.ji]; const dur = durOv != null ? durOv : x.k === 0 ? Math.max(1, Math.round(j.sla * 0.4)) + Math.floor(r() * (j.sla - Math.max(1, Math.round(j.sla * 0.4)) + 1)) : x.k === 1 ? j.sla + 1 + Math.floor(r() * Math.max(2, Math.round(j.sla * 0.9))) : j.sla;
@@ -1522,7 +1534,7 @@ const pzClose = () => this.setState({ ews: null });
       if (M.mode === 'terbit') {
         const cnt = [0, 1, 2].map((k) => sumC(M.j, M.s, M.w, k)), all = cnt[0] + cnt[1] + cnt[2];
         const kf = tab === 'all' ? null : Number(tab);
-        const cells = cellsFor(M.j, M.s, M.w, kf); total = cells.reduce((a, x) => a + x.c, 0);
+        const cells = bySek(cellsFor(M.j, M.s, M.w, kf)); total = cells.reduce((a, x) => a + x.c, 0);
         m.t = 'Daftar izin terbit · September 2026';
         m.sub = [M.s === 'all' ? 'Semua sektor' : SEKS[M.s], M.w === 'all' ? 'Nasional' : WIL[WI[M.w]][1], M.j === 'all' ? 'Semua jenis izin' : JEN[JI[M.j]].l].join(' · ') + ' · filter sama dengan kartu';
         m.stats = [{ l: 'Izin terbit', v: fN(all), c: '#1E40AF' }, ...[0, 1, 2].map((k) => ({ l: ST3[k], v: fN(cnt[k]) + ' · ' + pc(cnt[k], all), c: '#0F172A' }))];
@@ -1537,7 +1549,7 @@ const pzClose = () => this.setState({ ews: null });
       } else if (M.mode === 'kasus') {
         const j = JEN[M.ji], cnt = j.st, top = Math.round(j.n / 10);
         const isTop = tab === 'top', kf = tab === 'all' || isTop ? null : Number(tab);
-        const cells = cellsFor(j.id, 'all', 'all', isTop ? 1 : kf); total = isTop ? top : cells.reduce((a, x) => a + x.c, 0);
+        const cells = bySek(cellsFor(j.id, 'all', 'all', isTop ? 1 : kf)); total = isTop ? (mSek === 'all' ? top : Math.round(cells.reduce((a, x) => a + x.c, 0) / 10)) : cells.reduce((a, x) => a + x.c, 0);
         m.t = 'Daftar kasus · ' + j.l; m.sub = 'Izin terbit September 2026 · nasional, seluruh sektor · SLA ' + j.sla + ' hari kerja (PP 28/2025)';
         const dv = devOf(j.avg, j.sla);
         m.stats = [{ l: 'Rata-rata', v: f1(j.avg) + ' HK', c: dv > THR ? RED : '#0F172A' }, { l: 'Median', v: f1(j.med) + ' HK', c: '#0F172A' }, { l: 'P90 (10% terlama)', v: f1(j.p90) + ' HK', c: '#0F172A' }, { l: 'SLA PP 28/2025', v: j.sla + ' HK', c: '#0F172A' }, { l: 'Selisih rata-rata', v: sg(dv) + '%', c: dv > THR ? RED : '#0F172A' }, { l: 'Sampel', v: fN(j.n) + ' izin', c: '#0F172A' }];
