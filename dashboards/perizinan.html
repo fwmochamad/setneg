@@ -1687,7 +1687,7 @@ const pzClose = () => this.setState({ ews: null });
       ewsTop, ewsN: ewsTop.length, highlights, ewsCount: highlights.length, ewsOpen: !!ews, ews, ewsStamp: ewsStamp, closeEws: pzClose, stop: pzStop, onEwsKey: pzKey,
       fl1, has1, recap, rcHasFilt: has1, reset1: () => set({ fSek: 'all', fWil: 'all', fJen: 'all' }), f1Note, has1Data: tot > 0, no1Data: tot === 0, k1, s1, c1,
       slaAll, slaEwsNote,
-      c3tabs, c3sorts, c3dd, c3rows, c3h1, c3h2, c3h3, c3note, c3noteL: c3note.split(/(?<=\.)\s+|;\s+/).map((t) => t.trim().replace(/\.$/, '')).filter((t) => t && !/^Diurutkan menurut deviasi terhadap SLA/.test(t)).map((t) => {
+      c3tabs, c3sorts, c3dd, c3rows, c3h1, c3h2, c3h3, c3note, c3noteL: c3note.split(/(?<=\.)\s+|;\s+/).map((t) => t.trim().replace(/\.$/, '')).filter((t) => t && !/^Diurutkan menurut deviasi terhadap SLA|^Klik baris untuk rincian/.test(t)).map((t) => {
         const m = /^(merah|oranye|hijau|biru|garis hitam)\s*=\s*(.*)$/i.exec(t), k = m ? m[1].toLowerCase() : '';
         const C = { merah: '#EF4444', oranye: '#FB923C', hijau: '#22C55E', biru: '#1D4ED8', 'garis hitam': '#0F172A' };
         const txt = m ? (k === 'garis hitam' ? m[2].replace(/^./, (c) => c.toUpperCase()) : m[2]) : t.replace(/^./, (c) => c.toUpperCase());
