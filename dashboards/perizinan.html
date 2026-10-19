@@ -918,7 +918,7 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
           <sc-for list="{{m.stats}}" as="s" hint-placeholder-count="4"><div style="padding: 7px 10px; border-radius: 8px; background: #F8FAFC; border: 1px solid #EEF2F7;"><div style="font-size: 10.5px; color: #64748B;">{{s.l}}</div><b style="font-size: 13px; color: {{s.c}};">{{s.v}}</b></div></sc-for>
         </div>
         <div class="mzl-tabs">
-          <sc-if value="{{m.sekOn}}" hint-placeholder-val="{{true}}"><label style="display: inline-flex; align-items: center; gap: 6px; font-size: 11.5px; font-weight: 600; color: #475569;">Sektor
+          <sc-if value="{{m.sekOn}}" hint-placeholder-val="{{true}}"><label style="order: 99; flex: 1 1 100%; display: flex; justify-content: center; align-items: center; gap: 6px; font-size: 11.5px; font-weight: 600; color: #475569;">Sektor
             <sc-raw-select value="{{m.sekV}}" sc-camel-on-change="{{m.sekPick}}" aria-label="Filter sektor" style="height: 28px; max-width: 260px; padding: 0 8px; border: 1px solid #E3E8F0; border-radius: 8px; background: #FFFFFF; font-family: inherit; font-size: 11.5px; color: #0F172A; cursor: pointer;">
               <sc-for list="{{m.sekOpts}}" as="o" hint-placeholder-count="18"><option value="{{o.v}}">{{o.l}}</option></sc-for>
             </sc-raw-select></label></sc-if>
