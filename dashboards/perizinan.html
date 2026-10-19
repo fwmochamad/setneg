@@ -788,12 +788,11 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
 
     <!-- 6. Tren kemudahan berusaha -->
     <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: stretch;">
-      <section id="sec-tren" style="flex: 1 1 100%; min-width: 0; background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; box-shadow: 0 1px 2px rgba(15,23,42,.05); display: flex; flex-direction: column; scroll-margin-top: 16px;">
+      <section id="sec-tren" style="flex: 3 1 560px; min-width: 0; background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; box-shadow: 0 1px 2px rgba(15,23,42,.05); display: flex; flex-direction: column; scroll-margin-top: 16px;">
         <div style="padding: 12px 18px; border-bottom: 1px solid #EEF2F7; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px;">
           <div><h2 style="margin: 0; font-size: 14.5px; font-weight: 600;">Tren kemudahan berusaha<span class="tip info-i" tabindex="0" aria-label="Keterangan">i<span class="pop">Kepatuhan SLA perizinan berusaha (PP 28/2025) — pilih triwulan atau bandingkan wilayah</span></span></h2></div>
           <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px;">
-            <div role="tablist" aria-label="Tampilan tren" style="display: flex; gap: 2px; padding: 3px; background: #EEF2F7; border-radius: 8px;"><sc-for list="{{c6tabs}}" as="t" hint-placeholder-count="2"><button type="button" role="tab" sc-camel-on-click="{{t.pick}}" style="height: 26px; padding: 0 10px; border: 0; border-radius: 6px; background: {{t.bg}}; color: {{t.fg}}; font-family: inherit; font-size: 11.5px; font-weight: 600; cursor: pointer;">{{t.l}}</button></sc-for></div>
-            <sc-for list="{{c6dd}}" as="f" hint-placeholder-count="1">
+                        <sc-for list="{{c6dd}}" as="f" hint-placeholder-count="1">
               <div style="position: relative;">
                 <button type="button" sc-camel-on-click="{{f.toggle}}" style="height: 32px; padding: 0 12px; border-radius: 8px; background: {{f.bg}}; border: 1px solid {{f.bd}}; font-family: inherit; font-size: 12px; color: #475569; cursor: pointer;">{{f.l}}: <b style="color: #0F172A;">{{f.v}}</b> ▾</button>
                 <sc-if value="{{f.open}}" hint-placeholder-val="{{false}}">
@@ -838,68 +837,28 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
               </div>
             </sc-if>
           </div>
-          <div style="flex: 2 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 10px;">
-            <sc-if value="{{c6isTren}}" hint-placeholder-val="{{false}}">
-              <div style="border: 1px solid #E3E8F0; border-radius: 10px; overflow: hidden;">
-                <div style="display: grid; grid-template-columns: minmax(0, 1fr) 74px 76px; gap: 6px; padding: 8px 10px; background: #F8FAFC; font-size: 10.5px; font-weight: 700; letter-spacing: 0.3px; color: #64748B;"><span>TRIWULAN</span><span style="text-align: right;">SESUAI SLA</span><span style="text-align: right;">VS TARGET</span></div>
-                <sc-for list="{{c6rows}}" as="r" hint-placeholder-count="5"><button type="button" sc-camel-on-click="{{r.pick}}" class="rw" style="width: 100%; display: grid; grid-template-columns: minmax(0, 1fr) 74px 76px; gap: 6px; padding: 8px 10px; border: 0; border-top: 1px solid #EEF2F7; background: {{r.bg}}; font-family: inherit; font-size: 12px; color: #0F172A; text-align: left;"><span style="font-weight: {{r.fw}};">{{r.q}}</span><b style="text-align: right;">{{r.v}}</b><span style="text-align: right; font-weight: 600; color: {{r.gc}};">{{r.g}}</span></button></sc-for>
-              </div>
-              <div style="border: 1px solid #E3E8F0; border-radius: 10px; overflow: hidden;">
-                <div style="padding: 8px 10px; background: #F8FAFC;"><div style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.3px; color: #64748B;">{{c6jenH}}</div><div style="font-size: 11px; color: #B45309;">{{c6jenS}}</div></div>
-                <div style="padding: 6px 4px; display: flex; flex-direction: column; gap: 1px;">
-                  <sc-for list="{{c6jen}}" as="r" hint-placeholder-count="7"><button type="button" sc-camel-on-click="{{r.pick}}" class="rw" title="{{r.t}}" style="display: grid; grid-template-columns: minmax(0, 150px) minmax(0, 1fr) 46px; gap: 8px; align-items: center; padding: 4px 6px; border: 0; border-radius: 6px; background: transparent; font-family: inherit; font-size: 11.5px; color: #0F172A; text-align: left;"><span style="font-weight: {{r.fw}}; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{r.l}}</span><span style="position: relative; height: 8px; border-radius: 4px; background: #EEF2F7;"><span style="display: block; width: {{r.w}}; height: 8px; border-radius: 4px; background: {{r.c}};"></span><span style="position: absolute; left: {{r.tL}}; top: -3px; width: 2px; height: 14px; background: #0B1F4B;"></span></span><b style="text-align: right; color: {{r.c}};">{{r.v}}</b></button></sc-for>
-                </div>
-              </div>
-              <div style="padding: 10px 12px; border-radius: 8px; background: #EFF6FF; border: 1px solid #E7F1E9; font-size: 12px; line-height: 18px; color: #1E293B;">{{c6note}}</div>
-            </sc-if>
-            <sc-if value="{{c6isWil}}" hint-placeholder-val="{{false}}">
-              <div style="padding: 12px; border-radius: 10px; border: 1px solid #E3E8F0; background: #F8FAFC;">
-                <div style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.3px; color: #64748B;">RUJUKAN NASIONAL · TW III 2026</div>
-                <div style="display: flex; align-items: baseline; gap: 8px; margin-top: 4px;"><b style="font-size: 24px; letter-spacing: -0.4px; color: #1E40AF;">{{c6rank.nat}}</b><span style="font-size: 11.5px; color: #475569;">izin terbit sesuai SLA</span></div>
-                <div style="position: relative; height: 8px; margin-top: 8px; border-radius: 99px; background: #E2E8F0;"><span style="display: block; width: {{c6rank.natW}}; height: 8px; border-radius: 99px; background: #1D4ED8;"></span><span style="position: absolute; left: {{c6rank.natT}}; top: -3px; width: 2px; height: 14px; background: #0B1F4B;"></span></div>
-                <div style="display: flex; justify-content: space-between; margin-top: 5px; font-size: 11px; color: #64748B;"><span>0%</span><span style="color: #0B1F4B; font-weight: 600;">target 80%</span></div>
-              </div>
-              <div style="border: 1px solid #E3E8F0; border-radius: 10px; overflow: hidden;">
-                <div style="padding: 8px 10px; background: #F8FAFC; font-size: 10.5px; font-weight: 700; letter-spacing: 0.3px; color: #64748B;">CARA BACA</div>
-                <div style="padding: 9px 11px; display: flex; flex-direction: column; gap: 6px; font-size: 11.5px; line-height: 16px; color: #334155;"><span><b>Tinggi:</b> {{c6rank.top}}</span><span><b>Terendah:</b> {{c6rank.bot}}</span><span><b>Tanda hitam:</b> target RKPD tiap wilayah.</span><span><b>Klik baris:</b> menjadikan wilayah utama pada grafik tren.</span></div>
-              </div>
-              <div style="padding: 10px 12px; border-radius: 8px; background: #EFF6FF; border: 1px solid #E7F1E9; font-size: 12px; line-height: 18px; color: #1E293B;">{{c6note}}</div>
-            </sc-if>
-          </div>
         </div>
                 <div class="mzi"><span class="mzi-b">Ringkasan Wawasan</span><ul class="mzi-l"><sc-for list="{{mini.tren}}" as="i" hint-placeholder-count="3"><li>{{i}}</li></sc-for></ul></div>
         <div style="margin-top: auto; padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;" class="cf"><span><b style="color: #475569;">Diperbarui:</b> 12 Okt 2026</span><span><b style="color: #475569;">Sumber:</b> OSS (kepatuhan SLA) · target dari RPJMD/RKPD, dimutakhirkan tiap tahun</span><span class="tip info-i" tabindex="0" aria-label="Keterangan">i<span class="pop">Periode: Tw III 2025 – Tw III 2026 (checkpoint triwulan)</span></span></div>
       </section>
 
+      <!-- 7. Insight AI -->
+      <section id="sec-insight" style="flex: 2 1 360px; min-width: 0; display: flex; flex-direction: column; background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; box-shadow: 0 1px 2px rgba(15,23,42,.05); scroll-margin-top: 16px;">
+        <div style="padding: 12px 18px; border-bottom: 1px solid #EEF2F7; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px;">
+          <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;"><h2 style="margin: 0; font-size: 14.5px; font-weight: 600;">Insight kemudahan berusaha<span class="tip info-i" tabindex="0" aria-label="Keterangan">i<span class="pop">Disusun AI dari data kartu di halaman ini; angka berasal dari sumber resmi yang ditampilkan.</span></span></h2></div>
+        </div>
+        <div style="flex: 1 1 0; min-height: 0; max-height: 520px; overflow-y: auto; padding: 4px 18px 8px;">
+          <ol style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column;">
+            <sc-for list="{{ins6}}" as="i" hint-placeholder-count="3">
+              <li style="display: flex; gap: 10px; padding: 12px 0; border-bottom: 1px solid #EEF2F7;"><span style="flex: none; width: 22px; height: 22px; border-radius: 99px; background: #EEF2FF; color: #3730A3; font-size: 11.5px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center;">{{i.no}}</span><div style="min-width: 0;"><b style="display: block; font-size: 13px; line-height: 18px; color: #0F172A;">{{i.t}}</b><p style="margin: 4px 0 0; font-size: 12.5px; line-height: 19px; color: #334155;">{{i.desc}}</p></div></li>
+            </sc-for>
+          </ol>
+        </div>
+        <div style="padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;" class="cf"><span><b style="color: #475569;">Diperbarui:</b> 12 Okt 2026</span><span><b style="color: #475569;">Sumber:</b> AI agent atas data kartu 1–6 (OSS, PP 28/2025, SIMBG, BKPM)</span><span class="tip info-i" tabindex="0" aria-label="Keterangan">i<span class="pop">Periode: Tw III 2025 – Tw III 2026</span></span></div>
+      </section>
+
     </div>
 
-    <!-- 7. Insight AI -->
-    <section id="sec-insight" style="background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; box-shadow: 0 1px 2px rgba(15,23,42,.05); scroll-margin-top: 16px;">
-      <div style="padding: 12px 18px; border-bottom: 1px solid #EEF2F7; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px;">
-        <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;"><h2 style="margin: 0; font-size: 14.5px; font-weight: 600;">Insight kemudahan berusaha<span class="tip info-i" tabindex="0" aria-label="Keterangan">i<span class="pop">Disusun AI dari data kartu di halaman ini; angka berasal dari sumber resmi yang ditampilkan.</span></span></h2></div>
-      </div>
-      <div style="padding: 14px 18px 16px; display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 12px;">
-        <sc-for list="{{ins6}}" as="i" hint-placeholder-count="3">
-          <div style="display: flex; flex-direction: column; gap: 10px; padding: 14px; border-radius: 10px; border: 1px solid #C7D2FE; background: #F8F9FF;">
-            <div style="display: flex; gap: 10px; align-items: flex-start;"><span style="flex: none; width: 24px; height: 24px; border-radius: 99px; background: #3730A3; color: #FFFFFF; font-size: 12px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center;">{{i.no}}</span><b style="font-size: 13px; line-height: 19px; color: #1E1B4B;">{{i.t}}</b></div>
-            <div style="padding: 10px 12px; border-radius: 8px; background: #FFFFFF; border: 1px solid #E0E7FF; display: flex; flex-direction: column; gap: 5px;">
-              <div style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.4px; color: #3730A3; display: flex; align-items: center;">{{i.ch.t}}<span class="tip info-i" tabindex="0" aria-label="Implikasi">i<span class="pop"><b>Implikasi (AI):</b> {{i.impl}}</span></span></div>
-              <sc-for list="{{i.ch.bars}}" as="b" hint-placeholder-count="5"><div title="{{b.t}}" style="display: grid; grid-template-columns: minmax(0, 120px) minmax(0, 1fr) 58px; gap: 6px; align-items: center; font-size: 11px; color: #334155;"><span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{b.l}}</span><span style="position: relative; display: block; height: 10px; border-radius: 5px; background: #EEF2F7;"><span style="display: block; width: {{b.w}}; height: 10px; border-radius: 5px; background: {{b.c}};"></span><span style="position: absolute; left: {{b.m}}; top: -3px; width: 2px; height: 16px; background: {{b.mc}};"></span></span><b style="text-align: right; color: {{b.c}};">{{b.v}}</b></div></sc-for>
-              <span style="font-size: 10px; color: #94A3B8;">{{i.ch.n}}</span>
-            </div>
-            <button type="button" sc-camel-on-click="{{insBToggle}}" style="align-self: flex-start; padding: 0; border: 0; background: transparent; font-family: inherit; font-size: 11.5px; font-weight: 600; color: #1D4ED8; cursor: pointer;">{{insBLabel}}</button>
-            <sc-if value="{{insB}}" hint-placeholder-val="{{false}}">
-            <div style="padding: 10px 12px; border-radius: 8px; background: #FFFFFF; border: 1px solid #E3E8F0;">
-              <div style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.4px; color: #1E40AF;">DASAR DATA · DARI SUMBER</div>
-              <ul style="margin: 6px 0 0; padding-left: 16px; display: flex; flex-direction: column; gap: 3px; font-size: 12px; line-height: 17px; color: #1E293B;"><sc-for list="{{i.basis}}" as="b" hint-placeholder-count="3"><li>{{b}}</li></sc-for></ul>
-            </div>
-            </sc-if>
-            <div style="margin-top: auto; display: flex; flex-wrap: wrap; gap: 6px;"><sc-for list="{{i.links}}" as="k" hint-placeholder-count="2"><a href="{{k.h}}" sc-camel-on-click="{{k.pick}}" style="height: 26px; padding: 0 10px; border-radius: 99px; border: 1px solid #B8E3DF; background: #FFFFFF; color: #1D4ED8; font-size: 11.5px; font-weight: 600; display: inline-flex; align-items: center; text-decoration: none;">{{k.l}}</a></sc-for></div>
-          </div>
-        </sc-for>
-      </div>
-      <div style="padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;" class="cf"><span><b style="color: #475569;">Diperbarui:</b> 12 Okt 2026</span><span><b style="color: #475569;">Sumber:</b> AI agent atas data kartu 1–6 (OSS, PP 28/2025, SIMBG, BKPM)</span><span class="tip info-i" tabindex="0" aria-label="Keterangan">i<span class="pop">Periode: Tw III 2025 – Tw III 2026</span></span></div>
-    </section>
   </main>
 
   <!-- Modal daftar pembentuk -->
@@ -1278,7 +1237,7 @@ class Component extends DCLogic {
     const Q = ['Tw III 2025', 'Tw IV 2025', 'Tw I 2026', 'Tw II 2026', 'Tw III 2026'];
     const NATQ = [71.8, 74.2, 76.0, 77.9, 78.6];
     const TGW = { all: [75, 80], jabar: [75, 80], dki: [82, 86], jatim: [76, 80], jateng: [76, 80], banten: [74, 78], sumut: [72, 76], sulsel: [73, 77], bali: [72, 76], riau: [73, 77], kaltim: [72, 76], lain: [73, 77] };
-    const c6w = st.c6w ?? 'all', c6q = st.c6q ?? 4, c6view = st.c6view ?? 'tren', c6c = st.c6c ?? null;
+    const c6w = st.c6w ?? 'all', c6q = st.c6q ?? 4, c6view = 'tren', c6c = st.c6c ?? null;
     const c6isTren = c6view === 'tren', c6isWil = c6view === 'wil';
     const shareSes = (wf) => { const a = sumC('all', 'all', wf, 0), b = sumC('all', 'all', wf); return b ? (a / b) * 100 : 0; };
     const c6wL = c6w === 'all' ? 'Nasional' : WIL[WI[c6w]][1];
@@ -1651,6 +1610,7 @@ const pzClose = () => this.setState({ ews: null });
 
     // grafik bukti untuk Insight kemudahan berusaha
     const iBars = (rows, max, mark, mlab) => rows.map(([l, v, lab, c, t]) => ({ l, v: lab, c, t: t || l + ': ' + lab, w: Math.max(2, Math.min(100, (v / max) * 100)) + '%', m: mark != null ? (mark / max) * 100 + '%' : '-10%', mc: mark != null ? '#0F172A' : 'transparent' }));
+    ins6.forEach((x) => { x.desc = x.basis.map((b) => b.replace(/\.$/, '')).join('. ') + '. ' + x.impl; });
     if (ins6[0]) ins6[0].ch = { t: 'Kepatuhan SLA nasional per triwulan', n: 'garis hitam = target 80%', bars: iBars(Q.map((q, i) => [q, NATQ[i], f1(NATQ[i]) + '%', NATQ[i] >= 80 ? '#15803D' : '#1D4ED8']), 100, 80) };
     if (ins6[1]) ins6[1].ch = { t: 'Deviasi durasi terhadap SLA', n: 'garis hitam = batas SLA; oranye = melewati SLA', bars: iBars(JEN.map((j) => [j.l.split(' (')[0], j.avg / j.sla * 100, sg(devOf(j.avg, j.sla)) + '%', j.avg > j.sla ? '#B45309' : '#15803D', j.l + ': ' + f1(j.avg) + ' HK vs SLA ' + j.sla + ' HK']), 150, 100) };
     if (ins6[2]) ins6[2].ch = { t: 'Kepatuhan SLA terendah per wilayah', n: 'garis hitam = nasional ' + f1(natV) + '%', bars: iBars(rankSrc.slice(-5).reverse().map((r) => [r.n, r.v, f1(r.v) + '%', r.v < natV ? '#B45309' : '#1D4ED8']), 100, natV) };
