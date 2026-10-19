@@ -741,13 +741,10 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
                 <sc-for list="{{lk.perOpts}}" as="p" hint-placeholder-count="3"><button type="button" sc-camel-on-click="{{p.pick}}" style="height: 26px; padding: 0 10px; border: 0; border-radius: 6px; background: {{p.bg}}; color: {{p.fg}}; font-family: inherit; font-size: 12px; font-weight: 600; cursor: pointer;">{{p.l}}</button></sc-for>
               </div>
             </div>
-          <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #475569;">{{lk.wil.lab}}
-            <sc-raw-select value="{{lk.wil.v}}" sc-camel-on-change="{{lk.wil.on}}" aria-label="Pilih {{lk.wil.lab}}" style="height: 32px; min-width: 240px; padding: 0 10px; border: 1px solid #E3E8F0; border-radius: 8px; background: #FFFFFF; font-family: inherit; font-size: 12.5px; color: #0F172A; cursor: pointer;">
-              <sc-for list="{{lk.wil.opts}}" as="w" hint-placeholder-count="3"><option value="{{w.v}}">{{w.l}}</option></sc-for>
-            </sc-raw-select>
-          </label>
-          <span style="font-size: 11.5px; color: #64748B;">{{lk.wil.note}}</span>
-          <span style="margin-left: auto; height: 26px; padding: 0 9px; border-radius: 6px; background: #EFF6FF; color: #1E40AF; font-size: 11.5px; font-weight: 600; display: inline-flex; align-items: center;">Satuan:&nbsp;{{lk.tr.units}}</span>
+          <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 6px; font-size: 12px; color: #475569;">Kereta
+            <sc-for list="{{lk.kr}}" as="k" hint-placeholder-count="9"><button type="button" role="checkbox" aria-checked="{{k.on}}" sc-camel-on-click="{{k.pick}}" style="height: 28px; padding: 0 10px; display: inline-flex; align-items: center; gap: 6px; border: 1px solid {{k.bd}}; border-radius: 7px; background: {{k.bg}}; color: #0F172A; font-family: inherit; font-size: 12px; cursor: pointer; white-space: nowrap;"><span style="flex: none; width: 14px; height: 14px; border-radius: 3px; border: 1.5px solid {{k.c}}; background: {{k.box}}; color: #FFFFFF; font-size: 10px; font-weight: 700; line-height: 11px; text-align: center; box-sizing: border-box;">{{k.tick}}</span>{{k.l}}</button></sc-for>
+          </div>
+          <span style="font-size: 11.5px; color: #64748B;">{{lk.krNote}}</span>
         </div>
 
           <div style="display: flex; flex-direction: column; gap: 14px;">
@@ -760,7 +757,7 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
                   </div>
                   <div style="display: flex; justify-content: space-between; gap: 8px; font-size: 10.5px; font-weight: 600;"><span style="color: {{ch.uLc}};">{{ch.uL}}</span><span style="color: {{ch.uRc}};">{{ch.uR}}</span></div>
                   <div style="display: flex; gap: 8px;">
-                    <div style="flex: none; width: 44px; height: 180px; display: flex; flex-direction: column; justify-content: space-between; text-align: right; font-size: 10.5px; color: {{ch.uLc}};"><sc-for list="{{ch.yt}}" as="y" hint-placeholder-count="4"><span style="line-height: 1;">{{y}}</span></sc-for></div>
+                    <div style="flex: none; width: 72px; height: 180px; display: flex; flex-direction: column; justify-content: space-between; text-align: right; font-size: 10.5px; color: {{ch.uLc}};"><sc-for list="{{ch.yt}}" as="y" hint-placeholder-count="4"><span style="line-height: 1;">{{y}}</span></sc-for></div>
                     <div style="position: relative; flex: 1; min-width: 0; height: 180px;">
                       <svg sc-camel-view-box="0 0 600 180" sc-camel-preserve-aspect-ratio="none" aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; overflow: visible;">
                         <path d="M0 0.5H600M0 60H600M0 120H600" stroke="#EEF2F7" fill="none" vector-effect="non-scaling-stroke"></path>
@@ -774,18 +771,14 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
                     </div>
                     <sc-if value="{{ch.dual}}" hint-placeholder-val="{{false}}"><div style="flex: none; width: 44px; height: 180px; display: flex; flex-direction: column; justify-content: space-between; text-align: left; font-size: 10.5px; color: {{ch.uRc}};"><sc-for list="{{ch.ytR}}" as="y" hint-placeholder-count="4"><span style="line-height: 1;">{{y}}</span></sc-for></div></sc-if>
                   </div>
-                  <div style="position: relative; height: 16px; margin-left: 52px; margin-right: {{ch.mr}};">
+                  <div style="position: relative; height: 16px; margin-left: 80px; margin-right: {{ch.mr}};">
                     <sc-for list="{{ch.xs}}" as="x" hint-placeholder-count="12"><span style="position: absolute; left: {{x.x}}; transform: translateX(-50%); font-size: 10.5px; color: {{x.c}}; font-weight: {{x.fw}}; white-space: nowrap;">{{x.l}}</span></sc-for>
                   </div>
                   <div style="font-size: 11px; color: #94A3B8; display: flex; align-items: center;">Catatan data<span class="tip info-i" tabindex="0" aria-label="Catatan data">i<span class="pop">{{ch.note}}</span></span></div>
                 </div>
               </sc-for>
             </div>
-            <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 18px; padding: 10px 14px; border-radius: 10px; background: #EFF6FF; border: 1px solid #E7F1E9; font-size: 12px; color: #334155;">
-              <b style="color: #1E40AF;">{{lk.rd.l}}</b>
-              <sc-for list="{{lk.rd.items}}" as="it" hint-placeholder-count="2"><span>{{it.n}}: <b style="color: #0F172A;">{{it.v}}</b> {{it.u}} <span style="color: #1D4ED8; font-weight: 600;">{{it.d}}</span> <span style="color: #64748B;">{{it.dn}}</span></span></sc-for>
-              <span style="margin-left: auto; font-size: 11px; color: #64748B;">Klik titik pada grafik untuk membaca nilai bulan lain</span>
-            </div>
+
             
           </div>
       </div>
@@ -1232,19 +1225,84 @@ class Component extends DCLogic {
     const wilK = WK[st.wilK] ? st.wilK : 'krl';
     const wilM = LFX.some((r) => r[0] === st.wilM) ? st.wilM : 'Nasional';
     const TR = {
-      kerja: { units: 'juta penumpang (KRL) · ribu penumpang (Whoosh)', per: 'bulanan, Mei 2025–Agt 2026', src: 'BPS · BRS Perkembangan Transportasi (KAI Commuter, KCIC)', cav: 'Satuan adalah perjalanan penumpang, bukan orang unik. KRL dan Whoosh memakai satuan berbeda sehingga digambar pada grafik terpisah dan tidak dijumlahkan. Data jalan tol (Jasa Marga) tidak dipakai pada kartu ini.' },
+      kerja: { units: 'orang', per: 'bulanan 2026', src: 'BPS · Jumlah Penumpang Kereta Api; BRS Perkembangan Transportasi Nasional', cav: 'Satuan adalah penumpang (orang) per perjalanan, bukan orang unik. Data jalan tol (Jasa Marga) tidak dipakai pada kartu ini.' },
       wisata: { units: 'juta perjalanan (wisnus) · juta penumpang (udara)', per: 'bulanan, Jun 2025–Agt 2026', src: 'BPS · BRS Pariwisata dan BRS Perkembangan Transportasi', cav: 'Perjalanan wisatawan nusantara dan penumpang udara domestik adalah ukuran berbeda (satu perjalanan wisata dapat memakai pesawat), sehingga tidak dijumlahkan. Data per bandara (InJourney) tidak dipakai pada kartu ini.' }
     };
     // Satu kartu per jenis pergerakan; tiap kartu menyimpan periode, titik terpilih, dan pilihan wilayahnya sendiri.
     const lineCard = (kind) => {
       const SER2 = Object.assign({}, SER);
       const perKey = kind === 'kerja' ? 'perK' : 'perW', ptKey = kind === 'kerja' ? 'ptK' : 'ptW';
-      const per = kind === 'wisata' ? (st[perKey] === 'y1' ? 'y1' : 'y5') : (st[perKey] ?? 12);
-      const perOpts = (kind === 'wisata' ? [['y1', 'Tahunan'], ['y5', '5 Tahun']] : [[6, '6 bulan'], [12, '12 bulan'], [0, 'Semua']]).map(([v, l]) => ({ l, bg: per === v ? '#FFFFFF' : 'transparent', fg: per === v ? '#1E40AF' : '#475569', pick: () => this.setState({ [perKey]: v }) }));
+      const per = kind === 'wisata' ? (st[perKey] === 'y1' ? 'y1' : 'y5') : (st[perKey] === 'y5' ? 'y5' : 'y1');
+      const perOpts = [['y1', 'Tahunan'], ['y5', '5 Tahun']].map(([v, l]) => ({ l, bg: per === v ? '#FFFFFF' : 'transparent', fg: per === v ? '#1E40AF' : '#475569', pick: () => this.setState({ [perKey]: v }) }));
       let wil, keys = [], wTourNote = '';
       if (kind === 'kerja') {
-        keys = WK[wilK][1];
-        wil = { lab: 'Kereta', v: wilK, opts: Object.entries(WK).map(([v, x]) => ({ v, l: x[0] })), note: 'Pilih kereta untuk melihat tren penumpang bulanannya; data tersedia per koridor, belum per provinsi.', on: (e) => { if (e && e.target) this.setState({ wilK: e.target.value }); } };
+        // BPS, tabel "Jumlah Penumpang Kereta Api" (ribu orang); ditampilkan dalam orang.
+        // Bulanan 2026: tabel BPS (Jan–Agt 2026). Tahunan: BRS Perkembangan Transportasi Nasional
+        // edisi Desember (angka revisi terbaru untuk tiap tahun).
+        const KA = { jabo: ['Jabodetabek', '#1D4ED8'], nonjabo: ['Non Jabodetabek (Jawa)', '#0EA5E9'], jawa: ['Jawa (Jabodetabek + Non Jabodetabek)', '#0B1F4B'], nonjawa: ['Non Jawa (Sumatera + Sulawesi)', '#16A34A'], bandara: ['Kereta Bandara', '#D97706'], mrt: ['MRT', '#DC2626'], lrt: ['LRT', '#9333EA'], whoosh: ['Kereta cepat (Whoosh)', '#DB2777'], total: ['Total', '#64748B'] };
+        const M26 = {
+          jabo: [30226, 27795, 29959, 30587, 28967, 30468, 32467, 30135], nonjabo: [8590, 7214, 9642, 8487, 9138, 9397, 9385, 8907],
+          jawa: [38816, 35009, 39601, 39074, 38105, 39865, 41851, 39042], nonjawa: [652, 562, 696, 670, 702, 709, 692, 639],
+          bandara: [819, 715, 862, 777, 746, 761, 774, 794], mrt: [4097, 3610, 3486, 3879, 3858, 4349, 4644, 4061],
+          lrt: [3208, 2928, 3036, 3388, 3038, 3333, 3584, 3225], whoosh: [509, 444, 456, 492, 515, 523, 579, 561],
+          total: [48101, 43268, 48137, 48280, 46964, 49541, 52123, 48321]
+        };
+        const YK = [2021, 2022, 2023, 2024, 2025];
+        const ANK = {
+          jabo: [126740, 217965, 290890.9, 328153.9, 348896.9], nonjabo: [20781, 54454, 80757.6, 89791.2, 98075.5],
+          jawa: [147521, 272419, 371648.5, 417945.1, 446972.4], nonjawa: [2239, 4696, 6701.2, 6542.0, 7225.3],
+          bandara: [null, null, 5692.2, 7976.8, 9328.8], mrt: [null, null, 33496.6, 39910.1, 45479.6],
+          lrt: [null, null, 9681.5, 26619.5, 34690.1], whoosh: [null, null, 1137.9, 6055.8, 6202.7],
+          total: [149760, 277115, 428357.9, 505049.3, 549898.9]
+        };
+        const DRK = { nonjawa: { 0: 'angka turunan: total 2021 dikurangi Jawa 2021' }, total: { 0: 'angka turunan dari kenaikan 85,04% (2022 vs 2021)', 1: 'belum mencakup kereta bandara, MRT, LRT, dan Whoosh' }, whoosh: { 2: 'beroperasi komersial sejak Oktober 2023' } };
+        const y5 = per === 'y5';
+        const sel = (Array.isArray(st.krK) ? st.krK : ['jabo']).filter((k) => KA[k]);
+        const ks = sel.length ? sel : ['jabo'];
+        const X = y5 ? YK.map(String) : MON.map((m) => m + ' 2026');
+        const XL = y5 ? YK.map(String) : MON;
+        const vK = (k, i) => { const v = y5 ? ANK[k][i] : M26[k][i]; return v == null ? null : Math.round(v * 1000); };
+        const nK = X.length, xpK = (i) => i / (nK - 1);
+        const lastI = Math.max(...ks.map((k) => X.reduce((a, _, i) => (vK(k, i) != null ? i : a), -1)));
+        const ptS = String(st[ptKey] || ''), ptI = ptS.startsWith(per + ':') ? +ptS.split(':')[1] : -1;
+        const selI = ptI >= 0 && ks.some((k) => vK(k, ptI) != null) ? ptI : lastI;
+        const all = ks.flatMap((k) => X.map((_, i) => vK(k, i))).filter((v) => v != null);
+        const mx = Math.max(...all), mn = Math.min(...all), pad = (mx - mn) * 0.12 || mx * 0.05 || 1;
+        const lo = Math.max(0, mn - pad), hi = mx + pad, yp = (v) => 1 - (v - lo) / (hi - lo);
+        const chg = y5 ? 'yoy' : 'mtm';
+        const lines = [], pts = [];
+        ks.forEach((k) => {
+          const [nm, c] = KA[k];
+          let d = '', pen = false;
+          X.forEach((_, i) => { const v = vK(k, i); if (v == null) { pen = false; return; } d += (pen ? 'L' : 'M') + (xpK(i) * 600).toFixed(1) + ' ' + (yp(v) * 180).toFixed(1); pen = true; });
+          lines.push({ d: d || 'M0 0', c, w: '2.25' });
+          X.forEach((lab, i) => {
+            const v = vK(k, i); if (v == null) return;
+            const pv = i > 0 ? vK(k, i - 1) : null, dv = y5 ? (DRK[k] || {})[i] : null, on = i === selI;
+            pts.push({ l: (xpK(i) * 100).toFixed(2) + '%', t: (yp(v) * 100).toFixed(2) + '%', s: on ? '12px' : '9px', bg: on ? c : dv ? '#FFFFFF' : '#E7F1E9', c, z: on ? 3 : 2, pc: xpK(i) < 0.5 ? 'pl' : '',
+              tip: nm + ' · ' + lab + ' · ' + nf(v) + ' orang' + (pv ? ' · ' + sgn(((v - pv) / pv) * 100, 1) + '% ' + chg : '') + (dv ? ' (' + dv + ')' : ''), pick: () => this.setState({ [ptKey]: per + ':' + i }) });
+          });
+        });
+        const one = ks.length === 1 ? vK(ks[0], selI) : null;
+        const notes = [y5 ? 'Total setahun Januari–Desember, 2021–2025.' : 'Bulanan 2026; data BPS tersedia sampai Agustus 2026.'];
+        if (y5 && ks.some((k) => ['bandara', 'mrt', 'lrt', 'whoosh'].includes(k))) notes.push('Kereta bandara, MRT, LRT, dan Whoosh baru dicatat terpisah oleh BPS mulai data 2023.');
+        if (y5 && ks.includes('total')) notes.push('Total 2021–2022 hanya mencakup Jawa dan Sumatera, jadi lonjakan 2023 sebagian karena perluasan cakupan.');
+        if (y5 && ks.some((k) => DRK[k] && DRK[k][0])) notes.push('Titik putih = angka turunan (2021).');
+        if (ks.length > 1) notes.push('Semua seri memakai satu sumbu (orang), jadi seri kecil seperti Whoosh tampak datar bila dibandingkan dengan Jabodetabek.');
+        const charts = [{
+          selD: selI >= 0 ? 'M' + (xpK(selI) * 600).toFixed(1) + ' 0V180' : 'M0 0',
+          xs: XL.map((l, i) => ({ x: (xpK(i) * 100).toFixed(2) + '%', l, c: i === selI ? '#1E40AF' : '#64748B', fw: i === selI ? 700 : 400 })),
+          legend: ks.map((k) => ({ c: KA[k][1], n: KA[k][0], w: '', dash: '' })), lines, pts, tags: [],
+          uL: y5 ? 'orang per tahun' : 'orang per bulan', uR: '', ytR: [], dual: false, mr: '0px', uLc: '#64748B', uRc: '#64748B',
+          yt: [hi, lo + ((hi - lo) * 2) / 3, lo + (hi - lo) / 3, lo].map((v) => nf(v, 0)),
+          last: selI < 0 ? BT : (one != null ? X[selI] + ': ' + nf(one) + ' orang' : X[selI]),
+          note: notes.join(' ')
+        }];
+        const kr = Object.entries(KA).map(([k, [l, c]]) => { const on = ks.includes(k);
+          return { l, c, on: on ? 'true' : 'false', tick: on ? '✓' : '', box: on ? c : '#FFFFFF', bg: on ? '#F8FAFC' : '#FFFFFF', bd: on ? c : '#E3E8F0',
+            pick: () => this.setState({ krK: on ? (ks.length > 1 ? ks.filter((x) => x !== k) : ks) : ks.concat(k) }) }; });
+        const tr = Object.assign({}, TR.kerja, { per: y5 ? 'tahunan, 2021–2025' : 'bulanan, Jan–Agt 2026' });
+        return { perOpts, kr, krNote: 'Centang lebih dari satu untuk membandingkan; data per wilayah/rute, belum per provinsi.', charts, rd: { l: '', items: [] }, tr };
       } else if (kind === 'wisata') {
         keys = ['wis', 'udr'];
         // Seri provinsi diturunkan dari agregat nasional memakai bobot penduduk,
@@ -1485,7 +1543,7 @@ class Component extends DCLogic {
           { s: 'Industri kreatif', t: 'Studio animasi, fesyen, dan kuliner berorientasi pasar Jakarta dengan biaya operasional lebih rendah' }
         ],
         dukung: 'Perizinan berusaha berbasis risiko melalui OSS; insentif fiskal (tax allowance/tax holiday) bagi bidang usaha yang memenuhi syarat sesuai ketentuan; kawasan Tegalluar terhubung langsung stasiun kereta cepat.',
-        links: [{ l: 'Lihat tren Whoosh ↓', h: '#sec-kerja', pick: () => this.setState({ wilK: 'whoosh' }) }, { l: 'Sorot Jawa Barat di peta ↑', h: '#sec-peta', pick: go('jabar') }]
+        links: [{ l: 'Lihat tren Whoosh ↓', h: '#sec-kerja', pick: () => this.setState({ krK: ['whoosh'] }) }, { l: 'Sorot Jawa Barat di peta ↑', h: '#sec-peta', pick: go('jabar') }]
       },
       {
         no: 2, t: 'Bekasi dan Bogor adalah kantong tenaga kerja yang sudah terhubung KRL',
@@ -1503,7 +1561,7 @@ class Component extends DCLogic {
           { s: 'Properti', t: 'Hunian pekerja dan kawasan berorientasi transit di sekitar stasiun KRL' }
         ],
         dukung: 'Puluhan kawasan industri siap bangun di Jawa Barat; perizinan melalui OSS; tersedia skema kerja sama pemerintah–badan usaha untuk pengembangan kawasan transit.',
-        links: [{ l: 'Lihat ranking komuter ↑', h: '#sec-rank', pick: () => this.setState({ rkJ: 'kerja' }) }, { l: 'Lihat tren KRL ↓', h: '#sec-kerja', pick: () => this.setState({ wilK: 'krl' }) }]
+        links: [{ l: 'Lihat ranking komuter ↑', h: '#sec-rank', pick: () => this.setState({ rkJ: 'kerja' }) }, { l: 'Lihat tren KRL ↓', h: '#sec-kerja', pick: () => this.setState({ krK: ['jabo'] }) }]
       },
       {
         no: 3, t: 'Arus keluar dari DKI Jakarta memperbesar pasar di provinsi penerima migran',
