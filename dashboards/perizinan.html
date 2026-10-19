@@ -676,7 +676,7 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
       <style id="pz-duo">.pz-scroll{overflow-x:auto;scrollbar-width:thin}
 #sec-terlama h2,#sec-tertahan h2,#sec-terlama button,#sec-tertahan button,#sec-terlama .c3-row span,#sec-terlama .c3-head span,#sec-tertahan .pz-c4 span,#sec-tertahan .ck span{white-space:nowrap}
 #sec-terlama .c3-wrap{container-type:normal!important}
-.pz-c3 .c3-head,.pz-c3 .c3-row{min-width:680px}.pz-c3 .c3-wrap{overflow:visible}
+.pz-c3 .c3-head,.pz-c3 .c3-row{min-width:720px}.c3-head>span{overflow:hidden;text-overflow:ellipsis}.pz-c3 .c3-wrap{overflow:visible}
 .pz-c4>button{min-width:380px}
 #sec-terlama .c3-row .pop,#sec-terlama .c3-row .pop *{white-space:normal}</style>
       <!-- 3. Jenis izin & wilayah dengan waktu terlama -->
@@ -688,7 +688,7 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
           </div>
         </div>
         <div style="padding: 10px 18px; border-bottom: 1px solid #EEF2F7; display: flex; flex-wrap: wrap; align-items: center; gap: 8px;">
-          <sc-if value="{{c3wfOn}}" hint-placeholder-val="{{true}}"><div class="pz-scroll" style="flex: 1 1 100%; min-width: 0; display: flex; flex-wrap: nowrap; align-items: center; gap: 6px; padding-bottom: 8px; margin-bottom: 2px; border-bottom: 1px dashed #E3E8F0;"><span style="font-size: 12px; color: #475569;">Tahap OSS:</span><sc-for list="{{c3wf}}" as="w" hint-placeholder-count="4"><button type="button" sc-camel-on-click="{{w.pick}}" title="{{w.tt}}" style="height: 28px; padding: 0 10px; border-radius: 8px; border: 1px solid {{w.bd}}; background: {{w.bg}}; color: {{w.fg}}; font-family: inherit; font-size: 11.5px; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;"><sc-if value="{{w.no}}" hint-placeholder-val="{{false}}"><span style="width: 17px; height: 17px; border-radius: 99px; background: {{w.nb}}; color: {{w.nf}}; font-size: 10px; display: inline-flex; align-items: center; justify-content: center;">{{w.no}}</span></sc-if>{{w.l}}<span style="font-weight: 500; opacity: .75;">{{w.n}}</span></button></sc-for></div></sc-if>
+          <sc-if value="{{c3wfOn}}" hint-placeholder-val="{{true}}"><div class="pz-scroll" style="flex: 1 1 100%; min-width: 0; display: flex; flex-wrap: nowrap; align-items: center; gap: 6px; padding-bottom: 8px; margin-bottom: 2px; border-bottom: 1px dashed #E3E8F0;"><span style="flex: none; font-size: 12px; color: #475569; white-space: nowrap;">Tahap OSS:</span><sc-for list="{{c3wf}}" as="w" hint-placeholder-count="4"><button type="button" sc-camel-on-click="{{w.pick}}" title="{{w.tt}}" style="height: 28px; padding: 0 10px; border-radius: 8px; border: 1px solid {{w.bd}}; background: {{w.bg}}; color: {{w.fg}}; font-family: inherit; font-size: 11.5px; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;"><sc-if value="{{w.no}}" hint-placeholder-val="{{false}}"><span style="width: 17px; height: 17px; border-radius: 99px; background: {{w.nb}}; color: {{w.nf}}; font-size: 10px; display: inline-flex; align-items: center; justify-content: center;">{{w.no}}</span></sc-if>{{w.l}}<span style="font-weight: 500; opacity: .75;">{{w.n}}</span></button></sc-for></div></sc-if>
           <span class="pz-scroll" style="flex: 1 1 auto; min-width: 0; display: flex; flex-wrap: nowrap; align-items: center; gap: 8px;"><sc-if value="{{c3rowsOn}}" hint-placeholder-val="{{true}}"><span style="font-size: 12px; color: #475569;">Urutkan:</span>
           <sc-for list="{{c3sorts}}" as="s" hint-placeholder-count="2"><button type="button" sc-camel-on-click="{{s.pick}}" style="height: 28px; padding: 0 10px; border-radius: 99px; border: 1px solid {{s.bd}}; background: {{s.bg}}; color: {{s.fg}}; font-family: inherit; font-size: 11.5px; font-weight: 600; cursor: pointer;">{{s.l}}</button></sc-for></sc-if></span>
           <sc-for list="{{c3dd}}" as="f" hint-placeholder-count="1">
@@ -702,14 +702,14 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
             </div>
           </sc-for>
         </div>
-        <div class="pz-scroll pz-c3"><sc-if value="{{c3rowsOn}}" hint-placeholder-val="{{true}}"><div class="c3-head" style="padding: 10px 18px 6px; display: grid; grid-template-columns: 24px minmax(0, 1.25fr) minmax(0, 1.1fr) 124px 136px; gap: 10px; font-size: 10.5px; font-weight: 700; letter-spacing: 0.4px; color: #64748B;"><span>#</span><span>{{c3h1}}</span><span>{{c3h2}}</span><span style="text-align: right;">{{c3h3}}</span><span style="text-align: right;">STATUS SLA</span></div></sc-if>
+        <div class="pz-scroll pz-c3"><sc-if value="{{c3rowsOn}}" hint-placeholder-val="{{true}}"><div class="c3-head" style="padding: 10px 18px 6px; display: grid; grid-template-columns: 24px minmax(170px, 1.4fr) minmax(140px, 1fr) 124px 140px; gap: 10px; font-size: 10.5px; font-weight: 700; letter-spacing: 0.4px; color: #64748B;"><span>#</span><span>{{c3h1}}</span><span>{{c3h2}}</span><span style="text-align: right;">{{c3h3}}</span><span style="text-align: right;">STATUS SLA</span></div></sc-if>
         <style>@media (max-width: 680px){.c3-head{display:none!important}}.c3-wrap{container-type:inline-size}@container (max-width: 600px){.c3-head{display:none!important}.c3-row{grid-template-columns:22px minmax(0,1fr) auto!important;row-gap:4px!important}.c3-row>:nth-child(2){grid-column:2/4}.c3-row>:nth-child(3){grid-column:2/3;grid-row:2;align-self:center}.c3-row>:nth-child(4){grid-column:3;grid-row:2}.c3-row>:nth-child(5){grid-column:2/4;grid-row:3;justify-self:start!important}}</style>
         <div class="c3-wrap" style="padding: 0 18px 10px; display: flex; flex-direction: column; gap: 3px;">
           <sc-for list="{{c3rows}}" as="r" hint-placeholder-count="7">
-            <div sc-camel-on-click="{{r.pick}}" class="bar c3-row" style="display: grid; grid-template-columns: 24px minmax(0, 1.25fr) minmax(0, 1.1fr) 124px 136px; gap: 10px; align-items: center; padding: 7px 8px 7px 6px; margin: 0 -8px 0 -10px; border-radius: 0 8px 8px 0; border-left: 4px solid {{r.lb}}; background: {{r.bg}}; font-size: 12.5px;">
+            <div sc-camel-on-click="{{r.pick}}" class="bar c3-row" style="display: grid; grid-template-columns: 24px minmax(170px, 1.4fr) minmax(140px, 1fr) 124px 140px; gap: 10px; align-items: center; padding: 7px 8px 7px 6px; margin: 0 -8px 0 -10px; border-radius: 0 8px 8px 0; border-left: 4px solid {{r.lb}}; background: {{r.bg}}; font-size: 12.5px;">
               <span style="font-weight: 700; color: #64748B;">{{r.rk}}</span>
-              <span style="min-width: 0;"><span style="display: block; font-weight: {{r.fw}};">{{r.l}}</span><span style="display: block; font-size: 11px; color: #64748B;">{{r.sub}}</span></span>
-              <span style="position: relative; display: block; height: 14px; border-radius: 4px; background: #EEF2F7;"><span style="display: block; width: {{r.w}}; height: 14px; border-radius: 4px; background: {{r.c}};"></span></span>
+              <span title="{{r.l}} · {{r.sub}}" style="min-width: 0; overflow: hidden;"><span style="display: block; font-weight: {{r.fw}}; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{r.l}}</span><span style="display: block; font-size: 11px; color: #64748B; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{r.sub}}</span></span>
+              <span style="position: relative; display: block; height: 14px; border-radius: 4px; background: #EEF2F7;"><span style="display: block; width: {{r.w}}; height: 14px; border-radius: 4px; background: {{r.c}};"></span><span title="Standar SLA" style="position: absolute; top: -3px; left: {{r.sw}}; width: 2px; height: 20px; margin-left: -1px; border-radius: 1px; background: #0F172A;"></span></span>
               <span style="text-align: right;"><b>{{r.v}}</b><span style="display: block; font-size: 11px; font-weight: 600; color: {{r.dc}};">{{r.dev}}</span></span>
               <span style="justify-self: end;"><span title="{{r.slT}}" style="display: inline-flex; align-items: center; height: 24px; padding: 0 10px; border-radius: 99px; background: {{r.slBg}}; color: {{r.slFg}}; font-size: 11px; font-weight: 600; white-space: nowrap; cursor: help;">{{r.slL}}</span></span>
             </div>
@@ -1134,18 +1134,18 @@ class Component extends DCLogic {
       return { ...o, slL: S[0], slBg: S[1], slFg: S[2], slT: S[4] + (small ? ' · sampel kecil (< 30 observasi)' : ''), sub: o.sub + (small ? ' · sampel kecil' : ''), c: S[3], lb: k === 'ok' ? 'transparent' : S[3], dc: S[2], dev: sg(o.dv) + '% thd standar' }; };
     let c3empty = false;
     if (c3m === 'jenis' && c3w === 'umku') {
-      c3empty = true; c3rows = []; c3h1 = 'SEKTOR'; c3h2 = 'DURASI SEBAGAI % SLA'; c3h3 = 'RATA-RATA';
+      c3empty = true; c3rows = []; c3h1 = 'SEKTOR'; c3h2 = 'DURASI SEBAGAI % SLA (│ = SLA)'; c3h3 = 'RATA-RATA';
       c3note = 'PB UMKU (perizinan penunjang kegiatan usaha) diterbitkan K/L sektor; datanya belum masuk umpan OSS dasbor ini.';
     } else if (c3m === 'jenis' && c3w === 'pb') {
-      c3h1 = 'SEKTOR (KBLI 2025)'; c3h2 = c3s === 'dev' ? 'DURASI SEBAGAI % SLA SEKTOR' : 'RATA-RATA HARI KERJA'; c3h3 = 'RATA-RATA';
+      c3h1 = 'SEKTOR (KBLI 2025)'; c3h2 = c3s === 'dev' ? 'DURASI SEBAGAI % SLA SEKTOR (│ = SLA)' : 'RATA-RATA HARI KERJA (│ = SLA)'; c3h3 = 'RATA-RATA';
       const rows = pbRows.slice().sort((a, b) => (c3s === 'dev' ? b.dv - a.dv : b.avg - a.avg));
       const sc = Math.max(...pbRows.map((x) => Math.max(x.avg, x.sla))) * 1.12;
       c3rows = rows.map((x, i) => mkRow({ rk: i + 1, l: (x.code === 'X' ? '' : x.code + ' · ') + x.nm, sub: 'SLA sektor ' + x.sla + ' HK · ' + fN(x.n) + ' observasi', n: x.n, dv: x.dv, v: f1(x.avg) + ' HK', fw: 500,
         w: (c3s === 'dev' ? Math.min(x.avg / x.sla / 1.6, 1) * 100 : (x.avg / sc) * 100) + '%', sw: (c3s === 'dev' ? 62.5 : (x.sla / sc) * 100) + '%', c: '#1D4ED8', bg: 'transparent',
         ewsA: 'Sertifikat Standar & Izin sektor ' + x.nm + ': rata-rata ' + f1(x.avg) + ' HK vs SLA sektor ' + x.sla + ' HK (deviasi ' + f1(x.dv) + '%).', ewsS: 'OSS · ' + fN(x.n) + ' observasi · durasi per sektor simulasi', pick: () => {} }));
-      c3note = 'Perizinan Berusaha (Sertifikat Standar & Izin) dirinci per sektor KBLI karena diterbitkan K/L sektor dengan SLA masing-masing. Durasi per sektor adalah data simulasi di sekitar rata-rata nasional ' + f1(ssJ.avg) + ' HK. Merah = Melebihi SLA (> ' + THR + '%); oranye = Sedikit Melebihi SLA (≤ ' + THR + '%); hijau = Memenuhi SLA.';
+      c3note = 'Perizinan Berusaha (Sertifikat Standar & Izin) dirinci per sektor KBLI karena diterbitkan K/L sektor dengan SLA masing-masing. Durasi per sektor adalah data simulasi di sekitar rata-rata nasional ' + f1(ssJ.avg) + ' HK. Merah = Melebihi SLA (> ' + THR + '%); oranye = Sedikit Melebihi SLA (≤ ' + THR + '%); hijau = Memenuhi SLA; garis hitam = standar SLA.';
     } else if (c3m === 'jenis') {
-      c3h1 = 'JENIS IZIN'; c3h2 = c3s === 'dev' ? 'DURASI SEBAGAI % SLA' : 'RATA-RATA HARI KERJA'; c3h3 = 'RATA-RATA';
+      c3h1 = 'JENIS IZIN'; c3h2 = c3s === 'dev' ? 'DURASI SEBAGAI % SLA (│ = SLA)' : 'RATA-RATA HARI KERJA (│ = SLA)'; c3h3 = 'RATA-RATA';
       let rows = JEN.map((j, ji) => ({ ji, j, dv: devOf(j.avg, j.sla) })).filter((x) => c3w !== 'pd' || WF_PD.includes(x.j.id));
       rows.sort((a, b) => (c3s === 'dev' ? b.dv - a.dv : b.j.avg - a.j.avg));
       const sc = Math.max(...JEN.map((j) => Math.max(j.avg, j.sla))) * 1.12;
@@ -1153,10 +1153,10 @@ class Component extends DCLogic {
         return mkRow({ rk: i + 1, l: x.j.l, sub: (c3w === 'all' ? (WF_PD.includes(x.j.id) ? 'Persyaratan Dasar' : 'Perizinan Berusaha') + ' · ' : '') + 'standar ' + x.j.sla + ' HK · ' + fN(x.j.n) + ' observasi', n: x.j.n, dv: x.dv, v: f1(x.j.avg) + ' HK', fw: sel ? 700 : 500,
           w: (c3s === 'dev' ? Math.min(x.j.avg / x.j.sla / 1.6, 1) * 100 : (x.j.avg / sc) * 100) + '%', sw: (c3s === 'dev' ? 62.5 : (x.j.sla / sc) * 100) + '%', c: sel ? '#0B1F4B' : '#1D4ED8', bg: sel ? '#EFF6FF' : 'transparent',
           ewsA: 'Rata-rata ' + f1(x.j.avg) + ' HK vs SLA ' + x.j.sla + ' HK (deviasi ' + f1(x.dv) + '%).', ewsS: 'OSS · SLA PP 28/2025 · ' + fN(x.j.n) + ' observasi', pick: () => set({ c3sel: sel ? null : { t: 'jenis', id: x.j.id } }) }); });
-      c3note = c3s === 'dev' ? 'Diurutkan menurut deviasi terhadap SLA, karena jenis izin dengan SLA panjang tidak otomatis paling menyimpang. Merah = Melebihi SLA (> ' + THR + '%); oranye = Sedikit Melebihi SLA (≤ ' + THR + '%); hijau = Memenuhi SLA. Klik baris untuk rincian per wilayah.' : 'Diurutkan menurut durasi absolut. Merah = Melebihi SLA (> ' + THR + '%); oranye = Sedikit Melebihi SLA (≤ ' + THR + '%); hijau = Memenuhi SLA. Klik baris untuk rincian per wilayah.';
+      c3note = c3s === 'dev' ? 'Diurutkan menurut deviasi terhadap SLA, karena jenis izin dengan SLA panjang tidak otomatis paling menyimpang. Merah = Melebihi SLA (> ' + THR + '%); oranye = Sedikit Melebihi SLA (≤ ' + THR + '%); hijau = Memenuhi SLA; garis hitam = standar SLA. Klik baris untuk rincian per wilayah.' : 'Diurutkan menurut durasi absolut. Merah = Melebihi SLA (> ' + THR + '%); oranye = Sedikit Melebihi SLA (≤ ' + THR + '%); hijau = Memenuhi SLA; garis hitam = standar SLA. Klik baris untuk rincian per wilayah.';
     } else {
       const jj = c3j === 'all' ? null : JI[c3j];
-      c3h1 = 'PROVINSI'; c3h2 = jj == null ? 'INDEKS DURASI THD SLA' : (c3s === 'dev' ? 'DURASI SEBAGAI % SLA' : 'RATA-RATA HARI KERJA'); c3h3 = jj == null ? 'INDEKS' : 'RATA-RATA';
+      c3h1 = 'PROVINSI'; c3h2 = jj == null ? 'INDEKS DURASI THD SLA (│ = SLA)' : (c3s === 'dev' ? 'DURASI SEBAGAI % SLA (│ = SLA)' : 'RATA-RATA HARI KERJA (│ = SLA)'); c3h3 = jj == null ? 'INDEKS' : 'RATA-RATA';
       let rows = RW.map((wi) => {
         if (jj == null) { let n = 0, d = 0, s = 0; JEN.forEach((j, ji) => { const c = nJW[ji][wi]; n += c; d += c * avgJW(ji, wi); s += c * j.sla; }); return { wi, n, avg: d / n, std: s / n, dv: (d / s - 1) * 100 }; }
         const n = nJW[jj][wi], avg = avgJW(jj, wi); return { wi, n, avg, std: JEN[jj].sla, dv: devOf(avg, JEN[jj].sla) }; });
@@ -1167,7 +1167,7 @@ class Component extends DCLogic {
         return mkRow({ rk: i + 1, l: w[1], sub: (jj == null ? 'rata-rata ' + f1(x.avg) + ' HK · standar tertimbang ' + f1(x.std) + ' HK' : 'standar ' + x.std + ' HK') + ' · ' + fN(x.n) + ' observasi', n: x.n, dv: x.dv, v: vIdx, fw: sel ? 700 : 500,
           w: (jj == null || c3s === 'dev' ? Math.min((100 + x.dv) / 160, 1) * 100 : (x.avg / sc) * 100) + '%', sw: (jj == null || c3s === 'dev' ? 62.5 : (x.std / sc) * 100) + '%', c: sel ? '#0B1F4B' : '#1D4ED8', bg: sel ? '#EFF6FF' : 'transparent',
           ewsA: (jj == null ? 'Indeks durasi ' + f1(100 + x.dv) + '% dari SLA tertimbang' : JEN[jj].l + ' rata-rata ' + f1(x.avg) + ' HK vs SLA ' + x.std + ' HK') + ' (deviasi ' + f1(x.dv) + '%).', ewsS: 'OSS · feedback OSS · ' + fN(x.n) + ' observasi', pick: () => set({ c3sel: sel ? null : { t: 'wil', id: w[0] } }) }); });
-      c3note = 'Ranking 10 provinsi dengan observasi terbanyak; 28 provinsi lainnya digabung dan tidak diberi peringkat. Kelompok dengan observasi di bawah 30 diberi keterangan sampel kecil. Merah = Melebihi SLA (> ' + THR + '%); oranye = Sedikit Melebihi SLA (≤ ' + THR + '%); hijau = Memenuhi SLA. Klik baris untuk rincian.';
+      c3note = 'Ranking 10 provinsi dengan observasi terbanyak; 28 provinsi lainnya digabung dan tidak diberi peringkat. Kelompok dengan observasi di bawah 30 diberi keterangan sampel kecil. Merah = Melebihi SLA (> ' + THR + '%); oranye = Sedikit Melebihi SLA (≤ ' + THR + '%); hijau = Memenuhi SLA; garis hitam = standar SLA. Klik baris untuk rincian.';
     }
     const nPD = WF_PD.reduce((a, id) => a + JEN[JI[id]].n, 0);
     const c3wf = [['all', 'Semua', '', fN(nAll), 'Semua jenis izin'], ['pd', 'Persyaratan Dasar', '1', fN(nPD), 'Per jenis izin: lokasi, lingkungan, bangunan'], ['pb', 'Perizinan Berusaha', '2', fN(ssJ.n), 'Per sektor KBLI (SLA sektor)'], ['umku', 'PB UMKU', '3', 'belum ada data', 'Per sektor; data belum dihimpun']].map(([k, l, no, n, tt]) => { const on = c3w === k;
