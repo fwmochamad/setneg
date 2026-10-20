@@ -6,8 +6,10 @@
 <script src="../assets/react.production.min.js"></script>
 <script src="../assets/react-dom.production.min.js"></script>
 <script src="../assets/dc-runtime.js"></script>
-<script src="../assets/keselarasan-data.js"></script>
+<script src="../assets/keselarasan-data.js?v=20261020-7"></script>
 <style id="setneg-theme-overrides">
+.nav-back{transition:background .15s,border-color .15s,box-shadow .15s}.nav-back:hover{background:#DBEAFE!important;border-color:#93C5FD!important;box-shadow:0 2px 6px rgba(29,78,216,.15)!important}.nav-back:focus-visible{outline:2px solid #1D4ED8;outline-offset:2px}
+
 :root{font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#1f2937;background:#f7f9fc;color-scheme:light}
 html,body{min-height:100%;background:#f7f9fc!important;color:#1f2937!important;font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif!important}
 body *,button,input,select,textarea{font-family:inherit}
@@ -662,12 +664,7 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
   <sc-if value="{{isDetail}}" hint-placeholder-val="{{false}}">
   <div style="display: flex; flex-direction: column; gap: 16px;">
     <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px;">
-      <button type="button" sc-camel-on-click="{{d.back}}" style="padding: 0; border: 0; background: transparent; font-family: inherit; font-size: 13px; font-weight: 600; color: #1D4ED8; cursor: pointer;">← Kembali ke daftar temuan</button>
-      <div style="display: flex; align-items: center; gap: 6px;">
-        <button type="button" sc-camel-on-click="{{d.prev}}" style="height: 32px; padding: 0 10px; border-radius: 7px; border: 1px solid #E3E8F0; background: #FFFFFF; font-family: inherit; font-size: 12.5px; font-weight: 600; color: #0F172A; cursor: pointer;">‹ Sebelumnya</button>
-        <span style="font-size: 12px; color: #64748B;">{{d.pos}}</span>
-        <button type="button" sc-camel-on-click="{{d.next}}" style="height: 32px; padding: 0 10px; border-radius: 7px; border: 1px solid #E3E8F0; background: #FFFFFF; font-family: inherit; font-size: 12.5px; font-weight: 600; color: #0F172A; cursor: pointer;">Berikutnya ›</button>
-      </div>
+      <button type="button" class="nav-back" sc-camel-on-click="{{d.back}}" style="display: inline-flex; align-items: center; gap: 6px; height: 34px; padding: 0 14px 0 10px; border: 1px solid #BFDBFE; border-radius: 9px; background: #EFF6FF; font-family: inherit; font-size: 12.5px; font-weight: 600; color: #1D4ED8; cursor: pointer; box-shadow: 0 1px 2px rgba(15,23,42,.06);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg><span>Kembali ke daftar temuan</span></button>
     </div>
 
     <section style="padding: 18px 20px; background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; display: flex; flex-direction: column; gap: 10px;">
@@ -723,33 +720,16 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
       <section style="flex: 2 1 560px; min-width: 0; background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; display: flex; flex-direction: column;">
         <div style="padding: 9px 16px; border-bottom: 1px solid #EEF2F7; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px;"><h3 style="margin: 0; font-size: 14.5px; font-weight: 600;">Rekomendasi &amp; penanggung jawab</h3><span style="height: 22px; padding: 0 8px; border-radius: 6px; background: {{d.rekStBg}}; color: {{d.rekStC}}; font-size: 11px; font-weight: 700; display: inline-flex; align-items: center;">{{d.rekSt}}</span></div>
         <div style="padding: 10px 16px; display: flex; flex-direction: column; gap: 8px; flex: 1;">
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px; font-size: 12px;"><div><div style="font-size: 10.5px; font-weight: 700; color: #64748B;">PENANGGUNG JAWAB</div><b>{{d.rekPj}}</b></div><div><div style="font-size: 10.5px; font-weight: 700; color: #64748B;">PEMBINA</div><b>{{d.rekPb}}</b></div></div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px; font-size: 12px;"><div><div style="font-size: 10.5px; font-weight: 700; color: #64748B;">PENANGGUNG JAWAB</div><b>{{d.rekPj}}</b><div style="margin-top: 2px; font-size: 11px; line-height: 15px; color: #1E3A8A;">Memimpin penyelesaian rekomendasi, menetapkan target waktu, dan melaporkan progres secara berkala.</div></div><div><div style="font-size: 10.5px; font-weight: 700; color: #64748B;">PEMBINA</div><b>{{d.rekPb}}</b><div style="margin-top: 2px; font-size: 11px; line-height: 15px; color: #1E3A8A;">Mengawasi kesesuaian substansi, memberi arahan teknis, dan memutus hambatan lintas instansi.</div></div></div>
           <div style="border: 1px solid #E3E8F0; border-radius: 10px; overflow: hidden;">
             <div style="padding: 5px 12px; background: #F8FAFC; font-size: 10.5px; font-weight: 700; letter-spacing: .04em; color: #64748B;">UNIT KERJA TERKAIT</div>
-            <sc-for list="{{d.unit}}" as="u" hint-placeholder-count="3"><div style="display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr) 170px; gap: 10px; align-items: center; padding: 5px 12px; border-top: 1px solid #EEF2F7; font-size: 12px;"><span><b>{{u.nama}}</b><span style="display: block; font-size: 11px; color: #64748B;">{{u.instansi}}</span></span><span style="color: #475569;">{{u.peran}}</span><span style="justify-self: end;"><span style="display: inline-block; padding: 2px 8px; border-radius: 99px; background: {{u.cb}}; color: {{u.cc}}; font-size: 11px; font-weight: 700;">{{u.chip}}</span></span></div></sc-for>
+            <sc-for list="{{d.unit}}" as="u" hint-placeholder-count="3"><div style="display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr) 170px; gap: 10px; align-items: center; padding: 5px 12px; border-top: 1px solid #EEF2F7; font-size: 12px;"><span><b>{{u.nama}}</b><span style="display: block; font-size: 11px; color: #64748B;">{{u.instansi}}</span></span><span style="color: #475569;">{{u.peran}}<span style="display: block; margin-top: 2px; font-size: 11px; line-height: 15px; color: #1E3A8A;"><b>Peran:</b> {{u.aksi}}</span></span><span style="justify-self: end;"><span style="display: inline-block; padding: 2px 8px; border-radius: 99px; background: {{u.cb}}; color: {{u.cc}}; font-size: 11px; font-weight: 700;">{{u.chip}}</span></span></div></sc-for>
           </div>
         </div>
         <div style="padding: 6px 16px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;" class="cf"><span><b style="color: #475569;">Periode:</b> s.d. {{acuan}}</span><span><b style="color: #475569;">Diperbarui:</b> {{meta.diperbarui}}</span><span><b style="color: #475569;">Sumber:</b> rekomendasi analis · struktur organisasi instansi</span></div>
       </section>
     </div>
 
-    <section style="background: #FFFFFF; border: 1px solid #E3E8F0; border-radius: 12px; display: flex; flex-direction: column;">
-      <div style="padding: 9px 16px; border-bottom: 1px solid #EEF2F7; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px;"><h3 style="margin: 0; font-size: 14.5px; font-weight: 600;">Riwayat tindak lanjut</h3><button type="button" sc-camel-on-click="{{d.toPayung}}" style="padding: 0; border: 0; background: transparent; font-family: inherit; font-size: 12px; font-weight: 600; color: #1D4ED8; cursor: pointer;">Lihat regulasi di Payung Kebijakan →</button></div>
-      <div style="padding: 16px 18px; display: flex; flex-direction: column; gap: 12px;">
-        <ol aria-label="Riwayat tindak lanjut" style="list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 0;">
-          <sc-for list="{{d.tl}}" as="t" hint-placeholder-count="4">
-            <li style="position: relative; padding: 0 12px 0 0;">
-              <div style="display: flex; align-items: center;"><span style="flex: none; width: 14px; height: 14px; border-radius: 99px; background: {{t.bg}}; border: 3px solid {{t.dot}};"></span><span style="flex: 1; height: 0; border-top: 2px {{t.line}} {{t.dot}}; margin-left: 4px;"></span></div>
-              <div style="margin-top: 8px; font-size: 11px; font-weight: 700; color: {{t.c}};">{{t.tgl}}</div>
-              <div style="font-size: 12.5px; line-height: 17px; color: #0F172A; font-weight: {{t.fw}};">{{t.l}}</div>
-            </li>
-          </sc-for>
-        </ol>
-        <div style="font-size: 12px; color: #334155;">{{d.lamaTxt}}</div>
-        <div style="display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 11px; color: #64748B;"><span style="display: inline-flex; align-items: center; gap: 5px;"><span style="width: 10px; height: 10px; border-radius: 99px; border: 3px solid #94A3B8; box-sizing: border-box;"></span>Selesai</span><span style="display: inline-flex; align-items: center; gap: 5px;"><span style="width: 10px; height: 10px; border-radius: 99px; border: 3px solid #D97706; box-sizing: border-box;"></span>Sedang berjalan</span><span style="display: inline-flex; align-items: center; gap: 5px;"><span style="width: 16px; border-top: 2px dashed #CBD5E1;"></span>Langkah berikutnya</span></div>
-      </div>
-      <div style="padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;" class="cf"><span><b style="color: #475569;">Periode:</b> s.d. {{acuan}}</span><span><b style="color: #475569;">Diperbarui:</b> {{meta.diperbarui}}</span><span><b style="color: #475569;">Sumber:</b> laporan tindak lanjut instansi</span></div>
-    </section>
   </div>
   </sc-if>
 </main>
@@ -908,7 +888,7 @@ class Component extends DCLogic {
       rek: cur.rekomendasi.teks || BT, rekPj: cur.rekomendasi.pj || BT, rekPb: cur.rekomendasi.pembina || BT, rekSt: cur.rekomendasi.status || BT,
       rekStBg: /^Draf AI/.test(cur.rekomendasi.status) ? '#FEF3C7' : /Selesai/.test(cur.rekomendasi.status) ? '#E0E7FF' : '#DBEAFE',
       rekStC: /^Draf AI/.test(cur.rekomendasi.status) ? '#92400E' : '#1E40AF',
-      unit: cur.unit.map((u) => ({ ...u, cb: ROLEC[u.chip][0], cc: ROLEC[u.chip][1] })),
+      unit: cur.unit.map((u) => ({ aksi: '', ...u, cb: ROLEC[u.chip][0], cc: ROLEC[u.chip][1] })),
       tl: cur.riwayat.map((r, i) => ({ ...r, dot: TLC[r.st][0], bg: TLC[r.st][1], line: TLC[r.st][2], c: TLC[r.st][3], fw: r.st === 'now' ? 700 : 500, last: i === cur.riwayat.length - 1 })),
       lamaTxt: 'Lama penanganan: ' + nf(cur.lama) + ' hari kalender (' + fd(cur.mulai) + ' – ' + (cur.selesai ? fd(cur.selesai) + ', selesai' : ACUAN + ', tanggal acuan') + ')',
       toPayung: toPayungSek(cur.sektor && cur.sektor[0])

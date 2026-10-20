@@ -78,9 +78,9 @@ window.KESELARASAN_DATA = {
       dampak: 'Setelah indikator kinerja ditetapkan, penyertaan modal diarahkan ke BUMD agribisnis yang mendukung ketahanan pangan, sehingga kepastian bagi mitra investasi daerah meningkat.',
       rekomendasi: { teks: 'Tetapkan indikator kinerja dan keterkaitan penyertaan modal dengan sasaran RPJMN 2025–2029 melalui peraturan bupati pelaksana.', pj: 'Pemerintah Kabupaten Pulang Pisau', pembina: 'Kemendagri (Ditjen Bina Keuangan Daerah)', status: 'Selesai' },
       unit: [
-        { nama: 'Bagian Perekonomian Setda', instansi: 'Pemkab Pulang Pisau', peran: 'Menyusun perbup pelaksana', chip: 'Penanggung jawab utama' },
-        { nama: 'Bappelitbangda', instansi: 'Pemkab Pulang Pisau', peran: 'Menyelaraskan dengan RPJMD', chip: 'Pelaksana' },
-        { nama: 'Ditjen Bina Keuangan Daerah', instansi: 'Kemendagri', peran: 'Pembinaan keuangan daerah', chip: 'Pembina' }
+        { nama: 'Bagian Perekonomian Setda', instansi: 'Pemkab Pulang Pisau', peran: 'Menyusun perbup pelaksana', aksi: 'Susun dan tetapkan perbup pelaksana yang selaras dengan regulasi pusat; laporkan progres tiap bulan.', chip: 'Penanggung jawab utama' },
+        { nama: 'Bappelitbangda', instansi: 'Pemkab Pulang Pisau', peran: 'Menyelaraskan dengan RPJMD', aksi: 'Pastikan muatan perbup sejalan dengan RPJMD dan rencana anggaran daerah.', chip: 'Pelaksana' },
+        { nama: 'Ditjen Bina Keuangan Daerah', instansi: 'Kemendagri', peran: 'Pembinaan keuangan daerah', aksi: 'Evaluasi rancangan perbup dari sisi keuangan daerah dan beri rekomendasi perbaikan.', chip: 'Pembina' }
       ],
       riwayat: [
         { tgl: '30 Jul 2026', l: 'Indikasi awal ditandai AI', st: 'done' },
@@ -110,10 +110,10 @@ window.KESELARASAN_DATA = {
       dampak: 'Ketidakpastian rezim pembinaan dapat menunda rencana investasi akomodasi skala kecil di desa pesisir, terutama yang membutuhkan sertifikasi sebagai syarat pembiayaan.',
       rekomendasi: { teks: 'Tetapkan pembagian peran: KKP membina aspek ruang laut dan perikanan, Kemenpar membina standar destinasi; satukan sertifikasi melalui satu pintu.', pj: 'Kementerian Kelautan dan Perikanan · Kementerian Pariwisata', pembina: 'Kemenko Perekonomian', status: 'Menunggu keputusan rapat koordinasi' },
       unit: [
-        { nama: 'Ditjen Pengelolaan Kelautan', instansi: 'KKP', peran: 'Penyusun Permen KP 1/2026', chip: 'Penanggung jawab utama' },
-        { nama: 'Deputi Bidang Destinasi', instansi: 'Kementerian Pariwisata', peran: 'Standar desa wisata', chip: 'Pelaksana' },
-        { nama: 'Deputi Bidang Koordinasi Ekonomi Digital dan Ketenagakerjaan', instansi: 'Kemenko Perekonomian', peran: 'Fasilitasi keputusan lintas kementerian', chip: 'Pembina' },
-        { nama: 'Ditjen Peraturan Perundang-undangan', instansi: 'Kementerian Hukum', peran: 'Harmonisasi peraturan menteri', chip: 'Terkait' }
+        { nama: 'Ditjen Pengelolaan Kelautan', instansi: 'KKP', peran: 'Penyusun Permen KP 1/2026', aksi: 'Pimpin revisi Permen KP 1/2026 dan tetapkan jadwal penyelesaiannya.', chip: 'Penanggung jawab utama' },
+        { nama: 'Deputi Bidang Destinasi', instansi: 'Kementerian Pariwisata', peran: 'Standar desa wisata', aksi: 'Selaraskan standar desa wisata dengan ketentuan zonasi pesisir dalam revisi permen.', chip: 'Pelaksana' },
+        { nama: 'Deputi Bidang Koordinasi Ekonomi Digital dan Ketenagakerjaan', instansi: 'Kemenko Perekonomian', peran: 'Fasilitasi keputusan lintas kementerian', aksi: 'Gelar rapat koordinasi untuk memutus perbedaan pengaturan antara KKP dan Kemenpar.', chip: 'Pembina' },
+        { nama: 'Ditjen Peraturan Perundang-undangan', instansi: 'Kementerian Hukum', peran: 'Harmonisasi peraturan menteri', aksi: 'Lakukan harmonisasi rancangan perubahan permen sebelum diundangkan.', chip: 'Terkait' }
       ],
       riwayat: [
         { tgl: '14 Agu 2026', l: 'Indikasi awal ditandai AI', st: 'done' },
@@ -144,10 +144,10 @@ window.KESELARASAN_DATA = {
       dampak: 'Perkiraan kualitatif: hambatan verifikasi dapat menunda ekspor karet remah dan menahan rencana ekspansi pabrik pengolahan di sentra karet Sumatra dan Kalimantan.',
       rekomendasi: { teks: 'Samakan parameter mutu pada lampiran dengan SNI 1903:2017 dan atur masa transisi bagi kontrak berjalan.', pj: 'Kementerian Perdagangan', pembina: 'Kementerian Perindustrian · BSN', status: 'Dalam penanganan' },
       unit: [
-        { nama: 'Ditjen Perdagangan Luar Negeri', instansi: 'Kemendag', peran: 'Revisi lampiran teknis', chip: 'Penanggung jawab utama' },
-        { nama: 'Ditjen Industri Agro', instansi: 'Kemenperin', peran: 'Penyelarasan SNI wajib', chip: 'Pelaksana' },
-        { nama: 'Badan Standardisasi Nasional', instansi: 'BSN', peran: 'Pembina standar', chip: 'Pembina' },
-        { nama: 'Ditjen Perkebunan', instansi: 'Kementan', peran: 'Mutu bahan olah karet', chip: 'Terkait' }
+        { nama: 'Ditjen Perdagangan Luar Negeri', instansi: 'Kemendag', peran: 'Revisi lampiran teknis', aksi: 'Revisi lampiran teknis agar persyaratan sejalan dengan SNI wajib yang berlaku.', chip: 'Penanggung jawab utama' },
+        { nama: 'Ditjen Industri Agro', instansi: 'Kemenperin', peran: 'Penyelarasan SNI wajib', aksi: 'Pastikan rujukan SNI wajib dalam peraturan konsisten dan mutakhir.', chip: 'Pelaksana' },
+        { nama: 'Badan Standardisasi Nasional', instansi: 'BSN', peran: 'Pembina standar', aksi: 'Berikan verifikasi teknis atas standar yang dirujuk dalam revisi.', chip: 'Pembina' },
+        { nama: 'Ditjen Perkebunan', instansi: 'Kementan', peran: 'Mutu bahan olah karet', aksi: 'Sampaikan masukan teknis mutu bahan olah karet untuk lampiran revisi.', chip: 'Terkait' }
       ],
       riwayat: [
         { tgl: '20 Agu 2026', l: 'Indikasi awal ditandai AI', st: 'done' },
@@ -177,9 +177,9 @@ window.KESELARASAN_DATA = {
       dampak: 'Perkiraan kualitatif: usaha galeri, pertunjukan, dan museum swasta berpotensi tertunda beroperasi karena menunggu rekomendasi dinas.',
       rekomendasi: { teks: 'Cabut syarat rekomendasi dinas atau masukkan ke lampiran PP melalui mekanisme perubahan standar; sementara itu, tetapkan bahwa permohonan tidak ditahan.', pj: 'Kementerian Kebudayaan', pembina: 'Kementerian Investasi dan Hilirisasi/BKPM', status: 'Dalam penanganan' },
       unit: [
-        { nama: 'Ditjen Pelindungan Kebudayaan dan Tradisi', instansi: 'Kementerian Kebudayaan', peran: 'Revisi permen', chip: 'Penanggung jawab utama' },
-        { nama: 'Biro Hukum', instansi: 'Kementerian Kebudayaan', peran: 'Penyusunan perubahan', chip: 'Pelaksana' },
-        { nama: 'Deputi Bidang Pelayanan Penanaman Modal', instansi: 'Kementerian Investasi dan Hilirisasi/BKPM', peran: 'Penyesuaian OSS', chip: 'Pembina' }
+        { nama: 'Ditjen Pelindungan Kebudayaan dan Tradisi', instansi: 'Kementerian Kebudayaan', peran: 'Revisi permen', aksi: 'Pimpin penyusunan revisi permen dan targetkan penetapan sesuai jadwal.', chip: 'Penanggung jawab utama' },
+        { nama: 'Biro Hukum', instansi: 'Kementerian Kebudayaan', peran: 'Penyusunan perubahan', aksi: 'Siapkan naskah perubahan beserta kajian hukumnya untuk diharmonisasi.', chip: 'Pelaksana' },
+        { nama: 'Deputi Bidang Pelayanan Penanaman Modal', instansi: 'Kementerian Investasi dan Hilirisasi/BKPM', peran: 'Penyesuaian OSS', aksi: 'Sesuaikan persyaratan perizinan di sistem OSS setelah revisi ditetapkan.', chip: 'Pembina' }
       ],
       riwayat: [
         { tgl: '22 Agu 2026', l: 'Indikasi awal ditandai AI', st: 'done' },
@@ -209,10 +209,10 @@ window.KESELARASAN_DATA = {
       dampak: 'Perkiraan kualitatif: persyaratan tambahan dapat memperlambat masuknya permohonan industri pengolahan tembakau dan makanan di Kudus ke OSS, sehingga realisasi investasi tertunda.',
       rekomendasi: { teks: 'Sesuaikan persyaratan perizinan dalam Perda agar mengikuti PP 28/2025 tanpa rekomendasi tambahan; terbitkan Perbup insentif.', pj: 'Pemerintah Kabupaten Kudus', pembina: 'Kemendagri', status: 'Draf AI – menunggu verifikasi' },
       unit: [
-        { nama: 'DPMPTSP', instansi: 'Pemkab Kudus', peran: 'Pelaksana perizinan daerah', chip: 'Penanggung jawab utama' },
-        { nama: 'Bagian Hukum Setda', instansi: 'Pemkab Kudus', peran: 'Perubahan Perda dan Perbup', chip: 'Pelaksana' },
-        { nama: 'Ditjen Bina Pembangunan Daerah', instansi: 'Kemendagri', peran: 'Pembinaan Perda', chip: 'Pembina' },
-        { nama: 'Deputi Bidang Pelayanan Penanaman Modal', instansi: 'Kementerian Investasi dan Hilirisasi/BKPM', peran: 'Pemantauan OSS', chip: 'Terkait' }
+        { nama: 'DPMPTSP', instansi: 'Pemkab Kudus', peran: 'Pelaksana perizinan daerah', aksi: 'Terapkan perizinan sesuai ketentuan pusat dan hentikan persyaratan tambahan yang tidak selaras.', chip: 'Penanggung jawab utama' },
+        { nama: 'Bagian Hukum Setda', instansi: 'Pemkab Kudus', peran: 'Perubahan Perda dan Perbup', aksi: 'Siapkan rancangan perubahan Perda dan Perbup yang bertentangan dengan regulasi pusat.', chip: 'Pelaksana' },
+        { nama: 'Ditjen Bina Pembangunan Daerah', instansi: 'Kemendagri', peran: 'Pembinaan Perda', aksi: 'Fasilitasi dan evaluasi rancangan perubahan Perda sebelum ditetapkan.', chip: 'Pembina' },
+        { nama: 'Deputi Bidang Pelayanan Penanaman Modal', instansi: 'Kementerian Investasi dan Hilirisasi/BKPM', peran: 'Pemantauan OSS', aksi: 'Pantau penerapan perizinan daerah di OSS dan laporkan ketidaksesuaian.', chip: 'Terkait' }
       ],
       riwayat: [
         { tgl: '19 Sep 2026', l: 'Indikasi awal ditandai AI', st: 'done' },
