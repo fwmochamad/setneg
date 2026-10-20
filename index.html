@@ -60,27 +60,27 @@
 
   <!-- Section 0: Payung Kebijakan Investasi -->
   <section class="board is-active" id="harmonisasi-page-0" data-harmonisasi-app-page="0" aria-hidden="false">
-    <iframe src="./dashboards/payung.html?v=20261020-8" title="1 · Payung Kebijakan Investasi" width="100%" loading="eager"></iframe>
+    <iframe src="./dashboards/payung.html?v=20261020-9" title="1 · Payung Kebijakan Investasi" width="100%" loading="eager"></iframe>
   </section>
 
   <!-- Section 1: Peluang Investasi Daerah -->
   <section class="board" id="harmonisasi-page-1" data-harmonisasi-app-page="1" aria-hidden="true">
-    <iframe src="./dashboards/peluang.html?v=20261020-8" title="2 · Peluang Investasi Daerah" width="100%" loading="lazy"></iframe>
+    <iframe src="./dashboards/peluang.html?v=20261020-9" title="2 · Peluang Investasi Daerah" width="100%" loading="lazy"></iframe>
   </section>
 
   <!-- Section 2: Demografi dan Mobilitas Penduduk -->
   <section class="board" id="harmonisasi-page-2" data-harmonisasi-app-page="2" aria-hidden="true">
-    <iframe src="./dashboards/demografi.html?v=20261020-8" title="3 · Demografi &amp; Mobilitas Penduduk" width="100%" loading="lazy"></iframe>
+    <iframe src="./dashboards/demografi.html?v=20261020-9" title="3 · Demografi &amp; Mobilitas Penduduk" width="100%" loading="lazy"></iframe>
   </section>
 
   <!-- Section 3: Kemudahan Berusaha dan Pelayanan Perizinan -->
   <section class="board" id="harmonisasi-page-3" data-harmonisasi-app-page="3" aria-hidden="true">
-    <iframe src="./dashboards/perizinan.html?v=20261020-8" title="4 · Kemudahan Berusaha &amp; Pelayanan Perizinan" width="100%" loading="lazy"></iframe>
+    <iframe src="./dashboards/perizinan.html?v=20261020-9" title="4 · Kemudahan Berusaha &amp; Pelayanan Perizinan" width="100%" loading="lazy"></iframe>
   </section>
 
   <!-- Section 4: Analisis Keselarasan Regulasi dan Tindak Lanjut -->
   <section class="board" id="harmonisasi-page-4" data-harmonisasi-app-page="4" aria-hidden="true">
-    <iframe src="./dashboards/keselarasan.html?v=20261020-8" title="5 · Keselarasan Regulasi &amp; Tindak Lanjut" width="100%" loading="lazy"></iframe>
+    <iframe src="./dashboards/keselarasan.html?v=20261020-9" title="5 · Keselarasan Regulasi &amp; Tindak Lanjut" width="100%" loading="lazy"></iframe>
   </section>
 
   <script>
@@ -121,7 +121,7 @@
         // Deep link detail temuan: #keselarasan/T-007
         if (idx === 4 && parts[1]) {
           var frame = boards[4] && boards[4].querySelector("iframe");
-          var want = "./dashboards/keselarasan.html?v=20261020-8&temuan=" + encodeURIComponent(parts[1].toUpperCase());
+          var want = "./dashboards/keselarasan.html?v=20261020-9&temuan=" + encodeURIComponent(parts[1].toUpperCase());
           if (frame && frame.getAttribute("src") !== want) frame.setAttribute("src", want);
         }
         setActive(idx < 0 ? 0 : idx, false);

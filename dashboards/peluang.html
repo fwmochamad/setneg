@@ -200,6 +200,7 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
 <style id="harmonisasi-prj-kv">.prj-kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px}.prj-kv>div{display:flex;flex-direction:column;gap:2px;padding:8px 10px;border-radius:8px;background:#FFFFFF;border:1px solid #E3E8F0}.prj-kv-l{font-size:11px;color:#64748B}.prj-kv-v{font-size:14px;color:#0F172A}.prj-kv-d{font-size:10.5px;line-height:14px;color:#64748B}</style>
 <style id="harmonisasi-tri">.tri-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;align-items:stretch}@media (max-width:1180px){.tri-row{grid-template-columns:repeat(2,minmax(0,1fr))}.tri-row>.tri-reg{grid-column:1/-1}}@media (max-width:760px){.tri-row{grid-template-columns:1fr}}.tri-row>section>div:nth-child(2){padding:12px 14px!important;gap:10px!important}.tri-row>section>div:first-child{padding:10px 14px!important}.tri-row h2{font-size:13.5px!important}.tri-row li{padding-top:6px!important;padding-bottom:6px!important}.tri-row .mzi{margin:8px 10px 10px!important;padding:10px 12px!important}.tri-row .mzi .mzi-l{font-size:12px!important;line-height:18px!important}.tri-reg>div:nth-child(2){flex-direction:column;flex-wrap:nowrap!important}.tri-reg>div:nth-child(2)>div{flex:0 0 auto!important;border-right:0!important;padding:10px 14px!important}.tri-reg .rw{grid-template-columns:52px minmax(0,1fr)!important;gap:8px!important;padding:8px 14px!important}.tri-reg .rw>span:last-child{grid-column:2;align-items:flex-start!important;flex-direction:row!important}</style>
 <style id="harmonisasi-jam-tayang">.ri-l{display:flex!important;align-items:flex-start!important;gap:4px;width:100%;box-sizing:border-box;align-self:stretch!important;justify-self:stretch!important}.ri-tay{margin-left:auto;flex:none;padding-left:6px;white-space:nowrap;font-size:10px!important;font-weight:400!important;letter-spacing:0!important;text-transform:none!important;line-height:14px;color:#9ca3af!important;cursor:help}</style>
+<style id="harmonisasi-jam-tayang-hl">.hl-tay{display:inline-flex;align-items:center;gap:3px;white-space:nowrap;cursor:help}.hl-tay-i{width:10px;height:10px;flex:none;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}</style>
 </head>
 <body>
 <x-dc>
@@ -460,7 +461,7 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
 <style>body{margin:0} a{color:#1D4ED8} a:hover{color:#1E40AF} .ck{cursor:pointer;transition:box-shadow .12s,border-color .12s,background .12s} .ck:hover{box-shadow:0 2px 10px rgba(15,23,42,.08);border-color:#82B394 !important} .rw{cursor:pointer} .rw:hover{background:#EFF6FF !important} .tip{position:relative;outline:none} .tip .pop{display:none;position:absolute;z-index:95;right:0;top:calc(100% + 6px);width:300px;padding:10px 12px;border-radius:10px;background:#0B1F3A;color:#E2E8F0;font-size:11.5px;line-height:17px;font-weight:400;letter-spacing:0;text-align:left;white-space:normal;box-shadow:0 12px 32px rgba(15,23,42,.3)} .tip:hover .pop,.tip:focus .pop{display:block} .tip .pop.pl{left:0;right:auto} .bar:hover{filter:brightness(1.08)} .pv{cursor:pointer;transition:opacity .12s} .pv:hover{opacity:.72}</style>
 </helmet>
 <div style="min-height: 100vh; background: #F4F7FB; font-family: Inter, system-ui, sans-serif; color: #0F172A;">
-  <header class="setneg-global-header" aria-label="Header Dashboard Presiden RI"><div class="setneg-header-inner"><a class="setneg-brand" href="#top" aria-label="Dashboard Presiden RI"><img alt="Logo Setneg RI" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Logo_Setneg_RI.svg/330px-Logo_Setneg_RI.svg.png"><span class="setneg-brand-copy"><strong>DASHBOARD PRESIDEN RI</strong><span>Badan Teknologi, Data dan Informasi</span><span>Kementerian Sekretariat Negara Republik Indonesia</span></span></a><nav class="setneg-global-nav" aria-label="Navigasi utama"><button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.5"/></svg><span>Eksekutif</span></button><button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"/><path d="m9 12 2 2 4-4"/></svg><span>Pertahanan &amp; Keamanan</span></button><button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 3v18h18"/><path d="m7 14 4-4 4 3 6-7"/></svg><span>Ekonomi</span></button><button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 11h16v2a8 8 0 0 1-16 0v-2Z"/><path d="M8 7c0-1 1-1 1-2M12 7c0-1 1-1 1-2M16 7c0-1 1-1 1-2"/></svg><span>MBG</span></button><button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 3h10l4 4v14H5z"/><path d="M15 3v5h4M8 12h8M8 16h8"/></svg><span>Kebijakan</span></button><button type="button" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="6" cy="6" r="2"/><circle cx="18" cy="6" r="2"/><circle cx="12" cy="18" r="2"/><path d="M8 7.5 10.8 16M16 7.5 13.2 16M8 6h8"/></svg><span>Harmonisasi</span></button></nav><div class="setneg-header-tools"><button class="setneg-theme-button" type="button" aria-label="Ganti tema"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.5 14.4A8.5 8.5 0 0 1 9.6 3.5 8.7 8.7 0 1 0 20.5 14.4Z"/></svg></button><div class="setneg-user"><span class="setneg-avatar">PS</span><span class="setneg-user-copy"><strong>Prabowo Subianto</strong><span>Presiden</span></span><svg class="setneg-user-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div></div></div></header><nav class="harmonisasi-page-tabs" aria-label="Navigasi tab Harmonisasi Investasi"><a href="#harmonisasi-page-0" data-harmonisasi-tab="0">Payung Kebijakan Investasi</a><a href="#harmonisasi-page-1" aria-current="page" data-harmonisasi-tab="1">Peluang Investasi Daerah</a><a href="#harmonisasi-page-2" data-harmonisasi-tab="2">Demografi &amp; Mobilitas Penduduk</a><a href="#harmonisasi-page-3" data-harmonisasi-tab="3">Kemudahan Berusaha &amp; Pelayanan Perizinan</a><a href="#harmonisasi-page-4" data-harmonisasi-tab="4">Keselarasan Regulasi &amp; Tindak Lanjut</a></nav><section class="harmonisasi-highlights" aria-label="Highlight Peluang Investasi Daerah"><div class="harmonisasi-highlights-head"><h2><svg class="harmonisasi-warning-symbol" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3 2.8 19h18.4L12 3Z"></path><path d="M12 9v4m0 3h.01"></path></svg> Highlight Peluang Investasi Daerah</h2><span>{{ewsCount}} Alerts Aktif</span></div><div class="harmonisasi-alert-track" role="list"><sc-for list="{{highlights}}" as="h" hint-placeholder-count="3"><article class="harmonisasi-alert-card" role="listitem" tabindex="0" aria-haspopup="dialog" title="Klik untuk melihat detail Early Warning" sc-camel-on-click="{{h.open}}" sc-camel-onKeyDown="{{h.key}}"><div class="harmonisasi-alert-heading"><span class="harmonisasi-alert-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m4 16 5-5 4 4 7-7"></path><path d="M14 8h6v6"></path></svg></span><div class="harmonisasi-alert-title"><strong>{{h.short}}</strong><span>Level: {{h.level}}</span></div><div class="harmonisasi-alert-meta"><span>{{h.tgl}}</span><span>Alert aktif</span><span style="padding: 1px 7px; border-radius: 5px; background: {{h.verif.bg}}; border: 1px solid {{h.verif.bd}}; color: {{h.verif.c}}; font-weight: 700;">{{h.verif.t}}</span></div></div><div class="harmonisasi-alert-details"><div><b>Masalah</b><p>{{h.m}}</p></div><div><b>Dampak</b><p>{{h.d}}</p></div><div><b>Rekomendasi</b><p>{{h.r}}</p></div></div></article></sc-for></div></section>
+  <header class="setneg-global-header" aria-label="Header Dashboard Presiden RI"><div class="setneg-header-inner"><a class="setneg-brand" href="#top" aria-label="Dashboard Presiden RI"><img alt="Logo Setneg RI" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Logo_Setneg_RI.svg/330px-Logo_Setneg_RI.svg.png"><span class="setneg-brand-copy"><strong>DASHBOARD PRESIDEN RI</strong><span>Badan Teknologi, Data dan Informasi</span><span>Kementerian Sekretariat Negara Republik Indonesia</span></span></a><nav class="setneg-global-nav" aria-label="Navigasi utama"><button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.5"/></svg><span>Eksekutif</span></button><button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"/><path d="m9 12 2 2 4-4"/></svg><span>Pertahanan &amp; Keamanan</span></button><button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 3v18h18"/><path d="m7 14 4-4 4 3 6-7"/></svg><span>Ekonomi</span></button><button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 11h16v2a8 8 0 0 1-16 0v-2Z"/><path d="M8 7c0-1 1-1 1-2M12 7c0-1 1-1 1-2M16 7c0-1 1-1 1-2"/></svg><span>MBG</span></button><button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 3h10l4 4v14H5z"/><path d="M15 3v5h4M8 12h8M8 16h8"/></svg><span>Kebijakan</span></button><button type="button" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="6" cy="6" r="2"/><circle cx="18" cy="6" r="2"/><circle cx="12" cy="18" r="2"/><path d="M8 7.5 10.8 16M16 7.5 13.2 16M8 6h8"/></svg><span>Harmonisasi</span></button></nav><div class="setneg-header-tools"><button class="setneg-theme-button" type="button" aria-label="Ganti tema"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.5 14.4A8.5 8.5 0 0 1 9.6 3.5 8.7 8.7 0 1 0 20.5 14.4Z"/></svg></button><div class="setneg-user"><span class="setneg-avatar">PS</span><span class="setneg-user-copy"><strong>Prabowo Subianto</strong><span>Presiden</span></span><svg class="setneg-user-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div></div></div></header><nav class="harmonisasi-page-tabs" aria-label="Navigasi tab Harmonisasi Investasi"><a href="#harmonisasi-page-0" data-harmonisasi-tab="0">Payung Kebijakan Investasi</a><a href="#harmonisasi-page-1" aria-current="page" data-harmonisasi-tab="1">Peluang Investasi Daerah</a><a href="#harmonisasi-page-2" data-harmonisasi-tab="2">Demografi &amp; Mobilitas Penduduk</a><a href="#harmonisasi-page-3" data-harmonisasi-tab="3">Kemudahan Berusaha &amp; Pelayanan Perizinan</a><a href="#harmonisasi-page-4" data-harmonisasi-tab="4">Keselarasan Regulasi &amp; Tindak Lanjut</a></nav><section class="harmonisasi-highlights" aria-label="Highlight Peluang Investasi Daerah"><div class="harmonisasi-highlights-head"><h2><svg class="harmonisasi-warning-symbol" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3 2.8 19h18.4L12 3Z"></path><path d="M12 9v4m0 3h.01"></path></svg> Highlight Peluang Investasi Daerah</h2><span>{{ewsCount}} Alerts Aktif</span></div><div class="harmonisasi-alert-track" role="list"><sc-for list="{{highlights}}" as="h" hint-placeholder-count="3"><article class="harmonisasi-alert-card" role="listitem" tabindex="0" aria-haspopup="dialog" title="Klik untuk melihat detail Early Warning" sc-camel-on-click="{{h.open}}" sc-camel-onKeyDown="{{h.key}}"><div class="harmonisasi-alert-heading"><span class="harmonisasi-alert-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m4 16 5-5 4 4 7-7"></path><path d="M14 8h6v6"></path></svg></span><div class="harmonisasi-alert-title"><strong>{{h.short}}</strong><span>Level: {{h.level}}</span></div><div class="harmonisasi-alert-meta"><span>{{h.tgl}}</span><span class="hl-tay" title="{{h.tayT}}"><svg class="hl-tay-i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>{{h.tay}}</span><span style="padding: 1px 7px; border-radius: 5px; background: {{h.verif.bg}}; border: 1px solid {{h.verif.bd}}; color: {{h.verif.c}}; font-weight: 700;">{{h.verif.t}}</span></div></div><div class="harmonisasi-alert-details"><div><b>Masalah</b><p>{{h.m}}</p></div><div><b>Dampak</b><p>{{h.d}}</p></div><div><b>Rekomendasi</b><p>{{h.r}}</p></div></div></article></sc-for></div></section>
   <sc-if value="{{ewsOpen}}">
       <div class="ews-modal-backdrop" sc-camel-on-click="{{closeEws}}">
         <div class="ews-modal-panel" data-ews-modal="1" role="dialog" aria-modal="true" tabindex="0" sc-camel-on-click="{{stop}}" sc-camel-onKeyDown="{{onEwsKey}}">
@@ -624,11 +625,11 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
           <div style="flex: 1 1 400px; min-width: 0; position: relative; padding: 12px 14px; border-radius: 10px; background: #F0FDFA; border: 1px solid #CCFBF1; display: flex; flex-direction: column; gap: 10px;">
             <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 4px 12px;">
               <span><b style="font-size: 12.5px; color: #0F172A;">Hilirisasi per periode</b> <span style="font-size: 11px; color: #475569;">· Rp T · klik segmen untuk rincian</span></span>
-              <span title="Tw II resmi BKPM; periode lain estimasi" style="padding: 0 6px; border-radius: 4px; background: #CCFBF1; color: #115E59; font-size: 10.5px; font-weight: 600;">Tw II resmi · lainnya estimasi</span>
+              <span title="Tw II resmi BKPM; periode lain estimasi" style="padding: 0 6px; border-radius: 4px; background: #CCFBF1; color: #115E59; font-size: 10.5px; font-weight: 600;">Tw II &amp; Jan–Sep resmi · lainnya estimasi</span>
             </div>
             <div style="display: flex; flex-wrap: wrap; gap: 2px 10px; font-size: 10.5px; color: #334155;"><sc-for list="{{nas.hLeg}}" as="h" hint-placeholder-count="4"><span style="display: inline-flex; align-items: center; gap: 5px;"><span style="width: 10px; height: 10px; border-radius: 2px; background: {{h.c}};"></span>{{h.l}} </span></sc-for></div>
             <div class="hil-plot" role="img" aria-label="Nilai hilirisasi per periode 2026 menurut subsektor" style="flex: 1 1 auto; display: flex; flex-direction: column; overflow-x: auto; scrollbar-width: thin;"><div style="flex: 1 1 auto; min-width: 330px; display: flex; flex-direction: column;">
-              <div style="flex: 1 1 auto; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 6px; min-height: 190px; border-bottom: 1px solid #99F6E4;">
+              <div style="flex: 1 1 auto; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 6px; min-height: 260px; border-bottom: 1px solid #99F6E4;">
                 <sc-for list="{{nas.hCols}}" as="c" hint-placeholder-count="6">
                   <div title="{{c.tt}}" style="height: 100%; display: flex; flex-direction: column; justify-content: flex-end; gap: 3px;">
                     <span style="font-size: clamp(10px, 2.6vw, 12px); font-weight: 700; color: {{c.vc}}; text-align: center; white-space: nowrap;">{{c.v}}</span>
@@ -760,7 +761,7 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
           </div>
           </sc-if>
           <div class="mzi"><span class="mzi-b">Ringkasan Wawasan</span><ul class="mzi-l"><sc-for list="{{mini.inv}}" as="i" hint-placeholder-count="3"><li>{{i}}</li></sc-for></ul></div>
-          <div class="cf" style="padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;"><span><b style="color: #475569;">Diperbarui:</b> 16 Jul 2026 (rilis Tw II) · Tw III 2026 belum dirilis</span><span><b style="color: #475569;">Sumber:</b> Kementerian Investasi dan Hilirisasi/BKPM (LKPM); kurs: APBN 2026</span></div>
+          <div class="cf" style="padding: 9px 18px; border-top: 1px solid #EEF2F7; background: #FAFBFD; font-size: 11px; color: #64748B; display: flex; flex-wrap: wrap; gap: 4px 12px; border-radius: 0 0 12px 12px;"><span><b style="color: #475569;">Diperbarui:</b> 19 Okt 2026 (rilis Tw III) · Tw IV 2026 belum berakhir</span><span><b style="color: #475569;">Sumber:</b> Kementerian Investasi dan Hilirisasi/BKPM (LKPM); kurs: APBN 2026</span></div>
         </section>
 
         <!-- 1 + 2. Peta & Top 5 PDRB -->
@@ -1324,7 +1325,7 @@ class Component extends DCLogic {
   }
   renderVals() {
     // Jam tayang (diadopsi dari modul Eksekutif): waktu relatif sejak kartu ditayangkan, siklus pembaruan 6 jam.
-    const __TAY_KPI = [1, 1, 4, 1, 2];
+    const __TAY_HL = [1, 2, 2], __TAY_KPI = [1, 1, 4, 1, 2];
     const __tay = (h) => { const BUL = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'], p = (x) => String(x).padStart(2, '0');
       const t0 = Date.now() - h * 3600e3, f = (ms) => { const d = new Date(ms); return d.getDate() + ' ' + BUL[d.getMonth()] + ' ' + d.getFullYear() + ', ' + p(d.getHours()) + '.' + p(d.getMinutes()) + ' WIB'; };
       return { tay: h < 1 ? Math.max(1, Math.round(h * 60)) + ' menit lalu' : Math.round(h) + ' jam lalu', tayT: 'Tayang sejak ' + f(t0) + ' · siklus pembaruan setiap 6 jam · tayang s/d ' + f(t0 + 24 * 3600e3) }; };
@@ -2028,84 +2029,82 @@ const PELUANG_SRC = [
 ];
 const PELUANG_ALERTS = [
   {
-    k: 'pdrb5',
-    s: 'Konsentrasi PDRB pada 5 provinsi',
-    kat: 'Pemerataan ekonomi daerah',
-    l: 'Rata-rata 5 provinsi terbesar',
-    n: '57,32%',
-    tgl: '5 Feb 2026',
-    m: 'Lima provinsi menyumbang 57,32% PDRB dari 38 provinsi.',
-    d: 'Ekonomi nasional rentan bila satu provinsi besar terganggu.',
-    r: 'Arahkan investasi ke provinsi dengan PDRB per kapita rendah.',
-    ringkasan: 'Lima provinsi dengan PDRB terbesar yaitu DKI Jakarta, Jawa Timur, Jawa Barat, Jawa Tengah, dan Sumatera Utara menyerap 57,32% dari total PDRB 38 provinsi atau Rp23.636,03 T. Enam provinsi di luar lima besar hanya rata-rata Rp1.201,38 T atau 5,08% per provinsi.',
-    dampak: 'Ketergantungan ekonomi nasional pada lima provinsi besar membuat hasil nasional ikut berubah ketika satu provinsi menghadapi gangguan fiskal atau industri.',
-    saran: 'Dorong investasi ke provinsi dengan PDRB per kapita di bawah rata-rata nasional dan pantau konsentrasi PDRB setiap kuartal.',
+    k: 'luarjawa',
+    s: 'Pertumbuhan investasi luar Jawa melambat',
+    kat: 'Pemerataan investasi',
+    l: 'Investasi luar Jawa Tw III 2026',
+    n: 'Rp271,6 T',
+    tgl: '19 Okt 2026',
+    m: 'Investasi luar Jawa Rp271,6 T (51,4%) hanya tumbuh 2,2% yoy, sedangkan Jawa tumbuh 13,9%.',
+    d: 'Selisih laju pertumbuhan berisiko memperlebar ketimpangan antarwilayah.',
+    r: 'Percepat proyek hilirisasi dan KEK di luar Jawa; prioritaskan insentif daerah.',
+    ringkasan: 'Realisasi investasi triwulan III 2026 mencapai Rp528,7 T. Porsi luar Jawa masih lebih besar, Rp271,6 T atau 51,4%, tetapi hanya tumbuh 2,2% dibanding triwulan III 2025. Investasi di Jawa Rp257,1 T tumbuh 13,9%, didorong Jawa Barat Rp91 T (+17,2%) dan DKI Jakarta Rp75,5 T (+14,3%).',
+    dampak: 'Jika tren berlanjut, porsi luar Jawa dapat turun di bawah 50% sehingga sasaran pemerataan investasi RPJMN dan penciptaan kerja di luar Jawa melemah.',
+    saran: 'Kawal realisasi proyek hilirisasi di Sulawesi, Maluku Utara, dan Kalimantan; selesaikan hambatan lahan dan perizinan proyek luar Jawa; pantau rasio pertumbuhan Jawa dan luar Jawa setiap triwulan.',
     timeline: [
-      ['5 Feb 2026', 'BPS merilis PDRB provinsi ADHB 2025 dengan DKI Jakarta tertinggi Rp3.926,15 T.'],
-      ['Mar 2026', 'Lima provinsi disusun menjadi peta peluang investasi daerah.'],
-      ['Jun 2026', 'Profil lima provinsi besar ditambahkan ke kartu PDRB.'],
-      ['12 Okt 2026', 'Konsentrasi 57,32% tercatat stabil dan masih menjadi EWS aktif.']
+      ['16 Jul 2026', 'Rilis Tw II 2026: realisasi Rp511,8 T, naik 7,1% yoy.'],
+      ['19 Okt 2026', 'Rilis Tw III 2026 di Istana: Rp528,7 T (+7,6% yoy); luar Jawa +2,2%, Jawa +13,9%.'],
+      ['19 Okt 2026', 'EWS WARNING ditetapkan untuk selisih laju pertumbuhan Jawa dan luar Jawa.']
     ],
     sh: [
-      ['Badan Pusat Statistik', 'Sumber data PDRB provinsi'],
-      ['Kementerian Investasi / BKPM', 'Penyusun peta peluang investasi daerah'],
-      ['Pemerintah lima provinsi besar', 'Penggerak PDRB nasional'],
-      ['Pemerintah provinsi di luar lima besar', 'Penerima manfaat insentif daerah']
+      ['Kementerian Investasi dan Hilirisasi/BKPM', 'Pengelola data realisasi dan promosi investasi'],
+      ['Pemerintah provinsi luar Jawa', 'Penyedia lahan, perizinan daerah, dan insentif'],
+      ['Dewan Nasional KEK', 'Percepatan kawasan ekonomi khusus di luar Jawa'],
+      ['Badan Pusat Statistik', 'Pembanding PDRB dan ketenagakerjaan daerah']
     ],
-    reg: 'Perpres 49/2021 - PP 5/2021'
+    reg: 'Perpres 12/2025 (RPJMN) - PP 28/2025'
   },
   {
-    k: 'pmdn4',
-    s: 'PMDN terkonsentrasi pada 4 wilayah',
-    kat: 'Investasi dalam negeri',
-    l: 'PMDN Triwulan II 2026',
-    n: 'Rp254,1 T',
-    tgl: '16 Jul 2026',
-    m: 'Empat wilayah menyerap 66,6% PMDN Triwulan II 2026 (Rp254,1 T).',
-    d: 'Kalimantan, Sulawesi, Bali–Nusa Tenggara hanya menerima 21,5% PMDN.',
-    r: 'Arahkan insentif dan infrastruktur ke wilayah dengan PMDN rendah.',
-    ringkasan: 'PMDN Triwulan II 2026 mencapai Rp254,1 T atau 49,6% dari total investasi. Empat wilayah menyerap 66,6%, yaitu Sumatera 22,4%, DKI Jakarta 23,1%, Jawa Barat 10,6%, dan Jawa Timur 10,5%. Kalimantan hanya 8,2%, Sulawesi 8,5%, serta Bali dan Nusa Tenggara 2,8%.',
-    dampak: 'Wilayah dengan PDRB kecil hanya menerima 21,5% PMDN sehingga pemerataan pembangunan masih rendah dan kesenjangan kesempatan antarwilayah melebar.',
-    saran: 'Arahkan insentif dan infrastruktur ke wilayah PMDN rendah serta pantau rasio PMDN terhadap PDRB per kapita.',
+    k: 'logam',
+    s: 'Investasi bertumpu pada industri logam dasar',
+    kat: 'Struktur sektor investasi',
+    l: 'Industri logam dasar Tw III 2026',
+    n: 'Rp118,8 T',
+    tgl: '19 Okt 2026',
+    m: 'Industri logam dasar menyerap Rp118,8 T atau sekitar 22,5% investasi Tw III 2026.',
+    d: 'Investasi rentan terhadap gejolak harga nikel dan permintaan baja global.',
+    r: 'Perluas investasi ke industri hilir bernilai tambah dan sektor padat karya.',
+    ringkasan: 'Sektor industri logam dasar, barang logam, bukan mesin dan peralatannya menjadi penyumbang terbesar triwulan III 2026 dengan Rp118,8 T (sekitar 22,5%). Berikutnya jasa lainnya termasuk pusat data Rp81,8 T, transportasi, gudang, dan telekomunikasi Rp51,7 T, pertambangan Rp38,7 T, serta industri makanan Rp34,7 T. Kumulatif Januari–September, hilirisasi mineral mencapai Rp335,1 T dengan nikel Rp118,9 T dan bauksit Rp115,7 T.',
+    dampak: 'Ketergantungan pada pengolahan logam membuat realisasi dan penyerapan tenaga kerja sensitif terhadap harga komoditas dan kebijakan negara mitra; manfaat hilir dan padat karya belum merata.',
+    saran: 'Dorong integrasi ke industri hilir (baterai, komponen, baja khusus), percepat investasi sektor padat karya, dan pantau porsi sektor logam terhadap total setiap triwulan.',
     timeline: [
-      ['16 Jul 2026', 'LKPM triwulan II 2026 diterbitkan: PMDN Rp254,1 T dan PMA Rp257,7 T.'],
-      ['Jul 2026', 'Rasio PMDN 49,6% dan PMA 50,4% tercatat sejajar.'],
-      ['Okt 2026', 'Empat wilayah teratas masih menyerap 66,6% PMDN nasional.'],
-      ['12 Okt 2026', 'Konsentrasi PMDN ditetapkan sebagai EWS aktif.']
+      ['16 Jul 2026', 'Tw II 2026: industri logam dasar tetap sektor terbesar.'],
+      ['19 Okt 2026', 'Rilis Tw III 2026: logam dasar Rp118,8 T, disusul jasa lainnya termasuk pusat data Rp81,8 T.'],
+      ['20 Okt 2026', 'EWS WARNING; konsentrasi sektor dipantau terhadap harga nikel dan baja.']
     ],
     sh: [
-      ['Kementerian Investasi / BKPM', 'Pengelola data LKPM'],
-      ['Badan Pusat Statistik', 'Pembanding PDRB per kapita antarwilayah'],
-      ['Pemerintah pusat', 'Pemberi insentif dan pendanaan'],
-      ['Pemerintah provinsi dan kabupaten/kota', 'Penyerap PMDN di wilayahnya']
+      ['Kementerian Investasi dan Hilirisasi/BKPM', 'Pengelola data sektor dan peta jalan hilirisasi'],
+      ['Kementerian Perindustrian', 'Pembina industri logam dan hilir'],
+      ['Kementerian ESDM', 'Pengatur pasokan bahan baku mineral'],
+      ['Pelaku industri smelter dan baja', 'Penanam modal sektor logam dasar']
     ],
-    reg: 'PP 5/2021 - Permen Investasi No. 5/2021'
+    reg: 'Perpres 12/2025 (RPJMN) - PP 28/2025'
   },
   {
-    k: 'pma4',
-    s: 'PMA terkonsentrasi pada 4 negara',
+    k: 'pma5',
+    s: 'PMA bergantung pada 5 negara asal',
     kat: 'Investasi asing',
-    l: 'PMA Triwulan II 2026',
-    n: 'US$15,62 M',
-    tgl: '9 Okt 2026',
-    m: 'Hong Kong, Singapura, Taiwan, dan India menyumbang 67,1% PMA.',
-    d: 'Perubahan kebijakan negara asal dapat menurunkan PMA dengan cepat.',
-    r: 'Perluas sumber PMA ke negara Asia Timur dan Asia Selatan lain.',
-    ringkasan: 'PMA triwulan II 2026 mencapai US$15,62 miliar atau Rp257,7 T. Empat negara asal menyerap 67,1%, yaitu Hong Kong 33,7%, Singapura 25,7%, Taiwan 4,6%, dan India 3,1%. Dua ratus dua puluh negara lain hanya menyumbang 5,4%. Konversi dolar memakai asumsi kurs APBN 2026 Rp16.500 per dolar AS.',
-    dampak: 'Perubahan kebijakan atau perdagangan dari empat negara asal utama dapat menurunkan PMA secara cepat dan menekan pertumbuhan investasi triwulan berikutnya.',
-    saran: 'Perluas pencarian PMA ke negara Asia Timur dan Asia Selatan lain serta pantau risiko kebijakan negara asal.',
+    l: 'PMA Januari–September 2026',
+    n: 'Rp777,8 T',
+    tgl: '19 Okt 2026',
+    m: 'Singapura, Hong Kong, Tiongkok, AS, dan Jepang menyumbang sekitar 80% PMA kumulatif.',
+    d: 'Perubahan kebijakan negara asal dapat menekan PMA dengan cepat.',
+    r: 'Perluas promosi ke negara asal baru di Eropa, Timur Tengah, dan Asia Selatan.',
+    ringkasan: 'PMA Januari–September 2026 mencapai Rp777,8 T atau 50,5% dari total investasi. Lima negara asal teratas adalah Singapura US$14 miliar, Hong Kong US$12,8 miliar, Tiongkok US$5 miliar, Amerika Serikat US$3,4 miliar, dan Jepang US$2,6 miliar, dengan porsi gabungan sekitar 80%.',
+    dampak: 'Konsentrasi negara asal membuat PMA rentan terhadap perubahan kebijakan perdagangan, suku bunga, dan geopolitik di lima negara tersebut.',
+    saran: 'Perluas misi investasi ke negara asal baru, manfaatkan perjanjian perdagangan yang berlaku, dan pantau porsi lima negara teratas setiap triwulan.',
     timeline: [
-      ['Apr 2026', 'Data PMA triwulan II 2026 mulai terkumpul di sistem LKPM.'],
-      ['Jun 2026', 'Hong Kong dan Singapura tercatat dua sumber PMA terbesar.'],
-      ['12 Okt 2026', 'Konsentrasi 67,1% pada empat negara ditetapkan sebagai EWS aktif.']
+      ['16 Jul 2026', 'Rilis Tw II 2026: Hong Kong dan Singapura dua sumber PMA terbesar.'],
+      ['19 Okt 2026', 'Rilis Tw III 2026: lima negara teratas menyumbang sekitar 80% PMA kumulatif.'],
+      ['19 Okt 2026', 'EWS WARNING diperbarui dengan data kumulatif Januari–September.']
     ],
     sh: [
-      ['Kementerian Investasi / BKPM', 'Pengelola data PMA dan promosi'],
-      ['Kementerian Keuangan', 'Penyusun asumsi kurs APBN 2026'],
-      ['Badan Koordinasi Ekspor', 'Fasilitator promosi ekspor'],
-      ['Kammer dagang dan asosiasi bisnis', 'Pengusul PMA dari empat negara asal']
+      ['Kementerian Investasi dan Hilirisasi/BKPM', 'Pengelola data PMA dan promosi investasi'],
+      ['Kementerian Luar Negeri', 'Diplomasi ekonomi dan misi dagang'],
+      ['Kementerian Perdagangan', 'Pemanfaatan perjanjian perdagangan'],
+      ['Kamar dagang dan asosiasi bisnis', 'Mitra promosi di negara asal baru']
     ],
-    reg: 'PP 5/2021 - Permen Investasi No. 5/2021'
+    reg: 'PP 28/2025 - Permen Investasi No. 5/2025'
   }
 ];
 // ---------- highlight EWS + pop-up detail ----------
@@ -2127,6 +2126,7 @@ const ewsClose = () => this.setState({ ews: null });
       ? { t: 'Draf AI', c: '#B45309', bg: '#FFFBEB', bd: '#FDE68A' }
       : { t: 'Terverifikasi Analis', c: '#047857', bg: '#ECFDF5', bd: '#A7F3D0' };
     highlights.forEach((h) => { h.verif = vstat(h.k); });
+    highlights.forEach((h, i) => Object.assign(h, __tay(h.tayH != null ? h.tayH : (__TAY_HL[i] != null ? __TAY_HL[i] : 4))));
     const ewsPick = highlights.filter((h) => h.k === ewsKey)[0];
     const ews = ewsPick ? Object.assign({}, ewsPick, ewsSev(ewsPick.level), {
       title: ewsPick.s, id: 'EWS-' + ewsPick.k.toUpperCase() + '-2026',
@@ -2195,7 +2195,7 @@ const ewsClose = () => this.setState({ ews: null });
     const d1segs = S1.map((s) => ({ c: s.c, p: s.v / PMDN_TOT[nasPer] * 100, g: 'PMDN', l: s.l, v: 'Rp' + nf(s.v, 1) + ' T', n: s.n, raw: s.v }));
     const d2segs = S2.map((s) => ({ c: s.c, p: s.v / PMA_TOT[nasPer] * 100, g: 'PMA', l: s.l, v: usd2(s.v), n: s.n, raw: s.v }));
     const NV_P = NVR[nasPer];
-    const nasC = { per: ({ tw1: 'Tw I 2026', tw2: 'Tw II 2026', s1: st.nasPer === 'y26' ? 'Tahun 2026 · s.d. Tw II' : 'Semester I 2026' })[nasPer],
+    const nasC = { per: ({ tw1: 'Tw I 2026', tw2: 'Tw II 2026', s1: st.nasPer === 'y26' ? 'Semester I 2026 · rincian s.d. Tw III belum dirilis' : 'Semester I 2026' })[nasPer],
       pv: 'Rp' + nf(NV_P.p, 1) + ' T', ps: nf(NV_P.p / NV_P.t * 100, 1) + '%', av: 'Rp' + nf(NV_P.a, 1) + ' T', as: nf(NV_P.a / NV_P.t * 100, 1) + '%',
       au: 'US$ ' + nf(NV_P.a * 1e12 / KURS / 1e9, 2) + ' miliar',
       note: ({ tw1: 'Tw I 2026 (Januari–Maret): lima negara asal PMA dari rilis BKPM 23 Apr 2026; PMDN per provinsi = Semester I dikurangi Tw II.', tw2: 'Tw II 2026 (April–Juni): rilis BKPM 16 Jul 2026; provinsi dan negara di luar rilis adalah estimasi.', s1: 'Semester I 2026 (Januari–Juni): PMDN per provinsi dari rilis BKPM 16 Jul 2026; PMA per negara = Tw I + Tw II.' })[nasPer],
@@ -2372,8 +2372,8 @@ const ewsClose = () => this.setState({ ews: null });
 
     // ---- Investasi nasional: realisasi per periode vs target tahunan nasional (+ hilirisasi simulasi) ----
     // Target tahunan 2026 Rp2.175,3 T. Pembanding YoY = periode sama 2025 (BKPM: Tw I 465,2; Tw II 477,7; Tw III 491,4; setahun 1.931,2 T).
-    const NV = { tw1: { t: 498.8, p: 248.8, a: 249.9, h: 135.2 }, tw2: { t: 511.8, p: 254.1, a: 257.7, h: 152.7 }, s1: { t: 1010.6, p: 502.9, a: 507.6, h: 287.9 }, y26: { t: 1010.6, p: 502.9, a: 507.6, h: 287.9 } };
-    const N25 = { tw1: 465.2, tw2: 477.7, tw3: 491.4, tw4: 496.9, s1: 942.9, y26: 942.9 };
+    const NV = { tw1: { t: 498.8, p: 248.8, a: 249.9, h: 135.2 }, tw2: { t: 511.8, p: 254.1, a: 257.7, h: 152.7 }, s1: { t: 1010.6, p: 502.9, a: 507.6, h: 287.9 }, tw3: { t: 528.7, p: 258.5, a: 270.2, h: 179.9 }, y26: { t: 1539.2, p: 761.4, a: 777.8, h: 480.0 } };
+    const N25 = { tw1: 465.2, tw2: 477.7, tw3: 491.4, tw4: 496.9, s1: 942.9, y26: 1434.3 };
     const TG26 = 2175.3;
     const NROW = [
       ['tw1', 'Tw I', 'Jan–Mar', 0.25, 'triwulan = 25% target'],
@@ -2381,9 +2381,9 @@ const ewsClose = () => this.setState({ ews: null });
       ['s1', 'Semester I', 'Jan–Jun', 0.5, 'semester = 50% target'],
       ['tw3', 'Tw III', 'Jul–Sep', 0.25, 'triwulan = 25% target'],
       ['tw4', 'Tw IV', 'Okt–Des', 0.25, 'triwulan = 25% target'],
-      ['y26', 'Tahun 2026', 'berjalan s.d. Tw II', 0.5, 's.d. Juni = 50% target']
+      ['y26', 'Tahun 2026', 'berjalan s.d. Tw III', 0.75, 's.d. September = 75% target']
     ];
-    const NWHY = { tw3: 'Belum rilis · dirilis BKPM akhir Okt 2026 · Tw III 2025: Rp491,4 T', tw4: 'Belum rilis · periode belum berakhir · Tw IV 2025: Rp496,9 T' };
+    const NWHY = { tw4: 'Belum rilis · periode belum berakhir · Tw IV 2025: Rp496,9 T' };
     const HSUB = [['Mineral & logam', 0, '#134E4A', '#FFFFFF'], ['Perkebunan & kehutanan', 0, '#0F766E', '#FFFFFF'], ['Minyak & gas', 0, '#2DD4BF', '#134E4A'], ['Perikanan & kelautan', 0, '#99F6E4', '#134E4A']];
     // Rincian komoditas hilirisasi [komoditas, Rp T, resmi?]. Tw II 2026 mineral = rilis BKPM 20 Jul 2026 (Rp108,2 T:
     // bauksit 40,1 · nikel 29,4 · tembaga 16,7 · besi baja 13,2 · pasir silika 4,0 · lainnya 4,7) dan total hilirisasi Rp152,7 T.
@@ -2406,7 +2406,10 @@ const ewsClose = () => this.setState({ ews: null });
     const hSum = (arr) => arr.reduce((a, x) => a + x[1], 0);
     // Semester I & tahun berjalan = Tw I + Tw II per komoditas
     HCOM.s1 = HCOM.tw1.map((sec, si) => { const m = {}; sec.concat(HCOM.tw2[si]).forEach(([n, v, r]) => { const k = n.startsWith('Lainnya') ? 'Lainnya' + (si === 0 ? ' (timah, emas, kobalt, mangan, dll.)' : '') : n; m[k] = m[k] || [k, 0, 1]; m[k][1] = Math.round((m[k][1] + v) * 10) / 10; if (!r) m[k][2] = 0; }); return Object.values(m).sort((a, b) => b[1] - a[1]); });
-    HCOM.y26 = HCOM.s1;
+    // Tw III 2026: total hilirisasi Rp179,9 T dirilis BKPM 19 Okt 2026; pembagian sektor = estimasi dari selisih kumulatif Jan–Sep dan Semester I.
+    HCOM.tw3 = [[['Mineral & logam (rincian komoditas belum dirilis)', 126.5]], [['Perkebunan & kehutanan', 14.4]], [['Minyak & gas bumi', 34.4]], [['Udang, tuna-cakalang-tongkol, rumput laut, garam, dll.', 4.6]]];
+    // Tahun berjalan s.d. Tw III = rilis kumulatif Januari–September 2026 (BKPM, 19 Okt 2026)
+    HCOM.y26 = [[['Nikel', 118.9, 1], ['Bauksit', 115.7, 1], ['Besi baja', 40.8, 1], ['Tembaga', 39.5, 1], ['Pasir silika', 7.0, 1], ['Lainnya (timah, emas, kobalt, mangan, dll.)', 13.2, 1]], [['Perkebunan & kehutanan (sawit, kayu log, karet, dll.)', 83.6, 1]], [['Minyak & gas bumi', 54.0, 1]], [['Perikanan & kelautan', 7.3, 1]]];
     const hilSel = st.hil || null;
     const tT = (v) => 'Rp' + nf(v, 1) + ' T';
     const pc = (v, d) => nf(v * 100, d == null ? 1 : d) + '%';
@@ -2419,12 +2422,12 @@ const ewsClose = () => this.setState({ ews: null });
         pos = { top: Math.round(r.bottom - b.top + 8) + 'px', left: Math.round(Math.max(18, Math.min(r.left - b.left, b.width - W - 18))) + 'px', w: W + 'px' }; }
       this.setState({ nasPop: k, nasPer: per, nasPos: pos, donutDetail: null }); };
     const nas = {
-      tg: tT(TG26), head: pc(NV.y26.t / TG26) + ' tercapai s.d. Tw II · ' + (NV.y26.t >= N25.y26 ? '+' : '−') + nf(Math.abs(NV.y26.t / N25.y26 - 1) * 100, 1) + '% YoY',
+      tg: tT(TG26), head: pc(NV.y26.t / TG26) + ' tercapai s.d. Tw III · ' + (NV.y26.t >= N25.y26 ? '+' : '−') + nf(Math.abs(NV.y26.t / N25.y26 - 1) * 100, 1) + '% YoY',
       rows: NROW.map(([k, l, s]) => { const v = NV[k], b = N25[k], agg = k === 's1' || k === 'y26';
         const y = v && b ? v.t / b - 1 : null;
         return { l, s, has: !!v, none: !v, why: NWHY[k] || '', bg: agg ? '#F8FAFC' : 'transparent',
           w: v ? (v.t / TG26) * 100 + '%' : '0%', pF: v ? v.p : 0, aF: v ? v.a : 0,
-          pOpen: (e) => nasOpen('pmdn', e, k), aOpen: (e) => nasOpen('pma', e, k),
+          pOpen: k === 'tw3' ? () => {} : (e) => nasOpen('pmdn', e, k), aOpen: k === 'tw3' ? () => {} : (e) => nasOpen('pma', e, k),
           pN: v ? nf(v.p, 1) : '', aN: v ? nf(v.a, 1) : '',
           pV: v ? tT(v.p) : '', aV: v ? tT(v.a) : '', pP: v ? pc(v.p / v.t) : '', aP: v ? pc(v.a / v.t) : '',
                     tsuf: v ? 'target' : '', v: v ? tT(v.t) : '—', vc: v ? '#0F172A' : '#94A3B8', pct: v ? pc(v.t / TG26) : '—',
@@ -2445,7 +2448,7 @@ const ewsClose = () => this.setState({ ews: null });
         return { kick: (/2026/.test(per) ? per : per + ' 2026').toUpperCase(), l: HSUB[hilSel.s][0], c: HSUB[hilSel.s][2], v: tT(tot), sh: pc(tot / hv) + ' dari hilirisasi ' + (/2026/.test(per) ? per : per + ' 2026') + ' (' + tT(hv) + ')',
           left: right ? 'auto' : 'calc(' + ((hilSel.ci + 1) / 6) * 100 + '% + 4px)', right: right ? 'calc(' + ((6 - hilSel.ci) / 6) * 100 + '% + 4px)' : 'auto',
           items: C.slice().sort((a, b) => b[1] - a[1]).map(([n, v, r]) => ({ n, v: nf(v, 1), p: pc(v / tot, 0), w: (v / mx) * 100 + '%', est: !r, tt: n + ': ' + tT(v) + (r ? ' (rilis BKPM)' : ' (estimasi)') })),
-          src: C.every((x) => x[2]) ? 'Sumber: Kementerian Investasi dan Hilirisasi/BKPM, rilis 20 Jul 2026' + (hilSel.k === 'tw2' && hilSel.s === 0 ? '; total sektor dirilis Rp108,2 T (selisih pembulatan).' : '.') : 'Angka bertanda est. = estimasi dari komposisi resmi Semester I 2025 (BKPM); angka lain rilis BKPM 2026.',
+          src: hilSel.k === 'tw3' ? 'Total hilirisasi Tw III Rp179,9 T dirilis BKPM 19 Okt 2026; pembagian sektor = estimasi dari selisih kumulatif Januari–September dan Semester I.' : C.every((x) => x[2]) ? 'Sumber: Kementerian Investasi dan Hilirisasi/BKPM, rilis ' + (hilSel.k === 'y26' ? '19 Okt 2026 (kumulatif Januari–September).' : '20 Jul 2026' + (hilSel.k === 'tw2' && hilSel.s === 0 ? '; total sektor dirilis Rp108,2 T (selisih pembulatan).' : '.')) : 'Angka bertanda est. = estimasi dari komposisi resmi Semester I 2025 (BKPM); angka lain rilis BKPM 2026.',
           close: () => this.setState({ hil: null }) }; })()
     };
     // ---- Proyek siap investasi per provinsi (Top 5) ----
@@ -2473,42 +2476,42 @@ const ewsClose = () => this.setState({ ews: null });
     const prjBy = TOP5.map((id, i) => { const v = (PRJP[id] || []).reduce((a, x) => a + x.nv, 0); return { n: P[id].n, v, c: PRJC[i] }; }).sort((x, y) => y.v - x.v);
     const pdrbTop = TOP5.map((id, i) => ({ n: P[id].n, sh: P[id].share, c: PRJC[i] }));
     const pdrbTopSum = pdrbTop.reduce((a, x) => a + x.sh, 0);
-    const ri = riMake('Triwulan II 2026 · PDRB 2025', [
-      { l: 'Realisasi investasi Tw II 2026', v: 'Rp511,8 T', s: 'naik 7,1% yoy dari Rp477,7 T', st: 'ok', a: 'Jaga momentum; data Tw III 2026 belum dirilis BKPM.', go: riGo('sec-nasional'),
+    const ri = riMake('Triwulan III 2026 · PDRB 2025', [
+      { l: 'Realisasi investasi Tw III 2026', v: 'Rp528,7 T', s: 'naik 7,6% yoy dari Rp491,4 T', st: 'ok', a: 'Kawal realisasi proyek besar di Tw IV agar momentum pertumbuhan terjaga.', go: riGo('sec-nasional'),
         viz: { hl: 'Target tahunan', hb: 'Rp' + nf(TG26, 1) + ' T', hr: nf(NV.y26.t / TG26 * 100, 1) + '%', hc: '#1E40AF',
-          segs: [vSeg(NV.tw1.t / TG26 * 100, '#94A3B8', 'Tw I ' + nf(NV.tw1.t / TG26 * 100, 1) + '% target'), vSeg(NV.tw2.t / TG26 * 100, '#1E40AF', 'Tw II ' + nf(NV.tw2.t / TG26 * 100, 1) + '% target')],
-          keys: [vKey('#94A3B8', 'Tw I ' + nf(NV.tw1.t / TG26 * 100, 1) + '%'), vKey('#1E40AF', 'Tw II ' + nf(NV.tw2.t / TG26 * 100, 1) + '%')],
-          tt: 'Kumulatif s.d. Tw II Rp' + nf(NV.y26.t, 1) + ' T = ' + nf(NV.y26.t / TG26 * 100, 1) + '% dari target nasional Rp' + nf(TG26, 1) + ' T' } },
-      { l: 'Porsi PMA', v: '50,4%', s: pmaUsd + ' ≈ Rp257,7 T', st: 'watch', a: 'Perluas negara asal investor di luar Hong Kong & Singapura.', go: riGo('sec-nasional'),
-        viz: { hl: 'Komposisi', hb: 'Rp511,8 T', hr: '', hc: '#A16207',
-          segs: [vSeg(49.6, '#1E40AF', 'PMDN Rp254,1 T · 49,6%'), vSeg(50.4, '#D4A72C', 'PMA Rp257,7 T · 50,4%')],
-          keys: [vKey('#1E40AF', 'PMDN 49,6%'), vKey('#D4A72C', 'PMA 50,4%')], tt: 'Tw II 2026: PMDN Rp254,1 T, PMA Rp257,7 T' } },
+          segs: [vSeg(NV.tw1.t / TG26 * 100, '#CBD5E1', 'Tw I ' + nf(NV.tw1.t / TG26 * 100, 1) + '% target'), vSeg(NV.tw2.t / TG26 * 100, '#94A3B8', 'Tw II ' + nf(NV.tw2.t / TG26 * 100, 1) + '% target'), vSeg(NV.tw3.t / TG26 * 100, '#1E40AF', 'Tw III ' + nf(NV.tw3.t / TG26 * 100, 1) + '% target')],
+          keys: [vKey('#94A3B8', 'Tw I–II ' + nf((NV.tw1.t + NV.tw2.t) / TG26 * 100, 1) + '%'), vKey('#1E40AF', 'Tw III ' + nf(NV.tw3.t / TG26 * 100, 1) + '%')],
+          tt: 'Kumulatif s.d. Tw III Rp' + nf(NV.y26.t, 1) + ' T = ' + nf(NV.y26.t / TG26 * 100, 1) + '% dari target nasional Rp' + nf(TG26, 1) + ' T' } },
+      { l: 'Porsi PMA', v: '51,1%', s: 'Rp270,2 T dari Rp528,7 T (Tw III)', st: 'watch', a: 'Lima negara asal menyumbang ±80% PMA kumulatif; perluas negara asal baru.', go: riGo('sec-nasional'),
+        viz: { hl: 'Komposisi', hb: 'Rp528,7 T', hr: '', hc: '#A16207',
+          segs: [vSeg(48.9, '#1E40AF', 'PMDN Rp258,5 T · 48,9%'), vSeg(51.1, '#D4A72C', 'PMA Rp270,2 T · 51,1%')],
+          keys: [vKey('#1E40AF', 'PMDN 48,9%'), vKey('#D4A72C', 'PMA 51,1%')], tt: 'Tw III 2026: PMDN Rp258,5 T, PMA Rp270,2 T' } },
       { l: 'Konsentrasi PDRB', v: '57,32%', s: 'disumbang 5 provinsi terbesar', st: 'warn', a: 'Arahkan insentif ke provinsi di luar lima besar.', go: riGo('sec-peta'),
         viz: { hl: 'Terbesar', hb: pdrbTop[0].n, hr: nf(pdrbTop[0].sh, 2) + '%', hc: '#1E3A8A',
           segs: pdrbTop.map((x) => vSeg(x.sh, x.c, x.n + ' ' + nf(x.sh, 2) + '% PDRB')).concat([vSeg(100 - pdrbTopSum, '#CBD5E1', '33 provinsi lain ' + nf(100 - pdrbTopSum, 2) + '%')]),
           keys: [vKey('#2563EB', '5 provinsi ' + nf(pdrbTopSum, 2) + '%'), vKey('#CBD5E1', '33 lainnya ' + nf(100 - pdrbTopSum, 2) + '%')], tt: pdrbTop.map((x) => x.n + ' ' + nf(x.sh, 2) + '%').join(' · ') } },
-      { l: 'Sebaran PMDN', v: '66,6%', s: 'terkumpul di 4 wilayah', st: 'warn', a: 'Arahkan insentif PMDN ke Kalimantan, Sulawesi, dan Bali–Nusra.', go: riGo('sec-nasional'),
-        viz: { hl: 'Kal–Sul–Bali–Nusra', hb: '', hr: '21,5%', hc: '#B45309',
-          segs: [vSeg(66.6, '#1E40AF', '4 wilayah teratas 66,6%'), vSeg(21.5, '#F59E0B', 'Kalimantan, Sulawesi, Bali–Nusra 21,5%'), vSeg(11.9, '#CBD5E1', 'Wilayah lain 11,9%')],
-          keys: [vKey('#1E40AF', '4 wilayah 66,6%'), vKey('#CBD5E1', 'lainnya 11,9%')], tt: 'Porsi PMDN Tw II 2026 menurut wilayah' } },
+      { l: 'Investasi luar Jawa', v: '51,4%', s: 'Rp271,6 T · tumbuh 2,2% yoy (Jawa 13,9%)', st: 'warn', a: 'Pertumbuhan luar Jawa tertinggal; percepat proyek hilirisasi dan KEK di luar Jawa.', go: riGo('sec-nasional'),
+        viz: { hl: 'Jawa', hb: 'Rp257,1 T', hr: '48,6%', hc: '#B45309',
+          segs: [vSeg(51.4, '#1E40AF', 'Luar Jawa Rp271,6 T · 51,4%'), vSeg(48.6, '#F59E0B', 'Jawa Rp257,1 T · 48,6%')],
+          keys: [vKey('#1E40AF', 'Luar Jawa +2,2% yoy'), vKey('#F59E0B', 'Jawa +13,9% yoy')], tt: 'Tw III 2026: luar Jawa Rp271,6 T (+2,2% yoy), Jawa Rp257,1 T (+13,9% yoy)' } },
       { l: 'Proyek siap investasi', v: riPrj.length + ' proyek', s: 'Rp' + nf(riPrjV, 1) + ' T · PIR BKPM', st: 'watch', a: 'Promosikan profil proyek Top 5 di forum bisnis dan misi investasi.', go: () => this.setState({ view: 'detail', dp: 'dki', pop: false }),
         viz: { hl: 'Terbesar', hb: prjBy[0].n, hr: nf(prjBy[0].v / riPrjV * 100, 1) + '%', hc: '#1E40AF',
           segs: prjBy.map((x) => vSeg(x.v / riPrjV * 100, x.c, x.n + ' Rp' + nf(x.v, 1) + ' T')),
           keys: [vKey(prjBy[0].c, 'Rp' + nf(prjBy[0].v, 1) + ' T'), vKey('#93C5FD', '4 provinsi lain Rp' + nf(riPrjV - prjBy[0].v, 1) + ' T')], tt: prjBy.map((x) => x.n + ' Rp' + nf(x.v, 1) + ' T').join(' · ') } }
     ]);
     {
-      const E = ['Realisasi investasi Tw II 2026 Rp511,8 T, naik 7,1% yoy; kumulatif ' + nf(NV.y26.t / TG26 * 100, 1) + '% dari target tahunan.',
-        'PMA Rp257,7 T (50,4%) sedikit di atas PMDN Rp254,1 T (49,6%); Hong Kong & Singapura menyumbang 59,4% PMA.',
+      const E = ['Realisasi investasi Tw III 2026 Rp528,7 T, naik 7,6% yoy; kumulatif Januari–September Rp1.539,2 T (+7,3% yoy).',
+        'PMA Rp270,2 T (51,1%) di atas PMDN Rp258,5 T (48,9%); Singapura, Hong Kong, Tiongkok, AS, dan Jepang ±80% PMA kumulatif.',
         'Lima provinsi terbesar menyumbang 57,32% PDRB nasional; terbesar ' + pdrbTop[0].n + ' ' + nf(pdrbTop[0].sh, 2) + '%.',
-        '66,6% PMDN terkumpul di 4 wilayah; Kalimantan, Sulawesi, dan Bali–Nusra hanya 21,5%.',
+        'Investasi luar Jawa Rp271,6 T (51,4%) hanya tumbuh 2,2% yoy, tertinggal dari Jawa yang tumbuh 13,9%.',
         riPrj.length + ' peluang investasi (PPI, PID, IPRO) di 5 provinsi teratas senilai Rp' + nf(riPrjV, 1) + ' T; terbesar di ' + prjBy[0].n + '.'];
-      const SRC = ['BKPM/Kementerian Investasi · rilis Tw II 2026', 'BKPM/Kementerian Investasi · rilis Tw II 2026', 'BPS · PDRB 2025', 'BKPM/Kementerian Investasi · rilis Tw II 2026', 'Portal Investasi Regional BKPM · 19 Okt 2026'];
-      const DSC = ['Nilai investasi PMA dan PMDN yang terealisasi pada triwulan II 2026 dan capaiannya terhadap target tahunan.', 'Bagian investasi dari penanaman modal asing (PMA) dibandingkan penanaman modal dalam negeri (PMDN).', 'Porsi ekonomi nasional (PDRB) yang disumbang lima provinsi terbesar; makin tinggi, makin tidak merata.', 'Porsi investasi dalam negeri yang terkumpul di wilayah teratas; menunjukkan pemerataan investasi antarwilayah.', 'Peluang investasi yang profilnya sudah dipublikasikan BKPM di Portal Investasi Regional (kategori PPI, PID, dan IPRO) untuk lima provinsi PDRB terbesar.'];
+      const SRC = ['Kementerian Investasi dan Hilirisasi/BKPM · rilis Tw III 2026 (19 Okt 2026)', 'Kementerian Investasi dan Hilirisasi/BKPM · rilis Tw III 2026 (19 Okt 2026)', 'BPS · PDRB 2025 (rilis terakhir)', 'Kementerian Investasi dan Hilirisasi/BKPM · rilis Tw III 2026 (19 Okt 2026)', 'Portal Investasi Regional BKPM · 19 Okt 2026'];
+      const DSC = ['Nilai investasi PMA dan PMDN yang terealisasi pada triwulan III 2026 dan capaiannya terhadap target tahunan.', 'Bagian investasi dari penanaman modal asing (PMA) dibandingkan penanaman modal dalam negeri (PMDN).', 'Porsi ekonomi nasional (PDRB) yang disumbang lima provinsi terbesar; makin tinggi, makin tidak merata.', 'Porsi dan pertumbuhan investasi di luar Pulau Jawa dibanding Jawa; menunjukkan pemerataan investasi antarwilayah.', 'Peluang investasi yang profilnya sudah dipublikasikan BKPM di Portal Investasi Regional (kategori PPI, PID, dan IPRO) untuk lima provinsi PDRB terbesar.'];
       ri.items.forEach((x, i) => Object.assign(x, __tay(__TAY_KPI[i] != null ? __TAY_KPI[i] : 3)));
       ri.items.forEach((x, i) => { x.e = E[i]; x.src = SRC[i]; x.d = DSC[i]; x.disc = 'DISCLAIMER: ' + (/simulasi/i.test(x.src) ? 'Data yang ditampilkan merupakan data simulasi untuk prototipe, belum data resmi.' : 'Data yang ditampilkan bersumber dari ' + x.src + '.'); const m = String(x.s).match(/naik [\d.,]+%|\+[\d.,]+%?(?: yoy)?/i); x.s1 = m ? x.s.slice(0, m.index) : x.s; x.sg = m ? m[0] : ''; x.s2 = m ? x.s.slice(m.index + m[0].length) : ''; x.vcls = /^\+/.test(x.v) ? 'ri-v ri-up' : 'ri-v'; x.vsep = x.viz && x.viz.hr ? '·' : ''; x.hrcls = x.viz && x.viz.hc === '#15803D' ? 'ri-up' : ''; x.vks = x.viz ? x.viz.keys.map((k) => ({ l: k.l, cls: /^(\+|Naik)/.test(k.l) ? 'ri-vr ri-vk ri-up' : 'ri-vr ri-vk' })) : []; });
     }
-    mini.inv = ['Realisasi investasi Semester I 2026 mencapai Rp1.010,6 T atau 46,5% dari target nasional Rp2.175,3 T, tumbuh 7,2% dibanding periode yang sama 2025. Komposisinya seimbang antara PMA Rp507,6 T (50,2%) dan PMDN Rp502,9 T (49,8%).',
-      'Hilirisasi menyumbang Rp287,9 T atau 28,5% dari realisasi, didominasi mineral dan logam Rp200,0 T. Data Tw III 2026 belum dirilis BKPM.'];
+    mini.inv = ['Realisasi investasi Januari–September 2026 mencapai Rp1.539,2 T, tumbuh 7,3% dibanding periode yang sama 2025; triwulan III saja Rp528,7 T (+7,6% yoy). Komposisinya PMA Rp777,8 T (50,5%) dan PMDN Rp761,4 T (49,5%).',
+      'Hilirisasi menyumbang Rp480,0 T atau 31,2% dari realisasi, didominasi mineral Rp335,1 T (nikel Rp118,9 T, bauksit Rp115,7 T). Data Tw III dirilis BKPM 19 Okt 2026.'];
     mini.peta = ['Lima provinsi terbesar, yaitu ' + TOP5.map((id) => P[id].n).join(', ') + ', menyumbang ' + nf(TOP5.reduce((a, id) => a + P[id].share, 0), 2) + '% PDRB nasional, dengan ' + P[TOP5[0]].n + ' sebagai penyumbang terbesar (' + nf(P[TOP5[0]].share, 2) + '%).',
       'Konsentrasi ini menunjukkan aktivitas ekonomi masih terpusat di Jawa dan Sumatera Utara, sehingga provinsi lain membutuhkan dukungan tambahan untuk menarik investasi.'];
     mini.siap = ['Indikator ini merangkum kondisi pendukung investasi di ' + dh.n + ': biaya dan ketersediaan tenaga kerja, pendidikan vokasi, konektivitas, kawasan industri, dan isu sosial.',
