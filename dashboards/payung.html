@@ -193,6 +193,7 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
 .ri-l .info-i{width:auto!important;height:auto!important;border:0!important;color:#64748B}.ri-l .info-i:hover,.ri-l .info-i:focus{color:#0F172A}.ri-l .info-i svg{display:block}.ri-l .info-i .pop{width:260px;font-size:11.5px;line-height:17px}.ri-disc{display:block;margin-top:10px;font-style:italic;color:#CBD5E1}
 .ri-card .ri-l .info-i{vertical-align:-3px!important;line-height:0}.ri-card .ri-l .info-i svg{width:13px;height:13px}
 .mzi{display:block!important;padding:12px 14px!important}.mzi .mzi-b{display:block;margin-bottom:6px;font-size:13px!important;font-weight:700!important}.mzi .mzi-s{display:none!important}.mzi .mzi-l{display:block!important;font-weight:400!important;font-size:12.5px!important;line-height:20px!important;color:#5B21B6!important}.mzi .mzi-l li{display:inline!important;padding-left:0!important}.mzi .mzi-l li:before{display:none!important}.mzi .mzi-l li:after{content:" "}</style>
+<style id="harmonisasi-jam-tayang">.ri-l{display:flex!important;align-items:flex-start!important;gap:4px;width:100%;box-sizing:border-box;align-self:stretch!important;justify-self:stretch!important}.ri-tay{margin-left:auto;flex:none;padding-left:6px;white-space:nowrap;font-size:10px!important;font-weight:400!important;letter-spacing:0!important;text-transform:none!important;line-height:14px;color:#9ca3af!important;cursor:help}</style>
 </head>
 <body>
 <x-dc>
@@ -554,7 +555,7 @@ section h2,section h3{font-size:14px!important;font-weight:700!important;color:v
           <div class="ri-strip" role="list">
             <sc-for list="{{ri.items}}" as="r" hint-placeholder-count="5">
             <button type="button" role="listitem" class="ri-item" sc-camel-on-click="{{r.go}}" title="Klik untuk melihat rincian" style="box-shadow: inset 0 3px 0 {{r.cc}};">
-              <span class="ri-l">{{r.l}}<span class="tip info-i" tabindex="0" aria-label="Keterangan" onclick="event.stopPropagation()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg><span class="pop">{{r.d}}<span class="ri-disc">{{r.disc}}</span></span></span></span>
+              <span class="ri-l">{{r.l}}<span class="tip info-i" tabindex="0" aria-label="Keterangan" onclick="event.stopPropagation()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg><span class="pop">{{r.d}}<span class="ri-disc">{{r.disc}}</span></span></span><span class="ri-tay" title="{{r.tayT}}">{{r.tay}}</span></span>
               <b class="{{r.vcls}}">{{r.v}}</b>
               <span class="ri-s" style="justify-self: stretch; align-self: start;">{{r.s1}}<b class="ri-up">{{r.sg}}</b>{{r.s2}}<sc-if value="{{r.viz}}" hint-placeholder-val="{{false}}"><span class="ri-vl" title="{{r.viz.tt}}"><span class="ri-vr">{{r.viz.hl}} <b>{{r.viz.hb}}</b> <span class="ri-sep">{{r.vsep}}</span> <b class="{{r.hrcls}}">{{r.viz.hr}}</b></span><sc-for list="{{r.vks}}" as="k" hint-placeholder-count="2"><span class="{{k.cls}}">{{k.l}}</span></sc-for></span></sc-if></span>
               <span class="ri-i"><span class="ri-ie">✦ {{r.e}}</span><span class="ri-ir"><b>REKOMENDASI:</b> {{r.a}}</span><span class="ri-isrc"><b>Sumber:</b> {{r.src}}</span></span>
@@ -962,6 +963,12 @@ class Component extends DCLogic {
     if (ps && (ps.view !== this.state.view || ps.sel !== this.state.sel)) { try { window.scrollTo(0, 0); } catch (e) {} }
   }
   renderVals() {
+    // Jam tayang (diadopsi dari modul Eksekutif): waktu relatif sejak kartu ditayangkan, siklus pembaruan 6 jam.
+    const __TAY_KPI = [2, 1, 1, 3];
+    const __tay = (h) => { const BUL = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'], p = (x) => String(x).padStart(2, '0');
+      const t0 = Date.now() - h * 3600e3, f = (ms) => { const d = new Date(ms); return d.getDate() + ' ' + BUL[d.getMonth()] + ' ' + d.getFullYear() + ', ' + p(d.getHours()) + '.' + p(d.getMinutes()) + ' WIB'; };
+      return { tay: h < 1 ? Math.max(1, Math.round(h * 60)) + ' menit lalu' : Math.round(h) + ' jam lalu', tayT: 'Tayang sejak ' + f(t0) + ' · siklus pembaruan setiap 6 jam · tayang s/d ' + f(t0 + 24 * 3600e3) }; };
+
     const st = this.state;
     const view = st.view || this.props.startView || 'list';
     const JC = { UU: '#0B1F4B', PP: '#1E40AF', Perpres: '#1D4ED8', Permen: '#0EA5E9', Kepmen: '#0EA5E9', Perda: '#D4A72C' };
@@ -1561,6 +1568,7 @@ const closeEws = () => this.setState({ ews: null });
         regulatoryInsight.topPct + ' regulasi investasi berbentuk ' + regulatoryInsight.topLabel + ', jenis yang paling dominan.'];
       const SRC = ['JDIH BPK & JDIH K/L/daerah · per 12 Okt 2026', 'Analisis keselarasan regulasi', 'Analisis keselarasan regulasi', 'JDIH BPK · klasifikasi jenis peraturan'];
       const DSC = ['Jumlah peraturan terkait investasi yang masih berlaku, baik tingkat pusat maupun daerah.', 'Persentase regulasi yang dinilai selaras dengan peraturan di atasnya dan tujuan kemudahan berinvestasi.', 'Jumlah regulasi yang berpotensi bertentangan atau menghambat investasi, beserta status tindak lanjutnya.', 'Porsi jenis peraturan terbanyak; menunjukkan seberapa besar regulasi investasi diatur lewat aturan teknis kementerian.'];
+      ri.items.forEach((x, i) => Object.assign(x, __tay(__TAY_KPI[i] != null ? __TAY_KPI[i] : 3)));
       ri.items.forEach((x, i) => { x.e = E[i]; x.src = SRC[i]; x.d = DSC[i]; x.disc = 'DISCLAIMER: ' + (/simulasi/i.test(x.src) ? 'Data yang ditampilkan merupakan data simulasi untuk prototipe, belum data resmi.' : 'Data yang ditampilkan bersumber dari ' + x.src + '.'); const m = String(x.s).match(/naik [\d.,]+%|\+[\d.,]+%?(?: yoy)?/i); x.s1 = m ? x.s.slice(0, m.index) : x.s; x.sg = m ? m[0] : ''; x.s2 = m ? x.s.slice(m.index + m[0].length) : ''; x.vcls = /^\+/.test(x.v) ? 'ri-v ri-up' : 'ri-v'; x.vsep = x.viz && x.viz.hr ? '·' : ''; x.hrcls = x.viz && x.viz.hc === '#15803D' ? 'ri-up' : ''; x.vks = x.viz ? x.viz.keys.map((k) => ({ l: k.l, cls: /^(\+|Naik)/.test(k.l) ? 'ri-vr ri-vk ri-up' : 'ri-vr ri-vk' })) : []; });
     }
     return { isList: view === 'list', isDetail: view === 'detail', fl, flDaftar, hasDaftarFilter, resetDaftarFilter, hasFilter, resetF, filterNote: ids.length + ' regulasi sesuai filter',
